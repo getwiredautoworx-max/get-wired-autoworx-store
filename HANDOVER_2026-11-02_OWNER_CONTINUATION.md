@@ -1490,3 +1490,15 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Added `image_review_status` and `image_review_notes` columns to the 50-row review-only CSV; updated README and validation report. Latest ASC pilot staging branch head at this update: `a6976465ce4a8652813872eb94d4dd81109b330d`.
 - A non-production-only script enhancement has been committed to the isolated ASC cleanup branch to render source pages 3 and 4 for exact SKU/image pairing review. Its GitHub Actions extraction run is still in progress at the time of this handover update; do not claim those page renders exist until the run succeeds and the branch is read back.
 - No live imports, database writes, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
+
+
+## 2026-11-04 — ASC PILOT SOURCE-PAGE VERIFICATION COMPLETE
+
+- Enhanced the isolated review extraction script to render source PDF pages 3 and 4 for all six retained ASC catalogues. GitHub Actions run `41828823066` completed successfully; job `126570398084` passed all steps. The extraction commit is on `cleanup/asc-catalogues-stock-reset-2026-10-30` at head `30531dd8c8b888f22a2c9a050b67dffcb8e544c2`.
+- Twelve full-page renders are present under `catalogue-review/asc/source-pages/` (pages 3 and 4 of each of the six PDFs). The branch still contains exactly the six retained ASC PDFs and no buyer's-guide paths.
+- Using the source-page renders, all 50 pilot supplier SKUs, printed captions and associated product image crops were visually cross-checked against the original pages. All 50 source-page SKU matches are confirmed; no mismatch was found in this 50-row pilot.
+- Corrected globe product descriptions against source-page text: `H1865W-H` and `H1960/55W-H` are HUADIAO E-MARKED variants; `H355W-H` is transcribed as HDIAO exactly as printed.
+- All 50 image crops remain supplier-watermarked ASC catalogue images on the separate PR #168 preview branch; the crops are not copied into the ASC staging branch and are **not approved production assets**. Image-use rights/asset suitability and owner approval remain outstanding.
+- Updated the pilot CSV's source verification and image review fields, and revised the README and validation report. Latest pilot staging branch head: `5a548733d33640454e3505987e76baaabb98890c`.
+- 63 additional OCR candidate tokens remain quarantined and unverified; no proposed GW SKUs, imports, or product activations were made for them.
+- No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
