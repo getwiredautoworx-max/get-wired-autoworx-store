@@ -1559,3 +1559,11 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Remaining catalogues to process: Automotive Globes, Car Mats, Fuel Pumps. The six-PDF scope remains unchanged; no buyer's guides.
 - Latest pilot staging branch head `46ac8d5a051e8d5ecc3b088531e5448342bc1c65`; latest source-page cleanup branch head `78958d90f4c6cc0783611d0021eef483037299d8`.
 - No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
+
+
+## 2026-11-04 14:42 SAST — SCHEDULED MONITOR TASK START
+- Read the sole retained handover, `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. The owner-directed 2026-11-02 cleanup explicitly removed `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and all separate checkpoint/update handovers; do not recreate them. This retained file remains authoritative.
+- Latest repository commit observed at start: `5a6986a79616df8cfeb2695122be5e5815f4c669` (`Handover: record complete 368-product ASC Automotive Switches extraction`, 2026-11-04 12:42:09Z). Branch membership and exact main HEAD to be confirmed during monitoring.
+- Scope: inspect latest attempts/status and exact commit IDs for staging category-navigation Chromium acceptance, Buyer Guide PDF extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, Pages/Cloudflare deployment, and relevant background controller runs. Retry only eligible failed/cancelled/stopped non-production jobs when a supported action exists; do not retry production, release, deployment, or credit-consuming workflows.
+- Safety: no PR merge, production deployment, Axxess upload, DNS/payment change, Supabase/live data write, supplier publication/import, live price/stock/category/active-flag change, artifact deletion, or deployment-credit use.
+- Outcome: IN PROGRESS. Next action: establish current branch/head and latest workflow run/job evidence, then append verified outcomes and exact IDs.
