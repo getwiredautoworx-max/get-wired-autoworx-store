@@ -64,11 +64,11 @@ assert.ok(!audio.includes('Planetworld'),'Audio customer journey must not expose
 assert.match(audio,/25-Oct-2026/,'Audio page must retain the dated snapshot disclosure');
 
 const imagePreview=fs.readFileSync('preview-planetworld.html','utf8');
-for(const [index,match] of [...imagePreview.matchAll(/<script[^>]*>([\\s\\S]*?)<\\/script>/gi)].entries()){
+for(const [index,match] of [...imagePreview.matchAll(/<script[^>]*>([\s\\S]*?)<\/script>/gi)].entries()){
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-planetworld.inline-script-'+index+'.js'});
 }
 const planetworldProductsStart=imagePreview.indexOf('const products=')+'const products='.length;
-const planetworldProductsEnd=imagePreview.indexOf('];\\n\\nconst esc=',planetworldProductsStart);
+const planetworldProductsEnd=imagePreview.indexOf('];\n\nconst esc=',planetworldProductsStart);
 if(planetworldProductsStart<0||planetworldProductsEnd<0||JSON.parse(imagePreview.slice(planetworldProductsStart,planetworldProductsEnd+1)).length!==68) throw new Error('Planetworld review page must render all 68 source-reviewed product/model candidates');
 
 const verifiedImageModels=fs.readFileSync('assets/planetworld-verified-models-preview.json','utf8');
