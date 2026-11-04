@@ -104,3 +104,19 @@ No Supabase writes, product imports, product activation, PR merge, production de
 - Fuel Pumps: 129 products from source pages 3–12, across 18 sections. File: `asc-fuel-pumps-129-product-review-only.csv`. 129 unique supplier SKUs and 129 unique proposed GW SKUs; nine rows overlap the pilot.
 - Combined six-catalogue source-verified total: **978 product rows** (Aerials 78; Automotive Sensors 106; Automotive Switches 368; Automotive Globes 158; Car Mats 139; Fuel Pumps 129). The 50-row pilot is included in these totals, not added again.
 - All 978 remain no-price/no-stock/review-only/not imported. No supplier price list or stock file has been supplied. ASC customer-facing price status must remain quote-required until current price data and owner approval are available.
+
+
+## Global six-catalogue integrity audit
+
+- Files audited: 20 category CSV batches.
+- Total rows: **978**.
+- Unique ASC supplier SKUs: **978**; duplicate supplier SKUs: **0**.
+- Unique proposed Get Wired SKUs: **978**; duplicate GW SKUs: **0**.
+- SKU format mismatches: **0**.
+- Category mapping mismatches: **0**.
+- Price status failures: **0** (all marked no price in source / current dealer cost required).
+- Stock status failures: **0** (all marked not supplied / availability confirmation required).
+- Import status failures: **0** (all review-only/not imported).
+- Missing source-page references: **0**.
+- Rows with explicit review notes: **56** (clipped/dense text, image-on-request, production-stopped note, or source section count discrepancy).
+- This validates data structure and source-page linkage, not owner approval, final fitment completeness, image rights, price, stock, or live-store import.
