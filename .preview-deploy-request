@@ -1,1 +1,1 @@
-Non-production PR #168 staging preview request. Deploy the exact triggering commit to the dedicated Cloudflare Pages branch pr-168-staging-preview. This is not production approval.
+Non-production PR #168 staging preview request — 2026-11-04. Deploy this exact triggering commit, including all current storefront, category, catalogue and regression changes, to the dedicated Cloudflare Pages branch pr-168-staging-preview. This is staging-only and is NOT production approval.
