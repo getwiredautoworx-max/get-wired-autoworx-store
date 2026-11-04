@@ -54,7 +54,24 @@ assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:
 assert.ok(audioConnections.records.find(row => String(row.modelNumber).includes('SPECTR 15000')).description.includes('700 W RMS'), '700 W RMS supplier rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XS-163ES').description.includes('90 W RMS'), 'Sony component speaker RMS rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XM-1ES').description.includes('600 W ×1 RMS'), 'Sony amplifier wattage and channel basis are preserved');
-assert.ok(audioConnections.records.find(row => row.modelNumber === 'SSA-R 5000.4').description.includes('supplier confirmation'), 'ambiguous 60RM source text is not converted into a guessed wattage');
+const specChecks = [
+  ['ac-032','500 W RMS at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-034','600 W RMS at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-037','95 W RMS ×4 at 2 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
+  ['ac-038','65 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-039','90 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-040','320 W RMS ×4 at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-041','80 W RMS ×4 plus 250 W sub channel','RETAILER_SPECIFICATION_CROSSCHECK'],
+  ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK']
+];
+for (const [id, phrase, status] of specChecks) {
+  const row=audioConnections.records.find(item=>item.id===id);
+  assert.ok(row.description.includes(phrase), id+' power specification cross-check');
+  assert.equal(row.specificationStatus,status,id+' specification evidence status');
+}
+const b12=audioConnections.records.find(row=>row.id==='ac-025');
+assert.equal(b12.specificationStatus,'OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_UNPUBLISHED_CONFLICT_REMAINS');
+assert.ok(b12.description.includes('power rating remains unverified'));
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
