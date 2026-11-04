@@ -40,6 +40,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Run storefront and catalogue regression suites
+        run: |
+          node tests/three-category-storefront-structure.test.cjs
+          node tests/audio-catalogue-preview.test.cjs
       - name: Install Playwright and Chromium
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.55.0
