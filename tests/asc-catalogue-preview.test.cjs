@@ -19,13 +19,20 @@ const sourceFiles={
  'Car Mats':'suppliers/ASC/ASC- Car Mats (1).pdf',
  'Fuel Pumps':'suppliers/ASC/ASC- Fuel Pumps (1).pdf'
 };
-for(const c of d.catalogues){assert.equal(c.source_pdf,sourcePdfs[c.name]);assert.ok(fs.existsSync(sourceFiles[c.name]),sourceFiles[c.name]);assert.ok(fs.existsSync('pages-public/'+c.source_pdf),'preview package missing '+c.source_pdf);}
+for(const c of d.catalogues){
+  assert.equal(Object.hasOwn(c,'source_pdf'),false,'supplier source PDF path must not be exposed in preview data');
+  assert.ok(fs.existsSync(sourceFiles[c.name]),'internal supplier source missing '+sourceFiles[c.name]);
+  assert.ok(!fs.existsSync('pages-public/'+sourcePdfs[c.name]),'supplier source PDF must not be copied to the public preview package');
+}
 const ids=new Set(d.catalogues.flatMap(c=>c.sections.map(s=>s.id)));
 for(const p of d.records){assert.ok(ids.has(p.subcategory_id));assert.equal(p.preview_only,true);assert.equal(p.release_status,'REVIEW_ONLY_NOT_LIVE');assert.equal(p.price,null);assert.equal(p.stock_quantity,null);assert.ok(p.image_url.endsWith('.jpg'));assert.ok(fs.existsSync(p.image_url));assert.ok(!('catalogue_reference' in p));assert.ok(!('source_file' in p));}
 assert.equal(fs.readdirSync('assets/asc-catalogue-pilot').filter(n=>n.endsWith('.jpg')).length,50);
 const home=fs.readFileSync('index-new.html','utf8');for(const n of ['Automotive Sensors','Automotive Switches','Automotive Globes','Car Mats','Fuel Pumps','Aerials','Car Care & Accessories','Chemicals & Lubricants'])assert.ok(home.includes(n),n);
 assert.ok(home.includes('ASC_PREVIEW_NAV_START'));assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats')"));assert.ok(!home.includes("ascCatalogueNode('gw-asc-mats','Car Mats','Auto Electrical Parts & Spares')"));for(const n of ['Aerials — Existing Store Products','Automotive Sensors — Existing Store Products','Automotive Switches — Existing Store Products','Lighting — Existing Store Products','Car Mats — Existing Store Products'])assert.ok(home.includes(n),n);assert.ok(home.includes('asc-catalogue-preview.html?root='));
 assert.ok(home.includes("HOME_CATEGORY_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"));
-const route=fs.readFileSync('asc-catalogue-preview.html','utf8');assert.ok(route.includes('noindex,nofollow'));assert.ok(route.includes('Choose a section from the original contents page'));assert.ok(route.includes('Source catalogue pending'));assert.ok(route.includes('View complete original '));assert.ok(route.includes('id=\"sourcePdf\"'));assert.ok(!route.toLowerCase().includes('add to cart'));
-const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');assert.ok(builder.includes('GW_INCLUDE_PREVIEW_ROUTES'));assert.ok(builder.includes('ASC_PREVIEW_NAV_START'));assert.ok(builder.includes('CATALOGUE_PREVIEW_ASSETS_PASS'));assert.ok(builder.includes('PREVIEW_SOURCE_PDFS'));assert.ok(builder.includes('source_pdf_count != 6'));assert.ok(builder.includes('include_preview and rel in PREVIEW_SOURCE_PDF_OUTPUTS'));
+const route=fs.readFileSync('asc-catalogue-preview.html','utf8');assert.ok(route.includes('noindex,nofollow'));assert.ok(route.includes('Choose a section from the original contents page'));assert.ok(route.includes('Source catalogue pending'));assert.ok(!route.includes('View complete original '),'supplier source PDFs must not be linked from the public preview');assert.ok(route.includes('id=\"sourcePdf\"'));assert.ok(!route.toLowerCase().includes('add to cart'));
+const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');assert.ok(builder.includes('GW_INCLUDE_PREVIEW_ROUTES'));assert.ok(builder.includes('ASC_PREVIEW_NAV_START'));assert.ok(builder.includes('CATALOGUE_PREVIEW_ASSETS_PASS'));assert.ok(builder.includes('FORBIDDEN_DIRS'),'Pages output must be built from a strict public allowlist');
+assert.ok(builder.includes('rel.lower().endswith((".xlsx", ".xls", ".pdf", ".csv", ".sql", ".md", ".zip"))'),'supplier documents must be excluded from Pages output');
+assert.ok(builder.includes('source_pdfs=0'),'preview package must contain zero supplier source PDFs');
+assert.ok(builder.includes('PREVIEW_ASSET_FILES'));
 console.log('ASC_CATALOGUE_HIERARCHY_STATIC_PASS: six catalogue buttons; 75 source sections; 50 exact reviewed pilot records; owner hierarchy preserved; preview-only assets gated from standard package.');

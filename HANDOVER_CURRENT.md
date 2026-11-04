@@ -53,3 +53,8 @@
 ## 2026-11-04 regression fixture correction
 - The ASC root data and homepage links were corrected on parent head 9e235da; ASC preview and audio preview tests passed. The remaining failure was a stale expected-root list in tests/three-category-storefront-structure.test.cjs. Updated that fixture to the approved three-root hierarchy and the correct Aerials/Car Mats navigation.
 - Parent head: `9e235da782c0516891346bbcf225fdfbb4050a3a`. Full suite rerun pending on the next head.
+
+
+## 2026-11-04 ASC source PDF privacy test correction
+- The full regression run reached the ASC unit test after the hierarchy fix. The test contained stale assertions requiring supplier source PDFs to be published and linked, contrary to the secure allowlist. Updated it to verify source PDFs remain internal and absent from Pages preview.
+- Parent head: `83e7f8dfdc664c33edd118b70bdb55b771d1c45f`. Full suite rerun pending.
