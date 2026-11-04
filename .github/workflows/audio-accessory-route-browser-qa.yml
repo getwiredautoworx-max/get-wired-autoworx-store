@@ -1,0 +1,141 @@
+name: Car Audio Accessories Route Browser QA
+
+on:
+  push:
+    branches:
+      - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
+    paths:
+      - "index-new.html"
+      - "category.html"
+      - "index-new.html"
+      - "preview-audio.html"
+      - "assets/category-tree.json"
+      - "assets/planetworld-catalogue-preview.json"
+      - "assets/audio-connections-catalogue-preview.json"
+      - "tests/three-category-storefront-structure.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - ".github/workflows/audio-accessory-route-browser-qa.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "index-new.html"
+      - "category.html"
+      - "index-new.html"
+      - "preview-audio.html"
+      - "assets/category-tree.json"
+      - "assets/planetworld-catalogue-preview.json"
+      - "assets/audio-connections-catalogue-preview.json"
+      - "tests/three-category-storefront-structure.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - ".github/workflows/audio-accessory-route-browser-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  accessory-routes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run storefront and catalogue regression suites
+        run: |
+          node tests/three-category-storefront-structure.test.cjs
+          node tests/audio-catalogue-preview.test.cjs
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Exercise customer category buttons and filtered product routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-accessory-route-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          sleep 2
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              const page = await browser.newPage({viewport:{width:390,height:844}});
+              const errors = [];
+              page.on('pageerror', e => errors.push(String(e)));
+              await page.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
+              try {
+                await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              } catch(error) {
+                const diagnostic=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('CATEGORY_ROOT_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
+              const roots = await page.locator('#grid .card h2').allTextContents();
+              if (roots.length !== 3 || roots[0].trim() !== 'Audio, Entertainment & Music') throw new Error('Wrong category roots: '+JSON.stringify(roots));
+
+              await page.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
+              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Audio, Entertainment & Music');
+              const categoryCarAudioImage=page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).locator('.card-art img');
+              await categoryCarAudioImage.waitFor({state:'visible',timeout:15000});
+              const categoryCarAudioImageLoaded=await categoryCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!categoryCarAudioImageLoaded)throw new Error('Standalone category-page Car Audio product image did not load');
+              await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Car Audio & Video');
+              await page.locator('#grid .card').filter({hasText:'Accessories'}).click();
+              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Accessories');
+              const accessoryButtons = await page.locator('#grid .card h2').allTextContents();
+              if (JSON.stringify(accessoryButtons.map(x=>x.trim()).sort()) !== JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories must contain only separate Aerials and Trims & Harnesses buttons: '+JSON.stringify(accessoryButtons));
+
+              await page.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
+            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
+              await page.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const trimCount = await page.locator('#products .audioProduct').count();
+              const trimHeading = await page.locator('#productsHeading').innerText();
+              if (trimCount !== 47 || !trimHeading.toLowerCase().includes('47 matching')) throw new Error('Trims & Harnesses should show 47 dedicated products; found '+trimCount+' / '+trimHeading);
+              if (await page.locator('#products').evaluate(el=>el.hidden)) throw new Error('Trims & Harnesses product panel is hidden');
+
+              const aerialPage = await browser.newPage({viewport:{width:390,height:844}});
+              aerialPage.on('pageerror', e => errors.push('aerials: '+String(e)));
+              await aerialPage.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+              try {
+                await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:15000});
+              } catch(error) {
+                const diagnostic=await aerialPage.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('AERIALS_CATEGORY_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
+              await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).click();
+            await aerialPage.waitForURL(/preview-audio\.html/,{timeout:15000});
+              await aerialPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              if (await aerialPage.locator('#products').evaluate(el=>el.hidden)) throw new Error('Aerials direct search must open its own product-listing state');
+              const aerialHeading = await aerialPage.locator('#productsHeading').innerText();
+              if (!aerialHeading.toLowerCase().includes('0 matching')) throw new Error('Aerials pilot should show its own empty filtered state until the separate ASC upload: '+aerialHeading);
+              const brandPage = await browser.newPage({viewport:{width:390,height:844}});
+              brandPage.on('pageerror', e => errors.push('brand: '+String(e)));
+              await brandPage.goto('http://127.0.0.1:4173/preview-audio.html?department=Car%20Audio',{waitUntil:'domcontentloaded'});
+              await brandPage.locator('#brands button[aria-label="Kicker"]').waitFor({state:'visible',timeout:30000});
+              await brandPage.locator('#brands button[aria-label="Kicker"]').click();
+              await brandPage.waitForURL(/preview-audio\.html\?.*brand=Kicker/,{timeout:15000});
+              await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).waitFor({state:'visible',timeout:30000});
+              await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).click();
+              await brandPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const selectedComponent = new URL(brandPage.url()).searchParams.get('component') || '';
+              if (!/subwoofers/i.test(selectedComponent)) throw new Error('Subwoofers button did not apply its component filter: '+selectedComponent);
+              const brandProducts = await brandPage.locator('#products .audioProduct > b').allTextContents();
+              if (!brandProducts.length || brandProducts.some(x=>x.trim()!=='Kicker')) throw new Error('Kicker → Subwoofers route leaked other brands: '+JSON.stringify(brandProducts.slice(0,10)));
+              if (errors.length) throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
+              await page.setViewportSize({width:1365,height:900});
+              const dims = await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
+              if (dims.scroll > dims.width + 2) throw new Error('Horizontal overflow at desktop width: '+JSON.stringify(dims));
+              console.log('AUDIO_ACCESSORY_ROUTE_BROWSER_QA_PASS',JSON.stringify({roots,accessoryButtons,trimCount,trimHeading,aerialHeading,jsErrors:errors.length}));
+              await aerialPage.close();
+              await page.close();
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
