@@ -18,7 +18,8 @@ No product, price, stock, supplier activation, or database records are created o
 
 ## Pilot extraction status
 
-- 50 review-only product rows are recorded across all six catalogue families.
+- The 50-row cross-family pilot is retained as a review-only validation sample.
+- A complete **78-product Aerials review-only batch** has now been transcribed and visually checked against pages 3–7 of the ASC Aerials PDF. The batch includes the eight Aerials pilot rows plus 70 additional records. File: `asc-aerials-78-product-review-only.csv`.
 - All 50 supplier SKUs and all 50 proposed Get Wired SKUs are unique within this pilot.
 - The proposed SKU pattern is `GW-ASC-<normalised ASC supplier SKU>`; the supplier SKU is retained separately.
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
@@ -29,16 +30,24 @@ No product, price, stock, supplier activation, or database records are created o
 - No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and require a current dealer cost before any price can be calculated.
 - Physical stock is not supplied by these catalogues. Availability remains unconfirmed and separate from price.
 
+## Completed category batch: Aerials
+
+- 78 products visually verified across source pages 3–7.
+- Section counts: Vehicle-Specific Aerials 23; Universal/Roof/Pillar Mount 17; Electronic/Automatic/Amplified 6; Shark Fin/Imitation 13; Masts/Bases/Mounts 8; Extensions/Adaptors/Plugs 11.
+- 78 unique ASC supplier SKUs and 78 unique proposed `GW-ASC-` SKUs; zero format mismatches.
+- All rows map to Car Audio → Accessories → Aerials, with the catalogue section preserved separately.
+- No price or stock data is supplied; all rows remain review-only and unimported.
+- One printed description (`MA648`) appears truncated at “ANGLE MO”; its visible wording is retained and the remainder is flagged for confirmation.
+
 ## Source-page visual evidence
 
 Full-page renders of all 60 product pages (PDF pages 3 onward) across the six retained PDFs were generated in the isolated branch `cleanup/asc-catalogues-stock-reset-2026-10-30`, under `catalogue-review/asc/source-pages/`. Pages 3 and 4 provide the visual source evidence for the 50-row pilot; the remaining 48 product pages are now ready for subsequent catalogue extraction and review.
 
 ## OCR quarantine
 
-- 63 additional OCR candidate tokens remain quarantined.
-- None has an assigned Get Wired SKU.
-- None is approved or imported.
-- Do not promote a token to a product record until the original PDF page is visually checked and the exact ASC supplier code/product pairing is clear.
+- All 63 additional OCR candidate tokens have now been visually checked against their rendered source pages. **All 63 are non-SKU OCR fragments, section counts, fitment/specification/dimension text, OE references, or a bulb-base standard (`BA15S`).**
+- No Get Wired SKU was assigned to any of these 63 tokens; none is a new product record.
+- All 63 remain quarantined/no-import as OCR noise, not as unverified product SKUs.
 
 ## Owner-confirmed category destinations
 
