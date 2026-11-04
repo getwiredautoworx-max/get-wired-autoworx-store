@@ -29,3 +29,13 @@ Preferred design:
 - The RPC source snapshot grants execution to `service_role` only. Keep this restriction.
 - No live database, Edge Function, product, stock, price, DNS, payment, or deployment changes were made during this review.
 - Store launch remains **HOLD** pending the quote-integrity fix, non-production negative tests, payment readiness, and final launch checks.
+
+
+## Follow-up source review — 2026-11-04
+The 2026-10-29 finding above describes the earlier unsigned-quote implementation and is retained as historical evidence. A later source update is now present on `main`:
+
+- `supabase/functions/shipping-quote/index.ts` creates short-lived HMAC-signed quote tokens using `DELIVERY_QUOTE_SIGNING_SECRET`. Claims include cart hash, destination hash, provider, service, amount, ZAR currency, parcel dimensions, issue/expiry timestamps and a nonce.
+- `supabase/functions/store-checkout/index.ts` no longer treats browser-supplied `live=true` as proof. It verifies the token, expiry, cart/address/provider/service/price/currency/parcel binding and recomputes parcel dimensions from current product data before calling the service-role-only `create_store_order_v3` RPC.
+- `supabase/functions/_shared/delivery-quote.ts` contains the HMAC verification and binding checks. `supabase/migrations/20261029150000_delivery_quote_nonce_unique.sql` adds a unique partial index on the stored quote nonce to prevent successful replay/concurrent reuse. `create_store_order_v3` remains revoked from PUBLIC/anon/authenticated and granted to service_role only.
+- Tests are present: shared token/expiry/cart/address/parcel/pickup tests; checkout-handler integration tests for forged, tampered, expired/binding/fee and valid quote paths; and an isolated PostgreSQL nonce migration test. The `delivery-quote-security.yml` workflow runs these plus type checks and related privacy/WhatsApp tests.
+- **Verification limit:** this was a read-only source inspection. No current successful workflow run or live deployed-function version was independently confirmed in this review. Therefore the original source-level weakness appears addressed in current `main`, but checkout is not signed off until the workflow passes on the exact release candidate and the same function/migration versions are verified in non-production. Production remains HOLD.
