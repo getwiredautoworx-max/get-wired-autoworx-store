@@ -50,7 +50,7 @@ assert.equal(verifiedImageCount, 63, '63 exact-model image URLs are present, inc
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
 assert.equal(audioConnections.records.length, 66);
-assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:W RMS|RMS\/peak basis not stated)/i.test(row.description || '')).length, 15, '15 explicit non-Sony supplier power values are present in the preview descriptions');
+assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:W RMS|RMS\/peak basis not stated)/i.test(row.description || '')).length, 24, '24 non-Sony power descriptions are present after exact-model reconciliation');
 assert.ok(audioConnections.records.find(row => String(row.modelNumber).includes('SPECTR 15000')).description.includes('700 W RMS'), '700 W RMS supplier rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XS-163ES').description.includes('90 W RMS'), 'Sony component speaker RMS rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XM-1ES').description.includes('600 W ×1 RMS'), 'Sony amplifier wattage and channel basis are preserved');
