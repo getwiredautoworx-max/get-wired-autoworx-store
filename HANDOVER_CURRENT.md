@@ -183,3 +183,15 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - The page is an owner-review preview only. Checkout and Supabase writes are blocked by the preview wrapper; no production deploy was made. The Netlify project’s primary published deploy was not changed by this Deploy Preview.
 - This supersedes the previous statement that no exact-head hosted preview URL existed: there is now an exact-head Netlify Deploy Preview. It does not imply production readiness or owner acceptance.
 - Still outstanding for supplier-pilot closure: Planetworld remaining Car Audio classification/reconciliation and Audio Connections product/image/GW-SKU evidence; real-phone owner acceptance remains outstanding. ASC/Electro-city stay deferred until the Planetworld + Audio Connections pilot is accepted.
+
+## 2026-11-04 — PR #168 non-production staging preview deployed
+
+- Added a dedicated exact-triggering-commit deployment workflow: `.github/workflows/deploy-pr-168-staging-preview.yml`. It builds with `GW_INCLUDE_PREVIEW_ROUTES=1`, checks that owner/category/audio preview routes exist, and deploys only to Cloudflare Pages branch `pr-168-staging-preview`.
+- Trigger commit: `af25aa9c5440c430d3a6a0422357db3a882ddc62`.
+- Deployment run **41804611258** — SUCCESS. Cloudflare returned the alias: https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev/
+- The deployment is non-production. It does not change the `main` Pages branch or live domain. The public-only builder excluded suppliers, catalogue-review/source files, staging, Supabase and GitHub workflow files; source PDFs were not published.
+- Owner Store Preview Browser QA run **41804611196** — SUCCESS on the same deployment-triggering commit. It checked approved root navigation, Sony → Amplifiers, department/brand stock hiding, 47 Trims & Harnesses rows, Aerials route, checkout hidden and Supabase writes blocked.
+- Full regression previously passed on code head `776c840bb79a4833e0859d493b7463e6a34c1e73` (run **41804164474**). The later `af25aa9` commit added only the non-production deploy workflow and trigger marker; an additional runner regression is running against that commit.
+- A further route-browser QA run is running after adding `index-new.html` to the route workflow's path filters, so homepage layout changes trigger route checks.
+- Owner must still review the staging preview on a real phone and explicitly accept the category/navigation appearance. Do not mark owner acceptance complete without that confirmation.
+- Production remains HOLD; PR #168 remains draft/unmerged. No production deployment, live DNS/payment change, Axxess upload, Supabase write, live stock/price change or supplier activation.
