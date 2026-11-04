@@ -117,3 +117,42 @@
 - Push-triggered Actions run 41801826778 is testing exact code head 010c8fe8b5a9adc3eae9f00cd67bf5afac4a60aa. At handover update time it was in progress; final result not yet available. Earlier failing run 41801511406 is diagnostic evidence only and must not be described as the current result.
 - Next: inspect final output of run 41801826778; fix the next concrete failing assertion if any; run full tests on the final post-handover head; verify preview route/button behavior in an actual hosted preview and mobile/desktop browser. Do not mark closed until those checks and owner acceptance.
 - No production deploy, merge, payment/checkout activation, DNS, Axxess upload, Supabase write, or live stock/price changes.
+
+
+## 2026-11-04 — Audio navigation/filtering fixed and verified
+
+Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73` on PR #168 / branch `integration/three-category-catalogue-preview-final-2026-11-03`.
+
+### Defects fixed
+- `category.html` previously attached a listener to a missing `#search` element; the resulting TypeError stopped `main()` before category buttons rendered. The optional listener is now guarded so the category tree initializes.
+- Aligned the category root label to **Audio, Entertainment & Music** and the Car Audio node to **Car Audio & Video**.
+- Confirmed the approved nested structure: **Car Audio & Video → Accessories → Aerials / Trims & Harnesses**. Aerials and Trims & Harnesses are distinct sibling routes; neither is a direct homepage root button.
+- Direct search routes now render their own filtered product panel even when the brand/component selectors are not selected. Aerials therefore shows a dedicated empty state while its catalogue source remains deferred; it no longer drops the user onto the generic unfiltered department page.
+- Trims & Harnesses route returns 47 Planetworld rows with Audio Connections products excluded from that group.
+- Corrected homepage grid overrides: the later `#categoryGrid.cats` CSS had reset alignment to stretch and made sibling category cards cover expanded links. Final CSS keeps root cards intrinsic-height and the expanded child links tappable.
+- Kept Marine Audio separate from Car Audio & Video. Brand and component selection is cumulative; department/brand landing pages hide product stock until a component is selected. Verified Sony → Amplifiers and Kicker → Subwoofers filtering.
+- Supplier names, dealer costs and supplier SKUs remain absent from the customer-facing preview.
+
+### Verification evidence
+- GitHub Actions full regression / public package build: **PASS**, run `41804164474`, exact head `776c840bb79a4833e0859d493b7463e6a34c1e73`.
+  - `PAGES_PUBLIC_BUILD_PASS`: 4,133 files / 4,101 WebP images.
+  - `AUDIO_CATALOGUE_PREVIEW_PASS`: 3,317 Planetworld rows; 702 Car Audio division rows; 66 Audio Connections rows; 2 excluded rows; 65 exact image candidates; preview-only.
+  - `THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS`.
+  - `PUBLIC SKU EXPOSURE AUDIT: PASSED`.
+  - `GW_FULL_STOREFRONT_REGRESSION_PASS`.
+- Owner preview desktop/mobile Playwright: **PASS**, run `41804164656`, exact head `776c840bb79a4833e0859d493b7463e6a34c1e73`.
+  - Three approved homepage roots.
+  - Sony → Amplifiers returns filtered products; department and brand pages hide stock until component selection.
+  - Trims & Harnesses returns exactly 47 products.
+  - Aerials opens its own filtered route.
+  - Checkout hidden; Supabase writes blocked; no browser JavaScript errors.
+- Dedicated accessory route Playwright: **PASS**, run `41804074552` on runtime-identical code head `8a0d55f87657303455d394045fcae3fc1a77ff0b`; later changes through `776c840` were test/workflow-only.
+- Netlify Deploy Preview: **READY** for exact head `776c840bb79a4833e0859d493b7463e6a34c1e73`; deploy ID `6aeaf4a0b68f051d9f119166`.
+  - Owner route: `https://6aeaf4a0b68f051d9f119166--get-wired-autoworx-store.netlify.app/owner-preview.html`
+  - Preview context only; no production deploy.
+
+### Still open — supplier pilot, not navigation
+- Planetworld: 3,317 broad source rows; 702 Car Audio division rows. The 68-record verified-model reference set is not blanket coverage for the full feed; remaining Car Audio classification, model/image evidence and reconciliation must be completed.
+- Audio Connections: 66 retained records, all preview-only; 4 currently have image URLs, 53 lack proposed GW SKUs, and 3 lack indicative prices. Complete exact product/image evidence and GW SKU reconciliation before calling the supplier pilot complete.
+- Do not start ASC/Electro-city until the Planetworld + Audio Connections pilot is owner-accepted. Aerials remains an empty route until the separately authorised ASC source upload.
+- No live stock/price activation, banking/payment, checkout, DNS, Axxess upload, production deployment, or Supabase production writes. PR #168 remains draft/unmerged; production remains HOLD.
