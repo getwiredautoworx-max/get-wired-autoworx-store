@@ -108,8 +108,13 @@ jobs:
             if(!checkoutHidden) throw new Error('Checkout control visible');
             const collagePanels=await frame.locator('.audioCategoryCollage .audioCollagePanel').count();
             if(collagePanels!==4) throw new Error('Audio category artwork must show four product families; found '+collagePanels);
-            await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
-            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            const storeFrame=page.frames().find(f=>f.url().includes('/index-new.html'));
+            if(!storeFrame) throw new Error('Hosted store iframe not found before audio navigation: '+JSON.stringify(page.frames().map(f=>f.url())));
+            await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').click();
+            await storeFrame.waitForURL(/\\/preview-audio\\.html(?:\\?|$)/,{timeout:30000}).catch(async error=>{
+              console.error('HOSTED_FRAME_NAV_DIAG',JSON.stringify({frameUrls:page.frames().map(f=>f.url()),audioLink:await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').getAttribute('href')}));
+              throw error;
+            });
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).waitFor({state:'visible',timeout:15000});
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
             await frame.locator('#brands button').first().waitFor({state:'visible',timeout:15000});
@@ -171,7 +176,7 @@ jobs:
             const expected=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
             if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted roots mismatch: '+JSON.stringify(roots));
             if(await frame.locator('.audioCategoryCollage .audioCollagePanel').count()!==4) throw new Error('Hosted audio collage incomplete');
-            await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
+            await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').click();
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
