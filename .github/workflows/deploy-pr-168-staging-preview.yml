@@ -17,7 +17,7 @@ permissions:
   deployments: write
 
 concurrency:
-  group: pr-168-staging-preview
+  group: pr-176-three-category-staging-preview
   cancel-in-progress: true
 
 jobs:
