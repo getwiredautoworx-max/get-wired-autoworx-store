@@ -1502,3 +1502,13 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Updated the pilot CSV's source verification and image review fields, and revised the README and validation report. Latest pilot staging branch head: `5a548733d33640454e3505987e76baaabb98890c`.
 - 63 additional OCR candidate tokens remain quarantined and unverified; no proposed GW SKUs, imports, or product activations were made for them.
 - No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
+
+
+## 2026-11-04 — FULL ASC PRODUCT-PAGE RENDER SET READY
+
+- Expanded the isolated extraction script to render every product page (PDF pages 3 onward) for all six retained ASC PDFs. GitHub Actions run `41829340458` completed successfully; job `126572153808` passed.
+- Verified 60 full-page renders are now present in `catalogue-review/asc/source-pages/` on `cleanup/asc-catalogues-stock-reset-2026-10-30`, covering all 60 product pages across the six catalogues. Latest cleanup branch head: `98847a9e9e24470c57ae0ecbca54afe48288a566`.
+- The 50-row pilot remains fully source-page verified (pages 3 and 4 of each PDF); no SKU mismatch was found. The other 48 product pages are now available for the next extraction/review batches.
+- Updated the ASC extraction README and pilot README/report to reflect the 60-page render set. Latest pilot staging branch head: `e16093b7365a62d76d338b14f7f67c785a8168c3`.
+- Next work: use the remaining source-page renders to resolve the 63 quarantined OCR candidates and build additional review-only product batches. Preserve exact supplier SKU, printed name, fitment/specifications and source page; keep unknown prices/stock blank and keep all records unapproved/unimported.
+- No buyer's guides or older ASC catalogues are in the six-file intake set. No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
