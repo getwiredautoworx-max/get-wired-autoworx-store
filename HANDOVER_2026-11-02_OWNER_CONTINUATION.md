@@ -1048,3 +1048,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - This is now the primary storefront blocker on PR #170: inspect the category-grid DOM/CSS and correct sibling stacking/flow so the expanded Car Audio child link remains clickable without an adjacent root card overlay. Do not weaken the browser assertion with `force:true` or treat visibility alone as a pass.
 - PR #170 remains open/draft/unmerged/mergeable=false. No new workflow is active at this checkpoint. The APX 690 record on head `901c6655` still contains the older failing image URL; the official Audison direct-image replacement found in this run has not yet been applied. Make both fixes in one commit after inspecting the current CSS, then verify a single exact-head run.
 - No price, stock, SKU, category/product row, active flag, live data, supplier workbook, production, Axxess, DNS, payment or deployment change was made.
+
+
+## 2026-11-04 09:50 SAST — STORE / PLANETWORLD MONITOR TASK START
+- Began this run after reading the latest canonical handover on `main` (blob `e231c7ae7c7ec8ed1fa348d4d2fce9dcf7c6e27c`). The former `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` were intentionally removed in the owner-directed 2 November cleanup; do not recreate them. Canonical main handover remains `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`.
+- Scope: read the Planetworld branch handover and its three reports before analysis; check PR #95 and the latest audit workflow/job/artifact; inspect background runs; continue only safe read-only source/price/image reconciliation. No PR merge, supplier workbook edit, import/publication, live data or active-flag change, deployment, Axxess/DNS/payment change, or release-credit-consuming retry.
+- Initial outcome: IN PROGRESS. Exact branch, PR, workflow and report evidence to be appended as verified.
