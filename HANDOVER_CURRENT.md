@@ -487,3 +487,52 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Compared the separate ASC hierarchy branch `integration/asc-catalogue-hierarchy-2026-11-03` against this storefront branch at the observed refs: branches are heavily diverged (46 commits ahead / 521 behind). Its category tree has a separate top-level `Car Audio` node and currently places `AERIALS` directly under that node, not under the owner-approved Accessories parent. This is a mapping mismatch to correct in the isolated ASC preview before review; do not merge its history wholesale.
 - Posted the owner-approved placement and narrow-port instruction to PR #165 (desktop ASC workstream), comment ID `6629605621`: preserve the separate branch; correct navigation to Audio → Car Audio & Video → Accessories → Aerials; port only the reviewed catalogue records/assets; return exact branch/head SHA and changed-file list.
 - My reconciliation is complete for the current storefront branch's taxonomy/data audit and handover. The desktop branch correction, asset-level source/image validation, exact-head tests, and preview browser verification remain pending the agent's response. No live stock/price/category/database changes. PRs remain draft/unmerged; production HOLD.
+
+
+## 2026-11-04 — MASTER DESKTOP-AGENT RECONCILIATION / ACTION REQUIRED
+
+This section supersedes any conflicting older handover instruction. Read this section together with the full file before making changes. The owner wants the outstanding work reconciled and executed, not another status-only report.
+
+### A. Two separate workstreams — do not mix branches
+
+1. **Storefront/navigation correction:** PR #168, branch `integration/three-category-catalogue-preview-final-2026-11-03`. This is where the owner's current complaint must be fixed: category buttons/subcategories do not load correctly, and the Audio / Home Entertainment tile has shown inappropriate cartoon/car artwork. The owner has now reported the problem again on 2026-11-04. Earlier automated PASS results do not override this current owner-reported failure.
+2. **ASC catalogue build:** PR #165, branch `integration/asc-catalogue-hierarchy-2026-11-03`. Keep it isolated. Do not merge or cherry-pick its divergent history wholesale into PR #168. Reconcile only reviewed data/assets/navigation after the branch is corrected and the owner approves the preview.
+
+### B. Storefront work — PR #168 is the immediate priority
+
+- Sync the latest PR #168 branch head before editing; report the exact SHA you checked out.
+- Reproduce the category failure in the actual deployed preview, not only by reading source. Check each of the three approved root categories, expansion/tap targets, every nested category button, and each leaf destination through to the expected product listing.
+- Inspect the actual Audio root tile mapping and rendered image. The approved tile is a four-picture collage for Car Audio & Video, Home Entertainment, Band & Live Sound, and DJ Equipment. Do not use cartoon/car artwork as the Home Entertainment image or as a substitute for the collage. The committed replacement SVG and earlier collage implementation must be reconciled so the deployed tile visibly matches the approved four-department design; verify every image request succeeds and mobile crops are usable.
+- Inspect the real runtime failure path: console errors, category-tree fetch/response, fallback behavior, event handlers, iframe/route targets, and any script/CSS that hides or overlays category buttons. Do not assume source-level handlers mean buttons work.
+- Preserve the local approved category tree if remote data is incomplete. Do not let a partial remote response erase subcategories.
+- Keep the approved hierarchy intact: Audio, Entertainment & Music → Car Audio & Video → Accessories → separate Aerials and Trims & Harnesses destinations. They must be sibling destinations under Accessories, not direct children of Car Audio and not merged together. Do not create duplicate categories.
+- Verify product filters and destinations, including the dedicated Trims & Harnesses group and the Aerials route. Aerials may show an honest empty state in the Planetworld + Audio Connections pilot while ASC remains separate; do not import ASC data into this pilot without an explicit reviewed port decision.
+- Add/adjust regression coverage for the exact observed defect before claiming a fix.
+
+### C. ASC work — PR #165 remains isolated
+
+- Correct the ASC preview's category mapping to the latest owner-approved destination: Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials. The previous ASC branch mapping that places AERIALS directly under a separate Car Audio node is wrong for the customer navigation.
+- Preserve the two aerial groupings (Vehicle-Specific Aerials; Universal, Roof & Pillar Mount Aerials) as distinct product groupings within Aerials. Reconcile against the eight existing storefront preview records (four + four) before importing anything; do not duplicate, silently replace, or expand the pilot.
+- Reconcile each record against its original catalogue/page reference, model, proposed GW SKU, image file/path, and rights/approval status. Owner authorised image use for the candidates in the earlier discussion; retain provenance and confirm the actual files are the approved candidates. Do not publish supplier names, supplier SKUs, dealer costs, or internal source PDFs.
+- Keep every item preview-only/review-only with no live stock or price activation. Preserve null/unknown fields rather than inventing values.
+- Return exact ASC branch name and head SHA, changed-file list, record counts, source references, image paths, test evidence, and the preview URL.
+
+### D. Required verification evidence before reporting closure
+
+For the corrected latest PR #168 head and separately for the corrected PR #165 head:
+- Run the full relevant Node regression suite and public preview/package build on the exact SHA; record run URLs and final job outcomes.
+- Deploy a non-production preview for that exact SHA and verify the deployed build marker/commit SHA matches.
+- Run hosted desktop and mobile browser checks against that exact deployed URL. Confirm category expansion, all buttons and leaf routes, product filters, image HTTP/load status, no JS errors, and no overlapping/unclickable controls. Capture actual observations, not just test source assertions.
+- If the desktop agent cannot run a check, state the precise limitation and the evidence still missing; do not mark it passed.
+- Re-run checks after any subsequent source or test change so all evidence refers to the final candidate head.
+- Ask the owner for PC/phone acceptance only after technical fixes and exact-head preview checks are complete. Owner acceptance is a separate gate.
+
+### E. Coordination / response format
+
+- Post one consolidated update on PR #168 and one on PR #165 (as applicable), rather than repeated vague progress comments.
+- Report: workstream/branch, exact starting and final SHA, defects reproduced, files changed, commits, tests and run IDs, deployed preview URL + verified SHA, desktop/mobile findings, remaining blockers, and the next concrete action.
+- Do not say “resolved”, “ready”, or “closed” on the strength of a commit or source inspection alone.
+- Do not repeat completed tasks unless new evidence shows regression. Do not create duplicate uploads or duplicate category nodes.
+- Keep both PRs draft/unmerged and production on HOLD. No production deployment, payment/checkout activation, Axxess upload, DNS change, Supabase production write, live stock/price update, or supplier activation without explicit owner approval.
+
+**Owner's immediate priority:** make the customer-facing category buttons/subcategories work and remove the incorrect Audio/Home Entertainment artwork in the deployed storefront. Reconcile the ASC branch hierarchy in parallel without contaminating the storefront branch. The owner expects executable fixes and verified evidence, not another plan-only handoff.
