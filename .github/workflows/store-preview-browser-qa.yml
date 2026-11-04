@@ -163,7 +163,7 @@ jobs:
             if(imageAudit.some(x=>x.width<1||x.height<1))throw new Error('Local product WebP images failed to load: '+JSON.stringify(imageAudit));
             console.log('PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(imageAudit));
             if(audit.legacyMatched!==0)throw new Error('Legacy ASC/Buyers Guide SKU leak: '+JSON.stringify(audit));
-            if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
+            if(!/legacy buyers. guide items quarantined/i.test(audit.previewNotice))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
             const category=page.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] button.catBtn');
@@ -345,7 +345,7 @@ jobs:
               const EXPECTED_LIVE_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
               if(liveAudit.categories!==3||JSON.stringify(liveAudit.rootLabels)!==JSON.stringify(EXPECTED_LIVE_ROOTS)||JSON.stringify(liveAudit.rootIds)!==JSON.stringify(EXPECTED_LIVE_IDS))throw new Error('Hosted live root hierarchy mismatch: '+JSON.stringify(liveAudit));
               if(liveAudit.products!==0||liveAudit.legacyMatched!==0)throw new Error('Hosted active catalogue must remain empty of unapproved legacy rows: '+JSON.stringify(liveAudit));
-              if(!liveAudit.previewNotice.includes('ASC STOCK REMOVED')||liveAudit.visibleCheckout||/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview privacy/checkout guard failed: '+JSON.stringify(liveAudit));
+              if(!/legacy buyers. guide items quarantined/i.test(liveAudit.previewNotice)||liveAudit.visibleCheckout||/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview privacy/checkout guard failed: '+JSON.stringify(liveAudit));
               console.log('HOSTED_LIVE_DATA_QUARANTINE_PASS '+JSON.stringify(liveAudit));
               await installProductFixture(hosted);
               await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-image-fixture-20261104',{waitUntil:'domcontentloaded',timeout:60000});
@@ -396,7 +396,7 @@ jobs:
             const EXPECTED_HOSTED_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
             if(hostedAudit.categories!==3||JSON.stringify(hostedAudit.rootLabels)!==JSON.stringify(EXPECTED_HOSTED_ROOTS)||JSON.stringify(hostedAudit.rootIds)!==JSON.stringify(EXPECTED_HOSTED_IDS))throw new Error('Hosted root hierarchy mismatch: '+JSON.stringify(hostedAudit));
             if(hostedAudit.products!==1||hostedAudit.legacyMatched!==0)throw new Error('Hosted Playwright-only fixture or legacy quarantine failed: '+JSON.stringify(hostedAudit));
-            if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
+            if(!/legacy buyers. guide items quarantined/i.test(hostedAudit.previewNotice)||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] > button.catBtn');
             const categoryButtonAudit=await hostedCategory.evaluate(el=>({filter:el.dataset.filter||'',text:el.innerText,tag:el.tagName,disabled:el.disabled,wrapperFilter:el.parentElement?.dataset.filter||''}));
