@@ -1479,3 +1479,14 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Validation report confirms 50 rows across 12 source-page locations (pages 3 and 4 of each of the six PDFs), six approved category destinations, 63 quarantined OCR tokens, and all no-price/no-stock/no-import gates.
 - Remaining work before any product approval: independently inspect the 50 image crops against original PDF pages; verify product descriptions, fitment and technical specs; resolve watermark/asset status; obtain current ASC dealer pricing and separate stock/availability confirmation; owner review/approval. The PDF catalogues themselves contain no prices.
 - No Supabase writes, product imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes were performed. Production remains HOLD.
+
+
+## 2026-11-04 — ASC PILOT IMAGE-CROP REVIEW
+
+- Visually inspected all 50 candidate product image cards referenced by the review-only pilot CSV on PR #168 head `2538b40d447c593c2767e1494961b1bade44b330`. Product imagery and captions are broadly consistent with the corresponding pilot product descriptions.
+- These are still supplier-watermarked ASC catalogue crops; they are not approved production assets and remain on the separate PR #168 branch. PR #168 was not modified.
+- The crop cards do not consistently expose the supplier SKU, so exact supplier-SKU-to-original-PDF-page pairing remains outstanding before approving the image association.
+- Globe records `H1865W-H`, `H1960/55W-H`, and `H355W-H` have visually ambiguous brand/printed wording between crop text and OCR. Recheck the original PDF source page before finalising those product descriptions.
+- Added `image_review_status` and `image_review_notes` columns to the 50-row review-only CSV; updated README and validation report. Latest ASC pilot staging branch head at this update: `a6976465ce4a8652813872eb94d4dd81109b330d`.
+- A non-production-only script enhancement has been committed to the isolated ASC cleanup branch to render source pages 3 and 4 for exact SKU/image pairing review. Its GitHub Actions extraction run is still in progress at the time of this handover update; do not claim those page renders exist until the run succeeds and the branch is read back.
+- No live imports, database writes, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
