@@ -190,7 +190,7 @@ jobs:
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
               const previewBases=[
-                'https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev'
+                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
               let deployedBuild=null;
