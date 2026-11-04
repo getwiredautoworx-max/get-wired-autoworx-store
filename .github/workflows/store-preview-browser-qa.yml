@@ -112,7 +112,7 @@ jobs:
             await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
             const jblButton=page.locator('#brands button[aria-label="JBL"]');
             await jblButton.waitFor({state:'visible',timeout:30000});
-            const jblLoaded=await jblButton.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0);
+            const jblLoaded=await jblButton.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;});
             if(!jblLoaded)throw new Error('JBL logo failed to load in Studio Equipment');
             await jblButton.click();
             await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
@@ -122,7 +122,7 @@ jobs:
             await page.goto('http://127.0.0.1:4173/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded'});
             const denonButton=page.locator('#brands button[aria-label="Denon DJ"]');
             await denonButton.waitFor({state:'visible',timeout:30000});
-            const denonLoaded=await denonButton.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0);
+            const denonLoaded=await denonButton.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;});
             if(!denonLoaded)throw new Error('Denon DJ logo failed to load in DJ Equipment');
             await denonButton.click();
             await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
@@ -283,7 +283,7 @@ jobs:
               await page.goto(previewBase+'/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded',timeout:60000});
               const hostedJbl=page.locator('#brands button[aria-label="JBL"]');
               await hostedJbl.waitFor({state:'visible',timeout:30000});
-              if(!(await hostedJbl.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0)))throw new Error('Hosted JBL logo failed to load');
+              if(!(await hostedJbl.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;})))throw new Error('Hosted JBL logo failed to load');
               await hostedJbl.click();
               await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
               await page.locator('#components button').first().click();
@@ -292,7 +292,7 @@ jobs:
               await page.goto(previewBase+'/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded',timeout:60000});
               const hostedDenon=page.locator('#brands button[aria-label="Denon DJ"]');
               await hostedDenon.waitFor({state:'visible',timeout:30000});
-              if(!(await hostedDenon.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0)))throw new Error('Hosted Denon DJ logo failed to load');
+              if(!(await hostedDenon.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;})))throw new Error('Hosted Denon DJ logo failed to load');
               await hostedDenon.click();
               await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
               await page.locator('#components button').first().click();
