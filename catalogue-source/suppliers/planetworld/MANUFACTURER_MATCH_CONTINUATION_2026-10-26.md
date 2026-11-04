@@ -336,3 +336,11 @@ No supplier XLSX was edited; no supplier data was imported/published; no live ca
 - No fresh Planetworld or Audio Connections supplier price/stock confirmation was found after 2026-10-25.
 - Keep the 19 zero-RRP rows on the separate owner audit hold; keep the positive-RRP review candidates `DO_NOT_IMPORT`. No source workbook, price, stock, SKU, image, live catalogue or active flag was changed.
 - No image was downloaded, copied, re-hosted or published. Manufacturer/regulatory source records are identity/category evidence only; image reuse rights remain unverified.
+
+
+## 2026-11-04 — direct exact-variant image reference: Ibanez IAB541-WR
+- Ibanez's official IAB541 product page lists the colour code **WR = Wine Red** and identifies the product as the **POWERPAD Designer Collection Gig Bag for Acoustic Guitar**: https://www.ibanez.com/asia/products/detail/iab541_01.html
+- The page's exact WR image link resolves to: https://www.ibanez.com/common/product_artist_file/file/p_region_IAB541_WR_46_01_A_en_1.png
+- Component refinement: Musical Instruments & Accessories → Guitar Bags & Cases → **Acoustic Guitar Gig Bags**.
+- This is an exact manufacturer model/colour/image-source match, not a price validation. The Planetworld 2026-10-25 source row remains R99 RRP incl. VAT versus R649 dealer cost, while other IAB541 colour variants show R799–R1,199. The anomaly remains **unconfirmed**; do not change the price or formula until Planetworld supplies written confirmation.
+- The official image is a reference candidate only. No image was downloaded, copied, re-hosted or published; reuse rights remain unverified.
