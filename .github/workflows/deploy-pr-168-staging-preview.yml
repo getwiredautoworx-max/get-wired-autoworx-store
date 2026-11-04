@@ -71,21 +71,19 @@ jobs:
         run: |
           set -euo pipefail
           aliases=(
-            "https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev"
-            "https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev"
             "https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev"
           )
           matched=""
-          for attempt in $(seq 1 36); do
+          for attempt in $(seq 1 24); do
             for base in "${aliases[@]}"; do
-              body="$(curl -fsS --max-time 8 "$base/qa-build-result.json" 2>/dev/null || true)"
+              body="$(curl -fsS --max-time 5 "$base/qa-build-result.json" 2>/dev/null || true)"
               if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$GITHUB_SHA"; then
                 matched="$base"
                 break
               fi
             done
             [ -n "$matched" ] && break
-            sleep 10
+            sleep 5
           done
           if [ -z "$matched" ]; then
             echo "No known staging alias published the exact triggering SHA $GITHUB_SHA"
