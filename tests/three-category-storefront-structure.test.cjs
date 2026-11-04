@@ -13,6 +13,7 @@ const audioPage = read('preview-audio.html');
 const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
+assert.ok(categoryPage.includes("photo-1593359677879-a4bb92f829d1'],\n  [/speaker"), 'category artwork mapping entries must remain comma-separated so the root category renderer does not crash');
 const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(audioInlineScripts.length > 0, 'audio preview must contain its catalogue navigation script');
 for (const script of audioInlineScripts) new vm.Script(script);
