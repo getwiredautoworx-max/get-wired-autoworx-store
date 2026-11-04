@@ -40,9 +40,14 @@ const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
 assert.deepEqual(roots, [
-  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Audio, Entertainment & Music'],
-  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
-  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
+  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Spares'],
+  ['8e93d917-8fcc-4427-b364-cdad244f263f','Vehicle Security'],
+  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio & Entertainment'],
+  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Automotive Accessories'],
+  ['38b382c1-6ee0-4b3c-86ad-399094bc40cc','Marine Spares & Accessories'],
+  ['77297c18-67f6-452e-8918-c55d2ef6231a','Tools, Hardware & Consumables'],
+  ['af2f8625-4f42-45e6-9f21-d571d7415893','Camping, Leisure & Outdoors'],
+  ['63a71fd9-df45-43f0-b61d-ad622daa9d79','Trailer & Canopy']
 ]);
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
 const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessories');
