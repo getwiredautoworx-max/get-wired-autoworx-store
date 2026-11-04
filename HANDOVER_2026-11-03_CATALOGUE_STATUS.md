@@ -133,3 +133,14 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 3. Continue exact-model image and GW SKU reconciliation using supplier source evidence; do not fabricate missing images/SKUs or alter prices/stock.
 4. Keep the next supplier milestone blocked until Planetworld + Audio Connections pilot meets owner expectations. ASC and Electro-city remain later workstreams.
 5. Update this handover with the next verified exact-head deployment and any remaining evidence gaps. Do not claim readiness without exact-head tests, a verified preview, and owner acceptance.
+
+
+## 2026-11-04 AUDIO FITMENT FILTER CORRECTION — EXACT SOURCE SCOPE
+
+- A read-only audit found the prior keyword classifier was too broad: it grouped generic wiring/installation accessories and Audio Connections amplifier installation kits into “Harnesses, Trims & Fitment”. The broad filter matched 214 Planetworld rows (183 even after removing generic installation/wiring keywords), not the owner's intended 47-row source collection.
+- Corrected `preview-audio.html` so “Harnesses, Trims & Fitment” is driven only by the dedicated Planetworld `collection === "Harnesses & Trims"` / explicit `component === "Harnesses, Trims & Fitment"` classification.
+- Exact source count verified: 47 Planetworld rows; 7 Audio Connections amplifier installation-kit records are excluded from this dedicated fitment group.
+- Added regression assertions to `tests/three-category-storefront-structure.test.cjs` requiring exactly 47 dedicated Planetworld records and zero generic Audio Connections installation-kit records in the group.
+- Code commits: wattage correction `accd2392ecb9bea8838face3e1223db867dfe155`; exact fitment classifier `9c0f1ae1e179e016271700266fdd013a340cc94d`; regression test `5317e1118c2e5ab98b8c41f716b228f6584b5eab`.
+- The prior confirmed Pages deployment `c250f5bc` is for the earlier `f3e7ea2` head and does **not** include these subsequent data/classifier/test changes. The new branch head must receive a fresh successful Pages deployment before the updated preview is represented as current. The owner preview remains noindex and checkout-disabled; do not use the stale preview as acceptance evidence.
+- No production deployment, merge, Supabase write, live catalogue import, price/stock change, Axxess or DNS/payment change was made.
