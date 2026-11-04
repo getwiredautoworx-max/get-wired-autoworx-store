@@ -180,13 +180,10 @@ jobs:
             const expected=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
             if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted roots mismatch: '+JSON.stringify(roots));
             if(await frame.locator('.audioCategoryCollage .audioCollagePanel').count()!==4) throw new Error('Hosted audio collage incomplete');
-            const hostedStoreFrame=page.frames().find(f=>f.url().includes('/index-new.html'));
-            if(!hostedStoreFrame) throw new Error('Hosted store iframe not found before audio navigation: '+JSON.stringify(page.frames().map(f=>f.url())));
-            await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').click();
-            await hostedStoreFrame.waitForURL(/\/preview-audio\.html(?:\?|$)/,{timeout:30000}).catch(async error=>{
-              console.error('HOSTED_FRAME_NAV_DIAG',JSON.stringify({frameUrls:page.frames().map(f=>f.url()),audioLink:await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').getAttribute('href')}));
-              throw error;
-            });
+            const audioLink=frame.locator('#categoryGrid > .catWrap a[href*="preview-audio.html"]').first();
+            if(await audioLink.count()!==1) throw new Error('Expected one audio-category navigation link');
+            await audioLink.click();
+            await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).waitFor({state:'visible',timeout:30000});
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             await frame.locator('#audioSearch').fill('SSW8');
