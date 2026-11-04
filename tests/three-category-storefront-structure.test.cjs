@@ -158,4 +158,10 @@ assert.ok(categoryPage.includes("department=Lifestyle&search=vacuum&label=Vacuum
 assert.ok(categoryPage.includes("department=Lifestyle&search=pool&label=Pool%20Cleaners"), 'pool category page must open Lifestyle pool results');
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 
+assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
+assert.ok(audioPage.includes('"kicker":"https://cdn.simpleicons.org/kicker"') && audioPage.includes('"audison":"https://cdn.simpleicons.org/audison"') && audioPage.includes('"alpine":"https://cdn.simpleicons.org/alpine"'), 'core car-audio brand buttons must request their brand logos');
+assert.ok(audioPage.includes('brand!=="All brands"&&component!=="All product types"'), 'product stock must remain hidden until a brand and component are selected');
+assert.ok(audioPage.includes('el("products").hidden=!department||brand==="All brands"||component==="All product types"'), 'department and brand landing pages must not render product stock beneath the brand buttons');
+assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
+assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
