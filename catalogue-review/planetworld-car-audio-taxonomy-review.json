@@ -110,64 +110,46 @@
     "status": "COMPLETED_REVIEW_PREVIEW_ONLY",
     "source_staging_rows_reviewed": 238,
     "preview_rows_reviewed": 234,
-    "preview_rows_classified": 229,
-    "preview_rows_held": 5,
+    "preview_rows_classified": 232,
+    "preview_rows_held": 2,
     "component_counts": {
-      "Head Units & Media Players": 66,
+      "Amplifiers": 46,
+      "Harness & Installation": 50,
+      "Cameras": 12,
+      "Speakers": 75,
+      "Infotainment & Displays": 12,
+      "Head Units & Media Players": 84,
       "Vehicle Integration Modules": 2,
+      "Subwoofers": 99,
       "Speaker Accessories": 17,
-      "Infotainment & Displays": 3,
+      "Wiring & Installation Accessories": 121,
       "Speaker Door Pods & Fitment Kits": 2,
-      "Subwoofers": 21,
-      "Remote Controls": 9,
-      "Unclassified — owner/source confirmation": 5,
-      "Wiring & Installation Accessories": 5,
-      "Harness & Installation": 2,
-      "Speakers": 12,
-      "Processors & Crossovers": 1,
-      "Excluded — Non-Audio Merchandise": 1,
-      "Amplifiers": 1,
+      "Remote Controls": 10,
+      "Processors & Crossovers": 4,
+      "Harnesses, Trims & Fitment": 47,
+      "Marine Audio": 28,
+      "Marine classification conflict — review": 3,
       "Audio Packages": 7,
       "Parking Sensors": 2,
       "Fascia & Fitting Kits": 76,
+      "Unclassified — owner/source confirmation": 2,
       "Camera & DVR Accessories": 1,
       "Cameras & DVRs": 1
     },
     "held_rows": [
       {
-        "id": "pw-0107",
-        "sku": "66750530",
-        "brand": "Audison",
-        "title": "Audison - VCRA - SUB REMOTE VOLUME CONTROL AV-SR 1Dk-SR 5",
-        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
-      },
-      {
-        "id": "pw-0178",
-        "sku": "69070021",
-        "brand": "Audison",
-        "title": "Audison - AVX 6.5 II - SET 2Way COAX 165mm+XOVER",
-        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
-      },
-      {
         "id": "pw-2088",
         "sku": "BOX-10",
         "brand": "One",
         "title": "Nissan Box",
-        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+        "reason": "Supplier source only says 'Nissan Box'; no reliable indication whether this is a fascia, enclosure, bracket or another fitment part. Await supplier clarification."
       },
       {
         "id": "pw-2172",
         "sku": "ON014-F3",
         "brand": "One",
         "title": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
-        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
-      },
-      {
-        "id": "pw-2300",
-        "sku": "ON669-A14-LCD",
-        "brand": "One",
-        "title": "One product — details to confirm",
-        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+        "reason": "Vehicle and screen size are given but source does not state whether this is a head unit or a fascia/frame. Await exact product description."
       }
     ],
     "rules_applied": [
