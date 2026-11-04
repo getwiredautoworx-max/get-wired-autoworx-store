@@ -1236,3 +1236,16 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The current ASC-only regression script `tests/asc-catalogue-preview.test.cjs` expects the 50-record ASC pilot, six ASC catalogues, and old homepage labels such as `Aerials — Existing Store Products`. Its failure is therefore deferred/out of scope for the Planetworld + Audio Connections pilot, not a blocker and not a reason to reintroduce ASC data. Keep it as a separately scoped ASC test until the fresh ASC task is authorised; do not weaken or misrepresent it as passing.
 - For the later fresh ASC upload, customer navigation must be: Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials; and a separate Car Audio & Video → Trims & Harnesses subcategory. Aerials must not be a top-level homepage category. Preserve supplier source folders internally; no supplier identity/cost exposure.
 - Current pilot scope remains Planetworld + Audio Connections only, with same products grouped across suppliers and review-only data. No Cloudflare credits, no production writes/deploys, and no ASC expansion until the owner starts that separate task.
+
+
+## 2026-11-04 — Route implementation reconciliation (PR #168)
+
+- Current PR head before this handover update: `f43a51a284b8f901765063dea837dd904b273c08`.
+- Correction to earlier handover wording: the Car Audio Accessories route wiring is already implemented in source; it must not be described as awaiting implementation.
+- Source confirms Accessories → separate Aerials and Trims & Harnesses child entries; `category.html` maps each to a distinct filtered `preview-audio.html` route.
+- The audio page applies URL-provided department, brand, component and search filters. A component route with brand “All brands” is supported; the Trims & Harnesses route selects the dedicated 47-row Planetworld collection, excluding generic Audio Connections kits.
+- Regression assertions exist in `tests/three-category-storefront-structure.test.cjs` for the hierarchy, route mappings, component visibility and 47-row filter.
+- Verification is NOT closed: exact-head Node execution and real desktop/mobile browser interaction have not been evidenced for this SHA. Static assertions are not a substitute for running the tests or clicking the buttons in a browser.
+- Public-repository GitHub Actions runner eligibility was incorrectly treated as blocked by exhausted private-repository minutes. Verify actual workflow triggers/runs; do not assume public repo Actions are unavailable. Connected GitHub tooling can inspect and retry existing runs but does not expose workflow_dispatch.
+- Aerials has no Planetworld/Audio Connections pilot records because ASC remains deferred; keep the route as an empty filtered state until the separate ASC upload is authorised.
+- Keep PR #168 draft/unmerged and production on HOLD. No live changes.
