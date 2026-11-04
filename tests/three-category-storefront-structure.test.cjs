@@ -16,7 +16,7 @@ const categoryCleanup = read('assets/category-cleanup.js');
 const shellCss = read('assets/storefront-subpage-shell.css');
 const previewCategory = read('preview-category.html');
 const returns = read('returns-refunds.html');
-const shellPages = ['category.html','products.html','product.html','preview-category.html','preview-products.html','preview-product.html',,'terms-and-conditions.html','privacy-policy.html','checkout-v2.html'].map(read);
+const shellPages = ['category.html','products.html','product.html','preview-category.html','preview-products.html','preview-product.html','terms-and-conditions.html','privacy-policy.html','checkout-v2.html'].map(read);
 const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
@@ -79,6 +79,8 @@ for (const [i,page] of shellPages.entries()) {
   assert.ok(page.includes('class="gw-top"') && page.includes('class="gw-header"') && page.includes('class="gw-nav"') && page.includes('class="gw-mobile-nav"'), 'subpage '+i+' must use the shared homepage shell markup');
 }
 assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare package builder must copy the shared subpage shell stylesheet');
+assert.ok(builder.includes('"preview-audio.html"') && !builder.includes('asc-catalogue-preview.html') && !builder.includes('asc-catalogue-preview-data.json'), 'current supplier pilot package must include Planetworld/Audio Connections routes but exclude deferred ASC catalogue assets');
+assert.ok(!home.includes('ascCatalogueNode') && !home.includes('asc-catalogue-preview.html'), 'deferred ASC catalogue buttons must not appear in the current pilot storefront');
 assert.ok(home.includes('id="gw-subpage-shell-actions"') && home.includes('location.hash==="#cartPanel"') && home.includes('location.hash==="#part-search"') && home.includes('window.openPartSearch()'), 'homepage must open cart and part-search overlays when invoked from subpage shell links');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
 assert.ok(audioPage.includes('department==="Home Entertainment"?(p.collection==="Home Entertainment"||p.collection==="Installed AV")&&p.division!=="Home Retail"'), 'Home Entertainment must include Home Entertainment and Installed AV rows while excluding Lifestyle/Home Retail products');
@@ -161,4 +163,4 @@ assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(componen
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
-console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
+console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
