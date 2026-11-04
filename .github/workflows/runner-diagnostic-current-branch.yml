@@ -50,8 +50,13 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
-      - name: Run ASC catalogue regression
-        run: node tests/asc-catalogue-preview.test.cjs
+      - name: Confirm deferred ASC source material is excluded from the supplier pilot preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -d pages-public/assets/asc-catalogue-source
+          test ! -d pages-public/suppliers
+          echo "ASC_DEFERRED_SOURCE_EXCLUSION_PASS"
       - name: Run Planetworld and Audio Connections regression
         run: node tests/audio-catalogue-preview.test.cjs
       - name: Run public SKU exposure audit
