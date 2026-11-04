@@ -6,6 +6,9 @@ on:
     paths:
       - "catalogue-review/**"
       - "scripts/catalogue-review-prototype.spec.js"
+      - "scripts/asc_render_source_review.py"
+      - "scripts/asc_extract_product_cards_review.py"
+      - "suppliers/ASC/*.pdf"
       - "scripts/supplier-routing.test.mjs"
       - "scripts/supplier-quote-routing-static.test.mjs"
       - "scripts/supplier-gw-crosswalk.test.mjs"
@@ -66,3 +69,29 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           node scripts/catalogue-review-prototype.spec.js
+
+  asc-source-page-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact PR source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PDF rendering and OCR tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          python -m pip install --disable-pip-version-check pymupdf pillow opencv-python-headless numpy
+      - name: Render all six source catalogues and extract every product card
+        run: python scripts/asc_extract_product_cards_review.py
+      - name: Upload source page contact sheets for visual verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: asc-source-page-and-product-card-review
+          path: artifacts/asc-source-page-review/
+          if-no-files-found: error
+          retention-days: 7
