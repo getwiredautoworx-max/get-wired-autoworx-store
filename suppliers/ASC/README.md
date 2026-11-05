@@ -114,3 +114,11 @@ The owner preview displays the draft description, original source wording, fitme
 Four bulb records currently under the ASC “HID Globes, Kits & Ballasts” heading (H18, H19 and H3 references) are explicitly flagged for technology/section verification. Do not assume they are HID products or rewrite the source classification until the original PDF page is checked. Blank globe fitment fields remain blank; do not infer vehicle applications.
 
 The dedicated integration regression was updated to assert source traceability, draft descriptions, quote-only wording and image-file existence. The test has not yet been executed on the latest head; do not claim a regression pass until an exact-head run is recorded.
+
+
+### Image-rights and identity exception control
+
+- The earlier 53-SKU image-rights register records watermarks present, exact SKU/physical-feature verification pending, no rights-holder evidence found in that register, no permission to remove/obscure watermarks or further crop/edit, and public-use HOLD for its listed images. The owner has separately stated authorised-dealer status; reconcile that statement with the rights register before public image release. Keep all 50 preview crops watermarked and non-production until the applicable rights and exact image-to-SKU match are approved.
+- All 50 preview records now explicitly carry image_match_status=PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION and image_rights_status=PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE. Repository presence and browser loading do not prove exact image identity or usage rights.
+- MA522 has a legacy cross-reference conflict: the September illustrated catalogue described it as “Vehicle Aerial Replacement 2”, while the current August ASC catalogue OCR describes Opel / Mercedes W124 / Honda Ballade. Preserve the current ASC wording but do not approve fitment until the printed SKU and original page are checked.
+- H1865W-H has a technology/brand wording conflict: the earlier 53-SKU register calls it an H18 65W 12V Halogen Globe Huadiao, while current OCR reads HIDIAO and the source section heading is “HID Globes, Kits & Ballasts”. Verify the original PDF; do not classify it as HID or normalize the brand spelling before verification.
