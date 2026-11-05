@@ -262,6 +262,15 @@
       "active": true,
       "direct_active_products": 0,
       "sort_order": 1
+    },
+    {
+      "id": "a11e1a15-6d84-4a0b-9a44-8f4c3a2d1e70",
+      "name": "Aerials",
+      "slug": "car-audio-aerials",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 8
     }
   ]
 }
