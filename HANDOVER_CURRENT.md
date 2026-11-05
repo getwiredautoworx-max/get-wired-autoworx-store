@@ -3450,3 +3450,9 @@ The preview category tree has four dedicated, direct children of **Auto Electric
 - No Supabase writes, product/category/price/stock changes, product imports, supplier activation, PR merge, production deployment, Axxess upload, DNS change, banking or payment activation were performed.
 - ASC Buyers Guides remain excluded. ASC prices and physical stock remain unverified; no price or stock may be invented.
 - Production remains HOLD pending verified exact-head QA, owner visual acceptance and explicit release approval.
+
+
+### Documentation synchronization — 2026-11-05
+- Added the current four-catalogue Auto Electrical mapping, image path rule, pilot status and Aerials/Car Mats clarification note to `suppliers/ASC/README.md`.
+- README commit: `509a8c59e6b45938078b81c58f84c96338f29177`.
+- This is documentation-only; the latest runtime-code head remains `5d8892e5720b19f48888684ada39d4a7022cabb7`, which has the confirmed Cloudflare Pages deployment URL above. No exact-head Node regression or hosted browser result has been added by the documentation commits.
