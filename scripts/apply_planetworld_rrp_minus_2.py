@@ -128,7 +128,7 @@ def main() -> None:
         "status": "PREVIEW_ONLY_NOT_LIVE",
     }
 
-    JSON_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    JSON_PATH.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     with AUDIT_PATH.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=headers)
         writer.writeheader()
