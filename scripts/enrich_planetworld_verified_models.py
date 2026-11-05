@@ -170,8 +170,8 @@ def main() -> None:
     expected = {
         "oneNav_pages": 9,
         "oneNav_descriptions": 8,
-        "oneNav_image_candidates": 2,
-        "oneNav_images_missing": 7,
+        "oneNav_image_candidates": 6,
+        "oneNav_images_missing": 3,
         "verified_model_matches": 68,
         "verified_model_images": 66,
         "verified_model_images_missing": 2,
@@ -183,11 +183,11 @@ def main() -> None:
     data["productImageEnrichment"] = {
         "exactModelPagesReviewed": 77,
         "manufacturerDescriptionsVerified": 76,
-        "exactImageCandidatesApplied": 68,
-        "exactModelImagesMissing": 9,
+        "exactImageCandidatesApplied": 72,
+        "exactModelImagesMissing": 5,
         "unmatchedProducts": 3240,
-        "status": "OWNER_PREVIEW_ONLY_PENDING_IMAGE_RIGHTS_AND_OWNER_REVIEW",
-        "note": "Exact-model product images and descriptions are review candidates; confirm image reuse rights before production. Supplier identifiers remain internal.",
+        "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
+        "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
 
     DATA_PATH.write_text(
