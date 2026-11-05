@@ -123,3 +123,9 @@ required_checks=exact-sha-marker;car-audio-photo-naturalWidth-positive;car-audio
 request=owner-preview-retest-car-audio-brand-type-photo-consistency-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_checks=exact-sha-marker;no-stale-photo-1726248985986;brand-type-speaker-photo-consistency;no-same-source-image-retry;all-audio-category-images-naturalWidth-positive;three-root-navigation;car-audio-brand-first;home-entertainment-brand-first;brand-and-type-filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+
+request=PR-178-final-owner-preview-after-regression-and-hosted-qa-pass-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;three-root-navigation;car-audio-brand-first;sony-brand-logo-naturalWidth;sony-amplifiers-filtered-products;home-entertainment-brand-first;klipsch-logo-naturalWidth;home-audio-cinema-filtered-products;all-audio-category-images-naturalWidth;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
