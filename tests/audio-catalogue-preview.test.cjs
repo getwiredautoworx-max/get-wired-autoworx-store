@@ -221,7 +221,12 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 55);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 57);
+for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSAR 22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
+ const row=audioConnections.records.find(item=>item.modelNumber===model);
+ assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
+}
+
 for (const [model,url] of [["809","https://soundvision.co.za/cdn/shop/files/FullSizeRender_bb982026-b146-4342-9a89-821443145f3c_1200x1200.jpg?v=1707141200"],["USB230","https://media.takealot.com/covers_images/2609be80b2454250b9c752cd71903ebf/s-zoom.file"],["SS7655BT","https://www.hificorp.co.za/api/catalog/product/s/s/ssmp_7655btwith_radio_on_ecommerce_8581.png?height=700&image-type=image&store=hificorporation&width=700"],["DVD9900BT","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSDVD-9900BT-DVD-Front-Loader-Media-Player-With-USB-_-Bluetooth-Max-Motorsport-21232518.jpg?v=1725975624"],["SS7670","https://maxmotorsport.co.za/cdn/shop/files/7-Inch-Star-Sound-SSMP5-7670BTAC-MP5-Double-Din-With-Apple-Carplay-_-Android-Auto-Roadstar-26055736.jpg?v=1751964226&width=1206"],["SSAK-406P","https://maxmotorsport.co.za/cdn/shop/products/Starsound-4-Gauge-Wiring-Kit-Max-Motorsport-1624452639.jpg?v=1624452641&width=1946"],["409CU","https://newworld.co.za/cdn/shop/files/81oNOU9KY_L_900x.jpg?v=1760011854"],["CROSSOVER 2950","https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_300%2Ch_300%2Cd_notfound.png/user/4257496/SSA-2950_1_FsxDYWN9C.png"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact-model image source must be recorded');
@@ -266,7 +271,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 123);
+assert.equal(imageCount, 125);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
