@@ -82,6 +82,8 @@ jobs:
             await frame.locator('#brands button[aria-label="Sony"]').click();
             await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='Sony',{timeout:15000});
             await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
+            const componentImageAudit=await frame.locator('#components button.componentImageButton').evaluateAll(async buttons=>Promise.all(buttons.map(async b=>{const img=b.querySelector('img');if(!img)return {label:b.innerText,loaded:false,reason:'missing image'};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:b.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+            if(!componentImageAudit.length||componentImageAudit.some(x=>!x.loaded))throw new Error('Audio component category imagery failed: '+JSON.stringify(componentImageAudit));
             if(await frame.locator('#products').isVisible())throw new Error('Brand page must show component groups before products');
             await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
@@ -329,6 +331,8 @@ jobs:
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               await page.locator('#brands button[aria-label="Sony"]').click();
               await page.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
+              const hostedComponentImageAudit=await page.locator('#components button.componentImageButton').evaluateAll(async buttons=>Promise.all(buttons.map(async b=>{const img=b.querySelector('img');if(!img)return {label:b.innerText,loaded:false,reason:'missing image'};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:b.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(!hostedComponentImageAudit.length||hostedComponentImageAudit.some(x=>!x.loaded))throw new Error('Hosted audio component category imagery failed: '+JSON.stringify(hostedComponentImageAudit));
               if(await page.locator('#products').isVisible()) throw new Error('Hosted brand page exposed stock before component selection');
               await page.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
               await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
