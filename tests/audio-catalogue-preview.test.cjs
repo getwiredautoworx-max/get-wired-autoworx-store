@@ -220,7 +220,9 @@ const brandRoute = fs.readFileSync('preview-audio-brand.html', 'utf8');
 const productRoute = fs.readFileSync('preview-audio-products.html', 'utf8');
 assert.ok(brandRoute.includes("department==='Home Entertainment'?isHomeEntertainmentRecord(x)"), 'Home Entertainment brand page must preserve department scope');
 assert.ok(productRoute.includes("department==='Home Entertainment'?isHomeEntertainmentRecord(x)"), 'Home Entertainment product page must use the same department scope');
-assert.ok(brandRoute.includes("home-audio-cinema.svg") && productRoute.includes("home-audio-cinema.svg"), 'Home Entertainment product-type images must be relevant');
+assert.ok(brandRoute.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'Brand component tiles must prefer exact-brand catalogue product photos');
+assert.ok(brandRoute.includes('const sharedTypeImage=rows.find(p=>group(p)===t&&p.imageUrl)'), 'Brand component tiles must use a matching product photo when the selected brand has no image');
+assert.ok(brandRoute.includes('images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Home Entertainment component tiles must use photographic fallbacks');
 assert.ok(route.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())'), 'brand buttons must navigate to a dedicated brand page');
 assert.ok(route.includes('location.href="preview-audio-products.html?"+u.toString()'), 'product-type buttons must navigate to a dedicated product listing page');
 assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('Products are shown on the next page'), 'brand landing page must show product-type tiles, not products');
@@ -240,24 +242,15 @@ assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony bran
 
 assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand selector must use the local wordmark');
 
-/* Every audio department must have a dedicated local illustration; never reuse one unrelated default image. */
-for (const [label,asset] of [
-  ['Car Audio','/assets/car-audio-video-category.svg'],
-  ['Home Entertainment','/assets/audio-types/home-entertainment.svg'],
-  ['Band & Live Sound','/assets/audio-types/speakers.svg'],
-  ['DJ','/assets/audio-types/signal-processing.svg'],
-  ['Studio Equipment','/assets/audio-types/installed-audio.svg'],
-  ['Musical Instruments','/assets/audio-types/musical-instruments.svg'],
-  ['Marine Audio','/assets/audio-types/marine-audio.svg'],
-  ['Lifestyle','/assets/audio-types/lifestyle-audio.svg']
-]) {
-  assert.ok(route.includes(asset), 'Missing relevant department artwork for '+label);
-}
+/* Department selection must remove the previous department menu before showing brands. */
+assert.ok(route.includes('el("departments").hidden=!!department;'), 'Selecting an audio department must hide the previous department menu');
+assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Home Entertainment department must use photographic category artwork');
+assert.ok(route.includes('"Car Audio":"https://store.sony.com.au/'), 'Car Audio department must use a real product photograph');
+assert.ok(route.includes('"Band & Live Sound":"https://images.unsplash.com/'), 'Band & Live Sound must use photographic artwork');
 assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
 assert.ok(route.includes('window.location.assign("preview-audio.html?"+u.toString())'), 'Department buttons must navigate to the selected department route');
 assert.ok(route.includes('new URLSearchParams({department:value})'), 'Department entry must preserve the brand-selection stage');
 assert.ok(!route.includes('new URLSearchParams({department:value,brand:"All brands"})'), 'Department entry must not preselect All brands and skip brand navigation');
-assert.ok(!route.includes('https://ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && !route.includes('home-entertainment.svg";\n}'), 'Component buttons must not use remote or unrelated generic image fallbacks');
 for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-audio.svg']) {
   assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing dedicated audio department artwork: '+asset);
   assert.ok(builder.includes('audio-types/'+asset), 'New department artwork missing from public package: '+asset);
