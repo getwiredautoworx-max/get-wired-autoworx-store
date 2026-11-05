@@ -273,7 +273,9 @@
       "source_sku_candidate": "01080",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive camshaft position sensor listed for Golf / Jetta IV / Beetle 2. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-02883",
@@ -296,7 +298,9 @@
       "source_sku_candidate": "02883",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive crankshaft position sensor listed for Golf / Jetta IV. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-03822",
@@ -319,7 +323,9 @@
       "source_sku_candidate": "03822",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive crankshaft position sensor listed for Opel Corsa (B-C) / Astra (F). Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-09103",
@@ -342,7 +348,9 @@
       "source_sku_candidate": "09103",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive crankshaft position sensor listed for Golf / Jetta 4 1.6 / 1.8 / 2.0. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-09396",
@@ -365,7 +373,9 @@
       "source_sku_candidate": "09396",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive camshaft position sensor listed for Golf / Jetta / Tiguan / Touareg / Touran. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-21849",
@@ -388,7 +398,9 @@
       "source_sku_candidate": "21849",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for E90/92 86–96. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-cs-112048",
@@ -411,7 +423,9 @@
       "source_sku_candidate": "cs-112048",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition loom switch listed for Toyota Cor. RWD / Vent / S. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-csc105",
@@ -434,7 +448,9 @@
       "source_sku_candidate": "csc105",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Mazda B1600. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-csc106",
@@ -457,7 +473,9 @@
       "source_sku_candidate": "csc106",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Isuzu KB20. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-9005-cbl-h",
@@ -480,7 +498,9 @@
       "source_sku_candidate": "9005-cbl-h",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER",
+      "draft_customer_description": "Automotive headlamp globe: HALOGEN BULB 60W 12V COOL BLUE. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-9005-h",
@@ -503,7 +523,9 @@
       "source_sku_candidate": "9005-h",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER",
+      "draft_customer_description": "Automotive headlamp globe: GLOBE 60W 12V HB3. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-9005-nb",
@@ -526,7 +548,9 @@
       "source_sku_candidate": "9005-nb",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER",
+      "draft_customer_description": "Automotive headlamp globe: 12V 60W QUARTZ GLOBE 30% BRIGHTER. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-9005xs",
@@ -549,7 +573,9 @@
       "source_sku_candidate": "9005xs",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER",
+      "draft_customer_description": "Automotive headlamp globe: GLOBE HALOGEN 65W 12V E1. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-012",
@@ -572,7 +598,9 @@
       "source_sku_candidate": "f1-012",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for BMW in the ASC Electric Fuel Pumps — BMW section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-019",
@@ -595,7 +623,9 @@
       "source_sku_candidate": "f1-019",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for BMW / Peugeot / VW in the ASC Electric Fuel Pumps — BMW section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-060",
@@ -618,7 +648,9 @@
       "source_sku_candidate": "f1-060",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for BMW / VW in the ASC Electric Fuel Pumps — BMW section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-067",
@@ -641,7 +673,9 @@
       "source_sku_candidate": "f1-067",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for BMW in the ASC Electric Fuel Pumps — BMW section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-02761",
@@ -664,7 +698,9 @@
       "source_sku_candidate": "02761",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive air-mass sensor listed for Audi / Beetle / Golf / Jetta 1.8–2.0. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-04818",
@@ -687,7 +723,9 @@
       "source_sku_candidate": "04818",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive air-mass sensor listed for Golf IV 1.6 (4-pin / 4-hole). Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-14163",
@@ -710,7 +748,9 @@
       "source_sku_candidate": "14163",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive air-flow sensor listed for Quantum / D4D. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-29601",
@@ -733,7 +773,9 @@
       "source_sku_candidate": "29601",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive air-flow sensor listed for Chevrolet Captiva 2.2D. Confirm the exact engine, model year, connector and part-number match against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-ig-fr01",
@@ -756,7 +798,9 @@
       "source_sku_candidate": "ig-fr01",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Ford Ranger / BT-50 98–08. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-ig-hn04",
@@ -779,7 +823,9 @@
       "source_sku_candidate": "ig-hn04",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Honda Accord / Civic 96–. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-ig-izt",
@@ -802,7 +848,9 @@
       "source_sku_candidate": "ig-izt",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Isuzu TFR Series 97–. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-ig-np300",
@@ -825,7 +873,9 @@
       "source_sku_candidate": "ig-np300",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Automotive ignition switch listed for Nissan NP300 / Tiida. Confirm the barrel/key configuration, loom connector and exact vehicle year/variant before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-h1865w-h",
@@ -849,7 +899,9 @@
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
       "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
-      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification",
+      "draft_customer_description": "Automotive headlamp globe: H18 65W 12V H/GLOBE HIDIAO MARKED H7 WITH BASE DIFFERENCE. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering. The source notes an H7 marking with a base difference; confirm the actual base before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-h1960-55w-h",
@@ -873,7 +925,9 @@
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
       "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
-      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification",
+      "draft_customer_description": "Automotive headlamp globe: H19 60/55W 12V H/GLOBE HIDIAO MARKED H4P43T WITH BASE DIFFERENCE. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering. The source notes an H4P43T base designation; confirm the actual base before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-h355w-cbl",
@@ -897,7 +951,9 @@
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
       "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
-      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification",
+      "draft_customer_description": "Automotive headlamp globe: H3 55W 12V COOL BLUE GLOBE. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-h355w-h",
@@ -921,7 +977,9 @@
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
       "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
-      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification",
+      "draft_customer_description": "Automotive headlamp globe: HALOGEN BULB H3 55W 12V HIDIAO. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-001",
@@ -944,7 +1002,9 @@
       "source_sku_candidate": "f1-001",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for Ford / Mazda / Honda / Isuzu in the ASC Electric Fuel Pumps — Ford & Mazda section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-001-e",
@@ -967,7 +1027,9 @@
       "source_sku_candidate": "f1-001-e",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for Ford / Mazda / Honda / Isuzu in the ASC Electric Fuel Pumps — Ford & Mazda section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-009",
@@ -990,7 +1052,9 @@
       "source_sku_candidate": "f1-009",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for Ford / VW in the ASC Electric Fuel Pumps — Ford & Mazda section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-017",
@@ -1013,7 +1077,9 @@
       "source_sku_candidate": "f1-017",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for Ford / BMW in the ASC Electric Fuel Pumps — Ford & Mazda section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     },
     {
       "id": "asc-preview-f1-028",
@@ -1036,7 +1102,9 @@
       "source_sku_candidate": "f1-028",
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
-      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "draft_customer_description": "Fuel pump listed for Mazda / Ford LDV in the ASC Electric Fuel Pumps — Ford & Mazda section. Confirm the exact engine, pump pressure/flow requirement, connector and mounting configuration with ASC before ordering.",
+      "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required"
     }
   ]
 }
