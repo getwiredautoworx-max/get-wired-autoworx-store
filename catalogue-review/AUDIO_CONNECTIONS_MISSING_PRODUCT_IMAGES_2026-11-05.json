@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 23,
-  "recordsMissingVerifiedImage": 43,
+  "recordsWithImage": 24,
+  "recordsMissingVerifiedImage": 42,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -39,13 +39,6 @@
       "brand": "Starsound",
       "title": "Starsound 7-inch Android SS7670",
       "component": "Android Wireless Units",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSW12-7300",
-      "brand": "Starsound",
-      "title": "Starsound SSW12-7300",
-      "component": "SVC Subwoofers",
       "descriptionPresent": true
     },
     {
@@ -328,6 +321,7 @@
     "SSA-ATOM-13500.1",
     "SSA-R-5000.4",
     "SSA-ATOM-13800.4",
-    "SSS-6602"
+    "SSS-6602",
+    "SSW12-7300 (manufacturer listing confirms SSW-12-7300)"
   ]
 }
