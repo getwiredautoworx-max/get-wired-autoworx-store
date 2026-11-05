@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 60,
-  "recordsMissingVerifiedImage": 6,
+  "recordsWithImage": 61,
+  "recordsMissingVerifiedImage": 5,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -25,13 +25,6 @@
       "brand": "RA",
       "title": "Reference Audio RA AWG4",
       "component": "Amplifier Installation Kits",
-      "descriptionPresent": true
-    },
-    {
-      "model": "BULLET LYNX",
-      "brand": "BlackSpider",
-      "title": "BlackSpider Lynx 4-inch 2500W Aluminium Bullet Tweeter",
-      "component": "Tweeters",
       "descriptionPresent": true
     },
     {
@@ -110,19 +103,18 @@
     "SSA-R-6900.1D",
     "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)"
   ],
-  "imageCoverageNote": "60 of 66 Audio Connections preview records have exact-model image URLs with source-page references. Six records remain without verified photos. A different SSA-EQ-7200 image was rejected for the EQ7100 row rather than using a model mismatch.",
+  "imageCoverageNote": "61 of 66 Audio Connections preview records now have exact-model photo matches. 60 are high-resolution source images; Blackspider Lynx has an exact 105px thumbnail only and is flagged for replacement. Five records remain without verified exact-model photos.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860",
     "RA AWG4",
-    "BULLET LYNX",
     "RA SUPER RAST20",
     "EQ7100"
   ],
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 17,
+    "sourceVerified": 18,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
@@ -132,6 +124,14 @@
       "model": "EQ7100",
       "candidate": "SSA-EQ-7200",
       "reason": "Model code differs; candidate image deliberately not used."
+    }
+  ],
+  "highResolutionImages": 60,
+  "lowResolutionImages": [
+    {
+      "model": "BULLET LYNX",
+      "source": "https://www.theracersedge.co.za/blackspider-lynx-4-2500w-aluminium-bullet-tweeter",
+      "note": "Verified authentic product thumbnail is only 105px wide; replace with a full-resolution supplier/manufacturer original when available."
     }
   ]
 }
