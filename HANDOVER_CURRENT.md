@@ -3430,3 +3430,13 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - PR #176 stays OPEN / DRAFT / UNMERGED.
 - Do not call the latest preview ready until exact-head tests and exact-head hosted deployment are verified and the owner accepts the visuals.
 - Production remains HOLD. Checkout/payment testing remains deferred until banking details are supplied.
+
+
+## 2026-11-05 09:50 SAST — EXACT-HEAD CLOUDFLARE PREVIEW DEPLOYMENT
+
+- Cloudflare Pages bot comment [6634146895](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/176#issuecomment-6634146895) confirms successful deployment of commit `f19927f` (full SHA `f19927ffa44de9221d8798321814bb49da5f8dff`).
+- New owner preview: https://629a0267.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Branch preview URL: https://preview-integrated-storefron.get-wired-autoworx-store.pages.dev
+- This deployment includes the component ordering, actual owner-route QA workflow update, and current handover.
+- **Still not ready for final acceptance:** the exact-head GitHub browser/structural QA result has not yet been independently established. The commit-workflow lookup available in this check only returns pull-request-triggered runs and returned no result for this head; this does not establish that a push-triggered run failed or did not run. Verify the relevant workflow run directly before declaring QA passed.
+- Owner visual/mobile acceptance is still outstanding. Keep PR #176 OPEN / DRAFT / UNMERGED. Production remains untouched and on hold.
