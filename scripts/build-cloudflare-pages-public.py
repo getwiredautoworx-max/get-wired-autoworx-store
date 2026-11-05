@@ -5,9 +5,20 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pages-public"
+
+# Regenerate the owner-preview Planetworld prices and exact product enrichments
+# from the frozen internal audit inputs before tests/package assembly. Never run
+# this transformation for the standard production package.
+if os.getenv("GW_INCLUDE_PREVIEW_ROUTES") == "1":
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "apply_planetworld_rrp_minus_2.py")],
+        cwd=ROOT,
+        check=True,
+    )
 
 # Run the exact storefront/catalogue regression suite before packaging either
 # standard or preview output. GitHub-hosted public-repository runners are enabled.
