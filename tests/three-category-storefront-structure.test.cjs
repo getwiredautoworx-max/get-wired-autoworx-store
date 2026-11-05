@@ -16,7 +16,7 @@ const audioProductsPage = read('preview-audio-products.html');
 const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
-assert.ok(categoryPage.includes("photo-1558284296-7579da2deb30')") && categoryPage.includes("photo-1726248985986-20bef82d2b52"), 'category artwork mapping must retain distinct home-theatre and car-speaker photographs');
+assert.ok(categoryPage.includes("photo-1558284296-7579da2deb30") && categoryPage.includes("photo-1726248985986-20bef82d2b52"), 'category artwork mapping must retain distinct home-theatre and car-speaker photographs');
 const previewCategoryInlineScripts = previewCategory.split('<script>').slice(1).map(part => part.split('</script>')[0]);
 assert.ok(previewCategoryInlineScripts.length > 0, 'preview category page must contain its navigation script');
 for (const script of previewCategoryInlineScripts) new vm.Script(script);
