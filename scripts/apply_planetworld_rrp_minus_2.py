@@ -119,7 +119,6 @@ def main() -> None:
         "belowEstimatedCostReview": counts["below_cost"],
         "costFloorPass": counts["cost_pass"],
         "costNotVerified": counts["cost_unverified"],
-        "reviewFile": "catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv",
         "status": "PREVIEW_ONLY_NOT_LIVE",
     }
 
