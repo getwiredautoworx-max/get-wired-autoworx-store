@@ -79,3 +79,10 @@
 ## 8. Current task-start record
 - 2026-11-05 09:40 SAST: Owner confirmed this authority and corrected the supplier pricing distinction. Task: supersede older conflicting instructions, exclude ASC Buyers Guides, preserve RRP processing for RRP suppliers, and establish the catalogue-first reusable workflow above.
 - Status at creation: instruction update in progress; no code, supplier workbook, live data, price, stock, active flag, PR, deployment, hosting, DNS or payment changes authorised or performed.
+
+
+## 9. Publication and handover reconciliation record
+- This authoritative reset was published and read-back verified on `main` and `docs/planetworld-blocker-handover-2026-10-26` on 2026-11-05. The file exists at repository root on both refs; exact path: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`.
+- This is an additive, binding instruction overlay. It does not erase historical evidence or rewrite the very large legacy `HANDOVER_CURRENT.md`; all conflicting historical instructions in that file are superseded by this owner-authorised document and the owner's newest direct instructions.
+- Task outcome: SUCCESS — owner-authoritative precedence, ASC catalogue-only scope, exclusion of ASC Buyers Guides, RRP-supplier pricing distinction, catalogue-first reusable workflow, three-category storefront direction, and execution/release gates are recorded. No code, supplier workbook, live data, price, stock, active flag, PR, deployment, hosting, DNS or payment changes were made.
+- Next action: begin the repository-wide reconciliation under sections 1 and 7, then record verified branch/PR/workflow state and the first representative catalogue workflow result in the current handover. Do not resume Buyers Guide processing.
