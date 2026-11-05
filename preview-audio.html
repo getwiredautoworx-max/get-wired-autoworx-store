@@ -671,6 +671,7 @@ function uniqueExactRows(list){const seen=new Set();return list.filter(p=>{const
 const el=id=>document.getElementById(id),safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 if(department){el("audioDepartments").hidden=true;el("audioDepartments").style.display="none";el("departments").hidden=true;el("audioBrowse").hidden=false;el("brands").textContent="Loading brand choices…";}
 function button(label,active,fn){const b=document.createElement("button");b.textContent=label;if(active)b.style.background="#dceffc";b.onclick=fn;return b}
+const ONENAV_WORDMARK='data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160"><text x="12" y="120" fill="#173650" font-family="Arial,Helvetica,sans-serif" font-size="118" font-weight="300" letter-spacing="-4">OneNav</text></svg>');
 const BRAND_LOGOS={
  "jbl":"/assets/brand-logos/jbl.svg",
  "denon":"/assets/brand-logos/denon.svg",
@@ -687,10 +688,10 @@ const BRAND_LOGOS={
  "kenwood car audio":"https://upload.wikimedia.org/wikipedia/commons/0/07/Kenwood_Logo.svg",
  "focal car audio":"https://commons.wikimedia.org/wiki/Special:FilePath/Focal_logo.svg",
  "pioneer car audio":"https://commons.wikimedia.org/wiki/Special:FilePath/Pioneer_logo.svg",
- "one":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "one":ONENAV_WORDMARK,
  "one x":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
  "onex":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
- "onenav":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "onenav":ONENAV_WORDMARK,
  "amplified audio":"https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png",
  "amplified":"https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png",
  "klipsch":"https://commons.wikimedia.org/wiki/Special:FilePath/Klipsch_logo.png","sonos":"https://cdn.simpleicons.org/sonos","jvc":"https://cdn.simpleicons.org/jvc","onkyo":"https://cdn.simpleicons.org/onkyo",
@@ -702,7 +703,7 @@ function brandButton(label,active,href){
  const normalized=label.trim().toLowerCase();
  const displayLabel=normalized==="one"||normalized==="onenav"?"ONE / OneNav":normalized==="one x"||normalized==="onex"?"One X":label;
  b.title=displayLabel;b.setAttribute("aria-label",label);b.setAttribute("role","button");
- const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":/^(one|one x|onex|one nav|onenav)$/.test(normalized)?"one":normalized.includes("amplified")?"amplified":normalized;
+ const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":/^(one|one nav|onenav)$/.test(normalized)?"one":/^(one x|onex)$/.test(normalized)?"one x":normalized.includes("amplified")?"amplified":normalized;
  const slug=normalized.replace(/[^a-z0-9]+/g,"");
  const src=BRAND_LOGOS[key]||("https://cdn.simpleicons.org/"+slug);
  if(src){const img=document.createElement("img");img.src=src;img.alt=displayLabel+" logo";img.loading="eager";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=displayLabel;b.append(fallback)};b.append(img)}
