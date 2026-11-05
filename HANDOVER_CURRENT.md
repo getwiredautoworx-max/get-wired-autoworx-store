@@ -3209,3 +3209,10 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 
 - Appended the KRAM 86180 exact model/EAN, official product-image reference, visual component check, vehicle/audio-system fitment caution, and no-reuse-rights status to `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` at commit `0f8c8f652eb22ae7315f4801ae4a8e97d43ddfa1`.
 - Subtask outcome: SUCCESS — the report now carries the same evidence as the 19-row review-only CSV (SKU 86180 remains DO_NOT_IMPORT). Next: continue unresolved exact model/variant checks; do not copy/re-host the image or infer current Planetworld price/stock.
+
+## 2026-11-05 09:23 SAST — SAFE OWNER-PREVIEW QA RETRY QUEUED
+
+- On current PR #176 head `c564ce22424c65c238c74dda3eba3f097a39b730`, the latest `Owner Store Preview Browser QA` attempt 1 (`run 41986806308`, failed job `127109352192`) had no queued/in-progress duplicate. The supported single-job rerun action succeeded; retry is **attempt 2**, new job `127112874869`, status **QUEUED** as of `2026-11-05T07:31:59Z`.
+- Only the safe browser-QA job was retried. The failed non-production deployment job `127109447017` / run `41986806269` was NOT rerun; no production/deployment job was rerun.
+- Attempt 1 evidence: browser test passed the static catalogue assertions but could not find the exact deployed build at its only configured base `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev`; deployment run logs show a successful Cloudflare Pages upload to `https://1e81ef1a.get-wired-autoworx-store.pages.dev` and alias `https://preview-integrated-storefron.get-wired-autoworx-store.pages.dev`, then exact-SHA verification failed because it queried the PR-168 alias. This is a deterministic alias/config mismatch; retry is for the requested safe staging retry policy, not evidence of a code fix.
+- Subtask outcome: SUCCESS for accepted rerun request; retry is still QUEUED and not yet verified. Next: monitor run `41986806308` attempt 2 / job `127112874869` to completion; do not create another attempt. Preview remains unverified until the retry and exact hosted-SHA check pass.
