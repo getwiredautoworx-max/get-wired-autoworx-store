@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 61,
-  "recordsMissingVerifiedImage": 5,
+  "recordsWithImage": 62,
+  "recordsMissingVerifiedImage": 4,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -99,7 +99,7 @@
     "RA-EL4 (supplier descriptor RA AWG4 cross-referenced to Reference Audio 4-gauge kit)",
     "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)"
   ],
-  "imageCoverageNote": "61 records currently have image URLs after three exact-model broken URL corrections; hosted load verification for the replacement URLs is pending. Four records still have no verified exact-model photos (including SSAK-860 whose only found listing uses generic artwork); the prior hosted audit also identified one broken RA-EL4 URL and one exact but low-resolution Blackspider Lynx thumbnail.",
+  "imageCoverageNote": "62 records currently have image URLs after three exact-model broken URL corrections; hosted load verification for the replacement URLs is pending. Four records still have no verified exact-model photos (including SSAK-860 whose only found listing uses generic artwork); the prior hosted audit also identified one broken RA-EL4 URL and one exact but low-resolution Blackspider Lynx thumbnail.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860 / SSAK-860",
