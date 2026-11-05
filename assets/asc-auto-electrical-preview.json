@@ -1,0 +1,800 @@
+{
+  "title": "ASC Auto Electrical Catalogue — Owner Preview",
+  "notice": "OWNER REVIEW PREVIEW ONLY. All ASC items below are the visually reviewed pilot subset. Prices and stock have not been supplied. Images retain source-catalogue watermarks and are not cleared for production use. No Get Wired SKU has been assigned. Checkout and supplier submissions are disabled.",
+  "catalogues": [
+    {
+      "name": "Automotive Sensors",
+      "root": "Auto Electrical Spares",
+      "sections": [
+        {
+          "id": "asc-sensor-crank-cam",
+          "name": "Crankshaft & Camshaft Position Sensors"
+        },
+        {
+          "id": "asc-sensor-throttle",
+          "name": "Throttle Position Sensors"
+        },
+        {
+          "id": "asc-sensor-airflow",
+          "name": "Air Flow & Air Mass Sensors"
+        },
+        {
+          "id": "asc-sensor-map",
+          "name": "MAP, Manifold & Intake Air Sensors"
+        },
+        {
+          "id": "asc-sensor-oxygen",
+          "name": "Oxygen (Lambda) Sensors"
+        },
+        {
+          "id": "asc-sensor-knock",
+          "name": "Knock Sensors"
+        },
+        {
+          "id": "asc-sensor-speed-abs",
+          "name": "Speed & ABS Sensors"
+        },
+        {
+          "id": "asc-sensor-temperature",
+          "name": "Temperature Senders & Sensors"
+        },
+        {
+          "id": "asc-sensor-fuel-oil-level",
+          "name": "Fuel, Oil & Level Sensors"
+        },
+        {
+          "id": "asc-sensor-reverse-parking",
+          "name": "Reverse & Parking Sensors"
+        },
+        {
+          "id": "asc-sensor-other",
+          "name": "Other Engine Management Sensors"
+        }
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf"
+    },
+    {
+      "name": "Automotive Switches",
+      "root": "Auto Electrical Spares",
+      "sections": [
+        {
+          "id": "asc-switch-ignition",
+          "name": "Ignition Switches & Barrel Sets"
+        },
+        {
+          "id": "asc-switch-combination",
+          "name": "Combination & Indicator Stalk Switches"
+        },
+        {
+          "id": "asc-switch-wiper",
+          "name": "Wiper Switches"
+        },
+        {
+          "id": "asc-switch-headlamp",
+          "name": "Headlamp, Dimmer & Hazard Switches"
+        },
+        {
+          "id": "asc-switch-window",
+          "name": "Power Window Switches"
+        },
+        {
+          "id": "asc-switch-oil-pressure",
+          "name": "Oil Pressure Switches"
+        },
+        {
+          "id": "asc-switch-fan-thermo",
+          "name": "Radiator Fan & Thermo Switches"
+        },
+        {
+          "id": "asc-switch-reverse",
+          "name": "Reverse Light Switches"
+        },
+        {
+          "id": "asc-switch-stop",
+          "name": "Stop Light Switches"
+        },
+        {
+          "id": "asc-switch-door-bonnet-boot",
+          "name": "Door, Bonnet & Boot Switches"
+        },
+        {
+          "id": "asc-switch-rocker",
+          "name": "Rocker Switches"
+        },
+        {
+          "id": "asc-switch-toggle-push",
+          "name": "Toggle, Push & Button Switches"
+        },
+        {
+          "id": "asc-switch-starter-solenoid",
+          "name": "Starter & Solenoid Switches"
+        },
+        {
+          "id": "asc-switch-isolators",
+          "name": "Battery Isolators & Cut-Off Switches"
+        },
+        {
+          "id": "asc-switch-panels",
+          "name": "Switch Panels, Covers & Accessories"
+        },
+        {
+          "id": "asc-switch-marine",
+          "name": "Marine & Specialist Switches"
+        }
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Switches.pdf"
+    },
+    {
+      "name": "Automotive Globes",
+      "root": "Auto Electrical Spares",
+      "sections": [
+        {
+          "id": "asc-globe-halogen",
+          "name": "Headlight Globes — Halogen"
+        },
+        {
+          "id": "asc-globe-hid",
+          "name": "HID Globes, Kits & Ballasts"
+        },
+        {
+          "id": "asc-globe-led",
+          "name": "LED Globes"
+        },
+        {
+          "id": "asc-globe-fog-drl-signal",
+          "name": "Fog, DRL & Signal Globes"
+        },
+        {
+          "id": "asc-globe-wedge",
+          "name": "Wedge Globes"
+        },
+        {
+          "id": "asc-globe-bayonet",
+          "name": "Bayonet Globes — Indicator, Stop & Tail"
+        },
+        {
+          "id": "asc-globe-festoon",
+          "name": "Festoon Globes"
+        },
+        {
+          "id": "asc-globe-dash",
+          "name": "Dash & Instrument Panel Globes"
+        },
+        {
+          "id": "asc-globe-commercial",
+          "name": "24V & 48V Commercial Globes"
+        },
+        {
+          "id": "asc-globe-holders",
+          "name": "Globe Holders, Harnesses & Plugs"
+        }
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Globes.pdf"
+    },
+    {
+      "name": "Fuel Pumps",
+      "root": "Auto Electrical Spares",
+      "sections": [
+        {
+          "id": "asc-fuel-bmw",
+          "name": "Electric Fuel Pumps — BMW"
+        },
+        {
+          "id": "asc-fuel-vw-audi",
+          "name": "Electric Fuel Pumps — VW & Audi"
+        },
+        {
+          "id": "asc-fuel-ford-mazda",
+          "name": "Electric Fuel Pumps — Ford & Mazda"
+        },
+        {
+          "id": "asc-fuel-toyota-lexus",
+          "name": "Electric Fuel Pumps — Toyota & Lexus"
+        },
+        {
+          "id": "asc-fuel-nissan-datsun",
+          "name": "Electric Fuel Pumps — Nissan & Datsun"
+        },
+        {
+          "id": "asc-fuel-opel-chevrolet",
+          "name": "Electric Fuel Pumps — Opel & Chevrolet"
+        },
+        {
+          "id": "asc-fuel-mercedes",
+          "name": "Electric Fuel Pumps — Mercedes-Benz"
+        },
+        {
+          "id": "asc-fuel-renault-peugeot-citroen",
+          "name": "Electric Fuel Pumps — Renault, Peugeot & Citroën"
+        },
+        {
+          "id": "asc-fuel-hyundai-kia",
+          "name": "Electric Fuel Pumps — Hyundai & Kia"
+        },
+        {
+          "id": "asc-fuel-fiat-alfa",
+          "name": "Electric Fuel Pumps — Fiat & Alfa Romeo"
+        },
+        {
+          "id": "asc-fuel-daewoo-gm-cadillac",
+          "name": "Electric Fuel Pumps — Daewoo, GM & Cadillac"
+        },
+        {
+          "id": "asc-fuel-honda-suzuki",
+          "name": "Electric Fuel Pumps — Honda & Suzuki"
+        },
+        {
+          "id": "asc-fuel-land-rover",
+          "name": "Electric Fuel Pumps — Land Rover"
+        },
+        {
+          "id": "asc-fuel-universal",
+          "name": "Electric Fuel Pumps — Universal & Multi-Fit"
+        },
+        {
+          "id": "asc-fuel-assemblies",
+          "name": "Electric Pump Assemblies with Housing — All Makes"
+        },
+        {
+          "id": "asc-fuel-mechanical",
+          "name": "Mechanical Fuel Pumps — All Makes"
+        },
+        {
+          "id": "asc-fuel-diesel-lift",
+          "name": "Diesel Lift Pumps & Housings — All Makes"
+        },
+        {
+          "id": "asc-fuel-relays",
+          "name": "Fuel Pump Relays — All Makes"
+        }
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf"
+    }
+  ],
+  "records": [
+    {
+      "id": "asc-preview-01080",
+      "title": "Camshaft Position Sensor – Golf / Jetta IV / Beetle 2",
+      "source_description": "CAMSHAFT POSITION SENSOR GOLF-JETTA IV-BEETLE 2",
+      "fitment_as_printed": "Golf / Jetta IV / Beetle 2",
+      "subcategory": "Crankshaft & Camshaft Position Sensors",
+      "subcategory_id": "asc-sensor-crank-cam",
+      "image_url": "assets/asc-catalogue-pilot/asc-01080.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-02883",
+      "title": "Crankshaft Position Sensor – Golf / Jetta IV",
+      "source_description": "CRANKSHAFT POSITION SENSOR GOLF-JETTA IV",
+      "fitment_as_printed": "Golf / Jetta IV",
+      "subcategory": "Crankshaft & Camshaft Position Sensors",
+      "subcategory_id": "asc-sensor-crank-cam",
+      "image_url": "assets/asc-catalogue-pilot/asc-02883.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-03822",
+      "title": "Crankshaft Position Sensor – Opel Corsa (B-C) / Astra (F)",
+      "source_description": "CRANKSHAFT POSITION SENSOR OPEL CORSA (B-C) ASTRA (F)",
+      "fitment_as_printed": "Opel Corsa (B-C) / Astra (F)",
+      "subcategory": "Crankshaft & Camshaft Position Sensors",
+      "subcategory_id": "asc-sensor-crank-cam",
+      "image_url": "assets/asc-catalogue-pilot/asc-03822.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-09103",
+      "title": "Crankshaft Position Sensor – Golf / Jetta 4 1.6 / 1.8 / 2.0",
+      "source_description": "CRANKSHAFT POSITION SENSOR GOLF JETTA 4 1.6 1.8 2.0",
+      "fitment_as_printed": "Golf / Jetta 4 1.6 / 1.8 / 2.0",
+      "subcategory": "Crankshaft & Camshaft Position Sensors",
+      "subcategory_id": "asc-sensor-crank-cam",
+      "image_url": "assets/asc-catalogue-pilot/asc-09103.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-09396",
+      "title": "Camshaft Position Sensor – Golf / Jetta / Tiguan / Touareg / Touran",
+      "source_description": "CAMSHAFT POSITION SENSOR GOLF-JETTA-TIGUAN-TOUAREG-TOURAN",
+      "fitment_as_printed": "Golf / Jetta / Tiguan / Touareg / Touran",
+      "subcategory": "Crankshaft & Camshaft Position Sensors",
+      "subcategory_id": "asc-sensor-crank-cam",
+      "image_url": "assets/asc-catalogue-pilot/asc-09396.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-21849",
+      "title": "Ignition Switch – E90/92 86–96",
+      "source_description": "IGNITION SWITCH E90/92 86-96",
+      "fitment_as_printed": "E90/92 86–96",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-21849.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-cs-112048",
+      "title": "Ignition Loom Switch – Toyota Corolla RWD / Vent / S",
+      "source_description": "IGNITION LOOM SWITCH TOYOTA COR.RWD/VENT/S",
+      "fitment_as_printed": "Toyota Cor. RWD / Vent / S",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-cs-112048.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-csc105",
+      "title": "Ignition Switch – Mazda B1600",
+      "source_description": "IGNITION SWITCH MAZDA B1600",
+      "fitment_as_printed": "Mazda B1600",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-csc105.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-csc106",
+      "title": "Ignition Switch – Isuzu KB20",
+      "source_description": "IGNITION SWITCH ISUZU KB20",
+      "fitment_as_printed": "Isuzu KB20",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-csc106.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-9005-cbl-h",
+      "title": "Halogen Bulb 60W 12V Cool Blue",
+      "source_description": "HALOGEN BULB 60W 12V COOL BLUE",
+      "fitment_as_printed": "",
+      "subcategory": "Headlight Globes — Halogen",
+      "subcategory_id": "asc-globe-halogen",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-cbl-h.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-9005-h",
+      "title": "Globe 60W 12V HB3",
+      "source_description": "GLOBE 60W 12V HB3",
+      "fitment_as_printed": "",
+      "subcategory": "Headlight Globes — Halogen",
+      "subcategory_id": "asc-globe-halogen",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-h.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-9005-nb",
+      "title": "12V 60W Quartz Globe 30% Brighter",
+      "source_description": "12V 60W QUARTZ GLOBE 30% BRIGHTER",
+      "fitment_as_printed": "",
+      "subcategory": "Headlight Globes — Halogen",
+      "subcategory_id": "asc-globe-halogen",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-nb.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-9005xs",
+      "title": "Globe Halogen 65W 12V E1",
+      "source_description": "GLOBE HALOGEN 65W 12V E1",
+      "fitment_as_printed": "",
+      "subcategory": "Headlight Globes — Halogen",
+      "subcategory_id": "asc-globe-halogen",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005xs.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-012",
+      "title": "Electric Fuel Pump – BMW",
+      "source_description": "FUEL PUMP ELECTRIC BMW",
+      "fitment_as_printed": "BMW",
+      "subcategory": "Electric Fuel Pumps — BMW",
+      "subcategory_id": "asc-fuel-bmw",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-012.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-019",
+      "title": "Electric Fuel Pump – BMW / Peugeot / VW",
+      "source_description": "FUEL PUMP ELECTRIC BMW.PEUGEOT.VW",
+      "fitment_as_printed": "BMW / Peugeot / VW",
+      "subcategory": "Electric Fuel Pumps — BMW",
+      "subcategory_id": "asc-fuel-bmw",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-019.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-060",
+      "title": "Electric Fuel Pump – BMW / VW",
+      "source_description": "FUEL PUMP ELECTRIC BMW.VW",
+      "fitment_as_printed": "BMW / VW",
+      "subcategory": "Electric Fuel Pumps — BMW",
+      "subcategory_id": "asc-fuel-bmw",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-060.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-067",
+      "title": "Electric Fuel Pump – BMW",
+      "source_description": "FUEL PUMP ELECTRIC BMW",
+      "fitment_as_printed": "BMW",
+      "subcategory": "Electric Fuel Pumps — BMW",
+      "subcategory_id": "asc-fuel-bmw",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-067.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-02761",
+      "title": "Air Mass Sensor (4-pin) – Audi / Beetle / Golf / Jetta 1.8–2.0",
+      "source_description": "AIR MASS SENSOR (4 PIN) AUDI-BEETLE-GOLF-JETTA 1.8-2.0",
+      "fitment_as_printed": "Audi / Beetle / Golf / Jetta 1.8–2.0",
+      "subcategory": "Air Flow & Air Mass Sensors",
+      "subcategory_id": "asc-sensor-airflow",
+      "image_url": "assets/asc-catalogue-pilot/asc-02761.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-04818",
+      "title": "Air Mass Sensor – Golf IV 1.6 (4-pin / 4-hole)",
+      "source_description": "AIR MASS SENSOR GOLF IV 1.6 (4PIN-4 HOLE)",
+      "fitment_as_printed": "Golf IV 1.6 (4-pin / 4-hole)",
+      "subcategory": "Air Flow & Air Mass Sensors",
+      "subcategory_id": "asc-sensor-airflow",
+      "image_url": "assets/asc-catalogue-pilot/asc-04818.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-14163",
+      "title": "Air Flow Sensor – Quantum / D4D",
+      "source_description": "AIR FLOW SENSOR QUANTUM/D4D",
+      "fitment_as_printed": "Quantum / D4D",
+      "subcategory": "Air Flow & Air Mass Sensors",
+      "subcategory_id": "asc-sensor-airflow",
+      "image_url": "assets/asc-catalogue-pilot/asc-14163.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-29601",
+      "title": "Air Flow Sensor – Chevrolet Captiva 2.2D",
+      "source_description": "AIR FLOW SENSOR CHEV CAPTIVA 2.2D",
+      "fitment_as_printed": "Chevrolet Captiva 2.2D",
+      "subcategory": "Air Flow & Air Mass Sensors",
+      "subcategory_id": "asc-sensor-airflow",
+      "image_url": "assets/asc-catalogue-pilot/asc-29601.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-ig-fr01",
+      "title": "Ignition Switch – Ford Ranger / BT-50 98–08",
+      "source_description": "IGNITION SWITCH FORD RANGER/BT-50 98-08",
+      "fitment_as_printed": "Ford Ranger / BT-50 98–08",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-ig-fr01.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-ig-hn04",
+      "title": "Ignition Switch – Honda Accord / Civic 96–",
+      "source_description": "IGNITION SWITCH HONDA ACCORD CIVIC 96-",
+      "fitment_as_printed": "Honda Accord / Civic 96–",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-ig-hn04.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-ig-izt",
+      "title": "Ignition Switch – Isuzu TFR Series 97–",
+      "source_description": "IGNITION SWITCH ISUZU TFR SERIES 97-",
+      "fitment_as_printed": "Isuzu TFR Series 97–",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-ig-izt.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-ig-np300",
+      "title": "Ignition Switch – Nissan NP300 / Tiida",
+      "source_description": "IGNITION SWITCH NISSAN NP300/TIIDA",
+      "fitment_as_printed": "Nissan NP300 / Tiida",
+      "subcategory": "Ignition Switches & Barrel Sets",
+      "subcategory_id": "asc-switch-ignition",
+      "image_url": "assets/asc-catalogue-pilot/asc-ig-np300.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-h1865w-h",
+      "title": "H18 65W 12V Globe – H7 Base Variant",
+      "source_description": "H18 65W 12V H/GLOBE HIDIAO MARKED H7 WITH BASE DIFFERENCE",
+      "fitment_as_printed": "H18 / H7 base variant",
+      "subcategory": "HID Globes, Kits & Ballasts",
+      "subcategory_id": "asc-globe-hid",
+      "image_url": "assets/asc-catalogue-pilot/asc-h1865w-h.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-h1960-55w-h",
+      "title": "H19 60/55W 12V Globe – H4P43T Base Variant",
+      "source_description": "H19 60/55W 12V H/GLOBE HIDIAO MARKED H4P43T WITH BASE DIFFERENCE",
+      "fitment_as_printed": "H19 / H4P43T base variant",
+      "subcategory": "HID Globes, Kits & Ballasts",
+      "subcategory_id": "asc-globe-hid",
+      "image_url": "assets/asc-catalogue-pilot/asc-h1960-55w-h.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-h355w-cbl",
+      "title": "H3 55W 12V Cool Blue Globe",
+      "source_description": "H3 55W 12V COOL BLUE GLOBE",
+      "fitment_as_printed": "H3 55W 12V",
+      "subcategory": "HID Globes, Kits & Ballasts",
+      "subcategory_id": "asc-globe-hid",
+      "image_url": "assets/asc-catalogue-pilot/asc-h355w-cbl.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-h355w-h",
+      "title": "Halogen Bulb H3 55W 12V",
+      "source_description": "HALOGEN BULB H3 55W 12V HIDIAO",
+      "fitment_as_printed": "H3 55W 12V",
+      "subcategory": "HID Globes, Kits & Ballasts",
+      "subcategory_id": "asc-globe-hid",
+      "image_url": "assets/asc-catalogue-pilot/asc-h355w-h.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-001",
+      "title": "Electric Fuel Pump – Ford / Mazda / Honda / Isuzu",
+      "source_description": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU",
+      "fitment_as_printed": "Ford / Mazda / Honda / Isuzu",
+      "subcategory": "Electric Fuel Pumps — Ford & Mazda",
+      "subcategory_id": "asc-fuel-ford-mazda",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-001.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-001-e",
+      "title": "Electric Fuel Pump – Ford / Mazda / Honda / Isuzu (No Spare Plug)",
+      "source_description": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU NO SPARE PLUG INCLUDED/ECONOMIC PUMPS",
+      "fitment_as_printed": "Ford / Mazda / Honda / Isuzu",
+      "subcategory": "Electric Fuel Pumps — Ford & Mazda",
+      "subcategory_id": "asc-fuel-ford-mazda",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-001-e.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-009",
+      "title": "Electric Fuel Pump – Ford / VW",
+      "source_description": "FUEL PUMP ELECTRIC FORD.VW",
+      "fitment_as_printed": "Ford / VW",
+      "subcategory": "Electric Fuel Pumps — Ford & Mazda",
+      "subcategory_id": "asc-fuel-ford-mazda",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-009.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-017",
+      "title": "Electric Fuel Pump – Ford / BMW",
+      "source_description": "FUEL PUMP ELECTRIC FORD.BMW",
+      "fitment_as_printed": "Ford / BMW",
+      "subcategory": "Electric Fuel Pumps — Ford & Mazda",
+      "subcategory_id": "asc-fuel-ford-mazda",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-017.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    },
+    {
+      "id": "asc-preview-f1-028",
+      "title": "Fuel Pump – Mazda / Ford LDV",
+      "source_description": "FUEL PUMP MAZDA.FORD LDV",
+      "fitment_as_printed": "Mazda / Ford LDV",
+      "subcategory": "Electric Fuel Pumps — Ford & Mazda",
+      "subcategory_id": "asc-fuel-ford-mazda",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-028.jpg",
+      "preview_only": true,
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
+      "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
+      "price": null,
+      "stock_quantity": null,
+      "stock_status": "Not supplied; confirm availability before ordering"
+    }
+  ]
+}

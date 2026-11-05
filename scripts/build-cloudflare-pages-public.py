@@ -24,11 +24,11 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "preview-audio.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "asc-auto-electrical-preview.html",
 ]
 PREVIEW_ASSET_FILES = [
     "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
-    "audio-connections-catalogue-preview.json",
+    "audio-connections-catalogue-preview.json", "asc-auto-electrical-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg",
 ]
 REQUIRED_ASSET_FILES = [
@@ -68,6 +68,12 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
+if include_preview:
+    asc_images = ROOT / "assets" / "asc-auto-electrical-pilot"
+    if not asc_images.is_dir():
+        raise SystemExit("ASC Auto Electrical pilot image directory missing")
+    shutil.copytree(asc_images, OUT / "assets" / "asc-auto-electrical-pilot")
+
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
