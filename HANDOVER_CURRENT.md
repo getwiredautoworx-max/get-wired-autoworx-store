@@ -3491,3 +3491,50 @@ The preview category tree has four dedicated, direct children of **Auto Electric
 ### Release boundary
 - No Supabase writes, imports, live product/category/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
 - ASC Buyers Guides remain excluded. Production remains HOLD. Banking/checkout functional tests remain deferred until the owner supplies banking details and authorises that stage.
+
+
+---
+
+## 2026-11-05 — OWNER DIRECTIVE APPLIED: ALL SIX ASC CATALOGUES UNDER AUTO ELECTRICAL SPARES
+
+This checkpoint supersedes the earlier note that Aerials and Car Mats should remain under their former parents. The owner's latest direct instruction is that **each of the six ASC catalogues must have its own subcategory under Auto Electrical Spares**.
+
+### Preview category tree and routes
+- Moved Aerials from Car Audio → Accessories to a direct Auto Electrical Spares child.
+- Moved Car Mats from Car Care & Accessories to a direct Auto Electrical Spares child.
+- The six separate ASC catalogue subcategories are now: Aerials; Automotive Sensors; Automotive Switches; Automotive Globes; Car Mats; Fuel Pumps.
+- Existing non-ASC Auto Electrical subcategories remain: Alternators & Starters; Batteries & Charging; Fuses, Relays & Wiring. The preview Auto Electrical page therefore has nine direct child cards in total.
+- Both standard category and preview category route maps now send all six catalogue IDs to their own catalogue view in asc-auto-electrical-preview.html. Aerials has been removed from the Car Audio component/type browse flow; Car Audio → Accessories retains Trims & Harnesses.
+- Category card art now uses the reviewed ASC pilot crops: Aerials (asc-ma522.jpg), Sensors (asc-01080.jpg), Switches (asc-21849.jpg), Globes (asc-9005-h.jpg), Car Mats (asc-m7-cor01.jpg), Fuel Pumps (asc-f1-012.jpg).
+- The standard/public Pages builder explicitly restores Aerials to Car Audio → Accessories and Car Mats to Car Care & Accessories, and strips the ASC preview route map from the standard category page. The six-parent placement is only for opt-in preview builds; no live category assignments were changed.
+
+### Six-catalogue preview data
+- Expanded the preview from four to six catalogue groups: Aerials (6 sections), Automotive Sensors (11), Automotive Switches (16), Automotive Globes (10), Car Mats (14), Fuel Pumps (18) — **75 original contents sections**.
+- Expanded the visually reviewed pilot subset from 34 to **50 records**: Aerials 8; Sensors 9; Switches 8; Globes 8; Car Mats 8; Fuel Pumps 9.
+- Added the 16 Aerials/Car Mats pilot image crops to assets/asc-auto-electrical-pilot/. The original 34 image paths remain unchanged. All 50 distinct image files referenced by the JSON have been confirmed present in the repository.
+- All 50 records remain preview-only and REVIEW_ONLY_NOT_LIVE, with null price and stock quantity, no Get Wired SKU, and watermarked image-use status not cleared for production.
+- All 50 now retain source catalogue name, contents-page start page, candidate ASC reference, identity/fitment/customer-copy review states, and a cautious owner-review draft description. Source page locators are derived from the OCR contents pages and still require original PDF page-image confirmation. Candidate source references still require visual confirmation against the printed product card.
+- The owner preview displays draft description, original catalogue wording, fitment as printed, source PDF/page and candidate ASC reference. Quote-only wording remains exactly: **Price On Request due to Limited Stock and Availability**.
+- Four H18/H19/H3 globe records remain flagged for technology/section verification under the source heading “HID Globes, Kits & Ballasts”; do not assume HID technology. Blank globe fitment stays unassigned.
+
+### Static source readback
+- Read-only source checks confirm all six category IDs are direct Auto Electrical children, all six route IDs appear in both category route files, all six catalogue groups are in the expected order, 75 source sections are present, and 50 records have the correct catalogue assignment.
+- Read-only data checks confirm all 50 records remain preview-only, quote-only and without stock, with source/page/code candidates and owner-review draft descriptions.
+- Repository file-presence checks confirmed all 50 image crops exist. This is not a hosted browser image-load check or a final visual product-to-image approval.
+- The dedicated ASC regression and the three-category structural regression were updated to cover the six category parents, six routes, six category images, 50 records, source metadata, draft descriptions, quote wording, and standard-package restoration. **Neither test has been executed on the latest head.**
+- Latest code/test commits include: category parent change bddb8c2; data expansion dd87030; route changes ec72788 / 08480ef; pilot image import 482f828; Audio browse cleanup 870e4e2; ASC regression 7e3c575 then image coverage 634054f; standard builder isolation 6cc0a12; three-category assertions f99e9ad and 0c75c61.
+- The last confirmed Cloudflare Pages deployment and Public SKU Exposure Audit are for older runtime head 5d8892e. They do not include the six-catalogue changes or 50-record expansion. A fresh exact-head build/deploy and browser verification are required. Do not present the old URL as the updated preview.
+
+### Latest owner clarification applied
+- All six ASC catalogue families are now direct children of Auto Electrical Spares in the non-production preview. This is the current owner instruction and supersedes the previous Aerials/Car Mats placement. The standard package retains the former placements until the owner approves a production category change.
+
+### Next actions
+1. Reconcile the 16 added Aerials/Car Mats records to original PDF page images, exact source code, model variant, product image and fitment.
+2. Complete the same original-page/code/fitment verification for the first 34 records; investigate the four flagged globe items.
+3. Verify the six category card images and all 50 product images in a hosted 390px mobile and desktop browser once safe preview QA is run. Do not treat repository presence as a browser load pass.
+4. Run the exact-head static regression/package build and deploy a new preview matching the latest code head. Keep browser click-through/payment/checkout tests deferred until banking details are supplied, per owner instruction.
+5. Expand beyond the 50-record pilot only after the repeatable source-code/image/description/fitment workflow is validated.
+
+### Release boundary
+- No Supabase writes, product imports, live category/product/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
+- ASC Buyers Guides remain excluded. Production remains HOLD.
