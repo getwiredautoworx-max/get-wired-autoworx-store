@@ -124,3 +124,12 @@ The owner has directed that the six current ASC catalogues be organised as separ
 Aerials must not be placed under Audio: the Audio category remains frozen until the owner explicitly resumes it. Each catalogue family is a separate subcategory; do not combine the five electrical families into one generic ASC subcategory. The owner-directed family-to-root mapping is recorded in `catalogue-review/asc-catalogue-extraction/asc-store-category-assignment-review-only.csv`.
 
 **Important implementation boundary:** this is approved taxonomy/staging direction, not approval to import product rows or write live category/product data. The original six PDFs remain unchanged. Product-level entries remain `DO_NOT_IMPORT` until exact product identity, source page, SKU, description/specification, fitment and exact image are visually verified; OCR alone is insufficient. ASC products without verified current pricing remain quote-only with the exact wording: **Price On Request due to Limited Stock and Availability**. Buyers Guides remain excluded. Production remains HOLD.
+
+
+## Owner correction — ASC Aerials placement (5 November 2026)
+
+The owner has now explicitly authorised moving the ASC Aerials catalogue into **Audio, Entertainment & Music → Car Audio & Video → Aerials**. This is the sole authorised exception to the earlier Audio freeze. The preview category-tree now contains a dedicated Aerials child under Car Audio & Video (category ID `a11e1a15-6d84-4a0b-9a44-8f4c3a2d1e70`). The Audio category is frozen again immediately after this taxonomy placement: no further Audio edits are permitted without fresh explicit owner instruction.
+
+The other five ASC families remain as previously instructed: Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps under **Auto Electrical Parts & Spares**, each in its own subcategory; Car Mats under **Car Care & Accessories → Car Mats**, as its own subcategory. This correction supersedes the earlier sentence in this README that said Aerials must not be placed under Audio.
+
+This is a non-production preview taxonomy change only. It does not mean ASC product rows, catalogue images or descriptions have been uploaded or verified. Product import remains blocked pending visual source-page verification. Original PDFs remain unchanged; Buyers Guides remain excluded; production remains HOLD.
