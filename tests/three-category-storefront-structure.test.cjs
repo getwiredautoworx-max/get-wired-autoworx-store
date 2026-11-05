@@ -156,7 +156,7 @@ for (const model of ['66750650','66750800','66751501','66755100','66755105','667
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://static.audison.com/'), 'official Audison image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
 }
-for (const [model,domain] of [['DMX5023DABS','www.kenwoodstore.it'],['DMH-AP6650BT','www.pioneermalaysia.com']]) {
+for (const [model,domain] of [['DMX5023DABS','www.kenwoodstore.it'],['DMH-AP6650BT','www.pioneersouthafrica.co.za']]) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://'+domain+'/'), 'official exact-model receiver image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
