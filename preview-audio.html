@@ -728,7 +728,7 @@ function componentImage(label){
 function componentImageButton(label,active,fn){
  const b=document.createElement("button");b.type="button";b.className="componentImageButton"+(active?" active":"");b.setAttribute("aria-label",label);b.title=label;
  const src=componentImage(label);
- if(src){const img=document.createElement("img");img.src=src;img.alt=label;img.loading="lazy";img.onerror=function(){this.onerror=null;this.src=categoryArtFallback(label)};b.append(img)}
+ if(src){const img=document.createElement("img");img.src=src;img.alt=label;img.loading="lazy";img.onerror=function(){this.onerror=null;this.remove()};b.append(img)}
  const caption=document.createElement("span");caption.textContent=label;b.append(caption);b.onclick=fn;return b;
 }
 function departmentImage(value,label){
