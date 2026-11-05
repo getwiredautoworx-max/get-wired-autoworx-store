@@ -4066,3 +4066,13 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - This preview is ready for owner review only, not production readiness or owner acceptance. PR #178 remains draft/unmerged. Production HOLD; no Axxess/DNS, Supabase/live writes, supplier activation, payment activation or checkout go-live.
 - After this handover-only commit, run exact-head verification again before sharing a replacement preview URL; this prior URL remains tied to the exact successful SHA above.
 
+
+
+## 2026-11-05 — product image and description completion task start
+- Owner requested correct product pictures and descriptions for all outstanding products.
+- Task scope: continue on the single active storefront candidate, preserve the approved three-root structure and preview-only boundary, and reconcile exact manufacturer/model/variant evidence before adding images or factual product copy.
+- Read the owner-authoritative directives at `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`. The legacy `AI_HANDOVER_PERMANENT.md` was not found at the repository default ref; do not claim it was read. The authoritative directive file supersedes older conflicting handover/task-queue text.
+- Existing review evidence confirms no manufacturer image assets are yet approved for customer publication in the Planetworld/Audio Connections image review scope. Image candidates must be downloaded/visually inspected, exact model/variant checked, and rights/source suitability recorded. Unresolved bundle/variant/fitment rows remain held; do not substitute generic images.
+- Work begins with current review-only Planetworld/Audio Connections exact-model candidates and the OneNav/Amplified gaps already identified in the storefront work. Descriptions must be manufacturer-backed; retain uncertainty where specifications or regional variants are not confirmed.
+- No live catalogue/Supabase writes, supplier activation, public image publication, price/stock changes, checkout/payment activation, merge, production deployment, Axxess upload or DNS change. Candidate changes remain preview-only and DO NOT IMPORT.
+- Next: inspect current branch data/manifests and image mappings, complete one repeatable exact-model image + description workflow, run targeted regression and exact-head preview checks, then update this handover with measured coverage and unresolved exceptions.
