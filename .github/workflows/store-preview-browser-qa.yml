@@ -120,7 +120,7 @@ jobs:
               const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,HEAD,OPTIONS','access-control-allow-headers':'apikey,authorization,range,range-unit,content-type,accept','access-control-max-age':'86400'};
               if(req.method()==='OPTIONS'){await route.fulfill({status:204,headers:cors,body:''});return;}
               const url=new URL(req.url());
-              const id=(url.searchParams.get('id')||'').replace(/^eq\\./,'');
+              const id=(url.searchParams.get('id')||'').replace(/^eq\./,'');
               const row=id==='532c9bdb-08ac-4647-b5e6-b51b192ec9a9'?QA_MISSING_IMAGE_PRODUCT:QA_PRODUCT;
               await route.fulfill({status:200,headers:{...cors,'content-type':'application/json','content-range':'0-0/1'},body:JSON.stringify([row])});
             });
