@@ -119,3 +119,7 @@ request=owner-preview-car-audio-photo-source-verification-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 car_audio_photo=Unsplash-photo-1654447398824-dbcbefeafdd6
 required_checks=exact-sha-marker;car-audio-photo-naturalWidth-positive;car-audio-photo-alt-accurate;no-illustrated-svg;three-root-navigation;car-audio-brand-first;home-entertainment-brand-first;brand-and-type-filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=owner-preview-retest-car-audio-brand-type-photo-consistency-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_checks=exact-sha-marker;no-stale-photo-1726248985986;brand-type-speaker-photo-consistency;no-same-source-image-retry;all-audio-category-images-naturalWidth-positive;three-root-navigation;car-audio-brand-first;home-entertainment-brand-first;brand-and-type-filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
