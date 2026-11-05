@@ -249,7 +249,7 @@ assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand s
 /* Department selection must remove the previous department menu before showing brands. */
 assert.ok(route.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'Selecting an audio department must hide the previous department menu');
 assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1558284296-7579da2deb30'), 'Home Entertainment department must use photographic category artwork');
-assert.ok(route.includes('"Car Audio":"https://store.sony.com.au/'), 'Car Audio department must use a category-matched car-speaker photograph');
+assert.ok(route.includes('"Car Audio":"https://images.unsplash.com/photo-1726248985986-20bef82d2b52'), 'Car Audio department must use a category-matched car-speaker photograph');
 assert.ok(route.includes('"Band & Live Sound":"https://images.unsplash.com/'), 'Band & Live Sound must use photographic artwork');
 assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
 assert.ok(route.includes('window.location.assign("preview-audio.html?"+u.toString())'), 'Department buttons must navigate to the selected department route');
