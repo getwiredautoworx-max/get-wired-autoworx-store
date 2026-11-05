@@ -307,14 +307,20 @@ jobs:
               if(hostedTrimCount!==47)throw new Error('Hosted Trims & Harnesses route expected 47 products: '+JSON.stringify(hostedTrimDiagnostic));
 
               const hostedAutoElectricalId='ba263c9f-d038-48bd-bca0-944f3ebdc5e9';
-              await frame.locator('body').evaluate(id=>{location.href='preview-category.html?id='+id},hostedAutoElectricalId);
+              await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
+              await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).waitFor({state:'visible',timeout:30000});
+              await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).click();
+              await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               await frame.locator('#grid > .card').first().waitFor({state:'visible',timeout:30000});
               const autoNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
               if(autoNames.length!==9)throw new Error('Auto Electrical root expected nine direct subcategories, got '+JSON.stringify(autoNames));
               const hostedCatalogues=[['Aerials',6],['Automotive Sensors',11],['Automotive Switches',16],['Automotive Globes',10],['Car Mats',14],['Fuel Pumps',18]];
               const hostedCatalogueAudit=[];
               for(const [label,expectedSections] of hostedCatalogues){
-                await frame.locator('body').evaluate(id=>{location.href='preview-category.html?id='+id},hostedAutoElectricalId);
+                await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
+                await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).waitFor({state:'visible',timeout:30000});
+                await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).click();
+                await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
                 const card=frame.locator('#grid > .card').filter({hasText:label}).first();
                 await card.waitFor({state:'visible',timeout:20000});
                 const image=card.locator('img').first();
