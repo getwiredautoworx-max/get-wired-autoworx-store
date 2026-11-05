@@ -67,6 +67,9 @@ function categoryArtFallback(label){
 }
 function artFor(label){
  const n=String(label||'').trim().toLowerCase();
+ if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
+ if(n==='auto electrical parts & spares')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
+ if(n==='accessories')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
  const localAudio=[
   [/car audio|car audio & video/,'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'],
   [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82'],
