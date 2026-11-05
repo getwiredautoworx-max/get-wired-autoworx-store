@@ -3815,3 +3815,11 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Run `42027888742` passed the RRP and exact-model enrichment generators, then the structure suite rejected the new official Alpine Europe image URL because an older assertion still hard-coded the former `www.alpine.ch` host.
 - Updated the exact-model host assertion to the verified official Alpine Europe host `finland.alpine-europe.com` in commit `703126c1f427aa5677635d4cfdd728134bec0278`. This aligns the regression with the manufacturer image source already inspected; it does not relax exact-model matching.
 - No Pages deployment occurred in run `42027888742`. Next: rerun from the latest branch head, then confirm actual hosted naturalWidth and layout.
+
+
+### Alpine image source second attempt — 2026-11-05
+- Run `42027987602` confirmed package build, Node regressions, deployment and exact deployed-SHA marker all passed. Hosted browser confirmed the centred product details and correct two-column layout, and the verified description/title were present, but the Alpine image still returned `naturalWidth=0` from the Finland Alpine Europe asset host.
+- Located and opened a full-size isolated iLX-F115D receiver photograph served directly from Alpine's official regional website `www.alpine.com.tr`: `https://www.alpine.com.tr/fileadmin/images/MainNavigation/Products/Product_pics/01_Headunits/iLX-F115D/iLX-F115D_Alpine-Halo-11-XXL-11-Inch-Media-Receiver.jpg`. It depicts the exact Halo 11 unit, not a different model.
+- Updated the internal model crosswalk and both relevant regression assertions to this exact manufacturer image asset. It remains preview-only and marked review-only pending image-use clearance.
+- Updated files/commits: crosswalk `6976431a9e86e3c2c968447e0e3dc86ccbfc948a`; structure host assertion `60a645b1092054be5320498db91a5c55de4e0700`; exact image filename assertion `8d9a9ceb303ebd3670a310ace0b01ed23e6e3a78`.
+- The previous hosted run `42027987602` is not accepted because the Alpine image was still broken there. Next: exact-head rerun and inspect the hosted Alpine image naturalWidth again before offering the preview.
