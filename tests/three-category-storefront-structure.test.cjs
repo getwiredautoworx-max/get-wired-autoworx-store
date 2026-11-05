@@ -29,6 +29,7 @@ for (const alt of ['Sony XM-5ES car audio amplifier','Home entertainment televis
 const planetPage = read('preview-planetworld.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 assert.ok(builder.includes('aerials["parent_id"] = "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11"')&&builder.includes('mats["parent_id"] = "f98e7589-20a0-4825-9707-2680d29e5cb6"'), 'standard package must restore Aerials and Car Mats to their pre-preview parents');
+assert.ok(builder.includes('standard_category_page = OUT / "category.html"')&&builder.includes('"const ascRoutes={};"'), 'standard package must remove preview-only ASC routes before shipping category.html');
 const ownerPreview = read('owner-preview.html');
 const categoryCleanup = read('assets/category-cleanup.js');
 assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not use unsupported selectors, periodic hiding or destructive grid replacement');
