@@ -1903,3 +1903,18 @@ The build is not complete because code exists, a branch is merged, a package bui
 
 ### 7. Current implementation pointer
 At the time this plan is appended, the recorded active integration candidate is PR #176 on `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live PR/head/main/checks before continuing. The last known exact-head workflow result was empty; no exact-head passing test or current hosted preview was proven. This is an execution checkpoint, not a claim that Phases 1–5 are complete. Continue the build on the existing candidate and update this same handover with evidence.
+
+
+## 2026-11-05 — HOME ENTERTAINMENT NAVIGATION AND ARTWORK CORRECTION
+
+- Owner reported that Home Entertainment reproduced the Car Audio navigation failure: tapping returned to the previous menu and did not expose brand choices or relevant category pictures.
+- Active integration candidate remains PR #178, branch `integration/owner-preview-single-task-2026-11-05`. Code checkpoint before this handover append: `58a77046411999e3f0829872eaee882c00fd42c6`.
+- Corrected the Home Entertainment category artwork mapping so it no longer reuses Car Audio & Video artwork.
+- Added dedicated local Home Entertainment department and product-type artwork for Home Audio & Cinema, Projection Screens & Projectors, Cables/Mounts/Accessories, AV Infrastructure & Control, Installed Audio, Conferencing & Collaboration and other Home CI/Installed AV.
+- Corrected department filtering consistently across the Audio department page, brand landing page and product listing page. It now includes Installed AV and verified audio/AV records from Home Retail, while excluding Home & Leisure Appliances and non-audio smart-home items. This preserves Sonos/Klipsch/JLab audio content without routing pool cleaners and household appliances into Home Entertainment.
+- Added Home Entertainment brand-logo image mappings with image fallback and updated the public Pages asset allowlist for the new local artwork.
+- Added regression assertions for the Home Entertainment filter/artwork/package assets and extended the exact-SHA hosted Playwright workflow to exercise Home Entertainment → Klipsch brand → Home Audio & Cinema → matching products.
+- Static source assertions against the resulting code checkpoint passed (11/11). **The actual Node regression suite, exact-head GitHub Actions workflow, hosted deployment and browser journey have NOT yet run on this code checkpoint.** GitHub Actions API query for this SHA returned zero workflow runs at the time of this entry; do not treat static assertions as CI or browser acceptance.
+- Preview URL for this new code checkpoint: NOT DEPLOYED. The older owner-preview URL belongs to an earlier SHA and must not be presented as containing these changes.
+- Owner visual acceptance: PENDING. PR #178 remains draft/unmerged. Production remains HOLD; no production deployment, Axxess upload, DNS, Supabase/live data, catalogue, price, stock, payment or checkout changes were performed.
+- Next concrete action: obtain exact-head regression and hosted preview/browser evidence for the updated PR #178 commit before presenting a replacement owner preview.
