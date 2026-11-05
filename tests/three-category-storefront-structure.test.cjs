@@ -236,7 +236,8 @@ for (const photo of [
   'photo-1470948062737-aeb014e274c2',
   'photo-1543017471-62c14029f7ce',
   'photo-1506157786151-b8491531f063',
-  'photo-1642177272498-98096a6c98e4'
+  'photo-1642784353476-d226d8d617b3',
+  'photo-1598488035139-bdbb2231ce04'
 ]) {
   assert.ok(audioPage.includes(photo) || previewCategory.includes(photo) || audioBrandPage.includes(photo), 'audio category photography includes '+photo);
 }
@@ -246,6 +247,8 @@ for (const asset of ['audio-types/speakers.svg','audio-types/subwoofers.svg','au
   assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package retains safe category fallback '+asset);
 }
 
+assert.ok(audioBrandPage.includes("if(n.includes('kicker'))return 'https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76'"),'dedicated Kicker brand page must render its logo instead of a text-only fallback');
+assert.ok(audioBrandPage.includes("img[alt*='Kicker']{transform:scale(1.42)"),'Kicker logo must be visibly enlarged on the dedicated brand page');
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
 assert.ok(previewCategory.includes("routeLabel==='car audio & video'") && previewCategory.includes("preview-audio.html?department=Car%20Audio"), 'Car Audio & Video must route by its customer-facing category label into the brand directory');
