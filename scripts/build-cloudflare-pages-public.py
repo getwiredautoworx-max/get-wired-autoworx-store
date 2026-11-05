@@ -15,6 +15,7 @@ node = shutil.which("node")
 if not node:
     raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
 subprocess.run([node, str(ROOT / "tests" / "three-category-storefront-structure.test.cjs")], cwd=ROOT, check=True)
+subprocess.run([node, str(ROOT / "tests" / "asc-auto-electrical-integration.test.cjs")], cwd=ROOT, check=True)
 
 REQUIRED_ROOT_FILES = [
     "index.html", "store.html", "index-new.html", "product.html", "products.html",
@@ -24,11 +25,11 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "preview-audio.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "asc-auto-electrical-preview.html",
 ]
 PREVIEW_ASSET_FILES = [
     "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
-    "audio-connections-catalogue-preview.json",
+    "audio-connections-catalogue-preview.json", "asc-auto-electrical-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg",
 ]
 REQUIRED_ASSET_FILES = [
@@ -68,8 +69,43 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
+if include_preview:
+    asc_images = ROOT / "assets" / "asc-auto-electrical-pilot"
+    if not asc_images.is_dir():
+        raise SystemExit("ASC Auto Electrical pilot image directory missing")
+    shutil.copytree(asc_images, OUT / "assets" / "asc-auto-electrical-pilot")
+
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
+
+# Keep the ASC catalogue expansion isolated to explicit non-production previews.
+# The standard/main customer package retains the previous approved category tree
+# until the owner accepts the catalogue and image-use/commercial release gates.
+if not include_preview:
+    category_path = OUT / "assets" / "category-tree.json"
+    category_tree = json.loads(category_path.read_text(encoding="utf-8"))
+    preview_ids = {
+        "e6a10001-1b2c-4d3e-8f90-111111111111",
+        "e6a10002-1b2c-4d3e-8f90-222222222222",
+        "e6a10003-1b2c-4d3e-8f90-333333333333",
+    }
+    category_tree["categories"] = [
+        item for item in category_tree["categories"] if item.get("id") not in preview_ids
+    ]
+    globe = next(item for item in category_tree["categories"] if item.get("id") == "89595653-97d4-4b18-ba69-117547d32ed0")
+    globe["name"] = "Globes & Vehicle Lighting"
+    globe["slug"] = "globes-vehicle-lighting"
+    category_tree["categories"].append({
+        "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
+        "name": "Sensors & Switches",
+        "slug": "sensors-switches",
+        "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+        "active": True,
+        "direct_active_products": 0,
+        "sort_order": 6,
+    })
+    category_tree["source"] = "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved."
+    category_path.write_text(json.dumps(category_tree, indent=2) + "\n", encoding="utf-8")
 
 image_source = ROOT / "assets" / "products_webp"
 if not image_source.is_dir():
