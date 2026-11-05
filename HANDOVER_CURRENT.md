@@ -3983,3 +3983,10 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Exact-head run 42048613309 passed the customer-only package build and the three-category/privacy structure test after the supplier-identifier cleanup, then failed in the audio catalogue regression because it still expected the old supplier model substring and `700 W RMS` description.
 - Updated the regression to require manufacturer model `SSW-SV2-15000R` and to assert that the disputed RMS figure is absent from the customer description. The other 23 non-Sony RMS/specification descriptions and Sony ratings remain independently checked.
 - Next: rerun exact-head Node regressions, public SKU audit, deployment-SHA marker and hosted mobile/desktop category/product image checks. No preview URL is approved until those pass.
+
+
+## 2026-11-05 — SPECTRUM 15000 PHOTO ASSERTION ALIGNMENT
+
+- Exact-head run 42048806268 passed the customer-only package build and then failed in the audio regression at the Spectrum 15000 photo assertion. The assertion still looked up the retired supplier-side model string `SSW-S12 SPECTR 15000` and expected the old RMS-conflict note.
+- Next corrective step: update the regression to find manufacturer model `SSW-SV2-15000R`, require the exact official Starsound product image, retain verified coil/frequency details, and confirm the unresolved RMS rating remains absent from the customer description.
+- Do not share a preview until the updated exact-head regression, SKU audit, deployed-SHA marker and hosted mobile/desktop browser checks all pass.
