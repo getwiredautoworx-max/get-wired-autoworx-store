@@ -3782,3 +3782,12 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Source changes are committed, but the new exact-head Node tests, public SKU audit, package build, hosted mobile/desktop checks and deployed-SHA marker have **not yet been run** for this checkpoint.
 - Next: trigger one exact-head owner-preview workflow from this branch, inspect the Node regression and Alpine hosted audit results, confirm all 68 image URLs still load, and only then publish a fresh preview URL.
 - Keep PR #178 draft/unmerged; production remains HOLD. No Axxess, DNS, Supabase/live writes, supplier activation, live price/stock changes, checkout/payment activation or production deployment.
+
+
+### Hosted QA follow-up — 2026-11-05
+- First exact-head run `42027282844` tested commit `de5f83e17da9c1df5ae5d48a073bff6ad4e74c93`.
+- Customer-only package build and exact-head Node regression/invariant step completed successfully; non-production Cloudflare Pages deployment and deployed-SHA wait also completed successfully.
+- Hosted browser step exposed a syntax error in the newly added Alpine route-matching regular expression before browser assertions could execute. This is a QA-script defect, not evidence that the product image or storefront layout failed.
+- Corrected the route matcher to use pathname suffix checks in commit `0b7f9937243892926de8f255c181453ad0991be6`.
+- The first run is therefore **failed/incomplete for hosted browser QA** and must not be used as the owner preview.
+- Next: trigger a new exact-head run after this correction; verify the Alpine image naturalWidth, description, centred details and two-column card geometry, plus all existing mobile/desktop, SKU and privacy checks. Do not send the preview until that run succeeds.
