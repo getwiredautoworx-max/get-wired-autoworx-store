@@ -63,7 +63,7 @@ assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]=
 assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_BELOW_ESTIMATED_COST_REVIEW').length,19,'below-estimated-cost rows must be flagged for owner review, not silently hidden');
 assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_COST_FLOOR_PASS').length,3279);
 assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand directory must use official Planetworld ONE/OneNav and Amplified logos');
-const brandRoute=fs.readFileSync('preview-audio-brand.html','utf8');
+const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productRoute=fs.readFileSync('preview-audio-products.html','utf8');
 assert.equal(planet.records.filter(row=>row.imageUrl).length,66,'66 exact-model manufacturer image candidates must be attached to the correct source product rows');
 assert.equal(planet.records.filter(row=>row.modelNumber).length,68,'all 68 exact-model records must carry their manufacturer model and verified description');
@@ -71,7 +71,7 @@ assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERI
 assert.ok(!productRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(route.includes('function exactModelMatch(title,model,rowModel)'),'main audio catalogue must join curated manufacturer details using the exact matched source model');
-assert.ok(brandRoute.includes('rowModel===k||t.startsWith(\' \'+k+\' \')'),'brand landing pages must join exact-model rows without creating duplicate standalone records');
+assert.ok(brandLandingRoute.includes('rowModel===k||t.startsWith(\' \'+k+\' \')'),'brand landing pages must join exact-model rows without creating duplicate standalone records');
 assert.ok(productRoute.includes('rowModel===k||t.startsWith(\' \'+k+\' \')'),'product pages must join exact-model rows without creating duplicate standalone records');
 const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv','utf8'));
 const imageAuditRows=imageAudit.slice(1);
@@ -80,8 +80,8 @@ assert.equal(imageAuditRows.length,3317,'internal image audit must account for e
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,66);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,2);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3249);
-assert.ok(brandRoute.includes(ONE_LOGO)&&brandRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
-assert.ok(brandRoute.includes("function brandDisplayName(b)")&&brandRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
+assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
+assert.ok(brandLandingRoute.includes("function brandDisplayName(b)")&&brandLandingRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
 assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT), 'all unpriced Planetworld rows must use the exact owner-approved request wording');
 assert.equal(audioConnections.records.filter(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT).length, 53, 'unapproved dealer-cost estimates and retail-only comparisons must remain quote-only');
