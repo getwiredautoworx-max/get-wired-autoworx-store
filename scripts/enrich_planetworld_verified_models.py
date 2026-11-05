@@ -168,24 +168,24 @@ def main() -> None:
         "unmatched_products": unmatched,
     }
     expected = {
-        "oneNav_pages": 21,
-        "oneNav_descriptions": 21,
+        "oneNav_pages": 9,
+        "oneNav_descriptions": 9,
         "oneNav_image_candidates": 6,
-        "oneNav_images_missing": 15,
+        "oneNav_images_missing": 3,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3228,
+        "unmatched_products": 3240,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 89,
-        "manufacturerDescriptionsVerified": 89,
+        "exactModelPagesReviewed": 77,
+        "manufacturerDescriptionsVerified": 77,
         "exactImageCandidatesApplied": 74,
-        "exactModelImagesMissing": 15,
-        "unmatchedProducts": 3228,
+        "exactModelImagesMissing": 3,
+        "unmatchedProducts": 3240,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
