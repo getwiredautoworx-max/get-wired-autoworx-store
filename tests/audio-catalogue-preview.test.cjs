@@ -222,15 +222,20 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 57);
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 9, 'only nine supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 60);
+for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop/products/Star-Sound-Rapter-Series-2-Channel-Amplifier-_2250W_-maxmotorsports-1631612487.jpg?v=1631612489&width=1946"],["SSA-R-6200.1D","https://osmans.co.za/image/product/1_ssar62001d.png"],["SSA-R-6900.1D","https://soundslimited.co.za/wp-content/uploads/2024/12/Starsound-SSA-R6900.1-Mono-Amplifier-sounds-limited.jpg"]]) {
+ const row=audioConnections.records.find(item=>item.modelNumber===model);
+ assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
+}
+
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 6, 'only six supplier products remain without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && row.imageStatus === 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH'), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
-assert.equal(audioImageAudit.recordsWithImage,57);
-assert.equal(audioImageAudit.recordsMissingVerifiedImage,9);
-assert.equal(audioImageAudit.missing.length,9);
+assert.equal(audioImageAudit.recordsWithImage,60);
+assert.equal(audioImageAudit.recordsMissingVerifiedImage,6);
+assert.equal(audioImageAudit.missing.length,6);
 for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSAR 22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
@@ -280,7 +285,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 125);
+assert.equal(imageCount, 128);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
