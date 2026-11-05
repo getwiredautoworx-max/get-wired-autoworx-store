@@ -65,14 +65,14 @@ assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]=
 assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand directory must use official Planetworld ONE/OneNav and Amplified logos');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
-assert.equal(planet.records.filter(row=>row.imageUrl).length,66,'66 exact-model manufacturer image candidates must be attached to the correct source product rows');
+assert.equal(planet.records.filter(row=>row.imageUrl).length,68,'66 exact-model manufacturer image candidates must be attached to the correct source product rows');
 const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
 const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
 assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946','Pioneer DMH-AP6650BT must use the exact South African model image');
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
 assert.equal(planet.records.filter(row=>row.modelNumber).length,68,'all 68 exact-model records must carry their manufacturer model and verified description');
-assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,2,'two exact-model products have no image and must not receive a generic substitute');
+assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,9,'two exact-model products have no image and must not receive a generic substitute');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(route.includes('function exactModelMatch(title,model,rowModel)'),'main audio catalogue must join curated manufacturer details using the exact matched source model');
@@ -82,9 +82,9 @@ const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PROD
 const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,66);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,2);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3249);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,68);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,9);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3240);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
 assert.ok(brandLandingRoute.includes("function brandDisplayName(b)")&&brandLandingRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
@@ -234,8 +234,9 @@ for (const row of audioConnections.records) {
   assert.equal(Object.hasOwn(row, 'supplierSku'), false);
 }
 
-const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 70);
+const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
+const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
+assert.equal(imageCount, 72);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
@@ -343,3 +344,58 @@ assert.ok(route.includes('photo-1543017471-62c14029f7ce') && route.includes('pho
 assert.ok(route.includes('photo-1677230017860-a8cc67785f0a') && route.includes('photo-1759667880866-702f9f615489'), 'Harness/wiring and aerial tiles must use matching photographs');
 assert.ok(brandRoute.includes('photo-1771554753127-8e5a90b5a61d'), 'Home Entertainment cable/accessory tiles must use audio-cable photography');
 assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.includes('photo-1608043152269-423dbba4e7e1') && !categoryRoute.includes('photo-1608043152269-423dbba4e7e1'), 'Old generic speaker fallback must be removed from customer-facing audio routes');
+
+/* OneNav exact product enrichments: exact fitment, feature set, crop and private supplier-code handling. */
+const oneNavPrado = planet.records.find(row => row.id === 'pw-2120');
+const oneNavLandCruiser = planet.records.find(row => row.id === 'pw-2121');
+assert.ok(oneNavPrado && oneNavLandCruiser, 'the two exact OneNav product rows must remain present');
+for (const row of [oneNavPrado, oneNavLandCruiser]) {
+  assert.equal(row.brandDisplayName, 'OneNav');
+  assert.ok(row.description.includes('1024 × 600') && row.description.includes('Apple CarPlay') && row.description.includes('4 × 40 W'));
+  assert.equal(row.imageCrop, true);
+  assert.equal(row.imagePosition, 'center 30%');
+  assert.ok(row.imageUrl && !row.imageUrl.includes('OA014-1') && !row.imageUrl.includes('OA015-1'));
+  assert.equal(Object.hasOwn(row, 'supplierSku'), false);
+  assert.equal(Object.hasOwn(row, 'supplier_sku_candidate'), false);
+  assert.equal(Object.hasOwn(row, 'dealerCost'), false);
+}
+assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
+assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
+assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
+assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.descriptionsEnriched === 8);
+assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 2);
+assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 9);
+assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 2);
+assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
+assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:16/9;overflow:hidden'));
+assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 30%'));
+assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 30%\''));
+assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
+
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,2);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,8);
+
+/* Check the actual remote image endpoints used by the preview, not only their URL strings. */
+(async () => {
+  const remoteAssets = [
+    ['ONE / OneNav logo', ONE_LOGO],
+    ['Amplified logo', AMPLIFIED_LOGO],
+    ['OneNav Prado exact product image', oneNavPrado.imageUrl],
+    ['OneNav Land Cruiser exact product image', oneNavLandCruiser.imageUrl],
+  ];
+  for (const [label, url] of remoteAssets) {
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 GetWiredOwnerPreviewQA' },
+      signal: AbortSignal.timeout(20000),
+    });
+    assert.ok(response.ok, label + ' returned HTTP ' + response.status);
+    const contentType = (response.headers.get('content-type') || '').toLowerCase();
+    assert.ok(contentType.startsWith('image/'), label + ' did not return an image: ' + contentType);
+    if (response.body) await response.body.cancel();
+  }
+  console.log('REMOTE_PREVIEW_ASSETS_PASS', JSON.stringify({ count: remoteAssets.length }));
+})().catch(error => {
+  console.error('REMOTE_PREVIEW_ASSETS_FAIL', error);
+  process.exitCode = 1;
+});
+
