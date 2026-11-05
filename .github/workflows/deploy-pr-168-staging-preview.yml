@@ -12,6 +12,11 @@ on:
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
       - "index-new.html"
       - "preview-category.html"
+      - "preview-audio.html"
+      - "preview-audio-brand.html"
+      - "preview-audio-products.html"
+      - "scripts/build-cloudflare-pages-public.py"
+      - "tests/audio-catalogue-preview.test.cjs"
       - "category.html"
       - "tests/three-category-storefront-structure.test.cjs"
 
@@ -48,6 +53,8 @@ jobs:
           test -f pages-public/owner-preview.html
           test -f pages-public/preview-audio.html
           test -f pages-public/preview-category.html
+          test -f pages-public/preview-audio-brand.html
+          test -f pages-public/preview-audio-products.html
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
@@ -67,14 +74,14 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=repair/pr-168-storefront-category-audio-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=owner-preview --commit-hash=${{ github.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Wait for the exact deployed SHA and reject stale aliases
         shell: bash
         run: |
           set -euo pipefail
           aliases=(
-            "https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev"
+            "https://owner-preview.get-wired-autoworx-store.pages.dev"
           )
           matched=""
           for attempt in $(seq 1 24); do
@@ -148,13 +155,20 @@ jobs:
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
               if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');
               await frame.locator('#brands button[aria-label="Sony"]').click();
-              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
-              const categoryImageAudit=await frame.locator('#components button.componentImageButton').evaluateAll(async buttons=>Promise.all(buttons.map(async b=>{const img=b.querySelector('img');if(!img)return {label:b.innerText,loaded:false,reason:'missing image'};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:b.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
-              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted image-led component cards failed: '+JSON.stringify(categoryImageAudit));
-              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).first().click();
-              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
-              const audioAmpCount=await frame.locator('#products .audioProduct').count();
-              if(audioAmpCount<1)throw new Error('Sony -> Amplifiers returned no products: '+JSON.stringify(categoryImageAudit));
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio-brand.html'),{timeout:30000});
+              const brandDoc=page.frameLocator('#store');
+              await brandDoc.locator('.brandHero').waitFor({state:'visible',timeout:30000});
+              if(await brandDoc.locator('#products,.audioProduct').count())throw new Error('Dedicated brand landing page must not show product stock');
+              const brandTypeCards=brandDoc.locator('#types .typeCard');
+              await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
+              const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
+              await brandTypeCards.filter({hasText:'Amplifiers'}).first().click();
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio-products.html'),{timeout:30000});
+              const productDoc=page.frameLocator('#store');
+              await productDoc.locator('.product').first().waitFor({state:'visible',timeout:30000});
+              const audioAmpCount=await productDoc.locator('.product').count();
+              if(audioAmpCount<1)throw new Error('Sony -> Amplifiers dedicated product page returned no products');
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               const rootLinks=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn');
               await rootLinks.nth(1).waitFor({state:'visible',timeout:30000});
