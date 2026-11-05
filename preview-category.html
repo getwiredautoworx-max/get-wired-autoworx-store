@@ -72,7 +72,7 @@ function artFor(label){
   [/cameras?\s*&\s*monitors?/,'https://down-ph.img.susercontent.com/file/23da3f49f2e772cfaa55a72f0704f539'],
   [/signal processing|crossovers?/,'https://soundautoconcept.com/cdn/shop/files/esx-dsp-numerique-default-title-dsp-esx-qe812sp-58524501344579.jpg?v=1745945938&width=1214'],
   [/trims?\s*&\s*harnesses?|harnesses?,\s*trims/,'https://fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png?v=1777822231&width=800'],
-  [/aerials?/,'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82'],
+
   [/home entertainment/,'assets/car-audio-video-category.svg'],
   [/band equipment|band & live sound/,'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=720&q=82'],
   [/dj equipment/,'https://images.unsplash.com/photo-1571266028243-d220c9c3b9b6?auto=format&fit=crop&w=720&q=82'],
@@ -108,7 +108,7 @@ function artFor(label){
  if(photo.startsWith('http://')||photo.startsWith('https://')||photo.startsWith('assets/'))return photo;
  return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
 }
-function audioProductType(product){const t=[product.name,product.description].join(' ').toLowerCase();if(/head unit|car radio|stereo|receiver|radio|multimedia player/.test(t))return 'Radios & Head Units';if(/subwoofer|sub woofer/.test(t))return 'Subwoofers';if(/speaker|tweeter|woofer/.test(t))return 'Speakers';if(/amplifier|\bamp\b/.test(t))return 'Amplifiers';if(/crossover/.test(t))return 'Crossovers';if(/aerial|antenna/.test(t))return 'Aerials';if(/wiring|installation|cable|connector|fuse|harness|adapter/.test(t))return 'Wiring & Accessories';return 'Other Products'}
+function audioProductType(product){const t=[product.name,product.description].join(' ').toLowerCase();if(/head unit|car radio|stereo|receiver|radio|multimedia player/.test(t))return 'Radios & Head Units';if(/subwoofer|sub woofer/.test(t))return 'Subwoofers';if(/speaker|tweeter|woofer/.test(t))return 'Speakers';if(/amplifier|\bamp\b/.test(t))return 'Amplifiers';if(/crossover/.test(t))return 'Crossovers';if(/wiring|installation|cable|connector|fuse|harness|adapter/.test(t))return 'Wiring & Accessories';return 'Other Products'}
 function brandLogo(label){const key=String(label||'').trim().toLowerCase();const known={jbl:'jbl',sony:'sony',pioneer:'pioneer',alpine:'alpine',kenwood:'kenwood',hertz:'hertz',audison:'audison',kicker:'kicker',starsound:'starsound'};const slug=known[key]||key.replace(/[^a-z0-9]+/g,'');return 'https://cdn.simpleicons.org/'+encodeURIComponent(slug)}
 function render(items,title,sub){
  document.getElementById('heading').textContent=title;
