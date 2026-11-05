@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 61,
-  "recordsMissingVerifiedImage": 5,
+  "recordsWithImage": 62,
+  "recordsMissingVerifiedImage": 4,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -17,13 +17,6 @@
       "model": "860",
       "brand": "Starsound",
       "title": "Starsound 860 8-gauge",
-      "component": "Amplifier Installation Kits",
-      "descriptionPresent": true
-    },
-    {
-      "model": "RA AWG4",
-      "brand": "RA",
-      "title": "Reference Audio RA AWG4",
       "component": "Amplifier Installation Kits",
       "descriptionPresent": true
     },
@@ -101,20 +94,20 @@
     "SSA-R-2250.2",
     "SSA-R-6200.1D",
     "SSA-R-6900.1D",
-    "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)"
+    "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)",
+    "RA-EL4 (supplier descriptor RA AWG4 cross-referenced to Reference Audio 4-gauge kit)"
   ],
-  "imageCoverageNote": "61 of 66 Audio Connections preview records now have exact-model photo matches. 60 are high-resolution source images; Blackspider Lynx has an exact 105px thumbnail only and is flagged for replacement. Five records remain without verified exact-model photos.",
+  "imageCoverageNote": "62 of 66 Audio Connections preview records have exact-model or supplier-to-manufacturer cross-referenced photo matches. 61 are high-resolution source images; Blackspider Lynx has an exact 105px thumbnail only and is flagged for replacement. Four records remain without verified exact-model photos.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860",
-    "RA AWG4",
     "RA SUPER RAST20",
     "EQ7100"
   ],
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 18,
+    "sourceVerified": 19,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
@@ -126,7 +119,7 @@
       "reason": "Model code differs; candidate image deliberately not used."
     }
   ],
-  "highResolutionImages": 60,
+  "highResolutionImages": 61,
   "lowResolutionImages": [
     {
       "model": "BULLET LYNX",
