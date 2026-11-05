@@ -33,3 +33,9 @@ requested_for=preview/integrated-storefront-2026-11-04
 required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
 required_audio_journey=Car Audio & Video -> Brand -> Image-led Component Type -> Brand-filtered Products
 required_checks=exact-sha-marker;category-specific-image-map;all-audio-component-images-load;mobile-390px;desktop-1365px;all-three-root-subcategory-pages;checkout-hidden;supabase-writes-blocked;sku-audit
+
+
+request=PR-176-image-led-category-cards-exact-head-after-qa-corrections-2026-11-05
+requested_for=preview/integrated-storefront-2026-11-04
+required_audio_journey=Car Audio & Video -> Brand -> Image-led Component Type -> Brand-filtered Products
+required_checks=exact-sha-marker;category-image-map-static-test;component-image-load-audit;brand-first-stage-visibility;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
