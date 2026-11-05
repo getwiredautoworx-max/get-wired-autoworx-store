@@ -2077,3 +2077,17 @@ These ranges overlap where practical and are estimates, not a delivery guarantee
 - The existing staging alias remains `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html`; it must not be presented as current-head preview until the deployed marker matches the exact final SHA. Production remains HOLD.
 - Next executable gate: obtain the exact-head PR workflow results and the push-triggered staging deployment result; inspect failed job logs; then verify the marker SHA and hosted owner-preview on 390px mobile and desktop. Keep PR draft until these pass and owner visually accepts the preview.
 - No PR merge, Axxess upload, DNS change, production deployment, Supabase/live write, live catalogue/price/stock/category change, supplier activation, banking change or payment go-live occurred.
+
+
+
+## 2026-11-05 — Selective ASC Auto Electrical integration (owner-directed)
+- Owner confirmed the assistant should lead storefront build decisions and continue the clean selective integration approach; do not merge the divergent ASC branch wholesale.
+- Created clean integration branch `asc-auto-electrical-v2` from the exact current storefront preview candidate head `c564ce22424c65c238c74dda3eba3f097a39b730`.
+- Selectively brought forward only the four ASC Auto Electrical catalogue groups from the ASC review candidate: Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps.
+- Added **34 visually reviewed pilot product cards** with their exact catalogue-card crops and section/fitment labels. These are explicitly preview-only, price=null, stock_quantity=null, no Get Wired SKU, watermark image rights uncleared, checkout disabled. No live database/product/stock/category write was made.
+- Expanded the Auto Electrical category hierarchy with separate compact image-led child tiles for Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps. Existing Alternators & Starters, Batteries & Charging and Fuses, Relays & Wiring remain.
+- Added `asc-auto-electrical-preview.html` to browse catalogue → original section → reviewed pilot products. Preview package includes route, JSON and the 34 exact crops only on non-main/preview builds. Standard main package continues to exclude the route, data and images.
+- Added a dedicated regression test and wired it into the Pages package build. No deployment or test pass is claimed until exact-head CI/hosted browser QA completes.
+- Current branch head after initial integration: `2f8ff6bbb5f96841da07e59347e336f076f2b687`; follow-up QA/image/test corrections are committed after this handover note.
+- Remaining ASC work: 933 descriptions in the larger 983-card register still need editorial verification; all remaining fitment/specification data needs review; clean product image rights and current supplier price/stock confirmation remain outstanding. Keep the 34 pilot records clearly review-only. Do not bulk import the other 949 records.
+- No merge, production deployment, Axxess/DNS change, Supabase writes, live category/product/price/stock changes, supplier activation or payment/checkout go-live.

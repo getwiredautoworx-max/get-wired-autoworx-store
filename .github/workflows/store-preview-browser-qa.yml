@@ -8,6 +8,7 @@ on:
       - repair/pr-168-storefront-category-audio-2026-11-04
       - fix/mobile-audio-subcategory-grid-2026-11-04
       - preview/integrated-storefront-2026-11-04
+      - asc-auto-electrical-v2
 
 permissions:
   contents: read
@@ -30,6 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node tests/asc-auto-electrical-integration.test.cjs
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
@@ -121,8 +123,8 @@ jobs:
             const starsoundProducts=await frame.locator('#products .audioProduct').count();
             if(starsoundProducts!==3)throw new Error('Starsound SVC Subwoofers route expected 3 products, got '+starsoundProducts);
             if(!(await frame.locator('#products').innerText()).includes('Starsound'))throw new Error('Starsound route returned another brand');
-            await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
-            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('department')==='Car Audio'&&!new URL(document.querySelector('#store').contentWindow.location.href).searchParams.has('brand'),{timeout:15000});
+            await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&brand=All%20brands&label=Car%20Audio%20%26%20Video'});
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='All brands',{timeout:15000});
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             await frame.locator('#brands button[aria-label="Sony"]').click();
             await frame.locator('#components button').first().waitFor({state:'visible',timeout:30000});
@@ -199,6 +201,7 @@ jobs:
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
               const previewBases=[
+                'https://asc-auto-electrical-v2.get-wired-autoworx-store.pages.dev',
                 'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
@@ -261,9 +264,15 @@ jobs:
               if(compactGrid.columns!==2||compactGrid.count<6||compactGrid.widths.some(w=>w<130)||compactGrid.heights.some(h=>h>220))throw new Error('Hosted Audio subcategories are not compact two-column mobile tiles: '+JSON.stringify(compactGrid));
               for(const label of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
               await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-              await frame.locator('#grid .card').filter({hasText:'Speakers & Component Kits'}).waitFor({state:'visible',timeout:20000});
-              for(const label of ['Speakers & Component Kits','Subwoofers','Amplifiers','Head Units & Media Players','Accessories','Cameras & Monitors','Signal Processing & Crossovers'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
-              await frame.locator('#grid .card').filter({hasText:'Accessories'}).click();
+              await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brand choices before component groups');
+              if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');
+              await frame.locator('#brands button[aria-label="Sony"]').click();
+              await frame.locator('#components button[aria-label="Amplifiers"]').waitFor({state:'visible',timeout:30000});
+              await frame.locator('#components button[aria-label="Amplifiers"]').click();
+              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              if(!(await frame.locator('#products').innerText()).includes('Sony'))throw new Error('Sony brand filter did not return Sony audio products');
+              await frame.locator('body').evaluate(()=>{location.href='preview-category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'});
               await frame.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               for(const label of ['Aerials','Trims & Harnesses'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
               const hostedTrimsCard=frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'});
@@ -281,14 +290,24 @@ jobs:
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).click();
               await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               const autoNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
-              if(autoNames.length!==5||!autoNames.some(x=>x.includes('Alternators & Starters')))throw new Error('Auto Electrical root did not open its five subcategories: '+JSON.stringify(autoNames));
+              if(autoNames.length!==7||!autoNames.some(x=>x.includes('Alternators & Starters')))throw new Error('Auto Electrical root did not open its five subcategories: '+JSON.stringify(autoNames));
+              for(const label of ['Automotive Sensors','Automotive Switches','Automotive Globes','Fuel Pumps'])if(!autoNames.some(x=>x.includes(label)))throw new Error('ASC Auto Electrical category missing: '+label);
+              await frame.locator('#grid .card').filter({hasText:'Automotive Sensors'}).click();
+              await frame.locator('#heading').filter({hasText:'Automotive Sensors'}).waitFor({state:'visible',timeout:30000});
+              await frame.locator('#sections .tile').filter({hasText:'Crankshaft & Camshaft Position Sensors'}).click();
+              await frame.locator('#products .card').first().waitFor({state:'visible',timeout:20000});
+              const ascSensorCount=await frame.locator('#products .card').count();
+              if(ascSensorCount!==5)throw new Error('ASC sensor review pilot expected 5 products, got '+ascSensorCount);
+              const ascSensorImages=await frame.locator('#products .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth}})));
+              if(ascSensorImages.length!==5||ascSensorImages.some(x=>!x.loaded))throw new Error('ASC sensor pilot images did not all load: '+JSON.stringify(ascSensorImages));
+
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(2).waitFor({state:'visible',timeout:30000});
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(2).click();
               await frame.locator('#heading').filter({hasText:'Car Care & Accessories'}).waitFor({state:'visible',timeout:30000});
               const careNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
               if(careNames.length!==4||!careNames.some(x=>x.includes('Car Mats')))throw new Error('Car Care root did not open its four subcategories: '+JSON.stringify(careNames));
-              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded',timeout:60000});
+              await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded',timeout:60000});
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               const hostedDepartmentSummary=await page.locator('#audioResultCount').innerText();
               const hostedDepartmentCount=Number(hostedDepartmentSummary.split(' ')[0]||0);

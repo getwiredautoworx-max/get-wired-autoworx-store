@@ -57,3 +57,7 @@ required_checks=exact-sha-marker;component-image-load-audit;brand-first-navigati
 
 request=PR-176-image-led-all-three-departments-image-load-audit-2026-11-05
 required_checks=exact-sha-marker;all-audio-subcategory-images-load;all-auto-electrical-subcategory-images-load;all-car-care-subcategory-images-load;brand-first-component-image-load;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=ASC-AUTO-ELECTRICAL-V2-EXACT-HEAD-PREVIEW
+requested_for=asc-auto-electrical-v2
+required_checks=exact-sha-marker;package-regressions;public-sku-audit;390px-mobile;desktop;brand-first-audio;four-ASC-catalogues;34-pilot-images;checkout-hidden;live-writes-blocked

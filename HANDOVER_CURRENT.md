@@ -3451,3 +3451,9 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Next: correct hosted QA's preview discovery so it resolves the current commit-specific Cloudflare Pages URL (or reliably consumes the exact-SHA branch deployment alias), then rerun hosted mobile/desktop checks against exact SHA `3cd75996f2dfadfe6d5edb8bdbbda4f9daca0a8d`. Do not weaken assertions. Preserve category-specific image load checks, three-root navigation, mobile two-column cards, brand-first Car Audio flow, checkout hidden, Supabase writes blocked and SKU audit.
 - Owner can inspect the commit-specific candidate at https://855c49ff.get-wired-autoworx-store.pages.dev/owner-preview.html, but it is **not yet signed off**: hosted QA must pass and owner visual/mobile acceptance remains outstanding.
 - PR #176 remains OPEN / DRAFT / UNMERGED. No production deployment, Axxess upload, DNS, Supabase/live writes, live stock/price changes, supplier activation or payment go-live.
+
+
+## 2026-11-05 — ASC Auto Electrical selective preview handoff
+- Clean integration branch `asc-auto-electrical-v2` is based on the latest storefront preview head `2e3952991cb25251267feb16934440ff11e42407`, retaining the latest storefront/audio/category fixes.
+- Four preview-only groups: Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps; 34 visually reviewed ASC pilot records and matching source-card crops.
+- No live SKU, price, stock or Supabase changes. Watermarked images remain owner-review only; no production image-use clearance, current ASC price/stock evidence or complete fitment/specification verification is claimed. Production remains HOLD.

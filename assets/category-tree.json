@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-03T00:00:00Z",
-  "source": "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved.",
+  "generated_at": "2026-11-05T00:00:00Z",
+  "source": "Three-category owner-approved hierarchy with four ASC Auto Electrical catalogue groups added as preview-only navigation. ASC pilot records are not live products.",
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
@@ -112,21 +112,12 @@
     },
     {
       "id": "89595653-97d4-4b18-ba69-117547d32ed0",
-      "name": "Globes & Vehicle Lighting",
-      "slug": "globes-vehicle-lighting",
+      "name": "Automotive Globes",
+      "slug": "automotive-globes",
       "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
       "active": true,
       "direct_active_products": 0,
       "sort_order": 5
-    },
-    {
-      "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
-      "name": "Sensors & Switches",
-      "slug": "sensors-switches",
-      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 6
     },
     {
       "id": "934a47fc-14b2-4d08-a3ea-9c5254076a5a",
@@ -262,6 +253,33 @@
       "active": true,
       "direct_active_products": 0,
       "sort_order": 1
+    },
+    {
+      "id": "e6a10001-1b2c-4d3e-8f90-111111111111",
+      "name": "Automotive Sensors",
+      "slug": "automotive-sensors",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 6
+    },
+    {
+      "id": "e6a10002-1b2c-4d3e-8f90-222222222222",
+      "name": "Automotive Switches",
+      "slug": "automotive-switches",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 7
+    },
+    {
+      "id": "e6a10003-1b2c-4d3e-8f90-333333333333",
+      "name": "Fuel Pumps",
+      "slug": "fuel-pumps",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 8
     }
   ]
 }
