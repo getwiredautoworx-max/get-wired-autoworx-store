@@ -13,6 +13,9 @@ on:
       - "preview-category.html"
       - "assets/audio-types/**"
       - "assets/brand-logos/**"
+      - "assets/planetworld-catalogue-preview.json"
+      - "scripts/apply_planetworld_rrp_minus_2.py"
+      - "catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/three-category-storefront-structure.test.cjs"
@@ -30,6 +33,9 @@ on:
       - "preview-audio-products.html"
       - "assets/audio-types/**"
       - "assets/brand-logos/**"
+      - "assets/planetworld-catalogue-preview.json"
+      - "scripts/apply_planetworld_rrp_minus_2.py"
+      - "catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/audio-catalogue-preview.test.cjs"
       - "category.html"
@@ -206,6 +212,45 @@ jobs:
               await productDoc.locator('.product').first().waitFor({state:'visible',timeout:30000});
               const audioAmpCount=await productDoc.locator('.product').count();
               if(audioAmpCount<1)throw new Error('Sony -> Amplifiers dedicated product page returned no products');
+
+              // OneNav and Amplified must use the official Planetworld brand artwork in both directory and dedicated brand views.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const oneNavButton=frame.locator('#brands .brandLogoButton[aria-label="One"]');
+              await oneNavButton.waitFor({state:'visible',timeout:30000});
+              const oneNavDirectoryLogo=oneNavButton.locator('img');
+              await oneNavDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const oneNavDirectoryAudit=await oneNavDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,alt:img.alt}});
+              console.log('HOSTED_ONENAV_BRAND_LOGO_AUDIT',JSON.stringify(oneNavDirectoryAudit));
+              if(!oneNavDirectoryAudit.loaded||!oneNavDirectoryAudit.src.includes('planetworld.canto.global')||!oneNavDirectoryAudit.alt.includes('OneNav'))throw new Error('Official ONE / OneNav brand-button logo did not load: '+JSON.stringify(oneNavDirectoryAudit));
+              await oneNavButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              const oneNavBrandPage=page.frameLocator('#store');
+              await oneNavBrandPage.locator('.brandHero').filter({hasText:'ONE / OneNav'}).waitFor({state:'visible',timeout:30000});
+              const oneNavHeroLogo=oneNavBrandPage.locator('.brandHero img');
+              await oneNavHeroLogo.waitFor({state:'visible',timeout:15000});
+              if(!await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('ONE / OneNav logo failed on its dedicated brand page');
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
+              await amplifiedButton.waitFor({state:'visible',timeout:30000});
+              const amplifiedDirectoryLogo=amplifiedButton.locator('img');
+              await amplifiedDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const amplifiedDirectoryAudit=await amplifiedDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,alt:img.alt}});
+              console.log('HOSTED_AMPLIFIED_BRAND_LOGO_AUDIT',JSON.stringify(amplifiedDirectoryAudit));
+              if(!amplifiedDirectoryAudit.loaded||!amplifiedDirectoryAudit.src.includes('planetworld.canto.global'))throw new Error('Official Amplified brand-button logo did not load: '+JSON.stringify(amplifiedDirectoryAudit));
+              await amplifiedButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Amplified'},{timeout:30000});
+              const amplifiedBrandPage=page.frameLocator('#store');
+              await amplifiedBrandPage.locator('.brandHero').filter({hasText:'Amplified'}).waitFor({state:'visible',timeout:30000});
+              const amplifiedHeroLogo=amplifiedBrandPage.locator('.brandHero img');
+              await amplifiedHeroLogo.waitFor({state:'visible',timeout:15000});
+              if(!await amplifiedHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('Amplified logo failed on its dedicated brand page');
+
+              // Confirm the live preview data uses VAT-inclusive RRP less 2%, with no extra VAT.
+              const previewPriceAudit=await frame.evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule}});
+              if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
+              console.log('HOSTED_PLANETWORLD_RRP_MINUS_2_AUDIT',JSON.stringify({samplePrice:previewPriceAudit.sample.indicativePrice,zeroRrp:previewPriceAudit.zero.id,rule:previewPriceAudit.rule}));
 
               // Home Entertainment: department -> brand -> product type -> filtered products.
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
