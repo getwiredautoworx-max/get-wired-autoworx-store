@@ -186,8 +186,8 @@ def main() -> None:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 100,
-        "manufacturerDescriptionsVerified": 100,
+        "exactModelPagesReviewed": 110,
+        "manufacturerDescriptionsVerified": 110,
         "exactImageCandidatesApplied": 75,
         "exactModelImagesMissing": 25,
         "unmatchedProducts": 3217,
