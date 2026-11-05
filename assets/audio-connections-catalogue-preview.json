@@ -279,7 +279,8 @@
       "brandNote": "",
       "gwSku": "GW-B4F5275E",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OWNER_AUTHORIZED_DIRECT_IMAGE_SOURCE_REMOTE_FETCH_CONFIRMED_PREVIEW_RENDER_PENDING"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.sony.com/electronics/support/car-marine-entertainment-in-car-amplifiers/xm-5es/specifications"
     },
     {
       "id": "ac-012",
