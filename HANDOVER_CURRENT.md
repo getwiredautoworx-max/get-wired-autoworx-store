@@ -3387,3 +3387,19 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Latest exact-head run: [42008872572](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42008872572), status was in progress at the time of this note. Earlier superseded runs were cancelled after subsequent commits; do not treat them as verification.
 - Preview remains non-production. PR #178 remains draft/open/unmerged. No production deploy, DNS, Axxess upload, Supabase writes, live stock/price changes, checkout or payment activation.
 - Do not issue a new preview-ready claim until run 42008872572 completes successfully, the deployed SHA marker matches, and hosted mobile tests pass. The owner must still confirm the tap sequence on their phone; if it still fails, capture the current iframe URL and visible heading and fix that exact route.
+
+
+## AUDIO NAVIGATION AND PHOTO ARTWORK — HOSTED FIX VERIFIED (2026-11-05 10:22 UTC)
+
+**Status: code fix and hosted browser QA PASS; owner visual acceptance still pending.**
+
+- Final tested code SHA: `d96de3a1d81a9ebbba78bee0deba8880111ce1a5`.
+- GitHub Actions run [42010093989](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42010093989) completed successfully. Exact deployment marker matched SHA `d96de3a1d81a9ebbba78bee0deba8880111ce1a5`; Cloudflare deployment URL: https://3bb7263b.get-wired-autoworx-store.pages.dev ; stable alias: https://owner-preview.get-wired-autoworx-store.pages.dev .
+- Hosted Playwright checks passed at 390×844 mobile and 1365×900 desktop. Car Audio and Home Entertainment were each opened from the actual three-category storefront route; tests required the exact `department` query value and verified the old `#audioDepartments` section was hidden. Sony brand logo loaded; Sony → Amplifiers product-type route and Klipsch → Home Audio & Cinema route were exercised. Category artwork checks passed; browser JS errors = 0; desktop horizontal overflow = 0.
+- Confirmed root cause: selected department previously left the eight-department menu visible. Initial hiding was delayed until catalogue fetch/draw, which also exposed a load-time race. The final repair hides the old department section from an early head script before page content paints, then repeats the state in route initialization/draw. This prevents the previous menu from flashing or remaining while catalogue data loads.
+- Replaced the illustrated SVGs on customer-facing audio category cards with photographic category/product artwork. Brand component cards now prefer exact-brand catalogue product images, then matching component images, then photographic fallbacks.
+- Owner preview iframe URL now has a cache-busting build query. Use the exact new deployment, not the prior `a13a3b10` build:
+  - https://3bb7263b.get-wired-autoworx-store.pages.dev/owner-preview.html?build=d96de3a1d81a9ebbba78bee0deba8880111ce1a5
+  - https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html?build=d96de3a1d81a9ebbba78bee0deba8880111ce1a5
+- PR #178 remains OPEN / DRAFT / UNMERGED. Production remains on HOLD. No production deployment, DNS/Axxess change, Supabase write, live stock/price change, checkout, or payment activation was performed.
+- The code-level defect is verified fixed in hosted mobile/desktop browser tests. Do not claim owner acceptance until the owner has viewed the new build on the Hisense phone and confirmed the visible menu sequence.
