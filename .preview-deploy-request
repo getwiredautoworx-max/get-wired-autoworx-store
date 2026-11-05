@@ -80,3 +80,6 @@ requested_for=integration/owner-preview-single-task-2026-11-05
 required_checks=exact-sha-marker;three-root-navigation;sony-local-logo-load;brand-route-path;brand-page-no-products;product-type-route-path;brand-and-type-filter;all-local-product-type-artwork;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
 
 request=final-exact-head-after-owner-preview-success-and-legacy-browser-qa-parking-2026-11-05
+
+request=home-entertainment-full-journey-exact-head-2026-11-05
+required_checks=home-entertainment-category-route;home-entertainment-brand-directory;klipsch-brand-logo;home-audio-cinema-image;brand-page-no-products;product-type-route;filtered-home-products;mobile-390px;desktop-1365px;package-assets;sku-audit;checkout-hidden;supabase-writes-blocked
