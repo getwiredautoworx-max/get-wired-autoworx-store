@@ -226,3 +226,5 @@ for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-unit
 }
 
 assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony brand wordmark');
+
+assert.ok(route.includes('"sony":"assets/brand-logos/sony.svg"'), 'Sony brand selector must use the local wordmark');
