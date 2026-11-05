@@ -367,7 +367,7 @@ assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 2);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 9);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 2);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
-assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:16/9;overflow:hidden'));
+assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:16/9;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 30%'));
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 30%\''));
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
