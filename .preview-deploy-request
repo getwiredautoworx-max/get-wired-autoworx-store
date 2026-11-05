@@ -165,3 +165,9 @@ pioneer_image_source_test=official_south_africa_exact_model_image
 request=owner-priority-home-entertainment-completion-before-category-move-2026-11-05
 source_branch=integration/owner-preview-single-task-2026-11-05
 required_checks=exact-sha-marker;home-entertainment-category-photo;home-entertainment-department-route;previous-menu-hidden;brand-directory-eight-plus;klipsch-logo-naturalWidth;klipsch-dedicated-brand-route;brand-page-no-products;home-audio-cinema-image;filtered-home-products;one-nav-directory-logo;one-nav-brand-page-logo;amplified-directory-logo;amplified-brand-page-logo;one-nav-exact-model-photos-and-crop;rrp-incl-vat-times-0.98;public-data-boundary;sku-audit;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-product-card-centering-and-alpine-halo11-exact-head-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;alpine-halo11-exact-product-card;alpine-halo11-image-naturalWidth;alpine-halo11-verified-description;centred-product-details;two-column-media-details;radios-multimedia-head-unit-grouping;all-68-exact-model-images-load;home-entertainment-journey;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
