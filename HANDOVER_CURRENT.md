@@ -3990,3 +3990,13 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Exact-head run 42048806268 passed the customer-only package build and then failed in the audio regression at the Spectrum 15000 photo assertion. The assertion still looked up the retired supplier-side model string `SSW-S12 SPECTR 15000` and expected the old RMS-conflict note.
 - Next corrective step: update the regression to find manufacturer model `SSW-SV2-15000R`, require the exact official Starsound product image, retain verified coil/frequency details, and confirm the unresolved RMS rating remains absent from the customer description.
 - Do not share a preview until the updated exact-head regression, SKU audit, deployed-SHA marker and hosted mobile/desktop browser checks all pass.
+
+
+## CATEGORY PREVIEW CONTINUATION — TASK START — 2026-11-05 17:05 SAST
+
+- Owner instruction: continue outstanding category work and do not stop until the category issues are resolved and a verified owner preview is ready.
+- Active candidate remains `integration/owner-preview-single-task-2026-11-05`; no parallel preview branch is being created.
+- Reconciled latest exact-head workflow evidence: run 42048221615 at `b90e1f1fd2e57d6ec99cd52c7a4ce24cdca47ceb` was cancelled during package build; run 42048254969 at `860d6d4839c5c972161c4c4848f82dda47600daa` failed the same package-build regression at `tests/three-category-storefront-structure.test.cjs:181`, because the raw catalogue JSON supplier-identity scan also matches the Planetworld image CDN hostname. No deploy or browser checks ran in that failed run.
+- Current work: distinguish non-visible image-host URLs from customer-visible supplier labels while retaining strict checks on visible page markup and supplier-identifying fields; then rerun exact-head build, catalogue/category regression, public SKU audit, deployment SHA marker and mobile/desktop browser journey.
+- Known catalogue/image review exceptions from latest evidence: Audio Connections image URLs 66/66; one exact-model Blackspider Lynx image remains only 105px wide. Starsound SSW-SV2-15000R image is provisionally mapped but its RMS/colour conflict remains flagged and RMS is omitted from public description. Planetworld enrichment reports 66 verified-model images, 2 model-image gaps, and OneNav source enrichment still has 7 missing image candidates; verify which are actual customer-facing category/logo blockers before preview acceptance.
+- Safety: preview-only. Keep PR draft/unmerged; no production deploy, Axxess/DNS, Supabase/live writes, live price/stock changes, supplier activation, or payment/checkout activation.
