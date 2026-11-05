@@ -148,10 +148,10 @@ jobs:
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
               if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');
               await frame.locator('#brands button[aria-label="Sony"]').click();
-              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).waitFor({state:'visible',timeout:30000});
+              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await frame.locator('#components button.componentImageButton').evaluateAll(async buttons=>Promise.all(buttons.map(async b=>{const img=b.querySelector('img');if(!img)return {label:b.innerText,loaded:false,reason:'missing image'};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:b.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted image-led component cards failed: '+JSON.stringify(categoryImageAudit));
-              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).click();
+              await frame.locator('#components button.componentImageButton').filter({hasText:'Amplifiers'}).first().click();
               await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const audioAmpCount=await frame.locator('#products .audioProduct').count();
               if(audioAmpCount<1)throw new Error('Sony -> Amplifiers returned no products: '+JSON.stringify(categoryImageAudit));
