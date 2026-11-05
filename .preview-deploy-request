@@ -2,3 +2,9 @@ request=owner-preview
 requested_commit=5d7f8bad878d78fd1cafb55f0b6d0d6021d149f9
 requested_at=2026-11-05T17:30:00+02:00
 reason=verify_exact_head_after_EQ7100_Max_Motorsport_image_replacement
+
+
+request=owner-preview-final-exact-head-after-eq7100-handover-refresh-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker-from-deployment-url-and-branch-alias;node-regression-suites;public-sku-audit;three-root-navigation;all-eight-audio-department-images;onenav-logo-naturalWidth;amplified-logo-naturalWidth;home-entertainment-brand-first;klipsch-logo;home-audio-cinema-type-image;filtered-home-products;auto-electrical-images;car-care-images;accessories-images;lifestyle-images;68-exact-model-images;all-66-audio-connections-images-and-descriptions;EQ7100-exact-model-image-naturalWidth;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
