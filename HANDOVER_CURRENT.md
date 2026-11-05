@@ -3604,3 +3604,16 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - Hosted Playwright then stopped before the new OneNav/Amplified/image checks because four newly inserted route-match regexes had an extra backslash, causing `SyntaxError: Invalid regular expression flags`.
 - Corrected the four hosted QA regex literals to match the already-working route checks. This is a workflow-only test correction; no product data or storefront source behavior changed.
 - The run did not complete hosted QA and is not an owner-preview pass. Next exact-head run must complete OneNav logo, Amplified logo, all 66 image-load checks, pricing sample and existing mobile/desktop flows.
+
+
+## 2026-11-05 — EXACT-MODEL IMAGE RECHECK AND SUPPLIER-CROSSWALK PRIVACY FIX
+
+- Hosted QA for commit `a41fc74df6fbd0ef6599e238975bb66b92d84241` confirmed both official logos load (ONE/OneNav naturalWidth 797; Amplified naturalWidth 794) and confirmed the RRP-minus-2 preview rule (3,298 priced, 19 zero-RRP quote-only, 19 below-estimated-cost flags).
+- Hosted image QA loaded 64 of 66 exact-model image candidates. The two failures were Audison APBMW K4M and Pioneer DMH-AP6650BT. Replaced the broken Audison URL with the official Audison APBMW K4M product image and the broken Pioneer Malaysia URL with the exact Pioneer South Africa product image. Corrected both product descriptions from their official manufacturer product pages.
+- The hosted 64/66 run did not pass; the two corrected URLs must be rechecked in the next exact-head hosted browser run.
+- Privacy review found the internal `modelNumber` field in the verified-model crosswalk was actually the supplier row key for these 68 joins, not a customer-facing manufacturer model number. Removed it from all public product records and replaced it with the source product name `manufacturerProductName`; public JSON now has no `modelNumber` or `supplierSku` fields.
+- Removed the internal verified-model crosswalk JSON from the customer preview package and removed all browser fetches of that file. Product descriptions and exact image URLs are now pre-enriched into the customer preview catalogue using internal exact supplier-SKU matching only during build. Internal source/crosswalk and image audit remain outside Pages output.
+- Added `scripts/enrich_planetworld_verified_models.py`; preview packaging runs both the RRP-minus-2 generator and the exact-model enrichment generator. The generator enforces 68 exact joins, 66 image URLs, 2 verified-model image gaps and 3,249 unmatched products; supplier identifiers remain internal.
+- Customer product cards continue to show an explicit pending-photo state rather than generic product images when no exact image exists.
+- Next exact-head run must pass: both Node suites, supplier-identity/public-data safeguard, all 66 naturalWidth image checks (including corrected Audison/Pioneer URLs), OneNav and Amplified logos on directory and brand pages, RRP hosted sample, 390px mobile and 1365px desktop.
+- Product-photo completion remains outstanding for 3,249 products; 2 exact-model products still have no image. Full-catalogue description completion also remains outstanding beyond the 68 exact-model records. Do not claim all-product photo/description completion yet.
