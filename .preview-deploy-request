@@ -61,3 +61,7 @@ request=PR-176-final-owner-preview-after-brand-first-audio-and-category-artwork-
 required_checks=exact-sha-marker;three-category-roots;mobile-two-column-category-tiles;category-image-load-and-fallback;car-audio-brand-first;brand-logo-load;component-image-load;brand-filtered-products;checkout-hidden;supabase-writes-blocked;sku-audit;desktop-layout
 
 # Owner preview refresh: dedicated brand and product-type routes, exact-head verification checkpoint 2026-11-05
+
+request=PR-176-dedicated-audio-brand-product-routes-final-exact-head-after-package-and-browser-qa-fixes-2026-11-05
+required_audio_journey=Car Audio & Video -> Brand landing page -> Product type image cards -> Filtered product page
+required_checks=exact-sha-marker;all-nine-preview-routes;three-root-navigation;brand-route-path;brand-page-no-products;product-type-route-path;brand-and-type-filter;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
