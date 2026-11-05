@@ -1,0 +1,444 @@
+{
+  "generatedFrom": "assets/audio-connections-catalogue-preview.json",
+  "status": "OPEN_IMAGE_MATCHING_AUDIT",
+  "recordCount": 66,
+  "recordsWithImage": 4,
+  "recordsMissingVerifiedImage": 62,
+  "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
+  "missing": [
+    {
+      "model": "XS-163ES",
+      "brand": "Sony",
+      "title": "XS-163ES",
+      "component": "Component Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XS-162ES",
+      "brand": "Sony",
+      "title": "XS-162ES",
+      "component": "Component Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XS-692ES",
+      "brand": "Sony",
+      "title": "XS-692ES",
+      "component": "Component Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XS-W104ES",
+      "brand": "Sony",
+      "title": "XS-W104ES",
+      "component": "Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XS-W122ES",
+      "brand": "Sony",
+      "title": "XS-W122ES",
+      "component": "Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XS-W124ES",
+      "brand": "Sony",
+      "title": "XS-W124ES",
+      "component": "Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XM-1ES",
+      "brand": "Sony",
+      "title": "XM-1ES",
+      "component": "Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XM-4ES",
+      "brand": "Sony",
+      "title": "XM-4ES",
+      "component": "Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XM-6ES",
+      "brand": "Sony",
+      "title": "XM-6ES",
+      "component": "Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "XM-8ES",
+      "brand": "Sony",
+      "title": "XM-8ES",
+      "component": "Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "RABTR03",
+      "brand": "Reference Audio",
+      "title": "Reference Audio RABTR03",
+      "component": "Single DIN Media Players",
+      "descriptionPresent": true
+    },
+    {
+      "model": "USB230",
+      "brand": "Starsound",
+      "title": "Starsound USB230 EXT MIC",
+      "component": "Single DIN Media Players",
+      "descriptionPresent": true
+    },
+    {
+      "model": "USB450BTDD",
+      "brand": "Starsound",
+      "title": "Starsound USB450BTDD",
+      "component": "Double DIN Media Players",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SS7655BT",
+      "brand": "Starsound",
+      "title": "Starsound SS7655BT",
+      "component": "Double DIN Media Players",
+      "descriptionPresent": true
+    },
+    {
+      "model": "DVD9900BT",
+      "brand": "Starsound",
+      "title": "Starsound DVD9900BT",
+      "component": "Single DIN CD/DVD Players",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SS7670",
+      "brand": "Starsound",
+      "title": "Starsound 7-inch Android SS7670",
+      "component": "Android Wireless Units",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-12W-5200",
+      "brand": "Starsound",
+      "title": "Starsound SSW-12W-5200 — 12-inch SVC, 250 W RMS",
+      "component": "SVC Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-12-6300",
+      "brand": "Starsound",
+      "title": "Starsound SSW-12-6300 — 12-inch SVC subwoofer",
+      "component": "SVC Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW12-7300",
+      "brand": "Starsound",
+      "title": "Starsound SSW12-7300",
+      "component": "SVC Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-8-8000D2",
+      "brand": "Starsound",
+      "title": "Starsound SSW-8-8000D2 — 8-inch DVC 2-ohm subwoofer",
+      "component": "DVC Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-S12\" SPECTR 15000",
+      "brand": "Starsound",
+      "title": "Starsound SSW-S12\" SPECTR 15000 — 700 RMS DVC",
+      "component": "DVC Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-B12-2800",
+      "brand": "Starsound",
+      "title": "Starsound SSW-B12-2800 — 12-inch boxed SVC subwoofer",
+      "component": "Boxed Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSWF10\"-4150SVC",
+      "brand": "Starsound",
+      "title": "Starsound SSWF10\"-4150SVC",
+      "component": "Flat Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSW-F12-5150SVC",
+      "brand": "Starsound",
+      "title": "Starsound SSW-F12-5150SVC — 12-inch flat SVC subwoofer",
+      "component": "Flat Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSWF10 2650SVC",
+      "brand": "Starsound",
+      "title": "Starsound SSWF10 2650SVC",
+      "component": "Flat Subwoofers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSATI-2250.2",
+      "brand": "Starsound",
+      "title": "Starsound SSATI-2250.2",
+      "component": "2-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SPARTAN 9900.1",
+      "brand": "Starsound",
+      "title": "Starsound SPARTAN 9900.1 — 600 RMS",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSAT6200.1",
+      "brand": "Starsound",
+      "title": "Starsound SSAT6200.1 — 600 RMS",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-ATOM-13500.1",
+      "brand": "Starsound",
+      "title": "Starsound SSA-Atom-13500.1 Monoblock Amplifier",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSATI6900.1",
+      "brand": "Starsound",
+      "title": "Starsound SSATI6900.1 — 1000 RMS",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-H-8200.1",
+      "brand": "Starsound",
+      "title": "Starsound SSA-H-8200.1 — 600 W RMS @ 1 Ω",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSAR 22000.1",
+      "brand": "Starsound",
+      "title": "Starsound SSAR 22000.1 — 1700 RMS",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-SB2000.1",
+      "brand": "Starsound",
+      "title": "Starsound SSA-SB2000.1 — 2000 RMS",
+      "component": "Monoblock Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-R-5000.4",
+      "brand": "Starsound",
+      "title": "Starsound SSA-R-5000.4 Raptor — 4-channel amplifier",
+      "component": "4/5-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-J-10000.4",
+      "brand": "Starsound",
+      "title": "Starsound SSA-J-10000.4 Joker — 4-channel amplifier",
+      "component": "4/5-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-ATOM-13800.4",
+      "brand": "Starsound",
+      "title": "Starsound SSA-ATOM-13800.4 — 4-channel amplifier",
+      "component": "4/5-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-M5-80.600",
+      "brand": "Starsound",
+      "title": "Starsound SSA-M5-80.600 — 5-channel amplifier",
+      "component": "4/5-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSA-M4-80.4",
+      "brand": "Starsound",
+      "title": "Starsound SSA-M4-80.4 — 4-channel amplifier",
+      "component": "4/5-Channel Amplifiers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSS-5502",
+      "brand": "Starsound",
+      "title": "Starsound SSS-5502 — 5-inch 3-way speaker, 420 W MAX",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSS-6501PRO",
+      "brand": "Starsound",
+      "title": "Starsound SSS-6501PRO — 6.5-inch Pro Midrange Speaker",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSS-6601",
+      "brand": "Starsound",
+      "title": "Starsound SSS-6601 6-inch dual cone",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSS-6602",
+      "brand": "Starsound",
+      "title": "Starsound SSS-6602 — 6-inch 3-way speaker, 480 W MAX",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSS-6903",
+      "brand": "Starsound",
+      "title": "Starsound SSS-6903 — 6×9-inch 3-way speaker",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSD-620",
+      "brand": "Starsound",
+      "title": "Starsound SSD-620 Digital — 6.5-inch 2-way coaxial, 80 W RMS / 1,200 W MAX",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "PRO6.5-700",
+      "brand": "Starsound",
+      "title": "Starsound PRO6.5-700",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SS-PRO6X9-900",
+      "brand": "Starsound",
+      "title": "Starsound SS-PRO6X9-900 dual cone",
+      "component": "Speakers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SSAK-406P",
+      "brand": "Starsound",
+      "title": "Starsound 4-gauge SSAK-406P",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "409CU",
+      "brand": "Starsound",
+      "title": "Starsound 409CU TRUE COPPER",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "860",
+      "brand": "Starsound",
+      "title": "Starsound 860 8-gauge",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "809",
+      "brand": "Starsound",
+      "title": "Starsound 809 8-gauge",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "412P",
+      "brand": "Starsound",
+      "title": "Starsound 412P 4-gauge",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "TAXI-4G",
+      "brand": "Starsound",
+      "title": "Starsound TAXI-4G",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "RA AWG4",
+      "brand": "RA",
+      "title": "Reference Audio RA AWG4",
+      "component": "Amplifier Installation Kits",
+      "descriptionPresent": true
+    },
+    {
+      "model": "BULLET LYNX",
+      "brand": "BlackSpider",
+      "title": "BlackSpider Lynx 4-inch 2500W Aluminium Bullet Tweeter",
+      "component": "Tweeters",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SST-550",
+      "brand": "Starsound",
+      "title": "Starsound SST-550 SUPER T",
+      "component": "Tweeters",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SST350",
+      "brand": "Starsound",
+      "title": "Starsound SST350 Piezo",
+      "component": "Tweeters",
+      "descriptionPresent": true
+    },
+    {
+      "model": "SST-850",
+      "brand": "Starsound",
+      "title": "Starsound SST-850 Bullet",
+      "component": "Tweeters",
+      "descriptionPresent": true
+    },
+    {
+      "model": "RA SUPER RAST20",
+      "brand": "RA",
+      "title": "Reference Audio RA SUPER RAST20",
+      "component": "Tweeters",
+      "descriptionPresent": true
+    },
+    {
+      "model": "EQ5100",
+      "brand": "Starsound",
+      "title": "Starsound EQ5100 5-band equaliser",
+      "component": "Equalisers & Crossovers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "EQ7100",
+      "brand": "Starsound",
+      "title": "Starsound EQ7100 7-band equaliser",
+      "component": "Equalisers & Crossovers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "CROSSOVER 2900",
+      "brand": "Starsound",
+      "title": "Starsound crossover 2900 3-way",
+      "component": "Equalisers & Crossovers",
+      "descriptionPresent": true
+    },
+    {
+      "model": "CROSSOVER 2950",
+      "brand": "Starsound",
+      "title": "Starsound crossover 2950 3-way",
+      "component": "Equalisers & Crossovers",
+      "descriptionPresent": true
+    }
+  ]
+}
