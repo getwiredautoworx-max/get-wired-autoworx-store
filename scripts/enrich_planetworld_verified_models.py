@@ -189,8 +189,8 @@ def main() -> None:
         "exactModelPagesReviewed": 110,
         "manufacturerDescriptionsVerified": 110,
         "exactImageCandidatesApplied": 75,
-        "exactModelImagesMissing": 25,
-        "unmatchedProducts": 3217,
+        "exactModelImagesMissing": 35,
+        "unmatchedProducts": 3207,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
