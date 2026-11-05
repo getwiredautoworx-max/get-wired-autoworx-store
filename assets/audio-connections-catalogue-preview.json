@@ -598,7 +598,7 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "Provisional supplier-to-manufacturer mapping: Audio Connections item SSW-S12-SPECTR-15000 appears to match official model SSW-SV2-15000R. Important RMS conflict: supplier price list says 700W RMS; manufacturer page says 1500W RMS; some retailers list 650W RMS. Do not publish an RMS claim or activate price/stock until Audio Connections confirms the exact model and rating. Red variant shown; colour may vary.",
+      "brandNote": "Source item code SSW-S12-SPECTR-15000 appears to map to manufacturer model SSW-SV2-15000R. RMS conflict: source list says 700W RMS; manufacturer page says 1500W RMS; some retailers list 650W RMS. Do not publish an RMS claim until the exact model and rating are confirmed. Red variant shown; colour may vary.",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "supplierModelNumber": "SSW-S12-SPECTR-15000",
       "manufacturerListedModel": "SSW-SV2-15000R",
