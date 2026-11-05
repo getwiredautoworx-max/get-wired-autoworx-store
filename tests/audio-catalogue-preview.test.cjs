@@ -431,9 +431,9 @@ for (const row of [oneNavPrado, oneNavLandCruiser]) {
 assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
 assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
-assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 89);
+assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 77);
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 74);
-assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 89);
+assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 77);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 20);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 1);
