@@ -90,3 +90,11 @@ Next: monitor run 42061845444; continue OneNav image and dedicated brand-page ve
 - OneNav hosted product page: 65 cards; 7 image candidates loaded; 7 review notes displayed; common Classic specification text present. This proves image loading and route rendering, not full OneNav completion or final image-rights approval. The seven candidates remain owner-preview only. Twenty-five of the 32 audited OneNav model pages still lack an exact approved photo; 33 storefront cards remain outside the 32-page official audit, and the hosted page visibly includes products whose descriptions remain pending (e.g. Isuzu RBA/RBB and Toyota 280mm with CANBUS). Continue OneNav only.
 - Brand checks also passed for the OneNav wordmark, Amplified logo, Kicker directory and dedicated brand-page marks, and Sony logo. The Alpine Halo11 product image loaded and its description remained separate from the photo.
 - Preview remains inspection-only. No production merge/deploy, no Axxess, DNS, Supabase, stock, price, payment or checkout changes. Production HOLD remains in force. Do not advance to another brand until all OneNav cards have correct descriptions/photos and the remaining gaps are verified.
+
+
+## 19:42 SAST — OneNav Classic descriptions
+- Added ten exact SKU/fitment descriptions: OA009-2, OA012-1, OA016-1, OA110-1, OA115-2, OA192-1, OA194-1, OA263-1, OA712-1 and OA714-1. Exact SKU/fitment pages were matched; common Classic specs are from OneNav Classic product pages.
+- OA009-2 CAN-bus support is not promised because the official page does not explicitly confirm it. Classic OA SKUs remain separate from Evolution ON-series variants.
+- OneNav totals: 42 exact page/description matches, 7 image candidates, 35 audited image gaps; 65 products on the hosted route, 23 still need exact descriptions, 58/65 have no image URL. No new image added.
+- Combined Planetworld totals: 110 descriptions, 75 image URLs, 35 verified-page image gaps, 3,207 unmatched rows. OneNav remains the only active brand.
+- Candidate head 29c2944c32d957baae99365cfa9965fff64cb4dc; exact-head run 42065890777 pending. Await hosted QA before refreshing preview.
