@@ -276,7 +276,7 @@ jobs:
               const oneNavReviewNoteCount=await oneNavProductPage.locator('.imageReviewNote').count();
               const oneNavProductText=(await oneNavProductPage.locator('.product').allTextContents()).join(' ');
               console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({url:await oneNavProductPage.locator('body').evaluate(()=>location.href),products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen'),text:oneNavProductText.slice(0,1200)}));
-              if(oneNavProductCount<9||oneNavProductImageCount!==6||oneNavReviewNoteCount!==6||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
+              if(oneNavProductCount<9||oneNavProductImageCount!==7||oneNavReviewNoteCount!==7||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
@@ -325,7 +325,7 @@ jobs:
 
               // Confirm the live preview data uses VAT-inclusive RRP less 2%, with no extra VAT.
               const previewPriceAudit=await frame.locator('body').evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule,imageCount:d.records.filter(x=>x.imageUrl).length,describedModelCount:d.records.filter(x=>x.manufacturerProductName&&x.description).length}});
-              if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19||previewPriceAudit.imageCount!==74||previewPriceAudit.describedModelCount!==89)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
+              if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19||previewPriceAudit.imageCount!==75||previewPriceAudit.describedModelCount!==100)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
               console.log('HOSTED_PLANETWORLD_RRP_MINUS_2_AUDIT',JSON.stringify({samplePrice:previewPriceAudit.sample.indicativePrice,zeroRrp:previewPriceAudit.zero.id,rule:previewPriceAudit.rule}));
 
               const exactProductImageAudit=await frame.locator('body').evaluate(async()=>{
@@ -344,7 +344,7 @@ jobs:
                 return {count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded)};
               });
               console.log('HOSTED_EXACT_PRODUCT_IMAGE_AUDIT',JSON.stringify(exactProductImageAudit));
-              if(exactProductImageAudit.count!==74||exactProductImageAudit.loaded!==74||exactProductImageAudit.failed.length)throw new Error('Planetworld exact-model and OneNav candidate photos failed hosted loading: '+JSON.stringify(exactProductImageAudit));
+              if(exactProductImageAudit.count!==75||exactProductImageAudit.loaded!==75||exactProductImageAudit.failed.length)throw new Error('Planetworld exact-model and OneNav candidate photos failed hosted loading: '+JSON.stringify(exactProductImageAudit));
 
               const audioConnectionsImageAudit=await frame.locator('body').evaluate(async()=>{
                 const data=await(await fetch('assets/audio-connections-catalogue-preview.json')).json();
