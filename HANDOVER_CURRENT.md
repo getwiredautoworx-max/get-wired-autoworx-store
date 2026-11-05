@@ -3405,3 +3405,13 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 - If an implementation step appears to require touching anything outside the expressly authorized task, stop and obtain owner approval before proceeding.
 - No production deployment, Axxess upload, DNS change, Supabase write, live stock/price change, payment activation or merge is authorized by this clarification.
 - Status of the ASC Aerials integration remains **not complete until evidence confirms the catalogue is uploaded/integrated and the required route, images, product identities and presentation checks pass**. Only then may the category freeze be marked reinstated.
+
+
+## 2026-11-05 — ASC Aerials / Car Audio Accessories task start
+
+- Owner's latest clarification: **Car Audio → Accessories** is a parent grouping. Its separate child subcategories include **Trims & Harnesses** and **Aerials**; add future child subcategories only when relevant products become available and the owner authorizes that work.
+- Approved work remains limited to the ASC Aerials task. Do not edit unrelated categories, brands, products, integrations, store components, live data, deployments or production.
+- Fresh main baseline inspected: `64a83e557b5afea14d6b1ab9202f27948604300f`. The current category snapshot has Car Audio under Audio, Entertainment & Music; it has a direct child named “Harnesses, Trims & Fitment”, but no Accessories parent and no Aerials child. The source catalogue is `suppliers/ASC/ASC- Aerials (1).pdf` (7 pages). Review-only OCR summary reports 7 pages extracted; this is not product/image verification.
+- Isolated task branch: `task/asc-aerials-accessories-2026-11-05`, created from the exact main SHA above. No main-branch, live database, hosting, payment or production changes.
+- Initial execution plan: place the existing trims/harnesses subcategory under the new Accessories parent, create a separate Aerials child, and verify the preview route. Do not claim the Aerials catalogue itself is fully integrated until product identities, catalogue imagery and product presentation are checked against the source pages.
+- Status at task start: **IN PROGRESS**; category hierarchy work and preview-route verification pending.
