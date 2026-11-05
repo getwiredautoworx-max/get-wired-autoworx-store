@@ -81,3 +81,27 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## OCR validation queue — 5 November 2026
+
+A first-pass comparison of the OCR text on contents pages against the section headings printed on product pages identified the following **visual-check candidates**. These are not confirmed catalogue errors; OCR may have misread digits or item counts.
+
+| Catalogue | Contents-page OCR | Product-page OCR | Verification required |
+|---|---|---|---|
+| Automotive Sensors | Crankshaft/Camshaft: 14 items | Page 3 heading: 16 items | Check printed heading and item count |
+| Automotive Sensors | Temperature senders/sensors: 26 items | Page 6 heading: 36 items | Check printed heading and item count |
+| Automotive Switches | Combination/indicator stalk: 52 items | Page 5 heading: 53 items | Check printed heading and item count |
+| Automotive Switches | Rocker switches: 2 items | Page 15 heading: 32 items | Check printed heading and item count |
+| Automotive Switches | Radiator fan/thermo: 5 items | Page 12 heading: 35 items | Check printed heading and item count |
+| Car Mats | Toyota carpet sets: 14 items | Page 3 heading: 16 items | Check printed heading and item count |
+| Car Mats | Hyundai/Kia carpet sets: 14 items | Page 5 heading: 16 items | Check printed heading and item count |
+
+These candidates must be resolved against the original PDF page image before category counts or product totals are finalised. Do not “correct” OCR values by choosing one side without visual evidence.
+
+### Intake boundary
+
+- This workstream covers the six post-reset catalogue PDFs listed above only.
+- ASC Buyers Guides remain out of scope unless the owner explicitly reauthorises them.
+- The next extraction deliverable is a 25-product review-only pilot with source-page evidence, not a live import.
+- No price, stock, supplier activation, public product listing or database mutation is authorised by this review.
