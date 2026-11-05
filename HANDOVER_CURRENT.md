@@ -3524,3 +3524,21 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Safety gates verified in the hosted test: non-production banner present, preview writes blocked, checkout hidden. Package excludes suppliers, catalogue review/source/audit folders, staging, Supabase and .github content.
 - Owner review URL: `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`.
 - **Status: READY FOR OWNER PREVIEW REVIEW ONLY.** This is not production readiness and does not constitute owner acceptance. PR #178 remains draft/unmerged; no production/Axxess/DNS/Supabase/live stock or pricing/payment/checkout activation has occurred.
+
+
+## 2026-11-05 — TASK START: CATALOGUE ACCURACY AND BRAND ARTWORK
+
+Owner has approved the current verified three-category owner preview as the design/template baseline and requested the following catalogue corrections:
+1. Correct product-specific photographs for every product.
+2. Set customer selling price to RRP less 2%; source RRP already includes VAT, so do not add VAT again.
+3. Correct product descriptions, details, features and model-specific specifications.
+4. Add correct logos to One Nav and Amplified brand buttons.
+
+Execution rules:
+- Apply changes only to the coordinated PR #178 / owner-preview candidate and its isolated non-production preview. Do not write live catalogue/Supabase data, change live prices or stock, merge, deploy production or publish customer changes without explicit owner approval.
+- Preserve supplier/source traceability and distinguish source-confirmed data from unresolved candidates. No invented model specs, image matches, or RRP values.
+- Use the existing owner-approved storefront template and mobile/desktop QA gates. Keep supplier identities and internal source data out of the customer view.
+- RRP formula for eligible RRP suppliers: `selling_price = round(RRP_incl_VAT * 0.98, 2)`; display VAT-inclusive selling price, with no second VAT addition. Keep ASC catalogue-only quote-only rules and Planetworld zero-RRP exceptions; do not assume every catalogue row has a valid RRP.
+- First reconcile catalogue schemas and current product-image mapping; then establish a repeatable product-level audit before applying it across all products.
+- Permanent owner-authoritative instructions are at repository root: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`. The legacy `AI_HANDOVER_PERMANENT.md` path is not present on the current working branch or main; use the owner-directives file as the authoritative overlay.
+- Status at task start: scope recorded; no product data, images, prices, descriptions, brand logos or live data changed yet.
