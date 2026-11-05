@@ -81,3 +81,25 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+
+## Owner-directed final six-catalogue category freeze — 2026-11-05
+
+The owner's latest direct instruction supersedes the earlier draft alignment above. Freeze the six August 2026 ASC catalogue families to these separate customer-facing destinations for the non-production catalogue preview:
+
+| ASC catalogue | Frozen store destination | Status |
+|---|---|---|
+| Aerials | Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials | Owner-directed move; Aerials must not remain under Auto Electrical or as a sibling department root. |
+| Automotive Sensors | Auto Electrical Parts & Spares → Automotive Sensors | Separate subcategory; do not combine with switches. |
+| Automotive Switches | Auto Electrical Parts & Spares → Automotive Switches | Separate subcategory; do not combine with sensors. |
+| Automotive Globes | Auto Electrical Parts & Spares → Automotive Globes | Separate subcategory; keep lighting catalogue distinct. |
+| Fuel Pumps | Auto Electrical Parts & Spares → Fuel Pumps | Separate subcategory; preserve source product identity and flag any non-electrical/mixed item for review rather than forcing it into this destination. |
+| Car Mats | Car Care & Accessories → Car Mats | Separate subcategory; never place under Auto Electrical. |
+
+This freezes the **catalogue navigation mapping only**. It does not authorise Supabase category writes, product imports, stock/price changes, public activation or production deployment. Implement any missing leaf navigation as a preview-only overlay; do not mutate the live category snapshot or database. Preserve the six original PDFs unchanged. ASC has no verified current price list, so unpriced catalogue products must display exactly: **Price On Request due to Limited Stock and Availability**. Do not process ASC Buyers Guides.
+
+### Reconciliation against the current candidate branch
+- The current assets/category-tree.json already places Aerials under Car Audio & Video → Accessories, and Car Mats under Car Care & Accessories.
+- It does **not** yet provide separate Automotive Sensors and Automotive Switches leaves (it has a combined Sensors & Switches leaf), and it does not yet provide a Fuel Pumps leaf. Its lighting leaf is currently Globes & Vehicle Lighting, not the catalogue-specific Automotive Globes label.
+- Therefore the owner's mapping is recorded as frozen, but the preview implementation is **not complete**. Next: add a separate preview-only ASC navigation overlay for the four Auto Electrical catalogue leaves, keep the Aerials/Car Mats placements, add route/image checks and run the exact-head validation before presenting the preview. Do not change the live category data.
