@@ -1,3 +1,3 @@
 request=owner-preview
-requested_commit=5afc896626f3d0dfe3098cae11c43f69971c421a
-reason=refresh the non-production owner preview after exact-model OneNav image candidates, verified manufacturer names/specifications, Alpine and JVC image candidates, BlackSpider Lynx description correction, RRP and image audit reconciliation, and regression assertion updates; run exact-head Node, package, privacy, hosted image-load and mobile/desktop browser QA
+requested_commit=c1542320bd57f42c61bf2d2546c8980fa1eaca70
+reason=refresh the non-production owner preview against the current exact branch head after OneNav-only catalogue classification and handover reconciliation; run exact-head Node, customer package, category/SKU, image-load and hosted mobile/desktop browser QA
