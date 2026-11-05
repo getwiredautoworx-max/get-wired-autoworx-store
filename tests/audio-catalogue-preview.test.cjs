@@ -72,7 +72,7 @@ assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must 
 assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
-assert.equal(planet.records.filter(row=>row.imageUrl).length,72,'72 exact product image candidates (66 verified-model plus six OneNav) must be attached to the correct source product rows');
+assert.equal(planet.records.filter(row=>row.imageUrl).length,74,'72 exact product image candidates (66 verified-model plus six OneNav) must be attached to the correct source product rows');
 const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
 const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
@@ -80,7 +80,7 @@ assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
 assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,77,'68 verified manufacturer records plus nine OneNav Classic records must carry verified descriptions');
 assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,77,'all 68 verified manufacturer records plus nine OneNav exact product pages must be named');
-assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,5,'five exact model pages still have no approved image and must not receive a generic substitute');
+assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,3,'five exact model pages still have no approved image and must not receive a generic substitute');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(!route.includes('planetworld-verified-models-preview.json')&&!brandLandingRoute.includes('planetworld-verified-models-preview.json')&&!productListingRoute.includes('planetworld-verified-models-preview.json'),'customer routes must not fetch the internal supplier model crosswalk');
@@ -90,8 +90,8 @@ const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PROD
 const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,72);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,5);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,74);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,3);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3240);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
 assert.ok(brandLandingRoute.includes("if(n==='one'||n==='one x'||n==='onex'||n.includes('onenav'))")&&brandLandingRoute.includes("if(n.includes('amplified'))"),'dedicated brand landing page must resolve One X and Amplified logos, not only the parent brand directory');
@@ -432,14 +432,14 @@ assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 77);
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 68);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 77);
-assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 2);
+assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,2);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,6);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,8);
 
 /* Check the actual remote image endpoints used by the preview, not only their URL strings. */
