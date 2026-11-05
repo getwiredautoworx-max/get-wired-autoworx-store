@@ -100,7 +100,7 @@
       "modelNumber": "XS-160ES",
       "description": "Mobile ES 6.5-inch/16 cm 2-way coaxial speaker; 89 dB sensitivity; 90 W RMS.",
       "manufacturerPage": "https://www.sony-africa.com/en/electronics/mobile-es-series/xs-160es/specifications",
-      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XS160ES_1.jpg?v=1696556761",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42271/282815/xs-160es__6__98080.1682532246.jpg?c=2",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -110,7 +110,7 @@
       "gwSku": "GW-C96B794A",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.gentec-intl.com/products/xs160es"
+      "imageSourceUrl": "https://creativeaudio.net/xs-160es/"
     },
     {
       "id": "ac-005",
@@ -124,7 +124,7 @@
       "modelNumber": "XS-680ES",
       "description": "Mobile ES 6×8-inch/16×20 cm 2-way coaxial speaker; 89 dB sensitivity; 75 W RMS.",
       "manufacturerPage": "https://www.sony.com/za/electronics/car-speakers/xs-680es",
-      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XS680ES_2.jpg?v=1696556759&width=2000",
+      "imageUrl": "https://content.abt.com/image.php/0dd3b4294d03e84022974cc942bc29bc?canvas=&ck=2&height=600&image=%2Fimages%2Fproducts%2FBDP_Images%2FSony-Mobile-ES-6x8-2-Way-Coaxial-Speakers-XS680ES.jpg&width=650",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -134,7 +134,7 @@
       "gwSku": "GW-1A7AB005",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.gentec-intl.com/products/xs680es"
+      "imageSourceUrl": "https://content.abt.com/image.php/0dd3b4294d03e84022974cc942bc29bc?canvas=&ck=2&height=600&image=%2Fimages%2Fproducts%2FBDP_Images%2FSony-Mobile-ES-6x8-2-Way-Coaxial-Speakers-XS680ES.jpg&width=650"
     },
     {
       "id": "ac-006",
@@ -1442,7 +1442,7 @@
       "modelNumber": "RA-EL4",
       "description": "Reference Audio RA-EL4 4-gauge amplifier wiring kit. The supplier listing identifies a 4AWG power cable and matching ground cable, RCA interconnect, speaker cable, remote lead, fuse and installation accessories. Confirm cable lengths, copper specification and fuse rating against the physical kit before final publication.",
       "manufacturerPage": "",
-      "imageUrl": "https://mamasboombox.co.za/cdn/shop/files/RA-EL4.jpg?v=1757517707&width=1445",
+      "imageUrl": "https://mamasboombox.co.za/cdn/shop/files/ReferenceAudio-RA-EL4-4GaugeWiringKit_Double.png?v=1783360378&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
@@ -1605,16 +1605,17 @@
       "modelNumber": "EQ7100",
       "description": "7-band equaliser",
       "manufacturerPage": "",
-      "imageUrl": null,
+      "imageUrl": "https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "NO_VERIFIED_EXACT_MODEL_IMAGE",
-      "imageSourceUrl": null,
-      "descriptionStatus": "MODEL_AND_FEATURES_PENDING_MANUFACTURER_CONFIRMATION"
+      "brandNote": "Product photo visibly identifies SSA-EQ-7100; full feature specifications still require manufacturer confirmation.",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file",
+      "descriptionStatus": "MODEL_AND_FEATURES_PENDING_MANUFACTURER_CONFIRMATION",
+      "manufacturerListedModel": "SSA-EQ-7100"
     },
     {
       "id": "ac-065",
