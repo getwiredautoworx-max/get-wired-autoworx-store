@@ -2,18 +2,10 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 65,
-  "recordsMissingVerifiedImage": 1,
+  "recordsWithImage": 66,
+  "recordsMissingVerifiedImage": 0,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
-  "missing": [
-    {
-      "model": "SSW-S12\" SPECTR 15000",
-      "brand": "Starsound",
-      "title": "Starsound SSW-S12\" SPECTR 15000 — 700 RMS DVC",
-      "component": "DVC Subwoofers",
-      "descriptionPresent": true
-    }
-  ],
+  "missing": [],
   "updatedAt": "2026-11-05",
   "sourceMatchesAdded": [
     "XS-163ES",
@@ -78,16 +70,15 @@
     "EQ7100 (JM Sounds exact SSA-EQ-7100 image)",
     "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)",
     "RA SUPER RAST20 (cross-referenced to RA-ST20; 650W max / 50W RMS description and exact model photo located; 324px watermarked retailer image noted)",
-    "SSAK-860 (exact model confirmed; 2048px photo of kit contents and 5m power/RCA/speaker leads, 1m ground, 5m remote and 80A AGU fuse verified)"
+    "SSAK-860 (exact model confirmed; 2048px photo of kit contents and 5m power/RCA/speaker leads, 1m ground, 5m remote and 80A AGU fuse verified)",
+    "SSW-S12-SPECTR-15000 (provisionally mapped to official SSW-SV2-15000R; manufacturer image and 12-inch D4 DVC features verified; 700W/1500W/650W RMS conflict and colour require supplier confirmation)"
   ],
-  "imageCoverageNote": "65 of 66 Audio Connections records now have exact-model image URLs; 64 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. One record still has no verified exact-model photo: SSW-S12 SPECTR 15000. SSAK-860 is now matched to an actual 2048px kit photo and its exact kit contents; the source listing's new/used condition conflict is ignored.",
-  "remainingImageModels": [
-    "SSW-S12\" SPECTR 15000"
-  ],
+  "imageCoverageNote": "All 66 Audio Connections records now have model-matched image URLs; 65 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. The SSW-S12 SPECTR 15000 supplier item is provisionally mapped to official Starsound model SSW-SV2-15000R and uses the official manufacturer image. Its RMS rating is unresolved (supplier list 700W, manufacturer page 1500W, some retailers 650W), and colour must be confirmed before live publication.",
+  "remainingImageModels": [],
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 22,
+    "sourceVerified": 23,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
@@ -99,7 +90,7 @@
       "reason": "Model code differs; candidate image deliberately not used."
     }
   ],
-  "highResolutionImages": 64,
+  "highResolutionImages": 65,
   "lowResolutionImages": [
     {
       "model": "BULLET LYNX",
