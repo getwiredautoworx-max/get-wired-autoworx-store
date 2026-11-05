@@ -3397,3 +3397,8 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Exact-head deployment of `11be1135d5e49e7eb3c48bb587f97557493336c7` succeeded and the exact deployed SHA marker was accepted. The hosted deployment QA then failed because its navigation script still expected Car Audio & Video to open a component-first category page with “Speakers & Component Kits” visible immediately.
 - This expectation is obsolete and contradicts the owner-approved brand-first journey. Updated `.github/workflows/deploy-pr-168-staging-preview.yml` to select Sony first, verify component image cards load, then select Amplifiers and verify products. Accessories/Aerials/Trims are checked through their dedicated category route separately.
 - The latest source change is QA-only; storefront artwork and navigation source are unchanged from the exact-head deployment. Re-run the isolated staging workflow on the new head and require hosted mobile/desktop pass before handing over.
+
+
+### Full subcategory picture-load QA — 2026-11-05
+- Extended hosted staging QA beyond the Car Audio component cards. It now checks that all six Audio root subcategory images, all five Auto Electrical subcategory images, and all four Car Care subcategory images actually load on the 390px mobile view. The brand-first Car Audio test separately verifies every component image under the selected brand.
+- Any failed/broken remote image must be replaced before owner handover. The hosted preview remains pending exact-head verification.
