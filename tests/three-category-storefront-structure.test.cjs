@@ -171,7 +171,7 @@ for (const model of ['43C124','43C84','46CXA12001','48CWR104']) {
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://www.kicker.com/'), 'official Kicker image link for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_page_image_link_review_only');
 }
-for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','finland.alpine-europe.com']]) {
+for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpine.com.tr']]) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://'+domain+'/'), 'official exact-model image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
