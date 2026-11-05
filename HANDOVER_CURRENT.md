@@ -3127,3 +3127,7 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 ## 2026-11-05 09:01 SAST — PLANETWORLD MODEL-VERIFICATION SUCCESS
 - Updated `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` in commit `58f458a56d4cf3541d67815cd8a18930b5f4d72b` with official JBL regional item-number evidence: `IRX108BT-EK-LS` / EAN `691991033513` and `JBL-EON710D-EK` (220V). Planetworld workbook codes omit `-LS` and `D` respectively; both supplier mappings remain UNVERIFIED pending written Planetworld confirmation. No image copied; reuse rights remain ungranted; no price/stock inference.
 - Next action: carry these exact mismatches into the 19-row DO_NOT_IMPORT review-only CSV and keep both rows held.
+
+## 2026-11-05 09:03 SAST — PLANETWORLD REVIEW-ONLY CSV REFINED
+- Updated `catalogue-source/suppliers/planetworld/PLANETWORLD_COST_FLOOR_MODEL_IMAGE_REVIEW_ONLY_2026-11-03.csv` in commit `1d4a6df31cfd5b26d1a40c098dc462c2c4fbda1c` with the two official JBL item numbers and official source URLs. The CSV remains review-only and both rows remain `DO_NOT_IMPORT`; current Planetworld prices/stock/effective dates remain unverified, image reuse remains ungranted, and no supplier XLSX/live data was touched.
+- Next action: obtain written Planetworld confirmation for both shortened-code mappings and current price/stock; keep the remaining 17 rows unchanged unless new exact evidence is obtained.
