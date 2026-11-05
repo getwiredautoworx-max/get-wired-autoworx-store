@@ -641,6 +641,7 @@ html,body{background:#f3f7fb!important;color:#172536!important}
 </style><link rel="stylesheet" href="assets/storefront-subpage-shell.css"><style id="gw-audio-brand-layout">
 #brands .brandLogoButton{min-height:76px;min-width:110px;display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;text-decoration:none;background:#fff;border:1px solid #b9d2e3;border-radius:10px;color:#173650}
 #brands .brandLogoButton img{display:block;max-width:116px;width:auto;height:42px;max-height:42px;object-fit:contain}
+#brands .brandLogoButton[aria-label="Kicker"] img{width:150px;max-width:150px;height:48px;max-height:48px;transform:scale(1.28)}
 #brands .brandLogoButton .brandWordmark,#brands .brandLogoButton span{font-weight:900;font-size:15px;letter-spacing:.02em}
 #brands .brandLogoButton.active{outline:2px solid #087fce;border-color:#087fce;background:#eaf5fc}
 /* Honour the hidden state even where component grid styles define display. */
@@ -687,15 +688,21 @@ const BRAND_LOGOS={
  "focal car audio":"https://commons.wikimedia.org/wiki/Special:FilePath/Focal_logo.svg",
  "pioneer car audio":"https://commons.wikimedia.org/wiki/Special:FilePath/Pioneer_logo.svg",
  "one":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "one x":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "onex":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "onenav":"https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png",
+ "amplified audio":"https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png",
  "amplified":"https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png",
  "klipsch":"https://commons.wikimedia.org/wiki/Special:FilePath/Klipsch_logo.png","sonos":"https://cdn.simpleicons.org/sonos","jvc":"https://cdn.simpleicons.org/jvc","onkyo":"https://cdn.simpleicons.org/onkyo",
  "jlab":"https://cdn.simpleicons.org/jlab","arcam":"https://cdn.simpleicons.org/arcam","integra":"https://cdn.simpleicons.org/integra","sonance":"https://cdn.simpleicons.org/sonance",
  "roborock":"https://cdn.simpleicons.org/roborock","aiper":"https://cdn.simpleicons.org/aiper","vogel's":"https://cdn.simpleicons.org/vogels","hdanywhere":"https://cdn.simpleicons.org/hdanywhere"
 };
 function brandButton(label,active,href){
- const b=document.createElement("a");b.className="brandLogoButton";b.href=href;const displayLabel=label.trim().toLowerCase()==="one"?"ONE / OneNav":label;b.title=displayLabel;b.setAttribute("aria-label",label);b.setAttribute("role","button");
+ const b=document.createElement("a");b.className="brandLogoButton";b.href=href;
  const normalized=label.trim().toLowerCase();
- const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":normalized;
+ const displayLabel=normalized==="one"||normalized==="onenav"?"ONE / OneNav":normalized==="one x"||normalized==="onex"?"One X":label;
+ b.title=displayLabel;b.setAttribute("aria-label",label);b.setAttribute("role","button");
+ const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":normalized==="one x"||normalized==="onex"||normalized==="onenav"?"one":normalized==="amplified audio"?"amplified":normalized;
  const slug=normalized.replace(/[^a-z0-9]+/g,"");
  const src=BRAND_LOGOS[key]||("https://cdn.simpleicons.org/"+slug);
  if(src){const img=document.createElement("img");img.src=src;img.alt=displayLabel+" logo";img.loading="eager";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=displayLabel;b.append(fallback)};b.append(img)}
@@ -714,7 +721,10 @@ function categoryArtFallback(label){
   [/harness|trim|fitment|wiring/, "https://images.unsplash.com/photo-1677230017860-a8cc67785f0a?auto=format&fit=crop&w=720&q=82"],
   [/aerial|antenna/, "https://images.unsplash.com/photo-1759667880866-702f9f615489?auto=format&fit=crop&w=720&q=82"],
   [/home audio|home entertainment|home cinema|projection|projector|screen|cable|mount|av infrastructure|conferencing/, "https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82"],
-  [/band|live sound|dj|studio|instrument/, "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82"],
+  [/dj equipment|^dj$|dj controller/, "https://images.unsplash.com/photo-1642784353476-d226d8d617b3?auto=format&fit=crop&w=720&q=82"],
+  [/studio/, "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=720&q=82"],
+  [/instrument/, "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82"],
+  [/band|live sound/, "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82"],
   [/marine/, "https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82"]
  ];
  const found=photos.find(([re])=>re.test(n));
@@ -735,7 +745,7 @@ function departmentImage(value,label){
   "Car Audio":"https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82",
   "Home Entertainment":"https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82",
   "Band & Live Sound":"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82",
-  "DJ":"https://images.unsplash.com/photo-1642177272498-98096a6c98e4?auto=format&fit=crop&w=720&q=82",
+  "DJ":"https://images.unsplash.com/photo-1642784353476-d226d8d617b3?auto=format&fit=crop&w=720&q=82",
   "Studio Equipment":"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=720&q=82",
   "Musical Instruments":"https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82",
   "Marine Audio":"https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82",
