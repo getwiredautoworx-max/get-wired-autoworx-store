@@ -221,9 +221,14 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 24);
+for (const [model,url] of [["XS-163ES","https://www.gentec-intl.com/cdn/shop/files/XS163ES_2.jpg?v=1696557091&width=3000"],["XS-162ES","https://sonyworld.ae/cdn/shop/products/XS-162ES-2.jpg?v=1662726477"],["XS-692ES","https://store.sony.com.au/dw/image/v2/ABBC_PRD/on/demandware.static/-/Sites-sony-master-catalog/default/dw5f0d00ad/images/XS692ES/XS692ES.png?sh=442&sm=fit&sw=442"],["XS-W104ES","https://www.gentec-intl.com/cdn/shop/files/XSW104ES_1.jpg?v=1696556764"],["XS-W122ES","https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42264/282760/xs-w122es__1__83670.1682532226.jpg?c=2"],["XS-W124ES","https://caraudiocentre.co.uk/cdn/shop/files/sony-43575646486809.jpg?v=1700315830"],["XM-1ES","https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42263/282755/xm-1es-03__1__68713.1682532223.jpg?c=2"],["XM-4ES","https://cdn11.bigcommerce.com/s-bqki9c9t/images/stencil/1280x1280/products/145140/349259/xm4es_003__19533.1749148815.jpg?c=2"],["XM-6ES","https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/43058/286663/xm-6es-02__1__18213.1691599723.jpg?c=2"],["XM-8ES","https://www.caraudioexpress.co.uk/cdn/shop/files/XM-8ES_Product4_in_stock.webp?v=1766579001&width=1534"],["SSW-12-6300","https://starsound.co.za/wp-content/uploads/2026/06/SSW-12-6300_a.jpg"],["SSW-12-7300","https://starsound.co.za/wp-content/uploads/2026/05/SSW-12-7300_a.jpg"],["SSW-12W-5200","https://starsound.co.za/wp-content/uploads/2026/05/SSW-12W5200_a.jpg"],["SSW-8-8000D2","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-8_-SSW-8-8000D2-DVC-D2-Subwoofer-_8000W_-Star-Sound-21402422.jpg?v=1729072237&width=1445"],["SSW-F12-5150SVC","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSW-F12-5150-12_-Flat-SVC-Subwoofer-_5150W_-Star-Sound-21804686.jpg?v=1738070855&width=1445"],["SSA-ATOM-13500.1","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-Atom-Series-Micro-Monoblock-Amplifier-_13500W_-Star-Sound-31026433.jpg?v=1770022846"],["SSA-ATOM-13800.4","https://ismotorsport.co.za/cdn/shop/files/e8c8a9b2ed9973beea6b6736cdd4c929.jpg?v=1744810004"],["SSA-R-5000.4","https://www.fastrak.co.za/cdn/shop/files/6007762006336-8790302.png?v=1760469016&width=1000"],["SSS-6602","https://www.fastrak.co.za/cdn/shop/files/2013332000000starsound-653-way-coaxial-speaker-sss-6602-7638434.webp?v=1766473927"],["USB450BTDD","https://cdn.shopify.com/s/files/1/0263/1149/1629/files/SSUSB-450BTDD.jpg?v=1748037061&width=1200"]]) {
+  const row=audioConnections.records.find(item=>item.modelNumber===model);
+  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' must use its matched owner-authorized exact-model image');
+}
+
 assert.equal(hornet.imageUrl,'https://starsound.co.za/wp-content/uploads/2026/10/SSA-HORNET-7600.4_WEB_PIC_1.jpg');
-assert.equal(hornet.imageStatus,'OFFICIAL_EXACT_MODEL_MANUFACTURER_IMAGE_CANDIDATE_REVIEW_ONLY_PERMISSION_AND_OWNER_APPROVAL_PENDING');
+assert.equal(hornet.imageStatus,'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH');
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
 for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/SUPPLIER_CONFIRMATION_REQUIRED|UNIT_BASIS_UNCONFIRMED|CONFLICT_REMAINS/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
 assert.equal(audioConnections.records.find(row=>row.id==='ac-020').specificationStatus,'OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED');
@@ -246,7 +251,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 72);
+assert.equal(imageCount, 92);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
