@@ -203,4 +203,22 @@ assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(componen
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
+
+// Owner visual requirement: every nested category uses relevant product imagery, not generic repeated text bars.
+for (const token of [
+  'Speakers & Component Kits','Subwoofers','Amplifiers','Head Units & Media Players',
+  'Cameras & Monitors','Signal Processing & Crossovers','Trims & Harnesses',
+  'Alternators & Starters','Batteries & Charging','Fuses, Relays & Wiring',
+  'Globes & Vehicle Lighting','Sensors & Switches','Car Care','Car Mats',
+  'Seat Covers & Interior Accessories','Exterior Accessories'
+]) assert.ok(previewCategory.includes(token), 'category artwork mapping covers '+token);
+assert.ok(previewCategory.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg'), 'component-speaker tile uses component-speaker photography');
+assert.ok(previewCategory.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'amplifier tile uses amplifier photography');
+assert.ok(previewCategory.includes('bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byu'), 'head-unit tile uses head-unit photography');
+assert.ok(audioPage.includes('function componentImage(label)'), 'audio product-type tiles resolve category-specific imagery');
+assert.ok(audioPage.includes('function componentImageButton(label,active,fn)'), 'audio product-type tiles are image-led accessible buttons');
+assert.ok(audioPage.includes('cs.forEach(c=>el("components").append(componentImageButton'), 'brand-filtered component choices render as image cards');
+assert.ok(audioPage.includes('#components .componentImageButton img'), 'audio component cards have responsive image styling');
+assert.ok(audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'component and amplifier choices use matching photos');
+
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
