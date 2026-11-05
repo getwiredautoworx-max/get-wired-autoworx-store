@@ -98,3 +98,8 @@ request=owner-rejected-preview-refresh-after-menu-and-image-complaint-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;three-root-navigation;previous-department-menu-hidden-before-catalogue-load;car-audio-brand-first;home-entertainment-brand-first;all-category-images-naturalWidth-positive;capture-image-src-and-alt;reject-generic-fallbacks;brand-logo-load;brand-and-type-filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=owner-preview-final-category-photo-repair-exact-head-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;three-root-navigation;department-menu-hidden-before-catalogue-load;category-photo-url-audit;all-audio-category-images-naturalWidth-positive;brand-first-car-audio;brand-first-home-entertainment;brand-logo-load;component-type-route;filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
