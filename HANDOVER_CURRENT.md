@@ -3699,3 +3699,11 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 3. Check actual browser image loading and natural dimensions for ONE/OneNav, Amplified and the two product photos on desktop and mobile; visually confirm the crop hides the printed supplier code and shows the complete receiver.
 4. Ask for owner acceptance only after the exact-head preview is verified.
 5. Continue matching exact product photos and verified descriptions for the remaining unmatched catalogue rows; keep all unverified images/details explicitly pending.
+
+
+## 2026-11-05 crop calibration and current-head check
+
+- Source-image inspection confirmed the two OneNav retailer images are 300×450 portrait product panels. The crop was refined from center 50% to **4:3, center 40%**: the visible source window is approximately y=90–315, keeping the receiver/dashboard and product unit while excluding the lower printed model-code/specification strip. Audit, enrichment default, both audio product renderers and regression assertions now use center 40%.
+- The two source images are visible at their exact The4x4Store product-image URLs; this confirms the image endpoints themselves return the intended Prado and Land Cruiser Pick Up product panels. It does **not** replace hosted preview verification of the final crop.
+- Official Planetworld pages identify the two requested brand assets as **ONE** (the umbrella range including OneNav/OneX) and **Amplified**. The logo URLs resolve through Canto to signed CloudFront image URLs; the web inspection tool could not follow that redirect. The regression test checks the actual remote endpoints, but a successful current-head run is still required to confirm they load in the deployed storefront.
+- Current PR #178 head after crop calibration: `3963b306c46349560258fb5a81a291f073cf3174`. No workflow run or combined status is visible for this head. No preview is considered ready until the exact-head workflow and hosted deployment are verified.
