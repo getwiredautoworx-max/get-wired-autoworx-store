@@ -400,3 +400,13 @@ assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]=
   process.exitCode = 1;
 });
 
+/* Product cards: keep media and details in two explicit grid columns and centre all product copy. */
+assert.ok(productListingRoute.includes('media.className=\'productMedia\''), 'product media must be grouped into one grid column');
+assert.ok(productListingRoute.includes('body.className=\'productDetails\''), 'product details must be grouped into one grid column');
+assert.ok(productListingRoute.includes('card.append(media,body)'), 'product card must have exactly two top-level grid children');
+assert.ok(productListingRoute.includes('.productDetails{min-width:0;text-align:center}'), 'product details must be centred');
+assert.ok(productListingRoute.includes("raw.includes('multimedia')"), 'manufacturer multimedia receiver models must map to Head Units & Media Players');
+const alpineHalo11Model = verified.records.find(row => row.modelNumber === 'ILX-F115D');
+assert.ok(alpineHalo11Model && alpineHalo11Model.imageUrl && alpineHalo11Model.description, 'Alpine Halo 11 must have exact-model manufacturer image and verified description in the internal crosswalk');
+const alpineHalo11Product = planet.records.find(row => /iLX-F115D/i.test(row.manufacturerProductName || ''));
+assert.ok(alpineHalo11Product && alpineHalo11Product.imageUrl && alpineHalo11Product.description, 'Alpine Halo 11 enrichment must reach its matching public preview product row');
