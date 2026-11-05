@@ -3791,3 +3791,14 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Corrected the route matcher to use pathname suffix checks in commit `0b7f9937243892926de8f255c181453ad0991be6`.
 - The first run is therefore **failed/incomplete for hosted browser QA** and must not be used as the owner preview.
 - Next: trigger a new exact-head run after this correction; verify the Alpine image naturalWidth, description, centred details and two-column card geometry, plus all existing mobile/desktop, SKU and privacy checks. Do not send the preview until that run succeeds.
+
+
+### Alpine Halo 11 image-load diagnosis and correction — 2026-11-05
+- Second hosted run `42027442156` (tested `0b7f9937243892926de8f255c181453ad0991be6`) reached the Alpine product card and confirmed the layout repair: `textAlign=center`, media/details were separate columns, and the verified DAB+/Apple CarPlay description was present.
+- That browser audit exposed the remaining concrete defect: the previously stored Alpine image URL returned no loaded image (`naturalWidth=0`). The URL was an invalid/unavailable regional asset path; the product itself and its description were matched correctly.
+- Inspected the exact Alpine Europe iLX-F115D manufacturer page and its linked official product gallery. Replaced the broken URL with the official full-size model-specific Alpine Halo 11 image: `https://finland.alpine-europe.com/fileadmin/images/MainNavigation/Products/Productinformation/01_Headunits/iLX-F115D/iLX-F115D_Large-larger-Alpine-Halo-11.jpg`. This is an exact iLX-F115D image, not a generic receiver. Keep its image status review-only; preview visibility does not imply production image-use clearance.
+- Updated the exact-model enrichment generator so verified manufacturer names become the customer-facing product title. This corrects the supplier typo “Reciever” and uses “Alpine Halo 11 iLX-F115D 11-inch media receiver”. Removed the duplicated manufacturer title from the metadata line so brand is shown once.
+- Added regression assertions for the exact official image URL and corrected manufacturer title.
+- New commits: verified image crosswalk `a08a9eb24785d39d59f738695e6e7b7c098e5b32`; verified title enrichment `9059293b8ab06ffdcff61c9f7f1c52aec62710cc`; metadata rendering `8470bff4d3a980fb9323aec944e4244dfaa6267a`; exact image/title assertions `ee87eed2a88e629f12d94efbf0e4eaf5f555e155`.
+- Second run `42027442156` is not a successful preview: hosted QA failed only after the Alpine image failed to load. The new image source and title change are not yet tested.
+- Next: rerun exact-head build, regression, SKU/privacy audit and hosted image/layout checks; only provide a fresh preview if the new Alpine image loads and all mobile/desktop checks pass.
