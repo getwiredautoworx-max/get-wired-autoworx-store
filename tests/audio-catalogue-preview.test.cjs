@@ -64,6 +64,10 @@ assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]=
 assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_BELOW_ESTIMATED_COST_REVIEW').length,19,'below-estimated-cost rows must be flagged for owner review, not silently hidden');
 assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_COST_FLOOR_PASS').length,3279);
 assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand directory must use official Planetworld ONE/OneNav and Amplified logos');
+assert.ok(route.includes('"one x":')&&route.includes('"onex":')&&route.includes('"amplified audio":'),'brand directory must resolve One X and Amplified Audio aliases to their official logo assets');
+assert.ok(route.includes('aria-label="Kicker"] img{width:150px')&&route.includes('transform:scale(1.28)'),'Kicker brand mark must be enlarged to a readable button size');
+assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must use a DJ-controller photograph, not a generic live-event image');
+assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
 assert.equal(planet.records.filter(row=>row.imageUrl).length,68,'68 exact product image candidates (66 verified-model plus two OneNav) must be attached to the correct source product rows');
@@ -88,6 +92,8 @@ assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,6
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,9);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3240);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
+assert.ok(brandLandingRoute.includes("if(n==='one'||n==='one x'||n==='onex'||n.includes('onenav'))")&&brandLandingRoute.includes("if(n.includes('amplified'))"),'dedicated brand landing page must resolve One X and Amplified logos, not only the parent brand directory');
+assert.ok(brandLandingRoute.includes("img[alt*='Kicker']{transform:scale(1.42)"),'Kicker brand landing logo must be enlarged');
 assert.ok(brandLandingRoute.includes("function brandDisplayName(b)")&&brandLandingRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
 assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT), 'all unpriced Planetworld rows must use the exact owner-approved request wording');
@@ -113,6 +119,7 @@ assert.ok(!route.includes('car-audio-video-category.svg'), 'audio department car
 assert.ok(!categoryRoute.includes('car-audio-video-category.svg'), 'standalone category cards must use photographic Car Audio artwork, not illustrated SVG artwork');
 const audioCategoryPage=fs.readFileSync('preview-category.html','utf8');
 assert.ok(audioCategoryPage.includes('photo-1558284296-7579da2deb30'), 'Home Entertainment category card must use photographic artwork');
+assert.ok(audioCategoryPage.includes('photo-1642784353476-d226d8d617b3')&&audioCategoryPage.includes('studio equipment'),'DJ and Studio Equipment category cards must have dedicated photographic artwork');
 assert.ok(route.includes('department==="Home Entertainment"?isHomeEntertainmentRecord(p):department==="Marine Audio"?') && route.includes('function isHomeEntertainmentRecord(p){') && route.includes('component==="Home & Leisure Appliances"') && route.includes('component==="Smart Home & Security"'), 'Home Entertainment must use the reviewed audio-only filter and exclude non-audio retail items');
 assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not rely on unsupported selectors, timers or destructive grid replacement');
 assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must preserve and restore category nodes without deleting them');
