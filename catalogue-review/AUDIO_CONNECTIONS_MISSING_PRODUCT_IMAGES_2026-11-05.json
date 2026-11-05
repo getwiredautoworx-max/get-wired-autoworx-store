@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 24,
-  "recordsMissingVerifiedImage": 42,
+  "recordsWithImage": 33,
+  "recordsMissingVerifiedImage": 33,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -126,52 +126,10 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSA-M5-80.600",
-      "brand": "Starsound",
-      "title": "Starsound SSA-M5-80.600 — 5-channel amplifier",
-      "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSA-M4-80.4",
       "brand": "Starsound",
       "title": "Starsound SSA-M4-80.4 — 4-channel amplifier",
       "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSS-5502",
-      "brand": "Starsound",
-      "title": "Starsound SSS-5502 — 5-inch 3-way speaker, 420 W MAX",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSS-6501PRO",
-      "brand": "Starsound",
-      "title": "Starsound SSS-6501PRO — 6.5-inch Pro Midrange Speaker",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSS-6601",
-      "brand": "Starsound",
-      "title": "Starsound SSS-6601 6-inch dual cone",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSS-6903",
-      "brand": "Starsound",
-      "title": "Starsound SSS-6903 — 6×9-inch 3-way speaker",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSD-620",
-      "brand": "Starsound",
-      "title": "Starsound SSD-620 Digital — 6.5-inch 2-way coaxial, 80 W RMS / 1,200 W MAX",
-      "component": "Speakers",
       "descriptionPresent": true
     },
     {
@@ -252,13 +210,6 @@
       "descriptionPresent": true
     },
     {
-      "model": "SST350",
-      "brand": "Starsound",
-      "title": "Starsound SST350 Piezo",
-      "component": "Tweeters",
-      "descriptionPresent": true
-    },
-    {
       "model": "SST-850",
       "brand": "Starsound",
       "title": "Starsound SST-850 Bullet",
@@ -273,23 +224,9 @@
       "descriptionPresent": true
     },
     {
-      "model": "EQ5100",
-      "brand": "Starsound",
-      "title": "Starsound EQ5100 5-band equaliser",
-      "component": "Equalisers & Crossovers",
-      "descriptionPresent": true
-    },
-    {
       "model": "EQ7100",
       "brand": "Starsound",
       "title": "Starsound EQ7100 7-band equaliser",
-      "component": "Equalisers & Crossovers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "CROSSOVER 2900",
-      "brand": "Starsound",
-      "title": "Starsound crossover 2900 3-way",
       "component": "Equalisers & Crossovers",
       "descriptionPresent": true
     },
@@ -322,6 +259,16 @@
     "SSA-R-5000.4",
     "SSA-ATOM-13800.4",
     "SSS-6602",
-    "SSW12-7300 (manufacturer listing confirms SSW-12-7300)"
+    "SSW12-7300 (manufacturer listing confirms SSW-12-7300)",
+    "SSA-M5-80.600",
+    "SSS-5502",
+    "SSS-6501PRO",
+    "SSS-6601",
+    "SSS-6903",
+    "SSD-620",
+    "SST350",
+    "EQ5100",
+    "CROSSOVER 2900",
+    "SSS-6602 (official Starsound image replaces retailer image)"
   ]
 }
