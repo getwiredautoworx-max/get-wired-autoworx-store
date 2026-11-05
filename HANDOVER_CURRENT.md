@@ -4014,3 +4014,18 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The supplier-name regression was corrected to mask URL strings before scanning customer-facing catalogue text/metadata, while preserving checks against visible markup and supplier identifier/cost fields. This permits supplier-hosted image assets without exposing supplier names as customer-facing labels.
 - Next: record this QA result in the PR summary, refresh the final exact-head request after this handover update, and run the same exact-head workflow on the resulting final commit before issuing the current owner-preview URL.
 - Safety: PR remains draft/unmerged; no production deployment, Axxess upload, DNS change, Supabase/live write, supplier activation, live stock/price change, payment activation or checkout go-live.
+
+
+## 2026-11-05 — FINAL CATEGORY PREVIEW QA — EXACT HEAD VERIFIED
+
+- Owner instruction: continue outstanding category work and deliver a preview only after exact-head checks. Active candidate remains PR #178 branch `integration/owner-preview-single-task-2026-11-05`; no parallel branch was created.
+- Exact candidate head tested and deployed: `e6f8017c195740e7524bc84d26a554e798d3e783`.
+- GitHub Actions run **42049695027** completed **SUCCESS**: customer-only Pages package build, catalogue/category regression, public SKU exposure audit, Cloudflare non-production deployment, exact deployed-SHA marker and hosted Playwright QA all passed. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42049695027
+- Immutable preview URL from that exact deployment: https://47581331.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Hosted 390px mobile / 1365px desktop evidence: three root categories in approved order; all eight audio department photos loaded; OneNav logo loaded at 797px and Amplified logo at 794px; Home Entertainment brand-first journey reached Klipsch → Home Audio & Cinema → filtered products; Auto Electrical five subcategory images, Car Care four subcategory images, Accessories Aerials/Trims & Harnesses, and Lifestyle two subcategory images all loaded; checkout hidden; preview writes blocked; zero JavaScript errors; desktop width and scroll width both 1365px.
+- Product image checks: 68/68 exact-model image candidates loaded. Audio Connections: 66/66 images loaded and 66/66 descriptions present; Blackspider Lynx remains a low-resolution 104px thumbnail and must be upgraded before publication. OneNav product-detail sample contained 64 products, 2 image candidates and 2 review notes; do not claim complete OneNav product-photo coverage. Planetworld enrichment still has 2 exact-model image gaps; do not use generic images to fill them.
+- Pricing QA remains preview-only: 3,298 positive-RRP rows use VAT-inclusive RRP × 0.98; 19 zero-RRP rows remain quote-only; 19 below-estimated-cost rows remain internally flagged. No live prices changed.
+- Spectrum 15000 uses manufacturer model SSW-SV2-15000R and verified photo; disputed RMS/colour details remain withheld pending supplier confirmation.
+- This preview is ready for **owner review only**, not production readiness or owner acceptance. PR #178 remains draft/unmerged. Production HOLD; no Axxess upload, DNS change, Supabase/live write, supplier activation, live stock/price/category change, payment activation or checkout go-live.
+- Next: after this handover checkpoint is committed, repeat the exact-head preview workflow once more so the final preview SHA includes this documentation update; share only the resulting exact-head deployment.
+
