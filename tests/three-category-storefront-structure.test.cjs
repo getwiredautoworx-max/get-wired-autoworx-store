@@ -69,6 +69,11 @@ assert.ok(home.includes('class="productModel" data-product-model')&&home.include
 assert.ok(home.includes('class="price productPrice" data-product-price')&&home.includes('money(p.price)'),'main category cards must retain verified ZAR pricing and the existing price-on-request state');
 assert.ok(!home.includes('<p class="sku">SKU: ${esc(p.public_sku)}</p>'),'main category cards must not display internal/public SKU identifiers to customers');
 assert.ok(home.includes('id="gw-owner-product-format"')&&home.includes('@media(max-width:640px)'),'owner product-card hierarchy must have mobile-first typography rules');
+assert.ok(home.includes('class="productModel"')&&home.includes('productModelLabel(p)')&&home.includes('class="productBrand"')&&home.includes('productBrandLabel(p)'),'product detail modal must use the same model-first and brand-second hierarchy');
+assert.ok(home.includes('class="infoBlock productDescription"')&&home.includes('class="detailPrice productPrice"'),'product detail modal must place the description before the verified price');
+const detailModalRenderer=home.slice(home.indexOf('function openProduct'),home.indexOf('function add(id)',home.indexOf('function openProduct')));
+assert.ok(!detailModalRenderer.includes('SKU: '),'product detail modal must not display a customer-facing SKU line');
+
 
 assert.ok(categoryClickHandler.includes("if(b.matches('a.catalogueLink'))return"), 'dedicated category-page links must not be intercepted by the legacy accordion handler');
 assert.ok(home.includes('#categoryGrid>.rootCategoryLink>a.catBtn{display:block!important;'), 'root category links must retain full-card tap targets');
