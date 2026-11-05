@@ -3830,3 +3830,11 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The official Alpine image URL itself has been opened and visually verified as the exact iLX-F115D receiver. The prior immediate `naturalWidth=0` result is therefore not conclusive evidence of a broken URL.
 - Updated hosted QA to wait up to 15 seconds for the Alpine image load/error event before reading natural dimensions, then pass that measured result into the browser audit. Commits: `4dad3b9681f59afdc8e9390d206c42df061c344f` and `72f7296db24c0a9d6fcdb85119882104b1723b99`.
 - Run `42028279930` remains failed for owner acceptance; the new image-wait logic has not yet been tested. Next: rerun exact-head QA and use the waited result plus the existing 68-image audit to decide whether the source is truly reachable.
+
+
+### Alpine image/layout hosted acceptance and final browser race — 2026-11-05
+- Run `42028582770` tested the prior source checkpoint and passed the package build, all Node regression/invariant suites, public package/SKU audit, non-production deployment and exact deployed-SHA marker.
+- Hosted Alpine Halo 11 audit **passed** after the image-load wait: exact product image loaded at `naturalWidth=1000`; product title is corrected; DAB+/wireless Apple CarPlay description is present; details report `textAlign=center`; media/details are confirmed in separate columns.
+- The all-image audit also passed: `68/68` exact-model images loaded, with zero failed image URLs.
+- The workflow then failed later at the unrelated Trims & Harnesses accessory check (`expected 47, got 0`) because it counted cards immediately after the heading appeared without waiting for the asynchronous product list. Added a wait for the first visible `.audioProduct` before counting in commit `12029bdbaad9f42b12bc55a2f7c7da7726621c85`.
+- This run did not finish the remainder of hosted checks, including final desktop overflow verification. Do not treat it as final preview acceptance. Next: rerun the exact latest head; require the 47-product list to load, all remaining navigation tests, mobile/desktop checks, and zero JS errors before sharing the URL.
