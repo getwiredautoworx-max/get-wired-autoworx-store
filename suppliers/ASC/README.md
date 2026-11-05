@@ -97,3 +97,18 @@ The preview contains 34 visually reviewed pilot records only. They remain previe
 The earlier specific owner instructions remain in force for the other two catalogues unless the owner explicitly changes them: Aerials remains under Car Audio & Video → Accessories; Car Mats remains under Car Care & Accessories. The owner's latest wording that “each catalogue” should be under Auto Electrical Spares is ambiguous as to whether it overrides those two specific placements. Do not relocate Aerials or Car Mats without confirmation.
 
 Do not process ASC Buyers Guides. Do not import the 34 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
+
+
+### 34-record Auto Electrical pilot — traceability and description enrichment
+
+The four-group pilot JSON now carries, per record:
+- Original ASC PDF filename and the contents-page start page for the source section (a page locator, not yet a final visual page audit).
+- A candidate ASC source reference derived from the reviewed source-card crop filename; it must still be confirmed against the original catalogue image.
+- Separate identity, customer-copy and fitment review statuses so a candidate is not mistaken for an approved exact fitment.
+- A cautious owner-review draft description based on the preserved catalogue wording. These drafts are not approved public copy and must not be treated as verified technical specifications.
+
+The owner preview displays the draft description, original source wording, fitment as printed, PDF/page locator and candidate ASC reference. It uses the exact quote-only wording: **Price On Request due to Limited Stock and Availability**.
+
+Four bulb records currently under the ASC “HID Globes, Kits & Ballasts” heading (H18, H19 and H3 references) are explicitly flagged for technology/section verification. Do not assume they are HID products or rewrite the source classification until the original PDF page is checked. Blank globe fitment fields remain blank; do not infer vehicle applications.
+
+The dedicated integration regression was updated to assert source traceability, draft descriptions, quote-only wording and image-file existence. The test has not yet been executed on the latest head; do not claim a regression pass until an exact-head run is recorded.
