@@ -222,7 +222,10 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 61);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 62);
+const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
+assert.ok(raEl4&&raEl4.imageUrl==='https://mamasboombox.co.za/cdn/shop/files/RA-EL4.jpg?v=1757517707&width=1445'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
 
@@ -231,13 +234,13 @@ for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
 
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 5, 'only five supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 4, 'only four supplier products remain without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'].includes(row.imageStatus)), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
-assert.equal(audioImageAudit.recordsWithImage,61);
-assert.equal(audioImageAudit.recordsMissingVerifiedImage,5);
+assert.equal(audioImageAudit.recordsWithImage,62);
+assert.equal(audioImageAudit.recordsMissingVerifiedImage,4);
 assert.equal(audioImageAudit.missing.length,6)
 for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSA-R-22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
@@ -288,7 +291,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 129);
+assert.equal(imageCount, 130);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
