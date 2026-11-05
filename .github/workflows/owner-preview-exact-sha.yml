@@ -261,7 +261,9 @@ jobs:
               await oneNavBrandPage.locator('.brandHero').filter({hasText:'ONE / OneNav'}).waitFor({state:'visible',timeout:30000});
               const oneNavHeroLogo=oneNavBrandPage.locator('.brandHero img');
               await oneNavHeroLogo.waitFor({state:'visible',timeout:15000});
-              if(!await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('ONE / OneNav logo failed on its dedicated brand page');
+              const oneNavLogoLoaded=await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0});
+              const oneNavLogoSrc=await oneNavHeroLogo.getAttribute('src');
+              if(!oneNavLogoLoaded||!oneNavLogoSrc||!oneNavLogoSrc.startsWith('data:image/svg+xml'))throw new Error('ONE / OneNav must use its own OneNav wordmark, not the OneX logo');
               const oneNavTypeCard=oneNavBrandPage.locator('.typeCard').first();
               await oneNavTypeCard.waitFor({state:'visible',timeout:30000});
               await oneNavTypeCard.click();
@@ -274,7 +276,7 @@ jobs:
               const oneNavReviewNoteCount=await oneNavProductPage.locator('.imageReviewNote').count();
               const oneNavProductText=(await oneNavProductPage.locator('.product').allTextContents()).join(' ');
               console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({url:await oneNavProductPage.locator('body').evaluate(()=>location.href),products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen'),text:oneNavProductText.slice(0,1200)}));
-              if(oneNavProductCount<9||oneNavProductImageCount!==2||oneNavReviewNoteCount!==2||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
+              if(oneNavProductCount<9||oneNavProductImageCount!==6||oneNavReviewNoteCount!==6||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
