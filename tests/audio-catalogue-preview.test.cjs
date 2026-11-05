@@ -91,8 +91,8 @@ const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,74);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,3);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3240);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,8);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3235);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
 assert.ok(brandLandingRoute.includes('const ONENAV_WORDMARK=')&&brandLandingRoute.includes("if(n==='one'||n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK")&&brandLandingRoute.includes("if(n==='one x'||n==='onex')return")&&brandLandingRoute.includes("if(n.includes('amplified'))"),'dedicated brand landing page must keep OneNav, One X and Amplified marks distinct');
 assert.ok(brandLandingRoute.includes("img[alt*='Kicker']{width:135px!important;height:80px!important;max-width:none!important;transform:scale(1.5)!important"),'Kicker brand landing logo must be enlarged');
@@ -429,11 +429,11 @@ for (const row of [oneNavPrado, oneNavLandCruiser]) {
 assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
 assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
-assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 77);
+assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 82);
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 74);
-assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 77);
+assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 82);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
-assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
+assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 13);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 1);
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
@@ -441,7 +441,7 @@ assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,6);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,8);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,13);
 
 /* Check the actual remote image endpoints used by the preview, not only their URL strings. */
 (async () => {
