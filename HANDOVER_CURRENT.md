@@ -3260,3 +3260,41 @@ Read-only audit of the sanitized JSON used by PR #139:
 - The sole automatic owner-preview deployment and hosted browser acceptance path is `.github/workflows/deploy-pr-168-staging-preview.yml`. Other automatic workflows may continue their independent catalogue, SKU, security and smoke checks, but must not deploy another preview.
 - The current owner-preview acceptance remains the successful exact-head run `41999948429` at `0b1829201ce62849400baae198da5310f199f27a`; the legacy failure `41999948343` is not an owner-preview acceptance result.
 - This workflow/handover cleanup is not a storefront source change. Trigger one fresh exact-head owner-preview run after the handover update; keep production HOLD and PR #178 draft pending owner review.
+
+
+## 2026-11-05 — AUDIO + HOME ENTERTAINMENT PREVIEW VERIFIED
+
+**Latest exact-head candidate:** `925999bd159630384e2b99446d369b6077fe387a`  
+**Owner preview:** https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html  
+**Hosted QA run:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42003740583  
+**Result:** PASS — GitHub Actions run completed successfully on the exact PR #178 head.
+
+### What was corrected
+- Home Entertainment now uses a reviewed audio/AV-only department filter consistently on department, brand and product pages. Installed AV is included; household appliances and non-audio smart-home/retail rows are excluded.
+- Home Entertainment has its own department artwork and dedicated product-type illustrations: Home Audio & Cinema, Projection Screens & Projectors, Cables/Mounts/Accessories, AV Infrastructure & Control, Installed Audio, Conferencing & Collaboration and Other Home CI.
+- Klipsch brand image source was replaced with the verified Wikimedia-hosted logo after the first hosted image check caught the Simple Icons URL failing. The Home Entertainment brand directory and brand landing page now use the working logo source.
+- Corrected a malformed Home Entertainment ternary in the shared audio department filter. The first hosted regression run caught the syntax error before deployment.
+- Updated obsolete structural/catalogue test expectations to assert the reviewed Home Entertainment filter instead of the superseded broad Home Retail inclusion.
+- The exact-SHA workflow now installs Node before package build, supports the approved integration-branch push trigger, verifies the deployment marker with a cache-busting request, and checks the Klipsch logo image in the browser.
+- CI enablement PR #179 was merged (default-branch workflow registration). CI assertion follow-up PR #180 was merged. Both are workflow-only infrastructure changes; no production deployment was made.
+
+### Exact-head evidence
+- Customer-only Pages package build: PASS.
+- Node catalogue/structure regression suites: PASS.
+- Public SKU audit: PASS.
+- Cloudflare Pages non-production `owner-preview` deployment: PASS.
+- Deployment marker matched exact source SHA `925999bd159630384e2b99446d369b6077fe387a`: PASS.
+- Playwright mobile viewport 390×844 and desktop viewport 1365×900: PASS.
+- Homepage shows the three current root departments; all four audio collage images load.
+- Audio department shows six separate subcategory picture cards in a compact two-column mobile layout.
+- Car Audio & Video → Sony brand (logo loads) → Amplifiers → matching products: PASS.
+- Home Entertainment → Klipsch (brand logo loads) → Home Audio & Cinema (dedicated image) → matching products: PASS.
+- Brand landing pages show product-type choices without dumping products into the same page.
+- Auto Electrical and Car Care mobile category cards/images: PASS.
+- Checkout remains hidden in preview; preview write-block guard confirmed; browser JavaScript errors: 0; desktop horizontal overflow: none.
+
+### Release/acceptance boundary
+- PR #178 remains OPEN and DRAFT. Do not merge storefront integration until the owner reviews and accepts the preview.
+- This is a non-production owner preview only. Production remains HOLD.
+- No Axxess upload, DNS change, Supabase/live database write, live stock/price update, payment activation, checkout activation or supplier catalogue publication was performed.
+- Next step: owner opens the preview link above on mobile and checks both Audio paths. Record feedback, fix any owner-observed visual issue, and rerun exact-head QA before considering PR #178 for merge.
