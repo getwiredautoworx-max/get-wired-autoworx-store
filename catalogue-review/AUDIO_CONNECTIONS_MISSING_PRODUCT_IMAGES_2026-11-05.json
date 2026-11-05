@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 62,
-  "recordsMissingVerifiedImage": 4,
+  "recordsWithImage": 63,
+  "recordsMissingVerifiedImage": 3,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -19,13 +19,6 @@
       "title": "Reference Audio RA SUPER RAST20",
       "component": "Tweeters",
       "descriptionPresent": true
-    },
-    {
-      "model": "EQ7100",
-      "brand": "Starsound",
-      "title": "Starsound EQ7100 7-band equalizer",
-      "component": "Equalizers",
-      "reason": "Only a different SSA-EQ-7200 image was found; rejected as a model mismatch."
     },
     {
       "model": "860",
@@ -97,14 +90,14 @@
     "SSA-R-6900.1D",
     "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)",
     "RA-EL4 (supplier descriptor RA AWG4 cross-referenced to Reference Audio 4-gauge kit)",
-    "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)"
+    "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)",
+    "EQ7100 (exact SSA-EQ-7100 image visibly model-marked; Takealot asset cross-checked against SSA-EQ-7100 product listing)"
   ],
-  "imageCoverageNote": "62 records currently have image URLs after three exact-model broken URL corrections; hosted load verification for the replacement URLs is pending. Four records still have no verified exact-model photos (including SSAK-860 whose only found listing uses generic artwork); the prior hosted audit also identified one broken RA-EL4 URL and one exact but low-resolution Blackspider Lynx thumbnail.",
+  "imageCoverageNote": "63 of 66 Audio Connections records now have exact-model image URLs; 62 are high-resolution and one (Blackspider Lynx) remains a 105px thumbnail. Three records still have no verified exact-model photo: SSW-S12 SPECTR 15000, 860/SSAK-860 and RA SUPER RAST20. Four previously broken URLs have been replaced; exact-head hosted load verification is pending.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860 / SSAK-860",
-    "RA SUPER RAST20",
-    "EQ7100"
+    "RA SUPER RAST20"
   ],
   "descriptionCoverage": {
     "records": 66,
@@ -121,7 +114,7 @@
       "reason": "Model code differs; candidate image deliberately not used."
     }
   ],
-  "highResolutionImages": 61,
+  "highResolutionImages": 62,
   "lowResolutionImages": [
     {
       "model": "BULLET LYNX",
@@ -132,18 +125,23 @@
   "failedHostedImageUrlsResolvedSinceLastRun": [
     {
       "model": "XS-160ES",
-      "source": "Gentec International exact-model XS-160ES distributor product page",
-      "url": "https://www.gentec-intl.com/products/xs160es"
+      "source": "Creative Audio exact-model Sony XS-160ES product listing",
+      "url": "https://creativeaudio.net/xs-160es/"
     },
     {
       "model": "XS-680ES",
-      "source": "Gentec International exact-model XS-680ES distributor product page",
-      "url": "https://www.gentec-intl.com/products/xs680es"
+      "source": "Abt exact-model Sony XS-680ES product image",
+      "url": "https://content.abt.com/image.php/0dd3b4294d03e84022974cc942bc29bc?canvas=&ck=2&height=600&image=%2Fimages%2Fproducts%2FBDP_Images%2FSony-Mobile-ES-6x8-2-Way-Coaxial-Speakers-XS680ES.jpg&width=650"
     },
     {
       "model": "SSA-R-6900.1D",
       "source": "My Audio & Security exact-model Starsound product listing",
       "url": "https://myaudioandsecurity.co.za/product/starsound-ssa-r-6900-1d-1000w-rms-1ch-amplifier/"
+    },
+    {
+      "model": "RA-EL4",
+      "source": "Mamas Boombox current exact-model Reference Audio RA-EL4 product image",
+      "url": "https://mamasboombox.co.za/products/reference-audio-ra-el4-4-gauge-wiring-kit-double"
     }
   ],
   "latestHostedAuditFailure": {
