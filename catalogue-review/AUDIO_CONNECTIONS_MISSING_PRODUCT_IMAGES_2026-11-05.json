@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 64,
-  "recordsMissingVerifiedImage": 2,
+  "recordsWithImage": 65,
+  "recordsMissingVerifiedImage": 1,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -12,14 +12,6 @@
       "title": "Starsound SSW-S12\" SPECTR 15000 — 700 RMS DVC",
       "component": "DVC Subwoofers",
       "descriptionPresent": true
-    },
-    {
-      "model": "860",
-      "brand": "Starsound",
-      "title": "Star Sound SSAK-860 8-AWG amplifier installation kit",
-      "component": "Amplifier Installation Kits",
-      "descriptionPresent": true,
-      "reason": "Retailer listing confirms supplier model 860 maps to SSAK-860, but the available page only provides a generic vehicle-fit icon; no exact product photo found."
     }
   ],
   "updatedAt": "2026-11-05",
@@ -85,17 +77,17 @@
     "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)",
     "EQ7100 (JM Sounds exact SSA-EQ-7100 image)",
     "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)",
-    "RA SUPER RAST20 (cross-referenced to RA-ST20; 650W max / 50W RMS description and exact model photo located; 324px watermarked retailer image noted)"
+    "RA SUPER RAST20 (cross-referenced to RA-ST20; 650W max / 50W RMS description and exact model photo located; 324px watermarked retailer image noted)",
+    "SSAK-860 (exact model confirmed; 2048px photo of kit contents and 5m power/RCA/speaker leads, 1m ground, 5m remote and 80A AGU fuse verified)"
   ],
-  "imageCoverageNote": "64 of 66 Audio Connections records now have exact-model image URLs; 63 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. Two records still have no verified exact-model photo: SSW-S12 SPECTR 15000 and 860/SSAK-860. RA SUPER RAST20 is mapped to RA-ST20 with a 324px exact-model retailer photo; its Zaybees watermark is recorded as a pre-publication quality note.",
+  "imageCoverageNote": "65 of 66 Audio Connections records now have exact-model image URLs; 64 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. One record still has no verified exact-model photo: SSW-S12 SPECTR 15000. SSAK-860 is now matched to an actual 2048px kit photo and its exact kit contents; the source listing's new/used condition conflict is ignored.",
   "remainingImageModels": [
-    "SSW-S12\" SPECTR 15000",
-    "860 / SSAK-860"
+    "SSW-S12\" SPECTR 15000"
   ],
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 21,
+    "sourceVerified": 22,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
@@ -107,7 +99,7 @@
       "reason": "Model code differs; candidate image deliberately not used."
     }
   ],
-  "highResolutionImages": 63,
+  "highResolutionImages": 64,
   "lowResolutionImages": [
     {
       "model": "BULLET LYNX",
