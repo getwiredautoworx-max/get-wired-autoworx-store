@@ -146,3 +146,36 @@ This is the sole retained handover file on this branch. Older handover files hav
 ### Release boundary
 - Production remains HOLD. No Axxess upload, DNS change, production deployment, Supabase/live category/product/stock/price write, supplier activation, checkout/payment change, banking detail, or payment configuration was performed.
 - Next safe actions: obtain the Pages build error from the linked Cloudflare log; obtain the approved eight-root category ID/subcategory map; then rerun the exact-head package, Node 22 source tests, local browser QA, isolated Pages deployment, hosted exact-SHA browser QA, and owner phone acceptance. Keep all supplier rows preview-only until their separate source/rights/price/stock evidence is accepted.
+
+
+## 2026-11-05 — Owner-reported preview regression and recovery gate
+
+### Inspection performed
+- Read this handover before inspecting PR #149 and branch `integration/clean-main-asc-audio-2026-11-01`.
+- PR #149 remains OPEN / DRAFT / UNMERGED at head `376b4c1f95cd39ed183926401b6466817e4d185f`. No competing PR, merge, rebase, production deployment, or live-data change was made.
+- Owner reports the preview appears to have reverted/undone prior storefront work. This report is accepted as a valid regression report; the previous assistant message incorrectly described the preview as ready for limited review.
+
+### Confirmed regression evidence at current PR head
+- `assets/category-tree.json` has only three active root categories: “Car Audio / Home Entertainment / Lifestyle”, “Auto Electrical Parts & Spares”, and “Car Care & Accessories”. It does not contain the approved eight-root customer taxonomy listed in the protected release requirements above.
+- The same snapshot records `direct_active_products: 0` for the three roots and all displayed descendants. This is not a populated customer catalogue.
+- `preview-store.html` still contains the older dark navy shell and a three-column root category implementation. `preview-category.html` has bright/light styling overrides, so the homepage and category route do not share one consistent approved bright shell.
+- `preview-category.html` hardcodes the same three-root ROOTS list. This confirms the incomplete three-root experience is in source, not merely a phone/browser cache symptom.
+- The existing review-only supplier datasets and quarantines must not be mistaken for an owner-approved active catalogue. No product identity, image, category, price, or stock data was changed in this inspection.
+
+### Preview/test status correction
+- A prior preview claim referenced a deployed URL and successful workflow run, but the available evidence does not establish that the deployed site represented the full approved eight-root/populated storefront. The successful automated checks validated an incomplete three-root/zero-active-product preview. Treat that preview as **NOT ACCEPTED / NOT READY FOR OWNER REVIEW**.
+- Do not reuse or resend the previous preview URL as a finished-store preview. Do not claim restoration until the approved bright shell is consistent across homepage/category/product routes, the approved category tree is restored from verified mappings, populated product data is safely sourced, exact-SKU images are verified, and exact-head hosted QA confirms the deployed SHA.
+
+### Next safe task sequence — no circular rework
+1. Trace the source history for `preview-store.html`, `preview-category.html`, `assets/category-tree.json`, and the relevant category/product data builders on this same PR branch. Identify the last commit that contained the owner's approved bright, populated eight-category experience and establish whether its changes are present, reverted, or superseded. Do not cherry-pick blindly.
+2. Compare that known-good source state with current head and produce a file/commit-level regression map before editing. Preserve unrelated current fixes and quarantine/privacy guards.
+3. Restore one shared bright storefront shell across all preview routes and the approved eight-root navigation only from verified owner-approved category mappings. Do not infer category IDs or make live Supabase writes.
+4. Restore customer-visible products only from verified, permitted catalogue sources; keep unverified OCR, image matches, supplier data, and legacy Buyers Guide rows quarantined.
+5. Add regression tests that fail if the homepage/category shell diverges, if approved roots are missing, if the customer catalogue is empty when populated fixture data is supplied, or if unrelated/generic images are rendered.
+6. Run tests on the exact PR head; obtain an isolated Pages deployment and prove its embedded SHA equals the tested head; run populated hosted browser QA at 360px and 390px. Only then offer the preview for owner phone acceptance.
+
+### Handover discipline — mandatory from this incident onward
+- At the start of each work task: read this file, confirm PR #149 is still open and confirm exact branch/head, then select the single next unresolved item from this file.
+- At the end of each work task: update this file with what was inspected/changed, exact commit SHA (or state “no commit”), test names/results and run IDs, preview URL plus deployed SHA (or explicitly “not verified”), unresolved blockers, and the single next action.
+- Do not start a second workstream until the current task's outcome and next step are recorded here. Do not repeat a check already recorded unless the code head or evidence has changed.
+- Current task outcome: regression confirmed; no source files changed; no test or deployment run initiated; no new preview is approved. Next action is step 1 above.
