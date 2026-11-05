@@ -3578,3 +3578,32 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 ### Release boundary
 - No Supabase writes, product imports, live category/product/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
 - ASC Buyers Guides remain excluded. Production remains HOLD pending exact-head verification, owner visual acceptance and explicit release approval.
+
+
+## 2026-11-05 — SIX-CATALOGUE BROWSER VERIFICATION AND IMAGE-RIGHTS CROSS-CHECK
+
+### Exact-head package QA
+- Cloudflare Pages Public Package QA run **42077207779** completed SUCCESS for exact head 1b6aaf1e29d68fb0254c71ecf3f538b417ad8ecf.
+- This build ran both Node regression suites and verified the standard package excludes preview-only ASC assets/routes, while the non-production preview package includes all six catalogue routes, six catalogue groups, the 50-record JSON and 50 pilot JPG files. Supplier PDFs remain excluded from the public preview package.
+
+### Hosted browser QA completed on prior code head
+- Owner Store Preview Browser QA run **42076908917** completed SUCCESS for exact code/test head 19a8d3dac3936b0aa2a4ec88555dad93f8ffe7ef.
+- Local mobile and hosted mobile/desktop checks passed: six category cards, all six catalogue routes, all six category images, the first pilot product image in each catalogue's first source section, expected source-section counts (6/11/16/10/14/18), Car Audio/Trims navigation, Car Care category count, audio brand/component navigation, 47 Trims & Harnesses rows, hidden checkout, blocked Supabase writes and no desktop horizontal overflow.
+- The run's logged catalogue audit: Aerials 6 sections, Sensors 11, Switches 16, Globes 10, Car Mats 14, Fuel Pumps 18; all categoryImage and productImage checks true.
+- This browser pass predates the later image-rights metadata, legacy cross-reference flags and final owner-preview copy update. Do not treat it as browser verification of those latest content changes.
+
+### Latest exact-head readback and in-progress browser QA
+- Latest code/data/test head at this checkpoint: **1b6aaf1e29d68fb0254c71ecf3f538b417ad8ecf**.
+- Exact-head package QA run 42077207779 passed. Owner Store Preview Browser QA run **42077207832** is still running against the same head, and PR176 staging deployment run **42077207839** is in progress. Wait for the new hosted run before claiming the latest rights/exception text has been browser-verified.
+- Earlier browser test failures were stale assertions: first it still expected Aerials under Car Audio, then it tried to inspect the Auto Electrical leaf grid before navigating from the root. Both were corrected. The later 19a8d3d hosted run passed all six routes and images.
+
+### Image-rights and exact identity cross-check
+- The Library artifact Get_Wired_AutoWorx_53_SKU_Image_Rights_Review_Register_2026-10-17.csv records, for its 53 listed images, watermark present, exact SKU/physical-feature verification pending, no rights-holder evidence found in that register, no permission to remove/obscure watermark or further crop/edit, and public-use HOLD. Owner separately stated authorised-dealer status; reconcile the older register with the current owner/supplier authorisation before any public image release. All six-catalogue preview images remain watermarked and public-use HOLD.
+- Cross-checking the older illustrated product catalogue found a material legacy conflict for MA522: the September illustrated catalogue describes it as “Vehicle Aerial Replacement 2”, while the current August ASC OCR describes Opel / Mercedes W124 / Honda Ballade. This is flagged in the preview; do not overwrite current ASC wording or approve fitment until the original August page is checked.
+- H1865W-H also has a source-text conflict: the 53-SKU register calls it an H18 65W 12V Halogen Globe Huadiao; the current OCR reads HIDIAO and its source section heading says HID Globes. The preview flags this for source-page verification; do not classify as HID or normalize brand spelling.
+- All 50 records now explicitly carry image_match_status=PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION and image_rights_status=PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE. Product descriptions are draft-only; no unverified fitment or technology claim is approved.
+
+### Current state
+- Six Auto Electrical catalogue subcategories and all six navigation routes are implemented in the preview tree. The standard build restores Aerials and Car Mats to their former parents and removes preview-only ASC routes.
+- 50 candidate records, 75 source sections, 50 image files present, exact quote-only wording retained. No import, live database write, stock/price change, checkout/payment test or production release.
+- Next: complete run 42077207832, then reconcile original PDF pages and all exact source codes/variants/image matches before expanding beyond the 50-record pilot.
