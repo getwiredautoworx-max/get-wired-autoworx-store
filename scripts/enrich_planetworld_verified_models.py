@@ -102,7 +102,7 @@ def main() -> None:
             if image_url:
                 crop_value = one.get("image_crop", "").strip().lower()
                 if crop_value not in {"true", "false"} or not image_url.startswith("https://"):
-                    raise SystemExit(f"OneNav image candidate lacks HTTPS and an explicit crop decision for internal source row {index}")
+                    raise SystemExit(f"OneNav image candidate validation failed for internal source row {index}, SKU {one.get('supplier_sku_reference_only')!r}: crop={crop_value!r}, url={image_url[:120]!r}")
                 product["imageUrl"] = image_url
                 # Preserve the audited crop decision. Square/contain assets such as OA716-1
                 # must not be forced into a 4:3 cover crop that can cut off the product.
