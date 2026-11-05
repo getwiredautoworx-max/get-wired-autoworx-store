@@ -147,7 +147,7 @@ assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,66);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,68);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,48);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 assert.equal(verifiedModels.records.filter(row => row.imageUseAuthorization === 'OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04').length,2);
