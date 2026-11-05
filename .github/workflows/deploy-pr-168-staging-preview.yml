@@ -3,7 +3,7 @@ name: Single Active Owner Preview — Exact SHA Deploy and Browser QA
 on:
   push:
     branches:
-      - preview/integrated-storefront-2026-11-04
+      - integration/owner-preview-single-task-2026-11-05
     paths:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
