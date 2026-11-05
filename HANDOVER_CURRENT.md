@@ -3465,3 +3465,14 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Branch comparison at this checkpoint: 183 commits ahead / 4 behind `main`, status `diverged`. PR #178 remains draft and unmerged.
 - The latest preview refresh request is committed, but the connected GitHub workflow lookup does not expose push-triggered runs. No exact deployed-SHA marker or hosted browser/image-naturalWidth evidence has been retrieved. Therefore the preview is still NOT READY FOR OWNER REVIEW and no new link should be sent.
 - Next gate: verify the push-triggered exact-SHA deployment and hosted browser checks for 390px mobile and 1365px desktop, including category image URL/alt/naturalWidth audit and the brand → type → filtered-product navigation. If any image is broken or semantically mismatched, fix that mapping before owner review.
+
+
+## 2026-11-05 — CORRECTIVE SOURCE FIX: ILLUSTRATED CAR AUDIO ARTWORK
+
+- Owner's report that the preview still showed cartoon/irrelevant artwork was confirmed by source inspection on the active PR #178 branch.
+- Despite earlier photo-repair notes, `preview-category.html` still rendered `assets/car-audio-video-category.svg` for Car Audio & Video, and `preview-audio.html` restored the same illustrated SVG when the Car Audio department photo failed to load. This directly contradicted the earlier handover completion statement.
+- Corrected both paths: the standalone Car Audio category tile now uses the photographic car-speaker image with a truthful alt label; the audio department image error handler removes a failed image instead of substituting the illustration.
+- Strengthened `tests/audio-catalogue-preview.test.cjs` and `tests/three-category-storefront-structure.test.cjs` to fail if either customer-facing route contains the illustrated SVG reference and to require the photographic Car Audio asset.
+- Exact-head staging refresh requested via `.preview-deploy-request` on the sole active branch `integration/owner-preview-single-task-2026-11-05`. This source correction is not yet verified by a real Node test run, deployed SHA marker, hosted image naturalWidth check, or mobile/desktop browser journey.
+- Next gate: inspect the exact new branch head and workflow result; require the corrected photo to load, no SVG fallback, correct brand-first Car Audio and Home Entertainment journeys, and all existing checkout/write/SKU safeguards. Do not issue another owner preview link until those checks pass.
+- PR #178 remains draft/unmerged; all other storefront branches remain parked. Production, payment, checkout, Axxess, DNS, Supabase writes, live stock/pricing and supplier activation remain on hold.
