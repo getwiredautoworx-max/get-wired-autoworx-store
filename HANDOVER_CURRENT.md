@@ -4152,3 +4152,21 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 ## AUDIO BRAND CONTINUATION — 2026-11-05 19:40 SAST
 
 Latest OneNav-only image research and rejection decisions are recorded in [HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md](HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md). OneNav remains incomplete: no new exact product image was approved in the latest triage; visually similar A11/Evolution/Pro images were rejected where SKU/series did not match. Keep OneNav as the only active brand. The last passing preview workflow (42062037287) tested source SHA 2055dc4764c4d6280b6d026a105fecadc759f6a2, not the current branch source head; do not call the current branch preview-verified until an exact-head run passes. Production remains HOLD.
+
+
+## 2026-11-05 — Product-card presentation standard and continuation checkpoint
+
+Owner instruction: apply the supplied Sony XM-4ES example as the consistent customer-facing product-card/detail format across all categories, subcategories and brand pages. Required display order:
+1. **Exact product model** as the prominent first line.
+2. **Brand** immediately beneath the model.
+3. One concise, technically accurate paragraph containing the useful verified product specifications/features.
+4. **Selling price in ZAR** prominently displayed, using South African currency formatting.
+5. Correct actual product photograph for the exact model/variant.
+
+Implementation rules: apply through the shared product renderer rather than category-specific one-off styling; retain all valid underlying catalogue/specification/fitment data (do not delete or flatten source records); do not expose supplier names or supplier SKUs; never invent specifications, images or prices; keep unverified prices as the existing quote/confirmation state; preserve clear mobile-first alignment and readable spacing. The paragraph is a concise customer-facing summary, not permission to discard richer verified data. Example supplied by owner: XM-4ES / Sony / technical summary / R10 387,02.
+
+Task status at checkpoint: requirement recorded; implementation and regression coverage are NOT YET VERIFIED. Current active brand remains OneNav and must be completed before moving to another brand. The latest 19:40 handover checkpoint and the linked audio-brand addendum are newer than older 18:22/19:28 metrics; use the addendum's current audit counts and do not reuse stale counts. OneNav remains incomplete (42 unique official SKU/page matches and descriptions in the audit; 7 image candidates; 35 exact-photo gaps; 22 of 64 storefront cards remain outside the official audit). No brand completion claim.
+
+Next execution: inspect the current PR #178 candidate's shared product-card and detail renderers plus existing tests; implement the shared format without changing data, supplier/public-SKU privacy or verified price rules; add regression tests for model → brand → concise description → ZAR price → exact image; verify across the three approved root categories and all category/brand views. Continue OneNav enrichment one item at a time after shared renderer work. Run exact-head workflow and hosted mobile/desktop QA before issuing any refreshed preview. Keep PR #178 draft/unmerged and production HOLD; no live data, payment, DNS, Axxess, Supabase or production changes.
+
+Permanent handover file check: `AI_HANDOVER_PERMANENT.md` was not found at the repository root on the active integration branch (GitHub returned 404); do not claim it was updated. This requirement is preserved here in the current handover until the canonical permanent file path is located.
