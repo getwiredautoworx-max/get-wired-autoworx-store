@@ -223,9 +223,10 @@ jobs:
               await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const departmentArtwork=frame.locator('#departments .audioTile img');
               await frame.locator('#departments .audioTile').first().waitFor({state:'visible',timeout:15000});
-              const departmentImageAudit=await departmentArtwork.evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{await img.decode();return {alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0}})));
-              if(departmentImageAudit.length!==8||departmentImageAudit.some(x=>!x.loaded))throw new Error('All eight audio department buttons must load relevant local artwork: '+JSON.stringify(departmentImageAudit));
-              if(!departmentImageAudit.some(x=>x.src.includes('home-audio-cinema.svg'))||!departmentImageAudit.some(x=>x.src.includes('car-audio-video-category.svg')))throw new Error('Car Audio and Home Entertainment must have distinct category images');
+              await page.waitForFunction(()=>{const d=document.querySelector('#store')?.contentDocument;const imgs=[...(d?.querySelectorAll('#departments .audioTile img')||[])];return imgs.length===8&&imgs.every(img=>img.complete&&img.naturalWidth>0)},{timeout:30000});
+              const departmentImageAudit=await departmentArtwork.evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0})));
+              if(departmentImageAudit.length!==8||departmentImageAudit.some(x=>!x.loaded))throw new Error('All eight audio department buttons must load relevant artwork: '+JSON.stringify(departmentImageAudit));
+              if(!departmentImageAudit.some(x=>x.src.includes('home-audio-cinema.svg'))||!departmentImageAudit.some(x=>x.src.includes('XM5ES')||x.src.includes('car-audio-video-category.svg')))throw new Error('Car Audio and Home Entertainment must have distinct relevant category images');
               const klipsch=frame.locator('#brands .brandLogoButton[aria-label="Klipsch"]');
               await klipsch.waitFor({state:'visible',timeout:30000});
               const klipschLogo=klipsch.locator('img');
