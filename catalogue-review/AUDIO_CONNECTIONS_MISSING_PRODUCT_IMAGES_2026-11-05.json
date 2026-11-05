@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 60,
-  "recordsMissingVerifiedImage": 6,
+  "recordsWithImage": 61,
+  "recordsMissingVerifiedImage": 5,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -17,13 +17,6 @@
       "model": "860",
       "brand": "Starsound",
       "title": "Starsound 860 8-gauge",
-      "component": "Amplifier Installation Kits",
-      "descriptionPresent": true
-    },
-    {
-      "model": "412P",
-      "brand": "Starsound",
-      "title": "Starsound 412P 4-gauge",
       "component": "Amplifier Installation Kits",
       "descriptionPresent": true
     },
@@ -107,13 +100,13 @@
     "SSAR 22000.1 (manufacturer/retailer product listing confirms SSA-R-22000.1)",
     "SSA-R-2250.2",
     "SSA-R-6200.1D",
-    "SSA-R-6900.1D"
+    "SSA-R-6900.1D",
+    "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)"
   ],
   "imageCoverageNote": "57 of 66 Audio Connections preview records have exact-model image URLs with source-page references. Nine records remain without verified photos; the supplier Starsound price-list PDF has no embedded Starsound product photos, and no safe exact-model replacement was found for those rows. Do not use lookalikes.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860",
-    "412P",
     "RA AWG4",
     "BULLET LYNX",
     "RA SUPER RAST20"
@@ -121,7 +114,7 @@
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 15,
+    "sourceVerified": 16,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
