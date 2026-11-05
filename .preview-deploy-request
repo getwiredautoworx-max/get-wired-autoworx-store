@@ -258,3 +258,8 @@ request=owner-preview-continuation-exact-head-after-133-image-count-fix-2026-11-
 source_branch=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;node-audio-regression;three-category-structure;public-sku-audit;rrp-minus-2;exact-model-image-count-133;oneNav-logo;amplified-logo;home-entertainment-brand-first;home-entertainment-type-and-filtered-products;alpine-halo-11-image-and-description;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-retry-after-cloudflare-branch-alias-verification-fix-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker-on-wrangler-returned-branch-alias;node-regression;public-sku-audit;home-entertainment-full-journey;oneNav-amplified-logos;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
