@@ -3902,3 +3902,16 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Current owner review URL for the tested storefront code: `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`. Owner visual review is still required; this is not production readiness or owner acceptance.
 - Catalogue gap remains OPEN: 3,240/3,317 Planetworld records have no exact-model image match, 9 exact-model pages have no image available, and only 76 records currently have verified manufacturer descriptions. Audio Connections has 5/66 image URLs. Do not use generic product-type images in place of exact product photos. Continue manufacturer/source crosswalk and description enrichment, prioritising Car Audio and replacement radios.
 - No production merge/deployment, DNS, Axxess upload, live stock/price change, Supabase live write, supplier activation or checkout/payment activation.
+
+
+# STOREFRONT VISUAL QA CONTINUATION — 2026-11-05
+
+
+## Continued owner visual repair — 2026-11-05
+- Owner clarified that Get Wired AutoWorx sells authentic products it is authorised to sell and expects corresponding genuine brand/manufacturer and supplier catalogue imagery used for those products. Treat this as owner authorization to use supplied/approved catalogue imagery for the preview, subject to applicable brand/supplier conditions; do not represent it as a blanket legal determination. Do not hold back approved product images merely because they are branded.
+- Code change committed in `preview-audio.html`: One X / OneNav aliases now resolve through one normalized logo key; any Amplified name resolves through the Amplified official logo key. This addresses the existing mismatch risk where actual catalogue brand labels differ from the exact aliases previously handled.
+- Kicker directory tile enlarged from 150×48 CSS px + 1.28 transform to 176×60 + 1.38 transform, with a wider tile to prevent clipping. The separate Kicker hero treatment remains unchanged.
+- Regression test updated to assert One X/OneNav and Amplified alias normalization plus the new Kicker tile dimensions.
+- Added `catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json`: exact-model audit of the Audio Connections preview records. 66 records total; 4 carry image URLs and 62 have no verified product image URL. All 66 sampled records have descriptions. The missing image list records exact model/title, brand and component; do not fill with generic type photos. Source matching work remains open.
+- Important distinction: category/department button artwork uses separate category-level photographs; product cards must use exact product images. Do not treat category art as product photography.
+- No hosted runtime browser verification or deployment pass has yet been run for these latest code changes. Do not claim these repairs are visually verified or issue a fresh preview URL until exact-head workflow, image naturalWidth checks and mobile/desktop browser tests pass.
