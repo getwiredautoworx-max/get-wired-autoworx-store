@@ -225,7 +225,7 @@ assert.ok(audioPage.includes('el("brands").hidden=!department||brandChosen||dire
 assert.ok(audioPage.includes('el("components").hidden=!department||!brandChosen||directSearchRoute'), 'component choices must remain hidden until a brand is selected');
 assert.ok(audioPage.includes('function categoryArtFallback(label)'), 'category image failures must fall back to self-contained category artwork');
 assert.ok(previewCategory.includes('this.src=categoryArtFallback(this.alt)'), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
-assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio component image failures must show a relevant fallback illustration');
+assert.ok(audioPage.includes('img.onerror=function(){this.onerror=null;this.remove()}'), 'failed audio component photos must be removed without retrying the same failed URL or restoring generic/cartoon artwork');
 
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 
