@@ -224,3 +224,5 @@ assert.ok(builder.includes('"preview-audio-brand.html"') && builder.includes('"p
 for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
   assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing local product-type artwork: '+asset);
 }
+
+assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony brand wordmark');
