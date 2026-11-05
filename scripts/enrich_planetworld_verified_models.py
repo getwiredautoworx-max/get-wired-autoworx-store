@@ -43,8 +43,8 @@ def main() -> None:
     with ONE_AUDIT_PATH.open(newline="", encoding="utf-8-sig") as handle:
         one_rows = list(csv.DictReader(handle))
     one_by_sku = {row["supplier_sku_reference_only"]: row for row in one_rows}
-    if len(one_by_sku) != len(one_rows) or len(one_rows) != 14:
-        raise SystemExit("OneNav exact product-page audit must contain fourteen unique source matches")
+    if len(one_by_sku) != len(one_rows) or len(one_rows) != 21:
+        raise SystemExit("OneNav exact product-page audit must contain twenty-one unique source matches")
 
     verified_by_sku: dict[str, dict] = {}
     for model in verified:
@@ -168,24 +168,24 @@ def main() -> None:
         "unmatched_products": unmatched,
     }
     expected = {
-        "oneNav_pages": 14,
-        "oneNav_descriptions": 14,
+        "oneNav_pages": 21,
+        "oneNav_descriptions": 21,
         "oneNav_image_candidates": 6,
-        "oneNav_images_missing": 8,
+        "oneNav_images_missing": 15,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3235,
+        "unmatched_products": 3228,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 82,
-        "manufacturerDescriptionsVerified": 82,
+        "exactModelPagesReviewed": 89,
+        "manufacturerDescriptionsVerified": 89,
         "exactImageCandidatesApplied": 74,
-        "exactModelImagesMissing": 8,
-        "unmatchedProducts": 3235,
+        "exactModelImagesMissing": 15,
+        "unmatchedProducts": 3228,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
