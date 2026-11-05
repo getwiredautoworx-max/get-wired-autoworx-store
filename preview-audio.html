@@ -667,6 +667,7 @@ const routeParams=new URLSearchParams(location.search),requestedDepartment=route
 function exactModelMatch(title,model){const source=" "+String(title||"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim()+" ";const token=String(model||"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim();return !!token&&source.startsWith(" "+token+" ")}
 function uniqueExactRows(list){const seen=new Set();return list.filter(p=>{const key=JSON.stringify([p.collection,p.brand,p.title,p.component,p.indicativePrice,p.hasStock,p.modelNumber||""]);if(seen.has(key))return false;seen.add(key);return true})}
 const el=id=>document.getElementById(id),safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+if(department){el("audioDepartments").hidden=true;el("audioDepartments").style.display="none";el("departments").hidden=true;el("audioBrowse").hidden=false;el("brands").textContent="Loading brand choices…";}
 function button(label,active,fn){const b=document.createElement("button");b.textContent=label;if(active)b.style.background="#dceffc";b.onclick=fn;return b}
 const BRAND_LOGOS={
  "jbl":"/assets/brand-logos/jbl.svg",
