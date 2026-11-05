@@ -3669,3 +3669,33 @@ The current branch contains the 3,317-row Planetworld image audit, 3,317-row RRP
 5. Run exact-head Node regressions, public SKU/privacy audit, package build, hosted browser image naturalWidth/alt checks and mobile/desktop tests. Update this handover with exact SHA, run IDs, audit counts and preview URL only after evidence exists.
 6. Request owner phone review only when the latest preview corresponds to the exact tested SHA and the above visible asset checks pass.
 
+
+## 2026-11-05 continuation — OneNav product-photo and enrichment pipeline
+
+Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4777b199` (PR #178, still draft).
+
+### Current implementation
+- The owner-preview build now runs the two separate preview-only generators in order: `apply_planetworld_rrp_minus_2.py` for pricing, then `enrich_planetworld_verified_models.py` for exact-model descriptions/images. Both run only when `GW_INCLUDE_PREVIEW_ROUTES=1`, before the structural regression and package build.
+- The enrichment generator reads the internal 68-row verified-model crosswalk plus the nine-row OneNav official product-page audit. It validates the OneNav source SKU, exact source title and brand before applying any data. Public product records remove supplier SKU/model-number fields.
+- Expected enrichment totals are now: **77 exact product-page/model matches** (68 existing verified models + 9 OneNav); **76 verified descriptions** (68 existing + 8 OneNav Classic); **68 image URLs** (66 existing + 2 OneNav candidates); **9 exact pages without an approved image** (2 existing + 7 OneNav); **3,240 unmatched rows**.
+- OneNav image candidates are OA014-1 Prado 2002–2009 and OA015-1 Land Cruiser Pick Up 2012+. The incorrect OA1409-CPAA universal receiver image remains rejected. The two candidates are retailer-hosted exact-listing images, preview-only pending image-reuse rights and owner approval.
+- OneNav image cards use the 4:3 crop, centered at 50%, configured to omit the lower printed supplier-code strip. The audio directory/product routes now show an owner-preview image-rights note for candidate images and an explicit pending-photo placeholder when no exact image is available. No unrelated generic product image is substituted.
+- ONE/OneNav and Amplified brand-logo mappings remain remote Canto assets with a text fallback. A remote-asset test now checks both logos and the two OneNav product-image endpoints, but that test has not yet run successfully on the current head.
+
+### Pricing guardrails
+- Customer preview price remains `RRP inclusive of VAT × 0.98`; no additional VAT is added.
+- Current audit baseline: 3,298 priced rows; 19 zero-RRP rows remain Price On Request; 19 below-estimated-cost rows remain flagged for owner review; 3,279 rows pass the estimated cost floor. Preview-only; no live prices or stock are changed.
+- Public pricing metadata uses a neutral audit label; supplier names and internal audit paths must not appear in customer-facing JSON.
+
+### Test and release state
+- The stale public `verifiedOnly` assertion mentioned in an earlier handover is absent from the current structural test; the current assertion checks the combined audio catalogue and that the internal supplier crosswalk is not exposed.
+- Audio regression assertions now cover the OneNav records, 4:3 crop, brand labels, image-audit totals and remote logo/product image endpoints.
+- No workflow run or combined status was returned for exact head `46030aa569d9637a76bfe56525eaecef4777b199` at this update. Therefore there is **no verified current-head test pass, hosted deployment, or owner-ready preview**. Existing preview URLs are stale for these changes.
+- Production remains on hold: no merge, production deploy, DNS changes, Supabase writes, live stock/price changes, or checkout/payment activation without explicit owner approval.
+
+### Next execution order
+1. Get the PR #178 exact-head workflow to run and pass both data generators and both Node regression suites.
+2. Verify the hosted preview is built from that exact SHA.
+3. Check actual browser image loading and natural dimensions for ONE/OneNav, Amplified and the two product photos on desktop and mobile; visually confirm the crop hides the printed supplier code and shows the complete receiver.
+4. Ask for owner acceptance only after the exact-head preview is verified.
+5. Continue matching exact product photos and verified descriptions for the remaining unmatched catalogue rows; keep all unverified images/details explicitly pending.
