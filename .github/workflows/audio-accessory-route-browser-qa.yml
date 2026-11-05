@@ -1,23 +1,6 @@
 name: Car Audio Accessories Route Browser QA
 
 on:
-  push:
-    branches:
-      - integration/three-category-catalogue-preview-final-2026-11-03
-      - repair/pr-168-storefront-category-audio-2026-11-04
-      - preview/integrated-storefront-2026-11-04
-    paths:
-      - "index-new.html"
-      - "category.html"
-      - "preview-category.html"
-      - "index-new.html"
-      - "preview-audio.html"
-      - "assets/category-tree.json"
-      - "assets/planetworld-catalogue-preview.json"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - ".github/workflows/audio-accessory-route-browser-qa.yml"
   pull_request:
     branches: [main]
     paths:
