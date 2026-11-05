@@ -17,4 +17,4 @@ const cat=fs.readFileSync('category.html','utf8'),prev=fs.readFileSync('preview-
 for(const id of ['e6a10001-1b2c-4d3e-8f90-111111111111','e6a10002-1b2c-4d3e-8f90-222222222222','e6a10003-1b2c-4d3e-8f90-333333333333']){assert.ok(cat.includes(id));assert.ok(prev.includes(id));}
 const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
 assert.ok(builder.includes('asc-auto-electrical-preview.html'));assert.ok(builder.includes('asc-auto-electrical-preview.json'));assert.ok(builder.includes('asc-auto-electrical-pilot'));assert.ok(builder.includes('tests/asc-auto-electrical-integration.test.cjs'));
-console.log('ASC_AUTO_ELECTRICAL_INTEGRATION_PASS: four catalogues, 33 reviewed pilot cards, preview-only, no price/stock/SKU/checkout.');
+console.log('ASC_AUTO_ELECTRICAL_INTEGRATION_PASS: four catalogues, 34 reviewed pilot cards, preview-only, no price/stock/SKU/checkout.');

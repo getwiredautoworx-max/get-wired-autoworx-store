@@ -78,6 +78,35 @@ if include_preview:
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
+# Keep the ASC catalogue expansion isolated to explicit non-production previews.
+# The standard/main customer package retains the previous approved category tree
+# until the owner accepts the catalogue and image-use/commercial release gates.
+if not include_preview:
+    category_path = OUT / "assets" / "category-tree.json"
+    category_tree = json.loads(category_path.read_text(encoding="utf-8"))
+    preview_ids = {
+        "e6a10001-1b2c-4d3e-8f90-111111111111",
+        "e6a10002-1b2c-4d3e-8f90-222222222222",
+        "e6a10003-1b2c-4d3e-8f90-333333333333",
+    }
+    category_tree["categories"] = [
+        item for item in category_tree["categories"] if item.get("id") not in preview_ids
+    ]
+    globe = next(item for item in category_tree["categories"] if item.get("id") == "89595653-97d4-4b18-ba69-117547d32ed0")
+    globe["name"] = "Globes & Vehicle Lighting"
+    globe["slug"] = "globes-vehicle-lighting"
+    category_tree["categories"].append({
+        "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
+        "name": "Sensors & Switches",
+        "slug": "sensors-switches",
+        "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+        "active": True,
+        "direct_active_products": 0,
+        "sort_order": 6,
+    })
+    category_tree["source"] = "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved."
+    category_path.write_text(json.dumps(category_tree, indent=2) + "\\n", encoding="utf-8")
+
 image_source = ROOT / "assets" / "products_webp"
 if not image_source.is_dir():
     raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
