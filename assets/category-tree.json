@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-11-05T00:00:00Z",
-  "source": "Three-category owner-approved hierarchy with four ASC Auto Electrical catalogue groups added as preview-only navigation. ASC pilot records are not live products.",
+  "source": "Owner-approved preview category tree with six ASC catalogue families as separate Auto Electrical Spares subcategories; preview-only category navigation, no live assignments.",
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
@@ -213,10 +213,10 @@
       "id": "c35d15c1-d665-413f-b528-878b6a655d5d",
       "name": "Car Mats",
       "slug": "car-mats",
-      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
       "active": true,
       "direct_active_products": 0,
-      "sort_order": 2
+      "sort_order": 10
     },
     {
       "id": "b4332bab-a908-4c27-9fe4-68965617620e",
@@ -249,10 +249,10 @@
       "id": "b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90",
       "name": "Aerials",
       "slug": "aerials",
-      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
       "active": true,
       "direct_active_products": 0,
-      "sort_order": 1
+      "sort_order": 9
     },
     {
       "id": "e6a10001-1b2c-4d3e-8f90-111111111111",
