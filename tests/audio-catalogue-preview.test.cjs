@@ -26,11 +26,11 @@ function parseCsvRows(source) {
       else value+=ch;
     } else if(ch==='"')quoted=true;
     else if(ch===','){row.push(value);value='';}
-    else if(ch==='\\n'){row.push(value.replace(/\\r$/,''));rows.push(row);row=[];value='';}
+    else if(ch==='\n'){row.push(value.replace(/\r$/,''));rows.push(row);row=[];value='';}
     else value+=ch;
   }
-  if(value.length||row.length){row.push(value.replace(/\\r$/,''));rows.push(row);}
-  if(rows.length)rows[0][0]=rows[0][0].replace(/^\\uFEFF/,'');
+  if(value.length||row.length){row.push(value.replace(/\r$/,''));rows.push(row);}
+  if(rows.length)rows[0][0]=rows[0][0].replace(/^\uFEFF/,'');
   return rows;
 }
 const planetSourceRows=[];
