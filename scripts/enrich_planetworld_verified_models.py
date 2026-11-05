@@ -169,7 +169,7 @@ def main() -> None:
     }
     expected = {
         "oneNav_pages": 9,
-        "oneNav_descriptions": 8,
+        "oneNav_descriptions": 9,
         "oneNav_image_candidates": 6,
         "oneNav_images_missing": 3,
         "verified_model_matches": 68,
@@ -182,7 +182,7 @@ def main() -> None:
 
     data["productImageEnrichment"] = {
         "exactModelPagesReviewed": 77,
-        "manufacturerDescriptionsVerified": 76,
+        "manufacturerDescriptionsVerified": 77,
         "exactImageCandidatesApplied": 72,
         "exactModelImagesMissing": 5,
         "unmatchedProducts": 3240,
