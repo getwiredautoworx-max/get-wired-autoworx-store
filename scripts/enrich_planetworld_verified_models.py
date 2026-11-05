@@ -100,10 +100,13 @@ def main() -> None:
                 description_status = product["descriptionStatus"]
             image_url = one.get("image_url_candidate", "").strip()
             if image_url:
-                if one.get("image_crop", "").strip().lower() != "true" or not image_url.startswith("https://"):
-                    raise SystemExit(f"OneNav image candidate lacks HTTPS/crop verification for internal source row {index}")
+                crop_value = one.get("image_crop", "").strip().lower()
+                if crop_value not in {"true", "false"} or not image_url.startswith("https://"):
+                    raise SystemExit(f"OneNav image candidate lacks HTTPS and an explicit crop decision for internal source row {index}")
                 product["imageUrl"] = image_url
-                product["imageCrop"] = True
+                # Preserve the audited crop decision. Square/contain assets such as OA716-1
+                # must not be forced into a 4:3 cover crop that can cut off the product.
+                product["imageCrop"] = crop_value == "true"
                 product["imagePosition"] = one.get("image_position", "center 40%") or "center 40%"
                 product["imageStatus"] = "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE"
                 image_status = product["imageStatus"]
