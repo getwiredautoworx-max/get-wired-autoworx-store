@@ -429,6 +429,10 @@ for (const row of [oneNavPrado, oneNavLandCruiser]) {
   assert.equal(Object.hasOwn(row, 'dealerCost'), false);
 }
 assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
+const oneNavBaleno = planet.records.find(row => row.imageUrl && row.imageUrl.includes('/oa716-1/pictures/oa716-1-suzuki-baleno_'));
+assert.ok(oneNavBaleno && oneNavBaleno.title.includes('Baleno') && oneNavBaleno.title.includes('Starlet'), 'OA716-1 must retain the exact Planetworld Baleno/Starlet product image');
+assert.equal(oneNavBaleno.imageCrop, false, 'OA716-1 square manufacturer asset must keep its explicit no-crop decision and render contained');
+assert.equal(oneNavBaleno.imageStatus, 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE');
 assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 100);
