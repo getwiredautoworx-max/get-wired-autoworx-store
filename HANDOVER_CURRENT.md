@@ -3182,3 +3182,9 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 - Read this branch handover at run start (blob `1717ebad13e6c1bf68b05061450ef11d1740debf`). Monitoring PR #95 and the read-only Planetworld audit workflow; current evidence must be refreshed before changing any non-zero-RRP review conclusions.
 - No supplier workbook edits, supplier-data publication/import, live catalogue/price/stock/active-flag changes, PR merge, production deployment, Axxess/DNS/payment change, or release-credit use is authorised.
 - Status: in progress. Next: inspect the current branch reports, PR #95 state/head, audit run/job/artifact and current source-evidence holds.
+
+## 2026-11-05 09:19 SAST — PR #95 STATE VERIFIED
+
+- GitHub pull request #95 is **CLOSED / UNMERGED / NOT MERGEABLE**. PR head SHA `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`; base `main` SHA `3b7003862725714ce8e8d108f670a5c4acde51b1`; last updated `2026-10-30T09:02:49Z`. Do not reopen, merge, or use it as a live branch.
+- The named branch ref `docs/planetworld-blocker-handover-2026-10-26` has since advanced beyond the closed PR head for documentation work; keep PR head and branch tip distinct in future status reports.
+- Subtask outcome: SUCCESS — current PR state/head/mergeability read from GitHub API. Next: verify the latest read-only audit workflow/run/job/artifact and current background preview runs.
