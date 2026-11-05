@@ -16,7 +16,7 @@ const audioProductsPage = read('preview-audio-products.html');
 const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
-assert.ok(categoryPage.includes("photo-1593359677879-a4bb92f829d1'],\n  [/speaker"), 'category artwork mapping entries must remain comma-separated so the root category renderer does not crash');
+assert.ok(categoryPage.includes("photo-1558284296-7579da2deb30')") && categoryPage.includes("photo-1726248985986-20bef82d2b52"), 'category artwork mapping must retain distinct home-theatre and car-speaker photographs');
 const previewCategoryInlineScripts = previewCategory.split('<script>').slice(1).map(part => part.split('</script>')[0]);
 assert.ok(previewCategoryInlineScripts.length > 0, 'preview category page must contain its navigation script');
 for (const script of previewCategoryInlineScripts) new vm.Script(script);
@@ -28,15 +28,15 @@ for (const [name,page] of [['brand',audioBrandPage],['products',audioProductsPag
   assert.ok(scripts.length>0, 'audio '+name+' route must contain its navigation/catalogue script');
   for (const script of scripts) new vm.Script(script);
 }
-assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82\" alt=\"Home entertainment television and home theatre system\" loading=\"lazy\" referrerpolicy=\"no-referrer\"></span>'"), 'Home Entertainment homepage tile must use real television and home-theatre photography, not car/cartoon imagery');
+assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82\" alt=\"Home entertainment television and home theatre system\" loading=\"lazy\" referrerpolicy=\"no-referrer\"></span>'"), 'Home Entertainment homepage tile must use real television and home-theatre photography, not car/cartoon imagery');
 assert.ok(home.includes("if(c.id==='gw-audio-band')") && home.includes('alt=\"Band equipment and live sound stage\"'), 'Band Equipment tile must use relevant live-sound photography');
 assert.ok(home.includes("if(c.id==='gw-audio-dj')") && home.includes('alt=\"DJ mixer and decks\"'), 'DJ Equipment tile must use relevant DJ equipment photography');
 assert.ok(home.includes("if(c.id==='gw-audio-instruments')") && home.includes('alt=\"Musical instruments including guitar and keyboard\"'), 'Instruments tile must use musical instrument photography');
-assert.ok(home.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
-assert.ok(home.includes("if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b')") && home.includes('alt="Sony XM-5ES car audio amplifier"'), 'Car Audio & Video child category button must use real car-audio product artwork');
-assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
+assert.ok(home.includes('https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
+assert.ok(home.includes("if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b')") && home.includes('alt="Car audio speakers installed in a vehicle"'), 'Car Audio & Video child category button must use real car-audio product artwork');
+assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
 assert.ok(home.includes('class="catArt audioFourTile" aria-label="Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment"'), 'Audio, Entertainment & Music root tile must be a four-picture collage for the four main departments');
-for (const alt of ['Sony XM-5ES car audio amplifier','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
+for (const alt of ['Car audio speakers installed in a vehicle','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
 const planetPage = read('preview-planetworld.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
@@ -134,7 +134,7 @@ assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
 assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
-assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1608043152269-423dbba4e7e1') && audioBrandPage.includes('images.unsplash.com/photo-1583394838336-acd977736f90'), 'brand page must use photographic product-type artwork');
+assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1726248985986-20bef82d2b52') && audioBrandPage.includes('images.unsplash.com/photo-1543017471-62c14029f7ce'), 'brand page must use photographic product-type artwork');
 assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
 assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
@@ -204,7 +204,7 @@ assert.ok(audioPage.includes('el("products").hidden=!department||(component==="A
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 assert.ok(categoryPage.includes("document.getElementById('search')?.addEventListener"), 'category navigation must not crash when the optional search field is absent');
 
-assert.ok(audioPage.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must show real car-audio product photography');
+assert.ok(audioPage.includes('https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'), 'Car Audio & Video department button must show real car-audio product photography');
 assert.ok(!audioPage.includes('img.src="assets/car-audio-video-category.svg"'), 'the Home Entertainment illustration must not be reused for Car Audio & Video');
 const audioCategoryArtwork = read('assets/car-audio-video-category.svg');
 assert.ok(audioCategoryArtwork.includes('<title id="title">Audio and home entertainment</title>'), 'audio category artwork must be explicitly audio/home-entertainment themed');
@@ -229,10 +229,10 @@ assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare previe
 
 // Owner visual requirement: the customer-facing audio department and component cards use photographic art.
 for (const photo of [
-  'photo-1593359677879-a4bb92f829d1',
-  'photo-1608043152269-423dbba4e7e1',
+  'photo-1558284296-7579da2deb30',
+  'photo-1726248985986-20bef82d2b52',
   'photo-1545454675-3531b543be5d',
-  'photo-1583394838336-acd977736f90',
+  'photo-1543017471-62c14029f7ce',
   'photo-1506157786151-b8491531f063',
   'photo-1642177272498-98096a6c98e4'
 ]) {
