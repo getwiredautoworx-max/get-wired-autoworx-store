@@ -2,9 +2,9 @@ name: Cloudflare Pages Public Package QA
 
 on:
   push:
-    branches: [preview/integrated-storefront-2026-11-04]
+    branches: [preview/integrated-storefront-2026-11-04, integration/asc-auto-electrical-clean-2026-11-05]
   pull_request:
-    branches: [main]
+    branches: [main, preview/integrated-storefront-2026-11-04]
     paths:
       - "scripts/build-cloudflare-pages-public.py"
       - ".github/workflows/cloudflare-pages-deploy.yml"
@@ -31,6 +31,8 @@ on:
       - "preview-planetworld.html"
       - "preview-audio.html"
       - "asc-catalogue-preview.html"
+      - "asc-auto-electrical-preview.html"
+      - "tests/asc-auto-electrical-integration.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/asc-catalogue-preview.test.cjs"
       - "tests/three-category-storefront-structure.test.cjs"
@@ -51,13 +53,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-auto-electrical-preview.html; do
             test ! -e "pages-public/$page"
           done
           test ! -d pages-public/assets/asc-catalogue-source
           test ! -e pages-public/assets/planetworld-catalogue-preview.json
           test ! -e pages-public/assets/planetworld-verified-models-preview.json
           test ! -e pages-public/assets/audio-connections-catalogue-preview.json
+          test ! -e pages-public/assets/asc-auto-electrical-preview.json
+          test ! -d pages-public/assets/asc-auto-electrical-pilot
           echo "PAGES_STANDARD_PREVIEW_EXCLUSION_PASS"
       - name: Build isolated non-production preview package
         env:
@@ -67,7 +71,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-auto-electrical-preview.html;
             test -s "pages-public/$page"
           done
           test ! -d pages-public/suppliers
@@ -83,6 +87,9 @@ jobs:
           test -s pages-public/assets/planetworld-catalogue-preview.json
           test -s pages-public/assets/planetworld-verified-models-preview.json
           test -s pages-public/assets/audio-connections-catalogue-preview.json
+          test -s pages-public/assets/asc-auto-electrical-preview.json
+          test -d pages-public/assets/asc-auto-electrical-pilot
+          test "$(find pages-public/assets/asc-auto-electrical-pilot -maxdepth 1 -type f -iname "*.jpg" | wc -l)" -eq 50
           node tests/audio-catalogue-preview.test.cjs
           node tests/three-category-storefront-structure.test.cjs
           python3 scripts/public-sku-audit.py
