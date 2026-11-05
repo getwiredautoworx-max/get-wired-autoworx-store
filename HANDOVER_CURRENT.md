@@ -3330,3 +3330,34 @@ Read-only audit of the sanitized JSON used by PR #139:
 3. If package and catalogue/category checks pass, verify the exact deployed SHA and run hosted 390px / 1365px browser checks for all three root categories, all eight audio department images, OneNav/Amplified logos, Car Audio brand → product-type → filtered products, Home Entertainment journey, and remaining requested product images/descriptions.
 4. Keep PR #178 draft/unmerged and production HOLD. No Axxess, DNS, Supabase writes, live catalogue/price/stock changes, payment activation or production deployment.
 5. Do not send an owner preview URL until all current-head checks pass and the URL is tied to that exact SHA.
+
+
+## ONE BRAND AT A TIME — ONENAV WORKSTREAM UPDATE (2026-11-05 18:02 SAST)
+
+### Scope lock
+- User explicitly directed that brand verification and reconciliation proceed one brand at a time. **ONE / OneNav is the active brand. Do not start the next brand until OneNav is fully resolved and verified.**
+- Do not mark OneNav complete or deliver the final owner preview while its product records still have unverified descriptions/images.
+
+### OneNav identity and page
+- The prior directory/dedicated-page mapping incorrectly reused the Planetworld `_OneX.png` artwork for OneNav.
+- Current candidate separates the marks: OneNav uses a dedicated text wordmark SVG data image; OneX retains the distinct `_OneX.png` artwork. The OneNav brand-directory and dedicated-brand-page source mappings and regression checks now enforce this split.
+- Hosted audit on exact preview run 42060093755 confirmed the OneNav wordmark loaded (300px natural width) and the OneNav dedicated product route displayed 64 products, 6 image candidates and 6 review notes. That run later failed on an outdated hosted RRP audit expectation; the OneNav logo checks themselves had passed. The wordmark is typographic text, not a downloaded official logo asset; official OneNav site header uses the OneNav wordmark and the OneX mark is separate.
+
+### OneNav catalogue enrichment
+- Internal official-page audit expanded from 9 to **14 unique exact product-page matches**. Five additional Classic SKU/fitment pages were verified and descriptions added: OA016-2 (Corolla Cross), OA017-1 (Fortuner 2016–2019), OA018-2 (Hilux 2019+), OA416-1 (Nissan Terra 2022+) and OA509-1 (GWM Steed 5E).
+- OneNav totals now expected: 14 exact manufacturer pages, 14 descriptions, 6 image candidates and 8 exact-image gaps. Do not attach an image unless the exact model/fitment is verified. In particular, the official OA016-2 page-linked image was inspected and shows code OA1409-CPAA (a different universal unit); it was rejected.
+- Current Car Audio brand filter contains 64 product cards. Only 14 of those currently have exact official manufacturer page/description matches; 6 have preview-only image candidates; 8 of the 14 verified records still lack an approved exact image. The remaining product records still need exact manufacturer mapping and descriptions/images. OneNav is therefore **not resolved**.
+- Combined Planetworld audit totals after this update: 68 exact verified-model image matches + 6 OneNav image candidates = 74 image URLs; 68 verified-model descriptions + 14 OneNav descriptions = 82 described records; 3,235 rows remain unmatched. Supplier identifiers remain internal only.
+
+### Test and preview state
+- Corrected stale enrichment expectations without removing catalogue data: verified-model image count 66 → 68; total exact image candidates 72 → 74; OneNav Classic/Evolution description classification corrected; OneNav audit totals expanded to 14/14/6/8.
+- Hosted preview RRP audit expectation corrected to 74 image URLs and 82 described records. Earlier hosted run 42060093755 reached this check after OneNav, Amplified, Kicker, and all eight audio department images loaded; it failed because the workflow still expected 68 images / 76 descriptions.
+- Latest candidate branch head at this update: `66015249b53f0b8d7627c49cfcd49d5f347004c9`. Exact-head workflow run 42060692811 is queued; do not assume deployment/hosted QA has passed until its result is read.
+- Previous preview URL `https://af228e24.get-wired-autoworx-store.pages.dev` belongs to older SHA `a9c6876cb3729f16296b99aa6e0d255cdbdb36bf`; do not present it as the current preview.
+
+### Next actions
+1. Let the latest exact-head run complete; reconcile any new test failures against actual audited counts, preserving all valid product data.
+2. Verify current exact SHA, OneNav directory wordmark and dedicated page, all 6 image candidates actually load, and 390px/1365px hosted views.
+3. Continue OneNav only: reconcile the remaining 50 product cards against exact manufacturer pages, descriptions and exact-model photos; do not reuse A10/A11/Evolution/Universal variants across Classic fitments.
+4. Only after the OneNav page is complete and hosted QA passes, move to the next brand.
+5. Keep PR #178 draft/unmerged and production HOLD. No Axxess, DNS, Supabase writes, live stock/price changes, payment activation or production deployment.
