@@ -3468,3 +3468,19 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 2. Cross-reference exact source SKUs against the existing illustrated catalogue, stock workbook and image-rights register; keep all uncertain matches and any rights/fitment holds out of customer product cards.
 3. Prepare a dedicated review-only Aerials route that clearly separates verified matches from unresolved source items, with no invented price/stock and the approved quote-only wording where a product is eligible for preview.
 4. Add targeted route/data/image assertions and obtain exact-head hosted preview QA on the approved non-production workflow. Only then share a current preview and reinstate the category freeze.
+
+
+## Continuation checkpoint — 2026-11-05
+
+- Resume from branch `task/asc-aerials-accessories-2026-11-05`, latest confirmed commit `af2f19593353038a247e234092de555850afb891`. This handover update is the continuation checkpoint; read `AI_HANDOVER_PERMANENT.md` before code changes.
+- Do not restart source discovery. The original seven-page August 2026 ASC Aerials PDF has already been recovered from the Library as `/ASC- Aerials.pdf` (2,048,897 bytes) and rendered for visual inspection. Earlier notes saying binary inspection was unavailable are superseded by that successful recovery.
+- Next: inspect the rendered original pages 4–7 tile by tile, then visually verify page 3 OCR model codes. Preserve all 78 catalogue lines and the six source sections. Record printed code (or “not legible”), printed description, source page/section and tile/image reference for every row. Never infer a code from a legacy product.
+- Cross-reference legible exact source codes against the illustrated catalogue pages 98–104, stock workbook and image-rights register. Label results exact match / candidate / unmatched. Legacy prices and stock are not current ASC data. EX908-4M and GK-311N images remain publication HOLD unless rights and fitment evidence are resolved.
+- Authorized implementation remains only `Audio, Entertainment & Music → Car Audio → Accessories → Aerials`. Keep Trims & Harnesses as a separate sibling under Accessories. No further Aerials children. Do not move Aerials under Auto Electrical.
+- Build only a dedicated review-only Aerials route. Show customer-preview products only where identity, description and image mapping are supported; keep unresolved entries in an owner review view, not as verified products. Do not invent prices or stock. Approved no-price wording, where suitable: “Price On Request due to Limited Stock and Availability”. Do not expose supplier names or prohibited supplier SKU data.
+- Add route, hierarchy, product/image mapping, traceability, privacy, 390px mobile and 1365px desktop tests. Inspect the approved non-production preview workflow and PR #178 before dispatch; do not alter its branch or unrelated audio files.
+- Share a new preview URL only after exact-head deployment marker, image loads, navigation, mobile/desktop checks and zero-JS-error checks pass. Keep PR draft/unmerged and production HOLD. Reinstate the Car Audio Accessories freeze only after Aerials integration and verification succeed.
+- Scope lock remains Aerials only. No Sensors, Switches, Automotive Globes, Fuel Pumps, Car Mats, Buyers Guides, other suppliers/categories, unrelated store changes, production/Axxess/DNS/Supabase/live stock/price/payment actions or release. “Continue” means continue this Aerials task only.
+
+### Status at handover
+Original PDF recovered and visually inspected; page 3 OCR is provisional and needs tile verification; pages 4–7 still need transcription; no complete 78/78 SKU-image mapping or verified GW SKU assignment exists; no staged product dataset or Aerials-specific hosted preview exists; Aerials currently has no integrated active products. No production/live changes made. Category freeze remains pending successful completion.
