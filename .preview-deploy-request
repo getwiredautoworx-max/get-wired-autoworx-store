@@ -14,3 +14,5 @@ request=PR-176-exact-head-after-handover-checkpoint-2026-11-05
 requested_head=1d2c0491d8a9110194bdc443d7c4cc3eb5a4154b
 request=PR-176-owner-category-navigation-fix-exact-head-2026-11-05
 requested_head=382f8d2c37335e1cf628e9fd1007cbd76da77dbd
+request=PR-176-compact-category-tiles-and-three-root-pages-exact-head-2026-11-05
+requested_head=980a358feed7d19fa6d8d66dc719744e40a1349f
