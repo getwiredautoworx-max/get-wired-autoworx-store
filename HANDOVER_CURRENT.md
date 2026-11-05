@@ -3270,3 +3270,10 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Updated the missing-image audit JSON, regression test expectations and exact-head workflow guard to 63 image URLs / 3 explicitly tracked missing models. The exact-head workflow run is 42044707816 for branch head 9d4314cdafa1ee5a376b15ef85e2a0bf6ba4e022 and is currently running. Its hosted browser audit must verify all four replacement URLs and the new EQ7100 image.
 - The earlier hosted pass on run 42042732846 confirmed the OneNav and Amplified logos, all eight audio category artwork tiles, Kicker route, and all 68 Planetworld exact-model images. That run's failure was confined to four broken Audio Connections image URLs and the four missing-image audit count; those sources/counts have now been corrected. One low-resolution Lynx image and three missing exact-model images remain blockers for owner preview acceptance.
 - No preview link issued. No merge, production deployment, Axxess/DNS/payment change, Supabase write, live stock/price mutation, or supplier activation performed.
+
+
+## RA-EL4 SOURCE RECONCILIATION — 2026-11-05 16:34 SAST
+
+- The latest candidate branch contains the My Audio & Security RA-EL4 image source, not the Mamas Boombox URL noted in the prior update. This is deliberate and better verified: the My Audio product page explicitly identifies the Reference Audio RA-EL4 (also labeled EL4), displays the RA-EL4 package photo at 600×319, and lists the kit contents. The test and audit now match this exact source.
+- Current branch commits: 466ebd25f9a2f1d796967f5bdf39ee1b18e38a9d (exact Sony/RA-EL4 assertions) and 8f23056075c2c32bc129c8bd4c630077a70a8318 (audit source correction). Latest run 42045275342 for 8f23056075c2c32bc129c8bd4c630077a70a8318 is pending; the earlier run for 466ebd25 is still in progress. Wait for the latest exact-head result before further edits.
+- No preview link issued; the 3 unverified model images and the low-resolution Blackspider Lynx image remain open acceptance blockers.
