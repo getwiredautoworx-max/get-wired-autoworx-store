@@ -32,7 +32,7 @@ assert.ok(poaLabel.includes('SPECIAL ORDER — PRICE ON APPLICATION') && poaLabe
 assert.ok(route.includes('SPECIAL ORDER — PRICE ON APPLICATION'), 'POA/POR special-order rows must explain enquiry-time pricing and exchange-rate variation');
 assert.ok(route.includes('may vary due to currency exchange-rate fluctuations'), 'special-order prices must disclose exchange-rate variation');
 assert.ok(!route.includes('Indicative preview: R'), 'customer-facing audio preview must not label unapproved estimates as indicative prices');
-assert.ok(route.includes('https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'), 'Car Audio & Video department button must use a category-matched car-speaker photograph');
+assert.ok(route.includes('https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'), 'Car Audio & Video department button must use a category-matched car-speaker photograph');
 assert.ok(!route.includes('img.src="assets/car-audio-video-category.svg"'), 'Home Entertainment artwork must not be reused for Car Audio & Video');
 assert.ok(!route.includes('car-audio-video-category.svg'), 'audio department cards and image-error fallbacks must never use illustrated SVG artwork');
 assert.ok(!categoryRoute.includes('car-audio-video-category.svg'), 'standalone category cards must use photographic Car Audio artwork, not illustrated SVG artwork');
@@ -240,7 +240,7 @@ assert.ok(!route.includes('/assets/audio-types/'), 'Audio department and compone
 assert.ok(!productRoute.includes('/assets/audio-types/'), 'Product-type buttons must use photographs, not illustrated SVGs');
 assert.ok(!brandRoute.includes('/assets/audio-types/'), 'Brand product-type buttons must use photographs, not illustrated SVGs');
 assert.ok(!route.includes('data:image/svg+xml') && !categoryRoute.includes('data:image/svg+xml'), 'Customer-facing category fallbacks must not generate cartoon SVGs');
-assert.ok(route.includes('images.unsplash.com/photo-1726248985986-20bef82d2b52'), 'Audio component buttons must use photographic speaker artwork');
+assert.ok(route.includes('images.unsplash.com/photo-1654447398824-dbcbefeafdd6'), 'Audio component buttons must use photographic speaker artwork');
 assert.ok(productRoute.includes('images.unsplash.com/photo-1776176359206-a1d34436ddff'), 'Product-type buttons must use photographic subwoofer artwork');
 assert.ok(categoryRoute.includes('images.unsplash.com/photo-1558284296-7579da2deb30'), 'Category fallback must use photographic Home Entertainment artwork');
 
@@ -251,7 +251,7 @@ assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand s
 /* Department selection must remove the previous department menu before showing brands. */
 assert.ok(route.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'Selecting an audio department must hide the previous department menu');
 assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1558284296-7579da2deb30'), 'Home Entertainment department must use photographic category artwork');
-assert.ok(route.includes('"Car Audio":"https://images.unsplash.com/photo-1726248985986-20bef82d2b52'), 'Car Audio department must use a category-matched car-speaker photograph');
+assert.ok(route.includes('"Car Audio":"https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6'), 'Car Audio department must use a category-matched car-speaker photograph');
 assert.ok(route.includes('"Band & Live Sound":"https://images.unsplash.com/'), 'Band & Live Sound must use photographic artwork');
 assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
 assert.ok(route.includes('window.location.assign("preview-audio.html?"+u.toString())'), 'Department buttons must navigate to the selected department route');
