@@ -3632,3 +3632,40 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - The preview data generators completed successfully on the next build: RRP rule (3,298 priced / 19 quote-only / 19 below-cost review) and exact-model enrichment (68 matched / 66 images / 2 missing / 3,249 unmatched).
 - The Node regression suite then failed because `tests/three-category-storefront-structure.test.cjs` still pinned the previous Pioneer Malaysia image domain. The replacement is the exact DMH-AP6650BT product image from Pioneer South Africa, so the test now checks `www.pioneersouthafrica.co.za`.
 - No deployment occurred from the failed build. The next run must pass both Node suites and hosted browser QA.
+
+
+---
+
+## OWNER CONTINUATION — PRODUCT ACCURACY & BRAND LOGOS — 2026-11-05 13:40 SAST
+
+Owner's latest approved template requirements:
+1. Correct, exact product photograph for every product; never substitute unrelated generic/cartoon artwork or another model/variant.
+2. Planetworld selling price = source RRP (already inclusive of VAT) × 0.98. Do not add VAT again.
+3. Correct product titles, descriptions, features and fitment, supported by the exact manufacturer model/page or source catalogue. Do not infer missing specifications.
+4. Add working, visually correct OneNav and Amplified logos to their brand buttons.
+
+### Active workstream and release boundary
+- Keep PR #178 as the single active storefront integration candidate; do not create parallel storefront branches or restart the navigation work.
+- Latest recorded successful exact-head hosted QA in the PR description: run 42015669402, tested/deployed SHA `8e0c4ced3868b91c08d086c938e5bb51ad04dd87`; owner preview `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- That recorded QA passed the tested Car Audio → Sony → Amplifiers and Home Entertainment → Klipsch → Home Audio & Cinema journeys at 390px mobile and 1365px desktop, category grids, product filtering, 47 Trims & Harnesses products, zero JavaScript errors and no desktop horizontal overflow. This is automated preview evidence only; owner visual acceptance is still pending.
+- The PR's most recent recorded branch checkpoint in its description is `57240bf34c08a11b220615f820136d327f4a7d8e`; reconcile this with the successful run SHA before making any new code or deployment claim. A later main-branch CI commit is not proof that PR branch code changed.
+- Keep PR #178 draft and unmerged. Preview only. No production deployment, Axxess upload, DNS change, Supabase/live write, supplier activation, live stock/price change, checkout/payment activation or launch without explicit owner approval.
+
+### 2026-11-05 audit findings — do not overstate completion
+The current branch contains the 3,317-row Planetworld image audit, 3,317-row RRP audit and OneNav exact-model enrichment audit.
+
+- Planetworld image audit: 3,240/3,317 rows have no exact-model image match; 48 are official manufacturer image matches marked review-only; 12 are official manufacturer image review-only; 4 are official manufacturer-page image links for review; 2 are owner-preview candidates; 2 are marked manufacturer-authorized for store preview; 9 exact-model pages were checked but no image is available. These are not 3,317 completed product photos. Do not display unrelated stock photos as if they are product images.
+- Manufacturer description audit: 67 manufacturer descriptions verified, plus 8 OneNav Classic specification descriptions verified; one further OneNav record has details pending. 3,235 of the Planetworld rows still have no manufacturer-description match. Do not invent technical features or vehicle fitment.
+- Planetworld RRP audit: 3,279 rows pass the estimated cost floor at RRP less 2%; 19 rows are below estimated VAT-inclusive dealer cost and must be flagged for owner pricing review; 19 zero-RRP rows remain Price On Request. The formula is already VAT-inclusive: no additional VAT. All figures remain preview-only; no live price changes.
+- The pricing audit uses a 2026-10-25 supplier workbook snapshot. Confirm source freshness before any later publication.
+- The current OneNav/Amplified brand-logo resolver in `preview-audio-brand.html` points to remote Canto image URLs. A failed logo falls back to a text wordmark. This does not yet prove both image logos load reliably in the hosted Android/desktop preview. Verify actual HTTP/image natural dimensions and visible logo rendering; package stable approved local assets where permitted. Do not mark the logo task complete on URL presence alone.
+- OneNav audit: exact official product pages and model/vehicle matches were checked for the listed OneNav records. Only the Prado and Land Cruiser Pick Up image candidates have supplied cropped image URLs; several other exact product pages show an image but the asset is not individually extracted/approved, and the Isuzu page reports image pending. Never substitute a different receiver model.
+
+### Next execution order
+1. Reconcile PR #178 actual current head against run 42015669402 and the PR description; keep one source of truth.
+2. Fix OneNav and Amplified logo delivery as packaged, tested assets or otherwise prove their current image URLs load in the exact hosted preview; add explicit browser assertions for both buttons at mobile and desktop.
+3. Continue exact-model photo matching and description enrichment in small auditable batches. Prioritise the catalogue products visible in the owner preview; every image must match the exact model, not merely the brand/category. Maintain explicit pending status for unmatched products.
+4. Run the RRP-minus-2 audit and block/flag all 19 below-cost rows; retain the 19 zero-RRP quote-only rows. Confirm no second VAT addition and no live data writes.
+5. Run exact-head Node regressions, public SKU/privacy audit, package build, hosted browser image naturalWidth/alt checks and mobile/desktop tests. Update this handover with exact SHA, run IDs, audit counts and preview URL only after evidence exists.
+6. Request owner phone review only when the latest preview corresponds to the exact tested SHA and the above visible asset checks pass.
+
