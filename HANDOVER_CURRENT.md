@@ -3484,3 +3484,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Applied the same category-matched photo across the homepage audio collage, standard category page, preview category route and audio department/component photo mapping so the same customer journey does not switch to unrelated artwork.
 - Updated the static regression expectations to the new photo ID. Hosted naturalWidth verification is still required; the new image has not yet been verified in the deployed preview.
 - This does not alter product records, supplier data, pricing, stock, checkout or production.
+
+
+## 2026-11-05 — SECOND IMAGE AUDIT: BRAND ROUTE STALE PHOTO AND RETRY LOOP
+
+- Continued source-level audit beyond the initial category page fix found `preview-audio-brand.html` still referenced the previous car-speaker photo ID `photo-1726248985986-20bef82d2b52`, even though homepage/category/audio routes had moved to `photo-1654447398824-dbcbefeafdd6`.
+- Replaced the stale photo on the dedicated brand → product-type page so the same speaker category now uses one consistent photo mapping.
+- Found another image failure path in `preview-audio.html`: the component image error handler retried the same category fallback URL that had already failed. Changed it to remove the broken image instead of repeatedly assigning the same failing source.
+- Added regression assertions for the brand-route photo consistency and no-same-source retry loop. Exact-head hosted tests, naturalWidth image checks and the 390px/1365px browser journeys remain pending.
