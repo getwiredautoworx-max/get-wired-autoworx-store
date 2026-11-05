@@ -279,6 +279,35 @@ jobs:
               await amplifiedHeroLogo.waitFor({state:'visible',timeout:15000});
               if(!await amplifiedHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('Amplified logo failed on its dedicated brand page');
 
+              // Kicker logo must load and render at a readable size in both the brand directory and its dedicated brand page.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const kickerButton=frame.locator('#brands .brandLogoButton[aria-label="Kicker"]');
+              await kickerButton.waitFor({state:'visible',timeout:30000});
+              const kickerDirectoryLogo=kickerButton.locator('img');
+              await kickerDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const kickerDirectoryAudit=await kickerDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});const r=img.getBoundingClientRect();return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,renderedWidth:Math.round(r.width),renderedHeight:Math.round(r.height)}}); 
+              console.log('HOSTED_KICKER_DIRECTORY_LOGO_AUDIT',JSON.stringify(kickerDirectoryAudit));
+              if(!kickerDirectoryAudit.loaded||kickerDirectoryAudit.renderedWidth<170)throw new Error('Kicker directory logo failed to load or remains too small: '+JSON.stringify(kickerDirectoryAudit));
+              await kickerButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Kicker'},{timeout:30000});
+              const kickerBrandPage=page.frameLocator('#store');
+              await kickerBrandPage.locator('.brandHero').filter({hasText:'Kicker'}).waitFor({state:'visible',timeout:30000});
+              const kickerHeroLogo=kickerBrandPage.locator('.brandHero img');
+              await kickerHeroLogo.waitFor({state:'visible',timeout:15000});
+              const kickerHeroAudit=await kickerHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});const r=img.getBoundingClientRect();return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,renderedWidth:Math.round(r.width),renderedHeight:Math.round(r.height)}}); 
+              console.log('HOSTED_KICKER_BRAND_PAGE_LOGO_AUDIT',JSON.stringify(kickerHeroAudit));
+              if(!kickerHeroAudit.loaded||kickerHeroAudit.renderedWidth<200)throw new Error('Kicker dedicated brand-page logo failed to load or remains too small: '+JSON.stringify(kickerHeroAudit));
+
+              // Audit every audio-department tile image, including DJ and Studio Equipment.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&!u.searchParams.has('department')},{timeout:30000});
+              const departmentImages=frame.locator('#departments .audioTile img.departmentImage');
+              await departmentImages.first().waitFor({state:'visible',timeout:30000});
+              const departmentImageAudit=await departmentImages.evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,src:img.currentSrc||img.src}})));
+              console.log('HOSTED_AUDIO_DEPARTMENT_IMAGE_AUDIT',JSON.stringify(departmentImageAudit));
+              if(departmentImageAudit.length!==8||departmentImageAudit.some(x=>!x.loaded))throw new Error('One or more of the eight audio-department images failed to load: '+JSON.stringify(departmentImageAudit));
+
               // Confirm the live preview data uses VAT-inclusive RRP less 2%, with no extra VAT.
               const previewPriceAudit=await frame.locator('body').evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule,imageCount:d.records.filter(x=>x.imageUrl).length,describedModelCount:d.records.filter(x=>x.manufacturerProductName&&x.description).length}});
               if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19||previewPriceAudit.imageCount!==68||previewPriceAudit.describedModelCount!==76)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
