@@ -4,6 +4,7 @@ const vm=require('node:vm');
 const html=fs.readFileSync('preview-store.html','utf8');
 const audio=fs.readFileSync('preview-audio.html','utf8');
 const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
+const SPECIAL_ORDER_NOTE='Special order — final price may vary with currency exchange rates and is confirmed at enquiry time.';
 for(const [index,match] of [...audio.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].entries()){
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-audio.inline-script-'+index+'.js'});
 }
@@ -30,6 +31,14 @@ assert.match(audio,/wa\.me\/27744884234/,'product enquiry must use the existing 
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
 assert.match(audio,/assets\/storefront-shell\.css/,'Audio route must load the shared bright storefront shell');
 assert.match(audio,/sourceDateLabel:CATALOGUE_SNAPSHOT_LABEL/,'Current catalogue products must carry the dated snapshot into enquiry messages');
+const planetworldPreviewData=JSON.parse(fs.readFileSync('assets/planetworld-catalogue-preview.json','utf8'));
+const audioConnectionsPreviewData=JSON.parse(fs.readFileSync('assets/audio-connections-catalogue-preview.json','utf8'));
+assert.equal(planetworldPreviewData.records.filter(p=>p.indicativePrice==null).length,37,'all 37 Planetworld price-on-request rows must remain explicitly identifiable');
+assert.equal(audioConnectionsPreviewData.records.filter(p=>p.indicativePrice==null&&p.priceOnRequestText).length,3,'all three Audio Connections POR rows must remain explicitly identifiable');
+assert.ok(audio.includes(SPECIAL_ORDER_NOTE),'Audio POA/POR cards must disclose special-order exchange-rate pricing');
+assert.ok(audio.includes('(p.indicativePrice==null?SPECIAL_ORDER_NOTE:"" )')||audio.includes('(p.indicativePrice==null?SPECIAL_ORDER_NOTE:""'), 'Audio WhatsApp enquiry must include the special-order note for unpriced items');
+assert.ok(html.includes(SPECIAL_ORDER_NOTE),'Part Search must disclose special-order exchange-rate pricing');
+assert.ok(html.includes('const specialOrder=p.indicativePrice==null?'),'Part Search WhatsApp quote must carry the special-order note for unpriced items');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.ok(build.includes('"asc-catalogue-pilot-preview.json"')&&build.includes('"asc-catalogue-pilot/asc-ma522.jpg"'),'preview-only bundle must include ASC pilot JSON and source-card image assets');
 assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
@@ -64,6 +73,7 @@ assert.ok(!audio.includes('Planetworld'),'Audio customer journey must not expose
 assert.match(audio,/25-Oct-2026/,'Audio page must retain the dated snapshot disclosure');
 
 const imagePreview=fs.readFileSync('preview-planetworld.html','utf8');
+assert.ok(imagePreview.includes(SPECIAL_ORDER_NOTE),'Planetworld model review cards must disclose special-order exchange-rate pricing');
 for(const [index,match] of [...imagePreview.matchAll(/<script[^>]*>([\s\\S]*?)<\/script>/gi)].entries()){
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-planetworld.inline-script-'+index+'.js'});
 }
