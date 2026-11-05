@@ -3198,3 +3198,12 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Current exact integration branch head before final deployment trigger: `f51a1c474722f75cbc8bb53938940f24c411f86b`. A final handover/preview-trigger commit will follow; use that final commit SHA for all package, deploy and browser-QA acceptance.
 - Owner journey acceptance: homepage → three root categories → Audio category → Car Audio & Video → brand page (logo/identity + product-type image tiles, no products) → product-type page → products filtered by brand + type. Desktop and 390px mobile checks required.
 - No owner preview is ready yet. Wait for exact-head workflow success and independently inspect the deployed owner preview before sending the link. Owner visual acceptance remains required before any merge. Production remains HOLD.
+
+
+## 2026-11-05 — FINAL ROUTE QA HARNESS CORRECTIONS BEFORE DEPLOYMENT
+
+- Clean integration branch is the sole active candidate; PR #178 remains draft/open/unmerged.
+- Added local Sony wordmark SVG and included it in the preview package allowlist so the Sony logo check does not depend on a third-party image host. Other known manufacturer logo references retain their existing local/official-source mappings and graceful text fallback.
+- Corrected the hosted browser test to target the actual brand page's `#types .typeCard` grid (not the old audio page's `#components` grid), and require the Sony brand logo image to load.
+- Removed the duplicate second Sony → Amplifiers browser journey. The workflow now exercises the dedicated brand → product-type → product route once, then continues the independent Auto Electrical, Car Care, accessory and desktop checks.
+- Current code checkpoint before the final handover/trigger update: `3e7cbaaa98eae7e616dd034c503a8267e0d6000e`. Do not reuse the older 38a069f Cloudflare in-progress deployment as proof for this corrected head. A fresh exact-head deployment and hosted QA are required.
