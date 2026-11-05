@@ -63,3 +63,8 @@ request=ASC-AUTO-ELECTRICAL-SELECTIVE-INTEGRATION-2026-11-05
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 requested_head=cad0490aef92ddfa42e4867983ed48871ff89316
 required_checks=exact-head-package;three-category-structure;34-asc-review-records;four-auto-electrical-catalogues;390px-image-cards;ASC-pilot-image-load;desktop-no-overflow;checkout-hidden;supabase-writes-blocked;public-sku-audit
+
+request=ASC-AUTO-ELECTRICAL-EXACT-HEAD-DEPLOY-AND-HOSTED-QA
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+requested_head=cf769fa447e91332f17d4c74a6ad03f48296683f
+required_checks=exact-sha-marker;four-ASC-category-routes;34-reviewed-product-images;mobile-390px;desktop-1365px;no-checkout;no-live-writes

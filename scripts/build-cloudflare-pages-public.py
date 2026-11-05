@@ -105,7 +105,7 @@ if not include_preview:
         "sort_order": 6,
     })
     category_tree["source"] = "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved."
-    category_path.write_text(json.dumps(category_tree, indent=2) + "\\n", encoding="utf-8")
+    category_path.write_text(json.dumps(category_tree, indent=2) + "\n", encoding="utf-8")
 
 image_source = ROOT / "assets" / "products_webp"
 if not image_source.is_dir():
