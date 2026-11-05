@@ -225,3 +225,9 @@ request=owner-reported-category-brand-logo-and-kicker-correction-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;one-x-logo-alias;amplified-logo-alias;dedicated-brand-page-logo-resolution;kicker-logo-size;dj-category-photograph;studio-equipment-photograph;all-eight-audio-department-images-naturalWidth;alpine-halo11-image-naturalWidth-1000;alpine-halo11-corrected-title;alpine-halo11-verified-description;all-68-exact-model-images-load;home-entertainment-journey;trims-and-harnesses-47-products;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-retest-after-dj-photo-assertion-and-kicker-logo-fix-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;one-x-logo-alias;amplified-logo-alias;dedicated-brand-page-logo-resolution;kicker-parent-and-brand-page-logo;dj-category-photograph;studio-equipment-photograph;all-six-audio-category-images-naturalWidth;alpine-halo11-image-naturalWidth-1000;all-68-exact-model-images-load;home-entertainment-journey;trims-and-harnesses-47-products;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
