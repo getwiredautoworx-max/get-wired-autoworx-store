@@ -30,6 +30,10 @@ on:
       - "preview-product.html"
       - "preview-planetworld.html"
       - "preview-audio.html"
+      - "preview-audio-brand.html"
+      - "preview-audio-products.html"
+      - "assets/audio-types/**"
+      - "assets/brand-logos/**"
       - "asc-catalogue-preview.html"
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/asc-catalogue-preview.test.cjs"
@@ -51,7 +55,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html preview-audio-brand.html preview-audio-products.html; do
             test ! -e "pages-public/$page"
           done
           test ! -d pages-public/assets/asc-catalogue-source
@@ -63,7 +67,7 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
-      - name: Verify preview package includes all seven approved preview routes
+      - name: Verify preview package includes all nine approved preview routes
         shell: bash
         run: |
           set -euo pipefail
