@@ -319,7 +319,7 @@ jobs:
             const quoteText=new URL(quoteHref).searchParams.get('text')||'';
             const audioTheme=await audioShop.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,nav:getComputedStyle(document.querySelector('.nav')).backgroundColor,intro:getComputedStyle(document.querySelector('.audioIntro')).backgroundImage}));
             if(!audioTheme.header.includes('255, 255, 255')||audioTheme.nav!=='rgb(234, 240, 246)'||!audioTheme.intro.includes('linear-gradient'))throw new Error('Audio page bright shell failed: '+JSON.stringify(audioTheme));
-            if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Brand: Alpine')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
+            if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Brand: Alpine')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
             const audioOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(audioOverflow.scrollWidth>audioOverflow.innerWidth+1)throw new Error('Audio navigation mobile overflow: '+JSON.stringify(audioOverflow));
             await audioShop.setViewportSize({width:360,height:800});
