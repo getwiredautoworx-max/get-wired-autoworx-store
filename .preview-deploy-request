@@ -89,3 +89,5 @@ workflow=owner-preview-exact-sha
 source_branch=integration/owner-preview-single-task-2026-11-05
 
 request=run-final-audio-navigation-and-home-entertainment-qa
+
+request=rerun-after-Klipsch-logo-source-fix
