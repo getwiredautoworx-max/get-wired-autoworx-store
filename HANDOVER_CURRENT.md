@@ -105,3 +105,44 @@ This is the sole retained handover file on this branch. Older handover files hav
 - The ordinary production entry remains `index.html` → `store.html` → `index-new.html`, while the isolated Pages preview root is built from `preview-store.html`. The old production entry therefore still does not use the approved preview shell. This run made no production/Axxess deployment, DNS change, live Supabase write, stock/catalogue/price edit, checkout/payment change, or supplier activation.
 - PR #149 remains open/draft at code head `7b8f380c36cf26ebf4274975c637eec997e3a6ae`; its recorded base is still `1ffe9a91b84eca755162e009d233b8d57ada28fe`, while `main` advanced to `ac4c40d6d0e99de5ee870b6a5e30160dc041cd6b` during this run. PR remains non-mergeable/dirty. No rebase, merge, replacement PR, or production deployment was attempted.
 - Next verification gate: restore/diagnose GitHub Actions runner availability, then obtain a successful isolated Pages deployment and full exact-head populated browser QA before offering a new preview for phone acceptance.
+
+
+## 2026-11-05 — PR #149 special-order disclosure and release-gate audit
+
+### Owner routing and exact branch state
+- Followed the current owner instruction: PR #149 is the sole consolidation candidate. PR #149 was OPEN / DRAFT / UNMERGED at code head `b10afb3c866bc120f3a9fa62cda7e1f6cf9f637d`; GitHub reports `mergeable=false`. No competing PR was created, no closed PR was reopened, and no merge/rebase/force-push was attempted.
+- Current `main` head: `12dfa6e43e42c39adb18811ee55703affd4ca8be`. PR #149's recorded base/merge-base is `1ffe9a91b84eca755162e009d233b8d57ada28fe`. Compare result: PR branch 94 commits ahead / 256 behind main (diverged). Do not rebase or integrate wholesale without owner approval.
+- The default-branch handover contains a different later PR history. For this task, continue following the explicit owner instruction to work only through PR #149; do not switch to another candidate.
+
+### Safe code changes — special-order exchange-rate disclosure
+- `1b0411e66904d501343fd53cb8aac93e665df490` — Audio catalogue cards now identify unpriced POA/POR records as special order and show: “Special order — final price may vary with currency exchange rates and is confirmed at enquiry time.” The same note is included in the WhatsApp enquiry draft for unpriced records.
+- `172f8ff5883dc563811620b72146b315db37d554` — Part Search now shows the same disclosure for unpriced catalogue/model-reference rows and includes it in the WhatsApp quote message.
+- `8d519c93deeb9fa0aa2136796b2fecfb1a70326c` — Planetworld manufacturer-reference review cards now show the same special-order exchange-rate disclosure.
+- `b10afb3c866bc120f3a9fa62cda7e1f6cf9f637d` — Added regression assertions for the POA/POR counts and disclosure. The source datasets currently contain 37 Planetworld rows with no indicative price and 3 Audio Connections POR rows (66 Audio Connections preview records total). All remain preview-only; no supplier price, stock, SKU, or live catalogue data was changed.
+
+### Source regression checks completed
+- `tests/audio-navigation.test.cjs` passed in a connector-backed in-memory JavaScript/V8 harness. It loaded the referenced repository files, parsed the inline scripts, and emitted `AUDIO_NAVIGATION_SOURCE_PASS`.
+- `tests/asc-catalogue-navigation.test.cjs` passed in the same harness. It emitted `LEGACY_BUYERS_GUIDE_QUARANTINE_PASS` and `ASC_CATALOGUE_NAVIGATION_PASS`; the six original ASC source PDFs and all 50 pilot crop files were present.
+- These are focused source assertions, not a GitHub Actions Node 22 run, Playwright browser run, hosted exact-SHA test, or owner phone acceptance. Do not label the stage ready from these checks alone.
+
+### Supplier-data privacy and quarantines
+- Read-only review of the customer-preview JSON found no supplier-SKU, dealer-cost, wholesale-cost, purchase-price, or margin fields in the Planetworld, Audio Connections, or curated manufacturer-reference datasets. The ASC public-preview builder strips internal/source fields (including source file/page, internal/supplier SKU, dealer cost, indicative cost, and public SKU) and excludes supplier/review/source directories from the Pages output.
+- The customer Audio route uses generic catalogue wording and does not render the supplier names. Supplier data remains preview-only; the 25 October 2026 Planetworld snapshot and dated Audio Connections price lists are not current stock confirmation.
+- `assets/legacy-catalogue-guard.js` excludes source-tagged Buyers Guide rows and the audited source-missing public SKU `GW-1893682C`. Nine additional known oil-filler-cap misclassification SKUs remain held from category browsing; the hosted workflow checks ten held SKUs including `GW-1893682C`. The source test passed, but exact-head hosted leakage QA remains unrun.
+- The 50 ASC pilot rows remain `REVIEW_ONLY_NOT_LIVE`, with no invented price/stock/public SKU and source-card image-rights review still outstanding. The 68 curated manufacturer-reference candidates include nine official image-source candidates; these are not production image approvals.
+
+### Taxonomy and catalogue-population blocker
+- PR #149's `assets/category-tree.json` contains 27 category rows and only three roots: `Car Audio / Home Entertainment / Lifestyle`, `Auto Electrical Parts & Spares`, and `Car Care & Accessories`. The browser workflow explicitly asserts this three-root taxonomy and expects zero active Supabase product rows in the hosted preview to keep unapproved legacy rows quarantined.
+- This does not represent the previously approved eight-root store navigation: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. The current third root “Car Care & Accessories” also does not match that approved root list.
+- The older 166-category snapshot contains duplicate/legacy category rows and is not safe to map automatically. Do not invent category IDs, merge Car Care into Automotive Accessories, or assign product/subcategory mappings from that snapshot without an approved source map. The exact approved IDs/subcategory mapping for the missing roots is still required before the full eight-root navigation can be restored.
+- The preview has separate review-only catalogue data (50 ASC pilot rows, 3,317 Planetworld rows, 66 Audio Connections rows, and 68 curated manufacturer references); this is not equivalent to a fully populated, owner-approved active store catalogue.
+
+### Hosted deployment and browser QA — still blocked
+- Cloudflare Pages bot reports the latest commit `b10afb3` deployment FAILED. Build/log reference: `https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/411bddea-0bc1-4e5d-9a31-5a255d42fff7`. The separate Workers preview dashboard also lists `b10afb3` and `e433f9b` preview builds as failed.
+- GitHub combined status currently shows `gw-pages-preview-url` SUCCESS pointing to `https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev`, but the Cloudflare Pages bot's latest deployment is failed and no `/gw-preview-sha.txt` marker has been read back for `b10afb3`. Treat that branch alias as stale/unverified; it is not an exact-head preview URL.
+- Exact-head workflow lookup for `b10afb3c866bc120f3a9fa62cda7e1f6cf9f637d` returned no PR-triggered workflow runs and no run ID. No hosted browser QA result is available. The workflow is configured to check exact SHA, populated category/subcategory/product routes, privacy, oil-filler-cap quarantine, exact local-SKU images on home/list/detail/modal, official manufacturer image loading, and mobile overflow. Its local probes cover 360px and 390px; hosted probes currently use 390px, so hosted 360px acceptance is also outstanding.
+- Do not send the current branch alias to the owner for acceptance until the Pages build succeeds, the deployed SHA marker equals the tested commit, and hosted browser QA passes against that exact URL.
+
+### Release boundary
+- Production remains HOLD. No Axxess upload, DNS change, production deployment, Supabase/live category/product/stock/price write, supplier activation, checkout/payment change, banking detail, or payment configuration was performed.
+- Next safe actions: obtain the Pages build error from the linked Cloudflare log; obtain the approved eight-root category ID/subcategory map; then rerun the exact-head package, Node 22 source tests, local browser QA, isolated Pages deployment, hosted exact-SHA browser QA, and owner phone acceptance. Keep all supplier rows preview-only until their separate source/rights/price/stock evidence is accepted.
