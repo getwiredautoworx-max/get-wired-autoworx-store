@@ -344,7 +344,7 @@ jobs:
                 return {count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded)};
               });
               console.log('HOSTED_EXACT_PRODUCT_IMAGE_AUDIT',JSON.stringify(exactProductImageAudit));
-              if(exactProductImageAudit.count!==68||exactProductImageAudit.failed.length)throw new Error('Exact-model product photos failed hosted loading: '+JSON.stringify(exactProductImageAudit.failed));
+              if(exactProductImageAudit.count!==74||exactProductImageAudit.loaded!==74||exactProductImageAudit.failed.length)throw new Error('Planetworld exact-model and OneNav candidate photos failed hosted loading: '+JSON.stringify(exactProductImageAudit));
 
               const audioConnectionsImageAudit=await frame.locator('body').evaluate(async()=>{
                 const data=await(await fetch('assets/audio-connections-catalogue-preview.json')).json();
