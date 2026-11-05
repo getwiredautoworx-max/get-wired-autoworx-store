@@ -1572,7 +1572,8 @@
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListedModel": "RA-ST20",
       "imageSourceUrl": "https://zaybees.co.za/shop/speakers/tweeters/reference-audio-ra-st20-650w-super-tweeters/",
-      "descriptionStatus": "RETAILER_LISTING_MODEL_CROSS_REFERENCE_VERIFIED"
+      "descriptionStatus": "RETAILER_LISTING_MODEL_CROSS_REFERENCE_VERIFIED",
+      "imageQualityNote": "324px retailer image; exact RA-ST20 model verified from product listing. Zaybees watermark is visible; replace with clean supplier/manufacturer original before final publication if available."
     },
     {
       "id": "ac-063",
