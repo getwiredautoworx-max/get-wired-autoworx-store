@@ -205,13 +205,24 @@ assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"CO
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 
 // Owner visual requirement: every nested category uses relevant product imagery, not generic repeated text bars.
-for (const token of [
-  'Speakers & Component Kits','Subwoofers','Amplifiers','Head Units & Media Players',
-  'Cameras & Monitors','Signal Processing & Crossovers','Trims & Harnesses',
-  'Alternators & Starters','Batteries & Charging','Fuses, Relays & Wiring',
-  'Globes & Vehicle Lighting','Sensors & Switches','Car Care','Car Mats',
-  'Seat Covers & Interior Accessories','Exterior Accessories'
-]) assert.ok(previewCategory.includes(token), 'category artwork mapping covers '+token);
+for (const pattern of [
+  /speakers?\\s*&\\s*component kits|component speakers/,
+  /subwoofers?/,
+  /amplifiers?/,
+  /head units|media players|radios/,
+  /cameras?\\s*&\\s*monitors?/,
+  /signal processing|crossovers?/,
+  /trims?\\s*&\\s*harnesses?/,
+  /alternators?\\s*&\\s*starters?/,
+  /batteries?\\s*&\\s*charging/,
+  /fuses?,?\\s*relays?\\s*&\\s*wiring/,
+  /globes?\\s*&\\s*vehicle lighting/,
+  /sensors?\\s*&\\s*switches/,
+  /car care/,
+  /car mats/,
+  /seat covers|interior accessories/,
+  /exterior accessories/
+]) assert.ok(previewCategory.includes(pattern.source), 'category artwork mapping includes '+pattern);
 assert.ok(previewCategory.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg'), 'component-speaker tile uses component-speaker photography');
 assert.ok(previewCategory.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'amplifier tile uses amplifier photography');
 assert.ok(previewCategory.includes('bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byu'), 'head-unit tile uses head-unit photography');
