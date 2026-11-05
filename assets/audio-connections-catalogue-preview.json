@@ -1607,7 +1607,7 @@
       "indicativePrice": 558.9,
       "hasStock": false,
       "modelNumber": "EQ7100",
-      "description": "7-band equaliser",
+      "description": "StarSound SSA-EQ-7100 7-band pre-amplifier equaliser with 11–15V negative-ground supply, 11V RMS maximum output, ±18dB adjustment across 63Hz, 125Hz, 315Hz, 750Hz, 2.2kHz, 6kHz and 12kHz, 33–250Hz subwoofer frequency control, 10kΩ input impedance and 90dB signal-to-noise ratio. Confirm installation and compatibility with the vehicle audio system before fitment.",
       "manufacturerPage": "",
       "imageUrl": "https://jmsounds.co.za/wp-content/uploads/2022/10/SSA-EQ-7100-600x451.jpeg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1615,11 +1615,13 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "Product photo visibly identifies SSA-EQ-7100; full feature specifications still require manufacturer confirmation.",
+      "brandNote": "Exact SSA-EQ-7100 model, product photo and listed technical features cross-checked against the retailer listing; manufacturer confirmation remains pending.",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://jmsounds.co.za/product/ssa-eq-7100/",
-      "descriptionStatus": "MODEL_AND_FEATURES_PENDING_MANUFACTURER_CONFIRMATION",
-      "manufacturerListedModel": "SSA-EQ-7100"
+      "descriptionStatus": "RETAILER_LISTING_SPECS_VERIFIED_MANUFACTURER_CONFIRMATION_PENDING",
+      "manufacturerListedModel": "SSA-EQ-7100",
+      "descriptionSourceUrl": "https://jmsounds.co.za/product/ssa-eq-7100/",
+      "imageQualityNote": "600×451 exact-model product image from the SSA-EQ-7100 listing."
     },
     {
       "id": "ac-065",
