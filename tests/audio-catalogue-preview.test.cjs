@@ -224,7 +224,7 @@ assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVI
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 62);
 const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
-assert.ok(raEl4&&raEl4.imageUrl==='https://mamasboombox.co.za/cdn/shop/files/RA-EL4.jpg?v=1757517707&width=1445'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+assert.ok(raEl4&&raEl4.imageUrl==='https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2025/06/23-286-1.png?resize=600%2C319&ssl=1'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
 
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
