@@ -41,6 +41,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: Set up Node.js for exact-head regression checks
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
