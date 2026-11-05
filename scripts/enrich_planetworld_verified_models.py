@@ -43,7 +43,7 @@ def main() -> None:
     with ONE_AUDIT_PATH.open(newline="", encoding="utf-8-sig") as handle:
         one_rows = list(csv.DictReader(handle))
     one_by_sku = {row["supplier_sku_reference_only"]: row for row in one_rows}
-    if len(one_by_sku) != len(one_rows) or len(one_rows) != 42:
+    if len(one_by_sku) != len(one_rows) or len(one_rows) != 45:
         raise SystemExit("OneNav exact product-page audit must contain forty-two unique source matches")
 
     verified_by_sku: dict[str, dict] = {}
