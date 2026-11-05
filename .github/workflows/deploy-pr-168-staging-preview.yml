@@ -135,7 +135,7 @@ jobs:
               await page.waitForTimeout(1200);
               const rootNavigationDiagnostic=await page.evaluate(()=>{const f=document.querySelector('#store');try{return {src:f.src,href:f.contentWindow.location.href,title:f.contentDocument?.title,text:f.contentDocument?.body?.innerText?.slice(0,500)}}catch(e){return {src:f.src,error:String(e)}}});
               console.log('HOSTED_ROOT_CATEGORY_NAVIGATION',JSON.stringify(rootNavigationDiagnostic));
-              await page.waitForFunction(()=>{const f=document.querySelector('#store').contentWindow;return f.location.pathname.endsWith('/preview-category.html')&&new URLSearchParams(f.location.search).get('id')==='1a13bc42-4f54-44f6-9658-36d141b77f4b'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store').contentWindow;return (f.location.pathname.endsWith('/preview-category')||f.location.pathname.endsWith('/preview-category.html'))&&new URLSearchParams(f.location.search).get('id')==='1a13bc42-4f54-44f6-9658-36d141b77f4b'},{timeout:30000});
               await frame.locator('#grid .card h2').filter({hasText:'Car Audio & Video'}).waitFor({state:'visible',timeout:20000});
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
@@ -146,7 +146,7 @@ jobs:
               await page.waitForFunction(()=>new URLSearchParams(document.querySelector('#store').contentWindow.location.search).get('id')==='8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{timeout:20000});
               for(const label of ['Aerials','Trims & Harnesses'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
               await frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
-              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
+              await page.waitForFunction(()=>(document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio')||(document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio')||document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'))),{timeout:20000});
               await frame.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               const audioTrimCount=await frame.locator('#products .audioProduct').count();
               if(audioTrimCount!==47)throw new Error('Trims & Harnesses expected 47 products, got '+audioTrimCount);
