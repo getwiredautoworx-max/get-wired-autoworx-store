@@ -3649,3 +3649,14 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Owner acceptance: PENDING.
 - Production: HOLD.
 - No Supabase writes, imports, live product/category/price/stock changes, supplier activation, checkout/payment activation, production deployment, Axxess upload or DNS changes.
+
+
+## 2026-11-05 — FINAL QA UPDATE: LATEST SIX-CATALOGUE PREVIEW VERIFIED
+
+- Owner Store Preview Browser QA run **42077207832** completed SUCCESS for exact code/data/test head **1b6aaf1e29d68fb0254c71ecf3f538b417ad8ecf**.
+- Exact hosted preview marker was confirmed for that SHA at https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev/owner-preview.html.
+- The run passed local mobile and hosted mobile/desktop checks. All six catalogue cards and routes opened correctly; all six category images loaded; the first product images in each catalogue's first source section loaded; all source section counts matched 6/11/16/10/14/18.
+- Additional checks passed: Car Audio Accessories contains Trims & Harnesses but not Aerials; Car Care has three remaining subcategories and no Car Mats; Trims & Harnesses shows 47 rows; Car Audio brand/component navigation passed; checkout remains hidden; Supabase writes are blocked; desktop horizontal overflow is false.
+- Cloudflare Pages Public Package QA run **42077207779** also completed SUCCESS on exact head 1b6aaf1; both Node regression suites and standard/preview package isolation checks passed.
+- Latest branch head after this handover-only update: 77531d826c78d262259b18663091ba51093ba074. Runtime/data/test code remains the successfully tested 1b6aaf1 head.
+- Preview is ready for the owner's inspection at the URL above. It is not production-ready or owner-accepted. All 50 image-to-SKU matches and rights remain on HOLD pending source verification; MA522 and H1865W-H exceptions remain open. Payment/checkout testing remains deferred.
