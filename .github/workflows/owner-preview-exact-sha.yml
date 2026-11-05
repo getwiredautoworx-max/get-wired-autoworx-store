@@ -221,6 +221,16 @@ jobs:
               const audioAmpCount=await productDoc.locator('.product').count();
               if(audioAmpCount<1)throw new Error('Sony -> Amplifiers dedicated product page returned no products');
 
+              // Alpine Halo 11: exact-model photo/details plus centred two-column product-card layout.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio-products.html?department=Car%20Audio&brand=Alpine&component=Head%20Units%20%26%20Media%20Players'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-products(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Alpine'},{timeout:30000});
+              const alpinePage=page.frameLocator('#store');
+              const alpineCard=alpinePage.locator('#products .product').filter({hasText:'iLX-F115D'}).first();
+              await alpineCard.waitFor({state:'visible',timeout:30000});
+              const alpineAudit=await alpineCard.evaluate(card=>{const img=card.querySelector('.productMedia img');const details=card.querySelector('.productDetails');const rect=details?.getBoundingClientRect();const media=card.querySelector('.productMedia')?.getBoundingClientRect();return {text:card.innerText,imageLoaded:!!img&&img.complete&&img.naturalWidth>0,imageWidth:img?.naturalWidth||0,textAlign:details?getComputedStyle(details).textAlign:'missing',mediaAndDetailsSeparated:!!media&&!!rect&&media.right<=rect.left+2,description:card.querySelector('.productDetails p')?.innerText||''}});
+              console.log('HOSTED_ALPINE_HALO11_PRODUCT_AUDIT',JSON.stringify(alpineAudit));
+              if(!alpineAudit.imageLoaded||alpineAudit.textAlign!=='center'||!alpineAudit.mediaAndDetailsSeparated||!alpineAudit.description.includes('DAB+')||!alpineAudit.description.includes('Apple CarPlay'))throw new Error('Alpine Halo 11 exact-model image, verified description or centred product layout failed: '+JSON.stringify(alpineAudit));
+
               // OneNav and Amplified must use the official Planetworld brand artwork in both directory and dedicated brand views.
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
