@@ -68,7 +68,6 @@
     "TAXI-4G",
     "SST-550",
     "SST-850",
-    "EQ7100",
     "USB230",
     "SS7655BT",
     "DVD9900BT",
@@ -84,7 +83,6 @@
     "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)",
     "RA-EL4 (supplier descriptor RA AWG4 cross-referenced to Reference Audio 4-gauge kit)",
     "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)",
-    "EQ7100 (exact SSA-EQ-7100 image visibly model-marked; Takealot asset cross-checked against SSA-EQ-7100 product listing)",
     "EQ7100 (JM Sounds exact SSA-EQ-7100 image)",
     "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)",
     "RA SUPER RAST20 (cross-referenced to RA-ST20; 650W max / 50W RMS description and exact model photo located; 324px watermarked retailer image noted)"
@@ -97,7 +95,7 @@
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 20,
+    "sourceVerified": 21,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
