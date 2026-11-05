@@ -210,3 +210,13 @@ for (const name of ["jbl.svg", "denon.svg", "hertz.svg"]) {
   const assetPath = `assets/brand-logos/${name}`;
   assert.ok(fs.existsSync(assetPath), `Missing required local preview brand logo: ${name}`);
 }
+
+/* Dedicated brand -> product type -> products navigation must use separate documents. */
+const brandRoute = fs.readFileSync('preview-audio-brand.html', 'utf8');
+const productRoute = fs.readFileSync('preview-audio-products.html', 'utf8');
+assert.ok(route.includes('location.href="preview-audio-brand.html?"+u.toString()'), 'brand buttons must navigate to a dedicated brand page');
+assert.ok(route.includes('location.href="preview-audio-products.html?"+u.toString()'), 'product-type buttons must navigate to a dedicated product listing page');
+assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('Products are shown on the next page'), 'brand landing page must show product-type tiles, not products');
+assert.ok(brandRoute.includes('preview-audio-products.html?'), 'brand product-type tiles must open the dedicated product listing page');
+assert.ok(productRoute.includes("rowsFor(d).filter(p=>p.brand===brand&&group(p)===component)"), 'product listing must filter by both selected brand and product type');
+assert.ok(builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"'), 'both dedicated routes must be included in the public preview package');
