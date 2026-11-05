@@ -1484,11 +1484,11 @@
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES_HIGH_RES_SOURCE_STILL_REQUIRED",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_MODEL_PAGE_FOUND",
       "manufacturerListedModel": "BS-46",
       "imageSourceUrl": "https://www.theracersedge.co.za/blackspider-lynx-4-2500w-aluminium-bullet-tweeter",
-      "imageQualityNote": "Verified authentic product thumbnail is only 105px wide; replace with a full-resolution supplier/manufacturer original when available.",
+      "imageQualityNote": "Verified exact-model BlackSpider/The Racers Edge thumbnail is only 105px wide; replace with a full-resolution manufacturer or supplier original when available.",
       "descriptionSourceUrl": "https://www.theracersedge.co.za/blackspider-lynx-4-2500w-aluminium-bullet-tweeter",
       "descriptionStatus": "SOURCE_VERIFIED"
     },
