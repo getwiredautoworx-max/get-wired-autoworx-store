@@ -1,6 +1,20 @@
 name: Owner Preview — Exact SHA Deploy and Browser QA
 
 on:
+  push:
+    branches:
+      - integration/owner-preview-single-task-2026-11-05
+    paths:
+      - ".preview-deploy-request"
+      - ".github/workflows/owner-preview-exact-sha.yml"
+      - "preview-audio.html"
+      - "preview-audio-brand.html"
+      - "preview-audio-products.html"
+      - "preview-category.html"
+      - "assets/audio-types/**"
+      - "assets/brand-logos/**"
+      - "scripts/build-cloudflare-pages-public.py"
+      - "tests/audio-catalogue-preview.test.cjs"
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
@@ -31,7 +45,7 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    if: github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05'
+    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05'
     name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -39,7 +53,7 @@ jobs:
       - name: Checkout exact triggering commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Node.js for exact-head regression checks
         uses: actions/setup-node@v4
@@ -54,7 +68,7 @@ jobs:
       - name: Build customer-only Pages package with isolated review routes
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
-          CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+          CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           set -eu
           python scripts/build-cloudflare-pages-public.py
@@ -82,11 +96,11 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=owner-preview --commit-hash=${{ github.event.pull_request.head.sha }} --commit-dirty=true
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=owner-preview --commit-hash=${{ github.event.pull_request.head.sha || github.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Wait for the exact deployed SHA and reject stale aliases
         env:
-          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         shell: bash
         run: |
           set -euo pipefail
