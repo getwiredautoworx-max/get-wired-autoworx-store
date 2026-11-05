@@ -482,7 +482,7 @@ assert.equal(alpineHalo11Product.title, alpineHalo11Model.name, 'verified manufa
 assert.ok(enrichment.includes('product["title"] = manufacturer_name'), 'exact-model enrichment must publish the verified manufacturer title');
 
 const eq7100=audioConnections.records.find(item=>item.modelNumber==='EQ7100');
-assert.ok(eq7100&&eq7100.imageUrl==='https://jmsounds.co.za/wp-content/uploads/2022/10/SSA-EQ-7100-600x451.jpeg'&&eq7100.manufacturerListedModel==='SSA-EQ-7100'&&eq7100.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EQ7100 must use the exact SSA-EQ-7100 product photo, not the rejected SSA-EQ-7200 image');
+assert.ok(eq7100&&eq7100.imageUrl==='https://maxmotorsport.co.za/cdn/shop/products/Star-Sound-7-Band-Equalizer-Star-Sound-1625547744.jpg?v=1625547748&width=1946'&&eq7100.manufacturerListedModel==='SSA-EQ-7100'&&eq7100.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EQ7100 must use the exact SSA-EQ-7100 product photo, with the exact SSA-EQ-7100 model code visible on the photo');
 assert.ok(eq7100.description.includes('11V RMS')&&eq7100.description.includes('±18dB')&&eq7100.description.includes('33–250Hz')&&eq7100.description.includes('90dB'),'EQ7100 description must retain the verified equaliser specifications');
 
 const lynx=audioConnections.records.find(item=>item.modelNumber==='BULLET LYNX');

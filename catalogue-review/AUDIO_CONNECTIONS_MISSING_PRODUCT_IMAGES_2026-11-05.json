@@ -73,7 +73,7 @@
     "SSAK-860 (exact model confirmed; 2048px photo of kit contents and 5m power/RCA/speaker leads, 1m ground, 5m remote and 80A AGU fuse verified)",
     "SSW-S12-SPECTR-15000 (provisionally mapped to official SSW-SV2-15000R; manufacturer image and 12-inch D4 DVC features verified; 700W/1500W/650W RMS conflict and colour require supplier confirmation)"
   ],
-  "imageCoverageNote": "All 66 Audio Connections records now have model-matched image URLs; 65 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. The SSW-S12 SPECTR 15000 supplier item is provisionally mapped to official Starsound model SSW-SV2-15000R and uses the official manufacturer image. Its RMS rating is unresolved (supplier list 700W, manufacturer page 1500W, some retailers 650W), and colour must be confirmed before live publication.",
+  "imageCoverageNote": "All 66 Audio Connections records have model-matched image URLs; the latest hosted run found 65/66 loading because the JM Sounds EQ7100 image URL failed. It has been replaced with a 920px exact-model SSA-EQ-7100 photo from Max Motorsport (the model code is visible on the photo and the page SKU matches). Hosted verification is pending. Blackspider Lynx remains an exact-model but 104px thumbnail.",
   "remainingImageModels": [],
   "descriptionCoverage": {
     "records": 66,
@@ -123,29 +123,26 @@
       "model": "RA-EL4",
       "source": "My Audio & Security exact Reference Audio RA-EL4 listing",
       "url": "https://myaudioandsecurity.co.za/product/reference-audio-4-gauge-8000w-wiring-kit/"
+    },
+    {
+      "model": "EQ7100",
+      "source": "Max Motorsport exact SKU SSA-EQ-7100 product page; photo visibly carries SSA-EQ-7100 model code",
+      "url": "https://maxmotorsport.co.za/products/star-sound-7-band-equalizer"
     }
   ],
   "latestHostedAuditFailure": {
-    "run": "42042732846",
-    "head": "01a401d145b2c09da632dcb757bc5e4bbf701577",
+    "run": "42050062623",
+    "head": "d058fde855889aafddce0877014031b10a476e71",
     "records": 66,
     "described": 66,
-    "imageUrls": 62,
-    "loaded": 58,
+    "imageUrls": 66,
+    "loaded": 65,
     "failed": [
-      "XS-160ES",
-      "XS-680ES",
-      "SSA-R-6900.1D",
-      "RA-EL4"
+      "EQ7100"
     ],
     "lowResolution": [
-      "BULLET LYNX"
+      "BULLET LYNX (104px)"
     ],
-    "missing": [
-      "SSW-S12\" SPECTR 15000",
-      "860",
-      "RA SUPER RAST20",
-      "EQ7100"
-    ]
+    "missing": []
   }
 }
