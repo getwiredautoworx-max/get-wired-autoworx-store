@@ -72,3 +72,7 @@ required_checks=exact-sha-marker;four-ASC-category-routes;34-reviewed-product-im
 request=ASC-AUTO-ELECTRICAL-HOSTED-QA-URL-PREDICATE-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;mobile-auto-electrical;ASC-four-catalogue-routes;34-pilot-image-load;desktop-overflow;checkout-hidden
+
+request=ASC-AUTO-ELECTRICAL-IMAGE-URL-RENDER-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;all-audio-subcategory-images;all-seven-auto-electrical-subcategory-images;ASC-four-catalogue-routes;34-pilot-images;mobile-and-desktop
