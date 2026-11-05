@@ -83,3 +83,7 @@ request=final-exact-head-after-owner-preview-success-and-legacy-browser-qa-parki
 
 request=home-entertainment-full-journey-exact-head-2026-11-05
 required_checks=home-entertainment-category-route;home-entertainment-brand-directory;klipsch-brand-logo;home-audio-cinema-image;brand-page-no-products;product-type-route;filtered-home-products;mobile-390px;desktop-1365px;package-assets;sku-audit;checkout-hidden;supabase-writes-blocked
+
+request=home-entertainment-audio-navigation-owner-preview-2026-11-05
+workflow=owner-preview-exact-sha
+source_branch=integration/owner-preview-single-task-2026-11-05
