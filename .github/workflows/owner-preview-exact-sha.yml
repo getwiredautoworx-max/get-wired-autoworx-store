@@ -176,7 +176,7 @@ jobs:
               if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
               await carAudioCard.click();
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
-              if(await frame.locator('#departments').isVisible())throw new Error('Car Audio selection left the previous department menu visible');
+              if(await frame.locator('#audioDepartments').isVisible())throw new Error('Car Audio selection left the previous department menu visible');
               const brandButton=frame.locator('#brands a[aria-label="Sony"][role="button"]');
               await brandButton.waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
@@ -222,7 +222,7 @@ jobs:
               if(!homeDepartmentHref||!homeDepartmentHref.includes('department=Home%20Entertainment'))throw new Error('Home Entertainment category route missing: '+homeDepartmentHref);
               await homeDepartment.click();
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Home Entertainment'},{timeout:30000});
-              if(await frame.locator('#departments').isVisible())throw new Error('Home Entertainment selection left the previous department menu visible');
+              if(await frame.locator('#audioDepartments').isVisible())throw new Error('Home Entertainment selection left the previous department menu visible');
               await frame.locator('#brands').waitFor({state:'visible',timeout:15000});
               if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
               const klipsch=frame.locator('#brands .brandLogoButton[aria-label="Klipsch"]');
