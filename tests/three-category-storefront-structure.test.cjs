@@ -230,6 +230,7 @@ assert.ok(audioPage.includes('function componentImage(label)'), 'audio product-t
 assert.ok(audioPage.includes('function componentImageButton(label,active,fn)'), 'audio product-type tiles are image-led accessible buttons');
 assert.ok(audioPage.includes('cs.forEach(c=>el("components").append(componentImageButton'), 'brand-filtered component choices render as image cards');
 assert.ok(audioPage.includes('#components .componentImageButton img'), 'audio component cards have responsive image styling');
+assert.ok(audioPage.includes('#components[hidden],#products[hidden]'), 'audio navigation hidden state must override component grid display styles');
 assert.ok(audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'component and amplifier choices use matching photos');
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
