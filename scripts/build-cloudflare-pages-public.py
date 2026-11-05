@@ -114,6 +114,15 @@ if not include_preview:
     })
     category_tree["source"] = "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved."
     category_path.write_text(json.dumps(category_tree, indent=2) + "\n", encoding="utf-8")
+    # Standard package must not send existing Aerials/Car Mats links to the preview-only route.
+    standard_category_page = OUT / "category.html"
+    page_source = standard_category_page.read_text(encoding="utf-8")
+    route_start = page_source.find("const ascRoutes={")
+    route_end = page_source.find("};", route_start)
+    if route_start < 0 or route_end < 0:
+        raise SystemExit("Could not isolate preview-only ASC route map in standard category page")
+    page_source = page_source[:route_start] + "const ascRoutes={};" + page_source[route_end + 2:]
+    standard_category_page.write_text(page_source, encoding="utf-8")
 
 image_source = ROOT / "assets" / "products_webp"
 if not image_source.is_dir():
