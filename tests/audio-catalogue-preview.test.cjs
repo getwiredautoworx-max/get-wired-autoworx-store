@@ -230,13 +230,17 @@ assert.ok(brandRoute.includes('preview-audio-products.html?'), 'brand product-ty
 assert.ok(productRoute.includes("rowsFor(d).filter(p=>p.brand===brand&&group(p)===component)"), 'product listing must filter by both selected brand and product type');
 assert.ok(builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"'), 'both dedicated routes must be included in the public preview package');
 
-for (const asset of ['home-entertainment.svg','home-audio-cinema.svg','projection-screens-projectors.svg','cables-mounts-accessories.svg','av-infrastructure-control.svg','installed-audio.svg','conferencing-collaboration.svg','other-home-ci.svg']) {
-  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing Home Entertainment artwork: '+asset);
-  assert.ok(builder.includes('audio-types/'+asset), 'Home Entertainment artwork missing from public package: '+asset);
+for (const asset of ['home-entertainment.svg','home-audio-cinema.svg','projection-screens-projectors.svg','cables-mounts-accessories.svg','av-infrastructure-control.svg','installed-audio.svg','conferencing-collaboration.svg','other-home-ci.svg','speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
+  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Legacy artwork file retained for audit: '+asset);
+  assert.ok(builder.includes('audio-types/'+asset), 'Legacy artwork package manifest entry retained for audit: '+asset);
 }
-for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
-  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing local product-type artwork: '+asset);
-}
+assert.ok(!route.includes('/assets/audio-types/'), 'Audio department and component buttons must use photographs, not illustrated SVGs');
+assert.ok(!productRoute.includes('/assets/audio-types/'), 'Product-type buttons must use photographs, not illustrated SVGs');
+assert.ok(!brandRoute.includes('/assets/audio-types/'), 'Brand product-type buttons must use photographs, not illustrated SVGs');
+assert.ok(!route.includes('data:image/svg+xml') && !categoryRoute.includes('data:image/svg+xml'), 'Customer-facing category fallbacks must not generate cartoon SVGs');
+assert.ok(route.includes('images.unsplash.com/photo-1608043152269-423dbba4e7e1'), 'Audio component buttons must use photographic speaker artwork');
+assert.ok(productRoute.includes('images.unsplash.com/photo-1545454675-3531b543be5d'), 'Product-type buttons must use photographic subwoofer artwork');
+assert.ok(categoryRoute.includes('images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Category fallback must use photographic Home Entertainment artwork');
 
 assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony brand wordmark');
 
@@ -255,7 +259,5 @@ for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-aud
   assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing dedicated audio department artwork: '+asset);
   assert.ok(builder.includes('audio-types/'+asset), 'New department artwork missing from public package: '+asset);
 }
-for (const asset of ['home-audio-cinema.svg','speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
-  assert.ok(categoryRoute.includes(asset) || route.includes(asset), 'Audio category image mapping missing: '+asset);
-}
-assert.ok(categoryRoute.includes('const exact=localAudio.find(([re])=>re.test(n))'), 'Audio category image fallback must select a category-specific local asset before any generic illustration');
+
+assert.ok(categoryRoute.includes('return artFor(label)||') && !categoryRoute.includes('data:image/svg+xml'), 'Category image fallback must remain photographic and never render an illustration');
