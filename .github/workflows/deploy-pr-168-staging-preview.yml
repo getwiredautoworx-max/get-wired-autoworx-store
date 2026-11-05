@@ -154,7 +154,11 @@ jobs:
               if(audioCategoryImages.length!==6||audioCategoryImages.some(x=>!x.loaded))throw new Error('Audio subcategory picture cards failed to load: '+JSON.stringify(audioCategoryImages));
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
-              await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              const carAudioCard=frame.locator('#grid .card').filter({hasText:'Car Audio & Video'});
+              const carAudioHref=await carAudioCard.getAttribute('href');
+              if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
+              await carAudioCard.click();
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:30000});
               const brandButton=frame.locator('#brands a[aria-label="Sony"][role="button"]');
               await brandButton.waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
