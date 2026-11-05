@@ -243,11 +243,13 @@ jobs:
               await oneNavTypeCard.click();
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-products(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
               const oneNavProductPage=page.frameLocator('#store');
+              // Product records load asynchronously after the route changes; wait for either populated cards or the explicit empty state before auditing.
+              await oneNavProductPage.locator('.product,.empty').first().waitFor({state:'visible',timeout:30000});
               const oneNavProductCount=await oneNavProductPage.locator('.product').count();
               const oneNavProductImageCount=await oneNavProductPage.locator('.product img').count();
               const oneNavReviewNoteCount=await oneNavProductPage.locator('.imageReviewNote').count();
               const oneNavProductText=(await oneNavProductPage.locator('.product').allTextContents()).join(' ');
-              console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen')}));
+              console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({url:await oneNavProductPage.locator('body').evaluate(()=>location.href),products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen'),text:oneNavProductText.slice(0,1200)}));
               if(oneNavProductCount!==9||oneNavProductImageCount!==2||oneNavReviewNoteCount!==2||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
