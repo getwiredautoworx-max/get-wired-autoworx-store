@@ -3391,3 +3391,17 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Current OneNav page: 65 products, 32 exact manufacturer descriptions, 7 owner-preview image candidates, 25 audited exact-image gaps; 33 product cards still need exact descriptions and 58/65 cards still lack image URLs. Continue OneNav only; do not move to another brand until complete.
 - Combined image audit: 75/75 image URLs loaded; Audio Connections 66/66 loaded but BlackSpider Lynx remains low-res at 104px. This is deferred until OneNav is resolved.
 - Latest audio-brand handover addendum: HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md. Tested storefront source SHA is 6d25f204; subsequent handover-only commit does not change the deployed preview. Production remains HOLD.
+
+## OWNER SCOPE-LOCK CLARIFICATION — 2026-11-05
+
+The owner clarified and reaffirmed the approval boundary for the ASC Aerials task and all store work:
+
+- The only currently authorized storefront change in this exception is the ASC Aerials catalogue integration as its own subcategory under **Car Audio Accessories**.
+- The Car Audio Accessories category is temporarily unlocked solely for that specified ASC Aerials task. Once the catalogue has been successfully uploaded/integrated and its route, imagery, product identity and presentation have been verified, the category is to be **locked/frozen again automatically**.
+- After that freeze is reinstated, no edits to Car Audio Accessories are permitted unless the owner specifically authorizes them.
+- This same approval gate applies to the entire store: no other store-building work, integrations, merges, edits, category/subcategory changes, refactors, deployments or unrelated modifications may be performed without the owner's prior explicit approval.
+- A general instruction to continue does not grant permission to expand scope. Work must remain limited to the specific task expressly authorized.
+- Do not interpret this narrow temporary unlock as permission to modify other audio brands, product types, categories, catalogue data, shared components or integrations.
+- If an implementation step appears to require touching anything outside the expressly authorized task, stop and obtain owner approval before proceeding.
+- No production deployment, Axxess upload, DNS change, Supabase write, live stock/price change, payment activation or merge is authorized by this clarification.
+- Status of the ASC Aerials integration remains **not complete until evidence confirms the catalogue is uploaded/integrated and the required route, images, product identities and presentation checks pass**. Only then may the category freeze be marked reinstated.
