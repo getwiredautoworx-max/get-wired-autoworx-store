@@ -3376,3 +3376,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - OneNav expected totals: 21 exact manufacturer pages/descriptions, 6 image candidates, 15 image gaps; 21 of 64 product cards described, 43 still unmatched. OneNav remains the only active brand.
 - Combined Planetworld expected totals: 89 described records, 74 image URLs, 15 verified-page image gaps, 3,228 unmatched rows.
 - Candidate head cab0b68bda924df53d99feb466fc37273b89c2a1; run 42061224427 is in progress. Do not issue preview until exact-head hosted QA passes.
+
+
+## OneNav exact-head preview QA — 2026-11-05 18:22 SAST
+- Exact-head workflow run 42062037287 PASSED on storefront SHA 2055dc4764c4d6280b6d026a105fecadc759f6a2. Verified non-production preview URL: https://f7c8a080.get-wired-autoworx-store.pages.dev. Package, regression, deployed-SHA marker and hosted mobile/desktop QA passed.
+- Hosted checks: three root categories, all eight audio department images, Sony/OneNav/Amplified/Kicker logo loads, Alpine Halo11 image/details layout, 74/74 Planetworld+OneNav image URLs, 66/66 Audio Connections image URLs, zero JS errors, desktop 1365px and mobile viewport checks.
+- OneNav remains incomplete: current route shows 65 products; 21 have exact manufacturer descriptions, 6 have exact-image candidates, 15 verified records still lack exact images, and 44 cards remain unmatched. Do not deliver as final owner preview or move to the next brand until OneNav is resolved.
+- Audio Connections BlackSpider Lynx image is still low-resolution (104px natural width); defer until OneNav is complete.
+- Latest branch head after documentation-only addendum is a225df1fe651f08480c4bc8a3e1ab9b4f53da798; tested storefront source is 2055dc4764c4d6280b6d026a105fecadc759f6a2. Production remains HOLD.
