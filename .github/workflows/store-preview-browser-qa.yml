@@ -201,6 +201,7 @@ jobs:
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
               const previewBases=[
+                'https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev',
                 'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;

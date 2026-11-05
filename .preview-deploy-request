@@ -96,3 +96,7 @@ required_checks=local-owner-preview;hosted-exact-sha;brand-first-audio;seven-aut
 request=ASC-AUTO-ELECTRICAL-IMAGE-LOAD-WAIT-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;ASC-sensor-pilot-image-load-waits;seven-auto-electrical-categories;mobile-and-desktop
+
+request=ASC-AUTO-ELECTRICAL-CLOUDFLARE-BRANCH-ALIAS-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker-on-integration-branch-alias;mobile-and-desktop;ASC-four-catalogue-groups;34-pilot-images

@@ -85,6 +85,7 @@ jobs:
         run: |
           set -euo pipefail
           aliases=(
+            "https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev"
             "https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev"
           )
           matched=""
