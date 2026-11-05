@@ -11,6 +11,7 @@ const route = fs.readFileSync('preview-audio.html', 'utf8');
 const categoryRoute = fs.readFileSync('preview-category.html', 'utf8');
 const home = fs.readFileSync('index-new.html', 'utf8');
 const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf8');
+const enrichment = fs.readFileSync('scripts/enrich_planetworld_verified_models.py', 'utf8');
 
 const categoryCleanup = fs.readFileSync('assets/category-cleanup.js', 'utf8');
 const PRICE_ON_REQUEST_TEXT = 'Price On Request Due to Stock Availability';
@@ -249,8 +250,8 @@ assert.ok(lifestyleRows.some(row=>/pool cleaner|pool vacuum|pool skimmer/i.test(
 assert.ok(route.includes('id="audioSearch"'), 'catalogue search control is required');
 assert.ok(route.includes('audioLoadMore'), 'long catalogue must provide pagination');
 assert.ok(route.includes('LOAD MORE ('), 'pagination control must be rendered');
-assert.ok(route.includes('function exactModelMatch'), 'exact manufacturer models must be matched into broad catalogue rows');
-assert.ok(route.includes('source.startsWith(" "+token+" ")'), 'model enrichment must avoid matching a model mentioned only in an accessory title');
+assert.ok(enrichment.includes('verified_by_sku.get(norm(supplier_sku))'), 'exact manufacturer models must be matched by normalized source SKU during preview data generation');
+assert.ok(enrichment.includes('if not key or key in verified_by_sku') && enrichment.includes('verified_by_sku[key] = model'), 'model enrichment must reject empty or duplicate internal model keys');
 assert.ok(route.includes('const data=uniqueExactRows(departmentRows.filter'), 'exact duplicate product rows must be suppressed after department/brand/component/search filtering in the customer browse view');
 assert.ok(route.includes('index-new.html'), 'audio page must return to the current storefront');
 assert.ok(!route.includes('preview-store.html'), 'do not send the owner back to the stale preview shell');
