@@ -70,3 +70,7 @@ request=PR-178-clean-main-single-active-owner-preview-final-checkpoint-2026-11-0
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_audio_journey=Car Audio & Video -> Brand landing page -> Product type image cards -> Filtered product page
 required_checks=exact-sha-marker;three-root-navigation;brand-route-path;brand-page-no-products;product-type-route-path;brand-and-type-filter;local-product-type-artwork;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=PR-178-final-exact-head-after-logo-and-route-test-corrections-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_checks=exact-sha-marker;three-root-navigation;brand-route-path;brand-page-no-products;product-type-route-path;brand-and-type-filter;sony-local-logo-load;all-local-product-type-artwork;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
