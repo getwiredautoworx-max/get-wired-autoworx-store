@@ -72,7 +72,7 @@ assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must 
 assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
-assert.equal(planet.records.filter(row=>row.imageUrl).length,74,'72 exact product image candidates (66 verified-model plus six OneNav) must be attached to the correct source product rows');
+assert.equal(planet.records.filter(row=>row.imageUrl).length,74,'74 exact product image candidates (68 verified-model plus six OneNav) must be attached to the correct source product rows');
 const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
 const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
@@ -161,7 +161,7 @@ assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
 const verifiedImageCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(verifiedImageCount, 66, '66 exact-model image URLs are present, including five owner-authorized manufacturer image candidates');
+assert.equal(verifiedImageCount, 68, '68 exact-model image URLs are present, including five owner-authorized manufacturer image candidates');
 for (const [model, url] of Object.entries({
   'HCE-C2100RD': 'https://www.alpine-asia.com/media/5baca7810efbd.png',
   'HDZ-653': 'https://www.alpine-asia.com/media/62d65d1bd9391.png',
@@ -304,7 +304,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 138, '66 verified-model + 66 Audio Connections + six OneNav exact-fitment image candidates');
+assert.equal(imageCount, 140, '68 verified-model + 66 Audio Connections + six OneNav exact-fitment image candidates');
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
