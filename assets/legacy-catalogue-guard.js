@@ -4,7 +4,20 @@
  */
 (function (root) {
   'use strict';
-  const LEGACY_ASC_PUBLIC_SKUS = new Set(['GW-1893682C']);
+  // Keep the source-missing legacy SKU and nine owner-audited oil-filler-cap
+  // misclassification SKUs out of every preview category/product route.
+  const LEGACY_ASC_PUBLIC_SKUS = new Set([
+    'GW-1893682C',
+    'GW-21132FDF',
+    'GW-E93CDF1E',
+    'GW-AA085120',
+    'GW-0E5E3109',
+    'GW-125D2F26',
+    'GW-FF7B49CB',
+    'GW-FC14A84E',
+    'GW-0B8032C4',
+    'GW-22B30765'
+  ]);
   function isLegacyBuyerGuideRecord(record) {
     if (!record || typeof record !== 'object') return false;
     if (LEGACY_ASC_PUBLIC_SKUS.has(String(record.public_sku || '').trim().toUpperCase())) return true;
