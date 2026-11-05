@@ -180,7 +180,7 @@ def main() -> None:
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3207,
+        "unmatched_products": 3204,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
