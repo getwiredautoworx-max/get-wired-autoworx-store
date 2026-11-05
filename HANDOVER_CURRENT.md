@@ -3375,3 +3375,8 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Initial exact-head checks on intermediate commits found the new static test was checking user-visible category labels rather than the regex mapping source. The test has been corrected to assert the actual category image-map patterns and known representative image sources.
 - Browser QA exposed that the audio component grid's CSS display rule could override the HTML `hidden` attribute. Added explicit `[hidden]{display:none!important}` rules for the audio browse, brand, component and product stages so the brand-first journey cannot expose component choices before brand selection.
 - The current image-card change remains unaccepted until the latest exact-head build, local browser QA and hosted mobile/desktop checks pass. See commits `96abddc` and `31b992f` (test/source correction), followed by the later test commit `c6be5f8`.
+
+
+### Second static-test adjustment — 2026-11-05
+- GitHub Actions confirmed the prior pattern-source assertion was still over-escaped. Removed the brittle regex-source comparison and replaced it with explicit assertions for each category-specific image URL (speaker set, subwoofer, amplifier, head unit, camera/monitor, DSP, electrical parts, car-care kit, mats and interior accessories).
+- The audio stage hidden-state CSS correction remains in place. The next exact-head run must establish whether brand-first visibility and all external image loads now pass.
