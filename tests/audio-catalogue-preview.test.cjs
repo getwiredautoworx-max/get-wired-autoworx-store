@@ -354,7 +354,7 @@ for (const row of [oneNavPrado, oneNavLandCruiser]) {
   assert.equal(row.brandDisplayName, 'OneNav');
   assert.ok(row.description.includes('1024 × 600') && row.description.includes('Apple CarPlay') && row.description.includes('4 × 40 W'));
   assert.equal(row.imageCrop, true);
-  assert.equal(row.imagePosition, 'center 50%');
+  assert.equal(row.imagePosition, 'center 40%');
   assert.ok(row.imageUrl && !row.imageUrl.includes('OA014-1') && !row.imageUrl.includes('OA015-1'));
   assert.equal(Object.hasOwn(row, 'supplierSku'), false);
   assert.equal(Object.hasOwn(row, 'supplier_sku_candidate'), false);
@@ -369,8 +369,8 @@ assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 9);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 2);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
-assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 50%'));
-assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 50%\''));
+assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
+assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,2);
