@@ -994,17 +994,18 @@
       "modelNumber": "SSA-M5-80.600",
       "description": "5-channel amplifier. Starsound's official page lists 80 W ×4 + 250 W sub at 4 Ω; 140 W ×4 + 410 W sub at 2 Ω; 600 W sub at 1 Ω; 240 W ×2 bridged at 4 Ω. However, a second RMS Ratings table on the same official page conflicts (150 W ×4 + 300 W sub at 2 Ω; 80 W ×4 + 150 W sub at 4 Ω). A specialist retailer agrees with the first table. Hold the detailed power ratings pending manufacturer clarification.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://gunmansa.co.za/cdn/shop/files/Star-Sound-SSA-M5-80-600-High-Fidelity-Class-D-5-Channel-Amplifier-LUMINA-AUDIO-26321921.jpg?v=1778838988",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-m5-80-600-4/",
       "specificationSource": "Starsound official product page contains conflicting specification tables; specialist retailer cross-check aligns with first table",
-      "specificationStatus": "OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED"
+      "specificationStatus": "OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
+      "imageSourceUrl": "https://gunmansa.co.za/products/star-sound-ssa-m5-80-600-high-fidelity-class-d-5-channel-amplifier"
     },
     {
       "id": "ac-042",
@@ -1042,17 +1043,18 @@
       "modelNumber": "SSS-5502",
       "description": "5-inch 3-way speaker; Starsound official specification states 420 W MAX and 4 Ω impedance. RMS rating is not published by the manufacturer.",
       "manufacturerPage": "https://starsound.co.za/product/sss-5502/",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-5502_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/sss-5502/",
       "specificationStatus": "OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED",
-      "specificationSource": "Starsound official product specification"
+      "specificationSource": "Starsound official product specification",
+      "imageSourceUrl": "https://starsound.co.za/product/sss-5502/"
     },
     {
       "id": "ac-044",
@@ -1066,17 +1068,18 @@
       "modelNumber": "SSS-6501PRO",
       "description": "6.5-inch Pro midrange speaker; South African retailer specification lists 250 W RMS. A separate seller describes 250 W per pair and another listing gives 650 W maximum; whether 250 W RMS is per speaker or pair must be confirmed before a pack/bundle claim.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSS-6501PRO-6.5_-Pro-Series-Mids-_650W_-Targa-21231177.jpg?v=1725968381",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://soundvision.co.za/products/starsound-6501-pro-midrange",
       "specificationStatus": "RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED",
-      "specificationSource": "Sound Vision retailer product specification; cross-checked against other South African listings"
+      "specificationSource": "Sound Vision retailer product specification; cross-checked against other South African listings",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-sss-650pro-6-5-pro-series-mids-650w"
     },
     {
       "id": "ac-045",
@@ -1090,14 +1093,15 @@
       "modelNumber": "SSS-6601",
       "description": "6-inch dual-cone speaker",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-6601_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://starsound.co.za/product/sss-6601/"
     },
     {
       "id": "ac-046",
@@ -1111,7 +1115,7 @@
       "modelNumber": "SSS-6602",
       "description": "6-inch 3-way speaker; Starsound official specification states 480 W MAX and 4 Ω impedance. RMS rating is not published by the manufacturer.",
       "manufacturerPage": "https://starsound.co.za/product/sss-6602/",
-      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2013332000000starsound-653-way-coaxial-speaker-sss-6602-7638434.webp?v=1766473927",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-6602_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
@@ -1122,7 +1126,7 @@
       "specificationSourceUrl": "https://starsound.co.za/product/sss-6602/",
       "specificationStatus": "OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED",
       "specificationSource": "Starsound official product specification",
-      "imageSourceUrl": "https://www.fastrak.co.za/products/sss-6602-starsound-6-5-quot-3-way-coaxial-speaker"
+      "imageSourceUrl": "https://starsound.co.za/product/sss-6602/"
     },
     {
       "id": "ac-047",
@@ -1136,17 +1140,18 @@
       "modelNumber": "SSS-6903",
       "description": "6×9-inch 3-way speaker, 4 Ω per Starsound official page. Specialist South African retailer exact-model specification confirms 60 W RMS and 600 W maximum power; sold in pairs.",
       "manufacturerPage": "https://starsound.co.za/product/sss-6903/",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-6903_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://soundtech.co.za/products/starsound-6x9-3-way-600w-speaker",
       "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK_RMS_AND_MAX_CONFIRMED",
-      "specificationSource": "Starsound official product page plus specialist South African retailer exact-model specification"
+      "specificationSource": "Starsound official product page plus specialist South African retailer exact-model specification",
+      "imageSourceUrl": "https://starsound.co.za/product/sss-6903/"
     },
     {
       "id": "ac-048",
@@ -1160,17 +1165,18 @@
       "modelNumber": "SSD-620",
       "description": "6.5-inch 2-way coaxial speaker, 4 Ω; South African retailer product specifications agree on 80 W RMS and 1,200 W maximum power.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSD-620_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://soundslimited.co.za/products/star-sound-ssd-620-digital-series-6-5-e2-80-b3-2-way-coaxial-speakers-80w-rms",
       "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK_MULTIPLE_SOURCES_AGREE",
-      "specificationSource": "South African retailer specification cross-check"
+      "specificationSource": "South African retailer specification cross-check",
+      "imageSourceUrl": "https://starsound.co.za/product/ssd-620/"
     },
     {
       "id": "ac-049",
@@ -1416,14 +1422,15 @@
       "modelNumber": "SST350",
       "description": "Piezo tweeter",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2007608000000starsound-sst-350-1-350w-car-tweeter-3340580.png?v=1780672664",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-350-starsound-tweeter-by-fastrak"
     },
     {
       "id": "ac-061",
@@ -1479,14 +1486,15 @@
       "modelNumber": "EQ5100",
       "description": "5-band equaliser",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-EQ-5100-5-Band-Equalizer-Star-Sound-21231784.jpg?v=1725973962&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-5-band-equalizer"
     },
     {
       "id": "ac-064",
@@ -1521,14 +1529,15 @@
       "modelNumber": "CROSSOVER 2900",
       "description": "3-way crossover",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://soundvision.co.za/cdn/shop/products/image_9ed13de5-9f02-4f13-9700-fdc298aff210_2048x2048.jpg?v=1637320397",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://soundvision.co.za/products/star-sound-ssa-2900-x-over"
     },
     {
       "id": "ac-066",
