@@ -96,7 +96,7 @@ The selective non-production integration is tracked in PR #177. The owner's late
 
 Total: **six dedicated subcategories and 75 original contents sections**. Aerials and Car Mats have been moved in the preview category tree from their former Car Audio and Car Care parents. This supersedes the earlier separate-parent instructions for these two catalogues. The standard/public package must restore their former placements; the six-category mapping is preview-only.
 
-The preview contains **50 visually reviewed pilot records** across all six catalogues. They remain preview-only, with no Get Wired SKU, no price, no stock quantity, and watermark-retaining image crops whose production image-use rights are not cleared. All pilot image URLs must use `assets/asc-auto-electrical-pilot/`; do not reintroduce the obsolete `assets/asc-catalogue-pilot/` prefix. All 50 referenced crop files must exist in that directory. Repository presence is not proof that an image loads in a hosted browser or that an image is approved for production.
+The preview contains **50 staged pilot candidates** across all six catalogues; the image-to-exact-SKU and physical-feature matches remain pending. They remain preview-only, with no Get Wired SKU, no price, no stock quantity, and watermark-retaining image crops whose production image-use rights are not cleared. All pilot image URLs must use `assets/asc-auto-electrical-pilot/`; do not reintroduce the obsolete `assets/asc-catalogue-pilot/` prefix. All 50 referenced crop files must exist in that directory. Repository presence is not proof that an image loads in a hosted browser or that an image is approved for production.
 
 Do not process ASC Buyers Guides. Do not import the 50 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
 
@@ -113,7 +113,7 @@ The owner preview displays the draft description, original source wording, fitme
 
 Four bulb records currently under the ASC “HID Globes, Kits & Ballasts” heading (H18, H19 and H3 references) are explicitly flagged for technology/section verification. Do not assume they are HID products or rewrite the source classification until the original PDF page is checked. Blank globe fitment fields remain blank; do not infer vehicle applications.
 
-The dedicated integration regression was updated to assert source traceability, draft descriptions, quote-only wording and image-file existence. The test has not yet been executed on the latest head; do not claim a regression pass until an exact-head run is recorded.
+The dedicated integration regression and three-category structural regression passed in exact-head Cloudflare Pages Public Package QA run 42077207779 (code head 1b6aaf1). Owner Store Preview Browser QA run 42077207832 also passed on that exact head: all six category routes/images and the first pilot product image in each catalogue's first section loaded on hosted mobile/desktop checks. Verified owner preview: https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev/owner-preview.html. This is ready for owner inspection, not production release or owner acceptance.
 
 
 ### Image-rights and identity exception control
