@@ -108,6 +108,7 @@ jobs:
           python3 scripts/public-sku-audit.py
           echo "GW_EXACT_HEAD_REGRESSION_AND_SKU_AUDIT_PASS"
       - name: Deploy to dedicated non-production Cloudflare Pages branch
+        id: deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -117,12 +118,17 @@ jobs:
       - name: Wait for the exact deployed SHA and reject stale aliases
         env:
           EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          DEPLOYMENT_ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
         shell: bash
         run: |
           set -euo pipefail
-          aliases=(
-            "https://owner-preview.get-wired-autoworx-store.pages.dev"
-          )
+          aliases=()
+          for candidate in "$DEPLOYMENT_URL" "$DEPLOYMENT_ALIAS_URL" "https://owner-preview.get-wired-autoworx-store.pages.dev"; do
+            if [ -n "$candidate" ]; then
+              aliases+=("${candidate%/}")
+            fi
+          done
           matched=""
           for attempt in $(seq 1 24); do
             for base in "${aliases[@]}"; do
