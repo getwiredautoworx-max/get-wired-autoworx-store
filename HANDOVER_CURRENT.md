@@ -3369,3 +3369,10 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Added regression checks for the five new fitment descriptions.
 - Current branch head: 449f2ada81d5ab640208d660a44f444ced46223a; run 42060862172 is queued.
 - OneNav remains the only active brand: 14/64 product cards have exact manufacturer descriptions; 6 image candidates exist and 8 verified pages still lack exact images. The remaining 50 product cards still require reconciliation. Do not move to another brand.
+
+
+## OneNav follow-up — 2026-11-05 18:12 SAST
+- Added seven exact Classic page matches/descriptions: OA115-1, OA115-3, OA195-1, OA197-1, OA198-1, OA198-2 and OA199-1. No unverified images were attached.
+- OneNav expected totals: 21 exact manufacturer pages/descriptions, 6 image candidates, 15 image gaps; 21 of 64 product cards described, 43 still unmatched. OneNav remains the only active brand.
+- Combined Planetworld expected totals: 89 described records, 74 image URLs, 15 verified-page image gaps, 3,228 unmatched rows.
+- Candidate head cab0b68bda924df53d99feb466fc37273b89c2a1; run 42061224427 is in progress. Do not issue preview until exact-head hosted QA passes.
