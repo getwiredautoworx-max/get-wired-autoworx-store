@@ -3369,3 +3369,9 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Check each selected component image visually for relevance; broken, blocked or mismatched remote image sources must be replaced before owner acceptance.
 - Do not call the updated preview ready until exact-head deploy marker and hosted QA are PASS.
 - PR #176 remains OPEN / DRAFT / UNMERGED. Production stays on HOLD; no Axxess upload, DNS, Supabase/live writes, stock/price changes, checkout/payment go-live.
+
+
+### Follow-up QA correction — 2026-11-05
+- Initial exact-head checks on intermediate commits found the new static test was checking user-visible category labels rather than the regex mapping source. The test has been corrected to assert the actual category image-map patterns and known representative image sources.
+- Browser QA exposed that the audio component grid's CSS display rule could override the HTML `hidden` attribute. Added explicit `[hidden]{display:none!important}` rules for the audio browse, brand, component and product stages so the brand-first journey cannot expose component choices before brand selection.
+- The current image-card change remains unaccepted until the latest exact-head build, local browser QA and hosted mobile/desktop checks pass. See commits `96abddc` and `31b992f` (test/source correction), followed by the later test commit `c6be5f8`.
