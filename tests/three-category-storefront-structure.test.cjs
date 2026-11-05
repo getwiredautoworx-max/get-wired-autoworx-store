@@ -250,3 +250,5 @@ assert.ok(audioPage.includes('#components[hidden],#products[hidden]'), 'audio na
 assert.ok(audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'component and amplifier choices use matching photos');
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
+
+assert.ok(previewCategory.includes("routeLabel==='car audio & video'") && previewCategory.includes("preview-audio.html?department=Car%20Audio"), 'Car Audio & Video must route by its customer-facing category label into the brand directory');
