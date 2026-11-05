@@ -3949,3 +3949,12 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Current preview data generator output at the failed run: Planetworld RRP 3,298 priced / 19 zero-RRP quote-only / 19 below-estimated-cost review; exact-model enrichment 68 verified-model joins, 66 image URLs, 2 image gaps, 3,240 unmatched; Audio Connections image register currently reports 65/66 image URLs and one missing exact-model image. These counts must be reconciled before claiming coverage.
 - Continue with exact-head regression and hosted browser verification; finish the already-prioritised Home Entertainment category/product audit after the preview gate. Keep Car Audio & Video move deferred until Home Entertainment is complete and owner-accepted.
 - No production deployment, merge, Axxess/DNS, Supabase/live write, live price/stock/category changes, supplier activation, checkout/payment activation. Preview-only; production HOLD.
+
+
+## 2026-11-05 — EXACT-HEAD DEPLOYMENT ALIAS FAILURE DIAGNOSED
+
+- Exact-head run 42047066799 tested commit `3112dab2cf4130ff6d1de869c3d066d6d18a64b9`. Package build, Planetworld RRP generator, exact-model enrichment generator, both Node regression suites, three-category structure assertions and public SKU audit all passed. Reported data totals: 3,298 priced / 19 zero-RRP quote-only / 19 below-estimated-cost review; 68 verified-model matches / 66 image URLs / 2 missing / 3,240 unmatched; combined image candidates 133.
+- Cloudflare deployment succeeded and returned deployment URL `https://61d3dff5.get-wired-autoworx-store.pages.dev` with branch alias `https://integration-owner-preview-si.get-wired-autoworx-store.pages.dev`.
+- The workflow then failed because its exact-SHA marker wait polled only `https://owner-preview.get-wired-autoworx-store.pages.dev`, not the alias actually returned by Wrangler. This is a workflow alias-selection defect; it is not a build/test failure. Hosted Playwright did not run.
+- Corrective action: include the Wrangler-returned stable branch alias `integration-owner-preview-si` in the exact-SHA marker allowlist, retain the old alias as secondary, and trigger a fresh exact-head deployment. Do not share either alias until exact marker and hosted browser checks pass.
+- PR #178 remains open/draft/unmerged. Production HOLD; no live writes, live price/stock/category changes, merge, payment activation, Axxess or DNS actions.
