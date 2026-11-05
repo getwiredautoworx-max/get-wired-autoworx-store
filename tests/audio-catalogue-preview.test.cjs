@@ -229,7 +229,7 @@ assert.ok(raEl4&&raEl4.imageUrl==='https://mamasboombox.co.za/cdn/shop/files/RA-
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
 
-for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop/products/Star-Sound-Rapter-Series-2-Channel-Amplifier-_2250W_-maxmotorsports-1631612487.jpg?v=1631612489&width=1946"],["SSA-R-6200.1D","https://osmans.co.za/image/product/1_ssar62001d.png"],["SSA-R-6900.1D","https://soundslimited.co.za/wp-content/uploads/2024/12/Starsound-SSA-R6900.1-Mono-Amplifier-sounds-limited.jpg"]]) {
+for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop/products/Star-Sound-Rapter-Series-2-Channel-Amplifier-_2250W_-maxmotorsports-1631612487.jpg?v=1631612489&width=1946"],["SSA-R-6200.1D","https://osmans.co.za/image/product/1_ssar62001d.png"],["SSA-R-6900.1D","https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2021/10/3-1117-1.png?fit=1200%2C638&ssl=1"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
