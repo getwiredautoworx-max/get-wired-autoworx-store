@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 61,
-  "recordsMissingVerifiedImage": 5,
+  "recordsWithImage": 60,
+  "recordsMissingVerifiedImage": 6,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -40,6 +40,13 @@
       "title": "Reference Audio RA SUPER RAST20",
       "component": "Tweeters",
       "descriptionPresent": true
+    },
+    {
+      "model": "EQ7100",
+      "brand": "Starsound",
+      "title": "Starsound EQ7100 7-band equalizer",
+      "component": "Equalizers",
+      "reason": "Only a different SSA-EQ-7200 image was found; rejected as a model mismatch."
     }
   ],
   "updatedAt": "2026-11-05",
@@ -103,20 +110,28 @@
     "SSA-R-6900.1D",
     "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)"
   ],
-  "imageCoverageNote": "57 of 66 Audio Connections preview records have exact-model image URLs with source-page references. Nine records remain without verified photos; the supplier Starsound price-list PDF has no embedded Starsound product photos, and no safe exact-model replacement was found for those rows. Do not use lookalikes.",
+  "imageCoverageNote": "60 of 66 Audio Connections preview records have exact-model image URLs with source-page references. Six records remain without verified photos. A different SSA-EQ-7200 image was rejected for the EQ7100 row rather than using a model mismatch.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860",
     "RA AWG4",
     "BULLET LYNX",
-    "RA SUPER RAST20"
+    "RA SUPER RAST20",
+    "EQ7100"
   ],
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 16,
+    "sourceVerified": 17,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
-  }
+  },
+  "rejectedImageMatches": [
+    {
+      "model": "EQ7100",
+      "candidate": "SSA-EQ-7200",
+      "reason": "Model code differs; candidate image deliberately not used."
+    }
+  ]
 }
