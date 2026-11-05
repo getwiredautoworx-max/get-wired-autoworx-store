@@ -227,29 +227,22 @@ assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio comp
 
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 
-// Owner visual requirement: audio category buttons use dedicated local illustrations, not fragile third-party image URLs or unrelated fallbacks.
-for (const asset of [
-  'audio-types/speakers.svg',
-  'audio-types/subwoofers.svg',
-  'audio-types/amplifiers.svg',
-  'audio-types/head-units.svg',
-  'audio-types/cameras-monitors.svg',
-  'audio-types/signal-processing.svg',
-  'audio-types/harnesses-trims.svg',
-  'audio-types/aerials.svg',
-  'audio-types/home-audio-cinema.svg',
-  'audio-types/musical-instruments.svg',
-  'audio-types/marine-audio.svg',
-  'audio-types/lifestyle-audio.svg'
+// Owner visual requirement: the customer-facing audio department and component cards use photographic art.
+for (const photo of [
+  'photo-1593359677879-a4bb92f829d1',
+  'photo-1608043152269-423dbba4e7e1',
+  'photo-1545454675-3531b543be5d',
+  'photo-1583394838336-acd977736f90',
+  'photo-1506157786151-b8491531f063',
+  'photo-1642177272498-98096a6c98e4'
 ]) {
-  assert.ok(audioPage.includes('/assets/'+asset) || previewCategory.includes("'"+asset+"'"), 'audio category image map includes '+asset);
-  assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package includes '+asset);
+  assert.ok(audioPage.includes(photo) || previewCategory.includes(photo) || audioBrandPage.includes(photo), 'audio category photography includes '+photo);
 }
-assert.ok(audioPage.includes('"/assets/audio-types/speakers.svg"'), 'speaker/component tile uses dedicated speaker artwork');
-assert.ok(audioPage.includes('"/assets/audio-types/amplifiers.svg"'), 'amplifier tile uses dedicated amplifier artwork');
-assert.ok(audioPage.includes('"/assets/audio-types/head-units.svg"'), 'head-unit tile uses dedicated head-unit artwork');
-assert.ok(audioPage.includes('"/assets/audio-types/subwoofers.svg"'), 'subwoofer tile uses dedicated subwoofer artwork');
-assert.ok(!audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && !audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'audio component image buttons must not depend on third-party image hosts');
+assert.ok(audioPage.includes('el("departments").hidden=!!department;'), 'selected department must hide the previous menu');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand component cards must prefer exact product images');
+for (const asset of ['audio-types/speakers.svg','audio-types/subwoofers.svg','audio-types/amplifiers.svg','audio-types/head-units.svg','audio-types/cameras-monitors.svg','audio-types/signal-processing.svg','audio-types/harnesses-trims.svg','audio-types/aerials.svg','audio-types/home-audio-cinema.svg','audio-types/musical-instruments.svg','audio-types/marine-audio.svg','audio-types/lifestyle-audio.svg']) {
+  assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package retains safe category fallback '+asset);
+}
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
