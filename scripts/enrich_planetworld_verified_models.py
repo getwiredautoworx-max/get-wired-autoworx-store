@@ -102,7 +102,7 @@ def main() -> None:
                     raise SystemExit(f"OneNav image candidate lacks HTTPS/crop verification for internal source row {index}")
                 product["imageUrl"] = image_url
                 product["imageCrop"] = True
-                product["imagePosition"] = one.get("image_position", "center 50%") or "center 50%"
+                product["imagePosition"] = one.get("image_position", "center 40%") or "center 40%"
                 product["imageStatus"] = "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE"
                 image_status = product["imageStatus"]
                 one_images += 1
