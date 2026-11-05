@@ -57,3 +57,9 @@ required_checks=exact-sha-marker;component-image-load-audit;brand-first-navigati
 
 request=PR-176-image-led-all-three-departments-image-load-audit-2026-11-05
 required_checks=exact-sha-marker;all-audio-subcategory-images-load;all-auto-electrical-subcategory-images-load;all-car-care-subcategory-images-load;brand-first-component-image-load;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+
+request=ASC-AUTO-ELECTRICAL-SELECTIVE-INTEGRATION-2026-11-05
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+requested_head=cad0490aef92ddfa42e4867983ed48871ff89316
+required_checks=exact-head-package;three-category-structure;34-asc-review-records;four-auto-electrical-catalogues;390px-image-cards;ASC-pilot-image-load;desktop-no-overflow;checkout-hidden;supabase-writes-blocked;public-sku-audit

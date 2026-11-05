@@ -7,6 +7,7 @@ on:
       - repair/pr-168-storefront-category-audio-2026-11-04
       - fix/mobile-audio-subcategory-grid-2026-11-04
       - preview/integrated-storefront-2026-11-04
+      - integration/asc-auto-electrical-clean-2026-11-05
     paths:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
@@ -14,6 +15,12 @@ on:
       - "preview-category.html"
       - "category.html"
       - "tests/three-category-storefront-structure.test.cjs"
+      - "assets/category-tree.json"
+      - "assets/asc-auto-electrical-preview.json"
+      - "assets/asc-auto-electrical-pilot/**"
+      - "asc-auto-electrical-preview.html"
+      - "tests/asc-auto-electrical-integration.test.cjs"
+      - "scripts/build-cloudflare-pages-public.py"
 
 permissions:
   contents: read
@@ -48,6 +55,9 @@ jobs:
           test -f pages-public/owner-preview.html
           test -f pages-public/preview-audio.html
           test -f pages-public/preview-category.html
+          test -f pages-public/asc-auto-electrical-preview.html
+          test -f pages-public/assets/asc-auto-electrical-preview.json
+          test -d pages-public/assets/asc-auto-electrical-pilot
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
@@ -60,6 +70,7 @@ jobs:
           set -euo pipefail
           node tests/audio-catalogue-preview.test.cjs
           node tests/three-category-storefront-structure.test.cjs
+          node tests/asc-auto-electrical-integration.test.cjs
           python3 scripts/public-sku-audit.py
           echo "GW_EXACT_HEAD_REGRESSION_AND_SKU_AUDIT_PASS"
       - name: Deploy to dedicated non-production Cloudflare Pages branch
@@ -161,9 +172,23 @@ jobs:
               await rootLinks.nth(1).click();
               await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               const autoLayout=await frame.locator('#grid').evaluate(grid=>({columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:grid.querySelectorAll(':scope > .card').length}));
-              if(autoLayout.columns!==2||autoLayout.count!==5)throw new Error('Auto Electrical page must show five compact subcategory cards on mobile: '+JSON.stringify(autoLayout));
+              if(autoLayout.columns!==2||autoLayout.count!==7)throw new Error('Auto Electrical page must show seven compact subcategory cards on mobile: '+JSON.stringify(autoLayout));
               const autoCategoryImages=await frame.locator('#grid > .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
-              if(autoCategoryImages.length!==5||autoCategoryImages.some(x=>!x.loaded))throw new Error('Auto Electrical subcategory picture cards failed to load: '+JSON.stringify(autoCategoryImages));
+              if(autoCategoryImages.length!==7||autoCategoryImages.some(x=>!x.loaded))throw new Error('Auto Electrical subcategory picture cards failed to load: '+JSON.stringify(autoCategoryImages));
+              const ascNames=['Automotive Sensors','Automotive Switches','Automotive Globes','Fuel Pumps'];
+              for(const name of ascNames){const card=frame.locator('#grid > .card').filter({hasText:name});if(await card.count()!==1)throw new Error('Missing unique ASC Auto Electrical category card: '+name);}
+              await frame.locator('#grid > .card').filter({hasText:'Automotive Sensors'}).click();
+              await frame.locator('#heading').filter({hasText:'Automotive Sensors'}).waitFor({state:'visible',timeout:30000});
+              const sensorSections=await frame.locator('#sections > .tile').count();
+              if(sensorSections!==12)throw new Error('Automotive Sensors should show 11 source sections plus back button, got '+sensorSections);
+              await frame.locator('#sections > .tile').filter({hasText:'Crankshaft & Camshaft Position Sensors'}).click();
+              await frame.locator('#products .card').first().waitFor({state:'visible',timeout:20000});
+              const ascPilotCount=await frame.locator('#products .card').count();
+              if(ascPilotCount!==5)throw new Error('ASC crank/cam sensor pilot expected 5 reviewed cards, got '+ascPilotCount);
+              const ascPilotImages=await frame.locator('#products .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0}})));
+              if(ascPilotImages.length!==5||ascPilotImages.some(x=>!x.loaded))throw new Error('ASC pilot source-card images failed to load: '+JSON.stringify(ascPilotImages));
+              await frame.locator('body').evaluate(()=>{location.href='preview-category.html?id=ba263c9f-d038-48bd-bca0-944f3ebdc5e9'});
+              await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               await rootLinks.nth(2).waitFor({state:'visible',timeout:30000});
               await rootLinks.nth(2).click();

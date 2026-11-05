@@ -8,6 +8,7 @@ on:
       - repair/pr-168-storefront-category-audio-2026-11-04
       - fix/mobile-audio-subcategory-grid-2026-11-04
       - preview/integrated-storefront-2026-11-04
+      - integration/asc-auto-electrical-clean-2026-11-05
 
 permissions:
   contents: read
@@ -30,6 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node tests/asc-auto-electrical-integration.test.cjs
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
