@@ -297,8 +297,8 @@ jobs:
               await frame.locator('#products .card').first().waitFor({state:'visible',timeout:20000});
               const ascSensorCount=await frame.locator('#products .card').count();
               if(ascSensorCount!==5)throw new Error('ASC sensor review pilot expected 5 products, got '+ascSensorCount);
-              const ascSensorImages=await frame.locator('#products .card img').evaluateAll(imgs=>imgs.map(img=>img.complete&&img.naturalWidth>0));
-              if(ascSensorImages.length!==5||ascSensorImages.some(x=>!x))throw new Error('ASC sensor pilot images did not all load: '+JSON.stringify(ascSensorImages));
+              const ascSensorImages=await frame.locator('#products .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth}})));
+              if(ascSensorImages.length!==5||ascSensorImages.some(x=>!x.loaded))throw new Error('ASC sensor pilot images did not all load: '+JSON.stringify(ascSensorImages));
 
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(2).waitFor({state:'visible',timeout:30000});

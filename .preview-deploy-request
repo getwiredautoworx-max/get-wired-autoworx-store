@@ -92,3 +92,7 @@ required_checks=exact-sha-marker;audio-category-images;car-care-category-images;
 request=ASC-AUTO-ELECTRICAL-LOCAL-QA-BRAND-FIRST-AND-SEVEN-CATEGORY-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=local-owner-preview;hosted-exact-sha;brand-first-audio;seven-auto-electrical-categories;ASC-sensor-pilot-images;Car-Care-four-cards
+
+request=ASC-AUTO-ELECTRICAL-IMAGE-LOAD-WAIT-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;ASC-sensor-pilot-image-load-waits;seven-auto-electrical-categories;mobile-and-desktop
