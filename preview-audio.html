@@ -694,12 +694,12 @@ const BRAND_LOGOS={
  "roborock":"https://cdn.simpleicons.org/roborock","aiper":"https://cdn.simpleicons.org/aiper","vogel's":"https://cdn.simpleicons.org/vogels","hdanywhere":"https://cdn.simpleicons.org/hdanywhere"
 };
 function brandButton(label,active,href){
- const b=document.createElement("a");b.className="brandLogoButton";b.href=href;b.title=label;b.setAttribute("aria-label",label);b.setAttribute("role","button");
+ const b=document.createElement("a");b.className="brandLogoButton";b.href=href;const displayLabel=label.trim().toLowerCase()==="one"?"ONE / OneNav":label;b.title=displayLabel;b.setAttribute("aria-label",label);b.setAttribute("role","button");
  const normalized=label.trim().toLowerCase();
  const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":normalized;
  const slug=normalized.replace(/[^a-z0-9]+/g,"");
  const src=BRAND_LOGOS[key]||("https://cdn.simpleicons.org/"+slug);
- if(src){const img=document.createElement("img");img.src=src;img.alt=label+" logo";img.loading="eager";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=label;b.append(fallback)};b.append(img)}
+ if(src){const img=document.createElement("img");img.src=src;img.alt=displayLabel+" logo";img.loading="eager";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=displayLabel;b.append(fallback)};b.append(img)}
  else{const word=document.createElement("span");word.className="brandWordmark";word.textContent=label;b.append(word)}
  if(active)b.classList.add("active");return b
 }
