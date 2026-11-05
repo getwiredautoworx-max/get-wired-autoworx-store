@@ -317,8 +317,8 @@ jobs:
             if(!productStage.productsVisible||productStage.productCards<1)throw new Error('Selecting a product type must reveal matching products: '+JSON.stringify(productStage));
             const quoteHref=await audioShop.locator('#products .quoteLink').first().getAttribute('href');
             const quoteText=new URL(quoteHref).searchParams.get('text')||'';
-            const audioTheme=await audioShop.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,nav:getComputedStyle(document.querySelector('.nav')).backgroundColor,hero:getComputedStyle(document.querySelector('.heroCard')).backgroundImage}));
-            if(!audioTheme.header.includes('255, 255, 255')||audioTheme.nav!=='rgb(234, 240, 246)'||!audioTheme.hero.includes('linear-gradient'))throw new Error('Audio page bright shell failed: '+JSON.stringify(audioTheme));
+            const audioTheme=await audioShop.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,nav:getComputedStyle(document.querySelector('.nav')).backgroundColor,intro:getComputedStyle(document.querySelector('.audioIntro')).backgroundImage}));
+            if(!audioTheme.header.includes('255, 255, 255')||audioTheme.nav!=='rgb(234, 240, 246)'||!audioTheme.intro.includes('linear-gradient'))throw new Error('Audio page bright shell failed: '+JSON.stringify(audioTheme));
             if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Brand: Alpine')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
             const audioOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(audioOverflow.scrollWidth>audioOverflow.innerWidth+1)throw new Error('Audio navigation mobile overflow: '+JSON.stringify(audioOverflow));
@@ -506,8 +506,8 @@ jobs:
             await hostedAudio.locator('#products .quoteLink').first().waitFor({state:'visible',timeout:15000});
             const hostedProductStage=await hostedAudio.evaluate(()=>({productsVisible:!document.getElementById('productsHeading').hidden&&!document.getElementById('products').hidden,productCards:document.querySelectorAll('#products .audioProduct').length}));
             if(!hostedProductStage.productsVisible||hostedProductStage.productCards<1)throw new Error('Hosted Audio product type selection must reveal matching products: '+JSON.stringify(hostedProductStage));
-            const hostedAudioTheme=await hostedAudio.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,nav:getComputedStyle(document.querySelector('.nav')).backgroundColor,hero:getComputedStyle(document.querySelector('.heroCard')).backgroundImage}));
-            if(!hostedAudioTheme.header.includes('255, 255, 255')||hostedAudioTheme.nav!=='rgb(234, 240, 246)'||!hostedAudioTheme.hero.includes('linear-gradient'))throw new Error('Hosted Audio route bright shell failed: '+JSON.stringify(hostedAudioTheme));
+            const hostedAudioTheme=await hostedAudio.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,nav:getComputedStyle(document.querySelector('.nav')).backgroundColor,intro:getComputedStyle(document.querySelector('.audioIntro')).backgroundImage}));
+            if(!hostedAudioTheme.header.includes('255, 255, 255')||hostedAudioTheme.nav!=='rgb(234, 240, 246)'||!hostedAudioTheme.intro.includes('linear-gradient'))throw new Error('Hosted Audio route bright shell failed: '+JSON.stringify(hostedAudioTheme));
             const hostedAudio390=await hostedAudio.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedAudio390.scrollWidth>hostedAudio390.innerWidth+1)throw new Error('Hosted Audio 390px overflow: '+JSON.stringify(hostedAudio390));
             await hostedAudio.setViewportSize({width:360,height:800});
