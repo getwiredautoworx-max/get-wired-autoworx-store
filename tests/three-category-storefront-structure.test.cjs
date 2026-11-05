@@ -180,7 +180,7 @@ for (const obj of [planet,audio]) {
   const raw=JSON.stringify(obj);
   // Image assets may be served from a supplier-owned CDN. The host is not a
   // customer-facing supplier label; audit visible text/metadata separately.
-  const customerText=raw.replace(/https?:\\/\\/[^\\s"'<>]+/gi,'[image-asset-url]');
+  const customerText=raw.replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
   assert.ok(!/Planetworld|Audio Connections/i.test(customerText),'supplier identity must not appear in customer-facing catalogue text or metadata');
   assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
   assert.ok(!/supplierModelNumber/i.test(raw),'internal supplier model identifiers must not be exposed');
