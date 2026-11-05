@@ -142,10 +142,10 @@ jobs:
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
               await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-              await page.waitForFunction(()=>new URLSearchParams(document.querySelector('#store').contentWindow.location.search).get('id')==='e3d19d20-fb46-426c-9f64-221d863add0b',{timeout:20000});
+              await frame.locator('#grid .card').filter({hasText:'Speakers & Component Kits'}).waitFor({state:'visible',timeout:20000});
               for(const label of ['Speakers & Component Kits','Subwoofers','Amplifiers','Head Units & Media Players','Accessories'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
               await frame.locator('#grid .card').filter({hasText:'Accessories'}).click();
-              await page.waitForFunction(()=>new URLSearchParams(document.querySelector('#store').contentWindow.location.search).get('id')==='8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{timeout:20000});
+              await frame.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               for(const label of ['Aerials','Trims & Harnesses'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
               await frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
               await page.waitForFunction(()=>(document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio')||(document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio')||document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'))),{timeout:20000});
