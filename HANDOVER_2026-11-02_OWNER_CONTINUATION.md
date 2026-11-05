@@ -1927,3 +1927,10 @@ At the time this plan is appended, the recorded active integration candidate is 
 - The available connected GitHub actions do not expose workflow dispatch. Updating the PR head and re-opening the draft PR did not create any workflow runs for the exact head. API query returned `total_count=0` for SHA `771b1ca1f7bca468a1e3490a348d56fc717c4421`.
 - Consequently, exact-head Node/Playwright checks and the updated hosted preview are blocked by the unavailable workflow-dispatch/registered-workflow trigger. Do not reuse the older preview URL or report this code as browser-tested. The correction is committed, but successful resolution and owner preview acceptance remain unverified.
 - Smallest owner action if no supported workflow-dispatch connector becomes available: run the existing `Cloudflare Layout Preview` workflow from GitHub Actions on the approved integration branch, if its inputs support that branch and preview target. Do not run any production/Axxess workflow.
+
+
+### Workflow capability check — 2026-11-05
+
+- Inspected the workflow that actually exists on `main`: `.github/workflows/cloudflare-layout-preview.yml`. It is `workflow_dispatch` only and explicitly checks out `main`; it cannot deploy the PR #178 integration branch as written.
+- Therefore do NOT ask the owner to run that existing workflow as-is; it would build/deploy main, not this candidate.
+- Required unblock is a narrowly scoped default-branch workflow change (prefer a reviewed infrastructure PR) that accepts the approved integration ref, checks out that exact SHA, runs the package/regression/Playwright checks, and deploys only to the isolated `owner-preview` Pages branch. It must not expose a production deploy path. Await owner approval before merging such a workflow-enablement change.
