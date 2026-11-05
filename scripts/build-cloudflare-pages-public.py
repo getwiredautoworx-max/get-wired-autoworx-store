@@ -29,7 +29,7 @@ PREVIEW_ROOT_FILES = [
 PREVIEW_ASSET_FILES = [
     "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
     "audio-connections-catalogue-preview.json",
-    "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg",
+    "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
     "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
     "audio-types/harnesses-trims.svg", "audio-types/aerials.svg",
