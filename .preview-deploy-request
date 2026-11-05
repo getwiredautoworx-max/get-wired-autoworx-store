@@ -142,3 +142,5 @@ required_hosted_checks=390px_mobile;1365px_desktop;car_audio_one_nav_button;ampl
 final_head_refresh=2026-11-05-catalogue-accuracy-workstream
 
 public_data_guard_fix=remove_internal_pricing_audit_path_from_customer_json
+
+regression_test_binding_fix=brandLandingRoute_unique_top_level_identifier
