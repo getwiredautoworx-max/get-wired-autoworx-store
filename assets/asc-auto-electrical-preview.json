@@ -266,7 +266,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "01080",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-02883",
@@ -282,7 +289,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "02883",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-03822",
@@ -298,7 +312,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "03822",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-09103",
@@ -314,7 +335,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "09103",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-09396",
@@ -330,7 +358,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "09396",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-21849",
@@ -346,7 +381,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "21849",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-cs-112048",
@@ -362,7 +404,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "cs-112048",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-csc105",
@@ -378,7 +427,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "csc105",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-csc106",
@@ -394,7 +450,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "csc106",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-9005-cbl-h",
@@ -410,7 +473,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "9005-cbl-h",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
     },
     {
       "id": "asc-preview-9005-h",
@@ -426,7 +496,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "9005-h",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
     },
     {
       "id": "asc-preview-9005-nb",
@@ -442,7 +519,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "9005-nb",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
     },
     {
       "id": "asc-preview-9005xs",
@@ -458,7 +542,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "9005xs",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "NO_FITMENT_FIELD_VERIFIED — DO_NOT_INFER"
     },
     {
       "id": "asc-preview-f1-012",
@@ -474,7 +565,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-012",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-019",
@@ -490,7 +588,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-019",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-060",
@@ -506,7 +611,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-060",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-067",
@@ -522,7 +634,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-067",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-02761",
@@ -538,7 +657,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "02761",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-04818",
@@ -554,7 +680,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "04818",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-14163",
@@ -570,7 +703,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "14163",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-29601",
@@ -586,7 +726,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Sensors (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "29601",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-ig-fr01",
@@ -602,7 +749,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "ig-fr01",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-ig-hn04",
@@ -618,7 +772,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "ig-hn04",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-ig-izt",
@@ -634,7 +795,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "ig-izt",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-ig-np300",
@@ -650,7 +818,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive Switches (1).pdf",
+      "source_page": 3,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "ig-np300",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-h1865w-h",
@@ -666,7 +841,15 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "h1865w-h",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
     },
     {
       "id": "asc-preview-h1960-55w-h",
@@ -682,7 +865,15 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "h1960-55w-h",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
     },
     {
       "id": "asc-preview-h355w-cbl",
@@ -698,7 +889,15 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "h355w-cbl",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
     },
     {
       "id": "asc-preview-h355w-h",
@@ -714,7 +913,15 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Automotive globes (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "h355w-h",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
+      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification"
     },
     {
       "id": "asc-preview-f1-001",
@@ -730,7 +937,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-001",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-001-e",
@@ -746,7 +960,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-001-e",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-009",
@@ -762,7 +983,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-009",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-017",
@@ -778,7 +1006,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-017",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     },
     {
       "id": "asc-preview-f1-028",
@@ -794,7 +1029,14 @@
       "image_use_status": "WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED",
       "price": null,
       "stock_quantity": null,
-      "stock_status": "Not supplied; confirm availability before ordering"
+      "stock_status": "Not supplied; confirm availability before ordering",
+      "source_pdf": "ASC- Fuel Pumps (1).pdf",
+      "source_page": 4,
+      "source_page_basis": "CONTENTS_PAGE_START_PAGE — verify against original PDF page image before final approval",
+      "source_sku_candidate": "f1-028",
+      "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
+      "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
+      "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING"
     }
   ]
 }
