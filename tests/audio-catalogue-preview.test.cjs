@@ -459,6 +459,11 @@ assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-101inch-for-corrola-2019')?.description.includes('Toyota Corolla'),'OA016-1 Corolla description must be present');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-toyota-quantum-2019')?.description.includes('Toyota Quantum'),'OA110-1 Quantum description must be present');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-isuzu/')?.description.includes('Isuzu'),'OA115-2 Isuzu description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-kia-sportage-2019')?.description.includes('Kia Sportage'),'OA192-1 Kia Sportage description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-kia-picanto-2018')?.description.includes('Kia Picanto'),'OA194-1 Kia Picanto description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-ford-xl-ranger-2015-2020-9-inch')?.description.includes('Ford XL Ranger'),'OA263-1 Ford XL Ranger description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-ignis-2018')?.description.includes('Suzuki Ignis'),'OA712-1 Ignis description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-vitara-2018')?.description.includes('Suzuki Vitara'),'OA714-1 Vitara description must be present');
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
