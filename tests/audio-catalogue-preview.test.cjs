@@ -14,7 +14,59 @@ const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf
 
 const categoryCleanup = fs.readFileSync('assets/category-cleanup.js', 'utf8');
 const PRICE_ON_REQUEST_TEXT = 'Price On Request Due to Stock Availability';
-assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 37);
+const ONE_LOGO = 'https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png';
+const AMPLIFIED_LOGO = 'https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png';
+function parseCsvRows(source) {
+  const rows=[]; let row=[], value='', quoted=false;
+  for(let i=0;i<source.length;i++) {
+    const ch=source[i];
+    if(quoted) {
+      if(ch==='"'&&source[i+1]==='"'){value+='"';i++;}
+      else if(ch==='"')quoted=false;
+      else value+=ch;
+    } else if(ch==='"')quoted=true;
+    else if(ch===','){row.push(value);value='';}
+    else if(ch==='\\n'){row.push(value.replace(/\\r$/,''));rows.push(row);row=[];value='';}
+    else value+=ch;
+  }
+  if(value.length||row.length){row.push(value.replace(/\\r$/,''));rows.push(row);}
+  if(rows.length)rows[0][0]=rows[0][0].replace(/^\\uFEFF/,'');
+  return rows;
+}
+const planetSourceRows=[];
+for(let part=1;part<=7;part++) {
+  const path='catalogue-review/planetworld-row-chunks/planetworld-rows-0'+part+'.csv';
+  const parsed=parseCsvRows(fs.readFileSync(path,'utf8'));
+  const headers=parsed[0];
+  for(const values of parsed.slice(1)) {
+    const record={}; headers.forEach((key,index)=>record[key]=values[index]);
+    planetSourceRows.push(record);
+  }
+}
+assert.equal(planetSourceRows.length,3317,'all Planetworld source rows must be included in the pricing reconciliation');
+assert.equal(planet.records.length,planetSourceRows.length,'every preview product must map to one source row in source order');
+for(let i=0;i<planetSourceRows.length;i++) {
+  const rrp=Number(planetSourceRows[i].retail_price_incl)||0;
+  const expected=rrp>0?Math.round((rrp*0.98+Number.EPSILON)*100)/100:null;
+  assert.equal(planet.records[i].indicativePrice,expected,planet.records[i].id+' must use VAT-inclusive RRP less exactly 2%, without adding VAT');
+  assert.equal(planet.records[i].priceBasis,rrp>0?'RRP_INCL_VAT_MINUS_2_PERCENT':'QUOTE_ONLY_ZERO_RRP');
+}
+assert.equal(planet.pricingRule.formula,'round(RRP_incl_VAT * 0.98, 2)');
+assert.equal(planet.pricingRule.vatTreatment,'RRP already includes VAT; do not add VAT again');
+assert.equal(planet.pricingRule.pricedRecords,3298);
+assert.equal(planet.pricingRule.zeroRrpQuoteOnly,19);
+const pricingAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv','utf8'));
+const pricingAuditRows=pricingAudit.slice(1);
+const pricingAuditIndex=Object.fromEntries(pricingAudit[0].map((key,index)=>[key,index]));
+assert.equal(pricingAuditRows.length,3317,'internal RRP pricing audit must retain every source row');
+assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='QUOTE_ONLY_ZERO_RRP').length,19);
+assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_BELOW_ESTIMATED_COST_REVIEW').length,19,'below-estimated-cost rows must be flagged for owner review, not silently hidden');
+assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_COST_FLOOR_PASS').length,3279);
+assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand directory must use official Planetworld ONE/OneNav and Amplified logos');
+const brandRoute=fs.readFileSync('preview-audio-brand.html','utf8');
+assert.ok(brandRoute.includes(ONE_LOGO)&&brandRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
+assert.ok(brandRoute.includes("function brandDisplayName(b)")&&brandRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
+assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
 assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT), 'all unpriced Planetworld rows must use the exact owner-approved request wording');
 assert.equal(audioConnections.records.filter(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT).length, 53, 'unapproved dealer-cost estimates and retail-only comparisons must remain quote-only');
 assert.equal(audioConnections.records.filter(row => row.priceOnRequestText !== PRICE_ON_REQUEST_TEXT && row.indicativePrice != null).length, 13, 'only validated Sony supplier-price-list rows retain numeric prices');
@@ -44,7 +96,7 @@ assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.
 
 assert.equal(planet.recordCount, 3317, 'full Planetworld source snapshot must be retained');
 assert.equal(planet.records.length, 3317);
-assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 37);
+assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
 assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === 'Price On Request Due to Stock Availability'));
 const uniquePlanetRows = new Set(planet.records.map(row => JSON.stringify([row.collection,row.brand,row.title,row.component,row.indicativePrice,row.hasStock,row.modelNumber||''])));
 assert.equal(uniquePlanetRows.size, 3135, 'exact duplicate source rows are suppressed in the customer browse view, not deleted from source data');
