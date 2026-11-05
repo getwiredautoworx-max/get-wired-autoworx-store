@@ -68,3 +68,7 @@ request=ASC-AUTO-ELECTRICAL-EXACT-HEAD-DEPLOY-AND-HOSTED-QA
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 requested_head=cf769fa447e91332f17d4c74a6ad03f48296683f
 required_checks=exact-sha-marker;four-ASC-category-routes;34-reviewed-product-images;mobile-390px;desktop-1365px;no-checkout;no-live-writes
+
+request=ASC-AUTO-ELECTRICAL-HOSTED-QA-URL-PREDICATE-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;mobile-auto-electrical;ASC-four-catalogue-routes;34-pilot-image-load;desktop-overflow;checkout-hidden
