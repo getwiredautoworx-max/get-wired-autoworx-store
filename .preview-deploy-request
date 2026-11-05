@@ -1,4 +1,3 @@
 request=owner-preview
-requested_commit=70b50195be7a9c6548e75f7cb383c03235155d08
-requested_at=2026-11-05T17:40:00+02:00
-reason=verify_exact_head_after_handover_and_EQ7100_photo_repair
+requested_commit=bd53914e968cea637456b60419cf75dededa1ddc
+reason=refresh exact-head owner preview after 11 Audio Connections description enrichments and 3 additional OneNav exact-fitment image candidates
