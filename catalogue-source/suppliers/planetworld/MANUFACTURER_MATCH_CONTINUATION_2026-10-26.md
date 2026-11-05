@@ -344,3 +344,13 @@ No supplier XLSX was edited; no supplier data was imported/published; no live ca
 - Component refinement: Musical Instruments & Accessories → Guitar Bags & Cases → **Acoustic Guitar Gig Bags**.
 - This is an exact manufacturer model/colour/image-source match, not a price validation. The Planetworld 2026-10-25 source row remains R99 RRP incl. VAT versus R649 dealer cost, while other IAB541 colour variants show R799–R1,199. The anomaly remains **unconfirmed**; do not change the price or formula until Planetworld supplies written confirmation.
 - The official image is a reference candidate only. No image was downloaded, copied, re-hosted or published; reuse rights remain unverified.
+
+
+## 2026-11-05 — Official JBL regional item-number cross-check
+
+Two official JBL product pages were checked against the 2026-10-25 Planetworld source rows. This adds exact regional manufacturer identifiers, but does **not** verify Planetworld's shortened supplier codes, current supplier price/stock, or image-reuse permission.
+
+- **Planetworld `IRX108BT-EK`:** official JBL Denmark product page identifies the black IRX108BT 8-inch powered Bluetooth PA speaker as item `IRX108BT-EK-LS`, EAN `691991033513`. The Planetworld code omits `-LS`; keep the supplier-to-manufacturer variant mapping **UNVERIFIED** until Planetworld confirms whether its code is an abbreviation or a distinct SKU. Official page: https://dk.jbl.com/IRX108BT-EK-LS.html . The page is a product-image source only; no image was copied and reuse rights remain ungranted.
+- **Planetworld `JBL-EON710-EK`:** official JBL India 220V page identifies the 10-inch EON710 as item `JBL-EON710D-EK`. The Planetworld code omits the `D`; keep the exact supplier-to-manufacturer variant mapping **UNVERIFIED** until Planetworld confirms the code and regional voltage variant. Official page: https://in.jbl.com/EON710-220V.html . The page is a product-image source only; no image was copied and reuse rights remain ungranted.
+- Neither official page supplies a current South African Planetworld dealer cost, RRP, stock quantity, or effective date. The 2026-10-25 workbook figures remain historical snapshot data only. Both rows remain **DO_NOT_IMPORT**; do not adjust price or supplier SKU from the regional pages.
+- Next action: obtain written Planetworld confirmation of both supplier-code mappings, VAT basis, current dealer cost/RRP, stock and effective date; keep both image assets withheld until image-use permission is confirmed.
