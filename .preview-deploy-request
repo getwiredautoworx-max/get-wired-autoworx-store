@@ -21,3 +21,8 @@ request=PR-176-owner-category-navigation-preview-after-handover-audit-2026-11-05
 requested_for=preview/integrated-storefront-2026-11-04
 required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
 required_checks=exact-sha-marker;mobile-root-navigation;mobile-two-column-subcategory-grid;desktop-navigation;audio-nested-routes;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=PR-176-car-audio-brand-first-navigation-fix-2026-11-05
+required_head=6e5198b964191e4ad964be6db23a40f5975bc2e2
+required_audio_journey=Car Audio & Video -> Brand -> Component Type -> Brand-filtered Products
+required_audio_checks=brand-visible-first;components-hidden-before-brand;products-hidden-before-component;Sony-Amplifiers-filter-correct
