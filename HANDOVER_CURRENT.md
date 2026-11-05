@@ -3256,3 +3256,30 @@ Read-only audit of the sanitized JSON used by PR #139:
 - This milestone is a verified populated three-category storefront and Audio catalogue preview, not full catalogue completion. Planetworld and Audio Connections are preview/review data; ASC remains deferred; other non-Audio catalogue coverage and product identity/image/price/stock reconciliation remain to be completed. Checkout/order/payment acceptance remains deferred until banking details are supplied.
 - Owner visual acceptance is still outstanding. Keep PR #176 OPEN / DRAFT / UNMERGED until owner review and any reported corrections. Production remains HOLD. No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price/category mutation, supplier activation, banking or payment go-live occurred.
 - Next execution: collect owner visual review of this exact preview; continue remaining catalogue coverage and reconciliation on the same integration line, maintaining supplier privacy and preview-only controls. Append exact-head test/deployment evidence after every meaningful change. Do not branch-split or reopen the obsolete eight-category implementation.
+
+## 2026-11-05 — OWNER-REPORTED CATEGORY NAVIGATION / MOBILE TILE FIX
+
+Owner reported that the main categories did not open separate pages and subcategories rendered as long vertical bars. Treat this as a real UX defect; the previous preview QA had checked root labels and some child links, but did not adequately verify the actual owner journey.
+
+### Source corrections on the existing PR #176 integration branch
+- Homepage root category cards now render as real full-card links to `preview-category.html?id=<root-id>` (same-frame `target=_self`), not accordion buttons. The legacy click handler explicitly leaves `a.catalogueLink` navigation alone.
+- Fixed a runtime error in `preview-category.html`: the page had attempted to attach an input listener to a non-existent `#search` element before calling `main()`. The exception left the category page stuck at “Loading categories…”. The optional listener now uses optional chaining so the page renderer runs.
+- Main category pages now render all active direct children even when their catalogue product counts are currently zero. This prevents empty product counts from hiding the category structure.
+- Removed the duplicated, misleading Car Audio department override so Car Audio & Video displays its real subcategory tree. Added explicit filtered audio routes for Home Entertainment, Band Equipment, DJ Equipment, Instruments, Car Audio component groups, Aerials and Trims & Harnesses.
+- Added compact category-card CSS to `preview-category.html` and `category.html`: 3 columns desktop, 2 columns mobile (including 390px), compact artwork and text, no full-width stacked vertical bars.
+- Updated `tests/three-category-storefront-structure.test.cjs` to assert root links, category-page child rendering, optional search safety and compact mobile grids.
+- Updated hosted Playwright checks to exercise real root-page navigation and child routes, rather than relying on the old accordion DOM.
+
+### Verified behaviour / deployment evidence
+- Exact source/deployment head `00c197fe9ef83d982ae3407e7a9eec8412cb6a9c` passed Cloudflare Pages build, exact marker verification and hosted browser QA in workflow **41983012596**.
+- Deployed marker returned `result=PASS`, `preview_only=true`, exact commit `00c197fe9ef83d982ae3407e7a9eec8412cb6a9c`.
+- At 390px mobile, the Audio root page renders six subcategory cards in a two-column grid; Car Audio & Video opens a separate page with its product-type subcategories; Accessories opens its own page with Aerials and Trims & Harnesses; Trims & Harnesses opens a 47-product filtered listing.
+- Auto Electrical Parts & Spares opens its own page with five compact subcategory cards; Car Care & Accessories opens its own page with four compact subcategory cards. Both were checked in the same hosted mobile run.
+- Audio catalogue checks retained: 3,317 Planetworld records, 702 Car Audio records, 66 Audio Connections review records; Sony amplifier filtering passed. Public supplier-SKU exposure audit passed. Checkout remains hidden and Supabase writes remain blocked.
+- Hosted desktop viewport 1365px: no horizontal overflow; zero browser JavaScript errors. Four Audio collage images verified.
+- Latest PR branch head after QA-only guard correction is `0c3c606ac78f99e54bac3e33ffef19e2ecbc8c2b`. That latest commit changes only the owner browser QA expectation (do not expect product cards before brand/component selection); storefront source files are unchanged from deployed source `00c197f`. An exact-head staging refresh is being triggered after this handover checkpoint so the current branch head also has a matching deployment record.
+
+### Remaining acceptance and release boundaries
+- Give the owner the refreshed stable preview and request visual acceptance of the category-page layout on the Hisense phone. Do not claim owner acceptance on their behalf.
+- This fixes navigation/layout only; remaining catalogue completeness, image/price/stock reconciliation and ASC integration are not complete.
+- PR #176 remains OPEN / DRAFT / UNMERGED pending owner acceptance. Production remains HOLD. No Axxess upload, DNS change, Supabase/live write, live stock/price change, checkout/payment activation or production deployment occurred.
