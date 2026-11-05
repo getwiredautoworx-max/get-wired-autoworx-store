@@ -3802,3 +3802,10 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - New commits: verified image crosswalk `a08a9eb24785d39d59f738695e6e7b7c098e5b32`; verified title enrichment `9059293b8ab06ffdcff61c9f7f1c52aec62710cc`; metadata rendering `8470bff4d3a980fb9323aec944e4244dfaa6267a`; exact image/title assertions `ee87eed2a88e629f12d94efbf0e4eaf5f555e155`.
 - Second run `42027442156` is not a successful preview: hosted QA failed only after the Alpine image failed to load. The new image source and title change are not yet tested.
 - Next: rerun exact-head build, regression, SKU/privacy audit and hosted image/layout checks; only provide a fresh preview if the new Alpine image loads and all mobile/desktop checks pass.
+
+
+### Build regression follow-up — 2026-11-05
+- Exact-head run `42027795274` built the public package and ran the RRP/enrichment generators successfully (3,298 priced rows; 19 zero-RRP quote-only; 19 below-cost review; 68 exact model matches; 66 image URLs; 3,240 unmatched).
+- The subsequent structure regression failed because the new Alpine crosswalk status label was changed from the established `official_manufacturer_image_verified_review_only` to a new label, reducing an existing expected status count from 48 to 47. This was an unnecessary audit-label change, not a product-image or category regression.
+- Restored the established review-only status label while retaining the new official Alpine image URL in commit `3c3d05f63dffff4b173c593b455de06c6bd38666`.
+- No deployment occurred for run `42027795274`; its package step failed before Pages deployment. Next: rerun the exact-head pipeline and inspect the Alpine image naturalWidth plus all regression checks. Do not send this run's URL.
