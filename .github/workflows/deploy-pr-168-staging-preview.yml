@@ -20,7 +20,7 @@ permissions:
   deployments: write
 
 concurrency:
-  group: pr-176-three-category-verified-2026-11-04
+  group: pr-176-three-category-verified-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
