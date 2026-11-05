@@ -60,7 +60,7 @@ jobs:
             await audioRootLinkFirst.waitFor({state:'visible',timeout:15000});
             await audioRootLinkFirst.click({noWaitAfter:true});
             await page.waitForTimeout(1200);
-            const hostedRootNavigation=await page.evaluate(()=>{const f=document.querySelector('#store');return {frames:[...window.frames].map(x=>{try{return x.location.href}catch(e){return 'cross-origin'}}),iframeSrc:f.src,iframeHref:(()=>{try{return f.contentWindow.location.href}catch(e){return String(e)}})(),title:f.contentDocument?.title,text:f.contentDocument?.body?.innerText?.slice(0,500)}});
+            const hostedRootNavigation=await page.evaluate(()=>{const f=document.querySelector('#store');return {frameCount:window.frames.length,iframeSrc:f.src,iframeHref:(()=>{try{return f.contentWindow.location.href}catch(e){return String(e)}})(),title:f.contentDocument?.title,text:f.contentDocument?.body?.innerText?.slice(0,500)}});
             console.log('HOSTED_ROOT_CATEGORY_NAVIGATION',JSON.stringify(hostedRootNavigation));
             await page.waitForFunction(()=>{const f=document.querySelector('#store').contentWindow;return (f.location.pathname.endsWith('/preview-category')||f.location.pathname.endsWith('/preview-category.html'))&&new URLSearchParams(f.location.search).get('id')==='1a13bc42-4f54-44f6-9658-36d141b77f4b'},{timeout:30000});
             await page.waitForTimeout(500);
