@@ -78,9 +78,9 @@ const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
 assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946','Pioneer DMH-AP6650BT must use the exact South African model image');
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,110,'68 verified manufacturer records plus thirty-two OneNav records must carry verified descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,110,'all 68 verified manufacturer records plus thirty-two OneNav exact product pages must be named');
-assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,35,'twenty-five exact OneNav model pages still have no approved image and must not receive a generic substitute');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,110,'68 verified manufacturer records plus forty-two OneNav records must carry verified descriptions');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,110,'all 68 verified manufacturer records plus forty-two OneNav exact product pages must be named');
+assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,35,'thirty-five exact OneNav model pages still have no approved image and must not receive a generic substitute');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(!route.includes('planetworld-verified-models-preview.json')&&!brandLandingRoute.includes('planetworld-verified-models-preview.json')&&!productListingRoute.includes('planetworld-verified-models-preview.json'),'customer routes must not fetch the internal supplier model crosswalk');
@@ -90,7 +90,7 @@ const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PROD
 const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
 const oneNavAuditSource=fs.readFileSync('catalogue-review/planetworld-one-official-model-audit.csv','utf8');
-assert.ok(['OA115-1','OA115-3','OA195-1','OA197-1','OA198-1','OA198-2','OA199-1','OA017-2','OA266-1','OA716-1','OA713-1','OA429-1','OA428-1','OA426-1','OA717-1','OA425-1','OA427-1','OA715-1','OA009-2','OA012-1','OA016-1','OA110-1','OA115-2','OA192-1','OA194-1','OA263-1','OA712-1','OA714-1'].every(sku=>oneNavAuditSource.includes(sku)),'seven additional OneNav Classic source SKU audits must remain present');
+assert.ok(['OA115-1','OA115-3','OA195-1','OA197-1','OA198-1','OA198-2','OA199-1','OA017-2','OA266-1','OA716-1','OA713-1','OA429-1','OA428-1','OA426-1','OA717-1','OA425-1','OA427-1','OA715-1','OA009-2','OA012-1','OA016-1','OA110-1','OA115-2','OA192-1','OA194-1','OA263-1','OA712-1','OA714-1'].every(sku=>oneNavAuditSource.includes(sku)),'all tracked OneNav source SKU audits must remain present');
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,75);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,35);
@@ -439,7 +439,7 @@ assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufac
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 75);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 110);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 7);
-assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 30);
+assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 40);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 1);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length, 1, 'OA266-1 series remains unclassified because the official page does not identify Classic, Evolution or Pro');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-isuzu-2012/')?.description.includes('Isuzu vehicles from 2012+'),'OA115-1 exact Isuzu fitment description must be present');
