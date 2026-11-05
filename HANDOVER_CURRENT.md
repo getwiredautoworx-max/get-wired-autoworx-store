@@ -3391,3 +3391,9 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - The image-card load audit was reached on commit `815d7f0`; the owner-preview browser job proceeded through brand-first selection and Starsound product filtering, then failed because the test tried to click the “All brands” control while the brand selector was intentionally hidden at that stage.
 - Corrected the QA journey to navigate back to the explicit All brands route rather than clicking a hidden control. This preserves the intended brand-first UI and avoids weakening the visibility gate.
 - A full exact-head hosted result is still pending.
+
+
+### Hosted deployment QA correction — 2026-11-05
+- Exact-head deployment of `11be1135d5e49e7eb3c48bb587f97557493336c7` succeeded and the exact deployed SHA marker was accepted. The hosted deployment QA then failed because its navigation script still expected Car Audio & Video to open a component-first category page with “Speakers & Component Kits” visible immediately.
+- This expectation is obsolete and contradicts the owner-approved brand-first journey. Updated `.github/workflows/deploy-pr-168-staging-preview.yml` to select Sony first, verify component image cards load, then select Amplifiers and verify products. Accessories/Aerials/Trims are checked through their dedicated category route separately.
+- The latest source change is QA-only; storefront artwork and navigation source are unchanged from the exact-head deployment. Re-run the isolated staging workflow on the new head and require hosted mobile/desktop pass before handing over.
