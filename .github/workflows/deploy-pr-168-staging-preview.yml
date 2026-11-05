@@ -139,6 +139,8 @@ jobs:
               await frame.locator('#grid > .card').first().waitFor({state:'visible',timeout:15000});
               const audioRootCardNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
               if(audioRootCardNames.length!==6||!audioRootCardNames.some(x=>x.includes('Car Audio & Video')))throw new Error('Audio category page must show six separate subcategory cards: '+JSON.stringify(audioRootCardNames));
+              const audioCategoryImages=await frame.locator('#grid > .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(audioCategoryImages.length!==6||audioCategoryImages.some(x=>!x.loaded))throw new Error('Audio subcategory picture cards failed to load: '+JSON.stringify(audioCategoryImages));
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
               await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
@@ -160,12 +162,16 @@ jobs:
               await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               const autoLayout=await frame.locator('#grid').evaluate(grid=>({columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:grid.querySelectorAll(':scope > .card').length}));
               if(autoLayout.columns!==2||autoLayout.count!==5)throw new Error('Auto Electrical page must show five compact subcategory cards on mobile: '+JSON.stringify(autoLayout));
+              const autoCategoryImages=await frame.locator('#grid > .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(autoCategoryImages.length!==5||autoCategoryImages.some(x=>!x.loaded))throw new Error('Auto Electrical subcategory picture cards failed to load: '+JSON.stringify(autoCategoryImages));
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               await rootLinks.nth(2).waitFor({state:'visible',timeout:30000});
               await rootLinks.nth(2).click();
               await frame.locator('#heading').filter({hasText:'Car Care & Accessories'}).waitFor({state:'visible',timeout:30000});
               const careLayout=await frame.locator('#grid').evaluate(grid=>({columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:grid.querySelectorAll(':scope > .card').length}));
               if(careLayout.columns!==2||careLayout.count!==4)throw new Error('Car Care page must show four compact subcategory cards on mobile: '+JSON.stringify(careLayout));
+              const careCategoryImages=await frame.locator('#grid > .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(careCategoryImages.length!==4||careCategoryImages.some(x=>!x.loaded))throw new Error('Car Care subcategory picture cards failed to load: '+JSON.stringify(careCategoryImages));
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
               await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               const carSummary=await frame.locator('#audioResultCount').innerText();
