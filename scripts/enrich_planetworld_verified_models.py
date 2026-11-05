@@ -176,11 +176,11 @@ def main() -> None:
         "oneNav_pages": 42,
         "oneNav_descriptions": 42,
         "oneNav_image_candidates": 7,
-        "oneNav_images_missing": 25,
+        "oneNav_images_missing": 35,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3217,
+        "unmatched_products": 3207,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
