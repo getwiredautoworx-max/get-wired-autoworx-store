@@ -3380,3 +3380,8 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 ### Second static-test adjustment — 2026-11-05
 - GitHub Actions confirmed the prior pattern-source assertion was still over-escaped. Removed the brittle regex-source comparison and replaced it with explicit assertions for each category-specific image URL (speaker set, subwoofer, amplifier, head unit, camera/monitor, DSP, electrical parts, car-care kit, mats and interior accessories).
 - The audio stage hidden-state CSS correction remains in place. The next exact-head run must establish whether brand-first visibility and all external image loads now pass.
+
+
+### Third static-test correction — 2026-11-05
+- The exact-head package test reached the category image URL assertions and identified a one-character typo in the expected BOSS head-unit image filename. The actual page mapping was correct; the test expectation is now corrected to match the source URL.
+- No deployment/hosted pass is claimed. The latest exact-head pipeline is being rerun after this test-only correction.
