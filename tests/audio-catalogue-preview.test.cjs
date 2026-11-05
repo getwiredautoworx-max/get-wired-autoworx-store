@@ -70,6 +70,9 @@ assert.equal(planet.records.filter(row=>row.modelNumber).length,68,'all 68 exact
 assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,2,'two exact-model products have no image and must not receive a generic substitute');
 assert.ok(!productRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
+assert.ok(route.includes('function exactModelMatch(title,model,rowModel)'),'main audio catalogue must join curated manufacturer details using the exact matched source model');
+assert.ok(brandRoute.includes('rowModel===k||t.startsWith(\' \'+k+\' \')'),'brand landing pages must join exact-model rows without creating duplicate standalone records');
+assert.ok(productRoute.includes('rowModel===k||t.startsWith(\' \'+k+\' \')'),'product pages must join exact-model rows without creating duplicate standalone records');
 const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv','utf8'));
 const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
