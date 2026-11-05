@@ -3660,3 +3660,9 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Cloudflare Pages Public Package QA run **42077207779** also completed SUCCESS on exact head 1b6aaf1; both Node regression suites and standard/preview package isolation checks passed.
 - Latest branch head after this handover-only update: 77531d826c78d262259b18663091ba51093ba074. Runtime/data/test code remains the successfully tested 1b6aaf1 head.
 - Preview is ready for the owner's inspection at the URL above. It is not production-ready or owner-accepted. All 50 image-to-SKU matches and rights remain on HOLD pending source verification; MA522 and H1865W-H exceptions remain open. Payment/checkout testing remains deferred.
+
+
+### README synchronization after final QA
+- Updated suppliers/ASC/README.md to replace the obsolete “tests not yet executed” note with exact-head results: package QA 42077207779 PASS and hosted browser QA 42077207832 PASS on code head 1b6aaf1.
+- README documentation commit: ab0ca8c06f582411c6b99d7af851b1d8ebef2db7.
+- Latest branch head after README/handover synchronization will be documentation-only; the tested runtime/data/test head remains 1b6aaf1.
