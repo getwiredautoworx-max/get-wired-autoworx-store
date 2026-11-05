@@ -3809,3 +3809,9 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The subsequent structure regression failed because the new Alpine crosswalk status label was changed from the established `official_manufacturer_image_verified_review_only` to a new label, reducing an existing expected status count from 48 to 47. This was an unnecessary audit-label change, not a product-image or category regression.
 - Restored the established review-only status label while retaining the new official Alpine image URL in commit `3c3d05f63dffff4b173c593b455de06c6bd38666`.
 - No deployment occurred for run `42027795274`; its package step failed before Pages deployment. Next: rerun the exact-head pipeline and inspect the Alpine image naturalWidth plus all regression checks. Do not send this run's URL.
+
+
+### Alpine official-host assertion correction — 2026-11-05
+- Run `42027888742` passed the RRP and exact-model enrichment generators, then the structure suite rejected the new official Alpine Europe image URL because an older assertion still hard-coded the former `www.alpine.ch` host.
+- Updated the exact-model host assertion to the verified official Alpine Europe host `finland.alpine-europe.com` in commit `703126c1f427aa5677635d4cfdd728134bec0278`. This aligns the regression with the manufacturer image source already inspected; it does not relax exact-model matching.
+- No Pages deployment occurred in run `42027888742`. Next: rerun from the latest branch head, then confirm actual hosted naturalWidth and layout.
