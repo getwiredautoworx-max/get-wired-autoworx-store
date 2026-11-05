@@ -158,7 +158,7 @@ jobs:
               const carAudioHref=await carAudioCard.getAttribute('href');
               if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
               await carAudioCard.click();
-              await page.waitForFunction(()=>document.querySelector('#store').contentWindow./\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const brandButton=frame.locator('#brands a[aria-label="Sony"][role="button"]');
               await brandButton.waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
@@ -167,7 +167,7 @@ jobs:
               console.log('HOSTED_SONY_BRAND_LOGO_AUDIT',JSON.stringify(brandLogoAudit));
               if(!brandLogoAudit.images.some(img=>img.complete&&img.width>0))throw new Error('Sony brand logo did not load in the brand directory: '+JSON.stringify(brandLogoAudit));
               await brandButton.click();
-              await page.waitForFunction(()=>document.querySelector('#store').contentWindow./\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              await page.waitForFunction(()=>/\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const brandDoc=page.frameLocator('#store');
               await brandDoc.locator('.brandHero').waitFor({state:'visible',timeout:30000});
               if(await brandDoc.locator('#products,.audioProduct').count())throw new Error('Dedicated brand landing page must not show product stock');
@@ -176,7 +176,7 @@ jobs:
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().click();
-              await page.waitForFunction(()=>document.querySelector('#store').contentWindow./\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              await page.waitForFunction(()=>/\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const productDoc=page.frameLocator('#store');
               await productDoc.locator('.product').first().waitFor({state:'visible',timeout:30000});
               const audioAmpCount=await productDoc.locator('.product').count();
