@@ -3589,3 +3589,10 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - The next exact-head regression run passed the public package build and supplier-identity guard, then stopped in the Node test file due to a duplicate top-level `brandRoute` declaration introduced by the new image/logo assertions.
 - Renamed the new early-scope variable to `brandLandingRoute`; no production source or data behavior changed in this test-only correction.
 - The run did not deploy. Next exact-head run must confirm all catalogue assertions pass before deploying.
+
+
+## 2026-11-05 — REGRESSION TEST FIX: PRODUCT ROUTE BINDING
+
+- The next run passed package build and public supplier-identity checks, then failed in the Node test file because the new early photo assertions declared `productRoute`, which was already declared later in the existing suite.
+- Renamed the early binding to `productListingRoute`; this is test-only and does not alter the storefront.
+- No deployment occurred. Continue the exact-head regression run and fix any subsequent test defects without weakening the assertions.
