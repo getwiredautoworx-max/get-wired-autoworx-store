@@ -464,6 +464,9 @@ assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-ford-xl-ranger-2015-2020-9-inch')?.description.includes('Ford XL Ranger'),'OA263-1 Ford XL Ranger description must be present');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-ignis-2018')?.description.includes('Suzuki Ignis'),'OA712-1 Ignis description must be present');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-vitara-2018')?.description.includes('Suzuki Vitara'),'OA714-1 Vitara description must be present');
+assert.ok(planet.records.find(row=>row.title.includes('Hyundai Venue 2019+'))?.description.includes('Hyundai Venue'),'OA196-1 Venue fitment description must be present');
+assert.ok(planet.records.find(row=>row.title.includes('Everest/Ranger/Mazda BT-50 (2006-10)'))?.description.includes('Mazda BT-50'),'OA261-1 2006-2010 fitment description must be present');
+assert.ok(planet.records.find(row=>row.title.includes('Ertiga  (2018+)'))?.description.includes('Suzuki Ertiga'),'OA711-1 Ertiga fitment description must be present');
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
