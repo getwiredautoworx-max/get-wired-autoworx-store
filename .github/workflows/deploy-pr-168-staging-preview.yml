@@ -12,6 +12,8 @@ on:
       - "preview-audio.html"
       - "preview-audio-brand.html"
       - "preview-audio-products.html"
+      - "assets/audio-types/**"
+      - "assets/brand-logos/**"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/audio-catalogue-preview.test.cjs"
       - "category.html"
@@ -156,7 +158,7 @@ jobs:
               const brandDoc=page.frameLocator('#store');
               await brandDoc.locator('.brandHero').waitFor({state:'visible',timeout:30000});
               if(await brandDoc.locator('#products,.audioProduct').count())throw new Error('Dedicated brand landing page must not show product stock');
-              const brandTypeCards=brandDoc.locator('#types .typeCard');
+              const brandTypeCards=brandDoc.locator('#components .typeCard');
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
