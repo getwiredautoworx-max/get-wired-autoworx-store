@@ -166,12 +166,12 @@
     },
     {
       "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
-      "name": "Harnesses, Trims & Fitment",
-      "slug": "car-audio-harnesses-trims",
-      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "name": "Trims & Harnesses",
+      "slug": "car-audio-trims-harnesses",
+      "parent_id": "d34b1e76-8a72-4a53-8d3c-2f6a1a0f4e91",
       "active": true,
       "direct_active_products": 0,
-      "sort_order": 5
+      "sort_order": 1
     },
     {
       "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
@@ -244,6 +244,24 @@
       "active": true,
       "direct_active_products": 0,
       "sort_order": 4
+    },
+    {
+      "id": "d34b1e76-8a72-4a53-8d3c-2f6a1a0f4e91",
+      "name": "Accessories",
+      "slug": "car-audio-accessories",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 8
+    },
+    {
+      "id": "e7b94a2c-6f35-4d81-9a70-4d2b8c13f6a5",
+      "name": "Aerials",
+      "slug": "car-audio-aerials",
+      "parent_id": "d34b1e76-8a72-4a53-8d3c-2f6a1a0f4e91",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 2
     }
   ]
 }
