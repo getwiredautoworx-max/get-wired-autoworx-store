@@ -3750,3 +3750,35 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - This is a successful owner-preview deployment and hosted functional QA checkpoint, **not full store readiness or owner acceptance**. Owner visual/phone acceptance remains outstanding. Supplier image reuse rights remain pending for the two OneNav retailer images. Unmatched product images/descriptions remain outstanding.
 - Next single task: audit the Home Entertainment customer catalogue by product type for verified product identities, descriptions/features and exact product-image coverage. Produce an evidence-based gap list; do not substitute generic images, expose supplier data, change live catalogue/stock/prices, or move Car Audio & Video until Home Entertainment is complete and owner-accepted.
 - PR #178 remains open/draft/unmerged on `integration/owner-preview-single-task-2026-11-05`. Production HOLD; no Axxess upload, DNS change, Supabase/live write, supplier activation, checkout/payment activation, or production deployment.
+
+
+## 2026-11-05 — PRODUCT CARD ALIGNMENT + ALPINE HALO 11 REPAIR
+
+### Owner-reported defects
+- Product descriptions/details were visually left-indented instead of centred.
+- Multiple catalogue products showed a model/price but lacked a product photo and meaningful description.
+- Owner's example: Alpine Halo 11 iLX-F115D.
+
+### Source diagnosis and changes made (preview branch only)
+- In `preview-audio-products.html`, the product card used a two-column CSS grid but appended three direct children (image, image-rights note, details). The third child caused the details block to wrap into an unintended grid row/left position.
+- Reworked the card into two explicit children: `.productMedia` and `.productDetails`. Image and review note now stay together; product title, brand/model, description and price are centred in the details column. Responsive two-column card layout retained.
+- Corrected product-type grouping so manufacturer component label `Radios & Multimedia` resolves to `Head Units & Media Players`; this is required for Alpine receiver records to appear under the correct type.
+- The internal exact-model crosswalk already contains Alpine iLX-F115D manufacturer details and an exact-model manufacturer image URL. Its image status is review-only, not a blanket rights clearance. The preview must still prove the image loads and keep the rights-review note visible.
+- Added regression assertions for the two-column card structure, centred text, Alpine exact-model enrichment, and receiver product-type mapping.
+- Added hosted Playwright checks for Alpine Halo 11 at the mobile preview viewport: exact product card, image naturalWidth, verified DAB+/Apple CarPlay description, centred text and separation of media/details columns.
+
+### Commits
+- Product-card layout and receiver grouping: `616fcca37cee187995882f67f1b3ff6546240489`
+- Regression assertions: `ac5929408e903fb8d8f8c27c3b170bc6653b1624`
+- Hosted Alpine product QA: `6bfa745d2887a121e4c499b0863d68eed7d73c2f`
+
+### Catalogue coverage limitation — explicitly not complete
+- The current Planetworld enrichment baseline contains 68 exact-model manufacturer records with 66 image URLs, plus nine OneNav exact product-page matches (eight descriptions and two image candidates).
+- The existing audit still has 3,240 products without an exact-model match; these must be enriched in auditable manufacturer/model batches. Do not invent descriptions, use generic images, or imply every product is complete.
+- Alpine iLX-F115D's image is a manufacturer image candidate marked review-only. It must load in hosted QA and remain visibly marked pending image-use clearance where applicable.
+- No supplier price/stock or live catalogue data was changed. Existing RRP-inclusive-of-VAT × 0.98 preview rule remains unchanged.
+
+### Verification / next single action
+- Source changes are committed, but the new exact-head Node tests, public SKU audit, package build, hosted mobile/desktop checks and deployed-SHA marker have **not yet been run** for this checkpoint.
+- Next: trigger one exact-head owner-preview workflow from this branch, inspect the Node regression and Alpine hosted audit results, confirm all 68 image URLs still load, and only then publish a fresh preview URL.
+- Keep PR #178 draft/unmerged; production remains HOLD. No Axxess, DNS, Supabase/live writes, supplier activation, live price/stock changes, checkout/payment activation or production deployment.
