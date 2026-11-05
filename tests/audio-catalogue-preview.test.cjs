@@ -224,7 +224,11 @@ assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVI
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 63);
 const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
-assert.ok(raEl4&&raEl4.imageUrl==='https://mamasboombox.co.za/cdn/shop/files/ReferenceAudio-RA-EL4-4GaugeWiringKit_Double.png?v=1783360378&width=1946'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+assert.ok(raEl4&&raEl4.imageUrl==='https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2025/06/23-286-1.png?resize=600%2C319&ssl=1'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+const sony160=audioConnections.records.find(item=>item.modelNumber==='XS-160ES');
+assert.ok(sony160&&sony160.imageUrl==='https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42271/282815/xs-160es__6__98080.1682532246.jpg?c=2'&&sony160.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Sony XS-160ES must use its exact model image');
+const sony680=audioConnections.records.find(item=>item.modelNumber==='XS-680ES');
+assert.ok(sony680&&sony680.imageUrl==='https://content.abt.com/image.php/0dd3b4294d03e84022974cc942bc29bc?canvas=&ck=2&height=600&image=%2Fimages%2Fproducts%2FBDP_Images%2FSony-Mobile-ES-6x8-2-Way-Coaxial-Speakers-XS680ES.jpg&width=650'&&sony680.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Sony XS-680ES must use its exact model image');
 
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
