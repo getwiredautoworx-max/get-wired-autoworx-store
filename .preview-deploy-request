@@ -59,3 +59,5 @@ request=PR-176-image-led-all-three-departments-image-load-audit-2026-11-05
 required_checks=exact-sha-marker;all-audio-subcategory-images-load;all-auto-electrical-subcategory-images-load;all-car-care-subcategory-images-load;brand-first-component-image-load;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
 request=PR-176-final-owner-preview-after-brand-first-audio-and-category-artwork-fix-2026-11-05
 required_checks=exact-sha-marker;three-category-roots;mobile-two-column-category-tiles;category-image-load-and-fallback;car-audio-brand-first;brand-logo-load;component-image-load;brand-filtered-products;checkout-hidden;supabase-writes-blocked;sku-audit;desktop-layout
+
+# Owner preview refresh: dedicated brand and product-type routes, exact-head verification checkpoint 2026-11-05
