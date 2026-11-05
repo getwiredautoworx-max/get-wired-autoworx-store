@@ -19,6 +19,11 @@ if os.getenv("GW_INCLUDE_PREVIEW_ROUTES") == "1":
         cwd=ROOT,
         check=True,
     )
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "enrich_planetworld_verified_models.py")],
+        cwd=ROOT,
+        check=True,
+    )
 
 # Run the exact storefront/catalogue regression suite before packaging either
 # standard or preview output. GitHub-hosted public-repository runners are enabled.
@@ -38,7 +43,7 @@ PREVIEW_ROOT_FILES = [
     "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
+    "planetworld-catalogue-preview.json",
     "audio-connections-catalogue-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
