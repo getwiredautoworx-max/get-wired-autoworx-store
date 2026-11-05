@@ -1,9 +1,10 @@
 name: Single Active Owner Preview — Exact SHA Deploy and Browser QA
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     branches:
-      - integration/owner-preview-single-task-2026-11-05
+      - main
     paths:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
@@ -29,14 +30,15 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    name: Build and deploy isolated PR 176 three-category preview
+    if: github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05'
+    name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Checkout exact triggering commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,6 +48,7 @@ jobs:
       - name: Build customer-only Pages package with isolated review routes
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
+          CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -eu
           python scripts/build-cloudflare-pages-public.py
@@ -73,9 +76,11 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=owner-preview --commit-hash=${{ github.sha }} --commit-dirty=true
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=owner-preview --commit-hash=${{ github.event.pull_request.head.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Wait for the exact deployed SHA and reject stale aliases
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -86,7 +91,7 @@ jobs:
           for attempt in $(seq 1 24); do
             for base in "${aliases[@]}"; do
               body="$(curl -fsS --max-time 5 "$base/qa-build-result.json" 2>/dev/null || true)"
-              if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$GITHUB_SHA"; then
+              if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$EXPECTED_SHA"; then
                 matched="$base"
                 break
               fi
@@ -95,11 +100,11 @@ jobs:
             sleep 5
           done
           if [ -z "$matched" ]; then
-            echo "No known staging alias published the exact triggering SHA $GITHUB_SHA"
+            echo "No known staging alias published the exact triggering SHA $EXPECTED_SHA"
             exit 1
           fi
           echo "GW_EXACT_SHA_PREVIEW_URL=$matched" >> "$GITHUB_ENV"
-          echo "GW_EXACT_SHA_PREVIEW_PASS url=$matched sha=$GITHUB_SHA"
+          echo "GW_EXACT_SHA_PREVIEW_PASS url=$matched sha=$EXPECTED_SHA"
       - name: Install Playwright Chromium for hosted preview checks
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.55.0
