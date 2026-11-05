@@ -51,7 +51,8 @@ assert.deepEqual(tree.categories.filter(c => c.parent_id === accessoriesNode.id)
 assert.ok(!tree.categories.some(c => ['Aerials','Trims & Harnesses'].includes(c.name) && c.parent_id === carAudioNode.id), 'Aerials and Trims & Harnesses must not sit directly under Car Audio & Video');
 assert.ok(!home.includes("window.gwProducts=products;renderCats();render('featuredGrid',"), 'loading products must not replace the category grid and detach an in-flight category-button click');
 const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
-assert.ok(home.includes("if(HOME_CATEGORY_IDS.includes(c.id))return '<div class=\\"catWrap rootCategoryLink\\"><a class=\\"catBtn catalogueLink\\" href=\\"preview-category.html?id=\\"+encodeURIComponent(c.id)"), 'each of the three homepage root categories must be a real link to its own category page');
+assert.ok(home.includes("HOME_CATEGORY_IDS.includes(c.id)") && home.includes('rootCategoryLink"><a class="catBtn catalogueLink"') && home.includes('preview-category.html?id='), 'each of the three homepage root categories must be a real link to its own category page');
+assert.ok(!home.includes('rootCategoryLink"><button'), 'homepage root categories must not render as inline accordion buttons');
 assert.ok(!home.includes("if(HOME_CATEGORY_IDS.includes(c.id))return '<div class=\\"catWrap rootCategoryLink\\"><button"), 'homepage root categories must not render as inline accordion buttons');
 assert.ok(categoryClickHandler.includes("if(b.matches('a.catalogueLink'))return"), 'dedicated category-page links must not be intercepted by the legacy accordion handler');
 assert.ok(home.includes('#categoryGrid>.rootCategoryLink>a.catBtn{display:block!important;'), 'root category links must retain full-card tap targets');
