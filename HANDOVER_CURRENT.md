@@ -3227,3 +3227,16 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Verified in the previous hosted run: homepage iframe navigated to the dedicated Audio category route, and the Audio category displayed six separate subcategory cards. The brand directory route was reached. Brand logo, brand landing, product-type route, filtered product listing, Auto Electrical and Car Care image cards, mobile layout and desktop overflow remain unverified on the corrected head.
 - Do not use the old rejected URL or stale PR-168 alias. Use only the URL emitted by the exact-head workflow after its deployment marker and full browser QA pass.
 - No merge, production deployment, Axxess upload, DNS change, Supabase/live data write, supplier activation, live stock/price/category change, payment or checkout activation occurred. Production remains HOLD.
+
+
+## 2026-11-05 — OWNER PREVIEW DEPLOYED AND HOSTED QA PASSED
+
+- Active workstream: `integration/owner-preview-single-task-2026-11-05`; draft PR #178 against `main`. PR #176 and `preview/integrated-storefront-2026-11-04` are parked historical work; do not resume or create competing preview branches.
+- Exact deployed/verified head: `0b1829201ce62849400baae198da5310f199f27a`.
+- Exact-head workflow: [run 41999948429](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41999948429) — all steps passed, including customer-only package build, catalogue/category/SKU regressions, dedicated non-production deployment, exact deployed SHA marker and hosted Playwright browser QA.
+- Owner preview URL: https://owner-preview.get-wired-autoworx-store.pages.dev
+- Hosted acceptance verified the three customer roots (Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories), the separate Car Audio & Video brand directory, the Sony brand logo (local SVG loaded at 300px natural width), the dedicated product-type page and filtered product results, the four-image category collage, mobile layout, desktop layout at 1365px with no horizontal overflow, and zero JavaScript errors. The Trims & Harnesses route is also checked for its 47 expected products.
+- Browser QA confirmed the root-category page navigation and the distinct brand/product route journey. Brand selection uses native links styled as buttons; visible brand logos are root-relative local assets. Cloudflare Pages clean URLs (with or without `.html`) are accepted by the hosted route checks.
+- This is an owner-review preview only. Checkout and supplier submissions remain disabled. No production deployment, Axxess upload, DNS change, Supabase/live data write, supplier activation, stock/price change, payment activation or merge occurred.
+- Owner visual acceptance is still pending. Ask the owner to review the preview, especially the Car Audio & Video → brand → product type → filtered products journey and all three main categories. Do not merge PR #178 or enable production/checkout until explicit owner acceptance and approval.
+- After this handover-only update, run one fresh exact-head owner-preview workflow because `HANDOVER_CURRENT.md` is part of the preview trigger path. Do not change storefront source while waiting for that verification.
