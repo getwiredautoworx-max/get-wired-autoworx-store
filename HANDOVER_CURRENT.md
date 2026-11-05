@@ -3455,7 +3455,7 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 
 ---
 
-## CONTINUATION — ASC SIX-CATALOGUE CATEGORY FREEZE (2026-11-05 19:xx SAST)
+## CONTINUATION — ASC SIX-CATALOGUE CATEGORY FREEZE (2026-11-05 19:08 SAST)
 
 ### Task-start and source reconciliation
 - Continued from the owner's latest 5 November instructions and checked the authoritative owner-directed reset at AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md on main. That reset excludes ASC Buyers Guides, requires catalogue-first staging, prohibits live data changes without approval, and keeps production on HOLD.
