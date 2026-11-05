@@ -3617,3 +3617,11 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - Customer product cards continue to show an explicit pending-photo state rather than generic product images when no exact image exists.
 - Next exact-head run must pass: both Node suites, supplier-identity/public-data safeguard, all 66 naturalWidth image checks (including corrected Audison/Pioneer URLs), OneNav and Amplified logos on directory and brand pages, RRP hosted sample, 390px mobile and 1365px desktop.
 - Product-photo completion remains outstanding for 3,249 products; 2 exact-model products still have no image. Full-catalogue description completion also remains outstanding beyond the 68 exact-model records. Do not claim all-product photo/description completion yet.
+
+
+## 2026-11-05 — PUBLIC CROSSWALK REMOVAL: STALE TEST EXPECTATION FIXED
+
+- The package build ran both preview data generators successfully: RRP-minus-2 pricing and exact-model photo/description enrichment (68 exact matches, 66 image URLs, 2 no-image rows, 3,249 unmatched).
+- The build then stopped in `tests/three-category-storefront-structure.test.cjs:134` because an existing assertion still expected the old `verifiedOnly` crosswalk merge. The storefront now correctly uses pre-enriched public product records plus Audio Connections only.
+- Updated the structural assertion to require `rows=enriched.concat(audioConnections)`, preserving the combined catalogue while explicitly excluding the internal supplier crosswalk.
+- No deployment occurred from that failed build. The next exact-head run must pass both Node suites and the hosted checks.
