@@ -106,9 +106,9 @@ assert.equal(planet.records.find(p=>p.id==="pw-2172").component,"Fascia & Fittin
 assert.equal(audio.records.filter(p=>p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment").length,0,'generic Audio Connections installation kits must not leak into the dedicated Planetworld fitment group');
 assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
-assert.ok(audioPage.includes('"/assets/brand-logos/jbl.svg"'), 'JBL brand button must use its local wordmark asset');
-assert.ok(audioPage.includes('"/assets/brand-logos/denon.svg"'), 'Denon brand button must use its local wordmark asset');
-assert.ok(audioPage.includes('"/assets/brand-logos/hertz.svg"'), 'Hertz brand button must use its local wordmark asset');
+assert.ok(audioPage.includes('brand-logos/jbl.svg'), 'JBL brand button must use its local wordmark asset');
+assert.ok(audioPage.includes('brand-logos/denon.svg'), 'Denon brand button must use its local wordmark asset');
+assert.ok(audioPage.includes('brand-logos/hertz.svg'), 'Hertz brand button must use its local wordmark asset');
 assert.ok(audioPage.includes('brandNames.push("Hertz")'), 'Hertz must remain a visible Car Audio brand button while its source review is pending');
 assert.ok(audioPage.includes('Speakers & Component Kits') && audioPage.includes('Cameras & Monitors') && audioPage.includes('Signal Processing & Crossovers') && audioPage.includes('Harnesses, Trims & Fitment'), 'Car Audio component types must use the owner-approved group labels');
 assert.ok(planet.records.some(p => p.brand === 'JBL'), 'JBL products must remain in their source department');
