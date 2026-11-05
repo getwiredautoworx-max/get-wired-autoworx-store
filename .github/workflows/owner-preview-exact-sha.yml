@@ -216,7 +216,7 @@ jobs:
               const homeDepartmentArt=homeDepartment.locator('.card-art img');
               await homeDepartmentArt.waitFor({state:'visible',timeout:15000});
               await homeDepartmentArt.evaluate(img=>img.decode());
-              if(!await homeDepartmentArt.evaluate(img=>img.complete&&img.naturalWidth>0&&img.currentSrc.includes('home-audio-cinema.svg')))throw new Error('Home Entertainment category card must load its dedicated local artwork');
+              if(!await homeDepartmentArt.evaluate(img=>img.complete&&img.naturalWidth>0&&img.currentSrc.includes('home-entertainment.svg')))throw new Error('Home Entertainment category card must load its dedicated local artwork');
               const homeDepartmentHref=await homeDepartment.getAttribute('href');
               if(!homeDepartmentHref||!homeDepartmentHref.includes('department=Home%20Entertainment'))throw new Error('Home Entertainment category route missing: '+homeDepartmentHref);
               await homeDepartment.click();
