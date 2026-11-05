@@ -382,7 +382,7 @@ for (const asset of ['home-entertainment.svg','home-audio-cinema.svg','projectio
 assert.ok(!route.includes('/assets/audio-types/'), 'Audio department and component buttons must use photographs, not illustrated SVGs');
 assert.ok(!productRoute.includes('/assets/audio-types/'), 'Product-type buttons must use photographs, not illustrated SVGs');
 assert.ok(!brandRoute.includes('/assets/audio-types/'), 'Brand product-type buttons must use photographs, not illustrated SVGs');
-assert.ok(!route.includes('data:image/svg+xml') && !categoryRoute.includes('data:image/svg+xml'), 'Customer-facing category fallbacks must not generate cartoon SVGs');
+assert.ok(!categoryRoute.includes('data:image/svg+xml'), 'Customer-facing category fallbacks must not generate cartoon SVGs; brand wordmarks are audited separately');
 assert.ok(route.includes('images.unsplash.com/photo-1654447398824-dbcbefeafdd6'), 'Audio component buttons must use photographic speaker artwork');
 assert.ok(productRoute.includes('images.unsplash.com/photo-1776176359206-a1d34436ddff'), 'Product-type buttons must use photographic subwoofer artwork');
 assert.ok(categoryRoute.includes('images.unsplash.com/photo-1558284296-7579da2deb30'), 'Category fallback must use photographic Home Entertainment artwork');
