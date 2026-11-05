@@ -199,7 +199,7 @@ jobs:
               const brandTypeCards=brandDoc.locator('#types .typeCard');
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
-              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
+              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded||/\\.svg(?:$|\\?)/i.test(x.src)))throw new Error('Hosted product-type image cards must load real photographs, not illustrated SVGs: '+JSON.stringify(categoryImageAudit));
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().click();
               await page.waitForFunction(()=>/\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const productDoc=page.frameLocator('#store');
