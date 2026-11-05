@@ -2,17 +2,10 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 33,
-  "recordsMissingVerifiedImage": 33,
+  "recordsWithImage": 48,
+  "recordsMissingVerifiedImage": 18,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
-    {
-      "model": "RABTR03",
-      "brand": "Reference Audio",
-      "title": "Reference Audio RABTR03",
-      "component": "Single DIN Media Players",
-      "descriptionPresent": true
-    },
     {
       "model": "USB230",
       "brand": "Starsound",
@@ -49,38 +42,10 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSW-B12-2800",
-      "brand": "Starsound",
-      "title": "Starsound SSW-B12-2800 — 12-inch boxed SVC subwoofer",
-      "component": "Boxed Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSWF10\"-4150SVC",
-      "brand": "Starsound",
-      "title": "Starsound SSWF10\"-4150SVC",
-      "component": "Flat Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSWF10 2650SVC",
-      "brand": "Starsound",
-      "title": "Starsound SSWF10 2650SVC",
-      "component": "Flat Subwoofers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSATI-2250.2",
       "brand": "Starsound",
       "title": "Starsound SSATI-2250.2",
       "component": "2-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SPARTAN 9900.1",
-      "brand": "Starsound",
-      "title": "Starsound SPARTAN 9900.1 — 600 RMS",
-      "component": "Monoblock Amplifiers",
       "descriptionPresent": true
     },
     {
@@ -98,52 +63,10 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSA-H-8200.1",
-      "brand": "Starsound",
-      "title": "Starsound SSA-H-8200.1 — 600 W RMS @ 1 Ω",
-      "component": "Monoblock Amplifiers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSAR 22000.1",
       "brand": "Starsound",
       "title": "Starsound SSAR 22000.1 — 1700 RMS",
       "component": "Monoblock Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSA-SB2000.1",
-      "brand": "Starsound",
-      "title": "Starsound SSA-SB2000.1 — 2000 RMS",
-      "component": "Monoblock Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSA-J-10000.4",
-      "brand": "Starsound",
-      "title": "Starsound SSA-J-10000.4 Joker — 4-channel amplifier",
-      "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSA-M4-80.4",
-      "brand": "Starsound",
-      "title": "Starsound SSA-M4-80.4 — 4-channel amplifier",
-      "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "PRO6.5-700",
-      "brand": "Starsound",
-      "title": "Starsound PRO6.5-700",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SS-PRO6X9-900",
-      "brand": "Starsound",
-      "title": "Starsound SS-PRO6X9-900 dual cone",
-      "component": "Speakers",
       "descriptionPresent": true
     },
     {
@@ -182,13 +105,6 @@
       "descriptionPresent": true
     },
     {
-      "model": "TAXI-4G",
-      "brand": "Starsound",
-      "title": "Starsound TAXI-4G",
-      "component": "Amplifier Installation Kits",
-      "descriptionPresent": true
-    },
-    {
       "model": "RA AWG4",
       "brand": "RA",
       "title": "Reference Audio RA AWG4",
@@ -203,31 +119,10 @@
       "descriptionPresent": true
     },
     {
-      "model": "SST-550",
-      "brand": "Starsound",
-      "title": "Starsound SST-550 SUPER T",
-      "component": "Tweeters",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SST-850",
-      "brand": "Starsound",
-      "title": "Starsound SST-850 Bullet",
-      "component": "Tweeters",
-      "descriptionPresent": true
-    },
-    {
       "model": "RA SUPER RAST20",
       "brand": "RA",
       "title": "Reference Audio RA SUPER RAST20",
       "component": "Tweeters",
-      "descriptionPresent": true
-    },
-    {
-      "model": "EQ7100",
-      "brand": "Starsound",
-      "title": "Starsound EQ7100 7-band equaliser",
-      "component": "Equalisers & Crossovers",
       "descriptionPresent": true
     },
     {
@@ -269,6 +164,21 @@
     "SST350",
     "EQ5100",
     "CROSSOVER 2900",
-    "SSS-6602 (official Starsound image replaces retailer image)"
+    "SSS-6602 (official Starsound image replaces retailer image)",
+    "RABTR03",
+    "SSW-B12-2800",
+    "SSWF10\"-4150SVC",
+    "SSWF10 2650SVC",
+    "SPARTAN 9900.1",
+    "SSA-H-8200.1",
+    "SSA-SB2000.1",
+    "SSA-J-10000.4",
+    "SSA-M4-80.4",
+    "PRO6.5-700",
+    "SS-PRO6X9-900",
+    "TAXI-4G",
+    "SST-550",
+    "SST-850",
+    "EQ7100"
   ]
 }
