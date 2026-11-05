@@ -3204,3 +3204,8 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 - Refined component candidate to Car Audio & Entertainment → Vehicle Harnesses & Trims → ISO2CAR hands-free mute interface cable/radio harness. KRAM's compatibility section lists many Toyota/Lexus/Subaru and related models, but explicitly directs installers to its Complete Cable List and the vehicle's audio system; exact fitment remains vehicle/radio-specific and is not assumed.
 - Image status is now official-source + visual reference verified; image reuse rights remain NOT GRANTED. No image was downloaded/copied. The row remains `DO_NOT_IMPORT`; supplier price/stock/effective date remains the 2026-10-25 snapshot only.
 - Subtask outcome: SUCCESS for exact KRAM model/EAN, official image-source and component-type evidence; fitment, current supplier pricing/stock and image permission remain OPEN. Next: record the same source evidence in the manufacturer continuation and continue exact model/variant review.
+
+## 2026-11-05 09:22 SAST — MANUFACTURER SOURCE REPORT UPDATED
+
+- Appended the KRAM 86180 exact model/EAN, official product-image reference, visual component check, vehicle/audio-system fitment caution, and no-reuse-rights status to `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` at commit `0f8c8f652eb22ae7315f4801ae4a8e97d43ddfa1`.
+- Subtask outcome: SUCCESS — the report now carries the same evidence as the 19-row review-only CSV (SKU 86180 remains DO_NOT_IMPORT). Next: continue unresolved exact model/variant checks; do not copy/re-host the image or infer current Planetworld price/stock.
