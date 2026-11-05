@@ -126,8 +126,9 @@ jobs:
                 if(!ok) throw new Error('Audio root collage image failed to load: '+await img.getAttribute('alt'));
               }
               const audioRootLink=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]');
-              await audioRootLink.waitFor({state:'visible',timeout:15000});
-              await audioRootLink.click();
+              const audioRootLinkFirst=audioRootLink.first();
+              await audioRootLinkFirst.waitFor({state:'visible',timeout:15000});
+              await audioRootLinkFirst.click();
               await page.waitForFunction(()=>{const f=document.querySelector('#store').contentWindow;return f.location.pathname.endsWith('/preview-category.html')&&new URLSearchParams(f.location.search).get('id')==='1a13bc42-4f54-44f6-9658-36d141b77f4b'},{timeout:30000});
               await frame.locator('#grid .card h2').filter({hasText:'Car Audio & Video'}).waitFor({state:'visible',timeout:20000});
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
