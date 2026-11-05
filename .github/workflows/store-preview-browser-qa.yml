@@ -175,9 +175,9 @@ jobs:
             const fitmentCount=await page.locator('#products .audioProduct').count();
             if(fitmentCount!==47)throw new Error('Trims & Harnesses route should show 47 dedicated Planetworld rows, got '+fitmentCount);
             const autoElectricalId='ba263c9f-d038-48bd-bca0-944f3ebdc5e9';
-            const catalogueChecks=[['Aerials',6],['Automotive Sensors',11],['Automotive Switches',16],['Automotive Globes',10],['Car Mats',14],['Fuel Pumps',18]];
+            const catalogueChecks=[['Aerials',6,'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90'],['Automotive Sensors',11,'e6a10001-1b2c-4d3e-8f90-111111111111'],['Automotive Switches',16,'e6a10002-1b2c-4d3e-8f90-222222222222'],['Automotive Globes',10,'89595653-97d4-4b18-ba69-117547d32ed0'],['Car Mats',14,'c35d15c1-d665-413f-b528-878b6a655d5d'],['Fuel Pumps',18,'e6a10003-1b2c-4d3e-8f90-333333333333']];
             const catalogueImageAudit=[];
-            for(const [label,expectedSections] of catalogueChecks){
+            for(const [label,expectedSections,categoryId] of catalogueChecks){
               await page.goto('http://127.0.0.1:4173/category.html?id='+autoElectricalId,{waitUntil:'domcontentloaded'});
               const card=page.getByRole('link',{name:new RegExp(label)});
               await card.waitFor({state:'visible',timeout:15000});
@@ -186,7 +186,7 @@ jobs:
               const imageInfo=await image.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,width:img.naturalWidth};});
               if(!imageInfo.loaded)throw new Error(label+' category artwork failed to load: '+JSON.stringify(imageInfo));
               const href=await card.getAttribute('href');
-              if(!href||!href.includes('asc-auto-electrical-preview.html')||!href.includes('catalogue='+encodeURIComponent(label)))throw new Error(label+' category route mismatch: '+href);
+              if(!href||!href.includes('category.html?id='+categoryId))throw new Error(label+' category link mismatch: '+href);
               await card.click();
               await page.waitForURL(url=>new URL(url).pathname.endsWith('/asc-auto-electrical-preview.html')&&new URL(url).searchParams.get('catalogue')===label,{timeout:15000});
               await page.locator('#heading').waitFor({state:'visible',timeout:15000});
