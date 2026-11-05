@@ -121,8 +121,8 @@ jobs:
             const starsoundProducts=await frame.locator('#products .audioProduct').count();
             if(starsoundProducts!==3)throw new Error('Starsound SVC Subwoofers route expected 3 products, got '+starsoundProducts);
             if(!(await frame.locator('#products').innerText()).includes('Starsound'))throw new Error('Starsound route returned another brand');
-            await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&brand=All%20brands&label=Car%20Audio%20%26%20Video'});
-            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='All brands',{timeout:15000});
+            await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('department')==='Car Audio'&&!new URL(document.querySelector('#store').contentWindow.location.href).searchParams.has('brand'),{timeout:15000});
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             await frame.locator('#brands button[aria-label="Sony"]').click();
             await frame.locator('#components button').first().waitFor({state:'visible',timeout:30000});
