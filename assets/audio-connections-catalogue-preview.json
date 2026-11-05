@@ -874,12 +874,12 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSAR 22000.1 — 1700 RMS",
+      "title": "Starsound Rapter SSA-R-22000.1 Monoblock Amplifier",
       "component": "Monoblock Amplifiers",
       "indicativePrice": 2445.19,
       "hasStock": false,
-      "modelNumber": "SSAR 22000.1",
-      "description": "Monoblock; 1700 W RMS",
+      "modelNumber": "SSA-R-22000.1",
+      "description": "Starsound Rapter SSA-R-22000.1 single-channel monoblock amplifier. The retailer listing identifies a 1770W RMS rating. Confirm impedance, operating stability and full crossover specifications with the supplier before publishing additional power claims.",
       "manufacturerPage": "",
       "imageUrl": "https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -890,7 +890,10 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://evolutionwheelandtyre.com/products/starsound-ssa-r22000-1-1770rms-monoblock-1channel-amplifier-car-audio",
-      "manufacturerListedModel": "SSA-R-22000.1"
+      "manufacturerListedModel": "SSA-R-22000.1",
+      "supplierModelNumber": "SSAR 22000.1",
+      "descriptionSourceUrl": "https://evolutionwheelandtyre.com/products/starsound-ssa-r22000-1-1770rms-monoblock-1channel-amplifier-car-audio",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-036",
@@ -1587,15 +1590,16 @@
       "modelNumber": "EQ7100",
       "description": "7-band equaliser",
       "manufacturerPage": "",
-      "imageUrl": "https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file",
+      "imageUrl": null,
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.takealot.com/starsound-7-band-equalizer-ssa-eq-7200/PLID93653453"
+      "imageStatus": "NO_VERIFIED_EXACT_MODEL_IMAGE",
+      "imageSourceUrl": null,
+      "descriptionStatus": "MODEL_AND_FEATURES_PENDING_MANUFACTURER_CONFIRMATION"
     },
     {
       "id": "ac-065",
