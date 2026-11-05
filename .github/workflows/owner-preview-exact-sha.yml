@@ -238,6 +238,17 @@ jobs:
               const oneNavHeroLogo=oneNavBrandPage.locator('.brandHero img');
               await oneNavHeroLogo.waitFor({state:'visible',timeout:15000});
               if(!await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('ONE / OneNav logo failed on its dedicated brand page');
+              const oneNavTypeCard=oneNavBrandPage.locator('.typeCard').first();
+              await oneNavTypeCard.waitFor({state:'visible',timeout:30000});
+              await oneNavTypeCard.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-products(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              const oneNavProductPage=page.frameLocator('#store');
+              const oneNavProductCount=await oneNavProductPage.locator('.product').count();
+              const oneNavProductImageCount=await oneNavProductPage.locator('.product img').count();
+              const oneNavReviewNoteCount=await oneNavProductPage.locator('.imageReviewNote').count();
+              const oneNavProductText=(await oneNavProductPage.locator('.product').allTextContents()).join(' ');
+              console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen')}));
+              if(oneNavProductCount!==9||oneNavProductImageCount!==2||oneNavReviewNoteCount!==2||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
