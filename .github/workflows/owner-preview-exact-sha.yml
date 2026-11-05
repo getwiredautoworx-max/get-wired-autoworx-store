@@ -15,6 +15,7 @@ on:
       - "assets/brand-logos/**"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/three-category-storefront-structure.test.cjs"
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
