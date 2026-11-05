@@ -547,10 +547,13 @@
       "indicativePrice": 5291.02,
       "hasStock": false,
       "priceBasis": "RRP_INCL_VAT_MINUS_2_PERCENT",
-      "description": "12-inch R-Series subwoofer with dual 4-ohm voice coils. Alpine describes its HAMR surround, enlarged motor structure and ceramic dust cap as design features intended to support high cone excursion, controlled movement and low-distortion bass response.",
+      "description": "12-inch R-Series dual-voice-coil subwoofer with dual 4-ohm coils. Alpine specifies 750 W RMS / 2,250 W peak power handling, 24–200 Hz frequency response, 84.5 dB sensitivity, a 65 mm voice coil and 20 mm X-Max. Features include a Kevlar-reinforced pulp cone, polypropylene/ceramic composite dust cap, HAMR surround, large double-stacked magnets, configuration jumpers and a twist-lock grille mount.",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-r-speakers36/r2-w12d4",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
-      "manufacturerProductName": "Alpine R-Series R2-W12D4 12-inch subwoofer with dual 4-ohm voice coils"
+      "imageStatus": "EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY",
+      "manufacturerProductName": "Alpine R-Series R2-W12D4 12-inch subwoofer with dual 4-ohm voice coils",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/R2-W12D4_1.jpg?v=1718761708",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-0046",
@@ -16683,8 +16686,11 @@
       "priceBasis": "RRP_INCL_VAT_MINUS_2_PERCENT",
       "description": "6.8-inch WSVGA capacitive-touch multimedia receiver with wired Apple CarPlay, wired Android Auto, USB screen mirroring, Bluetooth hands-free/audio streaming and a short chassis. Audio features include a 13-band EQ, time alignment, 2.5 V front/rear/subwoofer pre-outs and a rear-view camera input. JVC specifies 22 W × 4 full-bandwidth output and 50 W × 4 maximum output.",
       "manufacturerPage": "https://www.jvc.com/my/car-entertainment/multimedia-receivers/kw-m590bt/",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
-      "manufacturerProductName": "JVC KW-M590BT 6.8-inch multimedia receiver"
+      "imageStatus": "EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY",
+      "manufacturerProductName": "JVC KW-M590BT 6.8-inch multimedia receiver",
+      "imageUrl": "https://images.crutchfieldonline.com/ImageHandler/trim/869/652/products/2024/22/105/g105KWM590B-o_other0.jpg",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-1490",
@@ -23668,7 +23674,10 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-fj-cruiser-black-2007/",
       "description": "Designed for Toyota FJ Cruiser 2007+. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_845f23df_300x.jpg?v=1697005736",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2118",
@@ -23695,7 +23704,10 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-hilux-fortuner-2011-2015/",
       "description": "Designed for Toyota Hilux/Fortuner 2011–2015. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2120",
@@ -23712,9 +23724,9 @@
       "description": "Designed for Toyota Prado 2002–2009. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
-      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_300x.jpg?v=1697005542",
+      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
       "imageCrop": true,
-      "imagePosition": "center 30%"
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2121",
@@ -23733,7 +23745,7 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_3e3a5b48_300x.jpg?v=1697005955",
       "imageCrop": true,
-      "imagePosition": "center 30%"
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2122",
@@ -23793,7 +23805,10 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9-inch-for-hilux-2015-2018-10-1-inch-frame/",
       "description": "Designed for Toyota Hilux 2015–2018. Features a 9-inch 1024 × 600 touchscreen in a vehicle-specific 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-600x600_b92365e2-1f53-4a63-9a1e-965185d9fe9a.webp?v=1739876042&width=533",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2127",
@@ -23985,7 +24000,10 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-h1-2015-2018/",
       "description": "Designed for Hyundai H1 2015–2018. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "imageUrl": "https://autotec-vts.co.za/gallery/00/00/11/00001192_00000355.png",
+      "imageCrop": true,
+      "imagePosition": "center 40%"
     },
     {
       "id": "pw-2144",
@@ -36937,9 +36955,10 @@
   "productImageEnrichment": {
     "sourceAudit": "planetworld-one-official-model-audit.csv",
     "descriptionsEnriched": 8,
-    "exactImageCandidatesApplied": 2,
-    "exactModelPagesReviewed": 9,
-    "status": "OWNER_PREVIEW_ONLY_PENDING_IMAGE_RIGHTS_AND_OWNER_REVIEW",
-    "note": "Supplier SKUs remain in the internal audit only; product-card image crops hide supplier-code text."
+    "exactImageCandidatesApplied": 68,
+    "exactModelPagesReviewed": 77,
+    "status": "OWNER_PREVIEW_ONLY_PENDING_HOSTED_IMAGE_QA_AND_OWNER_REVIEW",
+    "note": "Supplier SKUs remain in the internal audit only; product-card image crops hide supplier-code text.",
+    "manufacturerDescriptionsVerified": 77
   }
 }
