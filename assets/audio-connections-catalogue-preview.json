@@ -362,7 +362,7 @@
       "indicativePrice": 543.38,
       "hasStock": false,
       "modelNumber": "USB230",
-      "description": "USB230 external microphone",
+      "description": "Starsound SSUSB-230BTCE single-DIN Bluetooth/USB media car radio. Supports Bluetooth, FM radio with 18 presets, MP3 and WMA playback, USB/SD/MMC/TF media, AUX input, real-time clock and a removable faceplate. Manufacturer specifications list a 4×60W 7388IC output, fixed ISO wiring and an external microphone.",
       "manufacturerPage": "",
       "imageUrl": "https://media.takealot.com/covers_images/2609be80b2454250b9c752cd71903ebf/s-zoom.file",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -373,7 +373,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://starsound.co.za/product/ssusb-230btce/",
-      "manufacturerListedModel": "SSUSB-230BTCE"
+      "manufacturerListedModel": "SSUSB-230BTCE",
+      "descriptionSourceUrl": "https://starsound.co.za/product/ssusb-230btce/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-016",
@@ -407,7 +409,7 @@
       "indicativePrice": 1009.12,
       "hasStock": false,
       "modelNumber": "SS7655BT",
-      "description": "SS7655BT media player",
+      "description": "Starsound SSMP5-7655BT double-DIN media player with a 7-inch digital TFT touchscreen, smartphone Mirror Link, Bluetooth hands-free and audio streaming, USB 2.0 and TF-card support, 1080p video playback, AUX input and rear-camera input. Supports MP3/WMA/WAV/FLAC/OGG/APE audio, multiple video formats, FM radio, clock/mute functions and includes a remote control.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -418,7 +420,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://maxmotorsport.co.za/products/starsound-ssmp5-7655bt-7-double-din-media-player-with-usb-mirrorlink-bluetooth",
-      "manufacturerListedModel": "SSMP5-7655BT"
+      "manufacturerListedModel": "SSMP5-7655BT",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/starsound-ssmp5-7655bt-7-double-din-media-player-with-usb-mirrorlink-bluetooth/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-018",
@@ -430,7 +434,7 @@
       "indicativePrice": 1085.2,
       "hasStock": false,
       "modelNumber": "DVD9900BT",
-      "description": "DVD9900BT CD/DVD player",
+      "description": "Starsound SSDVD-9900BT front-loading DVD media player with FM radio, DVD/VCD/MP3/CD/MP4 playback, USB and TF-card support, Bluetooth, electronic audio control, colour LCD display, AUX input, audio and video outputs, 4×60W output and a remote control. Supplied with fixed ISO wiring.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSDVD-9900BT-DVD-Front-Loader-Media-Player-With-USB-_-Bluetooth-Max-Motorsport-21232518.jpg?v=1725975624",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -441,7 +445,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssdvd-9900bt-dvd-front-loader-media-player-with-usb-bluetooth",
-      "manufacturerListedModel": "SSDVD-9900BT"
+      "manufacturerListedModel": "SSDVD-9900BT",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssdvd-9900bt-dvd-front-loader-media-player-with-usb-bluetooth/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-019",
@@ -453,7 +459,7 @@
       "indicativePrice": 1349.12,
       "hasStock": false,
       "modelNumber": "SS7670",
-      "description": "7-inch Android wireless unit",
+      "description": "Starsound SSMP5-7670BTAC 7-inch double-DIN MP5 media player with CML-Play, Apple CarPlay and Android Auto support, USB 2.0 and TF-card input, Bluetooth, AUX input and rear-view camera input. Supports 1080p video, multiple audio/video formats, FM radio, clock and mute functions, automatic memory retention and includes a wireless remote.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/7-Inch-Star-Sound-SSMP5-7670BTAC-MP5-Double-Din-With-Apple-Carplay-_-Android-Auto-Roadstar-26055736.jpg?v=1751964226&width=1206",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -464,7 +470,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://maxmotorsport.co.za/products/7-inch-star-sound-ssmp5-7670btac-mp5-double-din-with-apple-carplay-android-auto",
-      "manufacturerListedModel": "SSMP5-7670BTAC"
+      "manufacturerListedModel": "SSMP5-7670BTAC",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/7-inch-star-sound-ssmp5-7670btac-mp5-double-din-with-apple-carplay-android-auto/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-020",
@@ -707,33 +715,38 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSATI-2250.2",
+      "title": "Starsound Rapter SSA-R-2250.2 2-Channel Amplifier",
       "component": "2-Channel Amplifiers",
       "indicativePrice": 970.31,
       "hasStock": false,
-      "modelNumber": "SSATI-2250.2",
-      "description": "2-channel amplifier",
+      "modelNumber": "SSA-R-2250.2",
+      "description": "Starsound Rapter SSA-R-2250.2 two-channel Class D amplifier. Rated at 600W RMS total: 60W × 2 channels at 4Ω or 120W × 1 bridged at 4Ω. Features a high-energy MOSFET power supply, variable low-pass crossover (50–250Hz), subsonic filter (10–50Hz), phase shift (0–180°), bass boost (0–12dB), remote bass control, 2Ω stability and thermal, short-circuit and overload protection.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/products/Star-Sound-Rapter-Series-2-Channel-Amplifier-_2250W_-maxmotorsports-1631612487.jpg?v=1631612489&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "supplierModelNumber": "SSATI-2250.2",
+      "manufacturerListedModel": "SSA-R-2250.2",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-rapter-series-2250w-2-channel-amplifier",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/star-sound-rapter-series-2250w-2-channel-amplifier",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-030",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SPARTAN 9900.1 — 600 RMS",
+      "title": "Starsound Spartan SSA-SP-9900.1 Monoblock Amplifier",
       "component": "Monoblock Amplifiers",
       "indicativePrice": 1110.04,
       "hasStock": false,
-      "modelNumber": "SPARTAN 9900.1",
-      "description": "Spartan monoblock; 600 W RMS",
+      "modelNumber": "SSA-SP-9900.1",
+      "description": "Starsound Spartan SSA-SP-9900.1 monoblock amplifier with 1Ω-stable circuitry, high-efficiency MOSFET power supply and remote control. Manufacturer specifications list 500W RMS at 1Ω and 250W RMS at 2Ω. Adjustable low-pass crossover (32–300Hz), subsonic filter (10–50Hz), gain, bass boost and phase controls; thermal, short-circuit and overload protection.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-SP-9900.1_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -744,28 +757,36 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://starsound.co.za/product/ssa-sp-9900-1/",
-      "manufacturerListedModel": "SSA-SP-9900.1"
+      "manufacturerListedModel": "SSA-SP-9900.1",
+      "supplierModelNumber": "SPARTAN 9900.1",
+      "descriptionSourceUrl": "https://starsound.co.za/product/ssa-sp-9900-1/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-031",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSAT6200.1 — 600 RMS",
+      "title": "Starsound Rapter SSA-R-6200.1D Monoblock Amplifier",
       "component": "Monoblock Amplifiers",
       "indicativePrice": 1606.84,
       "hasStock": false,
-      "modelNumber": "SSAT6200.1",
-      "description": "Monoblock; 600 W RMS",
+      "modelNumber": "SSA-R-6200.1D",
+      "description": "Starsound Rapter SSA-R-6200.1D single-channel Class D monoblock amplifier. Source listing specifies 600W RMS at 1Ω and 400W RMS at 2Ω, with 1Ω stability. Features a high-energy MOSFET power supply, variable low-pass crossover (50–250Hz), subsonic filter (10–50Hz), phase shift (0–180°), bass boost (0–12dB), bass remote and thermal, short-circuit and overload protection.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://osmans.co.za/image/product/1_ssar62001d.png",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "supplierModelNumber": "SSAT6200.1",
+      "manufacturerListedModel": "SSA-R-6200.1D",
+      "imageSourceUrl": "https://osmans.co.za/product/product%26product_id%3D6497%26name%3DAMP_1CH_6200W_S%2FSOUND__%28SSAT16200.1D%29",
+      "descriptionSourceUrl": "https://osmans.co.za/product/product%26product_id%3D6497%26name%3DAMP_1CH_6200W_S%2FSOUND__%28SSAT16200.1D%29",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-032",
@@ -802,21 +823,26 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSATI6900.1 — 1000 RMS",
+      "title": "Starsound Rapter SSA-R-6900.1D Monoblock Amplifier",
       "component": "Monoblock Amplifiers",
       "indicativePrice": 2171.95,
       "hasStock": false,
-      "modelNumber": "SSATI6900.1",
-      "description": "Monoblock; 1000 W RMS",
+      "modelNumber": "SSA-R-6900.1D",
+      "description": "Starsound Rapter SSA-R-6900.1D single-channel Class D monoblock amplifier. The Audio Connections supplier listing states 1000W RMS, while another retailer listing reports a different RMS figure; the RMS rating is therefore flagged for manufacturer confirmation rather than presented as settled. The model is identified as a Rapter 1-channel amplifier; confirm final RMS and crossover specifications with the supplier before publishing detailed power claims.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://soundslimited.co.za/wp-content/uploads/2024/12/Starsound-SSA-R6900.1-Mono-Amplifier-sounds-limited.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "supplierModelNumber": "SSATI6900.1",
+      "manufacturerListedModel": "SSA-R-6900.1D",
+      "imageSourceUrl": "https://soundslimited.co.za/product/starsound-ssa-r6900-1-mono-amplifier/",
+      "descriptionSourceUrl": "https://osmans.co.za/product/product%26product_id%3D16111%26name%3DAMP_1CH_6900W_S%2FSOUND_RAPTER_%281000W_RMS%29",
+      "descriptionStatus": "CONFLICTING_RMS_SPEC_NEEDS_MANUFACTURER_CONFIRMATION"
     },
     {
       "id": "ac-034",
@@ -876,7 +902,7 @@
       "indicativePrice": 2786.74,
       "hasStock": false,
       "modelNumber": "SSA-SB2000.1",
-      "description": "Monoblock; 2000 W RMS",
+      "description": "Starsound Super Bass SSA-SB-2000.1 monoblock Class D amplifier rated at 2000W RMS and stable at 1Ω. Features a high-efficiency PWM supply, variable low-pass crossover (15–80Hz), high-pass crossover (80Hz–10kHz), 0–50Hz subsonic filter, 15Hz–20kHz frequency response, signal-to-noise ratio above 100dB, 30mV–6V input sensitivity, 22kΩ input impedance and included remote bass control.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-SB-2000.1-Monoblock-Amplifier-_2000W_-Star-Sound-20995343.jpg?v=1718011177&width=990",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -886,7 +912,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssa-sb-2000-1-monoblock-amplifier-2000w"
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssa-sb-2000-1-monoblock-amplifier-2000w",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssa-sb-2000-1-monoblock-amplifier-2000w/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-037",
@@ -1113,7 +1141,7 @@
       "indicativePrice": 246.85,
       "hasStock": false,
       "modelNumber": "SSS-6601",
-      "description": "6-inch dual-cone speaker",
+      "description": "Starsound SSS-6601 6-inch dual-cone speaker with UV-treated IMPP cone, butyl-cloth surround, ASV high-temperature voice coil and full metal mesh grille. Rated at 4Ω impedance and 400W maximum power.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-6601_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1123,7 +1151,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://starsound.co.za/product/sss-6601/"
+      "imageSourceUrl": "https://starsound.co.za/product/sss-6601/",
+      "descriptionSourceUrl": "https://starsound.co.za/product/sss-6601/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-046",
@@ -1210,7 +1240,7 @@
       "indicativePrice": 308.95,
       "hasStock": false,
       "modelNumber": "PRO6.5-700",
-      "description": "Pro 6.5 speaker",
+      "description": "Starsound SSS-PRO6.5-700 6.5-inch bullet midrange speaker, sold per set. Features a treated-cloth surround and pressed-paper cone, with 85Hz–16kHz frequency response and 92dB sensitivity (1W/1m).",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSS-PRO6.5-700-6.5_-Bullet-Mids-_700W_-Star-Sound-31378452.jpg?v=1775657493&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1221,7 +1251,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-sss-pro6-5-700-6-5-bullet-mids-700w",
-      "manufacturerListedModel": "SSS-PRO6.5-700"
+      "manufacturerListedModel": "SSS-PRO6.5-700",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/star-sound-sss-pro6-5-700-6-5-bullet-mids-700w/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-050",
@@ -1233,7 +1265,7 @@
       "indicativePrice": 403.65,
       "hasStock": false,
       "modelNumber": "SS-PRO6X9-900",
-      "description": "Pro 6x9 dual-cone speaker",
+      "description": "Starsound SSS-PRO6x9-900 6×9-inch super-loud midrange speaker with treated-cloth surround, ultra-light pressed-paper cone, centre-on-axis directing bullet, 1.25-inch 4Ω KSV high-heat voice coil and 20oz carbon magnet. Frequency response: 80Hz–16kHz; sensitivity: 94dB (1W/1m). Manufacturer recommends a high-pass cut above 300Hz.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-PRO6x9-900_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1244,7 +1276,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://starsound.co.za/product/sss-pro6x9-900/",
-      "manufacturerListedModel": "SSS-Pro6x9-900"
+      "manufacturerListedModel": "SSS-Pro6x9-900",
+      "descriptionSourceUrl": "https://starsound.co.za/product/sss-pro6x9-900/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-051",
@@ -1256,7 +1290,7 @@
       "indicativePrice": 333.79,
       "hasStock": false,
       "modelNumber": "SSAK-406P",
-      "description": "4-gauge amp kit",
+      "description": "Starsound SSAK-406P 4-gauge amplifier wiring kit. Includes 17ft orange 4-gauge power cable, 3ft 4-gauge ground cable, 17ft 18-gauge remote cable, 17ft 16-gauge speaker cable, 17ft RCA interconnect, 6ft split loom, 120A ANL fuse and holder, gold-plated ring/spade terminals, female disconnects, grommets, screws and cable ties.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/products/Starsound-4-Gauge-Wiring-Kit-Max-Motorsport-1624452639.jpg?v=1624452641&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1266,7 +1300,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://maxmotorsport.co.za/products/starsound-4-gauge-wiring-kit"
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/starsound-4-gauge-wiring-kit",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/starsound-4-gauge-wiring-kit/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-052",
@@ -1278,7 +1314,7 @@
       "indicativePrice": 807.3,
       "hasStock": false,
       "modelNumber": "409CU",
-      "description": "True copper amp kit",
+      "description": "Starsound SSAK-409CU 4-gauge 100% OFC copper amplifier wiring kit. Includes 5m RCA cable, 5m 4AWG blue power cable, 1m 4AWG green ground cable, 5m speaker cable, 5m remote cable, 100A mini-ANL fuse and holder, split loom, wire ties, ring terminals, butt connectors, spades and a grommet.",
       "manufacturerPage": "",
       "imageUrl": "https://newworld.co.za/cdn/shop/files/81oNOU9KY_L_900x.jpg?v=1760011854",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1288,7 +1324,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://newworld.co.za/products/starsound-ssak-409cu-4-gauge-100-ofc-copper-wiring-kit"
+      "imageSourceUrl": "https://newworld.co.za/products/starsound-ssak-409cu-4-gauge-100-ofc-copper-wiring-kit",
+      "descriptionSourceUrl": "https://newworld.co.za/products/starsound-ssak-409cu-4-gauge-100-ofc-copper-wiring-kit/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-053",
@@ -1321,7 +1359,7 @@
       "indicativePrice": 178.54,
       "hasStock": false,
       "modelNumber": "809",
-      "description": "8-gauge amp kit",
+      "description": "Starsound SSAK-809 8-gauge amplifier wiring kit. Includes 17ft 8-gauge power cable, 3ft ground cable, 17ft 14-gauge green speaker cable, 17ft RCA cable, 17ft 16-gauge remote cable, AGU fuse holder with 80A fuse, tubing and installation accessories.",
       "manufacturerPage": "",
       "imageUrl": "https://soundvision.co.za/cdn/shop/files/FullSizeRender_bb982026-b146-4342-9a89-821443145f3c_1200x1200.jpg?v=1707141200",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1331,7 +1369,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://soundvision.co.za/products/starsound-8ga-wiring-kit"
+      "imageSourceUrl": "https://soundvision.co.za/products/starsound-8ga-wiring-kit",
+      "descriptionSourceUrl": "https://soundvision.co.za/products/starsound-8ga-wiring-kit/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-055",
@@ -1364,7 +1404,7 @@
       "indicativePrice": 308.95,
       "hasStock": false,
       "modelNumber": "TAXI-4G",
-      "description": "4-gauge amp kit",
+      "description": "Starsound SSAK-TAXI-4G 4-gauge amplifier wiring kit designed for taxi installations. Includes 7m red 4-gauge power cable, 1m black 4-gauge ground cable, 10m 18-gauge remote cable, 6m 16-gauge speaker cable, 10m RCA interconnect, 1.8m protective split loom, 120A ANL fuse and fuse holder.",
       "manufacturerPage": "",
       "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/SSAK-TAXI-4G-01.png?v=1781775881",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1374,7 +1414,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.fastrak.co.za/products/ssak-taxi-4g-star-sound-wiring-kit"
+      "imageSourceUrl": "https://www.fastrak.co.za/products/ssak-taxi-4g-star-sound-wiring-kit",
+      "descriptionSourceUrl": "https://www.fastrak.co.za/products/ssak-taxi-4g-star-sound-wiring-kit/",
+      "descriptionStatus": "SOURCE_VERIFIED"
     },
     {
       "id": "ac-057",
