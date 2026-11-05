@@ -4029,3 +4029,14 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - This preview is ready for **owner review only**, not production readiness or owner acceptance. PR #178 remains draft/unmerged. Production HOLD; no Axxess upload, DNS change, Supabase/live write, supplier activation, live stock/price/category change, payment activation or checkout go-live.
 - Next: after this handover checkpoint is committed, repeat the exact-head preview workflow once more so the final preview SHA includes this documentation update; share only the resulting exact-head deployment.
 
+
+
+## 2026-11-05 16:55 SAST — CURRENT EXACT-HEAD OWNER PREVIEW READY
+
+- Active PR #178 branch `integration/owner-preview-single-task-2026-11-05`; exact tested head `e6f8017c195740e7524bc84d26a554e798d3e783`.
+- GitHub Actions run 42049695027 completed SUCCESS: customer-only Pages package build; Planetworld RRP and exact-model enrichment generators; audio catalogue and three-category structure regressions; public SKU exposure audit; non-production Cloudflare deployment; exact deployed-SHA marker; hosted Playwright QA.
+- Immutable owner preview URL: https://47581331.get-wired-autoworx-store.pages.dev/owner-preview.html . This URL is tied to the exact tested SHA above. Preview only; no production deployment.
+- Hosted QA passed: approved three homepage root categories in order; four audio root collage images loaded; category/brand navigation and product filtering; OneNav official logo (797px natural width); Amplified official logo (794px); Kicker directory and brand-page logos (1024px natural width); Klipsch/Home Entertainment route; mobile 390px and desktop 1365px; zero JavaScript errors; desktop width and scroll width both 1365px. Checkout hidden and preview writes blocked.
+- Catalogue audit remains open: Planetworld 3,298 positive-RRP rows at VAT-inclusive RRP less 2%, 19 zero-RRP quote-only rows, 19 below-estimated-cost review rows, 3,240 unmatched exact-model image records, 68 verified model matches / 66 images / 2 gaps; OneNav image candidates still 7 missing. Home Entertainment product-photo/description enrichment remains open.
+- Preview is ready for owner browsing and visual feedback, not final category/catalogue completion, production readiness or owner acceptance. Keep PR #178 draft/unmerged. No Axxess upload, DNS, Supabase/live write, supplier activation, live stock/price change, checkout/payment activation or launch.
+- Next: capture concrete owner visual feedback; continue Home Entertainment exact-model image/description enrichment and remaining Planetworld/OneNav gaps; rerun exact-head QA before issuing any replacement URL.
