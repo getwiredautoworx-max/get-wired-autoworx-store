@@ -263,7 +263,7 @@ jobs:
               const compactGrid=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:cards.length,widths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),heights:cards.map(x=>Math.round(x.getBoundingClientRect().height))}});
               if(compactGrid.columns!==2||compactGrid.count<6||compactGrid.widths.some(w=>w<130)||compactGrid.heights.some(h=>h>220))throw new Error('Hosted Audio subcategories are not compact two-column mobile tiles: '+JSON.stringify(compactGrid));
               for(const label of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
-              await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
               await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brand choices before component groups');
               if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');

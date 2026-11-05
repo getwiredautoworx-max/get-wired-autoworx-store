@@ -69,3 +69,7 @@ required_checks=exact-sha-marker;brand-first-audio;ASC-four-catalogues;34-pilot-
 request=ASC-AUTO-ELECTRICAL-CAR-AUDIO-BRAND-LANDING-QUERY-FIX
 requested_for=asc-auto-electrical-v2
 required_checks=brand-buttons-visible-without-preselected-brand;ASC-four-catalogues;34-pilot-images;mobile-desktop
+
+request=ASC-AUTO-ELECTRICAL-LOCAL-QA-DIRECT-BRAND-LANDING-CHECK
+requested_for=asc-auto-electrical-v2
+required_checks=brand-first-audio;ASC-auto-electrical-route;mobile-desktop;exact-sha
