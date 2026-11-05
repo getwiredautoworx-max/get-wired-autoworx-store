@@ -19,6 +19,7 @@ on:
       - "tests/audio-catalogue-preview.test.cjs"
       - "category.html"
       - "tests/three-category-storefront-structure.test.cjs"
+      - "HANDOVER_CURRENT.md"
 
 permissions:
   contents: read
