@@ -120,11 +120,13 @@ jobs:
           EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
           DEPLOYMENT_ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          WRANGLER_OUTPUT: ${{ steps.deploy.outputs.command-output }}
         shell: bash
         run: |
           set -euo pipefail
+          mapfile -t command_urls < <(printf '%s' "$WRANGLER_OUTPUT" | grep -Eo 'https://[A-Za-z0-9.-]+\.get-wired-autoworx-store\.pages\.dev' | sort -u || true)
           aliases=()
-          for candidate in "$DEPLOYMENT_URL" "$DEPLOYMENT_ALIAS_URL" "https://owner-preview.get-wired-autoworx-store.pages.dev"; do
+          for candidate in "$DEPLOYMENT_URL" "$DEPLOYMENT_ALIAS_URL" "${command_urls[@]}" "https://owner-preview.get-wired-autoworx-store.pages.dev" "https://integration-owner-preview-si.get-wired-autoworx-store.pages.dev"; do
             if [ -n "$candidate" ]; then
               aliases+=("${candidate%/}")
             fi
