@@ -3122,3 +3122,8 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 - Scope: verify PR #95 state/head/mergeability; inspect latest Planetworld audit run/job/artifact and all active/failed background workflows; continue exact model/variant/manufacturer image-source and category/component evidence checks.
 - Safety: no PR merges, supplier data publication/import, live catalogue/price/stock/category/active-flag or Supabase writes, Axxess/DNS/payment changes, production deployments, or release-credit use. Retry only eligible failed/cancelled/stopped safe staging jobs using supported actions; never duplicate active runs.
 - Status: IN PROGRESS. Next action: capture fresh PR #95, audit workflow, run/job/artifact and background-run evidence, then log the actual outcome and next action.
+
+
+## 2026-11-05 09:01 SAST — PLANETWORLD MODEL-VERIFICATION SUCCESS
+- Updated `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` in commit `58f458a56d4cf3541d67815cd8a18930b5f4d72b` with official JBL regional item-number evidence: `IRX108BT-EK-LS` / EAN `691991033513` and `JBL-EON710D-EK` (220V). Planetworld workbook codes omit `-LS` and `D` respectively; both supplier mappings remain UNVERIFIED pending written Planetworld confirmation. No image copied; reuse rights remain ungranted; no price/stock inference.
+- Next action: carry these exact mismatches into the 19-row DO_NOT_IMPORT review-only CSV and keep both rows held.
