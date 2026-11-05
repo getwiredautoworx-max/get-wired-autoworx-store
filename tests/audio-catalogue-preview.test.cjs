@@ -454,6 +454,11 @@ assert.ok(planet.records.find(row=>row.title==='OneNav Classic 9inch for Fortune
 assert.ok(planet.records.find(row=>row.title==='OneNav Classic 10.1inch for Hilux (2019+)')?.description.includes('Hilux'),'OA018-2 must carry its verified Hilux description');
 assert.ok(planet.records.find(row=>row.title==='OneNav Classic 10.1inch for Nissan Terra (2022+)')?.description.includes('Nissan Terra'),'OA416-1 must carry its verified Nissan Terra description');
 assert.ok(planet.records.find(row=>row.title==='OneNav Classic 10.1inch for GWM Steed 5E')?.description.includes('GWM Steed 5E'),'OA509-1 must carry its verified GWM description');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm-2/')?.description.includes('Toyota 280mm'),'OA009-2 Toyota 280mm description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-101inch-for-rav4-2019')?.description.includes('Toyota RAV4'),'OA012-1 RAV4 description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-101inch-for-corrola-2019')?.description.includes('Toyota Corolla'),'OA016-1 Corolla description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://nxtleveltech.co.za/product/onenav-classic-9inch-for-toyota-quantum-2019')?.description.includes('Toyota Quantum'),'OA110-1 Quantum description must be present');
+assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-isuzu/')?.description.includes('Isuzu'),'OA115-2 Isuzu description must be present');
 assert.ok(productListingRoute.includes('productPhotoCrop{width:100%;aspect-ratio:4/3;align-self:start;overflow:hidden'));
 assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 40%'));
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
