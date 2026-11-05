@@ -3625,3 +3625,10 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - The build then stopped in `tests/three-category-storefront-structure.test.cjs:134` because an existing assertion still expected the old `verifiedOnly` crosswalk merge. The storefront now correctly uses pre-enriched public product records plus Audio Connections only.
 - Updated the structural assertion to require `rows=enriched.concat(audioConnections)`, preserving the combined catalogue while explicitly excluding the internal supplier crosswalk.
 - No deployment occurred from that failed build. The next exact-head run must pass both Node suites and the hosted checks.
+
+
+## 2026-11-05 — PIONEER IMAGE SOURCE TEST UPDATED
+
+- The preview data generators completed successfully on the next build: RRP rule (3,298 priced / 19 quote-only / 19 below-cost review) and exact-model enrichment (68 matched / 66 images / 2 missing / 3,249 unmatched).
+- The Node regression suite then failed because `tests/three-category-storefront-structure.test.cjs` still pinned the previous Pioneer Malaysia image domain. The replacement is the exact DMH-AP6650BT product image from Pioneer South Africa, so the test now checks `www.pioneersouthafrica.co.za`.
+- No deployment occurred from the failed build. The next run must pass both Node suites and hosted browser QA.
