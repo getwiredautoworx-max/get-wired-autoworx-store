@@ -3492,3 +3492,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Replaced the stale photo on the dedicated brand → product-type page so the same speaker category now uses one consistent photo mapping.
 - Found another image failure path in `preview-audio.html`: the component image error handler retried the same category fallback URL that had already failed. Changed it to remove the broken image instead of repeatedly assigning the same failing source.
 - Added regression assertions for the brand-route photo consistency and no-same-source retry loop. Exact-head hosted tests, naturalWidth image checks and the 390px/1365px browser journeys remain pending.
+
+
+## 2026-11-05 — EXACT-HEAD WORKFLOW FAILURE DIAGNOSED AND TEST FIXED
+
+- Retrieved the push-triggered GitHub Actions run and full job log (run `42015085329`, job `127203531226`). The package build stopped before deployment because `tests/three-category-storefront-structure.test.cjs:228` still expected audio component image failures to restore a fallback photo through the old `this.src=categoryArtFallback(label)` handler.
+- The production source had already been corrected to remove a failed component image (`img.onerror=function(){this.onerror=null;this.remove()}`), so the regression assertion—not the source fix—was stale and contradictory.
+- Corrected that assertion to enforce the photo-only policy: remove failed component photos; never retry the same failed URL or restore generic/cartoon artwork.
+- Test correction commit: `b7532b6b7eec594825abf543727161e24af920a6`. This commit is expected to trigger a fresh exact-head workflow because the test file is in the push trigger path list.
+- Previous run failed in the public-package build step, before Node regression completion, SKU audit, Cloudflare deployment, exact-SHA marker check, or hosted Playwright browser tests. No preview was deployed by that run.
+- The subsequent documentation-only commit `57240bf34c08a11b220615f820136d327f4a7d8e` was the branch head when inspected; the failed run tested its parent `a1fb2c033075cfef0c54ba58adfe9dd93b17dec9`. The corrected test commit now supersedes both.
+- Next gate: inspect the new workflow run for the corrected test commit. If the next assertion fails, fix the actual mismatch and rerun; do not bypass the assertion or claim a preview. Deployment and hosted image/navigation evidence remain mandatory.
+- PR #178 stays draft/unmerged. Preview only; production, checkout, payments, live data and supplier activation remain on hold.
