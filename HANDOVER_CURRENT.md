@@ -3714,3 +3714,13 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The two OneNav product-image endpoints are reachable and show the intended Prado and Land Cruiser Pick Up panels. The final 4:3/40% crop still requires a deployed-browser screenshot check.
 - The official Planetworld ONE and Amplified pages link to their respective Canto logo assets; the direct Canto requests redirect to signed CloudFront URLs that this inspection environment cannot fetch. The automated remote-asset assertions remain pending a real CI run.
 - No current-head hosted preview is available to certify. Do not reuse the older preview URLs as evidence.
+
+
+## 2026-11-05 — OWNER PRIORITY: FINISH HOME ENTERTAINMENT BEFORE CATEGORY MOVE
+
+- Owner confirmed the current priority is to finish the existing Home Entertainment category first. The proposed move of Car Audio & Video under a new Vehicle Entertainment & Security root is deferred until Home Entertainment is complete, verified and locked. Do not change the category tree or move products during this stage.
+- Active work remains on the sole PR #178 branch `integration/owner-preview-single-task-2026-11-05`; no parallel storefront branch is to be created.
+- Current branch checkpoint recorded in the preceding entry: `34b550c29e287131df49303688999f437f4f420d`. This head has no verified exact-head hosted run. Older successful run `42015669402` tested `8e0c4ced3868b91c08d086c938e5bb51ad04dd87`; its Home Entertainment route passed (category photo, separate department route, previous menu hidden, 8+ brand directory, Klipsch logo, dedicated Klipsch brand page without products, Home Audio & Cinema image, and filtered products). That older result is not proof for the newer current head.
+- The current exact-head workflow also includes dedicated hosted checks for the requested ONE/OneNav and Amplified logos in the Car Audio brand directory and their brand pages, as well as current OneNav product-photo/crop and product-detail checks. These remain pending until a successful current-head workflow is retrieved.
+- Next action: request one full exact-head run from the active branch and inspect the run logs/results for Home Entertainment, OneNav, Amplified, current photo naturalWidth/alt, RRP-minus-2, public-data/SKU safeguards, mobile and desktop. Fix any failed checks before owner preview review.
+- Do not send an old preview URL as evidence. Keep PR #178 draft/unmerged. Production, category changes, live data/pricing/stock, supplier activation, checkout/payment, Axxess and DNS remain on hold.
