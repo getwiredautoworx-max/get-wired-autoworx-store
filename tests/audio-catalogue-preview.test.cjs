@@ -93,7 +93,7 @@ assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXA
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3240);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
 assert.ok(brandLandingRoute.includes("if(n==='one'||n==='one x'||n==='onex'||n.includes('onenav'))")&&brandLandingRoute.includes("if(n.includes('amplified'))"),'dedicated brand landing page must resolve One X and Amplified logos, not only the parent brand directory');
-assert.ok(brandLandingRoute.includes("img[alt*='Kicker']{transform:scale(1.42)"),'Kicker brand landing logo must be enlarged');
+assert.ok(brandLandingRoute.includes("img[alt*='Kicker']{width:135px!important;height:80px!important;max-width:none!important;transform:scale(1.5)!important"),'Kicker brand landing logo must be enlarged');
 assert.ok(brandLandingRoute.includes("function brandDisplayName(b)")&&brandLandingRoute.includes("'ONE / OneNav'"),'One brand button and landing page must be identified as ONE / OneNav');
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
 assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT), 'all unpriced Planetworld rows must use the exact owner-approved request wording');
