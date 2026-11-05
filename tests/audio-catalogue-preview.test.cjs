@@ -65,7 +65,8 @@ assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]=
 assert.equal(pricingAuditRows.filter(row=>row[pricingAuditIndex.pricing_status]==='RRP_MINUS_2_COST_FLOOR_PASS').length,3279);
 assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand directory must use official Planetworld ONE/OneNav and Amplified logos');
 assert.ok(route.includes('"one x":')&&route.includes('"onex":')&&route.includes('"amplified audio":'),'brand directory must resolve One X and Amplified Audio aliases to their official logo assets');
-assert.ok(route.includes('aria-label="Kicker"] img{width:150px')&&route.includes('transform:scale(1.28)'),'Kicker brand mark must be enlarged to a readable button size');
+assert.ok(route.includes('aria-label="Kicker"]{min-width:154px')&&route.includes('aria-label="Kicker"] img{width:176px')&&route.includes('transform:scale(1.38)'),'Kicker brand mark must use the enlarged, wider directory tile treatment');
+assert.ok(route.includes('/^(one|one x|onex|one nav|onenav)$/.test(normalized)')&&route.includes('normalized.includes("amplified")'),'brand button rendering must resolve One X / OneNav and Amplified aliases to their official logo keys');
 assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must use a DJ-controller photograph, not a generic live-event image');
 assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
