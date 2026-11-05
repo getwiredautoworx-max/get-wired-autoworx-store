@@ -281,7 +281,7 @@ jobs:
 
               // Kicker logo must load and render at a readable size in both the brand directory and its dedicated brand page.
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const kickerButton=frame.locator('#brands .brandLogoButton[aria-label="Kicker"]');
               await kickerButton.waitFor({state:'visible',timeout:30000});
               const kickerDirectoryLogo=kickerButton.locator('img');
@@ -290,7 +290,7 @@ jobs:
               console.log('HOSTED_KICKER_DIRECTORY_LOGO_AUDIT',JSON.stringify(kickerDirectoryAudit));
               if(!kickerDirectoryAudit.loaded||kickerDirectoryAudit.renderedWidth<170)throw new Error('Kicker directory logo failed to load or remains too small: '+JSON.stringify(kickerDirectoryAudit));
               await kickerButton.click();
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Kicker'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Kicker'},{timeout:30000});
               const kickerBrandPage=page.frameLocator('#store');
               await kickerBrandPage.locator('.brandHero').filter({hasText:'Kicker'}).waitFor({state:'visible',timeout:30000});
               const kickerHeroLogo=kickerBrandPage.locator('.brandHero img');
@@ -301,7 +301,7 @@ jobs:
 
               // Audit every audio-department tile image, including DJ and Studio Equipment.
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html'});
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&!u.searchParams.has('department')},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&!u.searchParams.has('department')},{timeout:30000});
               const departmentImages=frame.locator('#departments .audioTile img.departmentImage');
               await departmentImages.first().waitFor({state:'visible',timeout:30000});
               const departmentImageAudit=await departmentImages.evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,src:img.currentSrc||img.src}})));
