@@ -241,7 +241,7 @@ assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/un
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
 assert.equal(audioImageAudit.recordsWithImage,62);
 assert.equal(audioImageAudit.recordsMissingVerifiedImage,4);
-assert.equal(audioImageAudit.missing.length,6)
+assert.equal(audioImageAudit.missing.length,4)
 for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSA-R-22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
