@@ -3538,3 +3538,43 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 ### Release boundary
 - No Supabase writes, product imports, live category/product/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
 - ASC Buyers Guides remain excluded. Production remains HOLD.
+
+
+## 2026-11-05 — SIX-CATALOGUE EXACT-HEAD PACKAGE QA CHECKPOINT
+
+### Owner category instruction
+- Applied the latest instruction literally: all six ASC catalogues now have separate direct subcategories under Auto Electrical Spares — Aerials, Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats and Fuel Pumps.
+- Aerials and Car Mats moved in the preview category tree from their earlier Car Audio and Car Care parents. The standard Pages builder restores their earlier parents and strips all preview-only ASC routes from the standard category page. This is preview-only; no live database category assignment was changed.
+- Auto Electrical now has nine direct children including the three existing general electrical groups. The six ASC category routes point to their own catalogue query in asc-auto-electrical-preview.html. Aerials has been removed from Car Audio component/type grouping.
+
+### Six-catalogue content
+- Six catalogue groups: Aerials 6 sections; Sensors 11; Switches 16; Globes 10; Car Mats 14; Fuel Pumps 18 — 75 source sections total.
+- 50 reviewed pilot records: Aerials 8; Sensors 9; Switches 8; Globes 8; Car Mats 8; Fuel Pumps 9.
+- 16 Aerials/Car Mats crops were copied from the earlier six-catalogue review set into assets/asc-auto-electrical-pilot/. All 50 unique referenced image files are present and every record uses that directory. Category cards use catalogue crops.
+- All 50 records are preview-only, REVIEW_ONLY_NOT_LIVE, no price, no stock, no GW SKU, and watermark-retaining image use not cleared for production.
+- Every record carries source PDF, contents-page start page, candidate ASC reference, identity/fitment/description review status and a cautious draft description. The source page is a contents-page locator, not a substitute for checking the original catalogue page image. Candidate codes and exact variants remain subject to final PDF visual confirmation.
+- Owner preview displays draft copy, original catalogue wording, fitment as printed, source PDF/page and candidate ASC reference. Quote-only wording is exact: **Price On Request due to Limited Stock and Availability**.
+- H18/H19/H3 globe records remain flagged for technology/section verification; do not assume HID. Blank fitment fields are not inferred.
+
+### Exact-head static regression and package result
+- Latest code/test head submitted to the package QA: 164687f980b21bfbb2eebfe17ef238191632ac20.
+- GitHub Actions workflow run **42075909054 — Cloudflare Pages Public Package QA — completed SUCCESS** for exact head 164687f.
+- The workflow built the standard customer-only package and verified it excludes the ASC preview route, JSON and image folder. It then built the isolated non-production preview package and verified the ASC route, JSON and exactly 50 pilot JPG files are included, while supplier PDFs/source directories remain excluded.
+- The Pages builder runs both Node suites before either package: tests/three-category-storefront-structure.test.cjs and tests/asc-auto-electrical-integration.test.cjs. Because the exact-head package job completed successfully, both suites passed on 164687f, as did standard/preview package allowlist checks and public SKU audit.
+- JavaScript syntax-only compilation also passed for category.html, preview-category.html, preview-products.html, preview-audio.html, asc-auto-electrical-preview.html and index-new.html.
+- This is a static regression/package pass, not payment/checkout testing and not final product identity or visual image approval.
+
+### Hosted read-only browser QA
+- Owner Store Preview Browser QA run **42075909312** was automatically triggered by the branch push for exact head 164687f and was still in progress at the last readback. It had completed setup, Playwright and Chromium installation and was running the read-only owner-preview checks; the subsequent step is deployed preview inspection on mobile and desktop.
+- Do not claim browser route/image QA passed until this run completes successfully. If it fails, inspect its exact failing step and fix before any readiness claim.
+- Cloudflare Pages branch preview deployment comment confirms a successful deploy for earlier runtime commit 0c75c61 at https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev. The current browser QA must confirm the exact latest head marker and route/image behaviour; the earlier deployment comment alone is not sufficient.
+
+### Next actions
+1. Confirm completion and results of run 42075909312; fix any category route or image load mismatch it reports.
+2. Reconcile all 50 source codes, page references, exact model variants, image matches and fitments against original PDF page images. The current source page locators and draft descriptions are not final approval.
+3. Continue product-description reconciliation beyond the 50-record pilot; the larger register still has 933 descriptions awaiting editorial/fitment verification.
+4. Keep payment/checkout functional testing deferred until owner banking details and explicit approval.
+
+### Release boundary
+- No Supabase writes, product imports, live category/product/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
+- ASC Buyers Guides remain excluded. Production remains HOLD pending exact-head verification, owner visual acceptance and explicit release approval.
