@@ -105,3 +105,22 @@ These candidates must be resolved against the original PDF page image before cat
 - ASC Buyers Guides remain out of scope unless the owner explicitly reauthorises them.
 - The next extraction deliverable is a 25-product review-only pilot with source-page evidence, not a live import.
 - No price, stock, supplier activation, public product listing or database mutation is authorised by this review.
+
+
+## Owner-directed store category assignments — 5 November 2026
+
+The owner has directed that the six current ASC catalogues be organised as separate family subcategories under these store roots. This instruction supersedes the earlier provisional Aerials and Car Mats mappings above:
+
+**Auto Electrical Spares**
+- Aerials
+- Automotive Sensors
+- Automotive Switches
+- Automotive Globes
+- Fuel Pumps
+
+**Car Care & Accessories**
+- Car Mats (its own subcategory)
+
+Aerials must not be placed under Audio: the Audio category remains frozen until the owner explicitly resumes it. Each catalogue family is a separate subcategory; do not combine the five electrical families into one generic ASC subcategory. The owner-directed family-to-root mapping is recorded in `catalogue-review/asc-catalogue-extraction/asc-store-category-assignment-review-only.csv`.
+
+**Important implementation boundary:** this is approved taxonomy/staging direction, not approval to import product rows or write live category/product data. The original six PDFs remain unchanged. Product-level entries remain `DO_NOT_IMPORT` until exact product identity, source page, SKU, description/specification, fitment and exact image are visually verified; OCR alone is insufficient. ASC products without verified current pricing remain quote-only with the exact wording: **Price On Request due to Limited Stock and Availability**. Buyers Guides remain excluded. Production remains HOLD.
