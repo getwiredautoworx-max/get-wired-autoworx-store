@@ -3238,3 +3238,12 @@ Read-only audit of the sanitized JSON used by PR #139:
 ### Safety and next action
 - No PR merge, deployment, production/Axxess/DNS/payment change, Supabase write, live stock/price/category change or supplier activation was performed.
 - Next: inspect run 42041972676; if successful, continue through exact-head hosted QA and verify the logo/image requirements. If failed, fix only the newly demonstrated defect, then rerun the same candidate. Update this handover again with exact outcome and deployed SHA.
+
+
+## CONTINUATION EXECUTION UPDATE — 2026-11-05 16:11 SAST
+
+- Follow-up exact-head run 42042222870 (head b6b699cd393f28db86aca5f90fa74936fd8d75d9) confirmed the public customer package build and supplier-data privacy checks pass, then exposed a stale missing-image audit assertion: the audit JSON and current catalogue both report 4 unresolved products, while the test still expected 6. Corrected only the test assertion to 4 in commit 805ff61d8325c68eb407fdd4e5e8537381b03421.
+- The current exact-head workflow run is 42042523587 for head 805ff61d8325c68eb407fdd4e5e8537381b03421. At 16:11 SAST it is still running the customer-only package build; exact-head regression, deployment and hosted QA have not yet completed.
+- Audio Connections image audit is now 62/66 with 4 unresolved model-photo matches; one additional Reference Audio RA-EL4 image/source match was added and verified against its model mapping. Do not represent the remaining four as complete.
+- Confirmed visual brand-logo gap: preview-audio.html maps OneNav aliases to the Planetworld _OneX.png asset; preview-audio-brand.html does the same. This is a OneX/OneNav mismatch, not an absent file. A distinct OneNav wordmark image was located on GT Installs at https://gt-installs.co.za/wp-content/uploads/elementor/thumbs/One-Nav_logo-qv9cksy4f9rioe5pa16mbfw6xm62eumasgsqilvdtw.png (black transparent wordmark; use on bright tile). Amplified continues to resolve to the official Planetworld Amplified asset. Next source correction: route OneNav aliases to the OneNav wordmark while keeping One X aliases mapped to the OneX mark; update corresponding test expectations and verify naturalWidth/rendered size on both routes.
+- No preview URL is being issued from this update. The earlier known-good preview remains stale for the latest owner-requested image/logo corrections.
