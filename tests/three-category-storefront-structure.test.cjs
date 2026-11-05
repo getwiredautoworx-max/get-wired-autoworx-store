@@ -180,6 +180,7 @@ for (const obj of [planet,audio]) {
   const raw=JSON.stringify(obj);
   assert.ok(!/Planetworld|Audio Connections/i.test(raw),'supplier identity must not appear in customer-facing data');
   assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
+  assert.ok(!/supplierModelNumber/i.test(raw),'internal supplier model identifiers must not be exposed');
 }
 const audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
