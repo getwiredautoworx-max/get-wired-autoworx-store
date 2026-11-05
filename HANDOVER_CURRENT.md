@@ -4234,3 +4234,13 @@ The current OneNav audit, 45-record reconciliation, unresolved image/coverage ga
 - Do not process ASC Buyers Guides in this task unless the owner explicitly reauthorises them. Keep all source PDFs unchanged. Do not invent pricing, selling prices, fitment, availability or physical stock. Catalogue presence is not proof of stock.
 - The first execution blocker is visual source-page verification: current committed extraction is OCR text only. If original PDF pages cannot be rendered/read in this environment, record the limitation and request the owner to provide page screenshots rather than treating OCR as verified.
 - Production remains HOLD. No Axxess, DNS, Supabase, live stock/price, payment, checkout, public activation or production changes are authorised by this workstream switch.
+
+
+## 2026-11-05 — ASC OCR contents/product-page variance triage
+
+- Reviewed all 72 page-level OCR rows from the six post-reset ASC catalogue PDFs and compared the OCR contents-page section counts with corresponding product-page section headings.
+- Added a clearly labelled **unverified visual-check queue** to `suppliers/ASC/README.md` in commit `f9273ead157272daab10c1d6a86813541e0a8f9f`. Candidates: Sensors crank/cam 14 vs 16; Sensors temperature 26 vs 36; Switches combination stalk 52 vs 53; Switches rocker 2 vs 32; Switches radiator fan/thermo 5 vs 35; Car Mats Toyota 14 vs 16; Car Mats Hyundai/Kia 14 vs 16.
+- These are OCR variance candidates only, not confirmed catalogue inconsistencies. Original page-image inspection is required before adjusting section counts or selecting product quantities. No product SKUs, descriptions, fitments, prices, images or stock were accepted from OCR as verified.
+- No original PDF was altered; no product import, public activation, database write, stock/price update or production action occurred.
+- Next: visually verify the variance pages first, then extract a balanced 25-product pilot with source filename/page references and exact SKU/description/specification/fitment transcription. If page rendering is unavailable in the working environment, ask the owner for screenshots of the relevant original catalogue pages; do not substitute OCR confidence for source verification.
+- Active workstream remains ASC catalogues. Audio/OneNav is paused pending owner screenshots; do not continue that brand or move to another audio brand. Do not process Buyers Guides without explicit reauthorisation. Production HOLD.
