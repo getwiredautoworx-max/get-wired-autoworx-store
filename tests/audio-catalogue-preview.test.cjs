@@ -222,7 +222,7 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 61);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 60);
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
 
@@ -231,15 +231,15 @@ for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
 
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 5, 'only five supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 6, 'only six supplier products remain without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && row.imageStatus === 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH'), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
-assert.equal(audioImageAudit.recordsWithImage,61);
-assert.equal(audioImageAudit.recordsMissingVerifiedImage,5);
-assert.equal(audioImageAudit.missing.length,5);
-for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSAR 22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
+assert.equal(audioImageAudit.recordsWithImage,60);
+assert.equal(audioImageAudit.recordsMissingVerifiedImage,6);
+assert.equal(audioImageAudit.missing.length,6)
+for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSA-R-22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
 }
@@ -249,7 +249,7 @@ for (const [model,url] of [["809","https://soundvision.co.za/cdn/shop/files/Full
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact-model image source must be recorded');
 }
 
-for (const [model,url] of [["RABTR03","https://evolutionwheelandtyre.com/cdn/shop/files/RA-BTR03.jpg?v=1753285755"],["SSW-B12-2800","https://starsound.co.za/wp-content/uploads/2026/05/SSW-B12-2800_a.jpg"],["SSWF10\"-4150SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-4150SVC_a.jpg"],["SSWF10 2650SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-2650-720x484.jpg"],["SPARTAN 9900.1","https://starsound.co.za/wp-content/uploads/2026/05/SSA-SP-9900.1_a.jpg"],["SSA-H-8200.1","https://audiocorner.co.za/wp-content/uploads/2025/06/Star-Sound-Hazard-Series-Monoblock-Amplifier-_8200W_-Star-Sound-1630051456_900x-1.jpg"],["SSA-SB2000.1","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-SB-2000.1-Monoblock-Amplifier-_2000W_-Star-Sound-20995343.jpg?v=1718011177&width=990"],["SSA-J-10000.4","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-J-10000.4-Joker-4-Channel-Amplifier-_10-000W_-Star-Sound-21793214.jpg?v=1737742864&width=1946"],["SSA-M4-80.4","https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_900%2Ch_900%2Cd_notfound.png/user/4905905/STARSOUND_SSA-M4-80.4_PICTURE_1_YjQ1_by_Xx.jpg"],["PRO6.5-700","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSS-PRO6.5-700-6.5_-Bullet-Mids-_700W_-Star-Sound-31378452.jpg?v=1775657493&width=1946"],["SS-PRO6X9-900","https://starsound.co.za/wp-content/uploads/2026/05/SSS-PRO6x9-900_a.jpg"],["TAXI-4G","https://www.fastrak.co.za/cdn/shop/files/SSAK-TAXI-4G-01.png?v=1781775881"],["SST-550","https://www.fastrak.co.za/cdn/shop/files/2014483000000starsound-real-titanium-dome-super-tweeter-sst-550-4667579.png?v=1781184011&width=1000"],["SST-850","https://www.fastrak.co.za/cdn/shop/files/2013868000000-4442150.png?v=1760371644"],["EQ7100","https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file"],["SSW-F12-5150SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F12-5150SVC_a.jpg"]]) {
+for (const [model,url] of [["RABTR03","https://evolutionwheelandtyre.com/cdn/shop/files/RA-BTR03.jpg?v=1753285755"],["SSW-B12-2800","https://starsound.co.za/wp-content/uploads/2026/05/SSW-B12-2800_a.jpg"],["SSWF10\"-4150SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-4150SVC_a.jpg"],["SSWF10 2650SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-2650-720x484.jpg"],["SPARTAN 9900.1","https://starsound.co.za/wp-content/uploads/2026/05/SSA-SP-9900.1_a.jpg"],["SSA-H-8200.1","https://audiocorner.co.za/wp-content/uploads/2025/06/Star-Sound-Hazard-Series-Monoblock-Amplifier-_8200W_-Star-Sound-1630051456_900x-1.jpg"],["SSA-SB2000.1","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-SB-2000.1-Monoblock-Amplifier-_2000W_-Star-Sound-20995343.jpg?v=1718011177&width=990"],["SSA-J-10000.4","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-J-10000.4-Joker-4-Channel-Amplifier-_10-000W_-Star-Sound-21793214.jpg?v=1737742864&width=1946"],["SSA-M4-80.4","https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_900%2Ch_900%2Cd_notfound.png/user/4905905/STARSOUND_SSA-M4-80.4_PICTURE_1_YjQ1_by_Xx.jpg"],["PRO6.5-700","https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSS-PRO6.5-700-6.5_-Bullet-Mids-_700W_-Star-Sound-31378452.jpg?v=1775657493&width=1946"],["SS-PRO6X9-900","https://starsound.co.za/wp-content/uploads/2026/05/SSS-PRO6x9-900_a.jpg"],["TAXI-4G","https://www.fastrak.co.za/cdn/shop/files/SSAK-TAXI-4G-01.png?v=1781775881"],["SST-550","https://www.fastrak.co.za/cdn/shop/files/2014483000000starsound-real-titanium-dome-super-tweeter-sst-550-4667579.png?v=1781184011&width=1000"],["SST-850","https://www.fastrak.co.za/cdn/shop/files/2013868000000-4442150.png?v=1760371644"],["SSW-F12-5150SVC","https://starsound.co.za/wp-content/uploads/2026/05/SSW-F12-5150SVC_a.jpg"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact-model image source must be recorded');
 }
@@ -288,7 +288,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 129);
+assert.equal(imageCount, 128);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
@@ -464,3 +464,6 @@ assert.ok(alpineHalo11Product && alpineHalo11Product.imageUrl && alpineHalo11Pro
 assert.ok(alpineHalo11Model.imageUrl.endsWith('/iLX-F115D_Alpine-Halo-11-XXL-11-Inch-Media-Receiver.jpg'), 'Alpine Halo 11 must use the verified official full-size model image, not a broken thumbnail or unrelated receiver image');
 assert.equal(alpineHalo11Product.title, alpineHalo11Model.name, 'verified manufacturer product name must replace the misspelled supplier title in the customer preview');
 assert.ok(enrichment.includes('product["title"] = manufacturer_name'), 'exact-model enrichment must publish the verified manufacturer title');
+
+const eq7100=audioConnections.records.find(item=>item.modelNumber==='EQ7100');
+assert.ok(eq7100&&!eq7100.imageUrl&&eq7100.imageStatus==='NO_VERIFIED_EXACT_MODEL_IMAGE','do not substitute the SSA-EQ-7200 photo for the EQ7100 model');
