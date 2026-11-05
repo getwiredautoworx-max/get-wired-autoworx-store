@@ -174,7 +174,8 @@ assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
 assert.equal(audioConnections.records.length, 66);
 assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:W RMS|RMS\/peak basis not stated)/i.test(row.description || '')).length, 23, '23 non-Sony power descriptions are present after removing the unresolved RMS claim');
-assert.ok(audioConnections.records.find(row => String(row.modelNumber).includes('SPECTR 15000')).description.includes('700 W RMS'), '700 W RMS supplier rating is preserved');
+const spectrum15000 = audioConnections.records.find(row => row.modelNumber === 'SSW-SV2-15000R');
+assert.ok(spectrum15000 && !/RMS/i.test(spectrum15000.description), 'Spectrum 15000 uses the manufacturer model and omits the unresolved RMS rating');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XS-163ES').description.includes('90 W RMS'), 'Sony component speaker RMS rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XM-1ES').description.includes('600 W ×1 RMS'), 'Sony amplifier wattage and channel basis are preserved');
 const specChecks = [

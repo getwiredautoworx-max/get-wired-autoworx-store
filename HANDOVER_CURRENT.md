@@ -3976,3 +3976,10 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Added a regression assertion that public catalogue JSON must not contain `supplierModelNumber`, in addition to existing checks against supplier names, dealer costs, supplier SKUs and supplier names.
 - The manufacturer page lists 1500W RMS while the source listing differs; RMS output is deliberately omitted pending reconciliation. Preview only; no price/stock activation.
 - Next: re-run exact-head build/regressions and hosted browser checks. Home Entertainment product-image and details audit remains the next category catalogue task. Production HOLD; no live writes, merge, DNS/Axxess, supplier activation or checkout/payment go-live.
+
+
+## 2026-11-05 — SPECTRUM 15000 REGRESSION EXPECTATION UPDATED
+
+- Exact-head run 42048613309 passed the customer-only package build and the three-category/privacy structure test after the supplier-identifier cleanup, then failed in the audio catalogue regression because it still expected the old supplier model substring and `700 W RMS` description.
+- Updated the regression to require manufacturer model `SSW-SV2-15000R` and to assert that the disputed RMS figure is absent from the customer description. The other 23 non-Sony RMS/specification descriptions and Sony ratings remain independently checked.
+- Next: rerun exact-head Node regressions, public SKU audit, deployment-SHA marker and hosted mobile/desktop category/product image checks. No preview URL is approved until those pass.
