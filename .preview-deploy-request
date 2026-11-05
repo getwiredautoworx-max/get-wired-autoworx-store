@@ -78,3 +78,5 @@ required_checks=exact-sha-marker;three-root-navigation;brand-route-path;brand-pa
 request=PR-178-exact-head-local-sony-logo-and-dedicated-audio-route-final-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_checks=exact-sha-marker;three-root-navigation;sony-local-logo-load;brand-route-path;brand-page-no-products;product-type-route-path;brand-and-type-filter;all-local-product-type-artwork;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=final-exact-head-after-owner-preview-success-and-legacy-browser-qa-parking-2026-11-05
