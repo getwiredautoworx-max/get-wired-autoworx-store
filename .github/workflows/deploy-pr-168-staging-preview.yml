@@ -11,6 +11,9 @@ on:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
       - "index-new.html"
+      - "preview-category.html"
+      - "category.html"
+      - "tests/three-category-storefront-structure.test.cjs"
 
 permissions:
   contents: read
