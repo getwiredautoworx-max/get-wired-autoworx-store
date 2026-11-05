@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 63,
-  "recordsMissingVerifiedImage": 3,
+  "recordsWithImage": 64,
+  "recordsMissingVerifiedImage": 2,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -11,13 +11,6 @@
       "brand": "Starsound",
       "title": "Starsound SSW-S12\" SPECTR 15000 — 700 RMS DVC",
       "component": "DVC Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "RA SUPER RAST20",
-      "brand": "RA",
-      "title": "Reference Audio RA SUPER RAST20",
-      "component": "Tweeters",
       "descriptionPresent": true
     },
     {
@@ -91,13 +84,14 @@
     "SSAK-412 (supplier alias 412P cross-referenced to manufacturer SKU SSAK-412)",
     "RA-EL4 (supplier descriptor RA AWG4 cross-referenced to Reference Audio 4-gauge kit)",
     "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)",
-    "EQ7100 (exact SSA-EQ-7100 image visibly model-marked; Takealot asset cross-checked against SSA-EQ-7100 product listing)"
+    "EQ7100 (exact SSA-EQ-7100 image visibly model-marked; Takealot asset cross-checked against SSA-EQ-7100 product listing)",
+    "EQ7100 (JM Sounds exact SSA-EQ-7100 image)",
+    "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)"
   ],
-  "imageCoverageNote": "63 of 66 Audio Connections records now have exact-model image URLs; 62 are high-resolution and one (Blackspider Lynx) remains a 105px thumbnail. Three records still have no verified exact-model photo: SSW-S12 SPECTR 15000, 860/SSAK-860 and RA SUPER RAST20. Four previously broken URLs have been replaced; exact-head hosted load verification is pending.",
+  "imageCoverageNote": "64 records now have product image URLs; 2 records remain without an exact-model photo (SSW-S12 SPECTR 15000 and Starsound SSAK-860). The Blackspider Lynx photo remains exact-model but only 105px wide and needs a larger original. Four formerly broken URLs have been replaced, including RA-EL4; hosted load verification for the replacements remains pending.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
-    "860 / SSAK-860",
-    "RA SUPER RAST20"
+    "860 / SSAK-860"
   ],
   "descriptionCoverage": {
     "records": 66,
@@ -142,6 +136,11 @@
       "model": "RA-EL4",
       "source": "Mamas Boombox current exact-model Reference Audio RA-EL4 product image",
       "url": "https://mamasboombox.co.za/products/reference-audio-ra-el4-4-gauge-wiring-kit-double"
+    },
+    {
+      "model": "RA-EL4",
+      "source": "My Audio & Security exact Reference Audio RA-EL4 listing",
+      "url": "https://myaudioandsecurity.co.za/product/reference-audio-4-gauge-8000w-wiring-kit/"
     }
   ],
   "latestHostedAuditFailure": {
