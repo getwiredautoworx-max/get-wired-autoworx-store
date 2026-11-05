@@ -231,9 +231,9 @@ assert.ok(raSt20&&raSt20.manufacturerListedModel==='RA-ST20'&&raSt20.imageUrl===
 const ssak860=audioConnections.records.find(item=>item.modelNumber==='860');
 assert.ok(ssak860&&ssak860.manufacturerListedModel==='SSAK-860'&&ssak860.imageUrl==='https://cc-prod.eu.saleor.cloud/media/thumbnails/products/15770173_c306d700_thumbnail_2048.webp'&&ssak860.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','supplier 860 must resolve to the exact SSAK-860 kit photo');
 assert.ok(ssak860.description.includes('5m blue 8-gauge power cable')&&ssak860.description.includes('80A fuse'),'SSAK-860 description must retain verified wiring-kit contents');
-const sswSpectr=audioConnections.records.find(item=>item.modelNumber==='SSW-S12\" SPECTR 15000');
-assert.ok(sswSpectr&&sswSpectr.manufacturerListedModel==='SSW-SV2-15000R'&&sswSpectr.imageUrl==='https://starsound.co.za/wp-content/uploads/2026/05/SSW-SV2-15000R_b.jpg'&&sswSpectr.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','SSW-S12 SPECTR 15000 must use the official SSW-SV2-15000R manufacturer photo');
-assert.ok(sswSpectr.description.includes('3-inch')&&sswSpectr.description.includes('37–500Hz')&&sswSpectr.brandNote.includes('RMS conflict'),'SSW-S12 must retain verified manufacturer features and the supplier RMS conflict note');
+const sswSpectr=audioConnections.records.find(item=>item.modelNumber==='SSW-SV2-15000R');
+assert.ok(sswSpectr&&sswSpectr.manufacturerListedModel==='SSW-SV2-15000R'&&sswSpectr.imageUrl==='https://starsound.co.za/wp-content/uploads/2026/05/SSW-SV2-15000R_b.jpg'&&sswSpectr.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Spectrum 15000 must use the manufacturer model and official product photo');
+assert.ok(sswSpectr.description.includes('3-inch')&&sswSpectr.description.includes('37–500Hz')&&!/RMS/i.test(sswSpectr.description)&&sswSpectr.brandNote.includes('Power-rating claims are omitted'),'Spectrum 15000 must retain verified features while withholding the unresolved RMS rating');
 const sony160=audioConnections.records.find(item=>item.modelNumber==='XS-160ES');
 assert.ok(sony160&&sony160.imageUrl==='https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42271/282815/xs-160es__6__98080.1682532246.jpg?c=2'&&sony160.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Sony XS-160ES must use its exact model image');
 const sony680=audioConnections.records.find(item=>item.modelNumber==='XS-680ES');
