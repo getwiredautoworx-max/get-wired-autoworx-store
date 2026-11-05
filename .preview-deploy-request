@@ -87,3 +87,5 @@ required_checks=home-entertainment-category-route;home-entertainment-brand-direc
 request=home-entertainment-audio-navigation-owner-preview-2026-11-05
 workflow=owner-preview-exact-sha
 source_branch=integration/owner-preview-single-task-2026-11-05
+
+request=run-final-audio-navigation-and-home-entertainment-qa
