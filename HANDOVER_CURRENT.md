@@ -3340,3 +3340,32 @@ Owner identified that Car Audio & Video was opening component groups first and b
 ### Verification gate
 - Code changes committed to the same branch; push-triggered QA and staging deployment are pending. Do not claim the hosted customer journey is fixed until the exact current PR head has a passing static regression and hosted mobile/desktop browser result, and the deployed preview marker matches that head.
 - Keep PR #176 open/draft/unmerged until all exact-head checks pass and owner accepts the preview. Production remains on hold.
+
+
+---
+
+## OWNER VISUAL UPDATE — IMAGE-LED SUBCATEGORY CARDS (2026-11-05)
+
+### Owner request
+Replace all subcategory buttons with relevant pictures (example: Speakers & Component Kits must show a component-speaker picture, not a generic audio image). Apply across the three approved top-level departments; preserve the current three-root hierarchy and all existing category/product routes.
+
+### Source changes committed
+- `preview-audio.html`: Car Audio brand-first flow is preserved. After a brand is selected, product-type choices are now compact responsive image cards rather than plain text pills. Each category card has an image, accessible text label, selected-state outline and mobile sizing.
+- Audio component image map currently covers Speakers & Component Kits, Subwoofers, Amplifiers, Head Units & Media Players, Cameras & Monitors, Signal Processing & Crossovers, Trims/Harnesses and Aerials. Images are illustrative category photos, not claims that the pictured exact make/model is in stock.
+- `preview-category.html`: category/subcategory tiles now have specific image mappings for the audio component groups, home/band/DJ/instrument/lifestyle categories, auto-electrical subcategories and car-care/interior/exterior categories. Category tiles remain compact two-column on mobile and three-column on desktop.
+- `tests/three-category-storefront-structure.test.cjs`: added static regression assertions for category coverage and matching imagery.
+- `.github/workflows/store-preview-browser-qa.yml`: added local and hosted browser checks that every visible Car Audio component card contains an image that actually loads.
+- Production is unchanged; preview-only restrictions remain.
+
+### Exact source commits (chronological)
+- `5487c7e85b58e9646fec74a4d0168d98bf418fe5` — image-led audio component cards.
+- `8246770436d35b138e92cca0cc4c1774a8fbf246` — category-specific image mapping across category pages.
+- `27b01115b2aa64630a265e4ae07f47b6213f44b0` — structural image regression assertions.
+- `e262c4f2d7ab91fb19aeb8015067773ce0ff5352` — browser checks for image presence and successful loading.
+
+### Verification still required
+- Triggered push build must deploy the exact latest branch SHA.
+- Hosted browser QA must prove category cards and all Car Audio component images load at 390px mobile and desktop.
+- Check each selected component image visually for relevance; broken, blocked or mismatched remote image sources must be replaced before owner acceptance.
+- Do not call the updated preview ready until exact-head deploy marker and hosted QA are PASS.
+- PR #176 remains OPEN / DRAFT / UNMERGED. Production stays on HOLD; no Axxess upload, DNS, Supabase/live writes, stock/price changes, checkout/payment go-live.
