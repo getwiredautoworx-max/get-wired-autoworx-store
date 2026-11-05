@@ -3218,3 +3218,23 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Latest owner-reported storefront corrections to carry forward: missing One Nav and Amplified brand logos; Car Audio & Video missing Amplified and other product-type navigation/visuals; all relevant category/subcategory/brand/product-type imagery must load and match its destination; preserve the approved bright layout and mobile-first navigation.
 - No source, catalogue, supplier workbook, price, stock, Supabase data, payment, DNS, Axxess or production change made at task start.
 - Next: inspect PR #178 branch head and exact-head workflow evidence; fix only verified gaps in that single candidate; update this handover with actual test/deployment evidence and the next action.
+
+
+## CONTINUATION EXECUTION UPDATE — 2026-11-05 16:08 SAST
+
+### Repository reconciliation and exact-head failures
+- PR #178 is confirmed OPEN / DRAFT / UNMERGED and remains the sole active storefront integration candidate. Active branch: integration/owner-preview-single-task-2026-11-05. Actual branch head at this update: da8f97725f1d781b4ecec8cb1e8d7a8dbf953654 (workflow for this head is running; see below). Do not rely on the stale head SHA or older preview URL copied into the PR body.
+- Exact-head push workflow run 42041239775 failed before deployment at the public-data privacy assertion: one Audio Connections product description named the supplier. Corrected the wording in assets/audio-connections-catalogue-preview.json to say “The catalogue listing states”; no technical rating claim was changed.
+- Exact-head run 42041481798 then passed the public package build and privacy/category structure checks, but failed a stale regression count (test expected 21 non-Sony power descriptions; 22 already existed in the prior commit). Updated the test expectation to 22; product data unchanged.
+- Exact-head run 42041629826 passed the package/privacy checks but failed a stale image-test lookup: “SPARTAN 9900.1” did not match the actual catalogue modelNumber SSA-SP-9900.1. Confirmed the exact official Starsound image and source page already exist on the product row; corrected the test lookup only.
+- Exact-head run 42041833491 then advanced to another stale alias: test expected SSW-12-7300, while the catalogue source model key is SSW12-7300 and its official manufacturer-listed model is SSW-12-7300. Corrected the test to look up the source key. A scan of all 57 explicit image/model assertions now finds no missing model keys against the 66-record Audio Connections preview dataset.
+- Current exact-head run for da8f97725f1d781b4ecec8cb1e8d7a8dbf953654: workflow run 42041972676, currently in progress at 16:08 SAST. It must finish and pass before preview deployment can proceed.
+
+### Known outstanding owner-facing work
+- Current repo asset tree still has only local brand logo files for JBL, Denon, Hertz and Sony. One/OneNav and Amplified currently resolve to official Planetworld Canto-hosted image URLs; hosted naturalWidth/render-size verification is still required. The One/OneNav logo URL is currently the Planetworld ONE asset _OneX.png; verify it visually represents the requested OneNav brand and not merely OneX before calling the logo task complete.
+- Latest owner-requested acceptance still includes: all eight audio department/category images; One/OneNav and Amplified logo on directory and dedicated brand pages with correct rendered size; DJ and studio equipment photographs; Alpine Halo11 exact official product image/title/description; centred product details and two-column image/details layout; all 68 exact-model image checks where required; Home Entertainment full journey; Trims & Harnesses 47 products; mobile 390px and desktop 1365px; zero JS errors; checkout hidden; Supabase writes blocked; public SKU audit.
+- The previous known good preview from run 42015669402 is for an earlier source head and is not a substitute for the current requested changes. Do not send it as the new preview.
+
+### Safety and next action
+- No PR merge, deployment, production/Axxess/DNS/payment change, Supabase write, live stock/price/category change or supplier activation was performed.
+- Next: inspect run 42041972676; if successful, continue through exact-head hosted QA and verify the logo/image requirements. If failed, fix only the newly demonstrated defect, then rerun the same candidate. Update this handover again with exact outcome and deployed SHA.
