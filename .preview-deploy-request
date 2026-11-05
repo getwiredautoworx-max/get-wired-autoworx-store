@@ -160,3 +160,8 @@ required_price_recheck=RRP_incl_VAT_times_0_98;sample_pw_0001_46589_20;19_zero_R
 structural_test_update=pre_enriched_public_catalogue_plus_audio_connections_only
 
 pioneer_image_source_test=official_south_africa_exact_model_image
+
+
+request=owner-priority-home-entertainment-completion-before-category-move-2026-11-05
+source_branch=integration/owner-preview-single-task-2026-11-05
+required_checks=exact-sha-marker;home-entertainment-category-photo;home-entertainment-department-route;previous-menu-hidden;brand-directory-eight-plus;klipsch-logo-naturalWidth;klipsch-dedicated-brand-route;brand-page-no-products;home-audio-cinema-image;filtered-home-products;one-nav-directory-logo;one-nav-brand-page-logo;amplified-directory-logo;amplified-brand-page-logo;one-nav-exact-model-photos-and-crop;rrp-incl-vat-times-0.98;public-data-boundary;sku-audit;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
