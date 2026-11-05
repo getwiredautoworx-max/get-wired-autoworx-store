@@ -3198,3 +3198,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - This is an owner-review preview only. Checkout and supplier submissions remain disabled. No production deployment, Axxess upload, DNS change, Supabase/live data write, supplier activation, stock/price change, payment activation or merge occurred.
 - Owner visual acceptance is still pending. Ask the owner to review the preview, especially the Car Audio & Video → brand → product type → filtered products journey and all three main categories. Do not merge PR #178 or enable production/checkout until explicit owner acceptance and approval.
 - After this handover-only update, run one fresh exact-head owner-preview workflow because `HANDOVER_CURRENT.md` is part of the preview trigger path. Do not change storefront source while waiting for that verification.
+
+
+## 2026-11-05 — LEGACY BROWSER QA PARKED
+
+- Parked `.github/workflows/store-preview-browser-qa.yml` as manual-only. Its PR-triggered run tested the retired `audio_area=car` navigation and a separate Planetworld review page, so it produced a stale failure unrelated to the current three-category owner preview.
+- The sole automatic owner-preview deployment and hosted browser acceptance path is `.github/workflows/deploy-pr-168-staging-preview.yml`. Other automatic workflows may continue their independent catalogue, SKU, security and smoke checks, but must not deploy another preview.
+- The current owner-preview acceptance remains the successful exact-head run `41999948429` at `0b1829201ce62849400baae198da5310f199f27a`; the legacy failure `41999948343` is not an owner-preview acceptance result.
+- This workflow/handover cleanup is not a storefront source change. Trigger one fresh exact-head owner-preview run after the handover update; keep production HOLD and PR #178 draft pending owner review.
