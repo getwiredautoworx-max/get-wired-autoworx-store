@@ -90,7 +90,7 @@ def main() -> None:
             description = one.get("customer_description", "").strip()
             if description:
                 product["description"] = description
-                product["descriptionStatus"] = "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED"
+                product["descriptionStatus"] = "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED" if "evolution" in description.lower() else "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED"
                 description_status = product["descriptionStatus"]
                 one_descriptions += 1
             else:
