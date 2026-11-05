@@ -1918,3 +1918,12 @@ At the time this plan is appended, the recorded active integration candidate is 
 - Preview URL for this new code checkpoint: NOT DEPLOYED. The older owner-preview URL belongs to an earlier SHA and must not be presented as containing these changes.
 - Owner visual acceptance: PENDING. PR #178 remains draft/unmerged. Production remains HOLD; no production deployment, Axxess upload, DNS, Supabase/live data, catalogue, price, stock, payment or checkout changes were performed.
 - Next concrete action: obtain exact-head regression and hosted preview/browser evidence for the updated PR #178 commit before presenting a replacement owner preview.
+
+
+### 2026-11-05 — PREVIEW WORKFLOW TRIGGER BLOCKER UPDATE
+
+- Follow-up code commit `94e151ce780658821f3e7a173c1afe156ddb7b0c` ensures a Home Entertainment brand landing page retains a readable brand-name fallback if its external logo image cannot load.
+- The candidate's isolated deploy workflow is `.github/workflows/deploy-pr-168-staging-preview.yml`; it is present on PR #178 but NOT on `main`. GitHub does not register a pull-request workflow definition that exists only in the PR head. The current-main `.github/workflows/cloudflare-layout-preview.yml` is manual `workflow_dispatch` only.
+- The available connected GitHub actions do not expose workflow dispatch. Updating the PR head and re-opening the draft PR did not create any workflow runs for the exact head. API query returned `total_count=0` for SHA `771b1ca1f7bca468a1e3490a348d56fc717c4421`.
+- Consequently, exact-head Node/Playwright checks and the updated hosted preview are blocked by the unavailable workflow-dispatch/registered-workflow trigger. Do not reuse the older preview URL or report this code as browser-tested. The correction is committed, but successful resolution and owner preview acceptance remain unverified.
+- Smallest owner action if no supported workflow-dispatch connector becomes available: run the existing `Cloudflare Layout Preview` workflow from GitHub Actions on the approved integration branch, if its inputs support that branch and preview target. Do not run any production/Axxess workflow.
