@@ -233,7 +233,7 @@ assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare previe
 for (const photo of [
   'photo-1558284296-7579da2deb30',
   'photo-1654447398824-dbcbefeafdd6',
-  'photo-1545454675-3531b543be5d',
+  'photo-1470948062737-aeb014e274c2',
   'photo-1543017471-62c14029f7ce',
   'photo-1506157786151-b8491531f063',
   'photo-1642177272498-98096a6c98e4'
