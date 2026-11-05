@@ -223,7 +223,7 @@ jobs:
 
               // Alpine Halo 11: exact-model photo/details plus centred two-column product-card layout.
               await frame.locator('body').evaluate(()=>{location.href='preview-audio-products.html?department=Car%20Audio&brand=Alpine&component=Head%20Units%20%26%20Media%20Players'});
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-products(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Alpine'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return (u.pathname.endsWith('/preview-audio-products.html')||u.pathname.endsWith('/preview-audio-products'))&&u.searchParams.get('brand')==='Alpine'},{timeout:30000});
               const alpinePage=page.frameLocator('#store');
               const alpineCard=alpinePage.locator('#products .product').filter({hasText:'iLX-F115D'}).first();
               await alpineCard.waitFor({state:'visible',timeout:30000});
