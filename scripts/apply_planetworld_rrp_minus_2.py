@@ -18,6 +18,7 @@ JSON_PATH = ROOT / "assets" / "planetworld-catalogue-preview.json"
 AUDIT_PATH = ROOT / "catalogue-review" / "PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
 CHUNK_DIR = ROOT / "catalogue-review" / "planetworld-row-chunks"
 CHUNKS = [CHUNK_DIR / f"planetworld-rows-{n:02d}.csv" for n in range(1, 8)]
+ONE_MODEL_AUDIT_PATH = ROOT / "catalogue-review" / "planetworld-one-official-model-audit.csv"
 QUOTE_TEXT = "Price On Request Due to Stock Availability"
 SOURCE_SNAPSHOT = "2026-10-25 supplier workbook snapshot"
 
@@ -49,6 +50,14 @@ def main() -> None:
             f"Source/preview row mismatch: {len(source_rows)} source, {len(products)} preview"
         )
 
+    if not ONE_MODEL_AUDIT_PATH.is_file():
+        raise SystemExit(f"Missing OneNav product audit: {ONE_MODEL_AUDIT_PATH.relative_to(ROOT)}")
+    with ONE_MODEL_AUDIT_PATH.open(newline="", encoding="utf-8-sig") as handle:
+        one_model_audit_rows = list(csv.DictReader(handle))
+    one_model_audit = {row["supplier_sku_reference_only"]: row for row in one_model_audit_rows}
+    if len(one_model_audit) != len(one_model_audit_rows):
+        raise SystemExit("Duplicate OneNav supplier SKU in the internal product audit")
+
     headers = [
         "product_id", "source_file", "source_row", "supplier_sku", "brand",
         "rrp_incl_vat", "dealer_cost_excl_vat", "estimated_cost_incl_vat",
@@ -56,11 +65,34 @@ def main() -> None:
     ]
     audit_rows: list[dict[str, str]] = []
     counts = {"priced": 0, "zero_rrp": 0, "below_cost": 0, "cost_pass": 0, "cost_unverified": 0}
+    enrichment_counts = {"descriptions": 0, "images": 0}
 
     for index, (source, product) in enumerate(zip(source_rows, products), start=1):
         expected_id = f"pw-{index:04d}"
         if product.get("id") != expected_id:
             raise SystemExit(f"Preview/source order mismatch at row {index}: {product.get('id')} != {expected_id}")
+
+        supplier_sku = source.get("supplier_sku_candidate", "")
+        enrichment = one_model_audit.get(supplier_sku)
+        if enrichment and enrichment.get("enrichment_status") in {"OWNER_PREVIEW_CANDIDATE_ONLY", "DETAILS_VERIFIED_IMAGE_PENDING"}:
+            if source.get("brand_candidate") != "One" or source.get("description_candidate") != enrichment.get("source_title_exact"):
+                raise SystemExit(f"OneNav exact-source mismatch for internal SKU {supplier_sku} at {expected_id}")
+            description = enrichment.get("customer_description", "").strip()
+            if description:
+                product["description"] = description
+                product["brandDisplayName"] = enrichment.get("customer_brand_display") or "OneNav"
+                product["manufacturerPage"] = enrichment.get("official_manufacturer_product_page", "")
+                enrichment_counts["descriptions"] += 1
+            image_url = enrichment.get("image_url_candidate", "").strip()
+            if image_url:
+                if enrichment.get("image_crop", "").strip().lower() != "true":
+                    raise SystemExit(f"OneNav image candidate requires a supplier-code-safe crop: {supplier_sku}")
+                if not image_url.startswith("https://"):
+                    raise SystemExit(f"OneNav image URL must use HTTPS: {supplier_sku}")
+                product["imageUrl"] = image_url
+                product["imageCrop"] = True
+                product["imagePosition"] = enrichment.get("image_position", "center 30%") or "center 30%"
+                enrichment_counts["images"] += 1
 
         rrp = money(source.get("retail_price_incl"))
         dealer_cost = money(source.get("dealer_price_excl"))
@@ -104,6 +136,14 @@ def main() -> None:
             "source_snapshot": "2026-10-25",
         })
 
+    data["productImageEnrichment"] = {
+        "sourceAudit": "planetworld-one-official-model-audit.csv",
+        "descriptionsEnriched": enrichment_counts["descriptions"],
+        "exactImageCandidatesApplied": enrichment_counts["images"],
+        "status": "OWNER_PREVIEW_ONLY_PENDING_IMAGE_RIGHTS_AND_OWNER_REVIEW",
+        "note": "Supplier SKUs remain in the internal audit only; product-card image crops hide supplier-code text."
+    }
+
     data["pricingNote"] = (
         "Customer preview selling price = source Retail Price (Incl), already VAT-inclusive, "
         "× 0.98 (RRP less 2%). No additional VAT is added. 19 zero-RRP records remain quote-only. "
@@ -128,6 +168,7 @@ def main() -> None:
         writer.writeheader()
         writer.writerows(audit_rows)
 
+    print("PLANETWORLD_PRODUCT_ENRICHMENT_PASS " + json.dumps(enrichment_counts, sort_keys=True))
     print("PLANETWORLD_RRP_MINUS_2_PREVIEW_PASS " + json.dumps(counts, sort_keys=True))
 
 
