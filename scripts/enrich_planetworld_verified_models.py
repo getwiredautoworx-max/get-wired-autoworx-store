@@ -190,7 +190,7 @@ def main() -> None:
         "manufacturerDescriptionsVerified": 113,
         "exactImageCandidatesApplied": 75,
         "exactModelImagesMissing": 35,
-        "unmatchedProducts": 3207,
+        "unmatchedProducts": 3204,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
