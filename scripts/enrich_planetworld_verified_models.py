@@ -80,7 +80,7 @@ def main() -> None:
             "DETAILS_VERIFIED_IMAGE_PENDING",
             "DETAILS_PENDING_IMAGE_PENDING",
         }:
-            if source.get("brand_candidate") != "One" or source.get("description_candidate") != one.get("source_title_exact"):
+            if source.get("brand_candidate") != "One" or " ".join(source.get("description_candidate", "").split()) != " ".join(one.get("source_title_exact", "").split()):
                 raise SystemExit(f"OneNav exact-source mismatch for internal source row {index}")
             one_matched += 1
             manufacturer_name = one.get("verified_manufacturer_product_title", "").strip()
