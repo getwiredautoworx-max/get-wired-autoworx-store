@@ -3306,3 +3306,17 @@ Owner reported that the main categories did not open separate pages and subcateg
 - The previously verified deployed source SHA `00c197fe9ef83d982ae3407e7a9eec8412cb6a9c` is not the current PR head. Do not ask the owner to accept an older build as the latest.
 - Next gate is to obtain the push-triggered deployment result for exact head `980a358...`, confirm `qa-build-result.json` reports `result=PASS`, `preview_only=true` and that exact SHA, then inspect the owner preview on the owner's phone. If the deployed marker is stale or the actual layout still fails, inspect the exact hosted browser run/logs and correct the concrete defect on this same branch.
 - No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price/category mutation, banking or payment go-live occurred. Production remains HOLD; PR #176 remains OPEN / DRAFT / UNMERGED pending exact-head evidence and owner acceptance.
+
+## 2026-11-05 — FINAL EXACT-HEAD CATEGORY PAGE PREVIEW VERIFIED
+
+This section supersedes the earlier “exact-head staging refresh pending” sentence in the category navigation correction checkpoint.
+
+- Exact deployed source/request head: `f00f1be637b1b2339c4ad2cd2c8e4b3c516aa4e2`.
+- Final isolated Cloudflare Pages deployment workflow **41983485245** completed SUCCESS. Deployed marker returned `result=PASS`, `preview_only=true`, exact commit `f00f1be637b1b2339c4ad2cd2c8e4b3c516aa4e2`.
+- Exact-head package/regression and public SKU exposure audit passed. Catalogue preview counts: Planetworld 3,317 total / 702 Car Audio; Audio Connections 66 review rows; Trims & Harnesses 47 filtered products.
+- Hosted Playwright at 390px mobile and 1365px desktop passed: all three root categories in approved order; Audio opens a dedicated page with six subcategories; Car Audio & Video opens a separate page with its component subcategories; Accessories opens a separate page with Aerials and Trims & Harnesses; Trims opens its 47-product listing; Auto Electrical opens a separate page with five compact subcategory cards; Car Care opens a separate page with four compact subcategory cards.
+- Mobile category layout is a compact two-column tile grid, not stacked full-width bars. Audio category tile widths were checked (minimum 130px) and card heights constrained (maximum 220px). Four Audio collage images verified.
+- Hosted desktop had no horizontal overflow; zero browser JavaScript errors. Checkout hidden, Supabase writes blocked, supplier/catalogue source material excluded from public package, and public SKU exposure audit passed.
+- Stable owner preview URL: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html . Base preview: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev .
+- The subsequent handover edit is documentation-only; storefront source and QA logic deployed at `f00f1be` remain unchanged.
+- Owner visual acceptance is still required. PR #176 remains OPEN / DRAFT / UNMERGED. Remaining catalogue coverage and ASC integration are not complete. Production remains HOLD; no production deployment, Axxess upload, DNS, live Supabase writes, live stock/price changes, or payment activation occurred.
