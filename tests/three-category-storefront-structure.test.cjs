@@ -136,7 +136,7 @@ assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('type
 assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
 assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1608043152269-423dbba4e7e1') && audioBrandPage.includes('images.unsplash.com/photo-1583394838336-acd977736f90'), 'brand page must use photographic product-type artwork');
 assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
-assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
+assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
 assert.ok(planetPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'legacy Planetworld review route must redirect into the unified Car Audio & Video catalogue');
 assert.ok(!planetPage.includes('Supplier stock snapshot') && !planetPage.includes('stock.jhb'), 'supplier stock snapshots must not be rendered as a separate customer-facing catalogue');
