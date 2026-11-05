@@ -54,3 +54,6 @@ required_checks=exact-sha-marker;category-image-url-audit;component-image-load-a
 request=PR-176-image-led-cards-hosted-brand-first-qa-correction-2026-11-05
 required_audio_journey=Car Audio & Video -> Brand -> Image-led Component Type -> Filtered Products
 required_checks=exact-sha-marker;component-image-load-audit;brand-first-navigation;accessories-route;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=PR-176-image-led-all-three-departments-image-load-audit-2026-11-05
+required_checks=exact-sha-marker;all-audio-subcategory-images-load;all-auto-electrical-subcategory-images-load;all-car-care-subcategory-images-load;brand-first-component-image-load;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
