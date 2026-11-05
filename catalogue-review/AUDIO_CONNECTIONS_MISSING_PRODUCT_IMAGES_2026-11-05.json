@@ -1,81 +1,11 @@
 {
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
-  "status": "OPEN_IMAGE_MATCHING_AUDIT",
+  "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 4,
-  "recordsMissingVerifiedImage": 62,
+  "recordsWithImage": 23,
+  "recordsMissingVerifiedImage": 43,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
-    {
-      "model": "XS-163ES",
-      "brand": "Sony",
-      "title": "XS-163ES",
-      "component": "Component Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XS-162ES",
-      "brand": "Sony",
-      "title": "XS-162ES",
-      "component": "Component Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XS-692ES",
-      "brand": "Sony",
-      "title": "XS-692ES",
-      "component": "Component Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XS-W104ES",
-      "brand": "Sony",
-      "title": "XS-W104ES",
-      "component": "Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XS-W122ES",
-      "brand": "Sony",
-      "title": "XS-W122ES",
-      "component": "Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XS-W124ES",
-      "brand": "Sony",
-      "title": "XS-W124ES",
-      "component": "Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XM-1ES",
-      "brand": "Sony",
-      "title": "XM-1ES",
-      "component": "Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XM-4ES",
-      "brand": "Sony",
-      "title": "XM-4ES",
-      "component": "Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XM-6ES",
-      "brand": "Sony",
-      "title": "XM-6ES",
-      "component": "Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "XM-8ES",
-      "brand": "Sony",
-      "title": "XM-8ES",
-      "component": "Amplifiers",
-      "descriptionPresent": true
-    },
     {
       "model": "RABTR03",
       "brand": "Reference Audio",
@@ -88,13 +18,6 @@
       "brand": "Starsound",
       "title": "Starsound USB230 EXT MIC",
       "component": "Single DIN Media Players",
-      "descriptionPresent": true
-    },
-    {
-      "model": "USB450BTDD",
-      "brand": "Starsound",
-      "title": "Starsound USB450BTDD",
-      "component": "Double DIN Media Players",
       "descriptionPresent": true
     },
     {
@@ -119,31 +42,10 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSW-12W-5200",
-      "brand": "Starsound",
-      "title": "Starsound SSW-12W-5200 — 12-inch SVC, 250 W RMS",
-      "component": "SVC Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSW-12-6300",
-      "brand": "Starsound",
-      "title": "Starsound SSW-12-6300 — 12-inch SVC subwoofer",
-      "component": "SVC Subwoofers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSW12-7300",
       "brand": "Starsound",
       "title": "Starsound SSW12-7300",
       "component": "SVC Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSW-8-8000D2",
-      "brand": "Starsound",
-      "title": "Starsound SSW-8-8000D2 — 8-inch DVC 2-ohm subwoofer",
-      "component": "DVC Subwoofers",
       "descriptionPresent": true
     },
     {
@@ -164,13 +66,6 @@
       "model": "SSWF10\"-4150SVC",
       "brand": "Starsound",
       "title": "Starsound SSWF10\"-4150SVC",
-      "component": "Flat Subwoofers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSW-F12-5150SVC",
-      "brand": "Starsound",
-      "title": "Starsound SSW-F12-5150SVC — 12-inch flat SVC subwoofer",
       "component": "Flat Subwoofers",
       "descriptionPresent": true
     },
@@ -203,13 +98,6 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSA-ATOM-13500.1",
-      "brand": "Starsound",
-      "title": "Starsound SSA-Atom-13500.1 Monoblock Amplifier",
-      "component": "Monoblock Amplifiers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSATI6900.1",
       "brand": "Starsound",
       "title": "Starsound SSATI6900.1 — 1000 RMS",
@@ -238,23 +126,9 @@
       "descriptionPresent": true
     },
     {
-      "model": "SSA-R-5000.4",
-      "brand": "Starsound",
-      "title": "Starsound SSA-R-5000.4 Raptor — 4-channel amplifier",
-      "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
       "model": "SSA-J-10000.4",
       "brand": "Starsound",
       "title": "Starsound SSA-J-10000.4 Joker — 4-channel amplifier",
-      "component": "4/5-Channel Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSA-ATOM-13800.4",
-      "brand": "Starsound",
-      "title": "Starsound SSA-ATOM-13800.4 — 4-channel amplifier",
       "component": "4/5-Channel Amplifiers",
       "descriptionPresent": true
     },
@@ -290,13 +164,6 @@
       "model": "SSS-6601",
       "brand": "Starsound",
       "title": "Starsound SSS-6601 6-inch dual cone",
-      "component": "Speakers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSS-6602",
-      "brand": "Starsound",
-      "title": "Starsound SSS-6602 — 6-inch 3-way speaker, 480 W MAX",
       "component": "Speakers",
       "descriptionPresent": true
     },
@@ -440,5 +307,27 @@
       "component": "Equalisers & Crossovers",
       "descriptionPresent": true
     }
+  ],
+  "updatedAt": "2026-11-05",
+  "sourceMatchesAdded": [
+    "XS-163ES",
+    "XS-162ES",
+    "XS-692ES",
+    "XS-W104ES",
+    "XS-W122ES",
+    "XS-W124ES",
+    "XM-1ES",
+    "XM-4ES",
+    "XM-6ES",
+    "XM-8ES",
+    "USB450BTDD",
+    "SSW-12W-5200",
+    "SSW-12-6300",
+    "SSW-8-8000D2",
+    "SSW-F12-5150SVC",
+    "SSA-ATOM-13500.1",
+    "SSA-R-5000.4",
+    "SSA-ATOM-13800.4",
+    "SSS-6602"
   ]
 }
