@@ -189,6 +189,37 @@ jobs:
               await productDoc.locator('.product').first().waitFor({state:'visible',timeout:30000});
               const audioAmpCount=await productDoc.locator('.product').count();
               if(audioAmpCount<1)throw new Error('Sony -> Amplifiers dedicated product page returned no products');
+
+              // Home Entertainment: department -> brand -> product type -> filtered products.
+              await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
+              const homeRoot=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn');
+              await homeRoot.nth(0).waitFor({state:'visible',timeout:30000});
+              await homeRoot.nth(0).click();
+              const homeDepartment=frame.locator('#grid > .card').filter({hasText:'Home Entertainment'});
+              await homeDepartment.waitFor({state:'visible',timeout:30000});
+              const homeDepartmentHref=await homeDepartment.getAttribute('href');
+              if(!homeDepartmentHref||!homeDepartmentHref.includes('department=Home%20Entertainment'))throw new Error('Home Entertainment category route missing: '+homeDepartmentHref);
+              await homeDepartment.click();
+              await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              const klipsch=frame.locator('#brands .brandLogoButton').filter({hasText:'Klipsch'}).first();
+              await klipsch.waitFor({state:'visible',timeout:30000});
+              if(!(await klipsch.locator('img').count()))throw new Error('Klipsch brand tile must show a logo image');
+              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
+              await klipsch.click();
+              await page.waitForFunction(()=>/\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              const homeBrandPage=page.frameLocator('#store');
+              await homeBrandPage.locator('.brandHero').filter({hasText:'Klipsch'}).waitFor({state:'visible',timeout:30000});
+              if(await homeBrandPage.locator('#products,.audioProduct').count())throw new Error('Home Entertainment brand page must not show products');
+              const homeType=homeBrandPage.locator('#types .typeCard').filter({hasText:'Home Audio & Cinema'}).first();
+              await homeType.waitFor({state:'visible',timeout:30000});
+              await homeType.locator('img').evaluate(img=>img.decode());
+              if(!await homeType.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0))throw new Error('Home Audio & Cinema image failed');
+              await homeType.click();
+              await page.waitForFunction(()=>/\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              const homeProductsPage=page.frameLocator('#store');
+              await homeProductsPage.locator('.product').first().waitFor({state:'visible',timeout:30000});
+              if(await homeProductsPage.locator('.product').count()<1)throw new Error('Klipsch -> Home Audio & Cinema returned no products');
+
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               const rootLinks=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn');
               await rootLinks.nth(1).waitFor({state:'visible',timeout:30000});

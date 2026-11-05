@@ -33,6 +33,9 @@ assert.ok(route.includes('may vary due to currency exchange-rate fluctuations'),
 assert.ok(!route.includes('Indicative preview: R'), 'customer-facing audio preview must not label unapproved estimates as indicative prices');
 assert.ok(route.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must use the real owner-authorised car-audio product image');
 assert.ok(!route.includes('img.src="assets/car-audio-video-category.svg"'), 'Home Entertainment artwork must not be reused for Car Audio & Video');
+const audioCategoryPage=fs.readFileSync('preview-category.html','utf8');
+assert.ok(audioCategoryPage.includes("assets/audio-types/home-entertainment.svg"), 'Home Entertainment category card must use dedicated artwork');
+assert.ok(route.includes('department==="Home Entertainment"&&isHomeEntertainmentRecord(p)'), 'Audio department must use reviewed Home Entertainment filtering');
 assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not rely on unsupported selectors, timers or destructive grid replacement');
 assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must preserve and restore category nodes without deleting them');
 
@@ -214,6 +217,9 @@ for (const name of ["jbl.svg", "denon.svg", "hertz.svg"]) {
 /* Dedicated brand -> product type -> products navigation must use separate documents. */
 const brandRoute = fs.readFileSync('preview-audio-brand.html', 'utf8');
 const productRoute = fs.readFileSync('preview-audio-products.html', 'utf8');
+assert.ok(brandRoute.includes("department==='Home Entertainment'?isHomeEntertainmentRecord(x)"), 'Home Entertainment brand page must preserve department scope');
+assert.ok(productRoute.includes("department==='Home Entertainment'?isHomeEntertainmentRecord(x)"), 'Home Entertainment product page must use the same department scope');
+assert.ok(brandRoute.includes("home-audio-cinema.svg") && productRoute.includes("home-audio-cinema.svg"), 'Home Entertainment product-type images must be relevant');
 assert.ok(route.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())'), 'brand buttons must navigate to a dedicated brand page');
 assert.ok(route.includes('location.href="preview-audio-products.html?"+u.toString()'), 'product-type buttons must navigate to a dedicated product listing page');
 assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('Products are shown on the next page'), 'brand landing page must show product-type tiles, not products');
@@ -221,6 +227,10 @@ assert.ok(brandRoute.includes('preview-audio-products.html?'), 'brand product-ty
 assert.ok(productRoute.includes("rowsFor(d).filter(p=>p.brand===brand&&group(p)===component)"), 'product listing must filter by both selected brand and product type');
 assert.ok(builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"'), 'both dedicated routes must be included in the public preview package');
 
+for (const asset of ['home-entertainment.svg','home-audio-cinema.svg','projection-screens-projectors.svg','cables-mounts-accessories.svg','av-infrastructure-control.svg','installed-audio.svg','conferencing-collaboration.svg','other-home-ci.svg']) {
+  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing Home Entertainment artwork: '+asset);
+  assert.ok(builder.includes('audio-types/'+asset), 'Home Entertainment artwork missing from public package: '+asset);
+}
 for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
   assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing local product-type artwork: '+asset);
 }

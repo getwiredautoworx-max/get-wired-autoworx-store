@@ -33,6 +33,10 @@ PREVIEW_ASSET_FILES = [
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
     "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
     "audio-types/harnesses-trims.svg", "audio-types/aerials.svg",
+    "audio-types/home-entertainment.svg", "audio-types/home-audio-cinema.svg",
+    "audio-types/projection-screens-projectors.svg", "audio-types/cables-mounts-accessories.svg",
+    "audio-types/av-infrastructure-control.svg", "audio-types/installed-audio.svg",
+    "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
 ]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
