@@ -706,17 +706,20 @@ function brandButton(label,active,href){
 function categoryArtFallback(label){
  const n=String(label||"").toLowerCase();
  const photos=[
-  [/subwoofer/,"https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=720&q=82"],
-  [/amplifier/,"https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=720&q=82"],
-  [/speaker|component kit/,"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82"],
-  [/head unit|radio|media player/,"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82"],
-  [/camera|monitor/,"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=720&q=82"],
-  [/signal|crossover|dsp|processor|installed audio/,"https://images.unsplash.com/photo-1593078166036-3a7a4c8c8e2c?auto=format&fit=crop&w=720&q=82"],
-  [/harness|trim|fitment|wiring|aerial|antenna/,"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=720&q=82"],
-  [/home audio|home entertainment|home cinema|projection|projector|screen|cable|mount|av infrastructure|conferencing/,"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82"],
-  [/band|live sound|dj|studio|instrument|marine/,"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82"]
+  [/subwoofer/, "https://images.unsplash.com/photo-1776176359206-a1d34436ddff?auto=format&fit=crop&w=720&q=82"],
+  [/amplifier/, "https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82"],
+  [/speaker|component kit/, "https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82"],
+  [/head unit|radio|media player/, "https://images.unsplash.com/photo-1470948062737-aeb014e274c2?auto=format&fit=crop&w=720&q=82"],
+  [/camera|monitor/, "https://images.unsplash.com/photo-1738138986988-add3dd7cde9a?auto=format&fit=crop&w=720&q=82"],
+  [/signal|crossover|dsp|processor/, "https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82"],
+  [/harness|trim|fitment|wiring/, "https://images.unsplash.com/photo-1677230017860-a8cc67785f0a?auto=format&fit=crop&w=720&q=82"],
+  [/aerial|antenna/, "https://images.unsplash.com/photo-1759667880866-702f9f615489?auto=format&fit=crop&w=720&q=82"],
+  [/home audio|home entertainment|home cinema|projection|projector|screen|cable|mount|av infrastructure|conferencing/, "https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82"],
+  [/band|live sound|dj|studio|instrument/, "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82"],
+  [/marine/, "https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82"]
  ];
- return (photos.find(([re])=>re.test(n))||[])[1]||"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82";
+ const found=photos.find(([re])=>re.test(n));
+ return found?found[1]:"";
 }
 function componentImage(label){
  const n=String(label||"").toLowerCase();
@@ -730,13 +733,13 @@ function componentImageButton(label,active,fn){
 }
 function departmentImage(value,label){
  const map={
-  "Car Audio":"https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png",
-  "Home Entertainment":"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82",
+  "Car Audio":"https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82",
+  "Home Entertainment":"https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82",
   "Band & Live Sound":"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82",
   "DJ":"https://images.unsplash.com/photo-1642177272498-98096a6c98e4?auto=format&fit=crop&w=720&q=82",
   "Studio Equipment":"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=720&q=82",
   "Musical Instruments":"https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82",
-  "Marine Audio":"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=720&q=82",
+  "Marine Audio":"https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82",
   "Lifestyle":"https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82"
  };
  return map[value]||"";
