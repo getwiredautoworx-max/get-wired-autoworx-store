@@ -3823,3 +3823,10 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Updated the internal model crosswalk and both relevant regression assertions to this exact manufacturer image asset. It remains preview-only and marked review-only pending image-use clearance.
 - Updated files/commits: crosswalk `6976431a9e86e3c2c968447e0e3dc86ccbfc948a`; structure host assertion `60a645b1092054be5320498db91a5c55de4e0700`; exact image filename assertion `8d9a9ceb303ebd3670a310ace0b01ed23e6e3a78`.
 - The previous hosted run `42027987602` is not accepted because the Alpine image was still broken there. Next: exact-head rerun and inspect the hosted Alpine image naturalWidth again before offering the preview.
+
+
+### Alpine hosted image assertion timing correction — 2026-11-05
+- Run `42028279930` passed source regressions, package build, non-production deployment and exact-SHA marker, but the Alpine-specific browser assertion sampled the image immediately after the product card became visible. The card uses lazy-loaded imagery; the assertion did not wait for the image's load/error event before reading `naturalWidth`.
+- The official Alpine image URL itself has been opened and visually verified as the exact iLX-F115D receiver. The prior immediate `naturalWidth=0` result is therefore not conclusive evidence of a broken URL.
+- Updated hosted QA to wait up to 15 seconds for the Alpine image load/error event before reading natural dimensions, then pass that measured result into the browser audit. Commits: `4dad3b9681f59afdc8e9390d206c42df061c344f` and `72f7296db24c0a9d6fcdb85119882104b1723b99`.
+- Run `42028279930` remains failed for owner acceptance; the new image-wait logic has not yet been tested. Next: rerun exact-head QA and use the waited result plus the existing 68-image audit to decide whether the source is truly reachable.
