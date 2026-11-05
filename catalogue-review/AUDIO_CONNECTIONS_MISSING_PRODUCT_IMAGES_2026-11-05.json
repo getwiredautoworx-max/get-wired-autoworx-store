@@ -86,9 +86,10 @@
     "860 (Rivonia Car Sound listing cross-references exact Star Sound model SSAK-860; image unavailable)",
     "EQ7100 (exact SSA-EQ-7100 image visibly model-marked; Takealot asset cross-checked against SSA-EQ-7100 product listing)",
     "EQ7100 (JM Sounds exact SSA-EQ-7100 image)",
-    "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)"
+    "RA SUPER RAST20 (Reference Audio RA-ST20 product cross-reference; exact 650W super tweeter photo)",
+    "RA SUPER RAST20 (cross-referenced to RA-ST20; 650W max / 50W RMS description and exact model photo located; 324px watermarked retailer image noted)"
   ],
-  "imageCoverageNote": "64 records now have product image URLs; 2 records remain without an exact-model photo (SSW-S12 SPECTR 15000 and Starsound SSAK-860). The Blackspider Lynx photo remains exact-model but only 105px wide and needs a larger original. Four formerly broken URLs have been replaced, including RA-EL4; hosted load verification for the replacements remains pending.",
+  "imageCoverageNote": "64 of 66 Audio Connections records now have exact-model image URLs; 63 are at least 200px wide and one (Blackspider Lynx) remains a 105px thumbnail. Two records still have no verified exact-model photo: SSW-S12 SPECTR 15000 and 860/SSAK-860. RA SUPER RAST20 is mapped to RA-ST20 with a 324px exact-model retailer photo; its Zaybees watermark is recorded as a pre-publication quality note.",
   "remainingImageModels": [
     "SSW-S12\" SPECTR 15000",
     "860 / SSAK-860"
@@ -96,7 +97,7 @@
   "descriptionCoverage": {
     "records": 66,
     "withDescription": 66,
-    "sourceVerified": 19,
+    "sourceVerified": 20,
     "conflictingSpecs": [
       "SSA-R-6900.1D"
     ]
@@ -108,7 +109,7 @@
       "reason": "Model code differs; candidate image deliberately not used."
     }
   ],
-  "highResolutionImages": 62,
+  "highResolutionImages": 63,
   "lowResolutionImages": [
     {
       "model": "BULLET LYNX",
