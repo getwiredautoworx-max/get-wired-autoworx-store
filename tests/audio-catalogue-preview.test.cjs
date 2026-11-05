@@ -243,7 +243,7 @@ assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony bran
 assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand selector must use the local wordmark');
 
 /* Department selection must remove the previous department menu before showing brands. */
-assert.ok(route.includes('el("departments").hidden=!!department;'), 'Selecting an audio department must hide the previous department menu');
+assert.ok(route.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";el("audioDepartments").style.display=department?"none":"";'), 'Selecting an audio department must hide the previous department menu');
 assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Home Entertainment department must use photographic category artwork');
 assert.ok(route.includes('"Car Audio":"https://store.sony.com.au/'), 'Car Audio department must use a real product photograph');
 assert.ok(route.includes('"Band & Live Sound":"https://images.unsplash.com/'), 'Band & Live Sound must use photographic artwork');
