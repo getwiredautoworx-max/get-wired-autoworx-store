@@ -3486,3 +3486,23 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 ### Release boundary
 - PR #176 remains OPEN / DRAFT / UNMERGED pending owner visual acceptance.
 - This is a non-production review candidate only. No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price change, supplier activation, checkout/payment activation or launch approval.
+
+
+## 2026-11-05 — SINGLE ACTIVE STOREFRONT WORKSTREAM / DEDICATED AUDIO ROUTES
+
+- Owner directive: consolidate workflows/branches and work one task at a time; continue until the corrected owner preview is ready. Adopt one active integration branch, one exact-SHA deploy/browser-QA workflow, and one owner preview alias. Preserve dormant branch/PR history; do not delete or merge unreviewed work merely to reduce the branch count.
+- Active integration branch: `preview/integrated-storefront-2026-11-04`. Latest commit recorded at this checkpoint: `5ae8e3ef15fab2c021a40ce1082c95bd2dbd7513`. PR #176 remains the single active storefront review candidate; it remains unmerged and owner acceptance is outstanding.
+- Root cause reconfirmed in the current branch files: the brand and product-type handlers previously navigated back to `preview-audio.html` with query parameters, reusing the same page template. That did not satisfy the owner's distinct-page requirement.
+- Implemented on the active branch:
+  1. Car Audio & Video category now enters the brand directory without preselecting a brand.
+  2. Brand selection navigates to the distinct `preview-audio-brand.html` route.
+  3. Brand landing page displays the selected brand identity and product-type tiles only; it does not render products.
+  4. Product-type selection navigates to distinct `preview-audio-products.html`.
+  5. Product listing filters records by both selected brand and product type.
+  6. Eight local, category-specific SVG illustrations added for speakers, subwoofers, amplifiers, head units, cameras/monitors, signal processing, harnesses/trims and aerials. This removes dependency on third-party image hosts for the product-type tiles. Brand logo marks use local JBL/Denon/Hertz assets and manufacturer logo references with a text fallback.
+- Public Pages package allowlist now includes both dedicated routes and all eight local audio-type illustrations. Audio regression test now asserts the distinct route links, no product list on the brand page, brand+type filtering on the product page, and presence of local artwork.
+- Hosted browser QA was changed to assert actual iframe document-path navigation to `preview-audio-brand.html` and then `preview-audio-products.html`; it also checks that the brand page has no product cards and that product-type images load. The existing three-root/category/mobile/checkout/write-block checks remain.
+- Deployment workflow was consolidated: only `preview/integrated-storefront-2026-11-04` may publish the owner preview; concurrency is now one global `owner-preview-single-active` group; Pages deploy branch/alias is `owner-preview` / `https://owner-preview.get-wired-autoworx-store.pages.dev`. The workflow waits for the exact triggering SHA marker before hosted checks. This replaces the stale PR-168 alias dependency.
+- Verification state at checkpoint: code and workflow changes are committed; exact-head GitHub Actions result and live hosted route still need to be checked. **Do not call the preview ready or send the owner to it until the exact SHA deployment marker and hosted mobile/desktop route tests pass, and then provide the commit-specific URL plus the stable owner-preview alias.** The prior rejected URL remains rejected.
+- Workflow/branch consolidation: other historical branches and overlapping PRs are parked, not deleted. No parallel storefront fixes should be started. Supplier catalogue work is queued behind the storefront preview acceptance; ASC Buyers Guides remain excluded unless explicitly reauthorized.
+- Release boundaries unchanged: PR #176 stays open/unmerged pending owner acceptance; production HOLD; no Axxess upload, DNS change, Supabase/live write, live stock/price/category change, supplier activation, checkout/payment activation or production deploy.
