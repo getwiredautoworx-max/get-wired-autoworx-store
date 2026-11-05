@@ -222,11 +222,14 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 64);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 65);
 const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
 assert.ok(raEl4&&raEl4.imageUrl==='https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2025/06/23-286-1.png?resize=600%2C319&ssl=1'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
 const raSt20=audioConnections.records.find(item=>item.modelNumber==='RA SUPER RAST20');
 assert.ok(raSt20&&raSt20.manufacturerListedModel==='RA-ST20'&&raSt20.imageUrl==='https://zaybees.co.za/wp-content/uploads/2022/08/Screenshot_20220816-121305_Facebook-324x324.jpg'&&raSt20.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','RA SUPER RAST20 must resolve to the exact RA-ST20 product photo');
+const ssak860=audioConnections.records.find(item=>item.modelNumber==='860');
+assert.ok(ssak860&&ssak860.manufacturerListedModel==='SSAK-860'&&ssak860.imageUrl==='https://cc-prod.eu.saleor.cloud/media/thumbnails/products/15770173_c306d700_thumbnail_2048.webp'&&ssak860.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','supplier 860 must resolve to the exact SSAK-860 kit photo');
+assert.ok(ssak860.description.includes('5m blue 8-gauge power cable')&&ssak860.description.includes('80A fuse'),'SSAK-860 description must retain verified wiring-kit contents');
 const sony160=audioConnections.records.find(item=>item.modelNumber==='XS-160ES');
 assert.ok(sony160&&sony160.imageUrl==='https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42271/282815/xs-160es__6__98080.1682532246.jpg?c=2'&&sony160.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Sony XS-160ES must use its exact model image');
 const sony680=audioConnections.records.find(item=>item.modelNumber==='XS-680ES');
@@ -240,14 +243,14 @@ for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
 
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 2, 'only two supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 1, 'only one supplier product remains without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'].includes(row.imageStatus)), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
-assert.equal(audioImageAudit.recordsWithImage,64);
-assert.equal(audioImageAudit.recordsMissingVerifiedImage,2);
-assert.equal(audioImageAudit.missing.length,2)
+assert.equal(audioImageAudit.recordsWithImage,65);
+assert.equal(audioImageAudit.recordsMissingVerifiedImage,1);
+assert.equal(audioImageAudit.missing.length,1)
 for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSA-R-22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
