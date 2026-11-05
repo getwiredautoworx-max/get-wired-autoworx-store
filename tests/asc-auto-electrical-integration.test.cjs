@@ -9,12 +9,12 @@ const children=tree.categories.filter(c=>c.parent_id===root.id).sort((a,b)=>a.so
 for(const name of expected)assert.ok(children.some(c=>c.name===name),name+' must be a direct Auto Electrical category');
 assert.equal(data.catalogues.length,4);
 assert.deepEqual(data.catalogues.map(c=>c.name),expected);
-assert.equal(data.records.length,33);
+assert.equal(data.records.length,34);
 for(const p of data.records){assert.equal(p.preview_only,true);assert.equal(p.release_status,'REVIEW_ONLY_NOT_LIVE');assert.equal(p.price,null);assert.equal(p.stock_quantity,null);assert.equal(p.image_use_status,'WATERMARKED_OWNER_REVIEW_ONLY_RIGHTS_NOT_CLEARED');assert.ok(fs.existsSync(p.image_url),p.image_url);}
 const page=fs.readFileSync('asc-auto-electrical-preview.html','utf8');
 assert.ok(page.includes('noindex,nofollow'));assert.ok(page.includes('Price on request'));assert.ok(!page.toLowerCase().includes('add to cart'));
 const cat=fs.readFileSync('category.html','utf8'),prev=fs.readFileSync('preview-category.html','utf8');
 for(const id of ['e6a10001-1b2c-4d3e-8f90-111111111111','e6a10002-1b2c-4d3e-8f90-222222222222','e6a10003-1b2c-4d3e-8f90-333333333333']){assert.ok(cat.includes(id));assert.ok(prev.includes(id));}
 const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
-assert.ok(builder.includes('asc-auto-electrical-preview.html'));assert.ok(builder.includes('asc-auto-electrical-preview.json'));assert.ok(builder.includes('asc-auto-electrical-pilot'));
+assert.ok(builder.includes('asc-auto-electrical-preview.html'));assert.ok(builder.includes('asc-auto-electrical-preview.json'));assert.ok(builder.includes('asc-auto-electrical-pilot'));assert.ok(builder.includes('tests/asc-auto-electrical-integration.test.cjs'));
 console.log('ASC_AUTO_ELECTRICAL_INTEGRATION_PASS: four catalogues, 33 reviewed pilot cards, preview-only, no price/stock/SKU/checkout.');

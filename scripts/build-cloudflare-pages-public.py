@@ -15,6 +15,7 @@ node = shutil.which("node")
 if not node:
     raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
 subprocess.run([node, str(ROOT / "tests" / "three-category-storefront-structure.test.cjs")], cwd=ROOT, check=True)
+subprocess.run([node, str(ROOT / "tests" / "asc-auto-electrical-integration.test.cjs")], cwd=ROOT, check=True)
 
 REQUIRED_ROOT_FILES = [
     "index.html", "store.html", "index-new.html", "product.html", "products.html",

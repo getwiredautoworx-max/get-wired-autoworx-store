@@ -60,7 +60,7 @@ body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#
 const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug');
 const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']];
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function artFor(label){
- const n=String(label||'').trim().toLowerCase();
+ const n=String(label||'').trim().toLowerCase();if(n==='automotive sensors')return 'assets/asc-auto-electrical-pilot/asc-01080.jpg';if(n==='automotive switches')return 'assets/asc-auto-electrical-pilot/asc-21849.jpg';if(n==='automotive globes')return 'assets/asc-auto-electrical-pilot/asc-9005-h.jpg';if(n==='fuel pumps')return 'assets/asc-auto-electrical-pilot/asc-f1-012.jpg';
  if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png';
  const photos=[
   [/fuse.*regulator|regulator.*fuse/,'photo-1581092160562-40aa08e78837'],
