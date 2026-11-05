@@ -241,7 +241,7 @@ jobs:
               const oneNavTypeCard=oneNavBrandPage.locator('.typeCard').first();
               await oneNavTypeCard.waitFor({state:'visible',timeout:30000});
               await oneNavTypeCard.click();
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-products(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-products(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
               const oneNavProductPage=page.frameLocator('#store');
               const oneNavProductCount=await oneNavProductPage.locator('.product').count();
               const oneNavProductImageCount=await oneNavProductPage.locator('.product img').count();
