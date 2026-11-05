@@ -4,7 +4,7 @@
   "previewRecordCount": 66,
   "status": "PREVIEW_ONLY_NOT_LIVE_NO_STOCK_SYNC_NO_SUPPLIER_ACTIVATION",
   "availabilityNote": "Neither PDF provides current stock availability. No stock quantity or in-stock claim is published.",
-  "imageNote": "Five records currently carry image URLs. Both XS-W104ES and XM-5ES direct Sony image sources are owner-authorized. The XM-5ES Sony Australia URL was fetched successfully and displays a Sony amplifier rear-panel image matching the XM5ES asset path; it has not yet been copied into the repository or checked in the customer preview. The XS-W104ES URL could not be fetched in this session. The remaining three official Sony image URLs are review candidates only. Sixty-one records have no image URL; no placeholders are used.",
+  "imageNote": "Owner-authorized exact-model images have been added where an exact model/source match was confirmed. Remaining records retain an honest pending state; no generic product-type substitutions are permitted.",
   "excludedRows": [
     {
       "model": "XS-690ES",
@@ -28,7 +28,7 @@
       "modelNumber": "XS-163ES",
       "description": "Mobile ES 6.5-inch/16 cm 3-way component speakers with 3.5-inch/8 cm mid-range and 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 90 W RMS.",
       "manufacturerPage": "https://electronics.sony.com/audio/car-marine-audio/all-car-marine-audio/p/xs163es",
-      "imageUrl": "",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XS163ES_2.jpg?v=1696557091&width=3000",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -37,7 +37,8 @@
       "brandNote": "",
       "gwSku": "GW-15ED092F",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.gentec-intl.com/products/xs163es"
     },
     {
       "id": "ac-002",
@@ -51,7 +52,7 @@
       "modelNumber": "XS-162ES",
       "description": "Mobile ES 6.5-inch/16 cm 2-way component speaker with 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 90 W RMS.",
       "manufacturerPage": "https://www.sony-africa.com/en/electronics/mobile-es-series/xs-162es/specifications",
-      "imageUrl": "",
+      "imageUrl": "https://sonyworld.ae/cdn/shop/products/XS-162ES-2.jpg?v=1662726477",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -60,7 +61,8 @@
       "brandNote": "",
       "gwSku": "GW-75B4E0B0",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://sonyworld.ae/products/xs-162es-6-16cm-mobile-es%E2%84%A2-2-way-component-speakers"
     },
     {
       "id": "ac-003",
@@ -74,7 +76,7 @@
       "modelNumber": "XS-692ES",
       "description": "Mobile ES 6×9-inch/16×24 cm 2-way component speaker with 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 110 W RMS.",
       "manufacturerPage": "https://www.sony.com/en-cd/electronics/mobile-es-series/xs-692es/specifications",
-      "imageUrl": "",
+      "imageUrl": "https://store.sony.com.au/dw/image/v2/ABBC_PRD/on/demandware.static/-/Sites-sony-master-catalog/default/dw5f0d00ad/images/XS692ES/XS692ES.png?sh=442&sm=fit&sw=442",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -83,7 +85,8 @@
       "brandNote": "",
       "gwSku": "GW-278BCEF6",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://store.sony.com.au/car-audio/XS692ES.html"
     },
     {
       "id": "ac-004",
@@ -106,7 +109,8 @@
       "brandNote": "",
       "gwSku": "GW-C96B794A",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.sony-africa.com/en/electronics/mobile-es-series/xs-160es/specifications"
     },
     {
       "id": "ac-005",
@@ -129,7 +133,8 @@
       "brandNote": "",
       "gwSku": "GW-1A7AB005",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.sony.com/za/electronics/car-speakers/xs-680es"
     },
     {
       "id": "ac-006",
@@ -143,7 +148,7 @@
       "modelNumber": "XS-W104ES",
       "description": "Mobile ES 10-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 1,800 W peak / 450 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xs-w104es",
-      "imageUrl": "",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XSW104ES_1.jpg?v=1696556764",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -152,9 +157,10 @@
       "brandNote": "",
       "gwSku": "GW-79892A2D",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "WITHHELD_PENDING_EXACT_MODEL_IMAGE_RENDER_VERIFICATION",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceNote": "Owner-authorized Sony image candidate did not render from the supplied CDN URL in GitHub's browser runner; Sony product pages returned Access Denied to the runner. Keep this source out of the verified-image count and require owner visual confirmation or an approved alternate image before treating the asset as complete.",
-      "imageNote": "Official Sony source URL retained for internal review only; the image failed browser rendering and is intentionally withheld from the customer preview until exact-model rendering is verified."
+      "imageNote": "Official Sony source URL retained for internal review only; the image failed browser rendering and is intentionally withheld from the customer preview until exact-model rendering is verified.",
+      "imageSourceUrl": "https://www.gentec-intl.com/products/xsw104es"
     },
     {
       "id": "ac-007",
@@ -168,7 +174,7 @@
       "modelNumber": "XS-W122ES",
       "description": "Mobile ES 12-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 2,000 W peak / 500 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xs-w122es",
-      "imageUrl": "",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42264/282760/xs-w122es__1__83670.1682532226.jpg?c=2",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -177,7 +183,8 @@
       "brandNote": "",
       "gwSku": "GW-4E9C9939",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://creativeaudio.net/xs-w122es/"
     },
     {
       "id": "ac-008",
@@ -191,7 +198,7 @@
       "modelNumber": "XS-W124ES",
       "description": "Mobile ES 12-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 2,000 W peak / 500 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xs-w124es",
-      "imageUrl": "",
+      "imageUrl": "https://caraudiocentre.co.uk/cdn/shop/files/sony-43575646486809.jpg?v=1700315830",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -200,7 +207,8 @@
       "brandNote": "",
       "gwSku": "GW-2867F5CB",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://caraudiocentre.co.uk/products/sony-xs-w124es"
     },
     {
       "id": "ac-009",
@@ -214,7 +222,7 @@
       "modelNumber": "XM-1ES",
       "description": "Mobile ES mono power amplifier; 600 W ×1 RMS at 4 Ω or 1,000 W ×1 RMS at 2 Ω; compact aluminium case; combined pre-outs; bass remote included; 270×60×215 mm.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xm-1es/specifications",
-      "imageUrl": "",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42263/282755/xm-1es-03__1__68713.1682532223.jpg?c=2",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -223,7 +231,8 @@
       "brandNote": "",
       "gwSku": "GW-D2335F32",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://creativeaudio.net/xm-1es/"
     },
     {
       "id": "ac-010",
@@ -237,7 +246,7 @@
       "modelNumber": "XM-4ES",
       "description": "Mobile ES 4-channel power amplifier; 100 W ×4 (330 W ×2 bridged) RMS at 4 Ω or 165 W ×4 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 270×60×215 mm.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xm-4es",
-      "imageUrl": "",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-bqki9c9t/images/stencil/1280x1280/products/145140/349259/xm4es_003__19533.1749148815.jpg?c=2",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -246,7 +255,8 @@
       "brandNote": "",
       "gwSku": "GW-4BDFD8BD",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://driveinautosound.com/sony-xm4es-mobile-es-series-100-watts-rms-4-ohms-class-d-4-channel-car-amplifier/"
     },
     {
       "id": "ac-011",
@@ -283,7 +293,7 @@
       "modelNumber": "XM-6ES",
       "description": "Mobile ES 6-channel power amplifier; 100 W ×6 RMS at 4 Ω or 165 W ×6 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 380×60×215 mm.",
       "manufacturerPage": "https://www.sony.com/electronics/support/car-marine-entertainment-in-car-amplifiers/xm-6es/specifications",
-      "imageUrl": "",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/43058/286663/xm-6es-02__1__18213.1691599723.jpg?c=2",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -292,7 +302,8 @@
       "brandNote": "",
       "gwSku": "GW-34E5B953",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://creativeaudio.net/xm-6es/"
     },
     {
       "id": "ac-013",
@@ -306,7 +317,7 @@
       "modelNumber": "XM-8ES",
       "description": "Mobile ES 8-channel power amplifier; 100 W ×8 RMS at 4 Ω or 165 W ×8 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 380×60×215 mm.",
       "manufacturerPage": "https://electronics.sony.com/audio/car-marine-audio/amplifiers/p/xm8es",
-      "imageUrl": "",
+      "imageUrl": "https://www.caraudioexpress.co.uk/cdn/shop/files/XM-8ES_Product4_in_stock.webp?v=1766579001&width=1534",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -315,7 +326,8 @@
       "brandNote": "",
       "gwSku": "GW-423595E9",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.caraudioexpress.co.uk/products/sony-xm-8es-mobile-es-8-channel-power-amplifier"
     },
     {
       "id": "ac-014",
@@ -371,14 +383,15 @@
       "modelNumber": "USB450BTDD",
       "description": "USB450BTDD media player",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/0263/1149/1629/files/SSUSB-450BTDD.jpg?v=1748037061&width=1200",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/starsound-ssusb-450btdd-double-din-media-player-with-bluetooth"
     },
     {
       "id": "ac-017",
@@ -455,17 +468,18 @@
       "modelNumber": "SSW-12W-5200",
       "description": "12-inch SVC subwoofer; Starsound official specification: 250 W RMS, 4 Ω voice coil, 90 dB sensitivity. This corrects the source price-list \"300 W\" figure.",
       "manufacturerPage": "https://starsound.co.za/product/ssw-12w-5200/",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-12W5200_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-12w-5200/",
       "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED",
-      "specificationSource": "Starsound official product specification"
+      "specificationSource": "Starsound official product specification",
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-12w-5200/"
     },
     {
       "id": "ac-021",
@@ -479,20 +493,21 @@
       "modelNumber": "SSW-12-6300",
       "description": "12-inch SVC subwoofer. Power rating remains unverified: source price list states 300 W without RMS/maximum basis; one South African retailer lists 500 W RMS and another model inventory lists 350 W RMS. Official manufacturer product page could not be retrieved during this review. Do not publish a definitive wattage.",
       "manufacturerPage": "https://starsound.co.za/product/ssw-12-6300/",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/06/SSW-12-6300_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-6300",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-12-6300/",
       "specificationStatus": "POWER_RATING_CONFLICT_300W_SOURCE_VS_500W_AND_350W_RETAILER; SUPPLIER_CONFIRMATION_REQUIRED",
-      "specificationSource": "South African retailer cross-checks; Starsound official page retrieval timed out"
+      "specificationSource": "South African retailer cross-checks; Starsound official page retrieval timed out",
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-12-6300/"
     },
     {
       "id": "ac-022",
@@ -530,20 +545,21 @@
       "modelNumber": "SSW-8-8000D2",
       "description": "8-inch dual voice coil subwoofer; 2-ohm model; 400 W RMS per South African model inventory cross-check. Indicative retail reference only; not confirmed Get Wired selling price or supplier cost.",
       "manufacturerPage": "https://starsound.co.za/product-category/subwoofers/",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-8_-SSW-8-8000D2-DVC-D2-Subwoofer-_8000W_-Star-Sound-21402422.jpg?v=1729072237&width=1445",
       "sourceDateLabel": "Retail reference checked · 4 November 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "South African retail reference R1,395; exact model listing. Not supplier dealer pricing or approved Get Wired selling price.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "priceSource": "Autostyle Motorsport",
       "priceSourceUrl": "https://www.autostyle.co.za/product/starsound-ssw-8-8000d2-8-8000w-dvc-2ohm-subwoofer/",
       "priceSourceCheckedAt": "2026-11-04",
       "priceBasis": "SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE",
       "manufacturerMatchStatus": "EXACT_MODEL_CONFIRMED_BY_SOUTH_AFRICAN_MODEL_INVENTORY; OFFICIAL_CATEGORY_LISTING; RMS_CROSSCHECK_400W",
-      "sourcePriceListDateLabel": "Price list · 5 August 2026"
+      "sourcePriceListDateLabel": "Price list · 5 August 2026",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-8-ssw-8-8000d2-dvc-d2-subwoofer-8000w"
     },
     {
       "id": "ac-024",
@@ -632,14 +648,14 @@
       "modelNumber": "SSW-F12-5150SVC",
       "description": "12-inch flat-series single voice coil subwoofer; 200 W RMS per South African model inventory cross-check. Indicative retail reference only; not confirmed Get Wired selling price or supplier cost.",
       "manufacturerPage": "https://starsound.co.za/product-category/subwoofers/",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSW-F12-5150-12_-Flat-SVC-Subwoofer-_5150W_-Star-Sound-21804686.jpg?v=1738070855&width=1445",
       "sourceDateLabel": "Retail reference checked · 4 November 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "South African retail reference R795; exact model listing. Not supplier dealer pricing or approved Get Wired selling price.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F12-5150SVC",
       "manufacturerMatchStatus": "EXACT_MODEL_CONFIRMED_BY_OFFICIAL_STARSOUND_CATEGORY_AND_SOUTH_AFRICAN_MODEL_INVENTORY; 200W_RMS",
@@ -647,7 +663,8 @@
       "priceSourceUrl": "https://www.autostyle.co.za/product/starsound-ssw-f12-5150svc-12-flat-series-svc-subwoofer/",
       "priceSourceCheckedAt": "2026-11-04",
       "priceBasis": "SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE",
-      "sourcePriceListDateLabel": "Price list · 5 August 2026"
+      "sourcePriceListDateLabel": "Price list · 5 August 2026",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssw-f12-5150-12-flat-svc-subwoofer-5150w"
     },
     {
       "id": "ac-028",
@@ -745,14 +762,14 @@
       "modelNumber": "SSA-ATOM-13500.1",
       "description": "1-channel Class D monoblock amplifier. Conflicting exact-model specifications: Starsound's official page lists 500 W RMS at 1 Ω and 250 W RMS at 2 Ω; two South African retailer listings report 520 W RMS at 1 Ω, 380 W RMS at 2 Ω and 230 W RMS at 4 Ω. Do not publish a definitive power rating until Starsound confirms the correct revision/specification.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-atom-13500-1/",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-Atom-Series-Micro-Monoblock-Amplifier-_13500W_-Star-Sound-31026433.jpg?v=1770022846",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-atom-13500-1/",
       "specificationSource": "Starsound official specification page versus two South African retailer exact-model listings",
       "specificationStatus": "OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
@@ -760,7 +777,8 @@
       "specificationSourceUrls": [
         "https://maxmotorsport.co.za/products/star-sound-atom-series-micro-monoblock-amplifier-13500w",
         "https://soundslimited.co.za/products/starsound-atom-1ch-micro-amplifier-ssa-atom-13500-1-small-footprint-1ch-mono-amplifier"
-      ]
+      ],
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-atom-series-micro-monoblock-amplifier-13500w"
     },
     {
       "id": "ac-033",
@@ -861,17 +879,18 @@
       "modelNumber": "SSA-R-5000.4",
       "description": "4-channel Raptor amplifier; retailer specification cross-check: 65 W RMS ×4 at 4 Ω, 95 W RMS ×4 at 2 Ω, bridge 180 W ×2 at 4 Ω.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/6007762006336-8790302.png?v=1760469016&width=1000",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://jmsounds.co.za/product-tag/starsound/",
       "specificationSource": "South African specialist retailer specification cross-check",
-      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK"
+      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/ssa-r-5000-4-star-sound-4ch-amp-by-fastrak"
     },
     {
       "id": "ac-038",
@@ -892,7 +911,7 @@
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_MANUFACTURER_IMAGE_CANDIDATE_REVIEW_ONLY_PERMISSION_AND_OWNER_APPROVAL_PENDING",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product/ssa-hornet-7600-4/",
       "manufacturerListedModel": "SSA-HORNET-7600.4",
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND — exact model label after punctuation normalization",
@@ -946,20 +965,21 @@
       "modelNumber": "SSA-ATOM-13800.4",
       "description": "4-channel MOSFET amplifier; owner-confirmed nominal rating 100 W RMS per channel ×4. Starsound's published output table separately specifies 320 W RMS ×4 at 1 Ω, 160 W RMS ×4 at 2 Ω, 80 W RMS ×4 at 4 Ω, and 160 W bridged at 4 Ω.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-atom-13800-4/",
-      "imageUrl": "",
+      "imageUrl": "https://ismotorsport.co.za/cdn/shop/files/e8c8a9b2ed9973beea6b6736cdd4c929.jpg?v=1744810004",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-Atom-13800.4",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-atom-13800-4/",
       "specificationSource": "Starsound official manufacturer product specification",
-      "specificationStatus": "OWNER_CONFIRMED_NOMINAL_RATING_WITH_OFFICIAL_OUTPUT_TABLE_RECORDED"
+      "specificationStatus": "OWNER_CONFIRMED_NOMINAL_RATING_WITH_OFFICIAL_OUTPUT_TABLE_RECORDED",
+      "imageSourceUrl": "https://ismotorsport.co.za/products/star-sound-atom-series-micro-4-channel-amplifier-13800w"
     },
     {
       "id": "ac-041",
@@ -1090,17 +1110,18 @@
       "modelNumber": "SSS-6602",
       "description": "6-inch 3-way speaker; Starsound official specification states 480 W MAX and 4 Ω impedance. RMS rating is not published by the manufacturer.",
       "manufacturerPage": "https://starsound.co.za/product/sss-6602/",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2013332000000starsound-653-way-coaxial-speaker-sss-6602-7638434.webp?v=1766473927",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/sss-6602/",
       "specificationStatus": "OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED",
-      "specificationSource": "Starsound official product specification"
+      "specificationSource": "Starsound official product specification",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sss-6602-starsound-6-5-quot-3-way-coaxial-speaker"
     },
     {
       "id": "ac-047",
