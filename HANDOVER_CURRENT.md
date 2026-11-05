@@ -3542,3 +3542,35 @@ Execution rules:
 - First reconcile catalogue schemas and current product-image mapping; then establish a repeatable product-level audit before applying it across all products.
 - Permanent owner-authoritative instructions are at repository root: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`. The legacy `AI_HANDOVER_PERMANENT.md` path is not present on the current working branch or main; use the owner-directives file as the authoritative overlay.
 - Status at task start: scope recorded; no product data, images, prices, descriptions, brand logos or live data changed yet.
+
+
+## 2026-11-05 — CATALOGUE ACCURACY TEMPLATE FOLLOW-UP (IN PROGRESS)
+
+Owner-approved requirements: exact product photos for every product; customer price = VAT-inclusive RRP less 2% (do not add VAT again); correct model-specific descriptions/features; official OneNav and Amplified brand-button logos.
+
+### Pricing — Planetworld preview
+- Reconciled all 3,317 preview products positionally to the seven frozen source-row chunks (source workbook snapshot 2026-10-25); exact row count and product IDs checked.
+- Applied `round(RRP_incl_VAT * 0.98, 2)` to 3,298 positive-RRP rows. Nineteen zero-RRP rows remain quote-only with the owner-approved request wording.
+- 19 proposed RRP-minus-2 prices are below the source dealer cost estimated inclusive of 15% VAT. They remain priced in the non-production owner preview as explicitly requested, but are individually flagged `RRP_MINUS_2_BELOW_ESTIMATED_COST_REVIEW` in the internal audit. These are not live prices and must be reviewed before production.
+- Internal pricing audit: `catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv` (3,317 rows). No dealer cost or supplier SKU has been added to the public preview JSON.
+- Repeatable generator: `scripts/apply_planetworld_rrp_minus_2.py`. Generator writes compact JSON to stay below GitHub Contents API size limits.
+- Audio Connections already retains only 13 validated Sony supplier-price-list prices; 53 other rows remain quote-only. No extra VAT has been added.
+
+### Product images and details — first exact-model batch
+- Exact model-number-to-source-SKU reconciliation identified all 68 curated manufacturer model records without relying on title guessing. Attached manufacturer model, source-backed description, manufacturer page and exact image URL where present to the matching Planetworld product row.
+- 66 exact-model image candidates are now attached; 2 exact-model records have no usable image. The remaining 3,249 Planetworld products have no exact model/image match yet and remain in the internal queue.
+- Internal image audit: `catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv` (3,317 rows).
+- Individual product cards no longer substitute generic product-type photographs when the exact image is missing or fails. They show an explicit “Exact product photo pending verification” state instead. Category/type cards may still use category-specific photography.
+- The curated-model join now matches on the exact model field already reconciled to the source row, preventing the 57 unmatched-by-title curated products from being duplicated as separate products.
+
+### OneNav and Amplified
+- The official Planetworld ONE/OneNav and Amplified logo sources are wired into the brand directory and dedicated brand landing pages. The One brand is displayed as “ONE / OneNav”; source brand filter remains `One`.
+- OneNav official product pages and the 2023 OneNav catalogue PDF were identified as source references for exact vehicle-fitment and feature details. Product image extraction from the catalogue has not yet been completed.
+- Hosted logo naturalWidth checks are pending in the next exact-head workflow. Do not call these logo assets verified until the browser audit passes.
+
+### Current verification / remaining work
+- Source changes are committed to PR #178 only; the preview deploy request now asks for the full RRP, exact-image and OneNav/Amplified checks.
+- Next: exact-head Node regression tests; deploy the latest commit to the dedicated owner preview; verify all 66 image URLs load; verify OneNav and Amplified logos on directory and brand pages; verify RRP sample and zero-RRP behavior on hosted preview.
+- Product-photo completion is NOT achieved: 3,249 of 3,317 Planetworld products still require exact photo reconciliation; 2 curated exact-model products also lack an image. Do not substitute generic images or claim the photo requirement complete.
+- Description completion is NOT achieved for the full catalogue: 68 exact-model descriptions are verified; remaining descriptions require source-backed model details. Continue catalogue-by-catalogue, prioritizing OneNav and Amplified next.
+- PR #178 remains draft/unmerged. Production, live stock/pricing, Supabase writes, checkout/payment and Axxess/DNS actions remain on hold.
