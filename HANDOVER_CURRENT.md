@@ -4244,3 +4244,8 @@ The current OneNav audit, 45-record reconciliation, unresolved image/coverage ga
 - No original PDF was altered; no product import, public activation, database write, stock/price update or production action occurred.
 - Next: visually verify the variance pages first, then extract a balanced 25-product pilot with source filename/page references and exact SKU/description/specification/fitment transcription. If page rendering is unavailable in the working environment, ask the owner for screenshots of the relevant original catalogue pages; do not substitute OCR confidence for source verification.
 - Active workstream remains ASC catalogues. Audio/OneNav is paused pending owner screenshots; do not continue that brand or move to another audio brand. Do not process Buyers Guides without explicit reauthorisation. Production HOLD.
+
+
+## 2026-11-05 — Audio category frozen
+
+The owner has instructed that the Audio category be preserved exactly as it currently stands. Do not edit any audio-category content until the owner explicitly instructs us to resume. This includes category and subcategory structure, brand pages and logos, product data, images, descriptions, prices, navigation, and related assets. Keep all existing audio work and audit notes unchanged; unresolved items remain paused, not completed. Only this handover note may be changed in relation to the audio category before renewed permission. ASC catalogue preparation remains the active workstream. If ASC mapping would require changing an audio category, record it as pending and ask the owner first. Buyers Guides remain excluded unless separately reauthorised. Production remains on hold.
