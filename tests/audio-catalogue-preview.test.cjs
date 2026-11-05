@@ -475,7 +475,7 @@ assert.equal(alpineHalo11Product.title, alpineHalo11Model.name, 'verified manufa
 assert.ok(enrichment.includes('product["title"] = manufacturer_name'), 'exact-model enrichment must publish the verified manufacturer title');
 
 const eq7100=audioConnections.records.find(item=>item.modelNumber==='EQ7100');
-assert.ok(eq7100&&eq7100.imageUrl==='https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file'&&eq7100.manufacturerListedModel==='SSA-EQ-7100'&&eq7100.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EQ7100 must use the exact SSA-EQ-7100 product photo, not the rejected SSA-EQ-7200 image');
+assert.ok(eq7100&&eq7100.imageUrl==='https://jmsounds.co.za/wp-content/uploads/2022/10/SSA-EQ-7100-600x451.jpeg'&&eq7100.manufacturerListedModel==='SSA-EQ-7100'&&eq7100.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EQ7100 must use the exact SSA-EQ-7100 product photo, not the rejected SSA-EQ-7200 image');
 
 const lynx=audioConnections.records.find(item=>item.modelNumber==='BULLET LYNX');
 assert.ok(lynx&&lynx.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'&&lynx.imageQualityNote.includes('105px'),'Blackspider Lynx must disclose low-resolution thumbnail status');
