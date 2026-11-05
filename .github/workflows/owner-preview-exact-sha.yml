@@ -205,7 +205,7 @@ jobs:
               const brandTypeCards=brandDoc.locator('#types .typeCard');
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
-              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded||/\\.svg(?:$|\\?)/i.test(x.src)))throw new Error('Hosted product-type image cards must load real photographs, not illustrated SVGs: '+JSON.stringify(categoryImageAudit));
+              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded||/\.svg(?:$|\\?)/i.test(x.src)))throw new Error('Hosted product-type image cards must load real photographs, not illustrated SVGs: '+JSON.stringify(categoryImageAudit));
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().click();
               await page.waitForFunction(()=>/\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const productDoc=page.frameLocator('#store');
@@ -215,7 +215,7 @@ jobs:
 
               // OneNav and Amplified must use the official Planetworld brand artwork in both directory and dedicated brand views.
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const oneNavButton=frame.locator('#brands .brandLogoButton[aria-label="One"]');
               await oneNavButton.waitFor({state:'visible',timeout:30000});
               const oneNavDirectoryLogo=oneNavButton.locator('img');
@@ -224,14 +224,14 @@ jobs:
               console.log('HOSTED_ONENAV_BRAND_LOGO_AUDIT',JSON.stringify(oneNavDirectoryAudit));
               if(!oneNavDirectoryAudit.loaded||!oneNavDirectoryAudit.src.includes('planetworld.canto.global')||!oneNavDirectoryAudit.alt.includes('OneNav'))throw new Error('Official ONE / OneNav brand-button logo did not load: '+JSON.stringify(oneNavDirectoryAudit));
               await oneNavButton.click();
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
               const oneNavBrandPage=page.frameLocator('#store');
               await oneNavBrandPage.locator('.brandHero').filter({hasText:'ONE / OneNav'}).waitFor({state:'visible',timeout:30000});
               const oneNavHeroLogo=oneNavBrandPage.locator('.brandHero img');
               await oneNavHeroLogo.waitFor({state:'visible',timeout:15000});
               if(!await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('ONE / OneNav logo failed on its dedicated brand page');
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
               const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
               await amplifiedButton.waitFor({state:'visible',timeout:30000});
               const amplifiedDirectoryLogo=amplifiedButton.locator('img');
@@ -240,7 +240,7 @@ jobs:
               console.log('HOSTED_AMPLIFIED_BRAND_LOGO_AUDIT',JSON.stringify(amplifiedDirectoryAudit));
               if(!amplifiedDirectoryAudit.loaded||!amplifiedDirectoryAudit.src.includes('planetworld.canto.global'))throw new Error('Official Amplified brand-button logo did not load: '+JSON.stringify(amplifiedDirectoryAudit));
               await amplifiedButton.click();
-              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\\/preview-audio-brand(?:\\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Amplified'},{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Amplified'},{timeout:30000});
               const amplifiedBrandPage=page.frameLocator('#store');
               await amplifiedBrandPage.locator('.brandHero').filter({hasText:'Amplified'}).waitFor({state:'visible',timeout:30000});
               const amplifiedHeroLogo=amplifiedBrandPage.locator('.brandHero img');
