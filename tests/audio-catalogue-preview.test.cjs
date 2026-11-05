@@ -225,6 +225,8 @@ assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & 
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 64);
 const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
 assert.ok(raEl4&&raEl4.imageUrl==='https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2025/06/23-286-1.png?resize=600%2C319&ssl=1'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+const raSt20=audioConnections.records.find(item=>item.modelNumber==='RA SUPER RAST20');
+assert.ok(raSt20&&raSt20.manufacturerListedModel==='RA-ST20'&&raSt20.imageUrl==='https://zaybees.co.za/wp-content/uploads/2022/08/Screenshot_20220816-121305_Facebook-324x324.jpg'&&raSt20.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','RA SUPER RAST20 must resolve to the exact RA-ST20 product photo');
 const sony160=audioConnections.records.find(item=>item.modelNumber==='XS-160ES');
 assert.ok(sony160&&sony160.imageUrl==='https://cdn11.bigcommerce.com/s-oqfwjl/images/stencil/1280x1280/products/42271/282815/xs-160es__6__98080.1682532246.jpg?c=2'&&sony160.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','Sony XS-160ES must use its exact model image');
 const sony680=audioConnections.records.find(item=>item.modelNumber==='XS-680ES');
