@@ -3451,3 +3451,44 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Next: correct hosted QA's preview discovery so it resolves the current commit-specific Cloudflare Pages URL (or reliably consumes the exact-SHA branch deployment alias), then rerun hosted mobile/desktop checks against exact SHA `3cd75996f2dfadfe6d5edb8bdbbda4f9daca0a8d`. Do not weaken assertions. Preserve category-specific image load checks, three-root navigation, mobile two-column cards, brand-first Car Audio flow, checkout hidden, Supabase writes blocked and SKU audit.
 - Owner can inspect the commit-specific candidate at https://855c49ff.get-wired-autoworx-store.pages.dev/owner-preview.html, but it is **not yet signed off**: hosted QA must pass and owner visual/mobile acceptance remains outstanding.
 - PR #176 remains OPEN / DRAFT / UNMERGED. No production deployment, Axxess upload, DNS, Supabase/live writes, live stock/price changes, supplier activation or payment go-live.
+
+
+---
+
+## CONTINUATION — ASC SIX-CATALOGUE CATEGORY FREEZE (2026-11-05 19:xx SAST)
+
+### Task-start and source reconciliation
+- Continued from the owner's latest 5 November instructions and checked the authoritative owner-directed reset at AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md on main. That reset excludes ASC Buyers Guides, requires catalogue-first staging, prohibits live data changes without approval, and keeps production on HOLD.
+- Checked the ASC intake README, current candidate branch assets/category-tree.json, six-catalogue OCR review CSV and relevant storefront/category tests on branch asc-auto-electrical-v2-2026-11-05.
+- Six current source catalogues are: Aerials; Automotive Sensors; Automotive Switches; Automotive Globes; Car Mats; Fuel Pumps. The original PDFs remain unchanged. The page-text CSV is OCR-derived review material only; it is not product-level verification.
+- Current category snapshot confirms Aerials already sits under Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials, and Car Mats sits under Car Care & Accessories → Car Mats.
+- Current snapshot is incomplete against the latest owner instruction: Sensors and Switches are combined in one leaf; Fuel Pumps has no leaf; the lighting leaf is named Globes & Vehicle Lighting rather than the separate Automotive Globes catalogue leaf.
+- The old Accessories subcategory browser test expects Aerials and Trims & Harnesses as siblings under Accessories. This is consistent with the current Aerials placement; do not move Aerials out of Car Audio or duplicate it under Auto Electrical.
+
+### Owner-directed mapping now frozen in suppliers/ASC/README.md
+1. Aerials → Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials.
+2. Automotive Sensors → Auto Electrical Parts & Spares → Automotive Sensors.
+3. Automotive Switches → Auto Electrical Parts & Spares → Automotive Switches.
+4. Automotive Globes → Auto Electrical Parts & Spares → Automotive Globes.
+5. Fuel Pumps → Auto Electrical Parts & Spares → Fuel Pumps (flag any item whose exact identity/use is mixed or non-electrical for manual review; do not force product rows).
+6. Car Mats → Car Care & Accessories → Car Mats.
+
+### Verified documentation change
+- Updated suppliers/ASC/README.md on branch asc-auto-electrical-v2-2026-11-05.
+- Documentation commit: 7b55698b045cbbdc9976afa66d43a365516ed458.
+- The README now records the six final catalogue destinations, the exact ASC quote-only wording (“Price On Request due to Limited Stock and Availability”), the Buyers Guide exclusion, and the boundary that category freeze is preview-navigation only.
+- This is a documentation/mapping freeze, **not** completion of the preview navigation implementation.
+
+### Remaining work — do not mark complete yet
+1. Add a separate preview-only ASC navigation overlay for Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps; preserve the existing Aerials and Car Mats destinations. Do not edit live Supabase category data or repurpose the live category snapshot.
+2. Make the six catalogue buttons open their correct family-specific subcategory views, with relevant category artwork and no duplicate/misplaced catalogue.
+3. Verify all six source PDFs remain intact and each catalogue view retains source filename/page traceability. Do not use OCR-only text as verified product identity.
+4. Continue the catalogue workflow: exact SKU/model and variant checks, image matching, description/specification reconciliation, duplicate/exception report, quote-only pricing, GW SKU proposal and DO NOT IMPORT staging.
+5. Run targeted category navigation/image tests and the exact-head build; only then verify a single non-production preview against the same commit.
+6. Complete desktop/mobile visual checks and deliver one owner-facing preview. No readiness claim until exact-head checks and matching preview evidence exist.
+
+### Safety and release state
+- No Supabase writes, live category/product changes, imports, stock/price/active-flag changes, PR merges, deployment, Axxess upload, DNS or payment changes were performed.
+- ASC Buyers Guides remain excluded. ASC pricing remains quote-only until current verified supplier pricing is supplied.
+- Payment/banking setup and final transaction tests remain deferred until the owner supplies banking details and explicitly authorises the work.
+- Production/customer go-live remains HOLD pending exact-head tests, verified preview, owner acceptance and explicit release approval.
