@@ -158,7 +158,11 @@ jobs:
               const brandDoc=page.frameLocator('#store');
               await brandDoc.locator('.brandHero').waitFor({state:'visible',timeout:30000});
               if(await brandDoc.locator('#products,.audioProduct').count())throw new Error('Dedicated brand landing page must not show product stock');
-              const brandTypeCards=brandDoc.locator('#components .typeCard');
+              const brandLogo=frame.locator('#brands button[aria-label="Sony"] img');
+              await brandLogo.waitFor({state:'visible',timeout:15000});
+              const brandLogoLoaded=await brandLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!brandLogoLoaded)throw new Error('Sony brand logo did not load in the brand directory');
+              const brandTypeCards=brandDoc.locator('#types .typeCard');
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
