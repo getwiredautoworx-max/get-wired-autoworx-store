@@ -3607,3 +3607,45 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Six Auto Electrical catalogue subcategories and all six navigation routes are implemented in the preview tree. The standard build restores Aerials and Car Mats to their former parents and removes preview-only ASC routes.
 - 50 candidate records, 75 source sections, 50 image files present, exact quote-only wording retained. No import, live database write, stock/price change, checkout/payment test or production release.
 - Next: complete run 42077207832, then reconcile original PDF pages and all exact source codes/variants/image matches before expanding beyond the 50-record pilot.
+
+
+## 2026-11-05 — LATEST SIX-CATALOGUE QA RESULT: PASS
+
+### Exact tested build and hosted preview
+- Latest code/data/test head tested: **1b6aaf1e29d68fb0254c71ecf3f538b417ad8ecf**.
+- Latest branch head after documentation-only handover update: **935d14c639adb78225f45fa03e811a3ab3652f6b**.
+- Cloudflare Pages Public Package QA run **42077207779**: SUCCESS on exact code/data/test head 1b6aaf1.
+- Owner Store Preview Browser QA run **42077207832**: SUCCESS on exact code/data/test head 1b6aaf1. Both read-only local checks and hosted mobile/desktop checks completed.
+- The browser workflow confirmed an exact deployed build marker for 1b6aaf1 at: https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev/owner-preview.html
+- This is a verified non-production owner preview for inspection. It is not production, not merged, and not owner-accepted.
+
+### What the successful browser run verified
+- All six ASC catalogue category cards appear as direct children of Auto Electrical Spares.
+- All six category routes open the correct dedicated catalogue page.
+- All six category-card images loaded successfully.
+- The first source section in each catalogue displayed pilot products and product images loaded successfully.
+- Section counts matched the original contents pages: Aerials 6, Sensors 11, Switches 16, Globes 10, Car Mats 14, Fuel Pumps 18.
+- Car Audio → Accessories no longer contains Aerials; Trims & Harnesses remains and still shows 47 rows.
+- Car Care retains three non-ASC subcategories; Car Mats is under Auto Electrical in the preview.
+- The browser workflow also passed existing Car Audio brand/component navigation, product image checks, checkout hidden, Supabase writes blocked and desktop overflow false.
+- The package QA passed both Node regression suites, standard-package isolation and preview-package inclusion checks. The preview package contains all 50 pilot JPG files; the standard package excludes preview-only ASC routes/data/images and restores the former Aerials/Car Mats parents.
+
+### Limits — do not overstate completion
+- All 50 referenced image files exist in the preview package. Browser checks verified category images and product images in the first source section of each catalogue; they did not visually validate every one of the 50 image-to-SKU matches.
+- All 50 image records remain explicitly pending exact ASC SKU and physical-feature verification, and public-use HOLD pending rights evidence. The older 53-SKU image-rights register says watermark present, exact image match pending, no rights-holder evidence found in that register and public-use HOLD. Owner has separately stated authorised-dealer status; reconcile the evidence before public image release. Do not remove or obscure watermarks or further edit/crop.
+- MA522 remains flagged because the September illustrated catalogue says “Vehicle Aerial Replacement 2” while the current August ASC OCR lists Opel / Mercedes W124 / Honda Ballade.
+- H1865W-H remains flagged because the prior image-rights register calls it an H18 65W 12V Halogen Globe Huadiao, while current OCR reads HIDIAO and its source section is “HID Globes & Kits”. Verify original page before classifying or normalising.
+- Draft descriptions are owner-review copy, not final verified product copy. Fitment, exact code, original PDF page image and image match still require manual source verification.
+- 50 records are a pilot subset, not the complete ASC catalogue register. The wider register still has 933 descriptions awaiting editorial/fitment verification.
+
+### Next work
+1. Continue original-PDF page verification for the 50 pilot records, prioritising MA522 and H1865W-H conflicts, then exact SKU/variant, fitment and image match for the remaining 48.
+2. Expand product enrichment beyond the 50-record pilot only after the source-code/image/description/fitment workflow is repeatable.
+3. Keep the preview available for owner inspection; do not merge or release to production until owner acceptance and explicit approval.
+4. Keep checkout/payment functional tests deferred until owner banking details are supplied and the owner authorises that stage.
+
+### Release state
+- Preview QA: PASS for exact tested code head 1b6aaf1.
+- Owner acceptance: PENDING.
+- Production: HOLD.
+- No Supabase writes, imports, live product/category/price/stock changes, supplier activation, checkout/payment activation, production deployment, Axxess upload or DNS changes.
