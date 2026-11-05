@@ -26,3 +26,10 @@ request=PR-176-car-audio-brand-first-navigation-fix-2026-11-05
 required_head=6e5198b964191e4ad964be6db23a40f5975bc2e2
 required_audio_journey=Car Audio & Video -> Brand -> Component Type -> Brand-filtered Products
 required_audio_checks=brand-visible-first;components-hidden-before-brand;products-hidden-before-component;Sony-Amplifiers-filter-correct
+
+
+request=PR-176-image-led-subcategory-preview-2026-11-05
+requested_for=preview/integrated-storefront-2026-11-04
+required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
+required_audio_journey=Car Audio & Video -> Brand -> Image-led Component Type -> Brand-filtered Products
+required_checks=exact-sha-marker;category-specific-image-map;all-audio-component-images-load;mobile-390px;desktop-1365px;all-three-root-subcategory-pages;checkout-hidden;supabase-writes-blocked;sku-audit
