@@ -3504,3 +3504,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - The subsequent documentation-only commit `57240bf34c08a11b220615f820136d327f4a7d8e` was the branch head when inspected; the failed run tested its parent `a1fb2c033075cfef0c54ba58adfe9dd93b17dec9`. The corrected test commit now supersedes both.
 - Next gate: inspect the new workflow run for the corrected test commit. If the next assertion fails, fix the actual mismatch and rerun; do not bypass the assertion or claim a preview. Deployment and hosted image/navigation evidence remain mandatory.
 - PR #178 stays draft/unmerged. Preview only; production, checkout, payments, live data and supplier activation remain on hold.
+
+
+## 2026-11-05 — SECOND CI ASSERTION RECONCILED TO CURRENT PHOTO MAPPING
+
+- The corrected regression run advanced past the previous obsolete fallback assertion and exposed another stale fixture at `tests/three-category-storefront-structure.test.cjs:241`: it required photo ID `photo-1545454675-3531b543be5d`, which is no longer used by the active audio department/category/brand routes.
+- Audited current photo IDs across `preview-audio.html`, `preview-audio-brand.html`, `preview-audio-products.html`, `preview-category.html` and `index-new.html`. Replaced the obsolete expected ID with the current radio/head-unit category photo `photo-1470948062737-aeb014e274c2`; the assertion still checks for an actual current image mapping.
+- Test fixture correction commit: `e5ce144fd99fc2faca8894e2cc6400864f51231f`. A new push-triggered exact-head run should execute this revision.
+- No deploy has happened: the previous rerun failed during package build at the stale photo expectation, before SKU audit or Cloudflare deploy. Continue to withhold the owner preview URL until all hosted checks pass.
