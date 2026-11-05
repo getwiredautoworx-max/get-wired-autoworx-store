@@ -24,7 +24,7 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "preview-audio.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html",
 ]
 PREVIEW_ASSET_FILES = [
     "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
