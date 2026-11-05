@@ -3574,3 +3574,11 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - Product-photo completion is NOT achieved: 3,249 of 3,317 Planetworld products still require exact photo reconciliation; 2 curated exact-model products also lack an image. Do not substitute generic images or claim the photo requirement complete.
 - Description completion is NOT achieved for the full catalogue: 68 exact-model descriptions are verified; remaining descriptions require source-backed model details. Continue catalogue-by-catalogue, prioritizing OneNav and Amplified next.
 - PR #178 remains draft/unmerged. Production, live stock/pricing, Supabase writes, checkout/payment and Axxess/DNS actions remain on hold.
+
+
+## 2026-11-05 — PUBLIC-DATA SAFEGUARD FAILURE FIXED
+
+- The first exact-head regression attempt for the catalogue accuracy changes failed before deployment in the public-data supplier-identity safeguard. Root cause was the internal audit file path `catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv` being copied into the public Planetworld JSON metadata as `pricingRule.reviewFile`.
+- Removed that internal file path from the public JSON and from the repeatable generator. The audit remains in the repository's internal `catalogue-review/` directory and is read by regression tests only; no supplier names, supplier SKUs or dealer costs are exposed in the customer preview JSON.
+- No deploy occurred from the failed run. This was caught at the package build gate before the preview deployment step.
+- Next exact-head run must re-run the complete regression suite and hosted browser checks; do not bypass the supplier-identity safeguard.
