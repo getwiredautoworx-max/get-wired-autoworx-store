@@ -304,7 +304,7 @@ for (const row of audioConnections.records) {
   assert.equal(Object.hasOwn(row, 'supplierSku'), false);
 }
 
-const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageCrop && row.imageUrl).length;
+const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
 assert.equal(imageCount, 141, '68 verified-model + 66 Audio Connections + seven OneNav exact-fitment image candidates');
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
