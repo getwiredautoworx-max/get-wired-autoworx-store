@@ -80,10 +80,6 @@ jobs:
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
-      - name: Set up Node.js for exact-head regression checks
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
       - name: Verify exact-head catalogue, category, package and SKU invariants
         run: |
           set -euo pipefail
