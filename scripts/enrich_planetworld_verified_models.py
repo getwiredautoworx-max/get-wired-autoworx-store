@@ -90,7 +90,9 @@ def main() -> None:
             description = one.get("customer_description", "").strip()
             if description:
                 product["description"] = description
-                product["descriptionStatus"] = "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED" if "evolution" in description.lower() else "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED"
+                series_text = (manufacturer_name + " " + description).lower()
+                series = "EVOLUTION" if "evolution" in series_text else "CLASSIC" if "classic" in series_text else "PRO" if "pro series" in series_text else "UNCLASSIFIED"
+                product["descriptionStatus"] = "OFFICIAL_ONENAV_" + series + "_SPECIFICATION_VERIFIED"
                 description_status = product["descriptionStatus"]
                 one_descriptions += 1
             else:
@@ -168,24 +170,24 @@ def main() -> None:
         "unmatched_products": unmatched,
     }
     expected = {
-        "oneNav_pages": 21,
-        "oneNav_descriptions": 21,
+        "oneNav_pages": 32,
+        "oneNav_descriptions": 32,
         "oneNav_image_candidates": 6,
-        "oneNav_images_missing": 15,
+        "oneNav_images_missing": 26,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3228,
+        "unmatched_products": 3217,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 89,
-        "manufacturerDescriptionsVerified": 89,
+        "exactModelPagesReviewed": 100,
+        "manufacturerDescriptionsVerified": 100,
         "exactImageCandidatesApplied": 74,
-        "exactModelImagesMissing": 15,
-        "unmatchedProducts": 3228,
+        "exactModelImagesMissing": 26,
+        "unmatchedProducts": 3217,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
     }
