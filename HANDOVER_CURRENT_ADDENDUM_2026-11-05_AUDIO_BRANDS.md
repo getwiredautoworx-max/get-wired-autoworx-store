@@ -28,3 +28,12 @@ Next: monitor run 42061845444; continue OneNav image and dedicated brand-page ve
 - OneNav product route returned 65 products, 6 image candidates and 6 review notes. The page is still incomplete: 21 of 65 cards have exact official manufacturer descriptions, 6 exact-model image candidates are present, 15 verified pages still need exact photos, and 44 product cards remain unmatched. Do not call OneNav resolved or move to the next brand.
 - Audio Connections still has a separate low-resolution exception: BlackSpider Lynx image loads but natural width is 104px (source filename 105.png). Record for later; do not switch focus away from OneNav.
 - Current branch head after the preview run is `212c50d46e5afb4a88fd516f88f11d90f5e67c1a`, which adds this handover documentation only; tested storefront source remains SHA 2055dc4. Do not issue the preview to the owner as final readiness: OneNav product reconciliation remains open. Production HOLD.
+
+
+## 19:05 SAST — CONTINUATION RE-ENTRY / BEFORE NEXT ONE NAV PASS
+
+- Re-read the current branch and audio addendum before continuing. The branch head has advanced to `01ef301a799732b53c1e9f3791c55c6feb2d7f38` (catalogue classification correction for OA266-1); this is newer than the earlier docs-only checkpoint and must be treated as current. Do not assume the PR metadata snapshot or older addendum reflects current file state.
+- Exact-head preview run `42062037287` remains a successful test of source SHA `2055dc4764c4d6280b6d026a105fecadc759f6a2`, not of later source changes at branch head `01ef301`. Its preview remains historical evidence only until a fresh exact-head run is completed.
+- Re-read of `catalogue-review/planetworld-one-official-model-audit.csv` at current branch head found 31 OneNav model rows with official product-page/SKU/fitment evidence. Several additional image rows have advanced since the earlier 21-description/6-image summary; the older totals are not safe to carry forward without a fresh parser/reconciliation. OneNav remains the only active brand; do not move to another brand.
+- Current next task: recompute OneNav description/image status from the current audit and enrichment inputs, then resolve only exact model/fitment image candidates. Keep variant mismatches rejected and retain pending flags where no exact asset can be substantiated. No production, live price/stock, Supabase, Axxess, DNS, payment or checkout changes.
+- This entry is the pre-work checkpoint; update again with actual reconciliation results and exact-head verification after the next material change.
