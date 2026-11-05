@@ -100,7 +100,7 @@
       "modelNumber": "XS-160ES",
       "description": "Mobile ES 6.5-inch/16 cm 2-way coaxial speaker; 89 dB sensitivity; 90 W RMS.",
       "manufacturerPage": "https://www.sony-africa.com/en/electronics/mobile-es-series/xs-160es/specifications",
-      "imageUrl": "https://www.sony-africa.com/image/125f43db70ab81be75cd991fb41a1260?fmt=png-alpha&wid=756",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XS160ES_1.jpg?v=1696556761",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -110,7 +110,7 @@
       "gwSku": "GW-C96B794A",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.sony-africa.com/en/electronics/mobile-es-series/xs-160es/specifications"
+      "imageSourceUrl": "https://www.gentec-intl.com/products/xs160es"
     },
     {
       "id": "ac-005",
@@ -124,7 +124,7 @@
       "modelNumber": "XS-680ES",
       "description": "Mobile ES 6×8-inch/16×20 cm 2-way coaxial speaker; 89 dB sensitivity; 75 W RMS.",
       "manufacturerPage": "https://www.sony.com/za/electronics/car-speakers/xs-680es",
-      "imageUrl": "https://www.sony.com/image/e6d0c20714e162b1f1e7ebf7d79f279c?fmt=jpeg&wid=960",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/XS680ES_2.jpg?v=1696556759&width=2000",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -134,7 +134,7 @@
       "gwSku": "GW-1A7AB005",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.sony.com/za/electronics/car-speakers/xs-680es"
+      "imageSourceUrl": "https://www.gentec-intl.com/products/xs680es"
     },
     {
       "id": "ac-006",
@@ -830,7 +830,7 @@
       "modelNumber": "SSA-R-6900.1D",
       "description": "Starsound Rapter SSA-R-6900.1D single-channel Class D monoblock amplifier. The catalogue listing states 1000W RMS, while another retailer listing reports a different RMS figure; the RMS rating is therefore flagged for manufacturer confirmation rather than presented as settled. The model is identified as a Rapter 1-channel amplifier; confirm final RMS and crossover specifications with the supplier before publishing detailed power claims.",
       "manufacturerPage": "",
-      "imageUrl": "https://soundslimited.co.za/wp-content/uploads/2024/12/Starsound-SSA-R6900.1-Mono-Amplifier-sounds-limited.jpg",
+      "imageUrl": "https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2021/10/3-1117-1.png?fit=1200%2C638&ssl=1",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
@@ -840,7 +840,7 @@
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "supplierModelNumber": "SSATI6900.1",
       "manufacturerListedModel": "SSA-R-6900.1D",
-      "imageSourceUrl": "https://soundslimited.co.za/product/starsound-ssa-r6900-1-mono-amplifier/",
+      "imageSourceUrl": "https://myaudioandsecurity.co.za/product/starsound-ssa-r-6900-1d-1000w-rms-1ch-amplifier/",
       "descriptionSourceUrl": "https://osmans.co.za/product/product%26product_id%3D16111%26name%3DAMP_1CH_6900W_S%2FSOUND_RAPTER_%281000W_RMS%29",
       "descriptionStatus": "CONFLICTING_RMS_SPEC_NEEDS_MANUFACTURER_CONFIRMATION"
     },
