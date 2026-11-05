@@ -411,6 +411,6 @@ assert.ok(alpineHalo11Model && alpineHalo11Model.imageUrl && alpineHalo11Model.d
 const alpineHalo11Product = planet.records.find(row => /iLX-F115D/i.test(row.manufacturerProductName || ''));
 assert.ok(alpineHalo11Product && alpineHalo11Product.imageUrl && alpineHalo11Product.description, 'Alpine Halo 11 enrichment must reach its matching public preview product row');
 
-assert.ok(alpineHalo11Model.imageUrl.endsWith('/iLX-F115D_Large-larger-Alpine-Halo-11.jpg'), 'Alpine Halo 11 must use the verified official full-size model image, not a broken thumbnail or unrelated receiver image');
+assert.ok(alpineHalo11Model.imageUrl.endsWith('/iLX-F115D_Alpine-Halo-11-XXL-11-Inch-Media-Receiver.jpg'), 'Alpine Halo 11 must use the verified official full-size model image, not a broken thumbnail or unrelated receiver image');
 assert.equal(alpineHalo11Product.title, alpineHalo11Model.name, 'verified manufacturer product name must replace the misspelled supplier title in the customer preview');
 assert.ok(enrichment.includes('product["title"] = manufacturer_name'), 'exact-model enrichment must publish the verified manufacturer title');
