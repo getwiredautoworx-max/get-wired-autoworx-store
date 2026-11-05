@@ -3385,3 +3385,9 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 ### Third static-test correction — 2026-11-05
 - The exact-head package test reached the category image URL assertions and identified a one-character typo in the expected BOSS head-unit image filename. The actual page mapping was correct; the test expectation is now corrected to match the source URL.
 - No deployment/hosted pass is claimed. The latest exact-head pipeline is being rerun after this test-only correction.
+
+
+### Browser QA flow correction — 2026-11-05
+- The image-card load audit was reached on commit `815d7f0`; the owner-preview browser job proceeded through brand-first selection and Starsound product filtering, then failed because the test tried to click the “All brands” control while the brand selector was intentionally hidden at that stage.
+- Corrected the QA journey to navigate back to the explicit All brands route rather than clicking a hidden control. This preserves the intended brand-first UI and avoids weakening the visibility gate.
+- A full exact-head hosted result is still pending.
