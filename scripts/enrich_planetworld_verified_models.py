@@ -118,6 +118,7 @@ def main() -> None:
         if model:
             verified_matched += 1
             manufacturer_name = model.get("name") or product.get("title", "")
+            product["title"] = manufacturer_name
             product["manufacturerProductName"] = manufacturer_name
             product["description"] = model.get("description") or product.get("description", "")
             if model.get("manufacturerPage"):
