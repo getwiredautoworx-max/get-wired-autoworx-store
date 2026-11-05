@@ -1972,3 +1972,13 @@ At the time this plan is appended, the recorded active integration candidate is 
 - This is a non-production owner preview only. Production remains HOLD.
 - No Axxess upload, DNS change, Supabase/live database write, live stock/price update, payment activation, checkout activation or supplier catalogue publication was performed.
 - Next step: owner opens the preview link above on mobile and checks both Audio paths. Record feedback, fix any owner-observed visual issue, and rerun exact-head QA before considering PR #178 for merge.
+
+
+### Final verification addendum — 2026-11-05
+
+- The previously pending final exact-head workflow completed successfully. Tested source SHA: `22b9d4121ded14b9382468c16f1519aee884e4be`.
+- Run #42004142138: `success`; customer-only package, catalogue/structure regression, SKU audit, Cloudflare deployment marker, and hosted mobile/desktop Playwright checks all passed.
+- Hosted result: `GW_HOSTED_MOBILE_DESKTOP_PREVIEW_QA_PASS`; preview URL `https://owner-preview.get-wired-autoworx-store.pages.dev`; four root audio collage images loaded; browser JavaScript errors 0; desktop width/scroll width 1365/1365.
+- The final run exercised both complete journeys: Car Audio & Video → Sony → Amplifiers → matching products; Home Entertainment → Klipsch → Home Audio & Cinema → matching products. Klipsch logo image loaded.
+- The earlier line stating the final run was still being triggered is superseded by this addendum. No storefront source changes were made after the tested SHA; any subsequent handover-only commits do not alter the deployed application.
+- PR #178 remains open/draft for owner acceptance. Production remains HOLD.
