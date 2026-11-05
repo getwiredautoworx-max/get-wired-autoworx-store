@@ -189,7 +189,7 @@ def main() -> None:
         )
 
     data["productImageEnrichment"] = {
-        "sourceAudit": "planetworld-one-official-model-audit.csv",
+        "sourceAudit": "manufacturer-product-audit",
         "descriptionsEnriched": one_nav_descriptions,
         "exactImageCandidatesApplied": one_nav_images,
         "exactModelPagesReviewed": one_nav_matched,
