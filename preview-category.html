@@ -63,25 +63,25 @@ const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function explicitBrand(product){const spec=product&&product.specifications;if(!spec||typeof spec!=='object'||Array.isArray(spec))return 'Brand not specified';const keys=Object.keys(spec);const key=keys.find(k=>['brand','manufacturer','make'].includes(k.toLowerCase()));const value=key?String(spec[key]||'').trim():'';return value||'Brand not specified'}
 function audioAreaMatch(product,area){const t=[product.name,product.description].join(' ').toLowerCase();const studio=/studio|microphone|\bmic\b|mixer|mixing desk|\bdj\b|recording|audio interface|monitor speaker|\bpa system\b|public address|\bxlr\b|condenser|dynamic mic|headphone/.test(t);const home=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|\btv\b|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/.test(t);if(area==='studio')return studio;if(area==='home')return home;if(area==='car')return !studio&&!home;return false}
 function categoryArtFallback(label){
- return artFor(label)||"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82";
+ return artFor(label)||"";
 }
 function artFor(label){
  const n=String(label||'').trim().toLowerCase();
  const localAudio=[
-  [/car audio|car audio & video/,'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'],
-  [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82'],
-  [/speakers?|component kits/,'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82'],
-  [/subwoofers?/,'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=720&q=82'],
-  [/amplifiers?/,'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=720&q=82'],
-  [/head units|media players|radios/,'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=720&q=82'],
-  [/cameras? & monitors?/,'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=720&q=82'],
-  [/signal processing|crossovers?/,'https://images.unsplash.com/photo-1593078166036-3a7a4c8c8e2c?auto=format&fit=crop&w=720&q=82'],
-  [/trims? & harnesses?|harnesses?, trims/,'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=720&q=82'],
-  [/aerials?/,'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=720&q=82'],
+  [/car audio|car audio & video/,'https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'],
+  [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82'],
+  [/speakers?|component kits/,'https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'],
+  [/subwoofers?/,'https://images.unsplash.com/photo-1776176359206-a1d34436ddff?auto=format&fit=crop&w=720&q=82'],
+  [/amplifiers?/,'https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82'],
+  [/head units|media players|radios/,'https://images.unsplash.com/photo-1470948062737-aeb014e274c2?auto=format&fit=crop&w=720&q=82'],
+  [/cameras? & monitors?/,'https://images.unsplash.com/photo-1738138986988-add3dd7cde9a?auto=format&fit=crop&w=720&q=82'],
+  [/signal processing|crossovers?/,'https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82'],
+  [/trims? & harnesses?|harnesses?, trims/,'https://images.unsplash.com/photo-1677230017860-a8cc67785f0a?auto=format&fit=crop&w=720&q=82'],
+  [/aerials?/,'https://images.unsplash.com/photo-1759667880866-702f9f615489?auto=format&fit=crop&w=720&q=82'],
   [/band equipment|band & live sound/,'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82'],
   [/dj equipment/,'https://images.unsplash.com/photo-1642177272498-98096a6c98e4?auto=format&fit=crop&w=720&q=82'],
   [/instruments?/,'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82'],
-  [/marine audio/,'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=720&q=82'],
+  [/marine audio/,'https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82'],
   [/lifestyle/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82']
  ];
  const exact=localAudio.find(([re])=>re.test(n));
