@@ -100,3 +100,7 @@ required_checks=exact-sha-marker;ASC-sensor-pilot-image-load-waits;seven-auto-el
 request=ASC-AUTO-ELECTRICAL-CLOUDFLARE-BRANCH-ALIAS-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker-on-integration-branch-alias;mobile-and-desktop;ASC-four-catalogue-groups;34-pilot-images
+
+request=ASC-AUTO-ELECTRICAL-LOCAL-QA-PREVIEWBASE-REFERENCE-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;local-and-hosted-mobile;ASC-category-navigation;Car-Audio-brand-first;Car-Care-cards
