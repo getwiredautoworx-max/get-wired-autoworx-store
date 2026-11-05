@@ -195,3 +195,9 @@ request=owner-preview-retest-after-updating-official-alpine-image-host-assertion
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;alpine-halo11-official-image-naturalWidth;alpine-halo11-corrected-title;alpine-halo11-verified-description;centred-product-details;two-column-media-details;radios-multimedia-head-unit-grouping;all-68-exact-model-images-load;home-entertainment-journey;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-retest-after-switch-to-official-alpine-regional-product-image-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;alpine-halo11-official-image-naturalWidth;alpine-halo11-corrected-title;alpine-halo11-verified-description;centred-product-details;two-column-media-details;radios-multimedia-head-unit-grouping;all-68-exact-model-images-load;home-entertainment-journey;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
