@@ -3512,3 +3512,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Audited current photo IDs across `preview-audio.html`, `preview-audio-brand.html`, `preview-audio-products.html`, `preview-category.html` and `index-new.html`. Replaced the obsolete expected ID with the current radio/head-unit category photo `photo-1470948062737-aeb014e274c2`; the assertion still checks for an actual current image mapping.
 - Test fixture correction commit: `e5ce144fd99fc2faca8894e2cc6400864f51231f`. A new push-triggered exact-head run should execute this revision.
 - No deploy has happened: the previous rerun failed during package build at the stale photo expectation, before SKU audit or Cloudflare deploy. Continue to withhold the owner preview URL until all hosted checks pass.
+
+
+## 2026-11-05 — OWNER PREVIEW VERIFIED ON LATEST BRANCH HEAD
+
+- Latest branch head deployed and tested exactly: `8e0c4ced3868b91c08d086c938e5bb51ad04dd87`.
+- GitHub Actions run `42015669402` completed successfully. Exact deployed-SHA marker matched the expected commit and the isolated non-production Cloudflare Pages deployment succeeded.
+- Build and regression evidence: `PAGES_PUBLIC_BUILD_PASS files=4158 webp_images=4101`; audio catalogue regression passed (3,317 Planetworld rows, 702 Car Audio rows, 66 Audio Connections rows, 2 excluded rows, preview-only); three-category storefront structure passed; public SKU exposure audit passed.
+- Hosted Playwright browser QA passed at 390px mobile and 1365px desktop. The test verified three homepage roots, all four homepage audio collage images, six audio subcategory cards and their images, compact two-column mobile layout, Car Audio brand-first navigation, Sony logo naturalWidth, Sony → Amplifiers filtered products, Home Entertainment brand-first navigation, Klipsch logo, Home Audio & Cinema image and filtered products, Auto Electrical and Car Care subcategory image grids, accessories child route and 47 Trims & Harnesses products.
+- Browser result: `GW_HOSTED_MOBILE_DESKTOP_PREVIEW_QA_PASS`; zero JavaScript errors; desktop viewport width and scroll width both 1365px (no horizontal overflow).
+- Safety gates verified in the hosted test: non-production banner present, preview writes blocked, checkout hidden. Package excludes suppliers, catalogue review/source/audit folders, staging, Supabase and .github content.
+- Owner review URL: `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- **Status: READY FOR OWNER PREVIEW REVIEW ONLY.** This is not production readiness and does not constitute owner acceptance. PR #178 remains draft/unmerged; no production/Axxess/DNS/Supabase/live stock or pricing/payment/checkout activation has occurred.
