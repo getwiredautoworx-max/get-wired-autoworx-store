@@ -61,6 +61,9 @@ const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheF
 const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']];
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function artFor(label){
  const n=String(label||'').trim().toLowerCase();
+ if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
+ if(n==='auto electrical parts & spares')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
+ if(n==='accessories')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
  if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
  const photos=[
   [/fuse.*regulator|regulator.*fuse/,'photo-1581092160562-40aa08e78837'],
