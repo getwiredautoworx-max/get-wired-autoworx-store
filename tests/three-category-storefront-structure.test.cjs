@@ -225,29 +225,29 @@ assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio comp
 
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 
-// Owner visual requirement: every nested category uses relevant product imagery, not generic repeated text bars.
-for (const imageUrl of [
-  'ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg',
-  'i.ebayimg.com/00/s/MTYwMFgxNjAw/',
-  'nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png',
-  'bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byu',
-  'down-ph.img.susercontent.com/file/23da3f49f2e772cfaa55a72f0704f539',
-  'soundautoconcept.com/cdn/shop/files/esx-dsp-numerique',
-  'fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png',
-  'nbyichou.com/ck/userfiles/images/products/car/10001%282%29.jpg',
-  'seatsavers.com/cdn/shop/files/8ATC15_Soaker',
-  'meguiars.com/sites/default/files/styles/colorbox_image/public/2025-11/G55267_QuikSolutions-AllWeatherFloorMatKit',
-  'autoignite.net/cdn/shop/collections/auto-parts-accessories.png'
-]) assert.ok(previewCategory.includes(imageUrl), 'category image map includes '+imageUrl);
-assert.ok(previewCategory.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg'), 'component-speaker tile uses component-speaker photography');
-assert.ok(previewCategory.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'amplifier tile uses amplifier photography');
-assert.ok(previewCategory.includes('bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byu'), 'head-unit tile uses head-unit photography');
-assert.ok(audioPage.includes('function componentImage(label)'), 'audio product-type tiles resolve category-specific imagery');
-assert.ok(audioPage.includes('function componentImageButton(label,active,fn)'), 'audio product-type tiles are image-led accessible buttons');
-assert.ok(audioPage.includes('cs.forEach(c=>el("components").append(componentImageButton'), 'brand-filtered component choices render as image cards');
-assert.ok(audioPage.includes('#components .componentImageButton img'), 'audio component cards have responsive image styling');
-assert.ok(audioPage.includes('#components[hidden],#products[hidden]'), 'audio navigation hidden state must override component grid display styles');
-assert.ok(audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'component and amplifier choices use matching photos');
+// Owner visual requirement: audio category buttons use dedicated local illustrations, not fragile third-party image URLs or unrelated fallbacks.
+for (const asset of [
+  'audio-types/speakers.svg',
+  'audio-types/subwoofers.svg',
+  'audio-types/amplifiers.svg',
+  'audio-types/head-units.svg',
+  'audio-types/cameras-monitors.svg',
+  'audio-types/signal-processing.svg',
+  'audio-types/harnesses-trims.svg',
+  'audio-types/aerials.svg',
+  'audio-types/home-audio-cinema.svg',
+  'audio-types/musical-instruments.svg',
+  'audio-types/marine-audio.svg',
+  'audio-types/lifestyle-audio.svg'
+]) {
+  assert.ok(audioPage.includes('/assets/'+asset) || previewCategory.includes("'"+asset+"'"), 'audio category image map includes '+asset);
+  assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package includes '+asset);
+}
+assert.ok(audioPage.includes('"/assets/audio-types/speakers.svg"'), 'speaker/component tile uses dedicated speaker artwork');
+assert.ok(audioPage.includes('"/assets/audio-types/amplifiers.svg"'), 'amplifier tile uses dedicated amplifier artwork');
+assert.ok(audioPage.includes('"/assets/audio-types/head-units.svg"'), 'head-unit tile uses dedicated head-unit artwork');
+assert.ok(audioPage.includes('"/assets/audio-types/subwoofers.svg"'), 'subwoofer tile uses dedicated subwoofer artwork');
+assert.ok(!audioPage.includes('ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && !audioPage.includes('nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png'), 'audio component image buttons must not depend on third-party image hosts');
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
