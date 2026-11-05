@@ -14,6 +14,9 @@ const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/sc
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
 assert.ok(categoryPage.includes("photo-1593359677879-a4bb92f829d1'],\n  [/speaker"), 'category artwork mapping entries must remain comma-separated so the root category renderer does not crash');
+const previewCategoryInlineScripts = [...previewCategory.matchAll(/<script>([\\s\\S]*?)<\\/script>/g)].map(match => match[1]);
+assert.ok(previewCategoryInlineScripts.length > 0, 'preview category page must contain its navigation script');
+for (const script of previewCategoryInlineScripts) new vm.Script(script);
 const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(audioInlineScripts.length > 0, 'audio preview must contain its catalogue navigation script');
 for (const script of audioInlineScripts) new vm.Script(script);
@@ -207,7 +210,7 @@ assert.ok(audioPage.includes('const brandChosen=routeParams.has("brand")&&reques
 assert.ok(audioPage.includes('el("brands").hidden=!department||brandChosen||directSearchRoute'), 'brand buttons must remain visible on the initial Car Audio landing page');
 assert.ok(audioPage.includes('el("components").hidden=!department||!brandChosen||directSearchRoute'), 'component choices must remain hidden until a brand is selected');
 assert.ok(audioPage.includes('function categoryArtFallback(label)'), 'category image failures must fall back to self-contained category artwork');
-assert.ok(previewCategory.includes("this.src=categoryArtFallback(this.alt.replace(/ product photo$/,''))"), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
+assert.ok(previewCategory.includes('this.src=categoryArtFallback(this.alt)'), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
 assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio component image failures must show a relevant fallback illustration');
 
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
