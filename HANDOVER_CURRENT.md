@@ -3283,3 +3283,26 @@ Owner reported that the main categories did not open separate pages and subcateg
 - Give the owner the refreshed stable preview and request visual acceptance of the category-page layout on the Hisense phone. Do not claim owner acceptance on their behalf.
 - This fixes navigation/layout only; remaining catalogue completeness, image/price/stock reconciliation and ASC integration are not complete.
 - PR #176 remains OPEN / DRAFT / UNMERGED pending owner acceptance. Production remains HOLD. No Axxess upload, DNS change, Supabase/live write, live stock/price change, checkout/payment activation or production deployment occurred.
+
+
+## 2026-11-05 08:53 SAST — CONTINUATION AUDIT: CATEGORY ROUTING / GRID FIX IN SOURCE; CURRENT DEPLOYMENT NOT YET INDEPENDENTLY VERIFIED
+
+### Live GitHub state checked
+- PR #176 is OPEN / DRAFT / UNMERGED, base `main`, head branch `preview/integrated-storefront-2026-11-04`, live GitHub head SHA `980a358feed7d19fa6d8d66dc719744e40a1349f`. GitHub currently reports `mergeable=false`. Do not merge.
+- This live PR head supersedes the previous checkpoint's recorded `0c3c606ac78f99e54bac3e33ffef19e2ecbc8c2b`; always re-read live PR metadata before quoting a current head.
+- The live `.preview-deploy-request` includes a request naming the same current head SHA `980a358...`.
+- The staging workflow is configured for pushes to this integration branch and for changes to `.preview-deploy-request`, homepage/category route source and the structural test. It builds the customer-only preview package, runs catalogue/category/SKU regressions, deploys to the dedicated Cloudflare Pages preview branch, checks the exact SHA marker, and runs hosted Playwright checks at 390px mobile and desktop.
+- The available GitHub workflow-run lookup returns only PR-triggered runs; it returned no entries for the latest push-triggered deployment commits. This is a connector visibility limitation, not evidence that a workflow did not run or failed. Therefore the current alias must not yet be represented as verified for `980a358...`.
+
+### Source audit — fixes are present in the current integration branch
+- `index-new.html` now renders the three main category tiles as real same-frame links to `preview-category.html?id=<root-id>`. The delegated click handler explicitly returns for `a.catalogueLink`, so it does not convert those links back into accordion toggles.
+- `preview-category.html` loads the category snapshot, resolves the selected root by ID, and renders its direct children as separate navigable `<a class="card">` elements. Its compact-grid CSS forces 3 columns on desktop and 2 columns on mobile, with compact artwork and card heights.
+- The mobile/desktop hosted browser workflow now tests the actual root click, page heading, child-card count, measured grid columns/card dimensions, nested Car Audio & Video → Accessories → Aerials / Trims & Harnesses navigation, and the 47-product Trims & Harnesses filtered listing. It also checks the three approved roots, preview write-block, hidden checkout and JavaScript errors.
+- The source regression test parses inline scripts and checks the three-root hierarchy, artwork mappings, safe category cleanup and preview package invariants.
+- Current category snapshot contains exactly the approved three active roots and the rebuilt hierarchy. Do not restore the obsolete eight-root implementation or its stale assertions.
+
+### Preview / next action
+- Stable owner preview URL remains `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- The previously verified deployed source SHA `00c197fe9ef83d982ae3407e7a9eec8412cb6a9c` is not the current PR head. Do not ask the owner to accept an older build as the latest.
+- Next gate is to obtain the push-triggered deployment result for exact head `980a358...`, confirm `qa-build-result.json` reports `result=PASS`, `preview_only=true` and that exact SHA, then inspect the owner preview on the owner's phone. If the deployed marker is stale or the actual layout still fails, inspect the exact hosted browser run/logs and correct the concrete defect on this same branch.
+- No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price/category mutation, banking or payment go-live occurred. Production remains HOLD; PR #176 remains OPEN / DRAFT / UNMERGED pending exact-head evidence and owner acceptance.
