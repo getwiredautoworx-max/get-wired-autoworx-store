@@ -3582,3 +3582,10 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - Removed that internal file path from the public JSON and from the repeatable generator. The audit remains in the repository's internal `catalogue-review/` directory and is read by regression tests only; no supplier names, supplier SKUs or dealer costs are exposed in the customer preview JSON.
 - No deploy occurred from the failed run. This was caught at the package build gate before the preview deployment step.
 - Next exact-head run must re-run the complete regression suite and hosted browser checks; do not bypass the supplier-identity safeguard.
+
+
+## 2026-11-05 — REGRESSION TEST FIX: DUPLICATE BINDING
+
+- The next exact-head regression run passed the public package build and supplier-identity guard, then stopped in the Node test file due to a duplicate top-level `brandRoute` declaration introduced by the new image/logo assertions.
+- Renamed the new early-scope variable to `brandLandingRoute`; no production source or data behavior changed in this test-only correction.
+- The run did not deploy. Next exact-head run must confirm all catalogue assertions pass before deploying.
