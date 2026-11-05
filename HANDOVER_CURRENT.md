@@ -3367,3 +3367,23 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Root cause of previous menu loop was the premature `brand=All brands` query parameter on department clicks. Current route now passes only the selected `department` and `label`, leaving the brand stage unselected until a brand is chosen.
 - Next action: owner should open the exact deployment URL fresh on the phone and tap Car Audio → a brand → a component, then Home Entertainment → a brand → a component. If any tap returns to the prior menu, capture the URL and visible heading at that exact point; fix only that route on this same branch and rerun the exact-head hosted suite.
 - Do not merge PR #178, deploy production, activate supplier data, or alter live stock/prices without explicit owner approval.
+
+
+---
+
+## AUDIO NAVIGATION DEFECT — OWNER REPORTED PREVIEW FAILURE (2026-11-05)
+
+- Owner rejected both previously supplied preview links: they behaved identically, showed cartoon/illustrated button art, and Car Audio / Home Entertainment appeared to return to the previous menu. Do not repeat the prior readiness claim.
+- Root cause confirmed in `preview-audio.html`: `draw()` switched the selected department to its brand list but never hid the original `#departments` menu. The old department buttons therefore remained on screen above the selected department's brands/components, making navigation appear to have returned to the previous menu.
+- The earlier hosted QA was insufficient: it verified that brand cards existed but did not assert that the previous department menu was hidden. Its Home Entertainment check also inspected the eight department images after selecting Home Entertainment instead of checking the selected route state. The workflow assertions have been corrected to require the exact `department` query value and a hidden previous menu.
+- Fixes committed on `integration/owner-preview-single-task-2026-11-05`:
+  - `preview-audio.html`: hide `#departments` whenever a department is selected; replace illustrated department tile art with photographic images.
+  - `preview-category.html`: replace illustrated audio subcategory art with relevant photo sources.
+  - `preview-audio-brand.html`: prefer exact-brand catalogue product photos, then matching component photos, then photo-based category art.
+  - `owner-preview.html`: add a versioned iframe query to avoid reusing a cached homepage document on mobile.
+  - `tests/audio-catalogue-preview.test.cjs`: assert the previous menu is hidden and photo artwork is selected.
+  - `.github/workflows/owner-preview-exact-sha.yml`: require Car Audio and Home Entertainment exact query-state checks and fail if the prior department menu remains visible.
+- Exact code head submitted for deployment/hosted QA: `23ab7f43e06f1b6201151801e5cfcab3166252a1`.
+- Latest exact-head run: [42008872572](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42008872572), status was in progress at the time of this note. Earlier superseded runs were cancelled after subsequent commits; do not treat them as verification.
+- Preview remains non-production. PR #178 remains draft/open/unmerged. No production deploy, DNS, Axxess upload, Supabase writes, live stock/price changes, checkout or payment activation.
+- Do not issue a new preview-ready claim until run 42008872572 completes successfully, the deployed SHA marker matches, and hosted mobile tests pass. The owner must still confirm the tap sequence on their phone; if it still fails, capture the current iframe URL and visible heading and fix that exact route.
