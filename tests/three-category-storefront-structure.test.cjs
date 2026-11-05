@@ -134,7 +134,9 @@ assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
 assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
-assert.ok(audioBrandPage.includes('assets/audio-types/speakers.svg') && audioBrandPage.includes('assets/audio-types/amplifiers.svg'), 'brand page must use local product-type illustrations');
+assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1608043152269-423dbba4e7e1') && audioBrandPage.includes('images.unsplash.com/photo-1583394838336-acd977736f90'), 'brand page must use photographic product-type artwork');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
+assert.ok(audioPage.includes('el("departments").hidden=!!department;'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
 assert.ok(planetPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'legacy Planetworld review route must redirect into the unified Car Audio & Video catalogue');
 assert.ok(!planetPage.includes('Supplier stock snapshot') && !planetPage.includes('stock.jhb'), 'supplier stock snapshots must not be rendered as a separate customer-facing catalogue');
