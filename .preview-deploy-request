@@ -10,3 +10,5 @@ request=PR-176-three-category-preview-exact-head-verification
 request=PR-176-final-three-root-deploy-after-qa-branch-fix
 request=PR-176-three-category-owner-preview-exact-head-2026-11-05
 requested_head=b6191fe94bc7d5368231df29ea0acaf5d16f77d6
+request=PR-176-exact-head-after-handover-checkpoint-2026-11-05
+requested_head=1d2c0491d8a9110194bdc443d7c4cc3eb5a4154b
