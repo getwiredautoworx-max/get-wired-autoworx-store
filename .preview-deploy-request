@@ -84,3 +84,7 @@ required_checks=exact-sha-marker;all-category-images;ASC-four-catalogue-routes;3
 request=ASC-AUTO-ELECTRICAL-HOSTED-QA-AMPLIFIER-SELECTOR-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;brand-first-audio;seven-auto-electrical-cards;ASC-sensor-pilot-images;desktop-no-overflow
+
+request=ASC-AUTO-ELECTRICAL-AND-STOREFRONT-CAR-MATS-IMAGE-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;audio-category-images;car-care-category-images;ASC-four-catalogue-routes;34-pilot-images;mobile-and-desktop
