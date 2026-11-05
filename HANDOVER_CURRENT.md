@@ -3361,3 +3361,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 3. Continue OneNav only: reconcile the remaining 50 product cards against exact manufacturer pages, descriptions and exact-model photos; do not reuse A10/A11/Evolution/Universal variants across Classic fitments.
 4. Only after the OneNav page is complete and hosted QA passes, move to the next brand.
 5. Keep PR #178 draft/unmerged and production HOLD. No Axxess, DNS, Supabase writes, live stock/price changes, payment activation or production deployment.
+
+
+## OneNav follow-up — 2026-11-05 18:08 SAST
+- Run 42060692811 failed during the package build because five newly added audit rows lacked exact source_title_exact values; this was an audit-row binding issue.
+- Corrected source-title bindings for OA016-2, OA017-1, OA018-2, OA416-1 and OA509-1. No unverified image was added.
+- Added regression checks for the five new fitment descriptions.
+- Current branch head: 449f2ada81d5ab640208d660a44f444ced46223a; run 42060862172 is queued.
+- OneNav remains the only active brand: 14/64 product cards have exact manufacturer descriptions; 6 image candidates exist and 8 verified pages still lack exact images. The remaining 50 product cards still require reconciliation. Do not move to another brand.
