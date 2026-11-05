@@ -275,3 +275,9 @@ request=owner-preview-exact-head-after-final-handover-and-alias-fix-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker-from-wrangler-outputs;node-regression;public-sku-audit;three-root-navigation;home-entertainment-brand-first;klipsch-logo;home-audio-cinema-type-image;filtered-home-products;onenav-logo;amplified-logo;alpine-halo-11-image-description;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-category-continuation-after-supplier-cdn-test-fix-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker-from-deployment-url-and-branch-alias;node-regression;public-sku-audit;three-root-navigation;all-audio-subcategory-images;car-audio-brand-first;onenav-logo;amplified-logo;home-entertainment-brand-first;home-audio-cinema-type-image;filtered-home-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
