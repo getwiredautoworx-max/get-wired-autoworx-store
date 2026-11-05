@@ -89,6 +89,8 @@ assert.ok(planet.records.every(row=>!Object.hasOwn(row,'modelNumber')&&!Object.h
 const imageAudit=parseCsvRows(fs.readFileSync('catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv','utf8'));
 const imageAuditRows=imageAudit.slice(1);
 const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,index]));
+const oneNavAuditSource=fs.readFileSync('catalogue-review/planetworld-one-official-model-audit.csv','utf8');
+assert.ok(['OA115-1','OA115-3','OA195-1','OA197-1','OA198-1','OA198-2','OA199-1'].every(sku=>oneNavAuditSource.includes(sku)),'seven additional OneNav Classic source SKU audits must remain present');
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,74);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,15);
