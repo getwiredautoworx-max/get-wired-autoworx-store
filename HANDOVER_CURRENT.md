@@ -4249,3 +4249,15 @@ The current OneNav audit, 45-record reconciliation, unresolved image/coverage ga
 ## 2026-11-05 — Audio category frozen
 
 The owner has instructed that the Audio category be preserved exactly as it currently stands. Do not edit any audio-category content until the owner explicitly instructs us to resume. This includes category and subcategory structure, brand pages and logos, product data, images, descriptions, prices, navigation, and related assets. Keep all existing audio work and audit notes unchanged; unresolved items remain paused, not completed. Only this handover note may be changed in relation to the audio category before renewed permission. ASC catalogue preparation remains the active workstream. If ASC mapping would require changing an audio category, record it as pending and ask the owner first. Buyers Guides remain excluded unless separately reauthorised. Production remains on hold.
+
+
+## 2026-11-05 — OWNER-DIRECTED ASC CATEGORY PLACEMENT
+
+- Owner explicitly directed that all six current ASC catalogue families be organised as their own store subcategories with this split:
+  - **Auto Electrical Spares:** Aerials; Automotive Sensors; Automotive Switches; Automotive Globes; Fuel Pumps.
+  - **Car Care & Accessories:** Car Mats (own subcategory).
+- This supersedes the earlier provisional Aerials → Audio and Car Mats → Automotive Accessories mappings. Aerials must remain outside the frozen Audio category. Audio remains no-touch until the owner explicitly resumes it.
+- Recorded the family-to-root assignment in `catalogue-review/asc-catalogue-extraction/asc-store-category-assignment-review-only.csv` (commit `5d9487b683afdf1872f56bc9216b84c740a91c28`) and updated `suppliers/ASC/README.md` (commit `809166c89fce1b7647b246d8c771436c10c269f2`). These are documentation/staging records, not a claim that product rows or category buttons have been deployed to the preview.
+- The six original PDFs remain unchanged. Product-level staging remains DO NOT IMPORT until every product's exact identity, code, description/specification, fitment and image pairing is checked against original page images. OCR-only records are not verified. ASC pricing remains quote-only until current pricing is supplied: exact wording “Price On Request due to Limited Stock and Availability”. Buyers Guides remain excluded.
+- No live database writes, product imports, stock/price changes, public activation, payment/checkout changes or production deployment occurred. Production HOLD.
+- **Next:** implement these six family subcategories in the non-production preview using the approved three-root architecture, without touching Audio; then visually verify source pages and stage product rows under the corresponding family. If the current preview implementation cannot safely support the category change without touching frozen Audio, stop and record the blocker rather than editing Audio.
