@@ -126,5 +126,17 @@
     "809",
     "CROSSOVER 2950",
     "SSAR 22000.1 (manufacturer/retailer product listing confirms SSA-R-22000.1)"
+  ],
+  "imageCoverageNote": "57 of 66 Audio Connections preview records have exact-model image URLs with source-page references. Nine records remain without verified photos; the supplier Starsound price-list PDF has no embedded Starsound product photos, and no safe exact-model replacement was found for those rows. Do not use lookalikes.",
+  "remainingImageModels": [
+    "SSW-S12\" SPECTR 15000",
+    "SSATI-2250.2",
+    "SSAT6200.1",
+    "SSATI6900.1",
+    "860",
+    "412P",
+    "RA AWG4",
+    "BULLET LYNX",
+    "RA SUPER RAST20"
   ]
 }
