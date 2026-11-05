@@ -19,9 +19,10 @@ if((homePage.match(/<section class="group"/g)||[]).length!==3||!homePage.include
 for(const [id] of approvedRoots){if(!homePage.includes(id)||!html.includes(id)||!categoryPage.includes(id)||!productionCategory.includes(id))throw new Error('Approved root missing from a customer-facing route: '+id)}
 if(!standardProducts.includes('assets/legacy-catalogue-guard.js')||!standardProducts.includes('GWLegacyCatalogueGuard.filter(await apiAll(')) throw new Error('Standard product listing must load and apply the legacy catalogue guard');
 if(!standardProduct.includes('assets/legacy-catalogue-guard.js')||!standardProduct.includes('GWLegacyCatalogueGuard.filter(await api(')) throw new Error('Standard product detail must load and apply the legacy catalogue guard');
-const guardFixtures=[{public_sku:'GW-1893682C',specifications:{}},{public_sku:'GW-OLD-SEPT',specifications:{source_file:"September Buyer's Guide.pdf"}},{public_sku:'GW-OLD-OCT',source_file:'October Buyers Guide.pdf',specifications:{}},{public_sku:'GW-CURRENT',specifications:{source_file:'current Audio Connections catalogue'}}];
+const heldOilFillerSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765','GW-1893682C'];
+const guardFixtures=[...heldOilFillerSkus.map(public_sku=>({public_sku,specifications:{}})),{public_sku:'GW-OLD-SEPT',specifications:{source_file:"September Buyer's Guide.pdf"}},{public_sku:'GW-OLD-OCT',source_file:'October Buyers Guide.pdf',specifications:{}},{public_sku:'GW-CURRENT',specifications:{source_file:'current Audio Connections catalogue'}}];
 const guardResult=guard.filter(guardFixtures);
-if(guardResult.length!==1||guardResult[0].public_sku!=='GW-CURRENT') throw new Error('Legacy Buyers Guide quarantine must filter SKU quarantine and top-level/specification source metadata');
+if(guardResult.length!==1||guardResult[0].public_sku!=='GW-CURRENT'||heldOilFillerSkus.some(sku=>guardResult.some(record=>record.public_sku===sku))) throw new Error('Legacy Buyers Guide and oil-filler-cap quarantine must filter all ten held SKUs plus source-tagged legacy rows');
 
 const required = [
   ["ASC_CATALOGUE_CHILDREN", "ASC family navigation data"],
