@@ -3838,3 +3838,15 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The all-image audit also passed: `68/68` exact-model images loaded, with zero failed image URLs.
 - The workflow then failed later at the unrelated Trims & Harnesses accessory check (`expected 47, got 0`) because it counted cards immediately after the heading appeared without waiting for the asynchronous product list. Added a wait for the first visible `.audioProduct` before counting in commit `12029bdbaad9f42b12bc55a2f7c7da7726621c85`.
 - This run did not finish the remainder of hosted checks, including final desktop overflow verification. Do not treat it as final preview acceptance. Next: rerun the exact latest head; require the 47-product list to load, all remaining navigation tests, mobile/desktop checks, and zero JS errors before sharing the URL.
+
+
+### Exact-head storefront preview QA — PASS (2026-11-05)
+- Exact tested head: `d058e0df1408b0371ed867682c05380f5e77f984`.
+- GitHub Actions run `42028830120`: completed **SUCCESS**. Exact deployed-SHA marker matched the tested head.
+- Customer-only package build, both Node regression suites, category/route invariants and public SKU exposure audit passed.
+- Hosted Playwright QA passed at 390px mobile and 1365px desktop: all three root categories and audio navigation journeys, Sony/Alpine/OneNav/Amplified brand checks, Home Entertainment → Klipsch → Home Audio & Cinema, Auto Electrical and Car Care grids, and Accessories → Trims & Harnesses.
+- Alpine Halo 11 iLX-F115D audit passed: exact manufacturer image loaded at 1000px natural width; customer-facing title corrected; verified DAB+/wireless Apple CarPlay description present; text alignment is centred; media/details are separate columns.
+- All 68 exact-model image URLs loaded (68/68); OneNav/Amplified official logos loaded; RRP pricing audit passed at VAT-inclusive RRP × 0.98; Trims & Harnesses count returned 47; zero browser JavaScript errors; desktop horizontal overflow 0px.
+- Preview remains non-production: checkout hidden, supplier submissions disabled, Supabase writes blocked. PR #178 remains draft/unmerged; no production, DNS, Axxess, live stock/price, payment or supplier activation.
+- Owner review URL for this exact build: `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- Ready for owner visual review only. This is not production readiness or owner acceptance.
