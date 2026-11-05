@@ -3402,3 +3402,51 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 ### Full subcategory picture-load QA — 2026-11-05
 - Extended hosted staging QA beyond the Car Audio component cards. It now checks that all six Audio root subcategory images, all five Auto Electrical subcategory images, and all four Car Care subcategory images actually load on the 390px mobile view. The brand-first Car Audio test separately verifies every component image under the selected brand.
 - Any failed/broken remote image must be replaced before owner handover. The hosted preview remains pending exact-head verification.
+
+
+---
+
+## 2026-11-05 — ASC AUTO ELECTRICAL CATALOGUE CONTINUATION CHECKPOINT
+
+### Current candidate and exact branch reference
+- Active candidate: PR #177, **Draft: selectively integrate ASC Auto Electrical catalogue preview**.
+- PR state: OPEN / DRAFT / UNMERGED; base is the current PR #176 preview branch. Do not merge it to main or production.
+- Latest PR metadata head at this checkpoint: `5d8892e5720b19f48888684ada39d4a7022cabb7` on `integration/asc-auto-electrical-clean-2026-11-05`.
+- Cloudflare Pages bot comment confirms a successful Pages deployment for that exact head: https://941e56d0.get-wired-autoworx-store.pages.dev/ (owner route: /owner-preview.html). This is a deployment confirmation, not proof that browser navigation/image QA passed or owner accepted the preview.
+
+### Four dedicated Auto Electrical catalogue subcategories — source readback
+The preview category tree has four dedicated, direct children of **Auto Electrical Parts & Spares**:
+1. Automotive Sensors — `e6a10001-1b2c-4d3e-8f90-111111111111`.
+2. Automotive Switches — `e6a10002-1b2c-4d3e-8f90-222222222222`.
+3. Automotive Globes — existing category ID `89595653-97d4-4b18-ba69-117547d32ed0`.
+4. Fuel Pumps — `e6a10003-1b2c-4d3e-8f90-333333333333`.
+
+- The four category cards route to `asc-auto-electrical-preview.html` with the matching catalogue query. The catalogue page presents four separate groups and the original contents-section headings in source order: Sensors 11; Switches 16; Globes 10; Fuel Pumps 18 — **55 source sections total**.
+- Current tree also retains the existing generic Auto Electrical categories (Alternators & Starters, Batteries & Charging, Fuses, Relays & Wiring). Total direct Auto Electrical subcategory cards: 7.
+- Aerials remains under Car Audio & Video → Accessories → Aerials, and Car Mats remains under Car Care & Accessories → Car Mats, in accordance with the earlier specific owner directions. The latest phrase “each catalogue … under Auto Electrical Spares” may be intended to supersede those two exceptions; do not move Aerials or Car Mats until owner confirms whether both are to be relocated. The four Auto Electrical catalogue groups above are implemented separately.
+
+### Reviewed pilot records and image-file audit
+- `assets/asc-auto-electrical-preview.json` contains 34 visually reviewed pilot records across the four Auto Electrical catalogues.
+- All 34 are `preview_only=true`, `REVIEW_ONLY_NOT_LIVE`, with null price and stock quantity. No GW SKU is assigned. Image status remains watermark-retaining owner review only; rights are not cleared for production use.
+- The intermediate commit `c21726f32054bd0b03f5f1ba38a38d4aa5a6d9b1` contained an image URL prefix mismatch in the JSON (`assets/asc-catalogue-pilot/`). The current PR head's JSON now uses the actual `assets/asc-auto-electrical-pilot/` directory.
+- Read-only GitHub file checks confirmed that all **34 distinct pilot image files** referenced by the current branch JSON exist in the repository. The four category-card artwork files are also in that same verified set. This verifies repository file presence and corrected paths only; it is not a hosted browser image-render/load test or a full visual match audit.
+- Source identity, exact supplier code, original PDF page traceability, descriptions and fitment still require the next catalogue-level reconciliation pass. Do not treat the 34-card pilot as the full ASC product register. The wider 983-card register still has 933 descriptions requiring editorial verification and fitment/specification review.
+
+### Verification and preview status
+- Dedicated static regression exists at `tests/asc-auto-electrical-integration.test.cjs`. It asserts the four category destinations, 34 preview-only records, null price/stock, watermark status, existence of every image path, noindex/quote-only/no-cart page rules and preview package inclusion.
+- Pages builder invokes the structural and ASC integration tests before packaging and includes the ASC route/data/images only in non-main preview builds.
+- GitHub Public SKU Exposure Audit run **41990960984** succeeded for exact head `5d8892e`.
+- Combined commit status returned no status contexts. The exact-head Node/package regression and hosted mobile/desktop browser results are not independently verified in this checkpoint. Cloudflare Pages deployment succeeded for the exact head, but the preview URL could not be independently opened with the available browser retrieval, so do not claim hosted navigation/image QA passed.
+- Owner's previous instruction remains to defer payment/checkout functional testing until banking details are supplied. Continue static catalogue checks and safe preview-only work; do not initiate payment or live checkout tests.
+
+### Next actions
+1. Confirm with owner whether Aerials and Car Mats should remain in their previously approved Car Audio and Car Care destinations, or whether the new instruction intentionally moves both under Auto Electrical Spares.
+2. Reconcile all 34 pilot records to exact supplier SKU/model/variant, original PDF filename and page, source heading, description and fitment; record duplicates and uncertainty explicitly.
+3. Inspect the actual image contents against the exact source item and fitment; do not rely solely on file presence or crop filename.
+4. Check the category-card and all 34 product images in a real hosted mobile/desktop browser when the owner-authorised functional/browser testing window opens; record exact head and results.
+5. Expand the pilot only after the 34-record mapping and image process is repeatable. Do not import or activate products.
+
+### Release and safety
+- No Supabase writes, product/category/price/stock changes, product imports, supplier activation, PR merge, production deployment, Axxess upload, DNS change, banking or payment activation were performed.
+- ASC Buyers Guides remain excluded. ASC prices and physical stock remain unverified; no price or stock may be invented.
+- Production remains HOLD pending verified exact-head QA, owner visual acceptance and explicit release approval.
