@@ -254,7 +254,7 @@ jobs:
               await oneNavDirectoryLogo.waitFor({state:'visible',timeout:15000});
               const oneNavDirectoryAudit=await oneNavDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,alt:img.alt}});
               console.log('HOSTED_ONENAV_BRAND_LOGO_AUDIT',JSON.stringify(oneNavDirectoryAudit));
-              if(!oneNavDirectoryAudit.loaded||!oneNavDirectoryAudit.src.includes('planetworld.canto.global')||!oneNavDirectoryAudit.alt.includes('OneNav'))throw new Error('Official ONE / OneNav brand-button logo did not load: '+JSON.stringify(oneNavDirectoryAudit));
+              if(!oneNavDirectoryAudit.loaded||!oneNavDirectoryAudit.src.startsWith('data:image/svg+xml')||!oneNavDirectoryAudit.alt.includes('OneNav'))throw new Error('Distinct ONE / OneNav wordmark did not load in the brand directory: '+JSON.stringify(oneNavDirectoryAudit));
               await oneNavButton.click();
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
               const oneNavBrandPage=page.frameLocator('#store');
