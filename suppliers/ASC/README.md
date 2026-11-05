@@ -85,18 +85,20 @@ This is a non-database preview overlay. No live category rows or parent relation
 
 ## Current owner-directed Auto Electrical preview integration — 2026-11-05
 
-The selective non-production integration is tracked in PR #177. The four catalogue families assigned to Auto Electrical Spares each have their own direct subcategory and catalogue route:
+The selective non-production integration is tracked in PR #177. The owner's latest direct instruction is that **all six ASC catalogue families each have their own subcategory directly under Auto Electrical Spares**:
 
+- Aerials — 6 source sections.
 - Automotive Sensors — 11 source sections.
 - Automotive Switches — 16 source sections.
 - Automotive Globes — 10 source sections.
+- Car Mats — 14 source sections.
 - Fuel Pumps — 18 source sections.
 
-The preview contains 34 visually reviewed pilot records only. They remain preview-only, with no Get Wired SKU, no price, no stock quantity, and watermark-retaining image crops whose production image-use rights are not cleared. All pilot image URLs must use `assets/asc-auto-electrical-pilot/`; do not reintroduce the obsolete `assets/asc-catalogue-pilot/` prefix. Repository presence is not proof that an image loads in a hosted browser or that the image is approved for production.
+Total: **six dedicated subcategories and 75 original contents sections**. Aerials and Car Mats have been moved in the preview category tree from their former Car Audio and Car Care parents. This supersedes the earlier separate-parent instructions for these two catalogues. The standard/public package must restore their former placements; the six-category mapping is preview-only.
 
-The earlier specific owner instructions remain in force for the other two catalogues unless the owner explicitly changes them: Aerials remains under Car Audio & Video → Accessories; Car Mats remains under Car Care & Accessories. The owner's latest wording that “each catalogue” should be under Auto Electrical Spares is ambiguous as to whether it overrides those two specific placements. Do not relocate Aerials or Car Mats without confirmation.
+The preview contains **50 visually reviewed pilot records** across all six catalogues. They remain preview-only, with no Get Wired SKU, no price, no stock quantity, and watermark-retaining image crops whose production image-use rights are not cleared. All pilot image URLs must use `assets/asc-auto-electrical-pilot/`; do not reintroduce the obsolete `assets/asc-catalogue-pilot/` prefix. All 50 referenced crop files must exist in that directory. Repository presence is not proof that an image loads in a hosted browser or that an image is approved for production.
 
-Do not process ASC Buyers Guides. Do not import the 34 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
+Do not process ASC Buyers Guides. Do not import the 50 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
 
 
 ### 34-record Auto Electrical pilot — traceability and description enrichment
