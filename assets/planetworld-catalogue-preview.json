@@ -23647,7 +23647,8 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm/",
       "description": "Designed for Toyota. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota 280mm W/O Canbus"
     },
     {
       "id": "pw-2116",
@@ -23677,7 +23678,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_845f23df_300x.jpg?v=1697005736",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota FJ Cruiser Black (2007+)"
     },
     {
       "id": "pw-2118",
@@ -23707,7 +23709,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 9inch for Hilux/Fortuner (2011-2015)"
     },
     {
       "id": "pw-2120",
@@ -23726,7 +23729,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 9inch for Prado (2002-2009)"
     },
     {
       "id": "pw-2121",
@@ -23745,7 +23749,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_3e3a5b48_300x.jpg?v=1697005955",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 9inch for Land Cruiser Pick Up (2012+)"
     },
     {
       "id": "pw-2122",
@@ -23808,7 +23813,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-600x600_b92365e2-1f53-4a63-9a1e-965185d9fe9a.webp?v=1739876042&width=533",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 10.1inch for Hilux (2015-2018)"
     },
     {
       "id": "pw-2127",
@@ -24003,7 +24009,8 @@
       "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
       "imageUrl": "https://autotec-vts.co.za/gallery/00/00/11/00001192_00000355.png",
       "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imagePosition": "center 40%",
+      "manufacturerProductName": "OneNav Classic 9inch for H1 (2015-2018)"
     },
     {
       "id": "pw-2144",
@@ -24019,7 +24026,8 @@
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-nissan-np-200-9-inch/",
       "description": "Designed for Nissan NP200. Features a 9-inch 1024 × 600 touchscreen in a vehicle-specific 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
       "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
+      "manufacturerProductName": "OneNav Classic 10.1inch for Nissan NP 200 (9 Inch)"
     },
     {
       "id": "pw-2145",
@@ -24683,8 +24691,10 @@
       "priceBasis": "RRP_INCL_VAT_MINUS_2_PERCENT",
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-9-inch-for-isuzu-rba-rbb/",
-      "descriptionStatus": "OFFICIAL_PRODUCT_PAGE_DETAILS_PENDING",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE"
+      "descriptionStatus": "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED",
+      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
+      "manufacturerProductName": "OneNav 9inch for Isuzu RBA / RBB",
+      "description": "Vehicle-specific 9-inch OneNav Evolution multimedia receiver for Isuzu RBA/RBB. Manufacturer specifications: wireless and wired OneConnect, Bluetooth 5.4, FM/AM RDS radio tuner, high-speed USB charging, five 4V RCA outputs, USB media input, 4 × 45W speaker output, digital sound processor, 12-band equaliser, optional front and rear cameras, and a three-year warranty."
     },
     {
       "id": "pw-2205",
@@ -36954,7 +36964,7 @@
   },
   "productImageEnrichment": {
     "sourceAudit": "planetworld-one-official-model-audit.csv",
-    "descriptionsEnriched": 8,
+    "descriptionsEnriched": 9,
     "exactImageCandidatesApplied": 68,
     "exactModelPagesReviewed": 77,
     "status": "OWNER_PREVIEW_ONLY_PENDING_HOSTED_IMAGE_QA_AND_OWNER_REVIEW",
