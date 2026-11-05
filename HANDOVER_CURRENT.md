@@ -3939,3 +3939,13 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Latest workflow activity at handover update: run 42045253529 pending at audit commit 50e402b2d1d8697cd4dcb5983bc147ae67f8e72d; run 42045240739 in progress on preceding head 466ebd25f9a2f1d796967f5bdf39ee1b18e38a9d. Run 42045187869 failed on the a17f head because the test still expected the previous three missing-photo count; this was corrected in d8b7. Await the newest exact-head run and inspect the full hosted image audit before sharing a preview.
 - No production deployment, PR merge, Axxess upload, DNS change, Supabase/live write, live stock/price change, supplier activation, checkout/payment activation or launch occurred.
 - Next: confirm tests and hosted replacements; source a genuine high-resolution Lynx photo; continue exact-model sourcing for SSW-S12 SPECTR 15000 and SSAK-860. Do not mark preview ready until all exact-head, hosted image, route, mobile/desktop and zero-JS-error checks pass.
+
+
+## 2026-11-05 — CONTINUATION TASK START: CATEGORY / OWNER-PREVIEW COMPLETION
+
+- Owner instruction: continue the outstanding category work and do not stop until a successfully verified owner preview is available. Continue only on PR #178 branch `integration/owner-preview-single-task-2026-11-05`; no parallel branch or category-tree move.
+- Current PR metadata: OPEN / DRAFT / UNMERGED; head `5cbe532ad0681d8e6fb4932152b6ae4d68b6f96d`. This supersedes older PR-body/head notes.
+- Latest exact-head workflow evidence retrieved: run 42045630873 tested parent `bd0edff6ebb63dfcbdb3b3eaa70a274de6d4e18f`; package build and data generators passed, then Node audio regression stopped at a stale combined-image count (actual 132, expected 130). The test was corrected to 133 in current PR head `5cbe532`; no exact-head run is yet visible for that corrected head, and no deployment/hosted QA occurred for it.
+- Current preview data generator output at the failed run: Planetworld RRP 3,298 priced / 19 zero-RRP quote-only / 19 below-estimated-cost review; exact-model enrichment 68 verified-model joins, 66 image URLs, 2 image gaps, 3,240 unmatched; Audio Connections image register currently reports 65/66 image URLs and one missing exact-model image. These counts must be reconciled before claiming coverage.
+- Continue with exact-head regression and hosted browser verification; finish the already-prioritised Home Entertainment category/product audit after the preview gate. Keep Car Audio & Video move deferred until Home Entertainment is complete and owner-accepted.
+- No production deployment, merge, Axxess/DNS, Supabase/live write, live price/stock/category changes, supplier activation, checkout/payment activation. Preview-only; production HOLD.
