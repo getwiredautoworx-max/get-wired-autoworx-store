@@ -3476,3 +3476,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Exact-head staging refresh requested via `.preview-deploy-request` on the sole active branch `integration/owner-preview-single-task-2026-11-05`. This source correction is not yet verified by a real Node test run, deployed SHA marker, hosted image naturalWidth check, or mobile/desktop browser journey.
 - Next gate: inspect the exact new branch head and workflow result; require the corrected photo to load, no SVG fallback, correct brand-first Car Audio and Home Entertainment journeys, and all existing checkout/write/SKU safeguards. Do not issue another owner preview link until those checks pass.
 - PR #178 remains draft/unmerged; all other storefront branches remain parked. Production, payment, checkout, Axxess, DNS, Supabase writes, live stock/pricing and supplier activation remain on hold.
+
+
+## 2026-11-05 — CAR AUDIO PHOTO SOURCE REFINED
+
+- Replaced the previously mapped Car Audio category photo with a confirmed Unsplash photograph titled “A close up of a car door with a speaker” (photo ID `photo-1654447398824-dbcbefeafdd6`, free under the Unsplash License).
+- Applied the same category-matched photo across the homepage audio collage, standard category page, preview category route and audio department/component photo mapping so the same customer journey does not switch to unrelated artwork.
+- Updated the static regression expectations to the new photo ID. Hosted naturalWidth verification is still required; the new image has not yet been verified in the deployed preview.
+- This does not alter product records, supplier data, pricing, stock, checkout or production.
