@@ -341,14 +341,15 @@
       "modelNumber": "RABTR03",
       "description": "Reference Audio RABTR03",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://evolutionwheelandtyre.com/cdn/shop/files/RA-BTR03.jpg?v=1753285755",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/reference-audio-ra-btr03-media-player-with-bluetooth"
     },
     {
       "id": "ac-015",
@@ -595,14 +596,14 @@
       "modelNumber": "SSW-B12-2800",
       "description": "12-inch, 4-ohm subwoofer in vented enclosure per Starsound's official product page; source price list identifies it as SVC and states 300 W RMS. A South African retailer model inventory states 250 W RMS / 600 W peak. Starsound's official page does not publish RMS power, so the power rating remains unverified and must not be stated as definitive.",
       "manufacturerPage": "https://starsound.co.za/product/ssw-b12-2800/",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-B12-2800_a.jpg",
       "sourceDateLabel": "Retail reference checked · 4 November 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "South African retail reference R1,299; exact SSW-B12-2800 model offer. Not supplier dealer pricing or approved Get Wired selling price.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "priceSource": "PriceCheck (Bradlows/Russells offers)",
       "priceSourceUrl": "https://www.pricecheck.co.za/search?search=starsound+subwoofer",
       "priceSourceCheckedAt": "2026-11-04",
@@ -611,7 +612,8 @@
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-b12-2800/",
       "specificationSource": "Starsound official product page; third-party South African model inventory conflicts on RMS power",
       "specificationStatus": "OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
-      "sourcePriceListDateLabel": "Price list · 5 August 2026"
+      "sourcePriceListDateLabel": "Price list · 5 August 2026",
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-b12-2800/"
     },
     {
       "id": "ac-026",
@@ -625,17 +627,18 @@
       "modelNumber": "SSWF10\"-4150SVC",
       "description": "10-inch flat SVC subwoofer",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-4150SVC_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F10-4150SVC",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-4150svc/"
     },
     {
       "id": "ac-027",
@@ -649,7 +652,7 @@
       "modelNumber": "SSW-F12-5150SVC",
       "description": "12-inch flat-series single voice coil subwoofer; 200 W RMS per South African model inventory cross-check. Indicative retail reference only; not confirmed Get Wired selling price or supplier cost.",
       "manufacturerPage": "https://starsound.co.za/product-category/subwoofers/",
-      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSW-F12-5150-12_-Flat-SVC-Subwoofer-_5150W_-Star-Sound-21804686.jpg?v=1738070855&width=1445",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-F12-5150SVC_a.jpg",
       "sourceDateLabel": "Retail reference checked · 4 November 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "South African retail reference R795; exact model listing. Not supplier dealer pricing or approved Get Wired selling price.",
@@ -665,7 +668,7 @@
       "priceSourceCheckedAt": "2026-11-04",
       "priceBasis": "SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE",
       "sourcePriceListDateLabel": "Price list · 5 August 2026",
-      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssw-f12-5150-12-flat-svc-subwoofer-5150w"
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-5150svc/"
     },
     {
       "id": "ac-028",
@@ -679,14 +682,16 @@
       "modelNumber": "SSWF10 2650SVC",
       "description": "10-inch flat SVC subwoofer",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-2650-720x484.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-2650/",
+      "manufacturerListedModel": "SSW-F10-2650"
     },
     {
       "id": "ac-029",
@@ -721,14 +726,16 @@
       "modelNumber": "SPARTAN 9900.1",
       "description": "Spartan monoblock; 600 W RMS",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-SP-9900.1_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://starsound.co.za/product/ssa-sp-9900-1/",
+      "manufacturerListedModel": "SSA-SP-9900.1"
     },
     {
       "id": "ac-031",
@@ -814,17 +821,18 @@
       "modelNumber": "SSA-H-8200.1",
       "description": "Monoblock amplifier, 1 Ω stable; manufacturer rates 600 W RMS at 1 Ω, 300 W RMS at 2 Ω and 150 W RMS at 4 Ω. Source-list text typo corrected to official model code.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-h-8200-1/",
-      "imageUrl": "",
+      "imageUrl": "https://audiocorner.co.za/wp-content/uploads/2025/06/Star-Sound-Hazard-Series-Monoblock-Amplifier-_8200W_-Star-Sound-1630051456_900x-1.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-h-8200-1/",
       "specificationSource": "Starsound official manufacturer product specification",
-      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED"
+      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED",
+      "imageSourceUrl": "https://audiocorner.co.za/product-tag/starsound/"
     },
     {
       "id": "ac-035",
@@ -859,14 +867,15 @@
       "modelNumber": "SSA-SB2000.1",
       "description": "Monoblock; 2000 W RMS",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-SB-2000.1-Monoblock-Amplifier-_2000W_-Star-Sound-20995343.jpg?v=1718011177&width=990",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssa-sb-2000-1-monoblock-amplifier-2000w"
     },
     {
       "id": "ac-037",
@@ -939,20 +948,21 @@
       "modelNumber": "SSA-J-10000.4",
       "description": "4-channel Joker amplifier; manufacturer rates 90 W RMS ×4 at 2 Ω, 60 W RMS ×4 at 4 Ω and 140 W RMS bridged at 4 Ω. Original source-list 50 W RMS label was incomplete.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-j-10000-4/",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-J-10000.4-Joker-4-Channel-Amplifier-_10-000W_-Star-Sound-21793214.jpg?v=1737742864&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-J-10000.4",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; exact model listing; individual page not found",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-j-10000-4/",
       "specificationSource": "Starsound official manufacturer product specification",
-      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED"
+      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssa-j-10000-4-joker-4-channel-amplifier-10-000w"
     },
     {
       "id": "ac-040",
@@ -1019,17 +1029,18 @@
       "modelNumber": "SSA-M4-80.4",
       "description": "4-channel amplifier; retailer specification cross-check: 80 W RMS ×4 at 4 Ω, 140 W RMS ×4 at 2 Ω and 240 W RMS ×2 bridged at 4 Ω.",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_900%2Ch_900%2Cd_notfound.png/user/4905905/STARSOUND_SSA-M4-80.4_PICTURE_1_YjQ1_by_Xx.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "specificationSourceUrl": "https://jmsounds.co.za/product/star-sound-ssa-m4-80-4-4-channel-amplifier/",
       "specificationSource": "South African specialist retailer specification cross-check",
-      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK"
+      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK",
+      "imageSourceUrl": "https://www.bobshop.co.za/star-sound-ssa-m4-80-4-4-channel-amplifier/p/649817275"
     },
     {
       "id": "ac-043",
@@ -1190,14 +1201,16 @@
       "modelNumber": "PRO6.5-700",
       "description": "Pro 6.5 speaker",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSS-PRO6.5-700-6.5_-Bullet-Mids-_700W_-Star-Sound-31378452.jpg?v=1775657493&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-sss-pro6-5-700-6-5-bullet-mids-700w",
+      "manufacturerListedModel": "SSS-PRO6.5-700"
     },
     {
       "id": "ac-050",
@@ -1211,14 +1224,16 @@
       "modelNumber": "SS-PRO6X9-900",
       "description": "Pro 6x9 dual-cone speaker",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSS-PRO6x9-900_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://starsound.co.za/product/sss-pro6x9-900/",
+      "manufacturerListedModel": "SSS-Pro6x9-900"
     },
     {
       "id": "ac-051",
@@ -1337,14 +1352,15 @@
       "modelNumber": "TAXI-4G",
       "description": "4-gauge amp kit",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/SSAK-TAXI-4G-01.png?v=1781775881",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/ssak-taxi-4g-star-sound-wiring-kit"
     },
     {
       "id": "ac-057",
@@ -1401,14 +1417,15 @@
       "modelNumber": "SST-550",
       "description": "Super T tweeter",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2014483000000starsound-real-titanium-dome-super-tweeter-sst-550-4667579.png?v=1781184011&width=1000",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-550-starsound-real-titanium-dome-super-tweeter"
     },
     {
       "id": "ac-060",
@@ -1444,14 +1461,15 @@
       "modelNumber": "SST-850",
       "description": "Bullet tweeter",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2013868000000-4442150.png?v=1760371644",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-850-starsound-bullet-tweeter"
     },
     {
       "id": "ac-062",
@@ -1508,14 +1526,15 @@
       "modelNumber": "EQ7100",
       "description": "7-band equaliser",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.takealot.com/starsound-7-band-equalizer-ssa-eq-7200/PLID93653453"
     },
     {
       "id": "ac-065",
