@@ -3456,3 +3456,38 @@ The preview category tree has four dedicated, direct children of **Auto Electric
 - Added the current four-catalogue Auto Electrical mapping, image path rule, pilot status and Aerials/Car Mats clarification note to `suppliers/ASC/README.md`.
 - README commit: `509a8c59e6b45938078b81c58f84c96338f29177`.
 - This is documentation-only; the latest runtime-code head remains `5d8892e5720b19f48888684ada39d4a7022cabb7`, which has the confirmed Cloudflare Pages deployment URL above. No exact-head Node regression or hosted browser result has been added by the documentation commits.
+
+
+## 2026-11-05 — ASC PILOT SOURCE TRACEABILITY AND DRAFT DESCRIPTION UPDATE
+
+### Work completed on PR #177 branch
+- Added source traceability to all 34 Auto Electrical pilot records in assets/asc-auto-electrical-preview.json: original ASC PDF filename, contents-page section start page, candidate ASC reference from the reviewed source-card crop name, and explicit identity/description/fitment review states.
+- The source-page locators are derived from the August 2026 catalogue contents pages and OCR review CSV; they are not represented as final visual verification of each source page. The candidate ASC reference still needs confirmation against the original catalogue card.
+- Added cautious owner-review draft descriptions for all 34 products. They preserve the listed application and explicitly ask for confirmation of exact model/year/engine/connector/base details. Drafts are not approved public descriptions or verified technical specifications.
+- The owner preview now displays draft description, original catalogue wording, fitment as printed, source PDF/page locator and candidate ASC reference. The quote-only display now uses the exact owner wording: **Price On Request due to Limited Stock and Availability**.
+- Four globe records under the source heading “HID Globes, Kits & Ballasts” (H18, H19 and H3 references) are flagged for technology/section verification. No assumption is made that these are HID products. Globe entries with no printed fitment remain unassigned to any inferred vehicle.
+- Updated the dedicated integration regression to check source metadata, candidate code status, draft descriptions, exact quote wording and image-path existence. Corrected the test's identity-status assertion to match the actual data value.
+
+### Read-only validation performed
+- Static source readback confirms four separate direct Auto Electrical subcategories, four corresponding category route IDs, four catalogue groups in the expected order, and 55 original source sections across the four groups.
+- Static data readback confirms 34 records, each preview-only, REVIEW_ONLY_NOT_LIVE, with null price and stock; all records now carry source filename/page, candidate source code, fitment/identity review flags and a draft description.
+- All 34 distinct product-image files referenced by the current JSON were individually confirmed present in the repository under assets/asc-auto-electrical-pilot/. Four category-card images use the same verified crop set. This is repository file-presence verification only; no hosted browser load or visual product-to-image confirmation is claimed.
+- Four original ASC source PDFs are present under suppliers/ASC/; contents-page OCR provides the source section page locators. Original page-image confirmation remains outstanding.
+- The exact Node test suite has **not** been executed after these latest data/template/test edits. The Pages builder is configured to run both the three-category structural suite and the ASC integration suite before packaging, but this is not proof of a successful run.
+- Latest known deployed runtime code head remains 5d8892e5720b19f48888684ada39d4a7022cabb7, with Cloudflare Pages bot-confirmed deployment at https://941e56d0.get-wired-autoworx-store.pages.dev/owner-preview.html. Subsequent commits change JSON review fields, preview-card content, tests and documentation; the deployment does **not** include these newer edits. A fresh exact-head deployment and hosted checks are required before presenting the updated owner preview.
+- Public SKU Exposure Audit run 41990960984 passed on the earlier runtime head 5d8892e; it is not a test result for the later edits.
+
+### Outstanding and owner clarification
+- Aerials remains under Car Audio & Video → Accessories; Car Mats remains under Car Care & Accessories, following the owner's earlier specific placement instructions. The latest statement that each catalogue should have a subcategory under Auto Electrical may override those two placements. Do not move either until the owner confirms whether Aerials and Car Mats should also be moved into Auto Electrical Spares.
+- Exact PDF page/card verification of the 34 source references and candidate codes; full description and fitment validation; image-content match review; duplicate/exception audit; all six catalogue routes/images; and exact-head regression/deployment/browser verification remain open.
+- The 34 records are only the visually reviewed Auto Electrical pilot subset. Do not claim the larger 983-card register is complete; 933 descriptions remain for editorial/fitment verification.
+
+### Latest source updates
+- Pilot JSON source metadata and draft copy: commit 5100919935a65ec859157bb626713804489ed9f4.
+- Owner preview source/draft display: commit 2d37a634740c2ef935e39dd46885889001b968a8.
+- Regression assertions: bc5932e9f03b14e1fdd8f12b7bd372d794428903.
+- ASC README traceability note: commit aa93da1765b7b83c406e72e863a0c98eef7208c6.
+
+### Release boundary
+- No Supabase writes, imports, live product/category/price/stock changes, supplier activation, checkout/payment activation, PR merge, production deployment, Axxess upload or DNS changes.
+- ASC Buyers Guides remain excluded. Production remains HOLD. Banking/checkout functional tests remain deferred until the owner supplies banking details and authorises that stage.
