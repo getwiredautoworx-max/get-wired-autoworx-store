@@ -14,7 +14,7 @@ const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/sc
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
 assert.ok(categoryPage.includes("photo-1593359677879-a4bb92f829d1'],\n  [/speaker"), 'category artwork mapping entries must remain comma-separated so the root category renderer does not crash');
-const previewCategoryInlineScripts = [...previewCategory.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
+const previewCategoryInlineScripts = previewCategory.split('<script>').slice(1).map(part => part.split('</script>')[0]);
 assert.ok(previewCategoryInlineScripts.length > 0, 'preview category page must contain its navigation script');
 for (const script of previewCategoryInlineScripts) new vm.Script(script);
 const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
