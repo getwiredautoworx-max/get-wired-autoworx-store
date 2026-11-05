@@ -643,6 +643,8 @@ html,body{background:#f3f7fb!important;color:#172536!important}
 #brands .brandLogoButton img{display:block;max-width:116px;width:auto;height:42px;max-height:42px;object-fit:contain}
 #brands .brandLogoButton .brandWordmark,#brands .brandLogoButton span{font-weight:900;font-size:15px;letter-spacing:.02em}
 #brands .brandLogoButton.active{outline:2px solid #087fce;border-color:#087fce;background:#eaf5fc}
+/* Honour the hidden state even where component grid styles define display. */
+#audioBrowse[hidden],#brands[hidden],#components[hidden],#products[hidden],#brandsHeading[hidden],#componentsHeading[hidden],#productsHeading[hidden]{display:none!important}
 /* Product-type choices are picture-led category cards, not plain text pills. */
 #components.audioFilters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 20px}
 #components .componentImageButton{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;min-width:0;min-height:0;padding:0;overflow:hidden;text-align:left;background:#fff!important;border:1px solid #c7d9e7!important;border-radius:12px;color:#173650!important;box-shadow:0 3px 12px rgba(22,57,83,.07)}
