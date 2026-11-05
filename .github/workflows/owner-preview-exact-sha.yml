@@ -369,6 +369,7 @@ jobs:
               if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child category cards mismatch: '+JSON.stringify(accessoryNames));
               await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
               await accessoryPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              await accessoryPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount=await accessoryPage.locator('#products .audioProduct').count();
               if(trimCount!==47) throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
               await accessoryPage.close();
