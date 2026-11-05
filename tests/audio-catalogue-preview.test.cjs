@@ -66,6 +66,11 @@ assert.ok(route.includes(ONE_LOGO)&&route.includes(AMPLIFIED_LOGO),'audio brand 
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
 assert.equal(planet.records.filter(row=>row.imageUrl).length,66,'66 exact-model manufacturer image candidates must be attached to the correct source product rows');
+const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
+const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
+assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
+assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946','Pioneer DMH-AP6650BT must use the exact South African model image');
+assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
 assert.equal(planet.records.filter(row=>row.modelNumber).length,68,'all 68 exact-model records must carry their manufacturer model and verified description');
 assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,2,'two exact-model products have no image and must not receive a generic substitute');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
