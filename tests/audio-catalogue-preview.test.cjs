@@ -263,4 +263,4 @@ for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-aud
 for (const asset of ['home-audio-cinema.svg','speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
   assert.ok(categoryRoute.includes(asset) || route.includes(asset), 'Audio category image mapping missing: '+asset);
 }
-assert.ok(!categoryRoute.includes('this.src=categoryArtFallback(this.alt)'), 'Failed category images must not be replaced with generic unrelated artwork');
+assert.ok(categoryRoute.includes('const exact=localAudio.find(([re])=>re.test(n))'), 'Audio category image fallback must select a category-specific local asset before any generic illustration');
