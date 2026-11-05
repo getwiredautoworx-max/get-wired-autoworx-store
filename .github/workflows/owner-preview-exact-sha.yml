@@ -224,14 +224,15 @@ jobs:
               await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Home Entertainment'},{timeout:30000});
               if(await frame.locator('#audioDepartments').isVisible())throw new Error('Home Entertainment selection left the previous department menu visible');
               await frame.locator('#brands').waitFor({state:'visible',timeout:15000});
-              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
+              await frame.locator('#brands .brandLogoButton').first().waitFor({state:'visible',timeout:30000});
+              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete after catalogue load');
               const klipsch=frame.locator('#brands .brandLogoButton[aria-label="Klipsch"]');
               await klipsch.waitFor({state:'visible',timeout:30000});
               const klipschLogo=klipsch.locator('img');
               await klipschLogo.waitFor({state:'visible',timeout:15000});
               await klipschLogo.evaluate(img=>img.decode());
               if(!await klipschLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw new Error('Klipsch brand logo image failed to load');
-              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
+              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete after catalogue load');
               await klipsch.click();
               await page.waitForFunction(()=>/\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const homeBrandPage=page.frameLocator('#store');
