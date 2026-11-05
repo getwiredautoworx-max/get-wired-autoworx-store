@@ -154,6 +154,9 @@ jobs:
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
               if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');
               await frame.locator('#brands button[aria-label="Sony"]').click();
+              await page.waitForTimeout(500);
+              const brandNavigationDiagnostic=await page.evaluate(()=>{const f=document.querySelector('#store');return {href:(()=>{try{return f.contentWindow.location.href}catch(e){return String(e)}})(),path:(()=>{try{return f.contentWindow.location.pathname}catch(e){return String(e)}})(),title:f.contentDocument?.title,bodyText:f.contentDocument?.body?.innerText?.slice(0,700)}}); 
+              console.log('OWNER_PREVIEW_BRAND_NAVIGATION',JSON.stringify(brandNavigationDiagnostic));
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio-brand.html'),{timeout:30000});
               const brandDoc=page.frameLocator('#store');
               await brandDoc.locator('.brandHero').waitFor({state:'visible',timeout:30000});
