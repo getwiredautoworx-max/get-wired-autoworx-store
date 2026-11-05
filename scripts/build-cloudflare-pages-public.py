@@ -95,6 +95,14 @@ if not include_preview:
     globe = next(item for item in category_tree["categories"] if item.get("id") == "89595653-97d4-4b18-ba69-117547d32ed0")
     globe["name"] = "Globes & Vehicle Lighting"
     globe["slug"] = "globes-vehicle-lighting"
+    # Restore the earlier owner-approved destinations in the standard package.
+    # The six-catalogue Auto Electrical placement is limited to opt-in previews.
+    aerials = next(item for item in category_tree["categories"] if item.get("id") == "b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90")
+    aerials["parent_id"] = "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11"
+    aerials["sort_order"] = 1
+    mats = next(item for item in category_tree["categories"] if item.get("id") == "c35d15c1-d665-413f-b528-878b6a655d5d")
+    mats["parent_id"] = "f98e7589-20a0-4825-9707-2680d29e5cb6"
+    mats["sort_order"] = 2
     category_tree["categories"].append({
         "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
         "name": "Sensors & Switches",
