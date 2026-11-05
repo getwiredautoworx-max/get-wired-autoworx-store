@@ -63,41 +63,7 @@ const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function explicitBrand(product){const spec=product&&product.specifications;if(!spec||typeof spec!=='object'||Array.isArray(spec))return 'Brand not specified';const keys=Object.keys(spec);const key=keys.find(k=>['brand','manufacturer','make'].includes(k.toLowerCase()));const value=key?String(spec[key]||'').trim():'';return value||'Brand not specified'}
 function audioAreaMatch(product,area){const t=[product.name,product.description].join(' ').toLowerCase();const studio=/studio|microphone|\bmic\b|mixer|mixing desk|\bdj\b|recording|audio interface|monitor speaker|\bpa system\b|public address|\bxlr\b|condenser|dynamic mic|headphone/.test(t);const home=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|\btv\b|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/.test(t);if(area==='studio')return studio;if(area==='home')return home;if(area==='car')return !studio&&!home;return false}
 function categoryArtFallback(label){
- const n=String(label||'').toLowerCase();
- const localAudio=[
-  [/car audio|car audio & video/,'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'],
-  [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82'],
-  [/speakers?|component kits/,'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82'],
-  [/subwoofers?/,'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=720&q=82'],
-  [/amplifiers?/,'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=720&q=82'],
-  [/head units|media players|radios/,'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=720&q=82'],
-  [/cameras? & monitors?/,'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=720&q=82'],
-  [/signal processing|crossovers?/,'https://images.unsplash.com/photo-1593078166036-3a7a4c8c8e2c?auto=format&fit=crop&w=720&q=82'],
-  [/trims? & harnesses?|harnesses?, trims/,'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=720&q=82'],
-  [/aerials?/,'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=720&q=82'],
-  [/band equipment|band & live sound/,'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82'],
-  [/dj equipment/,'https://images.unsplash.com/photo-1642177272498-98096a6c98e4?auto=format&fit=crop&w=720&q=82'],
-  [/instruments?/,'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82'],
-  [/marine audio/,'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=720&q=82'],
-  [/lifestyle/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82']
- ];
- const exact=localAudio.find(([re])=>re.test(n));
- if(exact)return exact[1];
- let art='<rect x="28" y="30" width="144" height="100" rx="12" fill="#163e5c" stroke="#53b9f4" stroke-width="4"/><circle cx="72" cy="80" r="27" fill="#0b1d2b" stroke="#9bdcff" stroke-width="5"/><circle cx="72" cy="80" r="10" fill="#53b9f4"/><circle cx="128" cy="80" r="27" fill="#0b1d2b" stroke="#9bdcff" stroke-width="5"/><circle cx="128" cy="80" r="10" fill="#53b9f4"/>';
- if(/subwoofer/.test(n))art='<circle cx="100" cy="80" r="53" fill="#102b40" stroke="#53b9f4" stroke-width="8"/><circle cx="100" cy="80" r="36" fill="#071725" stroke="#9bdcff" stroke-width="5"/><circle cx="100" cy="80" r="15" fill="#53b9f4"/>';
- else if(/amplifier/.test(n))art='<rect x="22" y="48" width="156" height="66" rx="10" fill="#173d58" stroke="#65c7ff" stroke-width="4"/><path d="M38 65h88M38 78h68M38 91h48" stroke="#b8e8ff" stroke-width="4" stroke-linecap="round"/><circle cx="151" cy="81" r="13" fill="#071725" stroke="#9bdcff" stroke-width="4"/>';
- else if(/head unit|radio|media player/.test(n))art='<rect x="20" y="45" width="160" height="72" rx="9" fill="#152f43" stroke="#65c7ff" stroke-width="4"/><rect x="35" y="59" width="78" height="25" rx="4" fill="#70d6ff"/><circle cx="145" cy="80" r="17" fill="#071725" stroke="#9bdcff" stroke-width="4"/><path d="M38 99h75" stroke="#b8e8ff" stroke-width="4"/>';
- else if(/camera|monitor/.test(n))art='<rect x="24" y="36" width="112" height="86" rx="8" fill="#163e5c" stroke="#65c7ff" stroke-width="4"/><rect x="36" y="48" width="88" height="60" rx="4" fill="#6bcfff"/><circle cx="157" cy="79" r="22" fill="#102b40" stroke="#9bdcff" stroke-width="5"/><circle cx="157" cy="79" r="9" fill="#65c7ff"/>';
- else if(/signal|crossover|dsp|processor/.test(n))art='<rect x="25" y="38" width="150" height="85" rx="8" fill="#173d58" stroke="#65c7ff" stroke-width="4"/><path d="M43 58h28v18H43zM88 58h28v18H88zM133 58h24v18h-24zM43 91h114" fill="#071725" stroke="#9bdcff" stroke-width="4"/>';
- else if(/harness|trim|wiring|accessor/.test(n))art='<path d="M45 35C15 60 85 66 45 125M78 35C48 60 118 66 78 125M111 35C81 60 151 66 111 125M144 35C114 60 184 66 144 125" fill="none" stroke="#65c7ff" stroke-width="8" stroke-linecap="round"/><rect x="30" y="25" width="30" height="20" rx="4" fill="#173d58" stroke="#b8e8ff" stroke-width="3"/><rect x="130" y="115" width="30" height="20" rx="4" fill="#173d58" stroke="#b8e8ff" stroke-width="3"/>';
- else if(/aerial|antenna/.test(n))art='<path d="M100 28v98M65 57h70M78 43h44M88 31h24" stroke="#65c7ff" stroke-width="7" stroke-linecap="round"/><path d="M57 70Q100 28 143 70M42 85Q100 18 158 85" fill="none" stroke="#9bdcff" stroke-width="4"/>';
- else if(/marine|boat/.test(n))art='<path d="M28 95h144l-20 30H55z" fill="#65c7ff" stroke="#b8e8ff" stroke-width="4"/><path d="M100 28v65M100 33l48 48H100" fill="#173d58" stroke="#9bdcff" stroke-width="4"/>';
- else if(/battery|charging|alternator|starter|electrical|fuse|relay|sensor|switch/.test(n))art='<rect x="35" y="42" width="130" height="82" rx="10" fill="#173d58" stroke="#65c7ff" stroke-width="4"/><path d="M70 30v18M130 30v18M70 82h24l12-20 12 40 12-20h18" fill="none" stroke="#b8e8ff" stroke-width="6" stroke-linejoin="round"/>';
- else if(/car care|clean|mat|seat|exterior/.test(n))art='<path d="M32 95l14-35q5-12 19-12h62q14 0 20 12l13 35v24H32z" fill="#173d58" stroke="#65c7ff" stroke-width="4"/><circle cx="62" cy="115" r="13" fill="#071725" stroke="#b8e8ff" stroke-width="4"/><circle cx="132" cy="115" r="13" fill="#071725" stroke="#b8e8ff" stroke-width="4"/>';
- else if(/band|instrument|guitar|dj|studio|home entertainment/.test(n))art='<path d="M48 100l66-66 17 17-66 66z" fill="#65c7ff" stroke="#b8e8ff" stroke-width="4"/><circle cx="54" cy="112" r="20" fill="#173d58" stroke="#9bdcff" stroke-width="4"/><path d="M113 34l25-10 18 18-10 25" fill="none" stroke="#9bdcff" stroke-width="5"/>';
- const title=String(label||'Product category').replace(/[&<>]/g,'');
- const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#0b2940"/><stop offset="1" stop-color="#071522"/></linearGradient></defs><rect width="200" height="160" rx="14" fill="url(#g)"/>'+art+'<text x="100" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#d8f1ff">'+title.slice(0,30)+'</text></svg>';
- return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+ return artFor(label)||"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=720&q=82";
 }
 function artFor(label){
  const n=String(label||'').trim().toLowerCase();
