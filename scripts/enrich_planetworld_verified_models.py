@@ -173,8 +173,8 @@ def main() -> None:
         "unmatched_products": unmatched,
     }
     expected = {
-        "oneNav_pages": 32,
-        "oneNav_descriptions": 32,
+        "oneNav_pages": 42,
+        "oneNav_descriptions": 42,
         "oneNav_image_candidates": 7,
         "oneNav_images_missing": 25,
         "verified_model_matches": 68,
