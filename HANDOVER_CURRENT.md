@@ -3207,3 +3207,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Corrected the hosted browser test to target the actual brand page's `#types .typeCard` grid (not the old audio page's `#components` grid), and require the Sony brand logo image to load.
 - Removed the duplicate second Sony → Amplifiers browser journey. The workflow now exercises the dedicated brand → product-type → product route once, then continues the independent Auto Electrical, Car Care, accessory and desktop checks.
 - Current code checkpoint before the final handover/trigger update: `3e7cbaaa98eae7e616dd034c503a8267e0d6000e`. Do not reuse the older 38a069f Cloudflare in-progress deployment as proof for this corrected head. A fresh exact-head deployment and hosted QA are required.
+
+
+## 2026-11-05 — BRAND-DIRECTORY LOGO DEPENDENCY REMOVED
+
+- The hosted route QA requires the Sony logo to load in the brand directory. Updated the brand-directory logo map to use the same local Sony SVG wordmark as the dedicated brand page, removing the last external-host dependency from that acceptance check.
+- Regression now asserts the local Sony mapping, asset existence, distinct brand and product-type routes, and brand+type filtering.
+- Latest code/test checkpoint: `8e07f27a7fad1e4c13d4bb66205191bd0dbb2657`. The prior in-progress Cloudflare deployment at `cc88448` predates this final logo-map correction and must not be accepted as the current preview.
+- Trigger one fresh exact-head build after this handover checkpoint. Do not send a preview link until build, marker and hosted browser tests succeed.
