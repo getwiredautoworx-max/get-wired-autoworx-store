@@ -81,3 +81,19 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## Current owner-directed Auto Electrical preview integration — 2026-11-05
+
+The selective non-production integration is tracked in PR #177. The four catalogue families assigned to Auto Electrical Spares each have their own direct subcategory and catalogue route:
+
+- Automotive Sensors — 11 source sections.
+- Automotive Switches — 16 source sections.
+- Automotive Globes — 10 source sections.
+- Fuel Pumps — 18 source sections.
+
+The preview contains 34 visually reviewed pilot records only. They remain preview-only, with no Get Wired SKU, no price, no stock quantity, and watermark-retaining image crops whose production image-use rights are not cleared. All pilot image URLs must use `assets/asc-auto-electrical-pilot/`; do not reintroduce the obsolete `assets/asc-catalogue-pilot/` prefix. Repository presence is not proof that an image loads in a hosted browser or that the image is approved for production.
+
+The earlier specific owner instructions remain in force for the other two catalogues unless the owner explicitly changes them: Aerials remains under Car Audio & Video → Accessories; Car Mats remains under Car Care & Accessories. The owner's latest wording that “each catalogue” should be under Auto Electrical Spares is ambiguous as to whether it overrides those two specific placements. Do not relocate Aerials or Car Mats without confirmation.
+
+Do not process ASC Buyers Guides. Do not import the 34 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
