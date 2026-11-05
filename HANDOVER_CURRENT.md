@@ -3384,3 +3384,10 @@ Read-only audit of the sanitized JSON used by PR #139:
 - OneNav remains incomplete: current route shows 65 products; 21 have exact manufacturer descriptions, 6 have exact-image candidates, 15 verified records still lack exact images, and 44 cards remain unmatched. Do not deliver as final owner preview or move to the next brand until OneNav is resolved.
 - Audio Connections BlackSpider Lynx image is still low-resolution (104px natural width); defer until OneNav is complete.
 - Latest branch head after documentation-only addendum is a225df1fe651f08480c4bc8a3e1ab9b4f53da798; tested storefront source is 2055dc4764c4d6280b6d026a105fecadc759f6a2. Production remains HOLD.
+
+
+## 2026-11-05 19:28 SAST — latest OneNav preview QA
+- Exact-head workflow run 42064310557 PASSED on source SHA 6d25f204a29b641753d018c5e1d41e5b7e8a8adc. Current preview: https://90cfcbb7.get-wired-autoworx-store.pages.dev. Mobile/desktop hosted QA, catalogue regression, deployment marker and image loading all passed.
+- Current OneNav page: 65 products, 32 exact manufacturer descriptions, 7 owner-preview image candidates, 25 audited exact-image gaps; 33 product cards still need exact descriptions and 58/65 cards still lack image URLs. Continue OneNav only; do not move to another brand until complete.
+- Combined image audit: 75/75 image URLs loaded; Audio Connections 66/66 loaded but BlackSpider Lynx remains low-res at 104px. This is deferred until OneNav is resolved.
+- Latest audio-brand handover addendum: HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md. Tested storefront source SHA is 6d25f204; subsequent handover-only commit does not change the deployed preview. Production remains HOLD.
