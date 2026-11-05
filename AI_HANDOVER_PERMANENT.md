@@ -3155,3 +3155,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Safety and next actions
 - No PR merged, no supplier XLSX modified, no supplier data imported/published, no live catalogue/price/stock/category/active-flag or Supabase write, no Axxess/DNS/payment change, no production deployment, and no release-credit-consuming rerun occurred.
 - Next: owner supplies the November ASC PDFs; owner dispatches the Planetworld read-only audit from the Actions UI on `main`; obtain written Planetworld price/stock/effective-date and JBL shortened-code confirmations; resolve the Planetworld indicative-price preview policy; complete exact-head preview QA and obtain owner acceptance. Production remains **HOLD**.
+## 2026-11-05 09:18 SAST — STORE / PLANETWORLD RUN START
+
+- Read this permanent handover on `docs/planetworld-blocker-handover-2026-10-26` (blob `23230f60484800569f6c315179925dd6611e7d65`). The file is not present at the current `main` root; retain this branch-scoped copy as the accessible permanent control until it is safely restored to the canonical main path in a separately reviewed change.
+- Task-start entries were also appended to `HANDOVER_CURRENT.md` on `main` (commit `9ee9705b92d66d774ef7d9422c0544efff1b4075`) and to this Planetworld branch handover (see its latest commit).
+- This run will verify workflow/preview state and continue review-only supplier source evidence. No merge, supplier XLSX modification, publication/import, live product/price/stock/active-flag change, production deployment, Axxess/DNS/payment change, or release-credit use.
+- Status: IN PROGRESS. Next: complete Planetworld PR/audit/background-run checks, then record exact outcomes and next actions in both current handovers.
