@@ -16,3 +16,8 @@ request=PR-176-owner-category-navigation-fix-exact-head-2026-11-05
 requested_head=382f8d2c37335e1cf628e9fd1007cbd76da77dbd
 request=PR-176-compact-category-tiles-and-three-root-pages-exact-head-2026-11-05
 requested_head=980a358feed7d19fa6d8d66dc719744e40a1349f
+
+request=PR-176-owner-category-navigation-preview-after-handover-audit-2026-11-05T0853SAST
+requested_for=preview/integrated-storefront-2026-11-04
+required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
+required_checks=exact-sha-marker;mobile-root-navigation;mobile-two-column-subcategory-grid;desktop-navigation;audio-nested-routes;checkout-hidden;supabase-writes-blocked;sku-audit
