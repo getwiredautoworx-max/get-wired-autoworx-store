@@ -363,14 +363,16 @@
       "modelNumber": "USB230",
       "description": "USB230 external microphone",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://media.takealot.com/covers_images/2609be80b2454250b9c752cd71903ebf/s-zoom.file",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://starsound.co.za/product/ssusb-230btce/",
+      "manufacturerListedModel": "SSUSB-230BTCE"
     },
     {
       "id": "ac-016",
@@ -406,14 +408,16 @@
       "modelNumber": "SS7655BT",
       "description": "SS7655BT media player",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://www.hificorp.co.za/api/catalog/product/s/s/ssmp_7655btwith_radio_on_ecommerce_8581.png?height=700&image-type=image&store=hificorporation&width=700",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://www.hificorp.co.za/starsound-7-inch-hd-media-player-ssmp5-7655bt",
+      "manufacturerListedModel": "SSMP5-7655BT"
     },
     {
       "id": "ac-018",
@@ -427,14 +431,16 @@
       "modelNumber": "DVD9900BT",
       "description": "DVD9900BT CD/DVD player",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSDVD-9900BT-DVD-Front-Loader-Media-Player-With-USB-_-Bluetooth-Max-Motorsport-21232518.jpg?v=1725975624",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-ssdvd-9900bt-dvd-front-loader-media-player-with-usb-bluetooth",
+      "manufacturerListedModel": "SSDVD-9900BT"
     },
     {
       "id": "ac-019",
@@ -448,14 +454,16 @@
       "modelNumber": "SS7670",
       "description": "7-inch Android wireless unit",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/7-Inch-Star-Sound-SSMP5-7670BTAC-MP5-Double-Din-With-Apple-Carplay-_-Android-Auto-Roadstar-26055736.jpg?v=1751964226&width=1206",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/7-inch-star-sound-ssmp5-7670btac-mp5-double-din-with-apple-carplay-android-auto",
+      "manufacturerListedModel": "SSMP5-7670BTAC"
     },
     {
       "id": "ac-020",
@@ -1247,14 +1255,15 @@
       "modelNumber": "SSAK-406P",
       "description": "4-gauge amp kit",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://maxmotorsport.co.za/cdn/shop/products/Starsound-4-Gauge-Wiring-Kit-Max-Motorsport-1624452639.jpg?v=1624452641&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/starsound-4-gauge-wiring-kit"
     },
     {
       "id": "ac-052",
@@ -1268,14 +1277,15 @@
       "modelNumber": "409CU",
       "description": "True copper amp kit",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://newworld.co.za/cdn/shop/files/81oNOU9KY_L_900x.jpg?v=1760011854",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://newworld.co.za/products/starsound-ssak-409cu-4-gauge-100-ofc-copper-wiring-kit"
     },
     {
       "id": "ac-053",
@@ -1310,14 +1320,15 @@
       "modelNumber": "809",
       "description": "8-gauge amp kit",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://soundvision.co.za/cdn/shop/files/FullSizeRender_bb982026-b146-4342-9a89-821443145f3c_1200x1200.jpg?v=1707141200",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://soundvision.co.za/products/starsound-8ga-wiring-kit"
     },
     {
       "id": "ac-055",
@@ -1570,14 +1581,16 @@
       "modelNumber": "CROSSOVER 2950",
       "description": "3-way crossover",
       "manufacturerPage": "",
-      "imageUrl": "",
+      "imageUrl": "https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_300%2Ch_300%2Cd_notfound.png/user/4257496/SSA-2950_1_FsxDYWN9C.png",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceUrl": "https://sbrprosound.co.za/product/starsound-ssa-2950-3-way-crossover/",
+      "manufacturerListedModel": "SSA-2950"
     }
   ],
   "sourcePriceReconciliation": {
