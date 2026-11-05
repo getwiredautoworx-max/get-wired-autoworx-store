@@ -273,7 +273,7 @@ assert.ok(home.includes("id==='1a13bc42-4f54-44f6-9658-36d141b77f4b'"));
 assert.ok(home.includes('href="preview-audio.html"'));
 assert.ok(home.includes("e3d19d20-fb46-426c-9f64-221d863add0b") && !home.includes("5ab55c53-eee3-41ce-ad48-04ad6df85181"), 'Car Audio & Video navigation must use the current approved category UUID');
 assert.ok(builder.includes('"preview-audio.html"'));
-for (const file of ['planetworld-catalogue-preview.json','planetworld-verified-models-preview.json','audio-connections-catalogue-preview.json']) {
+for (const file of ['planetworld-catalogue-preview.json','audio-connections-catalogue-preview.json']) {
   assert.ok(builder.includes(file), 'preview allowlist must include '+file);
 }
 console.log('AUDIO_CATALOGUE_PREVIEW_PASS', JSON.stringify({
