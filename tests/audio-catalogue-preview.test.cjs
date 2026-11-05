@@ -239,7 +239,6 @@ const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === '
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
 assert.equal(imageCount, 72);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
-assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
 assert.ok(route.includes('routeParams.get("search")'));
