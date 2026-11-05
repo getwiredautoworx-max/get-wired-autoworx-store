@@ -107,7 +107,7 @@ jobs:
           matched=""
           for attempt in $(seq 1 24); do
             for base in "${aliases[@]}"; do
-              body="$(curl -fsS --max-time 5 "$base/qa-build-result.json" 2>/dev/null || true)"
+              body="$(curl -fsS -H 'Cache-Control: no-cache' --max-time 5 "$base/qa-build-result.json?sha=$EXPECTED_SHA" 2>/dev/null || true)"
               if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$EXPECTED_SHA"; then
                 matched="$base"
                 break
