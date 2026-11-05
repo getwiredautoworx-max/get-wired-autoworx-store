@@ -8,6 +8,7 @@ const planet = readJson('assets/planetworld-catalogue-preview.json');
 const verified = readJson('assets/planetworld-verified-models-preview.json');
 const audioConnections = readJson('assets/audio-connections-catalogue-preview.json');
 const route = fs.readFileSync('preview-audio.html', 'utf8');
+const categoryRoute = fs.readFileSync('preview-category.html', 'utf8');
 const home = fs.readFileSync('index-new.html', 'utf8');
 const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf8');
 
@@ -238,3 +239,28 @@ for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-unit
 assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony brand wordmark');
 
 assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand selector must use the local wordmark');
+
+/* Every audio department must have a dedicated local illustration; never reuse one unrelated default image. */
+for (const [label,asset] of [
+  ['Car Audio','/assets/car-audio-video-category.svg'],
+  ['Home Entertainment','/assets/audio-types/home-audio-cinema.svg'],
+  ['Band & Live Sound','/assets/audio-types/speakers.svg'],
+  ['DJ','/assets/audio-types/signal-processing.svg'],
+  ['Studio Equipment','/assets/audio-types/installed-audio.svg'],
+  ['Musical Instruments','/assets/audio-types/musical-instruments.svg'],
+  ['Marine Audio','/assets/audio-types/marine-audio.svg'],
+  ['Lifestyle','/assets/audio-types/lifestyle-audio.svg']
+]) {
+  assert.ok(route.includes(asset), 'Missing relevant department artwork for '+label);
+}
+assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
+assert.ok(route.includes('window.location.assign("preview-audio.html?"+u.toString())'), 'Department buttons must navigate to the selected department route');
+assert.ok(!route.includes('https://ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && !route.includes('home-entertainment.svg";\n}'), 'Component buttons must not use remote or unrelated generic image fallbacks');
+for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-audio.svg']) {
+  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing dedicated audio department artwork: '+asset);
+  assert.ok(builder.includes('audio-types/'+asset), 'New department artwork missing from public package: '+asset);
+}
+for (const asset of ['home-audio-cinema.svg','speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
+  assert.ok(categoryRoute.includes(asset) || route.includes(asset), 'Audio category image mapping missing: '+asset);
+}
+assert.ok(!categoryRoute.includes('this.src=categoryArtFallback(this.alt)'), 'Failed category images must not be replaced with generic unrelated artwork');
