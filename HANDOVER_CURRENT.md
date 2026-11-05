@@ -3206,3 +3206,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 - The sole automatic owner-preview deployment and hosted browser acceptance path is `.github/workflows/deploy-pr-168-staging-preview.yml`. Other automatic workflows may continue their independent catalogue, SKU, security and smoke checks, but must not deploy another preview.
 - The current owner-preview acceptance remains the successful exact-head run `41999948429` at `0b1829201ce62849400baae198da5310f199f27a`; the legacy failure `41999948343` is not an owner-preview acceptance result.
 - This workflow/handover cleanup is not a storefront source change. Trigger one fresh exact-head owner-preview run after the handover update; keep production HOLD and PR #178 draft pending owner review.
+
+
+---
+
+## CONTINUATION TASK START — 2026-11-05 16:02 SAST
+
+- Owner instruction: continue current work and notify the owner when a verified preview is ready.
+- Read the binding owner reset `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` on `main`. It supersedes conflicting historical handover content. Current scope: one coordinated storefront candidate; three approved root categories; catalogue-first pipeline; ASC catalogues only (no Buyers Guides); no live data, production deployment, Axxess, DNS, payment or release changes without explicit approval.
+- Task in progress: reconcile current branches/PRs/workflows and verify the latest owner-preview candidate before making changes. PR #178 is identified in its current PR description as the sole active storefront integration candidate; do not reuse a preview URL until exact-head deployment and hosted checks are confirmed.
+- Latest owner-reported storefront corrections to carry forward: missing One Nav and Amplified brand logos; Car Audio & Video missing Amplified and other product-type navigation/visuals; all relevant category/subcategory/brand/product-type imagery must load and match its destination; preserve the approved bright layout and mobile-first navigation.
+- No source, catalogue, supplier workbook, price, stock, Supabase data, payment, DNS, Axxess or production change made at task start.
+- Next: inspect PR #178 branch head and exact-head workflow evidence; fix only verified gaps in that single candidate; update this handover with actual test/deployment evidence and the next action.
