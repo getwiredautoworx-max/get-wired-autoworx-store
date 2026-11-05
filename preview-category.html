@@ -64,6 +64,25 @@ const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 function audioAreaMatch(product,area){const t=[product.name,product.description].join(' ').toLowerCase();const studio=/studio|microphone|\bmic\b|mixer|mixing desk|\bdj\b|recording|audio interface|monitor speaker|\bpa system\b|public address|\bxlr\b|condenser|dynamic mic|headphone/.test(t);const home=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|\btv\b|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/.test(t);if(area==='studio')return studio;if(area==='home')return home;if(area==='car')return !studio&&!home;return false}
 function categoryArtFallback(label){
  const n=String(label||'').toLowerCase();
+ const localAudio=[
+  [/car audio|car audio & video/,'assets/car-audio-video-category.svg'],
+  [/home entertainment|home audio|home cinema/,'assets/audio-types/home-audio-cinema.svg'],
+  [/speakers?|component kits/,'assets/audio-types/speakers.svg'],
+  [/subwoofers?/,'assets/audio-types/subwoofers.svg'],
+  [/amplifiers?/,'assets/audio-types/amplifiers.svg'],
+  [/head units|media players|radios/,'assets/audio-types/head-units.svg'],
+  [/cameras? & monitors?/,'assets/audio-types/cameras-monitors.svg'],
+  [/signal processing|crossovers?/,'assets/audio-types/signal-processing.svg'],
+  [/trims? & harnesses?|harnesses?, trims/,'assets/audio-types/harnesses-trims.svg'],
+  [/aerials?/,'assets/audio-types/aerials.svg'],
+  [/band equipment|band & live sound/,'assets/audio-types/speakers.svg'],
+  [/dj equipment/,'assets/audio-types/signal-processing.svg'],
+  [/instruments?/,'assets/audio-types/musical-instruments.svg'],
+  [/marine audio/,'assets/audio-types/marine-audio.svg'],
+  [/lifestyle/,'assets/audio-types/lifestyle-audio.svg']
+ ];
+ const exact=localAudio.find(([re])=>re.test(n));
+ if(exact)return exact[1];
  let art='<rect x="28" y="30" width="144" height="100" rx="12" fill="#163e5c" stroke="#53b9f4" stroke-width="4"/><circle cx="72" cy="80" r="27" fill="#0b1d2b" stroke="#9bdcff" stroke-width="5"/><circle cx="72" cy="80" r="10" fill="#53b9f4"/><circle cx="128" cy="80" r="27" fill="#0b1d2b" stroke="#9bdcff" stroke-width="5"/><circle cx="128" cy="80" r="10" fill="#53b9f4"/>';
  if(/subwoofer/.test(n))art='<circle cx="100" cy="80" r="53" fill="#102b40" stroke="#53b9f4" stroke-width="8"/><circle cx="100" cy="80" r="36" fill="#071725" stroke="#9bdcff" stroke-width="5"/><circle cx="100" cy="80" r="15" fill="#53b9f4"/>';
  else if(/amplifier/.test(n))art='<rect x="22" y="48" width="156" height="66" rx="10" fill="#173d58" stroke="#65c7ff" stroke-width="4"/><path d="M38 65h88M38 78h68M38 91h48" stroke="#b8e8ff" stroke-width="4" stroke-linecap="round"/><circle cx="151" cy="81" r="13" fill="#071725" stroke="#9bdcff" stroke-width="4"/>';
@@ -138,7 +157,7 @@ function render(items,title,sub){
     else href='preview-category.html?id='+encodeURIComponent(c.id);
   }
   
-  const artMarkup=c.audioBrand?'<span class="brand-logo-wrap"><img class="brand-logo" src="'+brandLogo(label)+'" alt="'+esc(label)+' logo" loading="eager" onerror="this.style.display=\'none\';this.parentElement.textContent=this.alt.replace(\' logo\',\'\')"></span>':(c.audioArea==='car'?'<img src="assets/car-audio-video-category.svg" alt="Car audio and video equipment" loading="eager">':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="eager" onerror="this.remove()">');return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
+  const artMarkup=c.audioBrand?'<span class="brand-logo-wrap"><img class="brand-logo" src="'+brandLogo(label)+'" alt="'+esc(label)+' logo" loading="eager" onerror="this.style.display=\'none\';this.parentElement.textContent=this.alt.replace(\' logo\',\'\')"></span>':(c.audioArea==='car'?'<img src="assets/car-audio-video-category.svg" alt="Car audio and video equipment" loading="eager">':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="eager" onerror="this.onerror=null;this.src=categoryArtFallback(this.alt)">');return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
  }).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>';
 }
 async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;
