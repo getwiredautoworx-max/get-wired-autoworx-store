@@ -4147,3 +4147,8 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - OneNav remains INCOMPLETE: the brand route contains 65 product cards; 21 currently have exact official manufacturer descriptions, 44 remain unmatched; 6 exact-model image candidates are present, and 15 verified product pages still need exact photos. The six candidates loaded but retain preview/rights-review notes. Do not claim brand completion or proceed to another brand.
 - Recent image research rejected photos for mismatched generations/fitments (including A11/Evolution vs Classic variants, OA115-2/OA115-3 family imagery for OA115-1, and unrelated generic fascia images). Keep exact-model image gaps explicit rather than substituting similar-looking photos.
 - Next: continue OneNav only; resolve the 15 exact-photo gaps and 44 unmatched cards, then rerun exact-head build and hosted OneNav directory/brand/product route checks. Production HOLD. No merge, Axxess, DNS, Supabase writes, live stock/price/catalogue mutation, payment activation or checkout go-live.
+
+
+## AUDIO BRAND CONTINUATION — 2026-11-05 19:40 SAST
+
+Latest OneNav-only image research and rejection decisions are recorded in [HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md](HANDOVER_CURRENT_ADDENDUM_2026-11-05_AUDIO_BRANDS.md). OneNav remains incomplete: no new exact product image was approved in the latest triage; visually similar A11/Evolution/Pro images were rejected where SKU/series did not match. Keep OneNav as the only active brand. The last passing preview workflow (42062037287) tested source SHA 2055dc4764c4d6280b6d026a105fecadc759f6a2, not the current branch source head; do not call the current branch preview-verified until an exact-head run passes. Production remains HOLD.
