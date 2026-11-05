@@ -263,3 +263,9 @@ required_checks=exact-sha-marker;node-audio-regression;three-category-structure;
 request=owner-preview-retry-after-cloudflare-branch-alias-verification-fix-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker-on-wrangler-returned-branch-alias;node-regression;public-sku-audit;home-entertainment-full-journey;oneNav-amplified-logos;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-final-retry-after-wrangler-output-alias-fix-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker-from-deployment-url-and-branch-alias;node-regression;public-sku-audit;three-root-navigation;home-entertainment-brand-first;klipsch-logo;home-audio-cinema-type-image;filtered-home-products;onenav-logo;amplified-logo;alpine-halo-11-image-description;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked
