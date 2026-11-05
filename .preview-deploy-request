@@ -65,3 +65,7 @@ required_checks=exact-sha-marker;package-regressions;public-sku-audit;390px-mobi
 request=ASC-AUTO-ELECTRICAL-BRAND-ROUTE-DEFAULT-FIX
 requested_for=asc-auto-electrical-v2
 required_checks=exact-sha-marker;brand-first-audio;ASC-four-catalogues;34-pilot-images;mobile-desktop
+
+request=ASC-AUTO-ELECTRICAL-CAR-AUDIO-BRAND-LANDING-QUERY-FIX
+requested_for=asc-auto-electrical-v2
+required_checks=brand-buttons-visible-without-preselected-brand;ASC-four-catalogues;34-pilot-images;mobile-desktop
