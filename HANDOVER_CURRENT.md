@@ -3320,3 +3320,23 @@ This section supersedes the earlier “exact-head staging refresh pending” sen
 - Stable owner preview URL: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html . Base preview: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev .
 - The subsequent handover edit is documentation-only; storefront source and QA logic deployed at `f00f1be` remain unchanged.
 - Owner visual acceptance is still required. PR #176 remains OPEN / DRAFT / UNMERGED. Remaining catalogue coverage and ASC integration are not complete. Production remains HOLD; no production deployment, Axxess upload, DNS, live Supabase writes, live stock/price changes, or payment activation occurred.
+
+
+## 2026-11-05 — OWNER CORRECTION: CAR AUDIO NAVIGATION ORDER FIXED IN SOURCE; EXACT-HEAD QA PENDING
+
+Owner identified that Car Audio & Video was opening component groups first and brands second. This is incorrect. Required customer journey is strictly:
+1. Audio, Entertainment & Music → Car Audio & Video.
+2. Car Audio & Video opens the **brand selection** landing page (JBL, Sony, Pioneer, Hertz, Kenwood, Alpine, etc.).
+3. Selecting a brand opens that brand's **component/product-type groups** (Radios & Head Units, Speakers & Component Kits, Amplifiers, Subwoofers, Accessories, etc.).
+4. Selecting a component group opens products filtered to the selected brand AND component group.
+
+### Source correction made on the existing PR #176 integration branch
+- `preview-category.html`: added an explicit route for Car Audio & Video category ID `e3d19d20-fb46-426c-9f64-221d863add0b` to redirect to `preview-audio.html?department=Car%20Audio&brand=All%20brands&label=Car%20Audio%20%26%20Video`. This bypasses the generic category-tree component buttons as the first selection.
+- `preview-audio.html` already implements the intended state sequence: department landing shows brands only; selecting a brand exposes that brand's component groups; selecting a component shows products filtered by both brand and component. No supplier source is exposed as a customer-facing brand.
+- Updated `tests/three-category-storefront-structure.test.cjs` with a static regression assertion for the Car Audio brand-first redirect and brand-before-component visibility.
+- Updated `.github/workflows/store-preview-browser-qa.yml` hosted browser journey: click Car Audio & Video, verify brands appear while components/products are hidden, select Sony, verify component groups appear while products remain hidden, select Amplifiers, and verify returned products are Sony Amplifiers.
+- This correction does not change the three main root categories, supplier data, live inventory, pricing, checkout, or production configuration.
+
+### Verification gate
+- Code changes committed to the same branch; push-triggered QA and staging deployment are pending. Do not claim the hosted customer journey is fixed until the exact current PR head has a passing static regression and hosted mobile/desktop browser result, and the deployed preview marker matches that head.
+- Keep PR #176 open/draft/unmerged until all exact-head checks pass and owner accepts the preview. Production remains on hold.
