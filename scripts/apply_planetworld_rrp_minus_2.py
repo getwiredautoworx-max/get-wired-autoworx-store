@@ -50,11 +50,9 @@ def main() -> None:
         )
 
     headers = [
-        "product_id", "source_file", "source_sheet", "source_row", "supplier_sku",
-        "brand", "source_description", "storefront_title", "rrp_incl_vat",
-        "dealer_cost_excl_vat", "estimated_cost_incl_vat",
-        "proposed_selling_price_rrp_minus_2", "gross_margin_at_proposed",
-        "pricing_status", "source_snapshot",
+        "product_id", "source_file", "source_row", "supplier_sku", "brand",
+        "rrp_incl_vat", "dealer_cost_excl_vat", "estimated_cost_incl_vat",
+        "proposed_selling_price", "gross_margin", "pricing_status", "source_snapshot",
     ]
     audit_rows: list[dict[str, str]] = []
     counts = {"priced": 0, "zero_rrp": 0, "below_cost": 0, "cost_pass": 0, "cost_unverified": 0}
@@ -94,19 +92,16 @@ def main() -> None:
         audit_rows.append({
             "product_id": product["id"],
             "source_file": source.get("source_file", ""),
-            "source_sheet": source.get("sheet", ""),
             "source_row": source.get("row_number", ""),
             "supplier_sku": source.get("supplier_sku_candidate", ""),
             "brand": source.get("brand_candidate", ""),
-            "source_description": source.get("description_candidate", ""),
-            "storefront_title": product.get("title", ""),
             "rrp_incl_vat": str(rrp) if rrp else "",
             "dealer_cost_excl_vat": str(dealer_cost) if dealer_cost else "",
             "estimated_cost_incl_vat": str(estimated_cost) if estimated_cost else "",
-            "proposed_selling_price_rrp_minus_2": str(proposed) if proposed else "",
-            "gross_margin_at_proposed": str(margin) if margin is not None else "",
+            "proposed_selling_price": str(proposed) if proposed else "",
+            "gross_margin": str(margin) if margin is not None else "",
             "pricing_status": status,
-            "source_snapshot": SOURCE_SNAPSHOT,
+            "source_snapshot": "2026-10-25",
         })
 
     data["pricingNote"] = (
