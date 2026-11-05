@@ -9,6 +9,7 @@ on:
     paths:
       - "index-new.html"
       - "category.html"
+      - "preview-category.html"
       - "index-new.html"
       - "preview-audio.html"
       - "assets/category-tree.json"
@@ -65,6 +66,27 @@ jobs:
           (async () => {
             const browser = await chromium.launch({headless:true});
             try {
+              const ownerRoutePage = await browser.newPage({viewport:{width:390,height:844}});
+              ownerRoutePage.on('pageerror', e => errors.push('owner-route: '+String(e)));
+              await ownerRoutePage.goto('http://127.0.0.1:4173/preview-category.html',{waitUntil:'domcontentloaded'});
+              await ownerRoutePage.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              const rootColumns = await ownerRoutePage.locator('#grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+              if(rootColumns!==2)throw new Error('Owner preview must show two category columns at 390px; got '+rootColumns);
+              await ownerRoutePage.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
+              await ownerRoutePage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Audio, Entertainment & Music');
+              const audioColumns=await ownerRoutePage.locator('#grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+              if(audioColumns!==2)throw new Error('Audio subcategories must remain a two-column image grid at 390px; got '+audioColumns);
+              const audioTiles=await ownerRoutePage.locator('#grid .card').count();
+              if(audioTiles!==6)throw new Error('Audio should expose six separate department tiles; found '+audioTiles);
+              const audioTileImages=await ownerRoutePage.locator('#grid .card .card-art img').count();
+              if(audioTileImages!==6)throw new Error('Every Audio department tile must include its own relevant image; found '+audioTileImages);
+              await ownerRoutePage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await ownerRoutePage.waitForURL(/preview-audio\.html/,{timeout:15000});
+              await ownerRoutePage.locator('#brands button[aria-label="Kicker"]').waitFor({state:'visible',timeout:30000});
+              const ownerBrandImages=await ownerRoutePage.locator('#brands button img').count();
+              if(ownerBrandImages<1)throw new Error('Car Audio & Video must present image/logo-led brand choices');
+              await ownerRoutePage.close();
+
               const page = await browser.newPage({viewport:{width:390,height:844}});
               const errors = [];
               page.on('pageerror', e => errors.push(String(e)));
@@ -125,6 +147,13 @@ jobs:
               await brandPage.locator('#brands button[aria-label="Kicker"]').click();
               await brandPage.waitForURL(/preview-audio\.html\?.*brand=Kicker/,{timeout:15000});
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).waitFor({state:'visible',timeout:30000});
+              const componentLabels=await brandPage.locator('#components button').allTextContents();
+              const componentOrder=['Head Units & Media Players','Speakers & Component Kits','Subwoofers','Amplifiers','Cameras & Monitors','Signal Processing & Crossovers','Accessories','Harnesses, Trims & Fitment','Aerials'];
+              const orderedLabels=componentLabels.map(x=>x.trim());
+              const orderIndexes=orderedLabels.map(x=>componentOrder.indexOf(x)).filter(x=>x>=0);
+              if(orderIndexes.some((x,i)=>i>0&&x<orderIndexes[i-1]))throw new Error('Car audio component choices are not in the owner-approved browsing order: '+JSON.stringify(orderedLabels));
+              const componentImages=await brandPage.locator('#components button img').count();
+              if(componentImages!==componentLabels.length)throw new Error('Every product-type choice must have a relevant picture: '+componentImages+'/'+componentLabels.length);
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).click();
               await brandPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const selectedComponent = new URL(brandPage.url()).searchParams.get('component') || '';
