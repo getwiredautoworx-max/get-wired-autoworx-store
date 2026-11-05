@@ -209,7 +209,7 @@ for (const imageUrl of [
   'ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg',
   'i.ebayimg.com/00/s/MTYwMFgxNjAw/',
   'nakamichicaraudio.com/cdn/shop/files/1_NKTA75.2_600x.png',
-  'bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byb',
+  'bossaudio.com/cdn/shop/files/lw1bpspmyfs4nx6h4byu',
   'down-ph.img.susercontent.com/file/23da3f49f2e772cfaa55a72f0704f539',
   'soundautoconcept.com/cdn/shop/files/esx-dsp-numerique',
   'fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png',
