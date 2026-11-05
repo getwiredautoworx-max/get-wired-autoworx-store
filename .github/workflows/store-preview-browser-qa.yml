@@ -234,59 +234,41 @@ jobs:
               const frame=page.frameLocator('#store');
               await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:30000});
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:30000});
-              const rootStateBefore=await frame.locator('#categoryGrid > .catWrap').first().evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,childrenText:el.querySelector('.children')?.innerText||'',html:el.innerHTML.slice(0,3000)}));
-              console.log('HOSTED_ROOT_STATE_BEFORE_CLICK',JSON.stringify(rootStateBefore));
-              if(rootStateBefore.childCount<1)throw new Error('Hosted category snapshot rendered the Audio root without its subcategory nodes: '+JSON.stringify(rootStateBefore));
+              const audioRootLink=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]').first();
+              const audioRootHref=await audioRootLink.getAttribute('href');
+              if(!audioRootHref||!audioRootHref.includes('id=1a13bc42-4f54-44f6-9658-36d141b77f4b'))throw new Error('Audio root does not link to its own category page: '+audioRootHref);
               const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
               const expected=['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories'];
-              if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
+              if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
               const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
-              if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
+              if(!checkoutSafe)throw new Error('Checkout is visible in hosted owner preview');
               const hostedCarAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
               await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
               const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
               if(!hostedCarAudioArtLoaded)throw new Error('Hosted homepage Car Audio & Video product image did not load');
-              await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
-              const hostedChildCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
-              await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
-              const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
-              if(!hostedChildCarAudioImageLoaded)throw new Error('Hosted Car Audio & Video child category product image did not load');
-              const hostedDepartmentArtChecks=[
-                ['gw-audio-home','home entertainment television'],
-                ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
-                ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
-                ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
-              ];
-              for(const [id,expectedAlt] of hostedDepartmentArtChecks){
-                const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
-                const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
-                await art.waitFor({state:'visible',timeout:15000});
-                await art.scrollIntoViewIfNeeded();
-                const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
-                if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Hosted wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
-              }
-              try {
-                await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"]');return !!w?.classList.contains('open')},{timeout:10000});
-              } catch(error) {
-                const state=await frame.locator('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"]').evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,buttonText:el.querySelector('.catBtn')?.innerText||'',html:el.innerHTML.slice(0,4000)}));
-                console.error('HOSTED_AUDIO_ROOT_CLICK_DIAGNOSTIC',JSON.stringify({state,jsErrors:errors}));
-                throw error;
-              }
-              console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
-              await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
-              const hostedCategoryGrid=frame.locator('#categoryGrid');
-              const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
-              const hostedAudioLinkCount=await hostedAudioLinks.count();
-              const hostedCategoryText=await hostedCategoryGrid.innerText();
-              console.log('HOSTED_AFTER_CAR_AUDIO',JSON.stringify({audioLinkCount:hostedAudioLinkCount,text:hostedCategoryText,html:(await hostedCategoryGrid.innerHTML()).slice(0,12000)}));
-              const audioLink=hostedAudioLinks.filter({hasText:/Car Audio & Video/}).first();
-              try { await audioLink.waitFor({state:'visible',timeout:10000}); }
-              catch(error) { console.error('HOSTED_AUDIO_LINK_DIAGNOSTIC',JSON.stringify({audioLinkCount:hostedAudioLinkCount,categoryText:hostedCategoryText,jsErrors:errors})); throw error; }
-              const audioHref=await audioLink.getAttribute('href');
-              if(!audioHref||!audioHref.includes('preview-audio.html')) throw new Error('Hosted Car Audio & Video link has no dedicated preview route: '+audioHref);
-              const routeUrl=new URL(audioHref,new URL('preview-store.html',page.url())).href;
-              await page.goto(routeUrl,{waitUntil:'domcontentloaded',timeout:60000});
+              await audioRootLink.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store').contentWindow;return f.location.pathname.endsWith('/preview-category.html')&&new URLSearchParams(f.location.search).get('id')==='1a13bc42-4f54-44f6-9658-36d141b77f4b'},{timeout:30000});
+              const audioSubcategoryCards=frame.locator('#grid .card');
+              await frame.locator('#grid .card h2').filter({hasText:'Car Audio & Video'}).waitFor({state:'visible',timeout:20000});
+              const compactGrid=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:cards.length,widths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),heights:cards.map(x=>Math.round(x.getBoundingClientRect().height))}});
+              if(compactGrid.columns!==2||compactGrid.count<6||compactGrid.widths.some(w=>w<130)||compactGrid.heights.some(h=>h>220))throw new Error('Hosted Audio subcategories are not compact two-column mobile tiles: '+JSON.stringify(compactGrid));
+              for(const label of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
+              await frame.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await page.waitForFunction(()=>new URLSearchParams(document.querySelector('#store').contentWindow.location.search).get('id')==='e3d19d20-fb46-426c-9f64-221d863add0b',{timeout:20000});
+              for(const label of ['Speakers & Component Kits','Subwoofers','Amplifiers','Head Units & Media Players','Accessories','Cameras & Monitors','Signal Processing & Crossovers'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
+              await frame.locator('#grid .card').filter({hasText:'Accessories'}).click();
+              await page.waitForFunction(()=>new URLSearchParams(document.querySelector('#store').contentWindow.location.search).get('id')==='8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{timeout:20000});
+              for(const label of ['Aerials','Trims & Harnesses'])await frame.locator('#grid .card').filter({hasText:label}).waitFor({state:'visible',timeout:15000});
+              await frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
+              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const hostedTrimCount=await frame.locator('#products .audioProduct').count();
+              if(hostedTrimCount!==47)throw new Error('Hosted Trims & Harnesses route expected 47 products, got '+hostedTrimCount);
+              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded',timeout:60000});
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              const hostedCarAudioSummary=await page.locator('#audioResultCount').innerText();
+              const hostedCarAudioCount=Number(hostedCarAudioSummary.split(' ')[0]||0);
+              if(hostedCarAudioCount<700)throw new Error('Hosted Car Audio department is missing Planetworld catalogue rows: '+hostedCarAudioSummary);
               const hostedLogoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
               const hostedCheckedLogos=[];
               for(const name of hostedLogoBrands){
