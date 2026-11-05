@@ -340,7 +340,7 @@
       "indicativePrice": 535.61,
       "hasStock": false,
       "modelNumber": "RABTR03",
-      "description": "Reference Audio RABTR03",
+      "description": "Bluetooth-enabled car media player with USB and SD-card playback, MP3 support, an FM/AM radio tuner and remote control. A third-party model listing reports 4 × 50 W output; confirm the exact output rating and included accessories against the supplier before making a power claim.",
       "manufacturerPage": "",
       "imageUrl": "https://evolutionwheelandtyre.com/cdn/shop/files/RA-BTR03.jpg?v=1753285755",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -350,7 +350,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/reference-audio-ra-btr03-media-player-with-bluetooth"
+      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/reference-audio-ra-btr03-media-player-with-bluetooth",
+      "descriptionSourceUrl": "https://ismotorsport.co.za/products/reference-audio-ra-btr03-media-player-with-bluetooth",
+      "descriptionStatus": "MODEL_LISTING_DETAILS_FOUND; OUTPUT_RATING_REQUIRES_SUPPLIER_CONFIRMATION"
     },
     {
       "id": "ac-015",
@@ -387,7 +389,7 @@
       "indicativePrice": 737.44,
       "hasStock": false,
       "modelNumber": "USB450BTDD",
-      "description": "USB450BTDD media player",
+      "description": "Deckless double-DIN MP3 media player with Bluetooth, USB, AUX and TF-card playback, FM/AM radio with 18 station presets, a three-band equaliser and an external microphone. The manufacturer lists two pairs of 2 V RCA pre-outs and 4 × 65 W maximum output.",
       "manufacturerPage": "",
       "imageUrl": "https://cdn.shopify.com/s/files/1/0263/1149/1629/files/SSUSB-450BTDD.jpg?v=1748037061&width=1200",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -397,7 +399,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/starsound-ssusb-450btdd-double-din-media-player-with-bluetooth"
+      "imageSourceUrl": "https://evolutionwheelandtyre.com/products/starsound-ssusb-450btdd-double-din-media-player-with-bluetooth",
+      "descriptionSourceUrl": "https://starsound.co.za/product/ssusb-450btdd/",
+      "descriptionStatus": "MANUFACTURER_PRODUCT_PAGE_MATCH"
     },
     {
       "id": "ac-017",
@@ -537,7 +541,7 @@
       "indicativePrice": 774.7,
       "hasStock": false,
       "modelNumber": "SSW12-7300",
-      "description": "12-inch SVC subwoofer",
+      "description": "12-inch dual-voice-coil car subwoofer with a reinforced ribbed surround, high-strength push terminals, a high-temperature four-layer copper voice coil, double-magnet motor assembly and forced-air cooling. Published power figures differ between listings, so no wattage claim is included pending supplier confirmation.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-12-7300_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -550,7 +554,9 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-7300",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
-      "imageSourceUrl": "https://starsound.co.za/product/ssw-12-7300/"
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-12-7300/",
+      "descriptionSourceUrl": "https://jmsounds.co.za/product/starsound-ssw-12-7300-12-dvc-subwoofer/",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH; POWER_RATING_CONFLICT_HELD"
     },
     {
       "id": "ac-023",
@@ -647,7 +653,7 @@
       "indicativePrice": 619.45,
       "hasStock": false,
       "modelNumber": "SSWF10\"-4150SVC",
-      "description": "10-inch flat SVC subwoofer",
+      "description": "10-inch flat-format single-voice-coil subwoofer for installations where mounting depth is limited. The exact SSW-F10-4150SVC listing states a 4,150 W maximum rating; no RMS rating is stated in that source.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-4150SVC_a.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -660,7 +666,9 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F10-4150SVC",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
-      "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-4150svc/"
+      "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-4150svc/",
+      "descriptionSourceUrl": "https://maxmotorsport.co.za/products/starsound-10-inch-slim-svc-subwoofer",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH; RMS_NOT_STATED"
     },
     {
       "id": "ac-027",
@@ -702,7 +710,7 @@
       "indicativePrice": 589.95,
       "hasStock": false,
       "modelNumber": "SSWF10 2650SVC",
-      "description": "10-inch flat SVC subwoofer",
+      "description": "10-inch flat-format passive subwoofer designed for shallow-mount installations where space is limited. The matching SSW-F10-2650 listing describes a 250 W RMS / 500 W maximum model, but its voice-coil description conflicts with the supplier's SVC suffix; coil configuration is therefore not stated pending confirmation.",
       "manufacturerPage": "",
       "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSW-F10-2650-720x484.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -713,7 +721,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://starsound.co.za/product/ssw-f10-2650/",
-      "manufacturerListedModel": "SSW-F10-2650"
+      "manufacturerListedModel": "SSW-F10-2650",
+      "descriptionSourceUrl": "https://sbrprosound.co.za/product/starsound-ssw-f10-2650/",
+      "descriptionStatus": "MODEL_MATCH_WITH_VOICE_COIL_VARIANT_CONFLICT; CONFIGURATION_HELD"
     },
     {
       "id": "ac-029",
@@ -1492,7 +1502,7 @@
       "indicativePrice": 335.34,
       "hasStock": false,
       "modelNumber": "SST-550",
-      "description": "Super T tweeter",
+      "description": "Real-titanium-dome super tweeter with a 4-ohm voice coil, 3 kHz–27 kHz frequency response and 94 dB sensitivity (1 W/1 m). The published product listing also specifies a high-density carbon magnet, ferro-fluid-cooled voice coil and tuned passive crossover.",
       "manufacturerPage": "",
       "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2014483000000starsound-real-titanium-dome-super-tweeter-sst-550-4667579.png?v=1781184011&width=1000",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1502,7 +1512,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-550-starsound-real-titanium-dome-super-tweeter"
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-550-starsound-real-titanium-dome-super-tweeter",
+      "descriptionSourceUrl": "https://www.fastrak.co.za/products/sst-550-starsound-real-titanium-dome-super-tweeter",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     },
     {
       "id": "ac-060",
@@ -1514,7 +1526,7 @@
       "indicativePrice": 38.81,
       "hasStock": false,
       "modelNumber": "SST350",
-      "description": "Piezo tweeter",
+      "description": "Compact 1-inch passive car tweeter designed to add high-frequency output to a compatible speaker system. The model listing specifies 350 W maximum power, 20 W RMS, 97 dB sensitivity and 4-ohm impedance.",
       "manufacturerPage": "",
       "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2007608000000starsound-sst-350-1-350w-car-tweeter-3340580.png?v=1780672664",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1524,7 +1536,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-350-starsound-tweeter-by-fastrak"
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-350-starsound-tweeter-by-fastrak",
+      "descriptionSourceUrl": "https://www.fastrak.co.za/products/sst-350-starsound-tweeter-by-fastrak",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     },
     {
       "id": "ac-061",
@@ -1536,7 +1550,7 @@
       "indicativePrice": 380.36,
       "hasStock": false,
       "modelNumber": "SST-850",
-      "description": "Bullet tweeter",
+      "description": "3.5-inch bullet tweeter supplied as a pair. Published specifications list 850 W maximum power, 4-ohm impedance and 100 dB sensitivity; a product-category listing gives a 2 kHz–23 kHz frequency response.",
       "manufacturerPage": "",
       "imageUrl": "https://www.fastrak.co.za/cdn/shop/files/2013868000000-4442150.png?v=1760371644",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1546,7 +1560,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-850-starsound-bullet-tweeter"
+      "imageSourceUrl": "https://www.fastrak.co.za/products/sst-850-starsound-bullet-tweeter",
+      "descriptionSourceUrl": "https://jmsounds.co.za/product/starsound-sst-850-3-bullet-tweeters/",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     },
     {
       "id": "ac-062",
@@ -1583,7 +1599,7 @@
       "indicativePrice": 433.15,
       "hasStock": false,
       "modelNumber": "EQ5100",
-      "description": "5-band equaliser",
+      "description": "Five-band car-audio equaliser/pre-amplifier with separate frequency controls for low bass, upper bass, lower midrange, upper midrange and treble. The published specification lists 11–15 V DC negative-ground supply, up to 11 V RMS output, ±18 dB equalisation range, 33–250 Hz subwoofer control and 90 dB signal-to-noise ratio.",
       "manufacturerPage": "",
       "imageUrl": "https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-SSA-EQ-5100-5-Band-Equalizer-Star-Sound-21231784.jpg?v=1725973962&width=1946",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1593,7 +1609,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-5-band-equalizer"
+      "imageSourceUrl": "https://maxmotorsport.co.za/products/star-sound-5-band-equalizer",
+      "descriptionSourceUrl": "https://ismotorsport.co.za/products/starsound-ssa-eq5100-5-band-equalizer",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     },
     {
       "id": "ac-064",
@@ -1631,7 +1649,7 @@
       "indicativePrice": 582.19,
       "hasStock": false,
       "modelNumber": "CROSSOVER 2900",
-      "description": "3-way crossover",
+      "description": "Active 2/3-way asymmetrical car-audio crossover for dividing the signal between front, rear and subwoofer outputs. Features include an 18 dB/octave low-pass filter, 12 dB/octave high-pass filter, adjustable output, bass shaping, frequency multiplier, parallel-input switching and subwoofer phase inversion.",
       "manufacturerPage": "",
       "imageUrl": "https://soundvision.co.za/cdn/shop/products/image_9ed13de5-9f02-4f13-9700-fdc298aff210_2048x2048.jpg?v=1637320397",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1641,7 +1659,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
-      "imageSourceUrl": "https://soundvision.co.za/products/star-sound-ssa-2900-x-over"
+      "imageSourceUrl": "https://soundvision.co.za/products/star-sound-ssa-2900-x-over",
+      "descriptionSourceUrl": "https://jmsounds.co.za/product/starsound-ssa-2900-crossover/",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     },
     {
       "id": "ac-066",
@@ -1653,7 +1673,7 @@
       "indicativePrice": 603.92,
       "hasStock": false,
       "modelNumber": "CROSSOVER 2950",
-      "description": "3-way crossover",
+      "description": "Three-way active car-audio crossover designed to separate low-, mid- and high-frequency signals for the relevant drivers. Published features include an asymmetrical 2/3-way crossover design, bass shaper, adjustable output level, gold-plated RCA connectors, DC/DC switching supply, subwoofer phase inverter and parallel-input switching.",
       "manufacturerPage": "",
       "imageUrl": "https://img.bobshop.co.za/f_auto%2Cc_fit%2Cw_300%2Ch_300%2Cd_notfound.png/user/4257496/SSA-2950_1_FsxDYWN9C.png",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1664,7 +1684,9 @@
       "brandNote": "",
       "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
       "imageSourceUrl": "https://sbrprosound.co.za/product/starsound-ssa-2950-3-way-crossover/",
-      "manufacturerListedModel": "SSA-2950"
+      "manufacturerListedModel": "SSA-2950",
+      "descriptionSourceUrl": "https://sbrprosound.co.za/product/starsound-ssa-2950-3-way-crossover/",
+      "descriptionStatus": "EXACT_MODEL_LISTING_MATCH"
     }
   ],
   "sourcePriceReconciliation": {
