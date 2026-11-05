@@ -173,8 +173,8 @@ def main() -> None:
         "oneNav_image_candidates": 6,
         "oneNav_images_missing": 3,
         "verified_model_matches": 68,
-        "verified_model_images": 66,
-        "verified_model_images_missing": 2,
+        "verified_model_images": 68,
+        "verified_model_images_missing": 0,
         "unmatched_products": 3240,
     }
     if totals != expected:
@@ -183,8 +183,8 @@ def main() -> None:
     data["productImageEnrichment"] = {
         "exactModelPagesReviewed": 77,
         "manufacturerDescriptionsVerified": 77,
-        "exactImageCandidatesApplied": 72,
-        "exactModelImagesMissing": 5,
+        "exactImageCandidatesApplied": 74,
+        "exactModelImagesMissing": 3,
         "unmatchedProducts": 3240,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
