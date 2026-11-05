@@ -213,3 +213,9 @@ request=owner-preview-retest-after-trims-and-harnesses-async-list-wait-2026-11-0
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;alpine-halo11-image-naturalWidth-1000;alpine-halo11-corrected-title;alpine-halo11-verified-description;centred-product-details;two-column-media-details;radios-multimedia-head-unit-grouping;all-68-exact-model-images-load;home-entertainment-journey;trims-and-harnesses-47-products;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
+
+
+request=owner-preview-final-exact-head-after-successful-product-layout-and-alpine-qa-2026-11-05
+requested_for=integration/owner-preview-single-task-2026-11-05
+required_head=latest-branch-head
+required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;alpine-halo11-image-naturalWidth-1000;alpine-halo11-corrected-title;alpine-halo11-verified-description;centred-product-details;two-column-media-details;all-68-exact-model-images-load;home-entertainment-journey;trims-and-harnesses-47-products;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
