@@ -186,7 +186,7 @@ assert.ok(!/Planetworld|Audio Connections/i.test(audioPageVisibleMarkup), 'suppl
 
 
 assert.ok(builder.includes('"owner-preview.html"'), 'safe owner preview must be in the opt-in package allowlist');
-assert.ok(ownerPreview.includes('src="index-new.html?ownerPreview=1&previewBuild=20261105-audio-nav-fix"'), 'owner preview must use the current storefront shell and committed category snapshot');
+assert.ok(ownerPreview.includes('src="index-new.html?ownerPreview=1&previewBuild=20261105-photo-category-buttons"'), 'owner preview must use the current storefront shell and committed category snapshot');
 assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
