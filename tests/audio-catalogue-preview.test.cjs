@@ -220,3 +220,7 @@ assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('P
 assert.ok(brandRoute.includes('preview-audio-products.html?'), 'brand product-type tiles must open the dedicated product listing page');
 assert.ok(productRoute.includes("rowsFor(d).filter(p=>p.brand===brand&&group(p)===component)"), 'product listing must filter by both selected brand and product type');
 assert.ok(builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"'), 'both dedicated routes must be included in the public preview package');
+
+for (const asset of ['speakers.svg','subwoofers.svg','amplifiers.svg','head-units.svg','cameras-monitors.svg','signal-processing.svg','harnesses-trims.svg','aerials.svg']) {
+  assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing local product-type artwork: '+asset);
+}
