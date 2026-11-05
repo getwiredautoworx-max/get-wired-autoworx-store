@@ -141,8 +141,8 @@ jobs:
               await frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
               await frame.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
-              const trimCount=await frame.locator('#products .audioProduct').count();
-              if(trimCount!==47)throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
+              const audioTrimCount=await frame.locator('#products .audioProduct').count();
+              if(audioTrimCount!==47)throw new Error('Trims & Harnesses expected 47 products, got '+audioTrimCount);
               await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
               await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
