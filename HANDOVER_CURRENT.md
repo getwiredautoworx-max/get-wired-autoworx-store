@@ -3454,3 +3454,14 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Current integration branch is diverged from main (latest comparison before the final checkpoint: 180 ahead / 4 behind). Keep PR #178 draft/unmerged; do not merge or production-deploy.
 - The branch's `owner-preview-exact-sha.yml` has a push trigger for the integration branch. The GitHub workflow-run connector only returns pull-request-triggered runs, so an empty result does not prove the push deployment did not run. Do not issue a preview-ready claim or send a new preview link until the exact deployed SHA marker and hosted mobile/desktop browser results are verified.
 - Production remains HOLD: no Axxess/DNS change, Supabase/live write, supplier activation, live stock/price change, checkout/payment activation or launch.
+
+
+## 2026-11-05 — IMAGE REPAIR VALIDATION CHECKPOINT
+
+- Latest source commit before this checkpoint: `a8aabc06f4aa54c555bd67d77e58dae155003dbc`.
+- The repaired photo mappings are now present in the homepage, standalone category route, audio department route, brand/type route and product-type route. The old generic speaker fallback is absent from the customer-facing audio routes.
+- Updated `tests/audio-catalogue-preview.test.cjs` was executed against fetched repository fixtures in a lightweight V8 test harness; all its assertions passed. This is not a substitute for the repository's actual Node/GitHub Actions run.
+- All inline scripts in the changed storefront HTML files parsed successfully. `tests/three-category-storefront-structure.test.cjs` also parsed, but its complete assertion suite was not executed in a real Node runtime in this session.
+- Branch comparison at this checkpoint: 183 commits ahead / 4 behind `main`, status `diverged`. PR #178 remains draft and unmerged.
+- The latest preview refresh request is committed, but the connected GitHub workflow lookup does not expose push-triggered runs. No exact deployed-SHA marker or hosted browser/image-naturalWidth evidence has been retrieved. Therefore the preview is still NOT READY FOR OWNER REVIEW and no new link should be sent.
+- Next gate: verify the push-triggered exact-SHA deployment and hosted browser checks for 390px mobile and 1365px desktop, including category image URL/alt/naturalWidth audit and the brand → type → filtered-product navigation. If any image is broken or semantically mismatched, fix that mapping before owner review.
