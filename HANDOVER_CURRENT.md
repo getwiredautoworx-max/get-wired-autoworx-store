@@ -3451,3 +3451,38 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 - Next: correct hosted QA's preview discovery so it resolves the current commit-specific Cloudflare Pages URL (or reliably consumes the exact-SHA branch deployment alias), then rerun hosted mobile/desktop checks against exact SHA `3cd75996f2dfadfe6d5edb8bdbbda4f9daca0a8d`. Do not weaken assertions. Preserve category-specific image load checks, three-root navigation, mobile two-column cards, brand-first Car Audio flow, checkout hidden, Supabase writes blocked and SKU audit.
 - Owner can inspect the commit-specific candidate at https://855c49ff.get-wired-autoworx-store.pages.dev/owner-preview.html, but it is **not yet signed off**: hosted QA must pass and owner visual/mobile acceptance remains outstanding.
 - PR #176 remains OPEN / DRAFT / UNMERGED. No production deployment, Axxess upload, DNS, Supabase/live writes, live stock/price changes, supplier activation or payment go-live.
+
+## 2026-11-05 — OWNER-REPORTED CAR AUDIO NAVIGATION + CATEGORY IMAGE REPAIR
+
+### Owner defect report
+- Owner reports Car Audio & Video opens back to the previous category instead of the required Brand → Component Type → Products journey.
+- Owner reports category/product-type buttons have no relevant pictures.
+
+### Root cause confirmed in code
+- `preview-category.html` hard-routed the Car Audio & Video category to `preview-audio.html` with `brand=All brands` preselected.
+- `preview-audio.html` treated `brand === "All brands"` as “brand stage already completed”, hiding the brand buttons and the component buttons together. This produced a blank/incorrect intermediate state rather than the requested brand-first flow.
+- Category and audio component tiles depended on external image hosts; the previous error handlers hid failed images or fell back to another remote image, so buttons could appear without artwork.
+- The preview-category inline fallback handler was also corrected to use the image alt text, avoiding a scope/reference error.
+
+### Implemented on `preview/integrated-storefront-2026-11-04`
+- Car Audio & Video now enters the audio catalogue with no brand preselected.
+- Audio navigation now distinguishes an unselected brand stage from an explicitly selected brand (including the deliberate “All brands” option):
+  1. Car Audio & Video → visible brand buttons/logos.
+  2. Select a brand → visible product-type buttons; no stock yet.
+  3. Select a product type → filtered products for that brand/type.
+- Category and component image failures now fall back to self-contained category-specific SVG artwork instead of disappearing or relying on a second external image host. External product photography remains preferred when it loads.
+- Added regression assertions for the brand-first state, image fallback behavior and preview-category script parsing.
+- Updated the hosted browser QA journey to follow the approved Brand → Component Type → Products flow.
+- Corrected test-only issues found during verification: stale alias/URL assumptions, ambiguous Amplifiers selectors, an unset preview URL variable, and deployment concurrency shared across branches. These were QA/deployment harness defects, not reasons to weaken storefront assertions.
+
+### Verification evidence for code head `a2e190d48f14690df77dd314c77bb4c8176bdd20`
+- Cloudflare Pages Public Package QA: SUCCESS — run `41992733467`.
+- Exact-head deployment: SUCCESS — run `41992733436`; exact SHA marker confirmed.
+- Exact-head hosted owner preview mobile/desktop browser QA: SUCCESS — same deploy run `41992733436`.
+- Owner Store Preview Browser QA: SUCCESS — run `41992733576`, including read-only local journey and deployed preview inspection.
+- Commit-specific preview candidate: https://16e4fe9e.get-wired-autoworx-store.pages.dev/owner-preview.html
+- The Car Audio brand-first/component image journey and the existing audio accessory route QA are covered by the successful browser checks; retain the final rerun after the handover/preview-trigger documentation commit so the final branch head is also verified.
+
+### Release boundary
+- PR #176 remains OPEN / DRAFT / UNMERGED pending owner visual acceptance.
+- This is a non-production review candidate only. No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price change, supplier activation, checkout/payment activation or launch approval.
