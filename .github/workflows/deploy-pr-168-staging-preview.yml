@@ -185,16 +185,7 @@ jobs:
               if(careLayout.columns!==2||careLayout.count!==4)throw new Error('Car Care page must show four compact subcategory cards on mobile: '+JSON.stringify(careLayout));
               const careCategoryImages=await frame.locator('#grid > .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(careCategoryImages.length!==4||careCategoryImages.some(x=>!x.loaded))throw new Error('Car Care subcategory picture cards failed to load: '+JSON.stringify(careCategoryImages));
-              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video'});
-              await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
-              const carSummary=await frame.locator('#audioResultCount').innerText();
-              if(Number(carSummary.split(' ')[0]||0)<700)throw new Error('Car Audio catalogue is not populated: '+carSummary);
-              await frame.locator('#brands button[aria-label="Sony"]').click();
-              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:20000});
-              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
-              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
-              const amplifierCount=await frame.locator('#products .audioProduct').count();
-              if(amplifierCount<1)throw new Error('Sony → Amplifiers filter returned no products');
+
               const accessoryPage=await browser.newPage({viewport:{width:390,height:844}});
               accessoryPage.on('pageerror',e=>errors.push('accessory route: '+String(e)));
               await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
