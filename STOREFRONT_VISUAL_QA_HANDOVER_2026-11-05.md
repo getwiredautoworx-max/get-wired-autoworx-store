@@ -34,3 +34,11 @@ Preview only. Keep PR #178 draft and unmerged. No production deployment, Axxess 
 
 ## Task log
 - 2026-11-05 15:04 SAST — owner feedback recorded in PR #178 comment (GitHub comment ID 6658747851). No code, catalogue, price, stock, database, hosting or deployment changes made in this pass.
+
+## Follow-up source inspection — 2026-11-05 15:08 SAST
+- Active branch `preview-audio.html` already contains explicit BRAND_LOGOS mappings for Amplified / Amplified Audio and One X / OneNav. The user-visible failure therefore needs a runtime audit of actual brand button rows, URL loading, and rendered image dimensions; do not simply duplicate mappings without finding why the logos are absent.
+- Active branch `preview-audio-brand.html` also has explicit One X and Amplified logo URL selection. Verify both logo URLs return an image and the corresponding brand page receives the expected brand value.
+- Kicker is currently constrained by the brand-directory tile rule to 150px max width / 48px max height with a 1.28 transform; the separate brand hero applies 1.42 transform. The owner complaint refers to the subcategory/brand tile, so target the directory tile's actual rendered bounds.
+- Active branch `preview-audio-products.html` deliberately renders an explicit pending-photo state when `imageUrl` is empty. In the connected Audio Connections preview JSON, sampled Sony Mobile ES records have detailed descriptions but empty `imageUrl` fields (e.g. XS-163ES, XS-162ES, XS-692ES); at least part of the photo gap is missing source image mapping, not just layout.
+- `preview-audio.html` product-card renderer includes `p.description` only when present. Missing descriptions therefore need source-data enrichment for exact model records, while retaining the rule not to invent specifications.
+- Next repair must separate: (a) image URL/asset availability and load failures, (b) records with no verified image URL, and (c) records with no description. Add counts and representative exact SKUs/models to QA output.
