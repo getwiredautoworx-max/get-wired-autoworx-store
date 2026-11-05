@@ -73,6 +73,7 @@ def main() -> None:
         # Never carry supplier codes into the customer-facing data object.
         product.pop("modelNumber", None)
         product.pop("supplierSku", None)
+        product.pop("supplier_sku_candidate", None)
         source_key = norm(source.get("supplier_sku_candidate"))
         model = by_sku.get(source_key)
         one_model = one_by_sku.get(source_key)
@@ -82,7 +83,9 @@ def main() -> None:
         if model:
             matched += 1
             product["manufacturerProductName"] = model.get("name") or product.get("title", "")
-            product["description"] = model.get("description") or product.get("description", "")
+            product["description"] = model.get("description") or ""
+            product["descriptionStatus"] = "MANUFACTURER_DESCRIPTION_VERIFIED"
+            product.pop("manufacturerPage", None)
             product.pop("brandDisplayName", None)
             product.pop("imageCrop", None)
             product.pop("imagePosition", None)
@@ -147,6 +150,7 @@ def main() -> None:
 
         else:
             product.pop("manufacturerProductName", None)
+            product.pop("description", None)
             product.pop("brandDisplayName", None)
             product.pop("manufacturerPage", None)
             product.pop("imageUrl", None)
