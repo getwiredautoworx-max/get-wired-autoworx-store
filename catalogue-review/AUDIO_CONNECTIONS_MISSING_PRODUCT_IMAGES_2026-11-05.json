@@ -2,8 +2,8 @@
   "generatedFrom": "assets/audio-connections-catalogue-preview.json",
   "status": "PARTIAL_EXACT_MODEL_IMAGE_MATCHING_CONTINUES",
   "recordCount": 66,
-  "recordsWithImage": 56,
-  "recordsMissingVerifiedImage": 10,
+  "recordsWithImage": 57,
+  "recordsMissingVerifiedImage": 9,
   "rule": "Only attach manufacturer or authorised supplier images matched to the exact model. Do not use generic component photos as product images.",
   "missing": [
     {
@@ -31,13 +31,6 @@
       "model": "SSATI6900.1",
       "brand": "Starsound",
       "title": "Starsound SSATI6900.1 — 1000 RMS",
-      "component": "Monoblock Amplifiers",
-      "descriptionPresent": true
-    },
-    {
-      "model": "SSAR 22000.1",
-      "brand": "Starsound",
-      "title": "Starsound SSAR 22000.1 — 1700 RMS",
       "component": "Monoblock Amplifiers",
       "descriptionPresent": true
     },
@@ -131,6 +124,7 @@
     "SSAK-406P",
     "409CU",
     "809",
-    "CROSSOVER 2950"
+    "CROSSOVER 2950",
+    "SSAR 22000.1 (manufacturer/retailer product listing confirms SSA-R-22000.1)"
   ]
 }
