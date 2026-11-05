@@ -4271,3 +4271,6 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - Remaining ASC assignments stay unchanged: **Auto Electrical Parts & Spares:** Automotive Sensors, Automotive Switches, Automotive Globes, Fuel Pumps — each its own subcategory. **Car Care & Accessories:** Car Mats — its own subcategory.
 - This is a repository taxonomy/staging change only. No ASC product rows/images/descriptions have been imported or claimed verified; product-level work remains DO NOT IMPORT until exact source pages and product evidence are visually checked. Original PDFs unchanged; Buyers Guides excluded; production HOLD.
 - Next ASC work may continue only outside Audio: verify the remaining five catalogue families and prepare review-only product evidence. Do not change the frozen Audio category further.
+
+
+- Final verification: `assets/category-tree.json` contains active `Aerials` (slug `car-audio-aerials`) as a child of `Car Audio & Video`; direct active product count remains 0. The review-only ASC assignment CSV was corrected and rechecked at commit `fdf51413da5430d7a9ca61ad0ecc67e6f699bdc5`; all six family mappings now match the owner instruction. This is a taxonomy placement only, not an uploaded product catalogue or verified preview deployment.
