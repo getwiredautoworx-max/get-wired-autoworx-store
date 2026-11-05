@@ -3850,3 +3850,18 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - Preview remains non-production: checkout hidden, supplier submissions disabled, Supabase writes blocked. PR #178 remains draft/unmerged; no production, DNS, Axxess, live stock/price, payment or supplier activation.
 - Owner review URL for this exact build: `https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html`.
 - Ready for owner visual review only. This is not production readiness or owner acceptance.
+
+
+## 2026-11-05 — OWNER VISUAL DEFECT REPORT: CATEGORY ART, BRAND LOGOS AND PRODUCT IMAGES
+
+- Owner reports that category/subcategory navigation now loads well, but subcategory button artwork/logos are missing in other audio departments (including DJ Equipment); Car Audio is missing Amplified and One X replacement-radio brand logos; Kicker logo is too small; product listings across other categories show descriptions/prices without photographs; Car Audio product photos and descriptions are still largely absent.
+- Source audit identified two concrete logo defects: the dedicated `preview-audio-brand.html` logo resolver did not handle Amplified or One X; the parent directory mapped `one` but not the One X aliases. Kicker logo presentation was constrained to a 116px maximum width / 42px height.
+- Source corrections committed on the sole active branch `integration/owner-preview-single-task-2026-11-05`: 
+  - `519ebb0fb6353d1ff636ea0897e55a742448d42f` — add One X / OneNav / Amplified Audio logo aliases, enlarge Kicker in the brand directory, and give DJ Equipment its dedicated DJ-controller photo.
+  - `63d0c6fedb74c96f63bfb480d0ded33375fafe3c` — add One X and Amplified logo handling to the dedicated brand landing page and enlarge Kicker there.
+  - `9227d178aaf5d8a0e857d5e5bd63244dbb1aa5fb` — add missing Studio Equipment photographic mapping and update DJ category art.
+  - `18562c751cc2408c8d0c3dd729399161d78a26dc` — add regression assertions for brand aliases, Kicker sizing, DJ and Studio Equipment artwork.
+- These are source changes only. Exact-head Node regression, package build, deployment marker and hosted mobile/desktop browser QA have NOT yet run for the latest head. Do not provide a new preview URL or claim the fixes are delivered until the workflow passes and the actual rendered image/logo audit is inspected.
+- Product-photo gap remains a distinct material blocker and must not be concealed with generic/category photos: the 3,317-row Planetworld catalogue currently has 68 exact-model image URLs, 9 exact-model pages where an image is unavailable, and 3,240 records with no exact-model image match. The 66-row Audio Connections preview has only 5 image URLs and 61 records with no image URL. Product cards correctly refuse to substitute generic product-type images. Next image task is exact model/SKU crosswalk and manufacturer/supplier image sourcing for missing records; verify every photo belongs to the exact model and retain image-use status. Descriptions also require model-specific enrichment where absent; never invent features.
+- No production deployment, Axxess upload, DNS change, Supabase/live write, live stock/price change, supplier activation, checkout/payment activation or merge occurred. PR #178 remains draft/unmerged; production remains HOLD.
+- Next: (1) trigger exact-head workflow on the updated branch and inspect all regression/hosted image assertions; (2) audit the owner-reported DJ, Studio, Band, Instruments and other category tiles at mobile/desktop; (3) continue exact-model photo and description enrichment from source catalogues/manufacturer pages, prioritising Car Audio and replacement-radio brands; (4) update this handover with actual test outcomes before sharing any preview.
