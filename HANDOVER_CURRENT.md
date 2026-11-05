@@ -3215,3 +3215,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Regression now asserts the local Sony mapping, asset existence, distinct brand and product-type routes, and brand+type filtering.
 - Latest code/test checkpoint: `8e07f27a7fad1e4c13d4bb66205191bd0dbb2657`. The prior in-progress Cloudflare deployment at `cc88448` predates this final logo-map correction and must not be accepted as the current preview.
 - Trigger one fresh exact-head build after this handover checkpoint. Do not send a preview link until build, marker and hosted browser tests succeed.
+
+
+## 2026-11-05 11:10 SAST — PR #178 SINGLE OWNER-PREVIEW QA CORRECTION
+
+- Active storefront workstream is now PR #178, branch `integration/owner-preview-single-task-2026-11-05`, based on current main `3fe8ba6722b94c42044f15c5463f0d29d98c8421`. PR #178 is OPEN / DRAFT / UNMERGED. Park PR #176 and all historical parallel storefront branches; do not merge or delete them.
+- Current branch head after the latest QA-only correction: `dbbafdf1cd7fa7d1535b812ce6542a3ce10bf990`. Previous head `4b4991cc91d6a5ddf11cb78d92d250e953485722` passed customer-only Pages package build, Node category/audio regression and public SKU audit; exact non-production deployment and SHA marker also passed.
+- Hosted browser QA on that previous head reached the correct Audio, Entertainment & Music category page and Car Audio & Video brand directory. It stopped at the Sony logo assertion because the local SVG was marked `loading=lazy` and the test checked `complete` before scrolling/decoding the image. The asset `assets/brand-logos/sony.svg` exists in the branch and is packaged; this was a test timing defect, not evidence that the logo file is missing.
+- Corrected the dedicated workflow to scroll the Sony brand button into view and await image decode before asserting its natural width. This is a QA workflow-only correction; no storefront application files or catalogue data changed in that commit.
+- Exact-head run `41999737016` on the previous head failed at the lazy-logo timing assertion. Do not report owner preview ready. The corrected head `dbbafdf...` has not yet produced a confirmed exact-head deployment/browser result at this checkpoint; wait for the new run and inspect its steps/logs.
+- Verified in the previous hosted run: homepage iframe navigated to the dedicated Audio category route, and the Audio category displayed six separate subcategory cards. The brand directory route was reached. Brand logo, brand landing, product-type route, filtered product listing, Auto Electrical and Car Care image cards, mobile layout and desktop overflow remain unverified on the corrected head.
+- Do not use the old rejected URL or stale PR-168 alias. Use only the URL emitted by the exact-head workflow after its deployment marker and full browser QA pass.
+- No merge, production deployment, Axxess upload, DNS change, Supabase/live data write, supplier activation, live stock/price/category change, payment or checkout activation occurred. Production remains HOLD.
