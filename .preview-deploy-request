@@ -73,3 +73,7 @@ required_checks=brand-buttons-visible-without-preselected-brand;ASC-four-catalog
 request=ASC-AUTO-ELECTRICAL-LOCAL-QA-DIRECT-BRAND-LANDING-CHECK
 requested_for=asc-auto-electrical-v2
 required_checks=brand-first-audio;ASC-auto-electrical-route;mobile-desktop;exact-sha
+
+request=ASC-AUTO-ELECTRICAL-LOCAL-QA-DEDUP-BRAND-FLOW
+requested_for=asc-auto-electrical-v2
+required_checks=local-category-routing;ASC-category-images;ASC-sensor-pilot-images;hosted-brand-first-audio;exact-sha
