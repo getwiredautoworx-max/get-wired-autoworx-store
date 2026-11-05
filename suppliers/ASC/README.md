@@ -101,9 +101,9 @@ The preview contains **50 visually reviewed pilot records** across all six catal
 Do not process ASC Buyers Guides. Do not import the 50 pilot records or the larger register. No live database/category/product/price/stock changes, supplier activation, checkout/payment activation or production deployment is authorised by this preview integration.
 
 
-### 34-record Auto Electrical pilot — traceability and description enrichment
+### 50-record six-catalogue Auto Electrical pilot — traceability and description enrichment
 
-The four-group pilot JSON now carries, per record:
+The six-group pilot JSON now carries, per record:
 - Original ASC PDF filename and the contents-page start page for the source section (a page locator, not yet a final visual page audit).
 - A candidate ASC source reference derived from the reviewed source-card crop filename; it must still be confirmed against the original catalogue image.
 - Separate identity, customer-copy and fitment review statuses so a candidate is not mistaken for an approved exact fitment.
