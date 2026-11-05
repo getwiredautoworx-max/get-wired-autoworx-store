@@ -35,7 +35,7 @@ assert.ok(!route.includes('Indicative preview: R'), 'customer-facing audio previ
 assert.ok(route.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must use the real owner-authorised car-audio product image');
 assert.ok(!route.includes('img.src="assets/car-audio-video-category.svg"'), 'Home Entertainment artwork must not be reused for Car Audio & Video');
 const audioCategoryPage=fs.readFileSync('preview-category.html','utf8');
-assert.ok(audioCategoryPage.includes('photo-1593359677879-a4bb92f829d1'), 'Home Entertainment category card must use photographic artwork');
+assert.ok(audioCategoryPage.includes('photo-1558284296-7579da2deb30'), 'Home Entertainment category card must use photographic artwork');
 assert.ok(route.includes('department==="Home Entertainment"?isHomeEntertainmentRecord(p):department==="Marine Audio"?') && route.includes('function isHomeEntertainmentRecord(p){') && route.includes('component==="Home & Leisure Appliances"') && route.includes('component==="Smart Home & Security"'), 'Home Entertainment must use the reviewed audio-only filter and exclude non-audio retail items');
 assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not rely on unsupported selectors, timers or destructive grid replacement');
 assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must preserve and restore category nodes without deleting them');
@@ -222,7 +222,7 @@ assert.ok(brandRoute.includes("department==='Home Entertainment'?isHomeEntertain
 assert.ok(productRoute.includes("department==='Home Entertainment'?isHomeEntertainmentRecord(x)"), 'Home Entertainment product page must use the same department scope');
 assert.ok(brandRoute.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'Brand component tiles must prefer exact-brand catalogue product photos');
 assert.ok(brandRoute.includes('const sharedTypeImage=rows.find(p=>group(p)===t&&p.imageUrl)'), 'Brand component tiles must use a matching product photo when the selected brand has no image');
-assert.ok(brandRoute.includes('images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Home Entertainment component tiles must use photographic fallbacks');
+assert.ok(brandRoute.includes('images.unsplash.com/photo-1558284296-7579da2deb30'), 'Home Entertainment component tiles must use photographic fallbacks');
 assert.ok(route.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())'), 'brand buttons must navigate to a dedicated brand page');
 assert.ok(route.includes('location.href="preview-audio-products.html?"+u.toString()'), 'product-type buttons must navigate to a dedicated product listing page');
 assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('Products are shown on the next page'), 'brand landing page must show product-type tiles, not products');
@@ -238,9 +238,9 @@ assert.ok(!route.includes('/assets/audio-types/'), 'Audio department and compone
 assert.ok(!productRoute.includes('/assets/audio-types/'), 'Product-type buttons must use photographs, not illustrated SVGs');
 assert.ok(!brandRoute.includes('/assets/audio-types/'), 'Brand product-type buttons must use photographs, not illustrated SVGs');
 assert.ok(!route.includes('data:image/svg+xml') && !categoryRoute.includes('data:image/svg+xml'), 'Customer-facing category fallbacks must not generate cartoon SVGs');
-assert.ok(route.includes('images.unsplash.com/photo-1608043152269-423dbba4e7e1'), 'Audio component buttons must use photographic speaker artwork');
-assert.ok(productRoute.includes('images.unsplash.com/photo-1545454675-3531b543be5d'), 'Product-type buttons must use photographic subwoofer artwork');
-assert.ok(categoryRoute.includes('images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Category fallback must use photographic Home Entertainment artwork');
+assert.ok(route.includes('images.unsplash.com/photo-1726248985986-20bef82d2b52'), 'Audio component buttons must use photographic speaker artwork');
+assert.ok(productRoute.includes('images.unsplash.com/photo-1776176359206-a1d34436ddff'), 'Product-type buttons must use photographic subwoofer artwork');
+assert.ok(categoryRoute.includes('images.unsplash.com/photo-1558284296-7579da2deb30'), 'Category fallback must use photographic Home Entertainment artwork');
 
 assert.ok(fs.existsSync('assets/brand-logos/sony.svg'), 'Missing local Sony brand wordmark');
 
@@ -248,7 +248,7 @@ assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand s
 
 /* Department selection must remove the previous department menu before showing brands. */
 assert.ok(route.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'Selecting an audio department must hide the previous department menu');
-assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1'), 'Home Entertainment department must use photographic category artwork');
+assert.ok(route.includes('"Home Entertainment":"https://images.unsplash.com/photo-1558284296-7579da2deb30'), 'Home Entertainment department must use photographic category artwork');
 assert.ok(route.includes('"Car Audio":"https://store.sony.com.au/'), 'Car Audio department must use a real product photograph');
 assert.ok(route.includes('"Band & Live Sound":"https://images.unsplash.com/'), 'Band & Live Sound must use photographic artwork');
 assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
@@ -261,3 +261,8 @@ for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-aud
 }
 
 assert.ok(categoryRoute.includes('return artFor(label)||') && !categoryRoute.includes('data:image/svg+xml'), 'Category image fallback must remain photographic and never render an illustration');
+
+assert.ok(route.includes('photo-1543017471-62c14029f7ce') && route.includes('photo-1470948062737-aeb014e274c2') && route.includes('photo-1738138986988-add3dd7cde9a'), 'Amplifier, head-unit and camera tiles must use their category-matched photographs');
+assert.ok(route.includes('photo-1677230017860-a8cc67785f0a') && route.includes('photo-1759667880866-702f9f615489'), 'Harness/wiring and aerial tiles must use matching photographs');
+assert.ok(brandRoute.includes('photo-1771554753127-8e5a90b5a61d'), 'Home Entertainment cable/accessory tiles must use audio-cable photography');
+assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.includes('photo-1608043152269-423dbba4e7e1') && !categoryRoute.includes('photo-1608043152269-423dbba4e7e1'), 'Old generic speaker fallback must be removed from customer-facing audio routes');
