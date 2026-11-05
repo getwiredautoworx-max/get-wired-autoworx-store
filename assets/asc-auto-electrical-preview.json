@@ -1093,13 +1093,15 @@
       "identity_review_status": "SOURCE_CODE_AND_EXACT_VARIANT_REQUIRE_FINAL_PDF_VISUAL_CONFIRMATION",
       "customer_description_status": "SOURCE_DESCRIPTION_PRESERVED — CUSTOMER_COPY_RECONCILIATION_PENDING",
       "fitment_review_status": "SOURCE_FITMENT_PRESERVED — EXACT_MODEL/YEAR/ENGINE_CONFIRMATION_PENDING",
-      "exception_review_status": "CHECK_TECHNOLOGY_AND_SECTION: printed item text includes H18/H19/H3 bulb references; do not assume HID without original page verification",
-      "draft_customer_description": "Automotive headlamp globe: H18 65W 12V H/GLOBE HIDIAO MARKED H7 WITH BASE DIFFERENCE. Verify the base, voltage, wattage and lamp technology against the vehicle before ordering. The source notes an H7 marking with a base difference; confirm the actual base before ordering.",
+      "exception_review_status": "SOURCE_TEXT_CONFLICT — earlier rights register labels this H18 product as halogen/Huadiao; current OCR reads HIDIAO and source section heading is HID Globes. Verify original PDF wording and lamp technology; do not label as HID or change brand spelling until confirmed.",
+      "draft_customer_description": "H18 65W 12V automotive headlamp globe. A prior internal SKU review describes this reference as a Huadiao halogen globe, while the current OCR reads HIDIAO and the source heading says HID. Confirm the printed brand, lamp technology and base against the original PDF before listing.",
       "draft_description_status": "OWNER_REVIEW_DRAFT_ONLY — based on source wording; technical fitment/specification confirmation still required",
       "catalogue_name": "Automotive Globes",
       "image_match_status": "PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION",
       "image_rights_status": "WATERMARKED_OWNER_REVIEW_ONLY — PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE",
-      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved."
+      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved.",
+      "legacy_cross_reference": "17 Oct 2026 53-SKU image-rights register: “H18 65W 12V Halogen Globe Huadiao Emarked H7 With Base Difference”",
+      "legacy_cross_reference_status": "SOURCE_TEXT_CONFLICT — earlier rights register labels this H18 product as halogen/Huadiao; current OCR reads HIDIAO and source section heading is HID Globes. Verify original PDF wording and lamp technology; do not label as HID or change brand spelling until confirmed."
     },
     {
       "id": "asc-preview-h1960-55w-h",
@@ -1363,7 +1365,10 @@
       "draft_customer_description": "Vehicle aerial listed for Opel / Mercedes W124 / Honda Ballade. Confirm mounting position, base/mast type, cable/connector and radio compatibility before ordering.",
       "image_match_status": "PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION",
       "image_rights_status": "WATERMARKED_OWNER_REVIEW_ONLY — PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE",
-      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved."
+      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved.",
+      "legacy_cross_reference": "19 Sep 2026 illustrated catalogue: “Vehicle Aerial Replacement 2”",
+      "legacy_cross_reference_status": "LEGACY_CROSS_REFERENCE_MISMATCH — current Aug 2026 ASC source text lists Opel / Mercedes W124 / Honda Ballade. Preserve current ASC source wording; verify printed code and fitment against original PDF before listing.",
+      "exception_review_status": "LEGACY_CROSS_REFERENCE_MISMATCH — current Aug 2026 ASC source text lists Opel / Mercedes W124 / Honda Ballade. Preserve current ASC source wording; verify printed code and fitment against original PDF before listing."
     },
     {
       "id": "asc-preview-ma553",
@@ -1392,7 +1397,10 @@
       "draft_customer_description": "Vehicle aerial listed for Nissan Early 1 Tonner. Confirm mounting position, base/mast type, cable/connector and radio compatibility before ordering.",
       "image_match_status": "PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION",
       "image_rights_status": "WATERMARKED_OWNER_REVIEW_ONLY — PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE",
-      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved."
+      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved.",
+      "legacy_cross_reference": "19 Sep 2026 illustrated catalogue: “Aerial For Early Nissan 1 Tonner”",
+      "legacy_cross_reference_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF.",
+      "exception_review_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF."
     },
     {
       "id": "asc-preview-ma559r",
@@ -1421,7 +1429,10 @@
       "draft_customer_description": "Vehicle aerial listed for Mazda 323 / Bantam / Rustler. Confirm mounting position, base/mast type, cable/connector and radio compatibility before ordering.",
       "image_match_status": "PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION",
       "image_rights_status": "WATERMARKED_OWNER_REVIEW_ONLY — PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE",
-      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved."
+      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved.",
+      "legacy_cross_reference": "19 Sep 2026 illustrated catalogue: “Aerial Mazda 323/Bantam/Rustler”",
+      "legacy_cross_reference_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF.",
+      "exception_review_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF."
     },
     {
       "id": "asc-preview-ma570",
@@ -1450,7 +1461,10 @@
       "draft_customer_description": "Vehicle aerial listed for Nissan Sentra. Confirm mounting position, base/mast type, cable/connector and radio compatibility before ordering.",
       "image_match_status": "PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION",
       "image_rights_status": "WATERMARKED_OWNER_REVIEW_ONLY — PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE",
-      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved."
+      "image_action": "Do not remove or obscure the watermark, further crop/edit, or publish this image until image rights and exact SKU/physical-feature match are approved.",
+      "legacy_cross_reference": "19 Sep 2026 illustrated catalogue: “Aerial Roof Mount Sentra”",
+      "legacy_cross_reference_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF.",
+      "exception_review_status": "LEGACY_CROSS_REFERENCE_CONSISTENT_WITH_CURRENT_ASC_FITMENT — older catalogue is a secondary reference only; confirm against current ASC PDF."
     },
     {
       "id": "asc-preview-m7-avan01",
