@@ -352,7 +352,7 @@ jobs:
                 return {records:data.records.length,described:data.records.filter(x=>x.description).length,count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded),lowRes:results.filter(x=>x.loaded&&x.width<200),missing:data.records.filter(x=>!x.imageUrl).map(x=>x.modelNumber)};
               });
               console.log('HOSTED_AUDIO_CONNECTIONS_EXACT_MODEL_IMAGE_AUDIT',JSON.stringify(audioConnectionsImageAudit));
-              if(audioConnectionsImageAudit.records!==66||audioConnectionsImageAudit.described!==66||audioConnectionsImageAudit.count!==63||audioConnectionsImageAudit.failed.length||audioConnectionsImageAudit.missing.length!==3)throw new Error('Audio Connections product image/description coverage failed: '+JSON.stringify(audioConnectionsImageAudit));
+              if(audioConnectionsImageAudit.records!==66||audioConnectionsImageAudit.described!==66||audioConnectionsImageAudit.count!==64||audioConnectionsImageAudit.failed.length||audioConnectionsImageAudit.missing.length!==2)throw new Error('Audio Connections product image/description coverage failed: '+JSON.stringify(audioConnectionsImageAudit));
 
 
               // Home Entertainment: department -> brand -> product type -> filtered products.
