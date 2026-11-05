@@ -163,10 +163,9 @@ jobs:
               await brandButton.waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
               if(await frame.locator('#products').isVisible())throw new Error('Car Audio & Video brand landing page must hide products');
-              const brandLogo=brandButton.locator('img');
-              await brandLogo.waitFor({state:'visible',timeout:15000});
-              const brandLogoLoaded=await brandLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
-              if(!brandLogoLoaded)throw new Error('Sony brand logo did not load in the brand directory');
+              const brandLogoAudit=await brandButton.evaluate(b=>({href:b.href,html:b.innerHTML,images:[...b.querySelectorAll('img')].map(img=>({src:img.src,complete:img.complete,width:img.naturalWidth}))}));
+              console.log('HOSTED_SONY_BRAND_LOGO_AUDIT',JSON.stringify(brandLogoAudit));
+              if(!brandLogoAudit.images.some(img=>img.complete&&img.width>0))throw new Error('Sony brand logo did not load in the brand directory: '+JSON.stringify(brandLogoAudit));
               await brandButton.click();
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio-brand.html'),{timeout:30000});
               const brandDoc=page.frameLocator('#store');
