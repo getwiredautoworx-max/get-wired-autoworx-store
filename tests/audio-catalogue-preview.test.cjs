@@ -430,7 +430,7 @@ assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.include
 assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 77);
-assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 68);
+assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 74);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 77);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 8);
