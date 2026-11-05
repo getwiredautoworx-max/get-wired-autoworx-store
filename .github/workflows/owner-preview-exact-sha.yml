@@ -331,6 +331,25 @@ jobs:
               console.log('HOSTED_EXACT_PRODUCT_IMAGE_AUDIT',JSON.stringify(exactProductImageAudit));
               if(exactProductImageAudit.count!==68||exactProductImageAudit.failed.length)throw new Error('Exact-model product photos failed hosted loading: '+JSON.stringify(exactProductImageAudit.failed));
 
+              const audioConnectionsImageAudit=await frame.locator('body').evaluate(async()=>{
+                const data=await(await fetch('assets/audio-connections-catalogue-preview.json')).json();
+                const rows=data.records.filter(x=>x.imageUrl);
+                const results=[];
+                for(let i=0;i<rows.length;i+=8){
+                  const batch=await Promise.all(rows.slice(i,i+8).map(p=>new Promise(resolve=>{
+                    const img=new Image();const timer=setTimeout(()=>resolve({model:p.modelNumber,loaded:false,reason:'timeout',src:p.imageUrl}),15000);
+                    img.onload=()=>{clearTimeout(timer);resolve({model:p.modelNumber,loaded:img.naturalWidth>0,width:img.naturalWidth,src:p.imageUrl})};
+                    img.onerror=()=>{clearTimeout(timer);resolve({model:p.modelNumber,loaded:false,reason:'image error',src:p.imageUrl})};
+                    img.src=p.imageUrl;
+                  })));
+                  results.push(...batch);
+                }
+                return {records:data.records.length,described:data.records.filter(x=>x.description).length,count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded),missing:data.records.filter(x=>!x.imageUrl).map(x=>x.modelNumber)};
+              });
+              console.log('HOSTED_AUDIO_CONNECTIONS_EXACT_MODEL_IMAGE_AUDIT',JSON.stringify(audioConnectionsImageAudit));
+              if(audioConnectionsImageAudit.records!==66||audioConnectionsImageAudit.described!==66||audioConnectionsImageAudit.count!==57||audioConnectionsImageAudit.failed.length||audioConnectionsImageAudit.missing.length!==9)throw new Error('Audio Connections product image/description coverage failed: '+JSON.stringify(audioConnectionsImageAudit));
+
+
               // Home Entertainment: department -> brand -> product type -> filtered products.
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
               const homeRoot=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn');
@@ -396,11 +415,17 @@ jobs:
               await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               const accessoryNames=(await accessoryPage.locator('#grid .card h2').allTextContents()).map(x=>x.trim()).sort();
               if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child category cards mismatch: '+JSON.stringify(accessoryNames));
+              const accessoryImageAudit=await accessoryPage.locator('#grid .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(accessoryImageAudit.length!==2||accessoryImageAudit.some(x=>!x.loaded))throw new Error('Accessories subcategory artwork failed: '+JSON.stringify(accessoryImageAudit));
               await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
               await accessoryPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               await accessoryPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount=await accessoryPage.locator('#products .audioProduct').count();
               if(trimCount!==47) throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=f91c7c30-82b4-42d4-bf4f-e807172cedc4',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#heading').filter({hasText:'Lifestyle'}).waitFor({state:'visible',timeout:20000});
+              const lifestyleImageAudit=await accessoryPage.locator('#grid .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(lifestyleImageAudit.length!==2||lifestyleImageAudit.some(x=>!x.loaded))throw new Error('Lifestyle subcategory artwork failed: '+JSON.stringify(lifestyleImageAudit));
               await accessoryPage.close();
               await page.setViewportSize({width:1365,height:900});
               await page.waitForTimeout(500);
