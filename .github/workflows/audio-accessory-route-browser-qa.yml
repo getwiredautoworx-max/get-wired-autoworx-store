@@ -1,21 +1,6 @@
 name: Car Audio Accessories Route Browser QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "index-new.html"
-      - "category.html"
-      - "index-new.html"
-      - "preview-audio.html"
-      - "assets/category-tree.json"
-      - "assets/planetworld-catalogue-preview.json"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - ".github/workflows/audio-accessory-route-browser-qa.yml"
-  workflow_dispatch:
-
 permissions:
   contents: read
 
