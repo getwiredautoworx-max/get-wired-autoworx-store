@@ -641,7 +641,7 @@ html,body{background:#f3f7fb!important;color:#172536!important}
 </style><link rel="stylesheet" href="assets/storefront-subpage-shell.css"><style id="gw-audio-brand-layout">
 #brands .brandLogoButton{min-height:76px;min-width:110px;display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;text-decoration:none;background:#fff;border:1px solid #b9d2e3;border-radius:10px;color:#173650}
 #brands .brandLogoButton img{display:block;max-width:116px;width:auto;height:42px;max-height:42px;object-fit:contain}
-#brands .brandLogoButton[aria-label="Kicker"] img{width:150px;max-width:150px;height:48px;max-height:48px;transform:scale(1.28)}
+#brands .brandLogoButton[aria-label="Kicker"]{min-width:154px;padding-left:8px;padding-right:8px}#brands .brandLogoButton[aria-label="Kicker"] img{width:176px;max-width:176px;height:60px;max-height:60px;transform:scale(1.38);transform-origin:center}
 #brands .brandLogoButton .brandWordmark,#brands .brandLogoButton span{font-weight:900;font-size:15px;letter-spacing:.02em}
 #brands .brandLogoButton.active{outline:2px solid #087fce;border-color:#087fce;background:#eaf5fc}
 /* Honour the hidden state even where component grid styles define display. */
@@ -702,7 +702,7 @@ function brandButton(label,active,href){
  const normalized=label.trim().toLowerCase();
  const displayLabel=normalized==="one"||normalized==="onenav"?"ONE / OneNav":normalized==="one x"||normalized==="onex"?"One X":label;
  b.title=displayLabel;b.setAttribute("aria-label",label);b.setAttribute("role","button");
- const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":normalized==="one x"||normalized==="onex"||normalized==="onenav"?"one":normalized==="amplified audio"?"amplified":normalized;
+ const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":/^(one|one x|onex|one nav|onenav)$/.test(normalized)?"one":normalized.includes("amplified")?"amplified":normalized;
  const slug=normalized.replace(/[^a-z0-9]+/g,"");
  const src=BRAND_LOGOS[key]||("https://cdn.simpleicons.org/"+slug);
  if(src){const img=document.createElement("img");img.src=src;img.alt=displayLabel+" logo";img.loading="eager";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=displayLabel;b.append(fallback)};b.append(img)}
