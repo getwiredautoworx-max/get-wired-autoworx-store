@@ -3277,3 +3277,12 @@ Read-only audit of the sanitized JSON used by PR #139:
 - The latest candidate branch contains the My Audio & Security RA-EL4 image source, not the Mamas Boombox URL noted in the prior update. This is deliberate and better verified: the My Audio product page explicitly identifies the Reference Audio RA-EL4 (also labeled EL4), displays the RA-EL4 package photo at 600×319, and lists the kit contents. The test and audit now match this exact source.
 - Current branch commits: 466ebd25f9a2f1d796967f5bdf39ee1b18e38a9d (exact Sony/RA-EL4 assertions) and 8f23056075c2c32bc129c8bd4c630077a70a8318 (audit source correction). Latest run 42045275342 for 8f23056075c2c32bc129c8bd4c630077a70a8318 is pending; the earlier run for 466ebd25 is still in progress. Wait for the latest exact-head result before further edits.
 - No preview link issued; the 3 unverified model images and the low-resolution Blackspider Lynx image remain open acceptance blockers.
+
+
+## IMAGE AUDIT RECONCILIATION — 2026-11-05 16:38 SAST
+
+- The candidate branch has now matched RA SUPER RAST20 to manufacturer-listed model RA-ST20. The exact model page confirms 650W max / 50W RMS and the image currently attached is a 324×324 product photo from the Zaybees listing. It is a real exact-model photo, not generic artwork; a Zaybees watermark is visible and is explicitly recorded in the product's internal imageQualityNote for replacement with a clean supplier original before final publication if available.
+- Audio Connections coverage is now 64/66 records with image URLs; two exact-model image gaps remain: SSW-S12 SPECTR 15000 and 860/SSAK-860. The Blackspider Lynx photo remains a 105px exact-model thumbnail and is still a quality blocker. RA-ST20 is no longer counted as missing.
+- The RA-EL4 source is My Audio & Security, whose product page explicitly identifies RA-EL4/EL4 and whose 600×319 package image visibly shows the RA-EL4 kit. This replaced the older broken image URL; tests now assert the My Audio asset.
+- Updated the audit to 64 image URLs / 2 missing exact-model photos, added an RA-ST20 image assertion, aligned the non-Sony power-description test to 24, and updated the workflow's expected image count. Latest run 42045630873 is queued for exact head bd0edff6ebb63dfcbdb3b3eaa70a274de6d4e18f.
+- No preview link issued. The exact-head build and hosted browser audit must pass; the two missing model photos and the low-resolution Lynx image still prevent owner acceptance.
