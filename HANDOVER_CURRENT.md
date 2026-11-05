@@ -4261,3 +4261,13 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - The six original PDFs remain unchanged. Product-level staging remains DO NOT IMPORT until every product's exact identity, code, description/specification, fitment and image pairing is checked against original page images. OCR-only records are not verified. ASC pricing remains quote-only until current pricing is supplied: exact wording “Price On Request due to Limited Stock and Availability”. Buyers Guides remain excluded.
 - No live database writes, product imports, stock/price changes, public activation, payment/checkout changes or production deployment occurred. Production HOLD.
 - **Next:** implement these six family subcategories in the non-production preview using the approved three-root architecture, without touching Audio; then visually verify source pages and stage product rows under the corresponding family. If the current preview implementation cannot safely support the category change without touching frozen Audio, stop and record the blocker rather than editing Audio.
+
+
+## 2026-11-05 — OWNER AUTHORISED AERIALS MOVE; AUDIO FROZEN AGAIN
+
+- Owner explicitly authorised one exception to the Audio freeze: place the ASC Aerials catalogue under **Audio, Entertainment & Music → Car Audio & Video → Aerials**. Added a dedicated child node to the non-production preview taxonomy in `assets/category-tree.json`, ID `a11e1a15-6d84-4a0b-9a44-8f4c3a2d1e70`, parent Car Audio & Video. Taxonomy commit: `12d851dd32ad5b8c52e38a06a7210adab4d0c1dd`.
+- Updated the review-only assignment manifest so Aerials routes to Car Audio & Video → Aerials (manifest commit `b395ff352fcc1f3af424e8eced5058fb5f8e5437`).
+- **Audio category is frozen again immediately after this one authorised taxonomy move.** No further edits to Audio structure, brand pages/logos, product data, pictures, descriptions, prices, navigation or assets without a fresh explicit owner instruction. The freeze applies to the new Aerials subcategory too.
+- Remaining ASC assignments stay unchanged: **Auto Electrical Parts & Spares:** Automotive Sensors, Automotive Switches, Automotive Globes, Fuel Pumps — each its own subcategory. **Car Care & Accessories:** Car Mats — its own subcategory.
+- This is a repository taxonomy/staging change only. No ASC product rows/images/descriptions have been imported or claimed verified; product-level work remains DO NOT IMPORT until exact source pages and product evidence are visually checked. Original PDFs unchanged; Buyers Guides excluded; production HOLD.
+- Next ASC work may continue only outside Audio: verify the remaining five catalogue families and prepare review-only product evidence. Do not change the frozen Audio category further.
