@@ -255,6 +255,8 @@ for (const [label,asset] of [
 }
 assert.ok(route.includes('function departmentImage(value,label)'), 'Audio departments must use an explicit image map');
 assert.ok(route.includes('window.location.assign("preview-audio.html?"+u.toString())'), 'Department buttons must navigate to the selected department route');
+assert.ok(route.includes('new URLSearchParams({department:value})'), 'Department entry must preserve the brand-selection stage');
+assert.ok(!route.includes('new URLSearchParams({department:value,brand:"All brands"})'), 'Department entry must not preselect All brands and skip brand navigation');
 assert.ok(!route.includes('https://ds18.com/cdn/shop/files/S65C-2000x2000_grande.jpg') && !route.includes('home-entertainment.svg";\n}'), 'Component buttons must not use remote or unrelated generic image fallbacks');
 for (const asset of ['musical-instruments.svg','marine-audio.svg','lifestyle-audio.svg']) {
   assert.ok(fs.existsSync('assets/audio-types/'+asset), 'Missing dedicated audio department artwork: '+asset);
