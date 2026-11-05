@@ -103,3 +103,9 @@ request=owner-preview-final-category-photo-repair-exact-head-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;three-root-navigation;department-menu-hidden-before-catalogue-load;category-photo-url-audit;all-audio-category-images-naturalWidth-positive;brand-first-car-audio;brand-first-home-entertainment;brand-logo-load;component-type-route;filtered-products;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
+
+request=owner-preview-verify-final-photo-repair-2026-11-05
+source_head_before_request=a8aabc06f4aa54c555bd67d77e58dae155003dbc
+handover_checkpoint=2973d0a4039e6c547fcc7f667b18dddd75cb48fe
+required_head=latest-branch-head
+required_checks=exact-sha-marker;audio-photo-naturalWidth-audit;audio-photo-alt-audit;no-generic-photo-fallback;three-root-navigation;car-audio-brand-first;home-entertainment-brand-first;brand-logo;type-filtered-products;menu-hide-before-load;mobile-390px;desktop-1365px;checkout-hidden;supabase-writes-blocked;sku-audit
