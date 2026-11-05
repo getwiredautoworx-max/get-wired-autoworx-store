@@ -37,6 +37,7 @@ PREVIEW_ASSET_FILES = [
     "audio-types/projection-screens-projectors.svg", "audio-types/cables-mounts-accessories.svg",
     "audio-types/av-infrastructure-control.svg", "audio-types/installed-audio.svg",
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
+    "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
