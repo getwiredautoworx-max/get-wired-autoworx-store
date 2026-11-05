@@ -3596,3 +3596,11 @@ Owner-approved requirements: exact product photos for every product; customer pr
 - The next run passed package build and public supplier-identity checks, then failed in the Node test file because the new early photo assertions declared `productRoute`, which was already declared later in the existing suite.
 - Renamed the early binding to `productListingRoute`; this is test-only and does not alter the storefront.
 - No deployment occurred. Continue the exact-head regression run and fix any subsequent test defects without weakening the assertions.
+
+
+## 2026-11-05 — HOSTED QA REGEX ESCAPING FIX
+
+- The exact-head package build, both Node regression suites and SKU audit passed. The dedicated non-production deployment and exact-SHA marker also passed for commit `860869ed4b850affc6d7c157873d68f5d72ada16`.
+- Hosted Playwright then stopped before the new OneNav/Amplified/image checks because four newly inserted route-match regexes had an extra backslash, causing `SyntaxError: Invalid regular expression flags`.
+- Corrected the four hosted QA regex literals to match the already-working route checks. This is a workflow-only test correction; no product data or storefront source behavior changed.
+- The run did not complete hosted QA and is not an owner-preview pass. Next exact-head run must complete OneNav logo, Amplified logo, all 66 image-load checks, pricing sample and existing mobile/desktop flows.
