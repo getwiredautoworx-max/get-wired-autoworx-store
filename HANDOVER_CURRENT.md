@@ -3402,3 +3402,31 @@ Replace all subcategory buttons with relevant pictures (example: Speakers & Comp
 ### Full subcategory picture-load QA — 2026-11-05
 - Extended hosted staging QA beyond the Car Audio component cards. It now checks that all six Audio root subcategory images, all five Auto Electrical subcategory images, and all four Car Care subcategory images actually load on the 390px mobile view. The brand-first Car Audio test separately verifies every component image under the selected brand.
 - Any failed/broken remote image must be replaced before owner handover. The hosted preview remains pending exact-head verification.
+
+
+---
+
+## 2026-11-05 09:45 SAST — OWNER PREVIEW ROUTE / AUDIO NAVIGATION CONTINUATION
+
+### Verified repository findings
+- Current working PR remains #176, open/draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/176
+- Owner-approved top-level roots remain exactly: Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories.
+- The owner-preview wrapper loads `index-new.html?ownerPreview=1`. The homepage root links route into `preview-category.html`, not `category.html`.
+- `preview-category.html` already contains a compact mobile two-column tile override in the current PR branch. The existing browser workflow, however, exercised `category.html` rather than the actual `preview-category.html` owner-preview route. This left a coverage gap and could not prove the page the owner was viewing.
+- `preview-audio.html` already renders brand choices as logo-led buttons and product-type choices as image-led cards. The prior product-type ordering was alphabetical, not the owner's desired customer-first order.
+
+### Changes made on the PR branch (not yet hosted-verified)
+- Commit `9e668a3f07f79e633c4c647c2fe50ccf2925eedb`: explicit Car Audio product-type order — Head Units & Media Players, Speakers & Component Kits, Subwoofers, Amplifiers, Cameras & Monitors, Signal Processing & Crossovers, Accessories, Harnesses/Trims, Aerials; unknown groups follow alphabetically.
+- Commit `ba9163067b448c73e99fa2f947e1c5e136c3f3f6`: expanded the audio route browser workflow to exercise the actual `preview-category.html` route at 390px, require two columns and six Audio image tiles, navigate into Car Audio & Video and verify brand-logo choices, then check product-type image buttons and the intended order.
+- These are code/workflow commits only. No production deployment, Axxess upload, DNS change, Supabase write, live catalogue/stock/price change, supplier activation or payment change was made.
+
+### Exact outstanding verification
+1. Confirm the current PR branch head includes both commits above.
+2. Obtain a successful workflow run for the new actual-owner-route browser assertions; no exact-head run result is yet established in this checkpoint.
+3. Verify a Cloudflare Pages deployment built from that exact head and open its owner-preview URL. The previously recorded deployed SHA `f00f1be637b1b2339c4ad2cd2c8e4b3c516aa4e2` predates these new commits and is not evidence for them.
+4. Owner must visually accept the real 390px phone layout and Car Audio → brand → product-type flow.
+
+### Release status
+- PR #176 stays OPEN / DRAFT / UNMERGED.
+- Do not call the latest preview ready until exact-head tests and exact-head hosted deployment are verified and the owner accepts the visuals.
+- Production remains HOLD. Checkout/payment testing remains deferred until banking details are supplied.
