@@ -3430,3 +3430,27 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Exact immutable deployment: https://a6e27658.get-wired-autoworx-store.pages.dev/owner-preview.html?build=b2453697ed6b74dddc574f34b19a7a59f4678d36
 - Stable owner-preview alias: https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html?build=b2453697ed6b74dddc574f34b19a7a59f4678d36
 - PR #178 remains OPEN / DRAFT / UNMERGED. This is a non-production preview only. Production, DNS/Axxess, Supabase writes, checkout/payment activation, live stock/prices, and supplier activation remain HOLD. Owner visual acceptance is still pending; hosted QA does not substitute for owner review on the Hisense phone.
+
+
+## 2026-11-05 — CATEGORY PHOTO REPAIR AFTER OWNER REJECTED PREVIEW
+
+- Owner rejected the previous preview links because the category buttons still showed missing, irrelevant or illustrated artwork. Treat all prior visual acceptance notes as superseded for image quality; no owner acceptance is recorded.
+- Re-audit confirmed the audio UI used broad Unsplash fallback rules and a generic speaker image for unmatched labels. The old mappings could show an amplifier/head-unit/camera category with unrelated imagery, and the generic fallback concealed missing category mappings.
+- Replaced the customer-facing audio photo map across `preview-audio.html`, `preview-audio-brand.html`, `preview-audio-products.html`, and `preview-category.html` with category-matched Unsplash photographs:
+  - Car speakers: `photo-1726248985986-20bef82d2b52`
+  - Subwoofers: `photo-1776176359206-a1d34436ddff`
+  - Car amplifier: `photo-1543017471-62c14029f7ce`
+  - Car stereo/head unit: `photo-1470948062737-aeb014e274c2`
+  - Vehicle monitor/camera: `photo-1738138986988-add3dd7cde9a`
+  - Automotive wiring: `photo-1677230017860-a8cc67785f0a`
+  - Vehicle aerial: `photo-1759667880866-702f9f615489`
+  - Home theatre: `photo-1558284296-7579da2deb30`
+  - Audio cables: `photo-1771554753127-8e5a90b5a61d`
+  - Marine radio: `photo-1769724839524-ea4bd870f813`
+- Removed the generic speaker-image fallback from the audio category routes. Unknown category labels no longer receive an unrelated default photo. Brand/product cards now omit a failed image when no valid category fallback exists instead of repeatedly showing the wrong image.
+- Updated the homepage audio collage and standalone category page to use the same car-speaker, home-theatre and marine-audio photography; corrected image alt text to describe the actual car-speaker photo.
+- Updated `tests/audio-catalogue-preview.test.cjs` and `tests/three-category-storefront-structure.test.cjs` to assert the new image mappings and removal of the old generic fallback.
+- Local source verification performed through the repository content: all changed storefront inline scripts parsed successfully; both updated Node test files parsed successfully. The actual Node regression suites, hosted browser checks, deployed image naturalWidth checks and exact-SHA deployment marker have NOT yet been verified in this turn.
+- Current integration branch is diverged from main (latest comparison before the final checkpoint: 180 ahead / 4 behind). Keep PR #178 draft/unmerged; do not merge or production-deploy.
+- The branch's `owner-preview-exact-sha.yml` has a push trigger for the integration branch. The GitHub workflow-run connector only returns pull-request-triggered runs, so an empty result does not prove the push deployment did not run. Do not issue a preview-ready claim or send a new preview link until the exact deployed SHA marker and hosted mobile/desktop browser results are verified.
+- Production remains HOLD: no Axxess/DNS change, Supabase/live write, supplier activation, live stock/price change, checkout/payment activation or launch.
