@@ -3185,3 +3185,16 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Verification state at checkpoint: code and workflow changes are committed; exact-head GitHub Actions result and live hosted route still need to be checked. **Do not call the preview ready or send the owner to it until the exact SHA deployment marker and hosted mobile/desktop route tests pass, and then provide the commit-specific URL plus the stable owner-preview alias.** The prior rejected URL remains rejected.
 - Workflow/branch consolidation: other historical branches and overlapping PRs are parked, not deleted. No parallel storefront fixes should be started. Supplier catalogue work is queued behind the storefront preview acceptance; ASC Buyers Guides remain excluded unless explicitly reauthorized.
 - Release boundaries unchanged: PR #176 stays open/unmerged pending owner acceptance; production HOLD; no Axxess upload, DNS change, Supabase/live write, live stock/price/category change, supplier activation, checkout/payment activation or production deploy.
+
+
+## 2026-11-05 — CLEAN MAIN-BASED ACTIVE PREVIEW BRANCH CREATED
+
+- To eliminate the old storefront branch's divergence (229 commits ahead / 13 behind main), created a new integration branch from current main commit `3fe8ba6722b94c42044f15c5463f0d29d98c8421`.
+- **Single active storefront branch:** `integration/owner-preview-single-task-2026-11-05`.
+- **Single active storefront PR:** #178 — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/178 (DRAFT / OPEN / UNMERGED).
+- Clean branch comparison checkpoint: 44 commits ahead / 0 behind main before this handover checkpoint. The branch contains the required three-category storefront, review-only Planetworld and Audio Connections preview datasets, dedicated Car Audio brand and product pages, local category artwork, shared shell, preview package builder, exact-route regression test, and one dedicated staging deployment/browser-QA workflow.
+- The previous `preview/integrated-storefront-2026-11-04` branch and PR #176 are now parked historical candidates. Do not add new work to them, merge them, or use their preview URLs as the current owner preview.
+- The active deployment workflow is restricted to this clean branch and deploys to the single `owner-preview` Pages alias. It requires the exact deployed commit marker before hosted browser tests.
+- Current exact integration branch head before final deployment trigger: `f51a1c474722f75cbc8bb53938940f24c411f86b`. A final handover/preview-trigger commit will follow; use that final commit SHA for all package, deploy and browser-QA acceptance.
+- Owner journey acceptance: homepage → three root categories → Audio category → Car Audio & Video → brand page (logo/identity + product-type image tiles, no products) → product-type page → products filtered by brand + type. Desktop and 390px mobile checks required.
+- No owner preview is ready yet. Wait for exact-head workflow success and independently inspect the deployed owner preview before sending the link. Owner visual acceptance remains required before any merge. Production remains HOLD.
