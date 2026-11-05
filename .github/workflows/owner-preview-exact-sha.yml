@@ -206,9 +206,9 @@ jobs:
               if(!homeDepartmentHref||!homeDepartmentHref.includes('department=Home%20Entertainment'))throw new Error('Home Entertainment category route missing: '+homeDepartmentHref);
               await homeDepartment.click();
               await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
-              const klipsch=frame.locator('#brands .brandLogoButton').filter({hasText:'Klipsch'}).first();
+              const klipsch=frame.locator('#brands .brandLogoButton[aria-label="Klipsch"]');
               await klipsch.waitFor({state:'visible',timeout:30000});
-              if(!(await klipsch.locator('img').count()))throw new Error('Klipsch brand tile must show a logo image');
+              await klipsch.locator('img').waitFor({state:'visible',timeout:15000});
               if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
               await klipsch.click();
               await page.waitForFunction(()=>/\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
