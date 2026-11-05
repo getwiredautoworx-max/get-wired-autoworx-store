@@ -63,6 +63,13 @@ assert.ok(!home.includes("window.gwProducts=products;renderCats();render('featur
 const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
 assert.ok(home.includes("HOME_CATEGORY_IDS.includes(c.id)") && home.includes('rootCategoryLink"><a class="catBtn catalogueLink"') && home.includes('preview-category.html?id='), 'each of the three homepage root categories must be a real link to its own category page');
 assert.ok(!home.includes('rootCategoryLink"><button'), 'homepage root categories must not render as inline accordion buttons');
+assert.ok(home.includes('function productBrandLabel(p)')&&home.includes("s.brand||s.manufacturer||s.brand_name||'Brand details to be confirmed'"),'main three-root storefront must display an evidence-backed brand or a clear confirmation placeholder');
+assert.ok(home.includes('function productModelLabel(p)')&&home.includes('s.model_number||s.model||p.model_number||p.name'),'main product cards must put the verified model first and fall back only to the catalogue product name');
+assert.ok(home.includes('class="productModel" data-product-model')&&home.includes('class="productBrand" data-product-brand')&&home.includes('class="productDescription" data-product-description'),'main category cards must use the owner-approved model, brand and description hierarchy');
+assert.ok(home.includes('class="price productPrice" data-product-price')&&home.includes('money(p.price)'),'main category cards must retain verified ZAR pricing and the existing price-on-request state');
+assert.ok(!home.includes('<p class="sku">SKU: ${esc(p.public_sku)}</p>'),'main category cards must not display internal/public SKU identifiers to customers');
+assert.ok(home.includes('id="gw-owner-product-format"')&&home.includes('@media(max-width:640px)'),'owner product-card hierarchy must have mobile-first typography rules');
+
 assert.ok(categoryClickHandler.includes("if(b.matches('a.catalogueLink'))return"), 'dedicated category-page links must not be intercepted by the legacy accordion handler');
 assert.ok(home.includes('#categoryGrid>.rootCategoryLink>a.catBtn{display:block!important;'), 'root category links must retain full-card tap targets');
 assert.ok(previewCategory.includes("const children=cats.filter(c=>c.parent_id===current.id);if(children.length){const items=children.map(c=>({...c,count:total(c)}));render(items,current.name,'Choose a sub-category to continue. Each category opens its own page.');return}"), 'category pages must list their subcategories even when product counts are not yet populated');
