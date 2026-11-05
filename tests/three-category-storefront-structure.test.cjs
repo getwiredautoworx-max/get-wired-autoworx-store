@@ -131,7 +131,7 @@ assert.ok(audioPage.includes('department==="Home Entertainment"?isHomeEntertainm
 assert.ok(planet.records.some(p => p.collection === 'Installed AV'), 'Installed AV source records must remain represented within Home Entertainment');
 assert.ok(audioPage.includes('routeParams.get("search")') && audioPage.includes('routeParams.get("label")'));
 assert.ok(audioPage.includes('department=requestedDepartment;brand=requestedBrand||"All brands";component=requestedComponent||"All product types"'), 'direct audio subcategory, brand and product-type routes must initialise their filters');
-assert.ok(audioPage.includes('rows=enriched.concat(verifiedOnly,audioConnections)'), 'Planetworld and Audio Connections products must feed the same combined audio catalogue');
+assert.ok(audioPage.includes('rows=enriched.concat(audioConnections)'), 'pre-enriched Planetworld and Audio Connections products must feed the same combined audio catalogue without the internal supplier crosswalk');
 assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio"'), 'Car Audio & Video must include every Car Audio source row together, not separate supplier pages');
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
