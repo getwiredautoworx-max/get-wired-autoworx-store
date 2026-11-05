@@ -35,7 +35,7 @@ assert.ok(!route.includes('Indicative preview: R'), 'customer-facing audio previ
 assert.ok(route.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must use the real owner-authorised car-audio product image');
 assert.ok(!route.includes('img.src="assets/car-audio-video-category.svg"'), 'Home Entertainment artwork must not be reused for Car Audio & Video');
 const audioCategoryPage=fs.readFileSync('preview-category.html','utf8');
-assert.ok(audioCategoryPage.includes("assets/audio-types/home-entertainment.svg"), 'Home Entertainment category card must use dedicated artwork');
+assert.ok(audioCategoryPage.includes('photo-1593359677879-a4bb92f829d1'), 'Home Entertainment category card must use photographic artwork');
 assert.ok(route.includes('department==="Home Entertainment"?isHomeEntertainmentRecord(p):department==="Marine Audio"?') && route.includes('function isHomeEntertainmentRecord(p){') && route.includes('component==="Home & Leisure Appliances"') && route.includes('component==="Smart Home & Security"'), 'Home Entertainment must use the reviewed audio-only filter and exclude non-audio retail items');
 assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not rely on unsupported selectors, timers or destructive grid replacement');
 assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must preserve and restore category nodes without deleting them');
