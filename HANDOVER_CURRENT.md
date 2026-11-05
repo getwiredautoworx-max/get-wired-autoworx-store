@@ -3414,3 +3414,19 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Latest branch-head commit `72d6446530d1e4a9ca781807d02395ec34595f8c` only strengthens static assertions against SVG artwork; its PR-triggered workflow lookup returned no runs. This lookup is limited to PR-triggered runs and is not proof that no other workflow run exists.
 - Required next execution: trigger the one approved exact-SHA owner-preview workflow for PR #178 from this active branch; require the exact deployed SHA marker; capture hosted image URLs/alt text/natural dimensions for each category tile; verify selected department hides the prior department menu before catalogue loading; test Car Audio and Home Entertainment brand → type → filtered product routes at 390px and desktop. If the current photos remain irrelevant, replace only those mappings with verified category-matched product imagery before reissuing the preview.
 - Production remains HOLD. No PR merge, production deployment, Axxess/DNS change, Supabase write, supplier activation, live stock/price change, checkout or payment activation occurred during this recheck.
+
+
+## OWNER REJECTED PREVIEW — PHOTOGRAPHIC AUDIO BUTTON REPAIR VERIFIED (2026-11-05)
+
+- Owner reported that both previously supplied links behaved the same and still displayed cartoon illustrations. This report overrides earlier owner-acceptance assumptions; do not refer the owner back to the older `a13a3b10` or `3bb7263b` preview builds.
+- Reinspection found that several customer-facing audio buttons still pointed to illustrated SVG files despite the earlier handover claim that artwork had been replaced. Replaced those mappings and generated SVG fallbacks with photographic image sources in:
+  - `preview-audio.html` — department/component button images and image fallbacks
+  - `preview-category.html` — category fallback; corrected a broken Car Mats photo URL
+  - `preview-audio-products.html` — product-type button images
+  - `preview-audio-brand.html` already uses photographic component-type sources; regression gate now rejects SVG image URLs there too.
+- Updated `owner-preview.html` iframe cache-buster to `previewBuild=20261105-photo-category-buttons`.
+- Added regression assertions that the customer-facing audio/category/brand/product-type buttons do not reference `/assets/audio-types/*.svg` or generate `data:image/svg+xml` artwork. Hosted Playwright also rejects SVG image URLs on brand product-type cards.
+- Hosted run [42013010619](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42013010619) completed SUCCESS on exact SHA `b2453697ed6b74dddc574f34b19a7a59f4678d36`. Exact package build, category/audio regression tests, public SKU audit, Cloudflare deployment, exact SHA marker, and hosted mobile/desktop QA passed. Hosted QA reported `GW_HOSTED_MOBILE_DESKTOP_PREVIEW_QA_PASS`, 3 expected root categories, zero JS errors, and no desktop horizontal overflow (1365px document width and scroll width both 1365px). It exercised Car Audio brand navigation, Home Entertainment brand/product-type route, Auto Electrical and Car Care category images, and the Trims & Harnesses 47-row route.
+- Exact immutable deployment: https://a6e27658.get-wired-autoworx-store.pages.dev/owner-preview.html?build=b2453697ed6b74dddc574f34b19a7a59f4678d36
+- Stable owner-preview alias: https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html?build=b2453697ed6b74dddc574f34b19a7a59f4678d36
+- PR #178 remains OPEN / DRAFT / UNMERGED. This is a non-production preview only. Production, DNS/Axxess, Supabase writes, checkout/payment activation, live stock/prices, and supplier activation remain HOLD. Owner visual acceptance is still pending; hosted QA does not substitute for owner review on the Hisense phone.
