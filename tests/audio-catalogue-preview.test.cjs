@@ -222,9 +222,9 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 62);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 63);
 const raEl4=audioConnections.records.find(item=>item.modelNumber==='RA-EL4');
-assert.ok(raEl4&&raEl4.imageUrl==='https://i0.wp.com/myaudioandsecurity.co.za/wp-content/uploads/2025/06/23-286-1.png?resize=600%2C319&ssl=1'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
+assert.ok(raEl4&&raEl4.imageUrl==='https://mamasboombox.co.za/cdn/shop/files/ReferenceAudio-RA-EL4-4GaugeWiringKit_Double.png?v=1783360378&width=1946'&&raEl4.manufacturerListedModel==='RA-EL4','supplier descriptor RA AWG4 must resolve to the Reference Audio RA-EL4 photo');
 
 const wiringKit412=audioConnections.records.find(item=>item.modelNumber==='SSAK-412');
 assert.ok(wiringKit412&&wiringKit412.imageUrl==='https://maxmotorsport.co.za/cdn/shop/files/Star-Sound-4-Gauge-Wiring-Kit-Star-Sound-21184996.jpg?v=1724052666&width=1946'&&wiringKit412.manufacturerListedModel==='SSAK-412','supplier code 412P must resolve to the verified manufacturer SSAK-412 image');
@@ -234,7 +234,7 @@ for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
 
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 4, 'only four supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 3, 'only three supplier products remain without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'].includes(row.imageStatus)), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
@@ -469,7 +469,7 @@ assert.equal(alpineHalo11Product.title, alpineHalo11Model.name, 'verified manufa
 assert.ok(enrichment.includes('product["title"] = manufacturer_name'), 'exact-model enrichment must publish the verified manufacturer title');
 
 const eq7100=audioConnections.records.find(item=>item.modelNumber==='EQ7100');
-assert.ok(eq7100&&!eq7100.imageUrl&&eq7100.imageStatus==='NO_VERIFIED_EXACT_MODEL_IMAGE','do not substitute the SSA-EQ-7200 photo for the EQ7100 model');
+assert.ok(eq7100&&eq7100.imageUrl==='https://media.takealot.com/covers_images/811fc7560c384b9082c723a030c9125e/s-zoom.file'&&eq7100.manufacturerListedModel==='SSA-EQ-7100'&&eq7100.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EQ7100 must use the exact SSA-EQ-7100 product photo, not the rejected SSA-EQ-7200 image');
 
 const lynx=audioConnections.records.find(item=>item.modelNumber==='BULLET LYNX');
 assert.ok(lynx&&lynx.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'&&lynx.imageQualityNote.includes('105px'),'Blackspider Lynx must disclose low-resolution thumbnail status');
