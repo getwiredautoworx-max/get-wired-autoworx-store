@@ -202,6 +202,14 @@ assert.ok(audioPage.includes('component==="All product types"&&!directSearchRout
 assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
+assert.ok(categoryPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'Car Audio & Video must enter the brand-first audio landing page without preselecting All brands');
+assert.ok(audioPage.includes('const brandChosen=routeParams.has("brand")&&requestedBrand!==""'), 'audio browse must distinguish an unselected brand stage from the explicit All brands choice');
+assert.ok(audioPage.includes('el("brands").hidden=!department||brandChosen||directSearchRoute'), 'brand buttons must remain visible on the initial Car Audio landing page');
+assert.ok(audioPage.includes('el("components").hidden=!department||!brandChosen||directSearchRoute'), 'component choices must remain hidden until a brand is selected');
+assert.ok(audioPage.includes('function categoryArtFallback(label)'), 'category image failures must fall back to self-contained category artwork');
+assert.ok(categoryPage.includes('this.src=categoryArtFallback(label)'), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
+assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio component image failures must show a relevant fallback illustration');
+
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
 
 // Owner visual requirement: every nested category uses relevant product imagery, not generic repeated text bars.
