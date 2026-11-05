@@ -88,3 +88,7 @@ required_checks=exact-sha-marker;brand-first-audio;seven-auto-electrical-cards;A
 request=ASC-AUTO-ELECTRICAL-AND-STOREFRONT-CAR-MATS-IMAGE-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;audio-category-images;car-care-category-images;ASC-four-catalogue-routes;34-pilot-images;mobile-and-desktop
+
+request=ASC-AUTO-ELECTRICAL-LOCAL-QA-BRAND-FIRST-AND-SEVEN-CATEGORY-FIX
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=local-owner-preview;hosted-exact-sha;brand-first-audio;seven-auto-electrical-categories;ASC-sensor-pilot-images;Car-Care-four-cards
