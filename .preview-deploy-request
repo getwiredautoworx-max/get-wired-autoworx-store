@@ -249,3 +249,6 @@ request=owner-preview-retest-after-responsive-kicker-logo-sizing-fix-2026-11-05
 requested_for=integration/owner-preview-single-task-2026-11-05
 required_head=latest-branch-head
 required_checks=exact-sha-marker;node-regression-suites;public-sku-audit;kicker-directory-logo-naturalWidth-and-rendered-size;kicker-brand-page-logo-naturalWidth-and-rendered-size;one-x-logo;amplified-logo;all-eight-audio-department-images-naturalWidth;alpine-halo11-image-naturalWidth-1000;all-68-exact-model-images-load;mobile-390px;desktop-1365px;zero-js-errors;checkout-hidden;supabase-writes-blocked
+
+
+request=PR-178-owner-visual-logo-and-product-image-fixes-2026-11-05
