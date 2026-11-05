@@ -1903,3 +1903,11 @@ The build is not complete because code exists, a branch is merged, a package bui
 
 ### 7. Current implementation pointer
 At the time this plan is appended, the recorded active integration candidate is PR #176 on `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live PR/head/main/checks before continuing. The last known exact-head workflow result was empty; no exact-head passing test or current hosted preview was proven. This is an execution checkpoint, not a claim that Phases 1–5 are complete. Continue the build on the existing candidate and update this same handover with evidence.
+
+
+## 2026-11-05 17:23 SAST — CONTINUATION TASK START
+- Resumed from the current repository state, not historical PR assumptions. Read the README pointer, the canonical owner continuation handover, and the binding owner reset at `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`.
+- Current authoritative storefront direction: three root categories; one coordinated preview candidate; catalogue-first workflow; ASC catalogues only (no ASC Buyers Guides); no live/production changes without explicit approval.
+- Current candidate discovered: PR #178, draft/open/unmerged, branch `integration/owner-preview-single-task-2026-11-05`, current head `a9b85c4fbc6c53854af0a553d1b71c836a8e14e0`. The latest previously successful exact-head preview run was #42051190890 on `86b58cbb4197fd37a72a62aa09426ed62ef2d2a5`; current head is later and requires exact-head verification before the preview can be described as verified for that head.
+- Task scope: continue remaining storefront/catalogue image and description corrections, preserve RRP−2% treatment where applicable, verify the current preview and update this handover with evidence. No PR merge, production deployment, Axxess/DNS/payment action, live data write, price/stock/active-flag change or supplier activation is authorised.
+- Status: IN PROGRESS. No code, product data, prices, stock, deployment or production state changed by this task-start entry.
