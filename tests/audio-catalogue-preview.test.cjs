@@ -225,6 +225,8 @@ assert.ok(productRoute.includes("department==='Home Entertainment'?isHomeEnterta
 assert.ok(brandRoute.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'Brand component tiles must prefer exact-brand catalogue product photos');
 assert.ok(brandRoute.includes('const sharedTypeImage=rows.find(p=>group(p)===t&&p.imageUrl)'), 'Brand component tiles must use a matching product photo when the selected brand has no image');
 assert.ok(brandRoute.includes('images.unsplash.com/photo-1558284296-7579da2deb30'), 'Home Entertainment component tiles must use photographic fallbacks');
+assert.ok(brandRoute.includes('photo-1654447398824-dbcbefeafdd6')&&!brandRoute.includes('photo-1726248985986-20bef82d2b52'), 'Car Audio component speaker tiles must use the corrected car-speaker photo consistently across routes');
+assert.ok(!route.includes('img.onerror=function(){this.onerror=null;this.src=categoryArtFallback(label)}'), 'failed component artwork must not retry the same failed generic image source');
 assert.ok(route.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())'), 'brand buttons must navigate to a dedicated brand page');
 assert.ok(route.includes('location.href="preview-audio-products.html?"+u.toString()'), 'product-type buttons must navigate to a dedicated product listing page');
 assert.ok(brandRoute.includes('Choose a product type') && brandRoute.includes('Products are shown on the next page'), 'brand landing page must show product-type tiles, not products');
