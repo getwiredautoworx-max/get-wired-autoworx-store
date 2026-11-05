@@ -134,7 +134,7 @@ def main() -> None:
                     raise SystemExit(f"OneNav image URL must use HTTPS: {expected_id}")
                 product["imageUrl"] = image_url
                 product["imageCrop"] = True
-                product["imagePosition"] = one_model.get("image_position") or "center 30%"
+                product["imagePosition"] = one_model.get("image_position") or "center 50%"
                 product["imageStatus"] = "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE"
                 image_status = product["imageStatus"]
                 images += 1
