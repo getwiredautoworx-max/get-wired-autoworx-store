@@ -248,7 +248,7 @@ jobs:
               if(!await amplifiedHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('Amplified logo failed on its dedicated brand page');
 
               // Confirm the live preview data uses VAT-inclusive RRP less 2%, with no extra VAT.
-              const previewPriceAudit=await frame.evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule}});
+              const previewPriceAudit=await frame.locator('body').evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule}});
               if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
               console.log('HOSTED_PLANETWORLD_RRP_MINUS_2_AUDIT',JSON.stringify({samplePrice:previewPriceAudit.sample.indicativePrice,zeroRrp:previewPriceAudit.zero.id,rule:previewPriceAudit.rule}));
 
