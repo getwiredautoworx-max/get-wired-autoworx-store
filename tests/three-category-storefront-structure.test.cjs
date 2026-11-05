@@ -16,7 +16,7 @@ const audioProductsPage = read('preview-audio-products.html');
 const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
-assert.ok(categoryPage.includes("photo-1558284296-7579da2deb30") && categoryPage.includes("photo-1726248985986-20bef82d2b52"), 'category artwork mapping must retain distinct home-theatre and car-speaker photographs');
+assert.ok(categoryPage.includes("photo-1558284296-7579da2deb30") && categoryPage.includes("photo-1654447398824-dbcbefeafdd6"), 'category artwork mapping must retain distinct home-theatre and car-speaker photographs');
 const previewCategoryInlineScripts = previewCategory.split('<script>').slice(1).map(part => part.split('</script>')[0]);
 assert.ok(previewCategoryInlineScripts.length > 0, 'preview category page must contain its navigation script');
 for (const script of previewCategoryInlineScripts) new vm.Script(script);
@@ -32,9 +32,9 @@ assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\
 assert.ok(home.includes("if(c.id==='gw-audio-band')") && home.includes('alt=\"Band equipment and live sound stage\"'), 'Band Equipment tile must use relevant live-sound photography');
 assert.ok(home.includes("if(c.id==='gw-audio-dj')") && home.includes('alt=\"DJ mixer and decks\"'), 'DJ Equipment tile must use relevant DJ equipment photography');
 assert.ok(home.includes("if(c.id==='gw-audio-instruments')") && home.includes('alt=\"Musical instruments including guitar and keyboard\"'), 'Instruments tile must use musical instrument photography');
-assert.ok(home.includes('https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
+assert.ok(home.includes('https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
 assert.ok(home.includes("if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b')") && home.includes('alt="Car audio speakers installed in a vehicle"'), 'Car Audio & Video child category button must use real car-audio product artwork');
-assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
+assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
 assert.ok(home.includes('class="catArt audioFourTile" aria-label="Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment"'), 'Audio, Entertainment & Music root tile must be a four-picture collage for the four main departments');
 for (const alt of ['Car audio speakers installed in a vehicle','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
 const planetPage = read('preview-planetworld.html');
@@ -68,7 +68,7 @@ assert.ok(home.includes('#categoryGrid>.rootCategoryLink>a.catBtn{display:block!
 assert.ok(previewCategory.includes("const children=cats.filter(c=>c.parent_id===current.id);if(children.length){const items=children.map(c=>({...c,count:total(c)}));render(items,current.name,'Choose a sub-category to continue. Each category opens its own page.');return}"), 'category pages must list their subcategories even when product counts are not yet populated');
 assert.ok(previewCategory.includes("if(current.id==='e3d19d20-fb46-426c-9f64-221d863add0b'){location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video');return}"), 'Car Audio & Video must open the brand-first catalogue landing page before component groups');
 assert.ok(!previewCategory.includes('car-audio-video-category.svg')&&!audioPage.includes('car-audio-video-category.svg'), 'customer-facing Car Audio category cards and department fallbacks must never use illustrated SVG artwork');
-assert.ok(previewCategory.includes('photo-1726248985986-20bef82d2b52')&&audioPage.includes('photo-1726248985986-20bef82d2b52'), 'Car Audio category imagery must use the photographic car-speaker asset');
+assert.ok(previewCategory.includes('photo-1654447398824-dbcbefeafdd6')&&audioPage.includes('photo-1654447398824-dbcbefeafdd6'), 'Car Audio category imagery must use the photographic car-speaker asset');
 assert.ok(audioPage.includes('el("brands").hidden=!department||brandChosen||directSearchRoute') && audioPage.includes('el("components").hidden=!department||!brandChosen||directSearchRoute'), 'Car Audio landing order must be brands first, then component groups after a brand is selected');
 assert.ok(previewCategory.includes('id="compact-category-page-grid"') && previewCategory.includes('grid-template-columns:repeat(2,minmax(0,1fr))!important'), 'preview category pages must use compact two-column subcategory tiles on mobile');
 assert.ok(previewCategory.includes("document.getElementById('search')?.addEventListener"), 'category page must not assume an optional search input exists before rendering its categories');
@@ -136,7 +136,7 @@ assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
 assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
-assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1726248985986-20bef82d2b52') && audioBrandPage.includes('images.unsplash.com/photo-1543017471-62c14029f7ce'), 'brand page must use photographic product-type artwork');
+assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1654447398824-dbcbefeafdd6') && audioBrandPage.includes('images.unsplash.com/photo-1543017471-62c14029f7ce'), 'brand page must use photographic product-type artwork');
 assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
 assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
@@ -206,7 +206,7 @@ assert.ok(audioPage.includes('el("products").hidden=!department||(component==="A
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 assert.ok(categoryPage.includes("document.getElementById('search')?.addEventListener"), 'category navigation must not crash when the optional search field is absent');
 
-assert.ok(audioPage.includes('https://images.unsplash.com/photo-1726248985986-20bef82d2b52?auto=format&fit=crop&w=720&q=82'), 'Car Audio & Video department button must show real car-audio product photography');
+assert.ok(audioPage.includes('https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'), 'Car Audio & Video department button must show real car-audio product photography');
 assert.ok(!audioPage.includes('img.src="assets/car-audio-video-category.svg"'), 'the Home Entertainment illustration must not be reused for Car Audio & Video');
 const audioCategoryArtwork = read('assets/car-audio-video-category.svg');
 assert.ok(audioCategoryArtwork.includes('<title id="title">Audio and home entertainment</title>'), 'audio category artwork must be explicitly audio/home-entertainment themed');
@@ -232,7 +232,7 @@ assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare previe
 // Owner visual requirement: the customer-facing audio department and component cards use photographic art.
 for (const photo of [
   'photo-1558284296-7579da2deb30',
-  'photo-1726248985986-20bef82d2b52',
+  'photo-1654447398824-dbcbefeafdd6',
   'photo-1545454675-3531b543be5d',
   'photo-1543017471-62c14029f7ce',
   'photo-1506157786151-b8491531f063',
