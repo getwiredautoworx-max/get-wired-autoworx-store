@@ -24,7 +24,7 @@ const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/
 assert.ok(audioInlineScripts.length > 0, 'audio preview must contain its catalogue navigation script');
 for (const script of audioInlineScripts) new vm.Script(script);
 for (const [name,page] of [['brand',audioBrandPage],['products',audioProductsPage]]) {
-  const scripts=[...page.matchAll(/<script>([\\s\\S]*?)<\\/script>/g)].map(match=>match[1]);
+  const scripts=page.split('<script>').slice(1).map(part=>part.split('</script>')[0]);
   assert.ok(scripts.length>0, 'audio '+name+' route must contain its navigation/catalogue script');
   for (const script of scripts) new vm.Script(script);
 }
