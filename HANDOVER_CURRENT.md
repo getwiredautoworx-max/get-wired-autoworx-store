@@ -3707,3 +3707,10 @@ Current code head at the start of this entry: `46030aa569d9637a76bfe56525eaecef4
 - The two source images are visible at their exact The4x4Store product-image URLs; this confirms the image endpoints themselves return the intended Prado and Land Cruiser Pick Up product panels. It does **not** replace hosted preview verification of the final crop.
 - Official Planetworld pages identify the two requested brand assets as **ONE** (the umbrella range including OneNav/OneX) and **Amplified**. The logo URLs resolve through Canto to signed CloudFront image URLs; the web inspection tool could not follow that redirect. The regression test checks the actual remote endpoints, but a successful current-head run is still required to confirm they load in the deployed storefront.
 - Current PR #178 head after crop calibration: `3963b306c46349560258fb5a81a291f073cf3174`. No workflow run or combined status is visible for this head. No preview is considered ready until the exact-head workflow and hosted deployment are verified.
+
+
+## 2026-11-05 — Exact-head workflow status refresh
+- PR #178 was checked again at head `34b550c29e287131df49303688999f437f4f420d`: GitHub returned no workflow run and no combined status for that SHA. The PR remains open/draft.
+- The two OneNav product-image endpoints are reachable and show the intended Prado and Land Cruiser Pick Up panels. The final 4:3/40% crop still requires a deployed-browser screenshot check.
+- The official Planetworld ONE and Amplified pages link to their respective Canto logo assets; the direct Canto requests redirect to signed CloudFront URLs that this inspection environment cannot fetch. The automated remote-asset assertions remain pending a real CI run.
+- No current-head hosted preview is available to certify. Do not reuse the older preview URLs as evidence.
