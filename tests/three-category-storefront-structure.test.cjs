@@ -11,6 +11,8 @@ const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
 const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
+const audioBrandPage = read('preview-audio-brand.html');
+const audioProductsPage = read('preview-audio-products.html');
 const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
 for (const script of categoryInlineScripts) new vm.Script(script);
@@ -21,6 +23,11 @@ for (const script of previewCategoryInlineScripts) new vm.Script(script);
 const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
 assert.ok(audioInlineScripts.length > 0, 'audio preview must contain its catalogue navigation script');
 for (const script of audioInlineScripts) new vm.Script(script);
+for (const [name,page] of [['brand',audioBrandPage],['products',audioProductsPage]]) {
+  const scripts=[...page.matchAll(/<script>([\\s\\S]*?)<\\/script>/g)].map(match=>match[1]);
+  assert.ok(scripts.length>0, 'audio '+name+' route must contain its navigation/catalogue script');
+  for (const script of scripts) new vm.Script(script);
+}
 assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=720&q=82\" alt=\"Home entertainment television and home theatre system\" loading=\"lazy\" referrerpolicy=\"no-referrer\"></span>'"), 'Home Entertainment homepage tile must use real television and home-theatre photography, not car/cartoon imagery');
 assert.ok(home.includes("if(c.id==='gw-audio-band')") && home.includes('alt=\"Band equipment and live sound stage\"'), 'Band Equipment tile must use relevant live-sound photography');
 assert.ok(home.includes("if(c.id==='gw-audio-dj')") && home.includes('alt=\"DJ mixer and decks\"'), 'DJ Equipment tile must use relevant DJ equipment photography');
@@ -114,7 +121,7 @@ for (const [i,page] of shellPages.entries()) {
   assert.ok(page.includes('class="gw-top"') && page.includes('class="gw-header"') && page.includes('class="gw-nav"') && page.includes('class="gw-mobile-nav"'), 'subpage '+i+' must use the shared homepage shell markup');
 }
 assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare package builder must copy the shared subpage shell stylesheet');
-assert.ok(builder.includes('"preview-audio.html"') && !builder.includes('asc-catalogue-preview.html') && !builder.includes('asc-catalogue-preview-data.json'), 'current supplier pilot package must include Planetworld/Audio Connections routes but exclude deferred ASC catalogue assets');
+assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"') && !builder.includes('asc-catalogue-preview.html') && !builder.includes('asc-catalogue-preview-data.json'), 'current supplier pilot package must include Planetworld/Audio Connections routes but exclude deferred ASC catalogue assets');
 assert.ok(!home.includes('ascCatalogueNode') && !home.includes('asc-catalogue-preview.html'), 'deferred ASC catalogue buttons must not appear in the current pilot storefront');
 assert.ok(home.includes('id="gw-subpage-shell-actions"') && home.includes('location.hash==="#cartPanel"') && home.includes('location.hash==="#part-search"') && home.includes('window.openPartSearch()'), 'homepage must open cart and part-search overlays when invoked from subpage shell links');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
@@ -124,7 +131,10 @@ assert.ok(audioPage.includes('routeParams.get("search")') && audioPage.includes(
 assert.ok(audioPage.includes('department=requestedDepartment;brand=requestedBrand||"All brands";component=requestedComponent||"All product types"'), 'direct audio subcategory, brand and product-type routes must initialise their filters');
 assert.ok(audioPage.includes('rows=enriched.concat(verifiedOnly,audioConnections)'), 'Planetworld and Audio Connections products must feed the same combined audio catalogue');
 assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio"'), 'Car Audio & Video must include every Car Audio source row together, not separate supplier pages');
-assert.ok(audioPage.includes('location.href="preview-audio.html?"+u.toString()'), 'brand and product-type selections must open dedicated filtered subcategory routes');
+assert.ok(audioPage.includes('location.href="preview-audio-brand.html?"+u.toString()') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
+assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
+assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
+assert.ok(audioBrandPage.includes('assets/audio-types/speakers.svg') && audioBrandPage.includes('assets/audio-types/amplifiers.svg'), 'brand page must use local product-type illustrations');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
 assert.ok(planetPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'legacy Planetworld review route must redirect into the unified Car Audio & Video catalogue');
 assert.ok(!planetPage.includes('Supplier stock snapshot') && !planetPage.includes('stock.jhb'), 'supplier stock snapshots must not be rendered as a separate customer-facing catalogue');
