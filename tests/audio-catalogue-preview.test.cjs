@@ -243,7 +243,7 @@ assert.ok(route.includes('"sony":"/assets/brand-logos/sony.svg"'), 'Sony brand s
 /* Every audio department must have a dedicated local illustration; never reuse one unrelated default image. */
 for (const [label,asset] of [
   ['Car Audio','/assets/car-audio-video-category.svg'],
-  ['Home Entertainment','/assets/audio-types/home-audio-cinema.svg'],
+  ['Home Entertainment','/assets/audio-types/home-entertainment.svg'],
   ['Band & Live Sound','/assets/audio-types/speakers.svg'],
   ['DJ','/assets/audio-types/signal-processing.svg'],
   ['Studio Equipment','/assets/audio-types/installed-audio.svg'],
