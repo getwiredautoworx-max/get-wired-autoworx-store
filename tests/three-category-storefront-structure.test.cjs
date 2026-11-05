@@ -207,7 +207,7 @@ assert.ok(audioPage.includes('const brandChosen=routeParams.has("brand")&&reques
 assert.ok(audioPage.includes('el("brands").hidden=!department||brandChosen||directSearchRoute'), 'brand buttons must remain visible on the initial Car Audio landing page');
 assert.ok(audioPage.includes('el("components").hidden=!department||!brandChosen||directSearchRoute'), 'component choices must remain hidden until a brand is selected');
 assert.ok(audioPage.includes('function categoryArtFallback(label)'), 'category image failures must fall back to self-contained category artwork');
-assert.ok(previewCategory.includes('this.src=categoryArtFallback(label)'), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
+assert.ok(previewCategory.includes("this.src=categoryArtFallback(this.alt.replace(/ product photo$/,''))"), 'category tile image failures must show a relevant fallback illustration instead of disappearing');
 assert.ok(audioPage.includes('this.src=categoryArtFallback(label)'), 'audio component image failures must show a relevant fallback illustration');
 
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
