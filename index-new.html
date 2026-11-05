@@ -1398,7 +1398,7 @@ function categoryArt(c){
 }
 function catNode(c){
  const label=HOME_CATEGORY_LABELS[c.id]||c.name;
- if(HOME_CATEGORY_IDS.includes(c.id))return '<div class="catWrap rootCategoryLink"><a class="catBtn catalogueLink" href="preview-category.html?id='+encodeURIComponent(c.id)+'">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse subcategories and products</small><i>OPEN CATEGORY →</i></span></a></div>';
+ if(HOME_CATEGORY_IDS.includes(c.id))return '<div class="catWrap rootCategoryLink"><a class="catBtn catalogueLink" target="_self" href="preview-category.html?id='+encodeURIComponent(c.id)+'">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse subcategories and products</small><i>OPEN CATEGORY →</i></span></a></div>';
  if(c.isAudioDepartment){let href='preview-audio.html?department='+encodeURIComponent(c.audioDepartment);if(c.audioSearch)href+='&search='+encodeURIComponent(c.audioSearch);if(c.audioLabel)href+='&label='+encodeURIComponent(c.audioLabel);return '<div class="catWrap catalogueWrap"><a class="catBtn catalogueLink" href="'+href+'">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse verified catalogue listings</small><i>OPEN CATALOGUE →</i></span></a></div>';}
  if(c.isAudioCatalogue){return '<div class="catWrap catalogueWrap"><a class="catBtn catalogueLink" href="preview-audio.html">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse departments, brands and product types</small><i>OPEN AUDIO CATALOGUE →</i></span></a></div>';}
  const kids=homeChildren(c.id),n=c.isAscFolder?0:categoryProductCount(c.id),countLabel=categoryRootId(c.id)==='1a13bc42-4f54-44f6-9658-36d141b77f4b'?'Browse preview catalogue':(n+' products');
