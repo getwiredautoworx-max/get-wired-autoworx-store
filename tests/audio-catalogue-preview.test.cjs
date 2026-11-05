@@ -238,14 +238,14 @@ for (const [model,url] of [["SSA-R-2250.2","https://maxmotorsport.co.za/cdn/shop
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact manufacturer model photo must be present');
 }
 
-assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 3, 'only three supplier products remain without an exact verified photo');
+assert.equal(audioConnections.records.filter(row => !row.imageUrl).length, 2, 'only two supplier products remain without an exact verified photo');
 assert.equal(audioConnections.records.filter(row => row.description).length, 66, 'all Audio Connections preview products must carry a description');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => row.imageSourceUrl && ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES'].includes(row.imageStatus)), 'every exact product photo must include its source page and owner-authorized exact-model status');
 assert.ok(audioConnections.records.filter(row => row.imageUrl).every(row => !/unsplash|photo-/.test(row.imageUrl)), 'product cards must never use category artwork as product photography');
 const audioImageAudit = readJson('catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json');
-assert.equal(audioImageAudit.recordsWithImage,63);
-assert.equal(audioImageAudit.recordsMissingVerifiedImage,3);
-assert.equal(audioImageAudit.missing.length,3)
+assert.equal(audioImageAudit.recordsWithImage,64);
+assert.equal(audioImageAudit.recordsMissingVerifiedImage,2);
+assert.equal(audioImageAudit.missing.length,2)
 for (const [model,url] of [["SS7655BT","https://maxmotorsport.co.za/cdn/shop/files/Starsound-SSMP5-7655BT-7_-Double-Din-Media-Player-with-USB-Mirrorlink-Bluetooth-Max-Motorsport-31467952.jpg?v=1778856552&width=1946"],["SSA-R-22000.1","https://evolutionwheelandtyre.com/cdn/shop/files/SSA-R-222000.1.jpg?v=1753284493"]]) {
  const row=audioConnections.records.find(item=>item.modelNumber===model);
  assert.ok(row && row.imageUrl===url && row.imageStatus==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',model+' exact model image must be present');
