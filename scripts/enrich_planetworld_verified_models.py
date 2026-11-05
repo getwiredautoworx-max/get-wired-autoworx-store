@@ -172,8 +172,8 @@ def main() -> None:
     expected = {
         "oneNav_pages": 32,
         "oneNav_descriptions": 32,
-        "oneNav_image_candidates": 6,
-        "oneNav_images_missing": 26,
+        "oneNav_image_candidates": 7,
+        "oneNav_images_missing": 25,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
@@ -185,8 +185,8 @@ def main() -> None:
     data["productImageEnrichment"] = {
         "exactModelPagesReviewed": 100,
         "manufacturerDescriptionsVerified": 100,
-        "exactImageCandidatesApplied": 74,
-        "exactModelImagesMissing": 26,
+        "exactImageCandidatesApplied": 75,
+        "exactModelImagesMissing": 25,
         "unmatchedProducts": 3217,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
