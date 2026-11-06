@@ -1,3 +1,12 @@
+## ONENAV ADDITIONAL SUPPLIER CODE CONFLICTS — 2026-11-06 (SAST)
+
+- Official OneNav confirms the Toyota Fortuner CAN-bus 2019+ title/fitment, but official SKU is `ON017-2LX`; supplier row is `ON017-2A11`. Do not assume suffix alias.
+- Official OneNav Land Cruiser 70 Series page lists SKU `ONO15-3A14` (letter O after N); supplier and reseller row show `ON015-3` (zero). Preserve the character distinction; exact match not proven.
+- Official OneX Lenovo DVR page lists SKU `ONDVRSD` (no hyphen); supplier row is `ON-DVRSD`. Record as a code-format mismatch; do not rewrite source SKU.
+- Updated uncovered-card CSV commit `bfe5c5a52cf8767066dfadbc1a1f1e9650e3d3ab`; report commit `0b717f5c172da99c804fd363c9fcbcd41806ce11`. No additional exact supplier-SKU matches claimed.
+- Continue OneNav; all review rows remain DO NOT IMPORT. No live writes, imports, preview workflow or deployment.
+
+---
 ## ONENAV ADDITIONAL OFFICIAL CATALOGUE MATCHES — 2026-11-06 (SAST)
 
 - Added two further exact official manufacturer checks to the 19-card gap register: `ON413-1A10` (official OneNav 2023 catalogue: Nissan Qashqai/X-Trail 2015+, 10.1-inch) and `OA-5263BT` (official OneNav shop: exact OneAcoustic Pro Series 1DIN Bluetooth title/SKU). OA-5263BT is **OneAcoustic**, not a OneNav head unit; keep brand separation.
