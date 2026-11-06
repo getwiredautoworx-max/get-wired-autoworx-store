@@ -1,3 +1,12 @@
+## ONENAV DIRECT DATA RECHECK — 2026-11-06 (SAST)
+
+- Re-read the latest 45-row OneNav audit CSV, 19-card reconciliation CSV, regression-test source, branch ref and PR #178 after the latest evidence updates.
+- **12/12 direct data assertions passed**: 45 audit rows / 45 unique SKUs; no blank parent brands; ON115-3LX parent brand OneNav; 19 uncovered titles with exact source-title matches; 20 mapped supplier rows; all 19 DO NOT IMPORT; one ambiguous two-SKU title group; exactly three official exact manufacturer matches (`OA-5263BT`, `ON016-2LX`, `ON413-1A10`); regression-test source contains all three expected exact matches; branch ref equals PR head.
+- This is direct validation of repository data and test source, **not** execution of `tests/onenav-source-audit.test.cjs`. Node test has not yet been run locally; no hosted CI result is claimed.
+- PR #178 remains draft/unmerged. Combined commit status is empty for the current pre-handover head; `.preview-deploy-request` remains pinned to the older SHA and was not changed. No Actions/preview run was triggered; current owner preview is not verified.
+- Next: continue exact manufacturer/variant and image-rights review for remaining OneNav records; keep ASC queued until OneNav is completed or only owner-dependent exceptions remain.
+
+---
 ## ONENAV ADDITIONAL SUPPLIER CODE CONFLICTS — 2026-11-06 (SAST)
 
 - Official OneNav confirms the Toyota Fortuner CAN-bus 2019+ title/fitment, but official SKU is `ON017-2LX`; supplier row is `ON017-2A11`. Do not assume suffix alias.
