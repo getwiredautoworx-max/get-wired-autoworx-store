@@ -1,3 +1,14 @@
+## AUDIO/VIDEO WORKSTREAM RESUMED — 2026-11-06 (SAST)
+
+- Owner's newest direct instruction explicitly resumes the audio/video catalogue and storefront-enrichment workstream as one autonomous, resumable GitHub candidate. This supersedes the earlier 2026-11-05 audio/OneNav pause and the subsequent Audio-category freeze for the scope expressly authorised here. Continue one brand at a time; current brand remains **ONE / OneNav**. Do not start another brand until OneNav is completed or a documented owner-dependent blocker is reached.
+- Authoritative owner directive `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` was read from `main`. It governs supplier scope/pricing, three-root storefront taxonomy, catalogue-first handling, DO NOT IMPORT staging, and release controls.
+- Active coordinated candidate remains PR #178, branch `integration/owner-preview-single-task-2026-11-05`; no new branch or PR created. The branch's `.preview-deploy-request` currently names requested commit `1bc6686f252bc08d55534fc7412ddfb2e44db2b4`. That commit changes only `catalogue-review/planetworld-one-official-model-audit.csv` and corrects ten OneNav audit rows to exact supplier source titles.
+- Latest available workflow lookup for `1bc6686f252bc08d55534fc7412ddfb2e44db2b4` returned no PR-triggered runs; combined commit status returned no statuses. The connected lookup does not expose push-triggered runs. Therefore no exact-head test pass, deployed-SHA marker, hosted browser QA, or current owner preview is claimed.
+- The expected `AI_HANDOVER_PERMANENT.md` was not found at repository root on `main` or the active integration branch. The owner directive remains available and authoritative; do not claim the missing permanent file was read or updated.
+- This is a resumption/task-start record, not a claim that OneNav enrichment is complete. Prior handover says owner screenshots are needed for exact dealer-site image/description matching. Resume safe manufacturer/catalogue verification; keep image/description fields pending wherever the evidence is insufficient. Do not use generic or similar-model imagery.
+- No live Supabase writes, product/price/stock/category/active-flag changes, supplier activation, merge, production deployment, Axxess upload, DNS/payment/banking changes, checkout testing, or release-credit use authorised or performed. PR remains draft/unmerged; production HOLD.
+
+---
 ## INSTALL107 DEVICE RESULT UPDATE — 2026-10-22
 
 - Owner reports install107 also shows only “App wasn't installed” with no details. This confirms physical acceptance is still failing; do not describe the app as resolved.
