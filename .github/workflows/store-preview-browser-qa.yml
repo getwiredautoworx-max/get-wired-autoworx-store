@@ -315,9 +315,9 @@ jobs:
               await frame.locator('#grid > .card').first().waitFor({state:'visible',timeout:30000});
               const autoNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
               if(autoNames.length!==7)throw new Error('Auto Electrical root expected seven direct subcategories after moving Aerials and Car Mats, got '+JSON.stringify(autoNames));
-              const hostedCatalogues=[['Aerials',6,'8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'],['Automotive Sensors',11,hostedAutoElectricalId],['Automotive Switches',16,hostedAutoElectricalId],['Automotive Globes',10,hostedAutoElectricalId],['Car Mats',14,'f98e7589-20a0-4825-9707-2680d29e5cb6'],['Fuel Pumps',18,hostedAutoElectricalId]];
+              const hostedCatalogues=[['Aerials',6,'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90','8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'],['Automotive Sensors',11,'e6a10001-1b2c-4d3e-8f90-111111111111',hostedAutoElectricalId],['Automotive Switches',16,'e6a10002-1b2c-4d3e-8f90-222222222222',hostedAutoElectricalId],['Automotive Globes',10,'89595653-97d4-4b18-ba69-117547d32ed0',hostedAutoElectricalId],['Car Mats',14,'c35d15c1-d665-413f-b528-878b6a655d5d','f98e7589-20a0-4825-9707-2680d29e5cb6'],['Fuel Pumps',18,'e6a10003-1b2c-4d3e-8f90-333333333333',hostedAutoElectricalId]];
               const hostedCatalogueAudit=[];
-              for(const [label,expectedSections,parentId] of hostedCatalogues){
+              for(const [label,expectedSections,categoryId,parentId] of hostedCatalogues){
                 await frame.locator('body').evaluate((body,parentId)=>{location.href='/category.html?id='+parentId},parentId);
                 try{await frame.locator('#grid > .card').filter({hasText:label}).waitFor({state:'visible',timeout:30000})}catch(e){const debug=await frame.locator('#grid').evaluate(el=>({url:location.href,text:el.innerText,debug:el.dataset.debug,error:el.dataset.error}));throw new Error('Hosted '+label+' parent category did not render its catalogue link: '+JSON.stringify(debug)+' cause='+e.message)}
                 const card=frame.locator('#grid > .card').filter({hasText:label}).first();
