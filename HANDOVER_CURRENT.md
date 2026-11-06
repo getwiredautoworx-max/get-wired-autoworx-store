@@ -3728,3 +3728,29 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Continue six catalogue hierarchy: Aerials → Car Audio Accessories; Car Mats → Car Care & Accessories; Sensors, Switches, Globes and Fuel Pumps each under Auto Electrical Spares. Keep catalogue section order and category structure.
 - Next deliverable: all 983 records browseable in the owner-only preview with source traceability and review states; then progressively enrich/verify descriptions, fitments, section placement and product-only image crops. The pilot's 50 reviewed records remain distinguishable from the 933 not-yet-editorially-reviewed records.
 - No production writes, live stock/price updates, public release of watermarked imagery, checkout/payment activation, DNS/Axxess or production deployment. Production remains HOLD.
+
+
+## 2026-11-06 — OWNER-RESUMED ASC CATALOGUE CONTINUATION + IMAGE BRANDING
+
+### Task-start record — 09:22 SAST
+- Owner instructed: continue the current ASC catalogue/storefront work and add a **GET WIRED AUTOWORX** watermark overlay over the existing ASC watermark on every ASC stock/product image.
+- Apply this as a non-destructive overlay: retain the original ASC watermark and preserve a clean original crop backup; do not erase or obscure ASC source identity marks. Process every image already staged and make the same watermark step mandatory for every additional ASC catalogue image as the remaining catalogue records are populated.
+- Store descriptions remain separate from image pixels. Remove catalogue description/footer copy from the prepared product image where it overlaps the storefront description; preserve the full product and do not cut off the bottom of fuel-pump images.
+- Current category mapping follows the owner's latest 2026-11-06 directions: Aerials → Car Audio Accessories; Car Mats → Car Care & Accessories; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps → their own separate Auto Electrical Parts & Spares subcategories. Preserve the six catalogue routes and 75 source section headings.
+- Keep all ASC work preview/review-only. No live product import, stock/price changes, Supabase writes, supplier activation, production deployment, Axxess upload, DNS, payment or checkout activation. ASC Buyers Guides remain excluded.
+
+### Verified starting point
+- Active ASC candidate: PR #177, branch `integration/asc-auto-electrical-clean-2026-11-05`, exact branch head at task start `f381900fd6f26fa180211e7f7ee41b0643587ac7`; PR remains OPEN / DRAFT / UNMERGED.
+- PR #177 currently carries six catalogue routes and 75 source sections, with 50 reviewed pilot records (Aerials 8, Sensors 9, Switches 8, Globes 8, Car Mats 8, Fuel Pumps 9). These 50 are not the complete 983-card extraction register; the remaining records still require catalogue-first identity, description, fitment and image checks.
+- The current pilot image set is `assets/asc-auto-electrical-pilot/`. Existing image-use/rights holds remain in force; adding the Get Wired watermark does not clear ASC image rights or verify exact SKU/physical-feature matching.
+- Owner-reported defects to resolve/verify in this pass: Fuel Pumps image has catalogue text overlapping the separate store description and the bottom of the product photo is clipped. Aerials and Car Mats must retain their owner-directed destinations above.
+
+### Execution queue
+1. Add a repeatable, idempotent ASC image-watermark step that overlays Get Wired AutoWorx branding while retaining ASC marks and preserving untouched original crop backups.
+2. Ensure the step processes every current image and automatically applies to new ASC images added to the pilot folder; add automated image-integrity/idempotency tests.
+3. Verify the Fuel Pumps crop shows the complete pump with no catalogue description/footer text baked into the displayed photo; keep all product/store copy below the image.
+4. Run exact-head Node/package checks and the hosted mobile/desktop preview checks for all six routes and all available images; record the exact tested/deployed SHA. Do not present an older preview as current.
+5. Continue catalogue population only through the repeatable source identity/image/description/fitment workflow; keep unverified values flagged and quote-only wording exact: **Price On Request due to Limited Stock and Availability**.
+
+### Release boundary
+- No merge, production deployment, Axxess upload, DNS change, Supabase write, live stock/price/category change, payment activation or customer checkout test is authorised by this task. Banking/checkout functional testing remains deferred until owner banking details and explicit approval.
