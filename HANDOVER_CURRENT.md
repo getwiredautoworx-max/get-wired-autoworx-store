@@ -1,3 +1,13 @@
+## ONENAV OFFICIAL MODEL EVIDENCE — 2026-11-06 (SAST)
+
+- Verified one exact manufacturer product-page match among the 19 uncovered cards: `ON016-2LX`, OneNav 10.1inch for Corrola Cross A11 (2021+). Official OneNav page confirms exact SKU/title, OneNav Evolution line, Toyota fitment, 10-inch screen, OneConnect, Bluetooth 5.4, DSP and 4 × 45 W output. Image remains unextracted/unapproved. https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/
+- `ON015-3` has an exact-title/SKU reseller listing at NXT Level Tech, but not an official manufacturer SKU page; keep pending. https://nxtleveltech.co.za/product/onenav-9in-radio-for-land-cruiser-70-series-with-buttons
+- `ON412-1LX` has a material variant conflict: NXT Level Tech lists 10.1-inch H1 A11, while OneNav's own Evolution catalogue lists an H1 A11 9-inch item. No spec/image transfer until resolved. https://nxtleveltech.co.za/product/onenav-101inch-for-h1-2015-2018-a11
+- `ON014-1A11` is supported by a reseller type reference for Prado 2002–2009; OneNav's 2023 catalogue shows older code `ON014-1A10` for that fitment. Keep A11/A10 separate pending manufacturer confirmation.
+- Reconciliation CSV now records the evidence distinctions, commit `ffec6769aee7fbba073e3eb4dac5afb840501344`; detailed report commit `f3923c2cb54aea2c2ddf97a2efd72fb49242ded2`.
+- OneNav remains the active brand. Next continue exact manufacturer verification for the other source-linked rows, resolve the `ON019-A121M` / `ON019-A14` same-title ambiguity, and continue exact-image/rights review. No import, live data change, deployment or preview workflow triggered.
+
+---
 ## ONENAV 19-CARD SOURCE RECONCILIATION — 2026-11-06 (SAST)
 
 - Located the actual preview data path from `preview-audio-products.html`: `assets/planetworld-catalogue-preview.json` (3,317 dated supplier-snapshot records). The `One` brand / `Head Units & Media Players` slice has 66 rows and 63 unique titles.
