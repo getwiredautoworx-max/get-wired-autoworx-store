@@ -10817,8 +10817,13 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneNav Evolution A11 10-inch head unit for Toyota Corolla Cross (2021+)",
+            "manufacturer_description": "10-inch A11 infotainment system for Toyota Corolla Cross 2021+ with wireless and wired OneConnect, Bluetooth 5.4, FM/AM RDS tuner, high-speed USB charging, USB media input, five 4V RCA outputs, four 45W speaker outputs, digital sound processor, 12-band equaliser and optional front/rear camera inputs. Includes a 3-year manufacturer warranty.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Official product page confirms ON016-2LX, Toyota and 10-inch A11 specifications; page fetch timed out in image review, so no asset is approved."
           },
           {
             "supplier_item_code": "ON016-FK1",
@@ -12587,9 +12592,15 @@
             },
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "image_status": "IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED",
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneNav Evolution 9-inch head unit for Nissan Magnite (without factory camera)",
+            "manufacturer_description": "9-inch Evolution infotainment system for Nissan Magnite vehicles without a factory camera. Features wireless and wired OneConnect, Bluetooth 5.4, FM/AM RDS radio tuner, high-speed USB charging, USB media input, five 4V RCA outputs, four 45W speaker outputs, digital sound processing, a 12-band equaliser and optional front/rear camera inputs. Includes a 3-year manufacturer warranty.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onenav-9inch-for-nissan-magnite-without-factory-camera-9-inch-2/",
+            "image_source_url": "https://onenav.co.za/wp-content/uploads/2025/03/Nissan-MAGNITE-ON418-1LX-600x600.png",
+            "image_rights_status": "OFFICIAL_MANUFACTURER_ASSET; REUSE_BASIS_PENDING",
+            "image_match_notes": "Official page alt text and SKU identify ON418-1LX; direct image asset request returned cache miss, so the image has not been visually checked or approved."
           },
           {
             "supplier_item_code": "ON418-F1",
@@ -12656,9 +12667,16 @@
             },
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "image_status": "OWNER_PREVIEW_CANDIDATE_ONLY",
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneNav Evolution A11 9-inch head unit for Mitsubishi Eclipse Cross (2018–2020)",
+            "manufacturer_description": "9-inch A11 infotainment system for Mitsubishi Eclipse Cross 2018–2020 with wireless and wired OneConnect, Bluetooth 5.4, FM/AM RDS tuner, high-speed USB charging, USB media input, five 4V RCA outputs, four 45W speaker outputs, digital sound processor, 12-band equaliser and optional front/rear camera inputs. Includes a 3-year manufacturer warranty.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/",
+            "image_source_url": "https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png",
+            "image_resolution": "600x600",
+            "image_rights_status": "OFFICIAL_MANUFACTURER_ASSET; REUSE_BASIS_AND_OWNER_APPROVAL_PENDING",
+            "image_match_notes": "Official OneNav page alt text identifies ON425-1LX; direct asset visually shows Eclipse Cross fascia and OneNav logo. Candidate only pending rights/owner review."
           },
           {
             "supplier_item_code": "ON425-FK1",
