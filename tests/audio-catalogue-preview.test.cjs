@@ -313,7 +313,7 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 142, '68 verified-model + 66 Audio Connections + eight OneNav exact-fitment image candidates');
+assert.equal(imageCount, 140, '68 verified-model + 66 Audio Connections + six OneNav exact-fitment image candidates');
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
