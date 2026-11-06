@@ -29,3 +29,10 @@
 ## Next execution
 
 Continue the exact-model image audit for the remaining OneNav gaps and unmatched source rows. Only add manufacturer-exact candidates with visible model evidence; keep uncertain codes, variants and image rights explicitly unresolved. Then integrate approved review candidates into the non-production preview, run exact-head build/regressions, verify hosted image loading and mobile/desktop navigation, and issue one preview only when all required checks match the deployed SHA.
+
+## Owner preview trigger follow-up — 2026-11-06
+
+- Added `assets/audio-types/OWNER_PREVIEW_VALIDATION_REQUEST_2026-11-06.txt` as a non-product, non-customer-facing change to trigger the existing PR workflow through its declared `assets/audio-types/**` path filter. Commit: `492aca51903eb1ae620bed4981e54450f5985d3a`.
+- Confirmed the trigger file is included in PR #178's changed-file list and the PR head now points to that exact commit.
+- Checked the commit workflow-run wrapper and combined commit status after the update: zero associated PR workflow runs and zero statuses were returned. Therefore no build, test, deployment, or hosted browser result exists yet. The marker is only a trigger attempt, not a preview.
+- The next blocker is repository Actions execution/visibility or permissions. Do not claim deployment, use a stale alias, or bypass the release gates. PR #178 remains draft and production remains on hold.
