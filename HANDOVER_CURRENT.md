@@ -4577,3 +4577,15 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - PR #178 remains OPEN / DRAFT / UNMERGED. Latest head at this checkpoint: `f57d4d052ea9a9296783cc30ce32a6d5bdef4418`.
 - Production remains HOLD. Preview is for owner review only; no customer go-live or owner acceptance is implied.
 - Existing separate catalogue quality exceptions remain tracked; in particular, Audio Connections BlackSpider Lynx image is only 104px wide and must not be described as high-resolution. OneNav still has unresolved exact-image gaps. These do not invalidate the specific Aerials navigation correction or the successful configured QA run.
+
+
+## 2026-11-06 13:35 SAST — FOUR AERIALS PREVIEW PRIORITIES CLOSED WITH VERIFIED EVIDENCE
+
+- Reconciled live branch and PR state. PR #178 remains OPEN / DRAFT / UNMERGED. Active branch head is now `f5edae7e3748f0a0753cb3da54d5b848ede40f6f`; this is a handover-only commit whose parent is the exact tested/deployed storefront source `f57d4d052ea9a9296783cc30ce32a6d5bdef4418`. No storefront code changed after the successful run.
+- Priority 1 — duplicate Aerials category: complete. The category tree at tested SHA contains exactly one active canonical Aerials node, with stable ID/slug and parent Car Audio Accessories. No product records were deleted or rewritten.
+- Priority 2 — navigation regression: complete. Node regression asserts exactly one Aerials node, stable identity, correct parent, unique ID, and one route registration; hosted Playwright asserts one rendered Aerials card, click-through to the filtered Car Audio Aerials route, and the selected-route heading.
+- Priority 3 — exact-head validation: complete for storefront source SHA `f57d4d052ea9a9296783cc30ce32a6d5bdef4418`. GitHub Actions run `42210487449` is independently confirmed COMPLETED / SUCCESS; all 10 substantive job steps succeeded, including customer-only package build, Node regression checks, public SKU audit, Cloudflare deployment, exact-SHA marker, and hosted Playwright.
+- Priority 4 — owner preview: delivered for review at https://45fbbf05.get-wired-autoworx-store.pages.dev/owner-preview.html. Exact-SHA QA confirms mobile 390px and desktop 1365px, 0 JS errors, desktop scroll width 1365px, and Aerials click-through. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42210487449.
+- The run is attached to exact source SHA `f57d4d0...`; the branch then advanced only by the handover documentation commit `f5edae7...`. The preview is therefore valid for the current storefront code, but is not a build of the documentation-only tip SHA. If any customer-facing source changes, rebuild and re-verify before reusing this preview.
+- Owner preview is not owner acceptance. Keep PR #178 draft/unmerged and production HOLD. No Axxess, DNS, Supabase writes, live catalogue/price/stock changes, payment activation or production deployment.
+- Separate OneNav image/description gaps and the 104px Audio Connections BlackSpider Lynx image remain catalogue-enrichment exceptions; they are not part of the four Aerials priorities and must not be represented as resolved.
