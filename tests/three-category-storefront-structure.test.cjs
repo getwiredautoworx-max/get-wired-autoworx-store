@@ -59,6 +59,14 @@ const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessor
 assert.ok(accessoriesNode && accessoriesNode.parent_id === carAudioNode.id, 'Accessories must be nested under Car Audio & Video');
 assert.deepEqual(tree.categories.filter(c => c.parent_id === accessoriesNode.id).sort((a,b)=>a.sort_order-b.sort_order).map(c=>c.name), ['Aerials','Trims & Harnesses'], 'Aerials and Trims & Harnesses must be separate sibling buttons under Accessories');
 assert.ok(!tree.categories.some(c => ['Aerials','Trims & Harnesses'].includes(c.name) && c.parent_id === carAudioNode.id), 'Aerials and Trims & Harnesses must not sit directly under Car Audio & Video');
+const aerialNodes = tree.categories.filter(c => String(c.name || '').trim().toLowerCase() === 'aerials');
+assert.equal(aerialNodes.length, 1, 'the category tree must contain exactly one Aerials node');
+assert.equal(aerialNodes[0].id, 'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90', 'the canonical Aerials category ID must remain stable');
+assert.equal(aerialNodes[0].slug, 'aerials', 'the canonical Aerials slug must remain stable');
+assert.equal(aerialNodes[0].parent_id, accessoriesNode.id, 'Aerials must be nested under Car Audio Accessories');
+assert.equal(tree.categories.filter(c => c.id === aerialNodes[0].id).length, 1, 'the Aerials category ID must be unique');
+assert.equal((categoryPage.match(/b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90/g) || []).length, 1, 'the category navigation map must register the Aerials destination exactly once');
+assert.ok(categoryPage.includes("b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-audio.html?department=Car%20Audio&search=Aerials&label=Aerials'"), 'the sole Aerials navigation destination must open the filtered Car Audio Aerials view');
 assert.ok(!home.includes("window.gwProducts=products;renderCats();render('featuredGrid',"), 'loading products must not replace the category grid and detach an in-flight category-button click');
 const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
 assert.ok(home.includes("HOME_CATEGORY_IDS.includes(c.id)") && home.includes('rootCategoryLink"><a class="catBtn catalogueLink"') && home.includes('preview-category.html?id='), 'each of the three homepage root categories must be a real link to its own category page');
