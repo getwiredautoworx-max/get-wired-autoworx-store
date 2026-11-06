@@ -1,3 +1,11 @@
+## ONENAV EXACT IMAGE CANDIDATE — 2026-11-06 (SAST)
+
+- Inspected OneNav's official ON425-1LX gallery image. The image is explicitly labelled `Mitsubishi ECLIPSE CROSS ON425-1LX` and visually matches the 9-inch vehicle-specific radio/fascia.
+- Staged candidate URL in the 19-card reconciliation row: `https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png`. Status is `EXACT_OFFICIAL_MODEL_IMAGE_CANDIDATE; RIGHTS_REVIEW_PENDING`.
+- Do not publish/import this image until reuse rights are confirmed. Official hosting and a copyright notice do not grant permission. CSV commit `1308e01de8be366e52189af71d196575b656801a`; report commit `ba61806f142be246ed61fc16c24072c49f8c7da7`.
+- Continue exact image checks for other OneNav rows; no product image is yet approved for public use.
+
+---
 ## ONENAV POST-UPDATE DATA CHECK — 2026-11-06 (SAST)
 
 - Rechecked the current audit, uncovered-card reconciliation, test source, branch ref and PR #178 after adding ON425-1LX.
