@@ -3674,3 +3674,12 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Product photo and store description must be separate visual regions. Do not overlay, duplicate or bake descriptions into displayed product photos. Keep supplier watermarks intact while exact SKU/feature verification and image-use review remain open.
 - Preview-only category tree, catalogue root metadata, parent navigation and regression assertions are being corrected together. Standard/main package builder must preserve the same owner-directed category parents.
 - Preview/source correction only; no live category/product assignments, prices, stock, Supabase writes, checkout, payment, production deploy, DNS or Axxess changes.
+
+
+## 2026-11-06 — ASC PHOTO-CROP + CATEGORY QA CORRECTION
+
+- Owner correction applied to preview category tree and catalogue root labels: Aerials → Car Audio Accessories; Car Mats → Car Care & Accessories; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Parts & Spares.
+- ASC product card source images include catalogue card text and SKU footer beneath the product photograph. Updated the owner-preview photo viewport to show the product-photo region only (CSS crop), with the normal product/store description rendered separately in the text block. Aerials receive a distinct vertical position because the product sits lower in the source card. The source files/watermarks are preserved; this is a preview presentation crop, not a rights clearance or image-identity approval.
+- The first QA run exposed a stale assertion in `tests/three-category-storefront-structure.test.cjs` that still required Aerials and Car Mats under Auto Electrical. Updated that test to assert the owner's corrected parent mapping. This failure was a stale test expectation, not a category-tree defect.
+- Latest code/data/test head after photo crop + regression updates: `200288c1afe773fc88268e065c7d88c553892f7f`. Fresh exact-head Cloudflare package QA, owner-preview browser QA and deployment must complete before presenting the corrected preview URL. Earlier SHA QA is superseded for these corrections.
+- No live category assignments, product imports, price/stock updates, Supabase writes, checkout/payment activation, production deployment, DNS or Axxess changes.
