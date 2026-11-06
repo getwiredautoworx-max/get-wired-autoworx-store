@@ -4589,3 +4589,29 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - The run is attached to exact source SHA `f57d4d0...`; the branch then advanced only by the handover documentation commit `f5edae7...`. The preview is therefore valid for the current storefront code, but is not a build of the documentation-only tip SHA. If any customer-facing source changes, rebuild and re-verify before reusing this preview.
 - Owner preview is not owner acceptance. Keep PR #178 draft/unmerged and production HOLD. No Axxess, DNS, Supabase writes, live catalogue/price/stock changes, payment activation or production deployment.
 - Separate OneNav image/description gaps and the 104px Audio Connections BlackSpider Lynx image remain catalogue-enrichment exceptions; they are not part of the four Aerials priorities and must not be represented as resolved.
+
+
+## OWNER FEEDBACK — AUDIO CATALOGUE INCOMPLETE / RE-PRIORITISED — 2026-11-06
+
+Owner reports that approximately 95% of the Audio category is still missing product pictures and descriptions. The Aerials navigation preview is a narrow functional correction and must not be presented as audio catalogue completion or storefront readiness.
+
+### New delivery priority
+- Make audio catalogue enrichment the active highest-priority workstream. Continue one manufacturer/source brand end-to-end at a time, beginning with OneNav, then proceed through the remaining approved audio brands and component groups. Include Car Audio, Home Audio/Cinema, Studio/Music and Marine Audio in their correct separate categories; do not mix marine or harness/trim components into manufacturer brand lists.
+- For every record, reconcile supplier source row/model, customer-facing name, accurate concise description/specifications, exact product/variant image, image resolution/crop, approved GW SKU, and category/component placement. No guessed images, inferred vehicle fitments, invented specs, generic placeholders, supplier names, supplier codes, prices or stock values in customer-facing output.
+- Keep records private/review-only until source provenance, exact-model/variant match, image asset and applicable owner publication approval are complete. Do not change live product data, prices, stock, supplier activation, payment or production deployment.
+
+### Evidence read on 2026-11-06
+- Planetworld audio staging file contains 702 source rows: 627 car-audio brand product rows, 28 marine-audio rows and 47 harness/trim component rows. It is explicitly NOT PUBLISHED; many rows still have no assigned GW SKU, unapproved/not-downloaded images and unassessed price/publication status.
+- The same branch's OneNav audit contains 45 model rows, all 45 with verified customer descriptions, but 39 are classified `DETAILS_VERIFIED_IMAGE_PENDING` and only 6 are owner-preview candidates. This does not reconcile to the 290 One/OneNav rows in the 702-row Planetworld staging summary. The row-level provenance and coverage gap must be reconciled before reporting completion percentages.
+- Planetworld's 702-row summary records 290 One/OneNav rows, 189 Kicker, 96 Audison, 58 Alpine, plus smaller JVC/Kenwood/Focal/Pioneer/Amplified groups; it reports substantial model verification but does not establish customer-ready image approval. Official collection/page matches alone are not image-download, rights or publication approval.
+- Audio Connections review extract has 68 rows; most are still review-only. Prior queue notes record 13 Sony GW SKU candidates and four Sony image-source candidates not yet approved, seven Starsound listing matches, one BlackSpider Lynx page with a 104px image, and 45 other non-Sony models unmatched. These are separate from Planetworld and must be reconciled without cross-supplier SKU leakage.
+- The review prototype deliberately withholds product pictures and descriptions until exact-model verification; it is not a substitute for populated customer-facing audio category pages.
+
+### Immediate next actions
+1. Reconcile OneNav's 45-row detailed audit against the 290-row Planetworld source list; identify which rows are true products, aliases, bundles, duplicates or unresolved, preserving source provenance.
+2. Close the 39 OneNav exact-image gaps by locating exact model/fitment assets at usable resolution, visually checking visible model/variant markings, recording source and permissions, and rejecting near-match Evolution/Pro/A11/Classic variants. The 300px OA715-1 candidate is not yet high-resolution approval.
+3. Integrate only the fully verified OneNav rows into the review catalogue with descriptions and images; add regression checks for missing image/description fields and exact model-to-image mapping. Do not publish until owner review.
+4. After OneNav is genuinely complete, repeat the same end-to-end workflow for Kicker, Audison, Alpine, JVC/Kenwood, Focal/Pioneer, Amplified, Audio Connections, Hertz and other approved audio ranges, keeping Home/Studio/Marine separate.
+5. Update the handover and task queue with per-brand totals: source rows, unique models, descriptions verified, exact images approved, image gaps, SKU status, category assignment, and owner acceptance. No broad “95% complete” or readiness claim without these counts.
+
+PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials preview is valid only for the Aerials navigation correction and does not demonstrate catalogue completeness.
