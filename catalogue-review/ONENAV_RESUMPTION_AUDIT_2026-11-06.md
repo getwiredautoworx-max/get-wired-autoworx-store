@@ -21,15 +21,14 @@ Source: `catalogue-review/planetworld-one-official-model-audit.csv` on the activ
 - OneNav official pages confirm `OA011-1` as the FJ Cruiser Black Classic fitment and `OA013-1` as the Hilux/Fortuner 2011–2015 Classic fitment:
   - https://onenav.co.za/product/onenav-classic-9inch-for-toyota-fj-cruiser-black-2007/
   - https://onenav.co.za/product/onenav-classic-9inch-for-hilux-fortuner-2011-2015/
-- One exception needs a small data correction: `ON115-3LX` is confirmed by the official product page as **OneNav Evolution** for Isuzu RBA/RBB, but its audit row currently has a blank `customer_brand_display`. The customer-facing parent brand should be OneNav while the product line remains Evolution. Its official page reports no image asset; keep image pending. https://onenav.co.za/product/onenav-9-inch-for-isuzu-rba-rbb/
+- The `ON115-3LX` review-row exception is now corrected: `customer_brand_display` is **OneNav**, while the customer description retains **OneNav Evolution** for Isuzu RBA/RBB. The exact official page still reports no image asset, so image status remains pending. Correction committed as `8c570c275770471d27824f7da10e75368179fdd5`. https://onenav.co.za/product/onenav-9-inch-for-isuzu-rba-rbb/
 
 ## Next work
 
-1. Correct the `ON115-3LX` parent brand display to OneNav in the review CSV, preserving Evolution as its series and keeping its image pending.
-2. Reconcile the 19 storefront cards not covered by the 45-row audit against the source catalogue; do not infer missing SKU/variant identity.
-3. Resolve exact product-image matches for the 38 rows without image URLs and review all seven existing candidates. Keep all candidate images review-only until exact fitment and rights are verified.
-4. Keep OneNav as the active brand. Do not advance to Sony, JBL, Klipsch, Hertz, or another brand yet.
-5. Run the new standalone deterministic audit test locally when a repository checkout is available. Do not trigger hosted Actions merely to run this review; no Actions/release credits were intentionally consumed in this continuation.
+1. Reconcile the 19 storefront cards not covered by the 45-row audit against the source catalogue; do not infer missing SKU/variant identity. The storefront source path has not yet been safely identified on the active branch; common `src/data/products.*` and `data/products.json` guesses returned NOT_FOUND and were not treated as evidence.
+2. Resolve exact product-image matches for the 38 rows without image URLs and review all seven existing candidates. Keep all candidate images review-only until exact fitment and rights are verified.
+3. Keep OneNav as the active brand. Do not advance to Sony, JBL, Klipsch, Hertz, or another brand yet.
+4. Run the new standalone deterministic audit test locally when a repository checkout is available. Do not trigger hosted Actions merely to run this review; no Actions/release credits were intentionally consumed in this continuation.
 
 ## Guardrails
 
@@ -46,3 +45,10 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - Official image review for OA015-1 found that the OneNav product page lists the correct SKU, but its gallery product image displays generic hardware code `OA1409-CPAA`; that image is not an exact OA015-1 image and is rejected for SKU-level matching. The retailer listing candidate remains review-only.
 - Latest documentation/test commit is `599436e35027807f5e15e83b5a4b4212998292b0`. The existing `.preview-deploy-request` still names older commit `1bc6686f252bc08d55534fc7412ddfb2e44db2b4`; it does not request deployment of the current branch head. No current preview is claimed.
 - Current work remains OneNav only. The 19 storefront cards outside the 45-row audit, 38 missing exact-image URLs, seven unapproved image candidates, and the ON115-3LX brand-field exception remain open. Do not move to another brand.
+
+
+## Follow-on correction — 2026-11-06
+
+- Corrected the `ON115-3LX` row's `customer_brand_display` from blank to `OneNav`; Evolution remains correctly represented in the product description. The image remains pending because the official page provides no exact image asset.
+- Commit: `8c570c275770471d27824f7da10e75368179fdd5`.
+- The 19-card reconciliation remains open. Initial guesses for common storefront product-data paths were not found on this branch; no source path or card identity has been invented.
