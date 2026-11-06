@@ -424,20 +424,22 @@ assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.i
 /* OneNav exact product enrichments: exact fitment, feature set, crop and private supplier-code handling. */
 const oneNavPrado = planet.records.find(row => row.id === 'pw-2120');
 const oneNavLandCruiser = planet.records.find(row => row.id === 'pw-2121');
-assert.ok(oneNavPrado && oneNavLandCruiser, 'the two exact OneNav product rows must remain present');
-for (const row of [oneNavPrado, oneNavLandCruiser]) {
+const oneNavBaleno = planet.records.find(row => row.id === 'pw-2159');
+assert.ok(oneNavPrado && oneNavLandCruiser && oneNavBaleno, 'the three audited OneNav product rows must remain present');
+for (const row of [oneNavPrado, oneNavLandCruiser, oneNavBaleno]) {
   assert.equal(row.brandDisplayName, 'OneNav');
   assert.ok(row.description.includes('1024 × 600') && row.description.includes('Apple CarPlay') && row.description.includes('4 × 40 W'));
-  assert.equal(row.imageCrop, true);
-  assert.equal(row.imagePosition, 'center 40%');
-  assert.ok(row.imageUrl && !row.imageUrl.includes('OA014-1') && !row.imageUrl.includes('OA015-1'));
   assert.equal(Object.hasOwn(row, 'supplierSku'), false);
   assert.equal(Object.hasOwn(row, 'supplier_sku_candidate'), false);
   assert.equal(Object.hasOwn(row, 'dealerCost'), false);
 }
-assert.ok(oneNavPrado.title.includes('Prado') && oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
-const oneNavBaleno = planet.records.find(row => row.imageUrl && row.imageUrl.includes('/oa716-1/pictures/oa716-1-suzuki-baleno_'));
-assert.ok(oneNavBaleno && oneNavBaleno.title.includes('Baleno') && oneNavBaleno.title.includes('Starlet'), 'OA716-1 must retain the exact Planetworld Baleno/Starlet product image');
+assert.ok(oneNavPrado.title.includes('Prado') && oneNavPrado.imageUrl && oneNavPrado.imageCrop === true, 'OA014-1 retains its exact-fitment owner-preview candidate only');
+assert.ok(oneNavLandCruiser.title.includes('Land Cruiser Pick Up'));
+assert.equal(oneNavLandCruiser.imageStatus, 'EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE', 'OA015-1 wrong-model gallery artwork must remain rejected');
+assert.equal(Object.hasOwn(oneNavLandCruiser, 'imageUrl'), false, 'OA015-1 must not receive the rejected OA1409-CPAA/CA4090-CPAA artwork');
+assert.ok(oneNavBaleno.title.includes('Baleno') && oneNavBaleno.title.includes('Starlet'));
+assert.equal(oneNavBaleno.imageStatus, 'EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE', 'OA716-1 wrong-model artwork must remain rejected');
+assert.equal(Object.hasOwn(oneNavBaleno, 'imageUrl'), false, 'OA716-1 must not receive artwork visibly marked OA1409-CPAA');
 assert.equal(oneNavBaleno.imageCrop, false, 'OA716-1 square manufacturer asset must keep its explicit no-crop decision and render contained');
 assert.equal(oneNavBaleno.imageStatus, 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE');
 assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
