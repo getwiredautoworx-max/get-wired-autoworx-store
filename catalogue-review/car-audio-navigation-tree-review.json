@@ -12432,8 +12432,13 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_CATALOGUE",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneNav 10.1-inch head unit for Nissan Qashqai / X-Trail (2015+)",
+            "manufacturer_description": "10.1-inch OneNav Android 10 infotainment system for Nissan Qashqai and X-Trail (2015+), with Bluetooth, built-in Wi-Fi, OneConnect phone integration, steering-control integration, software updates and a 3-year manufacturer warranty.",
+            "official_manufacturer_page": "https://onenav.co.za/wp-content/uploads/2023/02/OneNav-Catalogue_Web.pdf",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Official 2023 OneNav catalogue explicitly identifies ON413-1A10, Nissan Qashqai/X-Trail (2015+) and 10.1-inch screen; general catalogue feature panel lists Android 10, Bluetooth, Wi-Fi, OneConnect, steering-control integration, software updates and 3-year warranty. Exact product image not extracted/visually approved."
           },
           {
             "supplier_item_code": "ON413-F1",
