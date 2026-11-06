@@ -190,7 +190,7 @@ jobs:
               await card.click();
               await page.waitForURL(url=>new URL(url).pathname.endsWith('/asc-auto-electrical-preview.html')&&new URL(url).searchParams.get('catalogue')===label,{timeout:15000});
               await page.locator('#heading').waitFor({state:'visible',timeout:15000});
-              await page.waitForFunction(expected=>document.querySelector('#heading')?.textContent===expected,label,{timeout:15000});
+              try{await page.waitForFunction(expected=>document.querySelector('#heading')?.textContent===expected,label,{timeout:15000})}catch(e){const debug=await page.evaluate(()=>({url:location.href,heading:document.querySelector('#heading')?.textContent,notice:document.querySelector('#notice')?.textContent,parent:document.querySelector('#parentBack')?.href,ready:document.readyState}));throw new Error(label+' catalogue heading did not resolve: '+JSON.stringify(debug)+' pageErrors='+JSON.stringify(errors)+' cause='+e.message)}
               if((await page.locator('#heading').innerText())!==label)throw new Error(label+' catalogue heading mismatch');
               const actualSections=await page.locator('#sections [data-id]').count();
               if(actualSections!==expectedSections)throw new Error(label+' expected '+expectedSections+' source sections, got '+actualSections);
