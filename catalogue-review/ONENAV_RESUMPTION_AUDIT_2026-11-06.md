@@ -110,3 +110,9 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - Inspected the official OneNav product page gallery. Its image label explicitly identifies `Mitsubishi ECLIPSE CROSS ON425-1LX`; the 600 × 600 image visually shows the vehicle-specific 9-inch fascia/radio. This is an exact model image candidate, not a generic image.
 - Image candidate URL: https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png.
 - Staged in the 19-card reconciliation row as `EXACT_OFFICIAL_MODEL_IMAGE_CANDIDATE; RIGHTS_REVIEW_PENDING`, commit `1308e01de8be366e52189af71d196575b656801a`. Do not publish or import until reuse rights are confirmed; OneNav site copyright notice does not itself grant reuse permission.
+
+
+## Exact catalogue visual candidate — ON413-1A10 — 2026-11-06
+
+- Inspected the official OneNav 2023 catalogue PDF page 13 (zero-based PDF page 12). The visual is a Nissan Qashqai/X-Trail cabin with the displayed product label `ON413-1A10 (2015+)` and `10.1-inch screen`, matching the exact supplier SKU/fitment.
+- Staged as `EXACT_OFFICIAL_CATALOGUE_VISUAL_CANDIDATE; RIGHTS_REVIEW_PENDING` in the uncovered-card reconciliation CSV, commit `16568fe0a97e3dfb6331b1facf7cf5850121b61f`. This is a manufacturer-catalogue visual candidate, not approved for publication; image reuse rights remain unconfirmed.
