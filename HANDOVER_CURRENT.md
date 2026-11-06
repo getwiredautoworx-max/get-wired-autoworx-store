@@ -1,3 +1,11 @@
+## ONENAV OFFICIAL EVOLUTION SKU MATCH — 2026-11-06 (SAST)
+
+- Official OneNav product page now confirms exact `ON425-1LX` title/SKU for Mitsubishi Eclipse Cross 2018–2020, 9-inch Evolution series, including the manufacturer feature set. Image remains unextracted/unapproved. https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/
+- The 19-card register now has four official exact manufacturer SKU/title matches: `OA-5263BT` (OneAcoustic; separate brand), `ON016-2LX`, `ON413-1A10`, and `ON425-1LX`.
+- Updated CSV commit `27e44ce2220367f5df9df06807f625e82c07f529`; regression-test source commit `7303c77eab939b94b7eee7c3e85d12f20cbb3671`; detailed report commit `d205d37b1ab6b98adecdd9e45e5b8fba5fefa5e1`.
+- Continue OneNav. Do not use images from these pages until exact product image matching and usage rights are checked; no imports or live changes.
+
+---
 ## ONENAV DIRECT DATA RECHECK — 2026-11-06 (SAST)
 
 - Re-read the latest 45-row OneNav audit CSV, 19-card reconciliation CSV, regression-test source, branch ref and PR #178 after the latest evidence updates.
