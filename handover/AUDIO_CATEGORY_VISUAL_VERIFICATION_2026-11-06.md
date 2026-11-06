@@ -52,3 +52,11 @@ Latest queue commit: `ee7e5e68046a51e5d787b6be09ba9134d76f1123`. Full audio comp
 - Current project also has zero rows in `public.catalog_import_runs`, `public.catalog_full_import_payload` and `public.catalog_chunk_staging`; private `gw_private.catalogue_product_staging` has 770 rows; `public.products` remains 0.
 - Thus there is no existing import payload/run in this project to explain the historical 4,200-product audit. Treat the 4,200 figure as historical/unreconciled, not current. The source-of-truth mismatch is an active blocker for customer-preview integration.
 - No import, staging activation or product writes were attempted.
+
+
+## Second image-code mismatch and audit correction — 2026-11-06
+
+- Planetworld's SKU-specific OA716-1 product page image was inspected visually. The displayed artwork carries `OA1409-CPAA`, not a verified OA716-1 vehicle-specific kit/fascia marking. The candidate was rejected; its candidate image URL was cleared in the audit and the row marked `DETAILS_VERIFIED_IMAGE_REJECTED`.
+- The 45-row OneNav audit was restored from its pre-edit commit after a malformed CSV rewrite, then correctly re-serialized. Readback confirms 45 data rows, 16 columns, and the OA716-1 row's rejected image status. Corrected audit commit: `2f470b5f15527f6631c68b28d0d5991c71590947`.
+- OA015-1 remains rejected: official gallery images show OA1409-CPAA / CA4090-CPAA. OA014-1 image remains pending.
+- Queue update commit: `43eb776897775f306ca46fed7cc1e7698b395d3d`. PR #178 comment ID `6690401307` records the OA716-1 rejection. PR remains draft/unmerged; production HOLD.
