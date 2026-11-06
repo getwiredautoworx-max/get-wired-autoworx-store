@@ -3666,3 +3666,11 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Updated suppliers/ASC/README.md to replace the obsolete “tests not yet executed” note with exact-head results: package QA 42077207779 PASS and hosted browser QA 42077207832 PASS on code head 1b6aaf1.
 - README documentation commit: ab0ca8c06f582411c6b99d7af851b1d8ebef2db7.
 - Latest branch head after README/handover synchronization will be documentation-only; the tested runtime/data/test head remains 1b6aaf1.
+
+
+## OWNER CATEGORY + PRODUCT IMAGE PRESENTATION CORRECTION — 2026-11-06
+
+- Latest owner instruction supersedes earlier six-under-Auto-Electrical preview mapping: ASC Car Mats → Car Care & Accessories; ASC Aerials → Car Audio Accessories; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps remain individual subcategories under Auto Electrical Parts & Spares.
+- Product photo and store description must be separate visual regions. Do not overlay, duplicate or bake descriptions into displayed product photos. Keep supplier watermarks intact while exact SKU/feature verification and image-use review remain open.
+- Preview-only category tree, catalogue root metadata, parent navigation and regression assertions are being corrected together. Standard/main package builder must preserve the same owner-directed category parents.
+- Preview/source correction only; no live category/product assignments, prices, stock, Supabase writes, checkout, payment, production deploy, DNS or Axxess changes.
