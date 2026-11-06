@@ -1,3 +1,3 @@
 request=owner-preview
-requested_commit=1bc6686f252bc08d55534fc7412ddfb2e44db2b4
-reason=refresh exact-head owner preview after the OneNav official-page audit was corrected to use the exact ten supplier source titles; run exact-head enrichment, category/SKU regressions, exact deployment marker, 75-image load and mobile/desktop hosted browser QA
+requested_commit=d3e8985ba3b3efecdf2851e2117137b8214b7d50
+reason=remove duplicate Aerials category; assert one canonical Aerials node under Car Audio Accessories, unique category identity and exactly one filtered navigation route; run exact-head package, category/catalogue/SKU regressions, deployed-SHA confirmation and hosted mobile/desktop browser QA
