@@ -3785,3 +3785,33 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 
 ### Release boundary
 - No PR merge, production deployment, Axxess upload, DNS change, Supabase write, live product/category/price/stock change, supplier activation, payment activation or checkout test. ASC Buyers Guides remain excluded. Production stays HOLD pending exact-head QA, owner visual acceptance and explicit release approval.
+
+
+## 2026-11-06 — FINAL EXACT-HEAD PREVIEW VERIFICATION + FULL REGISTER QUEUE
+
+### Exact-head verification after clean image assets were committed
+- Exact candidate head tested: `3c49ca1109595ef3c1f79a9a80f9774a77c2e156` (PR #177; open/draft/unmerged).
+- Cloudflare Pages Public Package QA **42182678270: PASS**. Standard customer package excludes all preview-only ASC routes, JSON and image assets. Isolated non-production preview package includes all eight approved preview routes and exactly 50 ASC pilot JPGs. Six ASC catalogue routes, 75 source sections and 50 pilot records passed integration checks.
+- Owner Store Preview Browser QA **42182678242: PASS** on the exact deployed marker `3c49ca1109595ef3c1f79a9a80f9774a77c2e156`, branch `integration/asc-auto-electrical-clean-2026-11-05`, preview base `https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev`. Hosted mobile and desktop checks passed; six ASC category routes/links and their images plus pilot product images loaded; owner category placement verified; no desktop horizontal overflow or JavaScript errors; checkout stayed hidden and Supabase writes remained blocked.
+- Cloudflare Pages deployed successfully for `3c49ca1`: immutable preview `https://a2128dfa.get-wired-autoworx-store.pages.dev/owner-preview.html`; branch preview `https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- Separate Cloudflare Workers build integration reports failure for commit `3c49ca1`. This is distinct from Cloudflare Pages: the Pages preview deployment and exact-head hosted QA above succeeded. Do not claim the Workers pipeline is healthy; investigate it separately only if that host is needed.
+
+### 983-card extraction register — verified code queue for remaining catalogue population
+- Source artifact summary: 6 source PDFs, 72 source pages, 75 section headings and 983 printed product lines/cards. Supplier-code labels: 983 visually verified; 115 manual supplier-code corrections visually checked; 868 dual-OCR agreements; 0 unresolved supplier codes; 0 duplicate supplier codes; 0 duplicate normalized internal SKUs; all six catalogue card counts match.
+- Current 50 pilot records are already in the preview. Remaining 933 records to stage and reconcile, by catalogue:
+  - Aerials: 70 remaining (78 total; 8 pilot).
+  - Automotive Sensors: 97 remaining (106 total; 9 pilot).
+  - Automotive Switches: 360 remaining (368 total; 8 pilot).
+  - Automotive Globes: 150 remaining (158 total; 8 pilot).
+  - Car Mats: 136 remaining (144 total; 8 pilot).
+  - Fuel Pumps: 120 remaining (129 total; 9 pilot).
+- The 983 supplier-code audit does **not** mean all 983 descriptions, fitments, physical features, product-image matches, rights or storefront copy are approved. The remaining 933 must be staged as review-only with source PDF/page traceability; no invented specifications, prices or stock.
+
+### Next execution block
+1. Expand the product-only image extraction workflow from the 50 pilot crops to the remaining 933 source cards, preserving original catalogue crops and applying the Get Wired overlay over ASC marks to every prepared image.
+2. Reconcile candidate ASC reference, product identity, printed description, vehicle fitment, dimensions and exact image match per record. Keep unresolved/low-confidence records visibly flagged rather than guessed.
+3. Populate the six preview catalogues in catalogue order, retaining the owner-directed category mapping and all 75 source headings. Maintain null price/stock and review-only status until owner approval.
+4. Repeat exact-head package QA, Pages deployment and hosted mobile/desktop QA after each meaningful expansion; do not accept a stale branch alias or old build marker.
+
+### Release boundary remains unchanged
+- PR #177 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. No Axxess upload, DNS, Supabase writes, live stock/price/category changes, payment activation, checkout testing or public release of ASC watermarked images without separate image-use approval and explicit owner release approval. ASC Buyers Guides remain excluded.
