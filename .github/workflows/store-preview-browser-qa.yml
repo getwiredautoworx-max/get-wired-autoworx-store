@@ -212,7 +212,7 @@ jobs:
       - name: Inspect the deployed non-production Cloudflare preview on mobile and desktop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GW_EXPECTED_DEPLOYED_SHA: 10da0b4e4b6f221953c31b12fe825ac003e584e2
+          GW_EXPECTED_DEPLOYED_SHA: ${{ github.sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -226,9 +226,7 @@ jobs:
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GW_EXPECTED_DEPLOYED_SHA||process.env.GITHUB_SHA;
               const previewBases=[
-                'https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev',
-                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
-                'https://83745f8a.get-wired-autoworx-store.pages.dev'
+                'https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
               let deployedBuild=null;
@@ -246,10 +244,10 @@ jobs:
                   }
                 }
                 if(previewBase)break;
-                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,previewBases}));
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_ASC_BRANCH_DEPLOY',JSON.stringify({attempt,expectedSha,previewBases}));
                 await page.waitForTimeout(5000);
               }
-              console.log('EXACT_PR168_STAGING_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
+              console.log('EXACT_ASC_BRANCH_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
               for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
                 const response = await page.request.get(previewBase+'/assets/brand-logos/'+asset, {headers:{'cache-control':'no-cache'}});
                 const body = await response.text().catch(()=> '');
