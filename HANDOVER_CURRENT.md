@@ -4505,3 +4505,29 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - Workflow path filter includes storefront category data and tests; therefore a correction to the category tree/test can trigger the preview workflow and a non-production Cloudflare deployment if the build gates pass. No rerun, code/data push, manual deployment, merge, or release-credit-consuming action was taken in this reconciliation pass. Do not use an old preview URL as current.
 - OneNav remains the active first brand. Existing review evidence: 45 official product pages and 45 verified descriptions; 8 exact-image owner-preview candidates and 37 exact-image gaps; all 19 uncovered storefront titles are mapped to 20 source rows, with one duplicate-title/two-SKU ambiguity. Candidate imagery remains unapproved; wrong variants remain rejected. No GW SKU, live price/stock, customer-facing catalogue, or Supabase data was changed.
 - Next safe code increment: correct the duplicate Aerials hierarchy in the same PR #178 branch, strengthen a deterministic test to assert exactly one Aerials category and that it is a child of Accessories, then run the exact-head build/regression suite. Do not advance to another brand until OneNav is finished. Any resulting owner-preview deployment must be checked against its exact SHA and 390px/1365px browser evidence before notification. PR #178 remains draft/unmerged; production HOLD.
+
+
+## AERIALS DUPLICATE CATEGORY CORRECTION — 2026-11-06
+
+### Owner instruction
+- Remove the duplicate Aerials category, strengthen navigation regression coverage, validate the exact-head build before attempting another owner preview.
+- Keep PR #178 draft/unmerged and production HOLD.
+
+### Source correction committed
+- Active branch: `integration/owner-preview-single-task-2026-11-05`
+- Exact correction commit / current requested preview head: `066384ce8c79a847b4cca14b07caeb4e5d8e19fa`
+- Removed the misplaced duplicate category node `a11e1a15-6d84-4a0b-9a44-8f4c3a2d1e70` from `assets/category-tree.json`. It was a second active “Aerials” node directly under Car Audio & Video.
+- Retained the single canonical Aerials node `b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90`, slug `aerials`, parent Car Audio Accessories `8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11`.
+- No Aerials product records, identities, images, prices or stock were changed.
+
+### Regression hardening committed
+- `tests/three-category-storefront-structure.test.cjs` now asserts exactly one Aerials node, canonical ID and slug, correct Car Audio Accessories parent, unique category ID, and exactly one Aerials route-map registration to the filtered Car Audio view.
+- `.github/workflows/owner-preview-exact-sha.yml` now includes `assets/category-tree.json` in the workflow path filters and adds hosted Playwright checks that exactly one Aerials card is rendered, clicking it reaches the exact filtered `preview-audio.html` route, and the Aerials heading is shown.
+- Preview request marker updated to request a fresh exact-head owner preview after these corrections.
+
+### Verification and blocker
+- GitHub read-back verification passed: the active branch category tree contains exactly one Aerials record, with the canonical ID/slug/parent; the misplaced ID is absent.
+- GitHub read-back verification passed: the strengthened Node regression assertions and hosted Aerials Playwright route assertions are present in the active branch; the workflow includes the category-tree path.
+- **Exact-head build, Node test execution, deployed-SHA marker and hosted Playwright result are NOT VERIFIED yet.** The connected workflow-run fetcher returned no runs for head `066384ce8c79a847b4cca14b07caeb4e5d8e19fa`, and the combined commit status returned no checks. That fetcher exposes PR-triggered runs only, not the push-triggered run used by the owner-preview workflow. A local clone/test attempt was blocked because the execution environment could not resolve github.com. Do not infer success or issue a preview URL.
+- PR #178 remains intended as draft/unmerged; no merge or production action was taken. Production remains HOLD.
+- Next action: obtain the actual exact-head Actions run/job evidence for `066384ce8c79a847b4cca14b07caeb4e5d8e19fa`; if the workflow did not trigger, use an authorized workflow trigger or restore a supported Actions visibility/trigger path, then complete package build, both Node regressions, public SKU audit, exact deployed-SHA check and hosted mobile/desktop browser QA. Only then issue the new preview.
