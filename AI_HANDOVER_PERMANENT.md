@@ -3224,3 +3224,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## 2026-11-06 — FORTUNER / GWM ONENAV IMAGE CHECKS
 - OA017-2 Fortuner: Go4Lo image visibly marked OA1409-CPAA, not the target model; rejected. OA509-1 GWM Steed 5E: Evorevo listing has no OA509-1 SKU and describes Android 10 / 4GB / 64GB 10.1-inch configuration, inconsistent with the Classic 9-inch/10.1-inch-frame source row; rejected.
 - Audit commit `acd9cd22edc9c479f6d840634bed2a5bd80bcbb2`. No new image candidate; totals remain 45 official pages, 45 descriptions, 8 image candidates and 37 image gaps. Exact-head QA/preview unverified; production HOLD.
+
+
+## 2026-11-06 — KIA / HYUNDAI ONENAV IMAGE RESEARCH
+- OA195-1 Kia Rio: dashboard/lifestyle image and ON195-1A10/ON195-1A11 variants rejected; no exact Classic OA195-1 product photo. OA192-1 Kia Sportage: NAVTECH NAV9PRIME and OneNav Pro/Evolution ON192-1A11/ON192-1A images rejected; exact-SKU NXT Level listing image inaccessible. OA197-1 Hyundai Accent: NAVTECH NAV9 image rejected; exact-SKU listing image not independently verifiable.
+- Review-only audit commit `a9b85f9efa9f266012ae9571f48a2926a959fb7e`; no image candidates added. Totals remain 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Push-triggered run/deploy remains unknown because the available wrapper filters to PR-triggered runs. Do not rerun/deploy or issue preview; PR #178 draft/unmerged; production HOLD.
