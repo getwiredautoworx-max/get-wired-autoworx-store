@@ -188,3 +188,10 @@ Next: monitor run 42061845444; continue OneNav image and dedicated brand-page ve
 - Updated review-only audit CSV at commit `a9b85f9efa9f266012ae9571f48a2926a959fb7e`. No image URLs added; no public product data, pricing, stock, customer pages or preview assets changed. Audit counts remain 45 official pages, 45 descriptions, 8 exact image candidates and 37 gaps.
 - Workflow reconciliation: the available commit-status and workflow-run wrappers returned no checks and no PR-triggered run for the latest code commit `b115615b0e8cd78823156723d80a83ed4ea2a2e4`; the wrapper explicitly filters out push-triggered runs. Therefore the push-triggered run and its deploy result remain unknown. Do not rerun, manually deploy, or issue a preview URL. This audit-only path is outside the workflow's configured push path filter.
 - Next: continue exact-model research across the remaining OneNav gaps while preserving no-substitution rules; separately obtain authoritative visibility into the existing push-triggered workflow before any further code push/deployment. PR #178 remains draft/unmerged; production HOLD.
+
+
+## 2026-11-06 — TOYOTA HILUX / COROLLA CROSS VARIANT IMAGE REJECTIONS
+
+- **OA018-2 / Hilux 2019+:** the surfaced OneNav image is for ON018-2A, the Pro-series 10.1-inch screen. The target is Classic OA018-2, a 9-inch unit in a 10.1-inch frame. Rejected.
+- **OA016-2 / Corolla Cross 2021+:** additional surfaced ON016-2A / ON016-2A11 (Pro) and ON016-2LX (Evolution/A11) images are not the Classic OA016-2 variant. Rejected.
+- Review-only audit updated at `9b3131a68fa10f3e33b7035546ea3accc8bb15e8`. No new image candidate; totals remain 45 official pages, 45 descriptions, 8 image candidates and 37 exact-image gaps. No public/customer data or preview assets changed.
