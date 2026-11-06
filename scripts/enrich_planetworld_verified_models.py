@@ -79,6 +79,7 @@ def main() -> None:
             "OWNER_PREVIEW_CANDIDATE_ONLY",
             "DETAILS_VERIFIED_IMAGE_PENDING",
             "DETAILS_PENDING_IMAGE_PENDING",
+            "DETAILS_VERIFIED_IMAGE_REJECTED",
         }:
             if source.get("brand_candidate") != "One" or " ".join(source.get("description_candidate", "").split()) != " ".join(one.get("source_title_exact", "").split()):
                 raise SystemExit(f"OneNav exact-source mismatch for internal source row {index}")
@@ -175,8 +176,8 @@ def main() -> None:
     expected = {
         "oneNav_pages": 45,
         "oneNav_descriptions": 45,
-        "oneNav_image_candidates": 8,
-        "oneNav_images_missing": 37,
+        "oneNav_image_candidates": 6,
+        "oneNav_images_missing": 39,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
@@ -188,8 +189,8 @@ def main() -> None:
     data["productImageEnrichment"] = {
         "exactModelPagesReviewed": 113,
         "manufacturerDescriptionsVerified": 113,
-        "exactImageCandidatesApplied": 76,
-        "exactModelImagesMissing": 37,
+        "exactImageCandidatesApplied": 74,
+        "exactModelImagesMissing": 39,
         "unmatchedProducts": 3204,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
         "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
