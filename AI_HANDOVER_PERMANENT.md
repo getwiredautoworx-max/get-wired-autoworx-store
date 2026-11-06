@@ -3229,3 +3229,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## 2026-11-06 — KIA / HYUNDAI ONENAV IMAGE RESEARCH
 - OA195-1 Kia Rio: dashboard/lifestyle image and ON195-1A10/ON195-1A11 variants rejected; no exact Classic OA195-1 product photo. OA192-1 Kia Sportage: NAVTECH NAV9PRIME and OneNav Pro/Evolution ON192-1A11/ON192-1A images rejected; exact-SKU NXT Level listing image inaccessible. OA197-1 Hyundai Accent: NAVTECH NAV9 image rejected; exact-SKU listing image not independently verifiable.
 - Review-only audit commit `a9b85f9efa9f266012ae9571f48a2926a959fb7e`; no image candidates added. Totals remain 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Push-triggered run/deploy remains unknown because the available wrapper filters to PR-triggered runs. Do not rerun/deploy or issue preview; PR #178 draft/unmerged; production HOLD.
+
+
+## 2026-11-06 — TOYOTA HILUX / COROLLA CROSS IMAGE REJECTIONS
+- OA018-2 Classic Hilux 9-inch in 10.1-inch frame: surfaced ON018-2A Pro 10.1-inch Hilux image rejected. OA016-2 Classic Corolla Cross: ON016-2A / ON016-2A11 Pro and ON016-2LX Evolution/A11 assets rejected.
+- Review-only audit commit `9b3131a68fa10f3e33b7035546ea3accc8bb15e8`; no new candidate. Totals unchanged: 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Production HOLD.
