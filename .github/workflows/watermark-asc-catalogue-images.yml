@@ -34,8 +34,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install image processing dependency
-        run: python -m pip install --disable-pip-version-check pillow
+      - name: Install OCR and image processing dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          python -m pip install --disable-pip-version-check pillow pytesseract
 
       - name: Verify repeatable watermark pipeline
         run: python -m unittest tests/test_asc_watermark.py -v
