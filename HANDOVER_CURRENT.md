@@ -3692,3 +3692,15 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - A stale browser QA assertion was also corrected to test Aerials under Car Audio Accessories and Car Mats under Car Care & Accessories, and the six catalogue route test now opens each catalogue from its actual parent. A wait condition and diagnostic message were added for the async catalogue heading.
 - Fresh exact-head browser QA, public-package QA and non-production deployment are running for code head `8077d39a7c346a45ccad3155eaac6a662c4245cf` (runs 42176549162, 42176549342, 42176549427). Do not send a new preview URL until the hosted SHA marker and mobile/desktop QA pass.
 - No production or live data actions. Production remains HOLD.
+
+
+## 2026-11-06 — ASC OWNER-CORRECTED PREVIEW DEPLOYED; FINAL BROWSER AUDIT
+
+- Owner's current category instructions are implemented: Aerials → Car Audio Accessories; Car Mats → Car Care & Accessories; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Parts & Spares.
+- Product-only display: ASC product card viewport crops catalogue description and SKU/footer copy from the photo area; the store description and source/fitment copy are separate below the image. Category artwork also has dedicated crop positions for Aerials and Car Mats. Source images and watermarks are preserved.
+- Corrected malformed breadcrumb JS and all stale browser QA assumptions. Hosted QA now reads back the deployed category-tree JSON and asserts the exact parent IDs before checking rendered routes.
+- Exact branch/deployed SHA: `4926292f3e7fa45d29fd4715c4f4fc1ca7c52ab1`.
+- Cloudflare Public Package QA passed: run 42176940479.
+- Dedicated non-production deployment and exact-SHA marker passed; deployment workflow's hosted phone/desktop preview check passed: run 42176940451. Exact owner preview: `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html`.
+- Owner Store Preview Browser QA local checks passed; its additional hosted parent-route audit run 42176940387 remains in progress at the time of this note. Do not claim full browser QA until it completes.
+- PR #177 body updated with corrected category structure, photo presentation and QA state. PR remains draft/unmerged. No production or live data changes. Production remains HOLD.
