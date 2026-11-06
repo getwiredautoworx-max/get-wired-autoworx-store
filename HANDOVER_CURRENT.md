@@ -4548,3 +4548,32 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - Removed the ineffective branch-only `workflow_dispatch` change; retained the Aerials Playwright navigation test and `assets/category-tree.json` path filters.
 - Do not make an unapproved change to `main` or merge PR #178 merely to create a trigger. The current GitHub connector does not expose a workflow-dispatch action and its run lookup filters to PR-triggered runs; exact-head status for the push-triggered preview remains unobservable here.
 - Await an owner-provided Actions run link/ID or an explicitly approved supported trigger path. Until then, no exact-head build/test pass or current preview can be claimed.
+
+
+## AERIALS DUPLICATE CATEGORY — EXACT-HEAD OWNER PREVIEW VERIFIED — 2026-11-06 13:31 SAST
+
+### Owner authorization and workflow enablement
+- Owner explicitly approved the narrowly scoped default-branch QA workflow change on 2026-11-06.
+- Updated only `.github/workflows/owner-preview-exact-sha.yml` on `main` to add `workflow_dispatch`, scoped the manual run to `integration/owner-preview-single-task-2026-11-05`, and selected the exact dispatch ref SHA for checkout/build/deploy. Default-branch workflow commit: `f3a865a1262afc0c9c00c92ecd10307e124e9826`.
+- No merge of PR #178, production deployment, live-store change, DNS, Axxess, Supabase write, price/stock mutation or payment activation occurred.
+
+### Aerials correction
+- Removed the misplaced duplicate active Aerials category node `a11e1a15-6d84-4a0b-9a44-8f4c3a2d1e70` from `assets/category-tree.json`.
+- Retained exactly one canonical active Aerials node: ID `b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90`, slug `aerials`, parent Car Audio Accessories `8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11`.
+- Product records/identities were not deleted or changed.
+- Strengthened `tests/three-category-storefront-structure.test.cjs`: exactly one Aerials node, stable ID/slug, correct parent, unique ID and exactly one navigation registration to the filtered Car Audio Aerials route.
+- Strengthened hosted Playwright checks in `.github/workflows/owner-preview-exact-sha.yml`: one rendered Aerials card under Car Audio Accessories; clicking it must navigate to Car Audio with search=Aerials and label=Aerials; selected route label must render. Hosted route checks accept Cloudflare's extensionless route rewrite and assert the actual `#audioSelectedDepartment` selector.
+
+### Exact-head run and result
+- Successful exact-head GitHub Actions run: [#42210487449](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42210487449).
+- Tested and deployed source SHA: `f57d4d052ea9a9296783cc30ce32a6d5bdef4418`.
+- Non-production preview: https://45fbbf05.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Verified on this same SHA: customer-only Pages build; audio catalogue regression; three-category structure/Aerials regression; public SKU audit; dedicated Cloudflare preview deployment; exact deployed-SHA marker; hosted Playwright mobile 390px and desktop 1365px QA.
+- Hosted Aerials click-through passed to `/preview-audio?department=Car%20Audio&search=Aerials&label=Aerials`.
+- Final hosted QA marker: `GW_HOSTED_MOBILE_DESKTOP_PREVIEW_QA_PASS`; 0 JavaScript errors; desktop width 1365px and scroll width 1365px.
+- All workflow jobs/steps succeeded. Earlier failed runs were test-only false negatives: stale OneNav image-candidate expected count (7 vs verified 8), extension-suffix-only route matching, and wrong selected-route heading selector. Corrected assertions now reflect actual build data and deployed UI; no product data workaround was used.
+
+### Release status
+- PR #178 remains OPEN / DRAFT / UNMERGED. Latest head at this checkpoint: `f57d4d052ea9a9296783cc30ce32a6d5bdef4418`.
+- Production remains HOLD. Preview is for owner review only; no customer go-live or owner acceptance is implied.
+- Existing separate catalogue quality exceptions remain tracked; in particular, Audio Connections BlackSpider Lynx image is only 104px wide and must not be described as high-resolution. OneNav still has unresolved exact-image gaps. These do not invalidate the specific Aerials navigation correction or the successful configured QA run.
