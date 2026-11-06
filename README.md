@@ -10,7 +10,9 @@ The live store is hosted through Axxess. Catalogue recovery, category integratio
 
 ## Handover
 
-Read the single current continuation file: [HANDOVER_2026-11-02_OWNER_CONTINUATION.md](HANDOVER_2026-11-02_OWNER_CONTINUATION.md). Do not use superseded handover filenames.
+Read the current continuation file: [HANDOVER_2026-11-02_OWNER_CONTINUATION.md](HANDOVER_2026-11-02_OWNER_CONTINUATION.md). Also read any later dated owner addenda that apply to the work being continued. Do not use superseded handover filenames as the sole source of current instructions.
+
+- [6 November 2026 — ASC image correction and GitHub Copilot setup addendum](HANDOVER_ADDENDUM_2026-11-06_IMAGE_AND_COPILOT.md)
 
 ## Execution brief
 
