@@ -8765,9 +8765,15 @@
             },
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit camera/monitor/DVR description."
+            "image_status": "IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED",
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit camera/monitor/DVR description.",
+            "display_name": "OneX AHD front/rear mountable camera",
+            "manufacturer_description": "OneX AHD camera for front or rear vehicle mounting, with a 150-degree viewing angle and 720P analogue high-definition video over standard coaxial or RCA cable. The manufacturer states that it works only with the OneNav A101 multimedia system; mounting bracket included.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onex-mountable-front-rear-camera-with-ahd/",
+            "image_source_url": "https://onenav.co.za/wp-content/uploads/2022/04/Reverse-Camera-2-1-600x600.jpg",
+            "image_rights_status": "OFFICIAL_MANUFACTURER_ASSET; REUSE_BASIS_PENDING",
+            "image_match_notes": "Official page confirms CAM007-AHD and product identity; image URL retrieved but image request cache-missed, so no visual inspection/approval yet."
           },
           {
             "supplier_item_code": "CL4988-LCAM",
@@ -8904,8 +8910,13 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit camera/monitor/DVR description."
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit camera/monitor/DVR description.",
+            "display_name": "OneX universal-mount smart mirror with DVR, Wi-Fi and 4K camera",
+            "manufacturer_description": "Universal-mount OneX smart rear-view mirror combining a digital video recorder, Wi-Fi and 4K camera functionality. Confirm vehicle mounting requirements and included accessories before sale.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onex-universal-mount-smart-mirror-dvr-wifi-4k-camera/",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Official OneNav page search result identifies exact SKU OX-4990DVR and product title; full page/image extraction returned cache miss, so image remains pending."
           },
           {
             "supplier_item_code": "OX-4991DVR",
