@@ -1,3 +1,12 @@
+## ONENAV REVIEW DATA CORRECTION — 2026-11-06 (SAST)
+
+- Corrected the `ON115-3LX` row in `catalogue-review/planetworld-one-official-model-audit.csv`: `customer_brand_display` is now `OneNav`; its customer description retains OneNav Evolution for Isuzu RBA/RBB. Exact official page has no image asset, so image remains pending.
+- CSV correction commit: `8c570c275770471d27824f7da10e75368179fdd5`.
+- Detailed resumption audit updated in `catalogue-review/ONENAV_RESUMPTION_AUDIT_2026-11-06.md`, commit `d7b4f1ad5d5eb568d9765da1e223d3bb24bb741b`.
+- The 19 storefront cards outside the 45-row audit remain unreconciled. Common guessed source paths (`src/data/products.ts`, `.js`, `src/data/catalogue.ts`, `.js`, `data/products.json`, `public/data/products.json`) returned NOT_FOUND on this branch; no guessed path or product identity was treated as evidence. Next step is locate the actual active-branch storefront source from repository tree/PR diff, then map uncovered cards to exact supplier catalogue rows.
+- No exact product image was approved, no product was imported, no supplier pricing/stock/live data was changed, no workflow or preview was triggered. PR #178 remains draft/unmerged; production HOLD.
+
+---
 ## AUDIO/VIDEO WORKSTREAM RESUMED — 2026-11-06 (SAST)
 
 - Owner's newest direct instruction explicitly resumes the audio/video catalogue and storefront-enrichment workstream as one autonomous, resumable GitHub candidate. This supersedes the earlier 2026-11-05 audio/OneNav pause and the subsequent Audio-category freeze for the scope expressly authorised here. Continue one brand at a time; current brand remains **ONE / OneNav**. Do not start another brand until OneNav is completed or a documented owner-dependent blocker is reached.
