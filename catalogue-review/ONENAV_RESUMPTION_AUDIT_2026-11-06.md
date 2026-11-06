@@ -34,3 +34,15 @@ Source: `catalogue-review/planetworld-one-official-model-audit.csv` on the activ
 ## Guardrails
 
 All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU assignment, supplier price/RRP changes, stock changes, live product/category writes, Supabase writes, supplier activation, public image approval, merge, deployment, Axxess upload, DNS/payment changes or checkout testing occurred. PR #178 remains draft/unmerged; production HOLD.
+
+
+## Resumption work completed in this session
+
+- Recorded owner-authorised workstream resumption in `HANDOVER_CURRENT.md`, commit `2f2722f640258a81e41ca6c12888aec13c960d44`.
+- Added this OneNav evidence/exception report, initially committed as `80786c15a7b3ea018fa04ed61e8789446582888c`.
+- Added standalone deterministic audit test `tests/onenav-source-audit.test.cjs`, commit `599436e35027807f5e15e83b5a4b4212998292b0`.
+- Ran the same 20 audit invariants directly against the active-branch CSV during this session: **20/20 passed**. This was a direct data-validation run, not execution of the committed Node test file and not a GitHub Actions run. The new test is not yet wired into hosted Actions; no hosted Actions/release credits were intentionally consumed.
+- The data validation identified one documented review-field exception: `ON115-3LX` has a blank `customer_brand_display`, although its exact official OneNav page identifies it as OneNav Evolution for Isuzu RBA/RBB. The source audit CSV was not changed in this pass; preserve this as an open correction rather than claiming it was fixed.
+- Official image review for OA015-1 found that the OneNav product page lists the correct SKU, but its gallery product image displays generic hardware code `OA1409-CPAA`; that image is not an exact OA015-1 image and is rejected for SKU-level matching. The retailer listing candidate remains review-only.
+- Latest documentation/test commit is `599436e35027807f5e15e83b5a4b4212998292b0`. The existing `.preview-deploy-request` still names older commit `1bc6686f252bc08d55534fc7412ddfb2e44db2b4`; it does not request deployment of the current branch head. No current preview is claimed.
+- Current work remains OneNav only. The 19 storefront cards outside the 45-row audit, 38 missing exact-image URLs, seven unapproved image candidates, and the ON115-3LX brand-field exception remain open. Do not move to another brand.
