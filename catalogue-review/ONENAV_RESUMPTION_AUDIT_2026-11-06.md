@@ -96,3 +96,10 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - `ON015-3`: official OneNav Land Cruiser 70 Series (2012–2026) page gives SKU `ONO15-3A14` (letter O after N), while supplier row and reseller page show `ON015-3` (zero). Preserve the O/0 distinction; no exact SKU match claimed. https://onenav.co.za/product/onenav-9inch-for-land-cruiser-70-series-2012-2026/.
 - `ON-DVRSD`: official OneX Lenovo DVR for OneNav page confirms the product but shows SKU `ONDVRSD` without the supplier hyphen. Record as a formatting/code discrepancy; do not silently rewrite. https://onenav.co.za/product/onex-lenovo-digital-video-recorder-for-onenav-with16g-micro-sd-card/.
 - Updated uncovered-card CSV commit `bfe5c5a52cf8767066dfadbc1a1f1e9650e3d3ab`. These checks add product/title evidence but do not increase the count of exact supplier-SKU matches.
+
+
+## Official Evolution SKU confirmation — 2026-11-06
+
+- `ON425-1LX`: OneNav's official product page confirms the exact title **OneNav Mitsubishi Eclipse Cross 2018–2020 (9 Inch) A11**, exact SKU `ON425-1LX`, Mitsubishi fitment, 9-inch Evolution series and its 12-band DSP / 4 × 45 W feature set. Image remains unextracted/unapproved. https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/.
+- This raises official exact manufacturer SKU/title matches in the 19-card set to four: `OA-5263BT` (OneAcoustic, distinct brand), `ON016-2LX`, `ON413-1A10`, and `ON425-1LX`.
+- Updated CSV commit `27e44ce2220367f5df9df06807f625e82c07f529`; regression-test source commit `7303c77eab939b94b7eee7c3e85d12f20cbb3671`.
