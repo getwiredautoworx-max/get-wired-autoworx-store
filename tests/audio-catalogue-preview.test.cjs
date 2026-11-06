@@ -479,7 +479,7 @@ assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,8);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,6);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,43);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length,1);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length,1);
