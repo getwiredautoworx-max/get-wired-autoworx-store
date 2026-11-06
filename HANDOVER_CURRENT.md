@@ -3815,3 +3815,17 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 
 ### Release boundary remains unchanged
 - PR #177 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. No Axxess upload, DNS, Supabase writes, live stock/price/category changes, payment activation, checkout testing or public release of ASC watermarked images without separate image-use approval and explicit owner release approval. ASC Buyers Guides remain excluded.
+
+
+### Owner decision — pilot-first image correction (6 Nov 2026, latest)
+- Owner explicitly directed: correct the 50 sample images first; once the sample method is accepted, apply the same method to the remaining catalogue records and upload them.
+- Inspection found the existing image script did not meet the owner's revised acceptance criteria: it tight-cropped product bounds, used a generated text watermark instead of the actual logo, and its workflow committed image outputs automatically. Treat the previous image output as rejected; do not describe the 50 images as corrected.
+- Replaced the processing approach with a conservative six-catalogue pilot. The new script reads preserved originals, never crops or enlarges the source frame, contains the complete image on a 600×600 neutral canvas, uses the actual `assets/gw-logo.png` in the reserved lower margin, and only OCR-cleans catalogue text in outer bands. OCR text near the product is reported for manual review rather than erased.
+- Sample set: Aerials `asc-ma522.jpg`; Sensors `asc-01080.jpg`; Switches `asc-21849.jpg`; Globes `asc-9005-cbl-h.jpg`; Fuel Pumps `asc-f1-012.jpg`; Car Mats `asc-m7-avan01.jpg`.
+- Updated `tests/test_asc_watermark.py` for full-frame contain, actual logo asset, deterministic regeneration and OCR cleanup reporting.
+- Replaced the old image workflow with an artifact-only six-sample review workflow. It does not write image binaries, commit outputs, push to main, or deploy. This protects the 50 current pilot images until the owner accepts the visual treatment.
+- Script commit: `51d8a9a62cdf9ce4eab45ccadb0cc82194fa596b`; test commit: `506645b34ba4c7190c6349902af7042e870c853a`; workflow commit / run head: `dc148102eedafc41ca9b775378a755ecab9619b4`.
+- GitHub Actions run `42185179286` (“ASC Image Pilot Review”) was triggered on the branch. At the time of this update it was still running dependency installation; tests, image generation, artifact upload and visual review are NOT yet confirmed.
+- Important limitation: this is a cautious pilot preparation, not yet proof that every ASC watermark has been removed. Inspect the six rendered samples and OCR review report first. Any graphical ASC mark not removed by safe OCR cleanup must be addressed before approval; never hide or inpaint product detail.
+- Next: finish and inspect the six-sample artifact; fix any issues; then generate and visually review all 50 from originals, update preview image references only after owner acceptance, and only then apply the same verified method to the remaining 933 records. Keep all catalogue data preview-only, preserve source/page traceability, and retain null price/stock.
+- This supersedes earlier handover/PR wording that described the old text-watermark outputs as complete or accepted. Production remains HOLD; PR #177 remains draft/unmerged.
