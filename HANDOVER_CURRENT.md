@@ -3704,3 +3704,16 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - Dedicated non-production deployment and exact-SHA marker passed; deployment workflow's hosted phone/desktop preview check passed: run 42176940451. Exact owner preview: `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html`.
 - Owner Store Preview Browser QA local checks passed; its additional hosted parent-route audit run 42176940387 remains in progress at the time of this note. Do not claim full browser QA until it completes.
 - PR #177 body updated with corrected category structure, photo presentation and QA state. PR remains draft/unmerged. No production or live data changes. Production remains HOLD.
+
+
+## 2026-11-06 — FINAL ASC OWNER-CORRECTED PREVIEW VERIFICATION PASSED
+
+- **Owner category placement verified:** Aerials is a child of Car Audio Accessories; Car Mats is a child of Car Care & Accessories; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps remain separate Auto Electrical Parts & Spares subcategories.
+- **Product-only image display verified:** product cards use a photo-only viewport crop that excludes printed catalogue description/SKU footer text. Store descriptions remain in the separate text area. Category artwork for Aerials and Car Mats uses tailored crop positions. Original source image files and watermarks remain unchanged.
+- **All six catalogue routes verified in browser QA:** Aerials (6 sections), Sensors (11), Switches (16), Globes (10), Car Mats (14), Fuel Pumps (18). All six category images and pilot product images loaded successfully. Car Audio Accessories showed Aerials and not Car Mats; Car Care root included Car Mats; Auto Electrical root reduced to seven direct categories.
+- **Public Package QA passed** on workflow run 42178182782.
+- **Owner Store Preview Browser QA passed** on run 42178182787. Output confirms all six catalogue routes/images, checkout hidden, Supabase writes blocked, 47 existing Trims & Harnesses rows unaffected, no desktop horizontal overflow.
+- **Exact hosted preview marker verified** for deployed store build SHA `10da0b4e4b6f221953c31b12fe825ac003e584e2`; the immutable Cloudflare deployment URL is `https://83745f8a.get-wired-autoworx-store.pages.dev`. Hosted browser verification passed on mobile and desktop.
+- The Cloudflare branch aliases did not publish the exact marker for SHA 10da, so the immutable unique deployment URL above is the verified URL to share; do not substitute the stale branch alias.
+- The latest QA workflow-only commit is `758bc78440184c77e284e2fff71931cd98610d86`; it adds the immutable URL to the hosted QA candidates and pins the expected deployed source SHA. It does not alter storefront files after deployed store SHA 10da.
+- PR #177 remains draft/unmerged. The six ASC catalogue groups remain preview-only; 50 pilot records only, 933 further descriptions remain for editorial/fitment verification, image-use rights and exact image/SKU match remain review gates. No live product/category/price/stock writes, Supabase writes, checkout/payment activation, production deployment, DNS or Axxess changes. Production remains HOLD.
