@@ -4427,3 +4427,14 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - **OA017-2 / Toyota Fortuner 2019+ with CANBUS:** the Go4Lo result's image visibly carries screen marking OA1409-CPAA rather than OA017-2; rejected despite the matching page title.
 - **OA509-1 / GWM Steed 5E:** the Evorevo listing does not identify OA509-1 and describes a 10.1-inch Android 10 / 4GB / 64GB configuration, inconsistent with the Classic 9-inch-in-10.1-inch-frame / 1024×600 row; rejected as an unverified different series/variant.
 - Review-only audit updated at `acd9cd22edc9c479f6d840634bed2a5bd80bcbb2`. No new image candidate. Totals remain 45 official OneNav pages, 45 descriptions, 8 image candidates and 37 image gaps. No public/customer data, price or stock changed; exact-head QA and preview remain unverified.
+
+
+## 2026-11-06 — KIA / HYUNDAI ONENAV IMAGE RESEARCH
+
+- Continued the same OneNav-first-brand review only; no other brand or ASC catalogue work was started.
+- **OA195-1 / Kia Rio 2016:** official OneNav product page confirms the Classic SKU and 9-inch fitment. Search results included a Kia Rio dashboard/installed-screen lifestyle image, plus ON195-1A10 (custom 2018+) and ON195-1A11/ON195-1A variants. None is an exact OA195-1 product image; all rejected for product-card use.
+- **OA192-1 / Kia Sportage 2019+:** NXT Level Tech listing confirms the exact Classic SKU, but its image asset could not be independently retrieved. Search results included a NAVTECH NAV9PRIME unit and OneNav Pro/Evolution ON192-1A11 / ON192-1A products, not Classic OA192-1; rejected.
+- **OA197-1 / Hyundai Accent 2010–2014:** official OneNav and NXT Level Tech listings confirm the exact Classic SKU and fitment. The surfaced Soundmatch NAVTECH NAV9 Accent image is a different brand/product; rejected. NXT Level Tech's exact-SKU image was not independently retrievable/visually verified.
+- Updated review-only audit CSV at commit `a9b85f9efa9f266012ae9571f48a2926a959fb7e`. No image URLs added; no public product data, pricing, stock, customer pages or preview assets changed. Audit counts remain 45 official pages, 45 descriptions, 8 exact image candidates and 37 gaps.
+- Workflow reconciliation: the available commit-status and workflow-run wrappers returned no checks and no PR-triggered run for the latest code commit `b115615b0e8cd78823156723d80a83ed4ea2a2e4`; the wrapper explicitly filters out push-triggered runs. Therefore the push-triggered run and its deploy result remain unknown. Do not rerun, manually deploy, or issue a preview URL. This audit-only path is outside the workflow's configured push path filter.
+- Next: continue exact-model research across the remaining OneNav gaps while preserving no-substitution rules; separately obtain authoritative visibility into the existing push-triggered workflow before any further code push/deployment. PR #178 remains draft/unmerged; production HOLD.
