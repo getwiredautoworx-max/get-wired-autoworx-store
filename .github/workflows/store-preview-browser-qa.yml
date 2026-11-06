@@ -168,17 +168,17 @@ jobs:
             await page.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
             const trimsLink=page.getByRole('link',{name:/Trims & Harnesses/});
             await trimsLink.waitFor({state:'visible',timeout:15000});
-            if(await page.getByRole('link',{name:/Aerials/}).count())throw new Error('Aerials must no longer be nested under Car Audio Accessories');
+            if(await page.getByRole('link',{name:/Aerials/}).count()!==1)throw new Error('Aerials must be visible under Car Audio Accessories');if(await page.getByRole('link',{name:/Car Mats/}).count())throw new Error('Car Mats must not be nested under Car Audio Accessories');
             await trimsLink.click();
             await page.waitForFunction(()=>location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             const fitmentCount=await page.locator('#products .audioProduct').count();
             if(fitmentCount!==47)throw new Error('Trims & Harnesses route should show 47 dedicated Planetworld rows, got '+fitmentCount);
             const autoElectricalId='ba263c9f-d038-48bd-bca0-944f3ebdc5e9';
-            const catalogueChecks=[['Aerials',6,'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90'],['Automotive Sensors',11,'e6a10001-1b2c-4d3e-8f90-111111111111'],['Automotive Switches',16,'e6a10002-1b2c-4d3e-8f90-222222222222'],['Automotive Globes',10,'89595653-97d4-4b18-ba69-117547d32ed0'],['Car Mats',14,'c35d15c1-d665-413f-b528-878b6a655d5d'],['Fuel Pumps',18,'e6a10003-1b2c-4d3e-8f90-333333333333']];
+            const catalogueChecks=[['Aerials',6,'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90','8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'],['Automotive Sensors',11,'e6a10001-1b2c-4d3e-8f90-111111111111',autoElectricalId],['Automotive Switches',16,'e6a10002-1b2c-4d3e-8f90-222222222222',autoElectricalId],['Automotive Globes',10,'89595653-97d4-4b18-ba69-117547d32ed0',autoElectricalId],['Car Mats',14,'c35d15c1-d665-413f-b528-878b6a655d5d','f98e7589-20a0-4825-9707-2680d29e5cb6'],['Fuel Pumps',18,'e6a10003-1b2c-4d3e-8f90-333333333333',autoElectricalId]];
             const catalogueImageAudit=[];
-            for(const [label,expectedSections,categoryId] of catalogueChecks){
-              await page.goto('http://127.0.0.1:4173/category.html?id='+autoElectricalId,{waitUntil:'domcontentloaded'});
+            for(const [label,expectedSections,categoryId,parentId] of catalogueChecks){
+              await page.goto('http://127.0.0.1:4173/category.html?id='+parentId,{waitUntil:'domcontentloaded'});
               const card=page.getByRole('link',{name:new RegExp(label)});
               await card.waitFor({state:'visible',timeout:15000});
               const image=card.locator('img').first();
