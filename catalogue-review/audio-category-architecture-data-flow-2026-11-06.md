@@ -51,3 +51,11 @@ No category node is being added, renamed, activated or moved by this report. Res
 Planetworld's Car Audio staging is the current representative catalogue (702 rows: 627 Car Audio brand product rows, 28 Marine Audio rows, 47 harness/trim rows). OneNav is the first brand-level reconciliation batch. The 245 unmatched OneNav source rows are now preserved in `catalogue-review/onenav-245-unmatched-row-triage-2026-11-06.csv`; its keyword groupings are provisional only. Exact image gaps and source identity are not resolved by the triage.
 
 The cross-brand audit report is `catalogue-review/audio-image-description-approval-gap-report-2026-11-06.md`. It records that manufacturer page/collection matches are not approved image assets and that binary image capture/rights, customer descriptions, GW SKU mapping and complete row reconciliation remain open.
+
+
+## Current database/preview data-flow verification — 2026-11-06
+
+- The storefront's `preview-products.html` fetches customer products from the Supabase REST `products` table, filtered by active category IDs. It does not read `gw_private.catalogue_product_staging`.
+- A read-only query against the connected active Store project returned `public.products = 0` rows. The private staging table has 702 Planetworld + 68 Audio Connections rows, all REVIEW_ONLY. `gw_private.supplier_catalog_items = 0` and `gw_private.product_supplier_codes = 0`.
+- Therefore, even though staging rows exist, they are not currently connected to the customer preview's product query. This is the immediate data-flow gap. Do not solve it with a database write/import without explicit owner approval. First reconcile why the historical 2026-10-30 audit reported 4,200 products while the current active Store project returns zero, and identify the intended preview data source.
+- Planetworld staging statuses: 702/702 model NOT VERIFIED, 702/702 image NOT VERIFIED, 31/702 missing category_id. Audio Connections: 68/68 REVIEW_ONLY, 61/68 image not approved/exact image required. Descriptions in staging are source text, not verified customer copy.
