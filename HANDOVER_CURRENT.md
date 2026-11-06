@@ -1,3 +1,12 @@
+## ONENAV ADDITIONAL OFFICIAL CATALOGUE MATCHES — 2026-11-06 (SAST)
+
+- Added two further exact official manufacturer checks to the 19-card gap register: `ON413-1A10` (official OneNav 2023 catalogue: Nissan Qashqai/X-Trail 2015+, 10.1-inch) and `OA-5263BT` (official OneNav shop: exact OneAcoustic Pro Series 1DIN Bluetooth title/SKU). OA-5263BT is **OneAcoustic**, not a OneNav head unit; keep brand separation.
+- `ON016-2LX` remains the official exact product-page match. The uncovered-card register now has three official exact manufacturer matches: `OA-5263BT`, `ON016-2LX`, `ON413-1A10`.
+- Additional unresolved code conflicts recorded: ON019 supplier SKUs ON019-A121M / ON019-A14 versus official catalogue ON019-A101M; supplier ON103-CPAA versus official OA103-CPAA; supplier ON665-1A11 versus official ON665-1A10; supplier ON669-A14 versus official ON669-A101M. Do not normalize prefixes/suffixes or merge.
+- Updated uncovered-card CSV commit `428c6ac5398e70ae8fa66097e3eba1985ed2234a`; updated regression test commit `d3c322fc9a0671878b54d502d1dfb399f740406d`; detailed report commit `b4f7052f3be61c141fc7f1dbb93b210de18cf334`.
+- Next: verify remaining OneNav SKUs and exact images/rights, resolve model-code conflicts, then run the standalone Node test when a local checkout is available. No Actions or preview request triggered. ASC remains queued behind OneNav completion.
+
+---
 ## ONENAV VARIANT CONFLICT CHECKPOINT — 2026-11-06 (SAST)
 
 - Official OneNav Evolution category confirms the Prado A11 title/fitment (2002–2009), but not SKU. A reseller lists ON014-1A11; the 2023 official OneNav PDF lists older ON014-1A10 for that fitment. Keep the A11/A10 code conflict unresolved.
