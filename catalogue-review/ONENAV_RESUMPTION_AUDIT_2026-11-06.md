@@ -88,3 +88,11 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - `ON665-1A11` and `ON669-A14`: official catalogue lists related but different codes `ON665-1A10` (Golf 7) and `ON669-A101M` (VW universal). Keep suffix/fitment conflicts unresolved.
 - Reconciliation CSV updated in commit `428c6ac5398e70ae8fa66097e3eba1985ed2234a`. It now contains three exact manufacturer-supported matches across the 19 uncovered cards: `OA-5263BT`, `ON016-2LX`, and `ON413-1A10`. The OA-5263BT match is OneAcoustic, not OneNav.
 - Regression test source updated to assert precisely those three official matches, commit `d3c322fc9a0671878b54d502d1dfb399f740406d`. The Node test remains unexecuted; direct data assertions will be rerun separately.
+
+
+## Further exact SKU conflict checks — 2026-11-06
+
+- `ON017-2A11`: official OneNav product page confirms Toyota Fortuner with CAN bus (2019+) and 9-inch Evolution specs, but the official SKU is `ON017-2LX`. Supplier code suffix differs; no alias assumed. https://onenav.co.za/product/onenav-9inch-for-toyota-fortuner-with-canbus-2019/.
+- `ON015-3`: official OneNav Land Cruiser 70 Series (2012–2026) page gives SKU `ONO15-3A14` (letter O after N), while supplier row and reseller page show `ON015-3` (zero). Preserve the O/0 distinction; no exact SKU match claimed. https://onenav.co.za/product/onenav-9inch-for-land-cruiser-70-series-2012-2026/.
+- `ON-DVRSD`: official OneX Lenovo DVR for OneNav page confirms the product but shows SKU `ONDVRSD` without the supplier hyphen. Record as a formatting/code discrepancy; do not silently rewrite. https://onenav.co.za/product/onex-lenovo-digital-video-recorder-for-onenav-with16g-micro-sd-card/.
+- Updated uncovered-card CSV commit `bfe5c5a52cf8767066dfadbc1a1f1e9650e3d3ab`. These checks add product/title evidence but do not increase the count of exact supplier-SKU matches.
