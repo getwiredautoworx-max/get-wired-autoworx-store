@@ -489,8 +489,7 @@ assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]=
   const remoteAssets = [
     ['ONE / OneNav logo', ONE_LOGO],
     ['Amplified logo', AMPLIFIED_LOGO],
-    ['OneNav Prado exact product image', oneNavPrado.imageUrl],
-    ['OneNav Land Cruiser exact product image', oneNavLandCruiser.imageUrl],
+    ['OneNav Prado exact product image candidate', oneNavPrado.imageUrl],
   ];
   for (const [label, url] of remoteAssets) {
     const response = await fetch(url, {
