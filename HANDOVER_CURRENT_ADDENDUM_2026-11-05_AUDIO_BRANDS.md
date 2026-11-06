@@ -202,3 +202,11 @@ Next: monitor run 42061845444; continue OneNav image and dedicated brand-page ve
 - **OA266-1 / Ford Transit-Tourneo 2017 without factory display:** official OneNav page confirms 9-inch 1024×600 and 4×40W MAX / 4.1-channel line-out. A third-party listing reuses SKU OA266-1 but labels it Pro and gives materially different 1280×720 / 4GB+64GB / 15-band DSP specifications; its image is not accepted. The separate ON266-1LX Evolution listing is also rejected.
 - **OA713-1 / Suzuki Swift 2018+:** surfaced 10.1-inch Swift OneNav image is not verified as the Classic 9-inch OA713-1 in a 10.1-inch frame; reject.
 - Review-only audit updated at `d5ed7b4b89cc6767ab9e7b6c214c49ba912caec9`. No image candidates added; totals remain 45 official pages, 45 descriptions, 8 candidates and 37 gaps. No public/customer data or preview assets changed.
+
+
+## 2026-11-06 — BREZZA / ECLIPSE CROSS / MITSUBISHI 200MM REVIEW
+
+- **OA717-1 / Suzuki Brezza & Toyota Urban Cruiser 2021:** Planetworld surfaced a fitment-specific image, but its asset path identifies ON717-1A11 (A11 variant). It is not verified as the Classic OA717-1; rejected.
+- **OA425-1 / Mitsubishi Eclipse Cross 2018–2020:** surfaced CarVue image matches vehicle fitment but is not identified as OneNav or OA425-1; rejected.
+- **OA429-1 / “Mitsubishi 200m”:** NXT Level Tech lists Classic SKU OA429-1 under that title, while the official OneNav catalogue PDF identifies ON429-1A10 as “200MM Universal”. This appears to be a product/fitment identity ambiguity (possibly a 200mm universal opening, not a Mitsubishi model). No image or vehicle-specific description approved pending supplier/manufacturer clarification.
+- Review-only audit updated at `ae928865581f549c018f22aea93f9537b379e84b`. No new image candidate. Totals remain 45 official pages, 45 descriptions, 8 image candidates and 37 exact-image gaps. No customer-facing data or preview assets changed.
