@@ -1,10 +1,10 @@
 {
   "title": "ASC Auto Electrical Catalogue — Owner Preview",
-  "notice": "NON-PRODUCTION OWNER REVIEW ONLY. All six ASC catalogues are grouped under Auto Electrical Spares for preview. All 50 product images are watermarked catalogue-crop candidates; exact SKU/physical-feature matching and public image-use rights remain on HOLD. Do not publish, remove/obscure watermarks, or further edit/crop. Prices and stock are not verified.",
+  "notice": "NON-PRODUCTION OWNER REVIEW ONLY. Aerials are under Car Audio Accessories; Car Mats are under Car Care & Accessories; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Spares. Product photographs display without overlaid description text; store descriptions appear separately below. Images remain watermarked review candidates pending exact SKU/feature verification and image-use approval. Prices and stock are not verified.",
   "catalogues": [
     {
       "name": "Aerials",
-      "root": "Auto Electrical Spares",
+      "root": "Car Audio Accessories",
       "sections": [
         {
           "id": "asc-aerial-vehicle",
@@ -204,7 +204,7 @@
     },
     {
       "name": "Car Mats",
-      "root": "Auto Electrical Spares",
+      "root": "Car Care & Accessories",
       "sections": [
         {
           "id": "asc-mat-toyota",
