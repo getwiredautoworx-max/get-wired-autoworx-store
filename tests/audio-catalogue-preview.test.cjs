@@ -80,7 +80,7 @@ assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
 assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,113,'68 verified manufacturer records plus forty-five OneNav records must carry verified descriptions');
 assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,113,'all 68 verified manufacturer records plus forty-five OneNav exact product pages must be named');
-assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,37,'thirty-eight exact OneNav model pages still have no approved image and must not receive a generic substitute');
+assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,37,'thirty-seven exact OneNav model pages still have no approved image and must not receive a generic substitute');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(productListingRoute.includes("title.className='productModel'")&&productListingRoute.includes("p.modelNumber||p.manufacturerProductName||p.title||p.name||'Product'"),'audio product cards must show the verified model first, falling back only to the verified catalogue title');
@@ -99,8 +99,8 @@ const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,ind
 const oneNavAuditSource=fs.readFileSync('catalogue-review/planetworld-one-official-model-audit.csv','utf8');
 assert.ok(['OA115-1','OA115-3','OA195-1','OA197-1','OA198-1','OA198-2','OA199-1','OA017-2','OA266-1','OA716-1','OA713-1','OA429-1','OA428-1','OA426-1','OA717-1','OA425-1','OA427-1','OA715-1','OA009-2','OA012-1','OA016-1','OA110-1','OA115-2','OA192-1','OA194-1','OA263-1','OA712-1','OA714-1','OA196-1','OA261-1','OA711-1'].every(sku=>oneNavAuditSource.includes(sku)),'all tracked OneNav source SKU audits must remain present');
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,75);
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,38);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,76);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,37);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3204);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
 assert.ok(brandLandingRoute.includes('const ONENAV_WORDMARK=')&&brandLandingRoute.includes("if(n==='one'||n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK")&&brandLandingRoute.includes("if(n==='one x'||n==='onex')return")&&brandLandingRoute.includes("if(n.includes('amplified'))"),'dedicated brand landing page must keep OneNav, One X and Amplified marks distinct');
@@ -479,7 +479,7 @@ assert.ok(productListingRoute.includes('object-fit:cover;object-position:center 
 assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition||\'center 40%\''));
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,7);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,8);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,43);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length,1);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length,1);
