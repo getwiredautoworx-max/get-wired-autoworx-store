@@ -318,7 +318,7 @@ jobs:
               const hostedCatalogues=[['Aerials',6,'8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'],['Automotive Sensors',11,hostedAutoElectricalId],['Automotive Switches',16,hostedAutoElectricalId],['Automotive Globes',10,hostedAutoElectricalId],['Car Mats',14,'f98e7589-20a0-4825-9707-2680d29e5cb6'],['Fuel Pumps',18,hostedAutoElectricalId]];
               const hostedCatalogueAudit=[];
               for(const [label,expectedSections,parentId] of hostedCatalogues){
-                await frame.locator('body').evaluate(parentId=>{location.href='/category.html?id='+parentId},parentId);
+                await frame.locator('body').evaluate((body,parentId)=>{location.href='/category.html?id='+parentId},parentId);
                 try{await frame.locator('#grid > .card').filter({hasText:label}).waitFor({state:'visible',timeout:30000})}catch(e){const debug=await frame.locator('#grid').evaluate(el=>({url:location.href,text:el.innerText,debug:el.dataset.debug,error:el.dataset.error}));throw new Error('Hosted '+label+' parent category did not render its catalogue link: '+JSON.stringify(debug)+' cause='+e.message)}
                 const card=frame.locator('#grid > .card').filter({hasText:label}).first();
                 await card.waitFor({state:'visible',timeout:20000});
