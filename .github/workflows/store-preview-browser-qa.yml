@@ -190,6 +190,7 @@ jobs:
               await card.click();
               await page.waitForURL(url=>new URL(url).pathname.endsWith('/asc-auto-electrical-preview.html')&&new URL(url).searchParams.get('catalogue')===label,{timeout:15000});
               await page.locator('#heading').waitFor({state:'visible',timeout:15000});
+              await page.waitForFunction(expected=>document.querySelector('#heading')?.textContent===expected,label,{timeout:15000});
               if((await page.locator('#heading').innerText())!==label)throw new Error(label+' catalogue heading mismatch');
               const actualSections=await page.locator('#sections [data-id]').count();
               if(actualSections!==expectedSections)throw new Error(label+' expected '+expectedSections+' source sections, got '+actualSections);
