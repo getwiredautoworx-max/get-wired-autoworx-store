@@ -3214,3 +3214,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Current audited totals: 45 official OneNav pages, 45 verified descriptions, 8 OneNav image candidates, 37 exact-image gaps; 76 combined Planetworld exact-model image candidates. Source audit, enrichment totals, regression assertions and hosted QA assertions have been aligned in the integration branch.
 - Latest integration candidate commit before handover update: `b115615b0e8cd78823156723d80a83ed4ea2a2e4`. Exact-head build/tests and the push-triggered Cloudflare non-production preview workflow are not verified from available status results. Do not claim readiness or preview currency. No production deployment, merge, live supplier import, price/stock change or payment activation.
 - Next: reconcile the existing push-triggered workflow without rerunning/deploying, continue the 37 remaining OneNav image gaps, then hand over to the separately tracked ASC catalogue workstream. ASC Buyers Guides remain excluded; production remains HOLD.
+
+
+## 2026-11-06 — MITSUBISHI ONENAV IMAGE TRIAGE
+- OA427-1 Classic Triton: wrong-brand Lumina and OneNav Evolution/Pro variants rejected. OA426-1 Classic Pajero: Planetworld ON426-1A11 A11/Evolution photo rejected; official Classic page timed out. OA428-1 Classic Pajero Sport 2015+: official page-linked hero image visibly marked OA1409-CPAA and a 2020–2021 third-party image both rejected.
+- Review-only audit commit `04ec0f6382fcbcb6cd661d8e057a23350300c45d`; no new image candidate, no customer/public data, price or stock change. OneNav totals remain 45 official pages, 45 descriptions, 8 image candidates, 37 image gaps. Exact-head QA/preview still unverified; PR #178 draft/unmerged; production HOLD.
