@@ -3239,3 +3239,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## 2026-11-06 — TRANSIT / SWIFT IMAGE TRIAGE
 - OA266-1 Transit/Tourneo: third-party listing reuses SKU but labels it Pro with conflicting screen/resolution/features; not accepted. Separate Evolution ON266-1LX image rejected. OA713-1 Swift: 10.1-inch Swift image not verified as Classic 9-inch OA713-1 in 10.1-inch frame; rejected.
 - Review-only audit commit `d5ed7b4b89cc6767ab9e7b6c214c49ba912caec9`; no new candidate. Totals remain 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Production HOLD.
+
+
+## 2026-11-06 — BREZZA / ECLIPSE CROSS / MITSUBISHI 200MM
+- OA717-1 Brezza/Urban Cruiser: Planetworld asset ON717-1A11 is A11 variant, not confirmed Classic; reject. OA425-1 Eclipse Cross: CarVue vehicle-fitment image is not identified as OneNav/OA425-1; reject. OA429-1 “Mitsubishi 200m”: NXT listing title conflicts with manufacturer PDF ON429-1A10 “200MM Universal”; hold vehicle identity and image pending supplier clarification.
+- Review-only audit commit `ae928865581f549c018f22aea93f9537b379e84b`; no new image candidate. Counts remain 45 official pages, 45 descriptions, 8 candidates, 37 gaps. Production HOLD.
