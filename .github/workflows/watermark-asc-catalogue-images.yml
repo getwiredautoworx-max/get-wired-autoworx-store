@@ -60,6 +60,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: asc-six-catalogue-image-sample
-          path: artifacts/asc-image-sample/
+          path: |
+            artifacts/asc-image-sample/
+            assets/asc-auto-electrical-pilot-originals/*.jpg
           if-no-files-found: error
           retention-days: 7
