@@ -11362,8 +11362,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "9-inch LCD display unit with slim metal cage."
+            "manufacturer_description_status": "SOURCE_DESCRIPTION_ONLY",
+            "note": "9-inch LCD display unit with slim metal cage.",
+            "display_name": "OneNav 9-inch LCD display with slim metal cage",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Source row describes a 9-inch LCD display with slim metal cage; exact product generation, chassis, vehicle fitment and included components not manufacturer-verified."
           },
           {
             "supplier_item_code": "ON1509-CS1",
@@ -14393,8 +14396,13 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "manufacturer_description_status": "VERIFIED_OFFICIAL_PRODUCT_PAGE",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneX 2-in-1 wireless CarPlay and Android Auto adaptor",
+            "manufacturer_description": "Wireless adaptor designed to add wireless Apple CarPlay and Android Auto smartphone integration to a compatible car entertainment system.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onex-2-in-1-wireless-carplay-and-android-auto-adaptor/",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Official OneNav page confirms exact SKU ON-CPAA2 and product purpose; exact image asset not extracted/visually verified."
           },
           {
             "supplier_item_code": "ON-DVRSD",
@@ -14439,8 +14447,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "manufacturer_description_status": "SOURCE_DESCRIPTION_ONLY",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "display_name": "OneNav MOST audio interface module",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Source identifies a MOST box only; exact vehicle compatibility, fibre-optic interface protocol, included harness and image not verified."
           },
           {
             "supplier_item_code": "OX-1080-A10",
@@ -14461,9 +14472,12 @@
             },
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+            "image_status": "REJECTED_VARIANT_MISMATCH",
+            "manufacturer_description_status": "IDENTITY_CONFLICT_OFFICIAL_PAGE_CODE_MISMATCH",
+            "note": "Explicit head-unit, media receiver or OneNav/infotainment description.",
+            "official_manufacturer_page": "https://onenav.co.za/product/onex-android-portable-tablet/",
+            "image_rights_status": "NOT REVIEWED",
+            "image_match_notes": "Official OneX Android Portable Tablet page shows SKU ON1080-A8 and artwork IC1080-A8, not source OX-1080-A10. Do not use that page's image/specifications for this source row."
           },
           {
             "supplier_item_code": "OX-CPAA2",
@@ -14558,8 +14572,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Replacement LCD for OneNav display; not a complete head unit."
+            "manufacturer_description_status": "SOURCE_DESCRIPTION_ONLY",
+            "note": "Replacement LCD for OneNav display; not a complete head unit.",
+            "display_name": "Replacement LCD for OneNav ON669-A14",
+            "manufacturer_description": "Replacement LCD display component for the OneNav ON669-A14 unit. Exact screen size, connector, revision and compatibility must be confirmed before sale.",
+            "image_rights_status": "NOT REVIEWED"
           },
           {
             "supplier_item_code": "ON669-A14-T",
@@ -14581,8 +14598,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Replacement touch screen for OneNav display."
+            "manufacturer_description_status": "SOURCE_DESCRIPTION_ONLY",
+            "note": "Replacement touch screen for OneNav display.",
+            "display_name": "Replacement touchscreen for OneNav ON669-A14",
+            "manufacturer_description": "Replacement touchscreen component for the OneNav ON669-A14 unit. Exact screen size, connector, revision and compatibility must be confirmed before sale.",
+            "image_rights_status": "NOT REVIEWED"
           }
         ]
       }
