@@ -298,7 +298,7 @@ jobs:
               if(!(await frame.locator('#products').innerText()).includes('Sony'))throw new Error('Sony brand filter did not return Sony audio products');
               await frame.locator('body').evaluate(()=>{location.href='preview-category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'});
               await frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).waitFor({state:'visible',timeout:20000});
-              if(await frame.locator('#grid .card').filter({hasText:'Aerials'}).count())throw new Error('Hosted Aerials must no longer be nested under Car Audio Accessories');
+              if(await frame.locator('#grid .card').filter({hasText:'Aerials'}).count()!==1)throw new Error('Hosted Aerials must be nested under Car Audio Accessories');
               const hostedTrimsCard=frame.locator('#grid .card').filter({hasText:'Trims & Harnesses'});
               await hostedTrimsCard.click();
               await frame.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
@@ -314,14 +314,12 @@ jobs:
               await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
               await frame.locator('#grid > .card').first().waitFor({state:'visible',timeout:30000});
               const autoNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
-              if(autoNames.length!==9)throw new Error('Auto Electrical root expected nine direct subcategories, got '+JSON.stringify(autoNames));
-              const hostedCatalogues=[['Aerials',6],['Automotive Sensors',11],['Automotive Switches',16],['Automotive Globes',10],['Car Mats',14],['Fuel Pumps',18]];
+              if(autoNames.length!==7)throw new Error('Auto Electrical root expected seven direct subcategories after moving Aerials and Car Mats, got '+JSON.stringify(autoNames));
+              const hostedCatalogues=[['Aerials',6,'8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11'],['Automotive Sensors',11,hostedAutoElectricalId],['Automotive Switches',16,hostedAutoElectricalId],['Automotive Globes',10,hostedAutoElectricalId],['Car Mats',14,'f98e7589-20a0-4825-9707-2680d29e5cb6'],['Fuel Pumps',18,hostedAutoElectricalId]];
               const hostedCatalogueAudit=[];
-              for(const [label,expectedSections] of hostedCatalogues){
-                await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
-                await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).waitFor({state:'visible',timeout:30000});
-                await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(1).click();
-                await frame.locator('#heading').filter({hasText:'Auto Electrical Parts & Spares'}).waitFor({state:'visible',timeout:30000});
+              for(const [label,expectedSections,parentId] of hostedCatalogues){
+                await frame.locator('body').evaluate(parentId=>{location.href='category.html?id='+parentId},parentId);
+                await frame.locator('#grid > .card').filter({hasText:label}).waitFor({state:'visible',timeout:30000});
                 const card=frame.locator('#grid > .card').filter({hasText:label}).first();
                 await card.waitFor({state:'visible',timeout:20000});
                 const image=card.locator('img').first();
@@ -343,7 +341,7 @@ jobs:
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').nth(2).click();
               await frame.locator('#heading').filter({hasText:'Car Care & Accessories'}).waitFor({state:'visible',timeout:30000});
               const careNames=await frame.locator('#grid > .card').evaluateAll(cards=>cards.map(c=>c.innerText));
-              if(careNames.length!==3||careNames.some(x=>x.includes('Car Mats')))throw new Error('Car Care root should retain three non-ASC subcategories: '+JSON.stringify(careNames));
+              if(careNames.length!==4||!careNames.some(x=>x.includes('Car Mats')))throw new Error('Car Care root must include Car Mats as its fourth subcategory: '+JSON.stringify(careNames));
               await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded',timeout:60000});
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               const hostedDepartmentSummary=await page.locator('#audioResultCount').innerText();
