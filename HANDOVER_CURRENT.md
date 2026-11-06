@@ -1,3 +1,10 @@
+## ONENAV ON413 IMAGE CANDIDATE — 2026-11-06 (SAST)
+
+- Inspected official OneNav 2023 catalogue PDF page 13 (zero-based PDF page 12): the Nissan Qashqai/X-Trail cabin visual carries the exact label `ON413-1A10 (2015+)` and `10.1-inch screen`, matching the source SKU/fitment.
+- Staged as `EXACT_OFFICIAL_CATALOGUE_VISUAL_CANDIDATE; RIGHTS_REVIEW_PENDING` in the uncovered-card CSV, commit `16568fe0a97e3dfb6331b1facf7cf5850121b61f`; report commit `abdfe7820c2e105692877cf3af590b4c2d3b054b`.
+- Rights are not confirmed; do not publish or import. Continue OneNav image reconciliation.
+
+---
 ## ONENAV EXACT IMAGE CANDIDATE — 2026-11-06 (SAST)
 
 - Inspected OneNav's official ON425-1LX gallery image. The image is explicitly labelled `Mitsubishi ECLIPSE CROSS ON425-1LX` and visually matches the 9-inch vehicle-specific radio/fascia.
