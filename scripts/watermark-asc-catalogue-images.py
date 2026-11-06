@@ -82,7 +82,9 @@ def render(source: Path, destination: Path, logo_path: Path):
     canvas_rgba.alpha_composite(logo, (600 - logo.width - 12, 600 - logo.height - 10))
     destination.parent.mkdir(parents=True, exist_ok=True)
     canvas_rgba.convert("RGB").save(destination, "JPEG", quality=96, subsampling=0, optimize=True)
-    return {"source": str(source), "output": str(destination), "source_size": list(Image.open(source).size),
+    with Image.open(source) as original:
+        source_size = list(original.size)
+    return {"source": str(source), "output": str(destination), "source_size": source_size,
             "output_size": [600, 600], "product_box": [x, y, x+product.width, y+product.height]}
 
 def main():
@@ -106,6 +108,7 @@ def main():
         if missing:
             raise SystemExit("Missing one-per-catalogue sample originals: " + ", ".join(missing))
         selected = [by_name[name] for name in SAMPLES.values()]
+    args.output_dir.mkdir(parents=True, exist_ok=True)
     report = []
     for source in selected:
         prepared, ocr = clean_outer_catalogue_text(Image.open(source).convert("RGB"))
