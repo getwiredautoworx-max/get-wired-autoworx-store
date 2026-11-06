@@ -60,6 +60,16 @@ jobs:
           print('ASC_PRESERVED_ORIGINALS=',len(list(originals.glob('*.jpg'))))
           PY
 
+      - name: Upload owner-review watermark samples
+        uses: actions/upload-artifact@v4
+        with:
+          name: asc-watermarked-pilot-visual-review
+          path: |
+            assets/asc-auto-electrical-pilot/*.jpg
+            assets/asc-auto-electrical-pilot-originals/*.jpg
+          if-no-files-found: error
+          retention-days: 3
+
       - name: Commit watermarked preview assets
         run: |
           git config user.name "Get Wired AutoWorx ASC Image Watermark"
