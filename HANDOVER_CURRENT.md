@@ -3754,3 +3754,34 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 
 ### Release boundary
 - No merge, production deployment, Axxess upload, DNS change, Supabase write, live stock/price/category change, payment activation or customer checkout test is authorised by this task. Banking/checkout functional testing remains deferred until owner banking details and explicit approval.
+
+
+## 2026-11-06 — ASC PRODUCT-ONLY IMAGE CLEANUP + WATERMARK PASS COMPLETE
+
+### Owner requirements completed on the six-catalogue preview candidate
+- Added the Get Wired AutoWorx watermark over the original ASC watermark on all **50 currently staged ASC pilot images**. The ASC mark is retained, not erased.
+- The first visual review showed that the old 181×209 card crops still contained catalogue description text and occasional page-header strips. The pipeline was therefore strengthened: OCR locates and removes catalogue headings/descriptions, trims the crop around the product, and renders a clean 600×600 product-only image before applying the Get Wired overlay.
+- Fuel Pumps now use the complete product crop; the CSS regression requires `object-fit:contain` / centered positioning so the bottom of a pump is not clipped. The product description remains separate storefront copy, not text embedded in the photo.
+- The final 50-image visual-review artifact confirms the Fuel Pump F1-012 image shows the complete pump with no printed “FUEL PUMP ELECTRIC BMW” caption or page-header strip. Aerials and the other pilot images were included in the same crop/watermark run. The owner-review artifact is short-lived; repository assets and original backups are retained.
+- All 50 original card crops remain unchanged under `assets/asc-auto-electrical-pilot-originals/`. The 50 clean, watermarked 600×600 outputs replace the preview assets under `assets/asc-auto-electrical-pilot/`. Re-runs always use the preserved originals, so watermarks do not stack.
+
+### Automation and test evidence
+- Repeatable processor: `scripts/watermark-asc-catalogue-images.py`; OCR dependency: Tesseract + pytesseract; automated trigger: `.github/workflows/watermark-asc-catalogue-images.yml`.
+- Python regression `tests/test_asc_watermark.py` passes: catalogue heading/description removal, square output, preserved source bytes, idempotent reprocessing and automatic pickup of newly added images.
+- Successful watermark workflow run **42182515283** processed 50 images and preserved 50 originals; visual-review artifact **13485986567** was inspected for Fuel Pumps and Aerials. The artifact expires after 2026-11-09; the committed assets remain in the branch.
+- Product-image layout regression was corrected to require full-image `contain` behavior rather than the old `cover` crop that caused bottom clipping.
+
+### Current branch and release state
+- Active candidate remains PR #177, OPEN / DRAFT / UNMERGED, branch `integration/asc-auto-electrical-clean-2026-11-05`.
+- Latest image-output commit at this checkpoint: `4d32e2fb25122ae96f5be448956261d266206113` (watermarked product-only images). The last exact-head package/browser checks were run on pre-output commit `a0ac1e45c8151af06ea6f4ab0efa721cc3551d52`; those passes do not prove the new image binaries are deployed. A new exact-head package, Cloudflare Pages deployment and hosted mobile/desktop browser pass must run after this handover checkpoint.
+- The current six-catalogue routes remain: Aerials under Car Audio Accessories; Car Mats under Car Care & Accessories; Sensors, Switches, Globes and Fuel Pumps as separate Auto Electrical Spares subcategories. Preserve all six routes and 75 source headings.
+- The current storefront subset is still 50 reviewed pilot records. The wider extraction register contains 983 source cards, leaving 933 records to reconcile/populate. Do not describe the 50-card pilot as full catalogue completion. Continue the remaining 933 through the same product-only image, source-code, description and fitment review workflow; all unverified records remain preview-only, quote-only, null price/stock and not live.
+
+### Next actions
+1. Deploy the exact branch head containing the 50 final clean watermarked image binaries; require exact SHA marker and hosted mobile/desktop QA across all six routes and product images.
+2. Confirm the fuel-pump image crop and the separation between product photo and store description in the deployed preview; check all six category card images and all 50 product images.
+3. Continue expanding beyond the 50 pilot using the 983-card extraction register, with source PDF/page and candidate supplier code traceability; do not auto-approve OCR copy or fitment.
+4. Preserve the owner's category placements and continue other outstanding catalogue tasks without touching production.
+
+### Release boundary
+- No PR merge, production deployment, Axxess upload, DNS change, Supabase write, live product/category/price/stock change, supplier activation, payment activation or checkout test. ASC Buyers Guides remain excluded. Production stays HOLD pending exact-head QA, owner visual acceptance and explicit release approval.
