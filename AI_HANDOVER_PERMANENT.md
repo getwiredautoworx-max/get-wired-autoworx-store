@@ -3200,3 +3200,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Exact preview deployment: https://a13a3b10.get-wired-autoworx-store.pages.dev/owner-preview.html . Stable alias: https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html . The workflow verified the stable alias marker against the exact SHA above.
 - PR #178 remains OPEN / DRAFT / UNMERGED. Do not merge or deploy production. Owner visual acceptance remains pending: ask the owner to open the exact preview URL fresh on the phone and verify the Car Audio and Home Entertainment journeys. If any tap still returns to the previous menu, capture the resulting URL/heading and make a minimal correction on this same branch.
 - Production, checkout/payment, supplier activation, live stock/price changes, Supabase writes, Axxess and DNS remain HOLD pending explicit approval.
+
+
+## 2026-11-06 — OWNER-RESUMED AUDIO/VIDEO WORKSTREAM
+- The owner explicitly resumed audio/video catalogue and storefront enrichment on 6 November 2026 as an autonomous, resumable GitHub workstream. This latest instruction supersedes the 5 November audio pause only for the resumed scope. Keep the three-root storefront architecture, exact-model/variant and source-traceability requirements, preview-only controls, and all production/release gates intact.
+- Continue on the existing PR #178 integration candidate; no competing branch or merge. Resume the existing OneNav first-brand reconciliation; do not advance to another brand until its records, descriptions, image decisions and hosted page checks are reconciled. ASC catalogues remain a subsequent separately tracked workstream; ASC Buyers Guides remain excluded unless separately reauthorised.
+- No production deployment, PR merge, Axxess/DNS change, Supabase/live write, live price/stock change, checkout/payment activation or supplier import is authorised. This is a workstream resumption, not release approval.
