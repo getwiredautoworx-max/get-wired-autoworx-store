@@ -6,6 +6,7 @@ on:
       - integration/owner-preview-single-task-2026-11-05
     paths:
       - ".preview-deploy-request"
+      - "assets/category-tree.json"
       - ".github/workflows/owner-preview-exact-sha.yml"
       - "preview-audio.html"
       - "preview-audio-brand.html"
@@ -32,6 +33,7 @@ on:
       - main
     paths:
       - ".preview-deploy-request"
+      - "assets/category-tree.json"
       - ".github/workflows/owner-preview-exact-sha.yml"
       - "index-new.html"
       - "preview-category.html"
@@ -430,6 +432,14 @@ jobs:
               await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               const accessoryNames=(await accessoryPage.locator('#grid .card h2').allTextContents()).map(x=>x.trim()).sort();
               if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child category cards mismatch: '+JSON.stringify(accessoryNames));
+              const aerialCard=accessoryPage.locator('#grid .card').filter({hasText:'Aerials'});
+              if(await aerialCard.count()!==1) throw new Error('Accessories must render exactly one Aerials navigation card');
+              await aerialCard.click();
+              await accessoryPage.waitForURL(url=>url.pathname.endsWith('/preview-audio.html')&&url.searchParams.get('department')==='Car Audio'&&url.searchParams.get('search')==='Aerials'&&url.searchParams.get('label')==='Aerials',{timeout:30000});
+              await accessoryPage.locator('#heading').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:30000});
+              console.log('GW_AERIALS_NAVIGATION_PASS',accessoryPage.url());
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               const accessoryImageAudit=await accessoryPage.locator('#grid .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
               if(accessoryImageAudit.length!==2||accessoryImageAudit.some(x=>!x.loaded))throw new Error('Accessories subcategory artwork failed: '+JSON.stringify(accessoryImageAudit));
               await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
