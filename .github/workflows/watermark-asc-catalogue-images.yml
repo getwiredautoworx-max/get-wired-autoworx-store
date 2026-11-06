@@ -1,4 +1,4 @@
-name: ASC Catalogue Image Watermark
+name: ASC Image Pilot Review
 
 on:
   push:
@@ -8,81 +8,58 @@ on:
       - 'scripts/watermark-asc-catalogue-images.py'
       - 'tests/test_asc_watermark.py'
       - '.github/workflows/watermark-asc-catalogue-images.yml'
-      - 'assets/asc-auto-electrical-pilot/*.jpg'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: asc-catalogue-image-watermark
+  group: asc-image-pilot-review
   cancel-in-progress: false
 
 jobs:
-  watermark:
+  sample:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Checkout ASC preview branch
+      - name: Checkout owner-review branch
         uses: actions/checkout@v4
         with:
           ref: integration/asc-auto-electrical-clean-2026-11-05
-          fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install OCR and image processing dependencies
+      - name: Install image and OCR dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y tesseract-ocr
-          python -m pip install --disable-pip-version-check pillow pytesseract
-
-      - name: Verify repeatable watermark pipeline
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr
+          python -m pip install --disable-pip-version-check pillow opencv-python-headless pytesseract numpy
+      - name: Test conservative image preparation
         run: python -m unittest tests/test_asc_watermark.py -v
-
-      - name: Apply Get Wired AutoWorx watermark to all staged ASC pilot images
+      - name: Generate one sample from each of the six ASC catalogues
         run: python scripts/watermark-asc-catalogue-images.py
-
-      - name: Confirm every preview image has a preserved source crop
+      - name: Validate six distinct outputs and review report
         run: |
           python - <<'PY'
-          from pathlib import Path
           import json
-          data=json.loads(Path('assets/asc-auto-electrical-preview.json').read_text())
-          images=Path('assets/asc-auto-electrical-pilot')
-          originals=Path('assets/asc-auto-electrical-pilot-originals')
-          referenced={Path(row['image_url']).name for row in data['records']}
-          missing=[name for name in sorted(referenced) if not (images/name).is_file() or not (originals/name).is_file()]
-          if missing:
-              raise SystemExit('Missing watermarked/original ASC images: '+', '.join(missing))
-          print('ASC_REFERENCED_IMAGES=',len(referenced))
-          print('ASC_WATERMARKED_FILES=',len(list(images.glob('*.jpg'))))
-          print('ASC_PRESERVED_ORIGINALS=',len(list(originals.glob('*.jpg'))))
+          from pathlib import Path
+          root=Path("artifacts/asc-image-sample")
+          images=list(root.glob("*.jpg"))
+          report=json.loads((root/"image-review-report.json").read_text())
+          if len(images)!=6 or len(report)!=6:
+              raise SystemExit(f"Expected 6 sample images, got {len(images)} images / {len(report)} report rows")
+          catalogues={row["catalogue"] for row in report}
+          expected={"Aerials","Automotive Sensors","Automotive Switches","Automotive Globes","Fuel Pumps","Car Mats"}
+          if catalogues != expected:
+              raise SystemExit(f"Catalogue coverage mismatch: {sorted(catalogues)}")
+          print("ASC_SAMPLE_IMAGES=6")
+          print("ASC_SAMPLE_CATALOGUES=", ", ".join(sorted(catalogues)))
           PY
-
-      - name: Upload owner-review watermark samples
+      - name: Upload six-catalogue visual review artifact
         uses: actions/upload-artifact@v4
         with:
-          name: asc-watermarked-pilot-visual-review
-          path: |
-            assets/asc-auto-electrical-pilot/*.jpg
-            assets/asc-auto-electrical-pilot-originals/*.jpg
+          name: asc-six-catalogue-image-sample
+          path: artifacts/asc-image-sample/
           if-no-files-found: error
-          retention-days: 3
-
-      - name: Commit watermarked preview assets
-        run: |
-          git config user.name "Get Wired AutoWorx ASC Image Watermark"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/asc-auto-electrical-pilot assets/asc-auto-electrical-pilot-originals
-          if git diff --cached --quiet; then
-            echo "ASC images are already watermarked from preserved originals."
-            exit 0
-          fi
-          git commit -m "assets: overlay Get Wired watermark on ASC catalogue images"
-          git fetch origin integration/asc-auto-electrical-clean-2026-11-05
-          git rebase origin/integration/asc-auto-electrical-clean-2026-11-05
-          git push origin HEAD:integration/asc-auto-electrical-clean-2026-11-05
+          retention-days: 7
