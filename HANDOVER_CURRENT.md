@@ -4420,3 +4420,10 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - **OA428-1 / Mitsubishi Pajero Sport 2015+:** official OneNav page confirms Classic SKU and fitment, but its linked hero image visibly carries OA1409-CPAA, a different universal unit; rejected. A third-party 2020–2021 Pajero Sport photo also does not match the 2015+ Classic fitment; rejected.
 - Review-only audit updated at commit `04ec0f6382fcbcb6cd661d8e057a23350300c45d`. No image URL added, no public JSON/customer data/price/stock changed. This audit file is not in the configured push-workflow path filter, so this documentation/audit-only commit is not expected to trigger the preview workflow.
 - Totals remain 45 OneNav official pages, 45 descriptions, 8 image candidates and 37 exact-image gaps. Exact-head build/tests/preview remain unverified; do not claim readiness. Next: continue OneNav image gaps; ASC catalogue work remains subsequent and Buyers Guides excluded.
+
+
+## 2026-11-06 09:25 SAST — FORTUNER / GWM ONENAV IMAGE CHECKS
+
+- **OA017-2 / Toyota Fortuner 2019+ with CANBUS:** the Go4Lo result's image visibly carries screen marking OA1409-CPAA rather than OA017-2; rejected despite the matching page title.
+- **OA509-1 / GWM Steed 5E:** the Evorevo listing does not identify OA509-1 and describes a 10.1-inch Android 10 / 4GB / 64GB configuration, inconsistent with the Classic 9-inch-in-10.1-inch-frame / 1024×600 row; rejected as an unverified different series/variant.
+- Review-only audit updated at `acd9cd22edc9c479f6d840634bed2a5bd80bcbb2`. No new image candidate. Totals remain 45 official OneNav pages, 45 descriptions, 8 image candidates and 37 image gaps. No public/customer data, price or stock changed; exact-head QA and preview remain unverified.
