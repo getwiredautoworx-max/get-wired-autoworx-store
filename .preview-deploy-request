@@ -125,3 +125,7 @@ required_checks=exact-sha-marker;deployed-category-tree-parent-readback;Aerials-
 request=ASC-HOSTED-PARENT-PAGE-DIAGNOSTIC-EXACT-HEAD-2026-11-06
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;deployed-category-tree-parent-readback;Aerials-rendered-under-Car-Audio-Accessories;Car-Mats-rendered-under-Car-Care;four-auto-electrical-subcategories;all-six-catalogue-routes;mobile-desktop-preview
+
+request=ASC-HOSTED-ROUTE-NAVIGATION-ARGUMENT-FIX-2026-11-06
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;Aerials-under-Car-Audio-Accessories;Car-Mats-under-Car-Care;all-six-catalogue-routes;mobile-desktop-preview;no-checkout;no-live-writes
