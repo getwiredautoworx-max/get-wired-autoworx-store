@@ -445,7 +445,7 @@ assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 113);
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 76);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 113);
-assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 7);
+assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 8);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 43);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 1);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length, 1, 'OA266-1 series remains unclassified because the official page does not identify Classic, Evolution or Pro');
