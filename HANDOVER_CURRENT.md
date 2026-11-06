@@ -4661,3 +4661,11 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Alias/variant safeguards: source ON-DVRSD differs from official page code ONDVRSD; possible formatting alias only. Source ON4989-X differs from official ON4988-X Smart Mirror page. Source OX434RC differs from official ON434 product code. Do not merge these codes or reuse images without supplier confirmation.
 - Remaining camera/accessory rows have no exact official model/page match in this pass: OX-4991DVR, OX-435RC, OX-DVR, OX-LCAM001 (official product-title candidate but exact source code not exposed), CL4988-LCAM, CL4988-MCAM, ON4988-EXT, 3E2040F, 3E5040F, SuzCamPlug-F and SuzCamPlug-M. Keep images and customer descriptions pending; 3E sensor kits and Suzuki camera adapters may belong outside the main Car Audio product group after exact category review.
 - Private review tree updated with verified description fields for CAM007-AHD and OX-4990DVR. No images are marked fully approved; no public product or GW SKU is created.
+
+
+## OneNav 86 fitment-kit catalogue crosswalk — 2026-11-06
+
+- Created and read-back verified `catalogue-review/onenav-86-fitment-kit-catalogue-crosswalk-2026-11-06.csv` with all 86 fitment-kit source rows and a comparison against the official 2023 OneNav catalogue.
+- Evidence results: 52 fitment-family matches in the historical official catalogue, 25 partial/variant references, 6 with no exact catalogue reference, and 3 fitment conflicts. These are historical family cross-checks, not final current fitment approvals; source kit descriptions and exact vehicle/year/trim must still be checked against current manufacturer/supplier evidence.
+- Notable conflicts preserved: ON416-FK1 source says Nissan Terra 2022+ 10.1-inch while the 2023 catalogue entry is X-Terra 2022+ 9-inch; ON668-FK1 says VW Universal while the catalogue's ON668 model is Polo-specific; ON821-FK1 is ML 2006–2010 while a separate head-unit source row ON821-2A11 claims ML 2012–2015. ON009 CANBUS kit is not supported by the catalogue's no-CANBUS ON009 entry. ON413-FK2's 360-camera kit contents remain unverified.
+- All 86 exact kit images remain unverified/not located; no GW SKUs assigned. Keep as private DO NOT IMPORT data. The 2023 PDF is a historical manufacturer reference, not current stock/pricing evidence.
