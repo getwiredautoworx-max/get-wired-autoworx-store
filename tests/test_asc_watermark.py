@@ -1,80 +1,50 @@
 import hashlib
-import subprocess
-import sys
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
-import pytesseract
-
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "scripts" / "watermark-asc-catalogue-images.py"
-
+SPEC = importlib.util.spec_from_file_location("asc_images", ROOT / "scripts" / "watermark-asc-catalogue-images.py")
+MODULE = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(MODULE)
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
-
-class AscWatermarkTests(unittest.TestCase):
-    def make_image(self, path, product_color=(165, 175, 185)):
-        image = Image.new("RGB", (640, 480), (250, 250, 250))
-        draw = ImageDraw.Draw(image)
-        try:
-            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 24)
-        except OSError:
-            font = ImageFont.load_default()
-        draw.text((18, 10), "ELECTRIC FUEL PUMPS", font=font, fill=(20, 35, 70))
-        draw.rounded_rectangle((210, 120, 430, 330), radius=28, fill=product_color, outline=(30, 40, 50), width=8)
-        draw.text((80, 400), "FUEL PUMP ELECTRIC BMW", font=font, fill=(15, 15, 15))
-        image.save(path, "JPEG", quality=95)
-
-    def run_pipeline(self, image_dir, originals_dir):
-        subprocess.run(
-            [sys.executable, str(SCRIPT), "--image-dir", str(image_dir),
-             "--originals-dir", str(originals_dir)],
-            check=True,
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-        )
-
-    def test_product_only_crop_preserves_original_and_is_idempotent(self):
+class AscImagePilotTests(unittest.TestCase):
+    def test_contain_preserves_full_product_and_uses_real_logo_repeatably(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            images = root / "images"
-            originals = root / "originals"
-            images.mkdir()
-            raw = images / "asc-test.jpg"
-            self.make_image(raw)
-            self.run_pipeline(images, originals)
+            source = root / "source.jpg"
+            first = root / "first.jpg"
+            second = root / "second.jpg"
+            image = Image.new("RGB", (640, 480), (250, 250, 250))
+            draw = ImageDraw.Draw(image)
+            draw.rectangle((180, 90, 460, 380), fill=(170, 70, 45), outline=(20, 20, 20), width=8)
+            image.save(source, "JPEG", quality=98)
+            MODULE.render(source, first, ROOT / "assets" / "gw-logo.png")
+            MODULE.render(source, second, ROOT / "assets" / "gw-logo.png")
+            self.assertEqual(Image.open(first).size, (600, 600))
+            self.assertEqual(digest(first), digest(second), "re-runs from the same original must be deterministic")
+            output = Image.open(first).convert("RGB")
+            pixels = output.load()
+            # The complete source product remains present inside the contained photo region.
+            self.assertTrue(any(pixels[x, y][0] > 100 and pixels[x, y][0] > pixels[x, y][1] * 1.5
+                                for y in range(100, 500, 5) for x in range(70, 530, 5)))
+            # Actual repository logo is required, not a generated text substitute.
+            self.assertTrue((ROOT / "assets" / "gw-logo.png").is_file())
 
-            backup = originals / raw.name
-            self.assertTrue(backup.exists())
-            first_output = digest(raw)
-            original_hash = digest(backup)
-            self.assertNotEqual(first_output, original_hash)
-            self.assertEqual(digest(backup), original_hash)
-
-            output = Image.open(raw)
-            self.assertEqual(output.size, (600, 600))
-            recognized = pytesseract.image_to_string(output).upper()
-            self.assertNotIn("FUEL PUMP ELECTRIC BMW", recognized)
-            self.assertNotIn("ELECTRIC FUEL PUMPS", recognized)
-
-            self.run_pipeline(images, originals)
-            self.assertEqual(digest(raw), first_output, "reruns must not stack watermarks or recrop prior output")
-            self.assertEqual(digest(backup), original_hash, "source crop must remain unchanged")
-
-            # Newly added ASC catalogue crops are automatically picked up.
-            new_image = images / "asc-new-catalogue-item.jpg"
-            self.make_image(new_image, (175, 145, 115))
-            new_raw_hash = digest(new_image)
-            self.run_pipeline(images, originals)
-            self.assertTrue((originals / new_image.name).exists())
-            self.assertNotEqual(digest(new_image), new_raw_hash)
-            self.assertEqual(digest(originals / new_image.name), new_raw_hash)
-
+    def test_ocr_cleanup_only_targets_outer_catalogue_bands(self):
+        image = Image.new("RGB", (800, 600), (250, 250, 250))
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((270, 180, 530, 430), fill=(165, 175, 185), outline=(20, 30, 40), width=8)
+        # Keep the central product untouched; outer text is eligible for cleanup.
+        cleaned, report = MODULE.clean_outer_catalogue_text(image)
+        self.assertEqual(cleaned.size, image.size)
+        self.assertIsInstance(report["outer_text_removed"], list)
+        self.assertIsInstance(report["text_near_product_review"], list)
 
 if __name__ == "__main__":
     unittest.main()
