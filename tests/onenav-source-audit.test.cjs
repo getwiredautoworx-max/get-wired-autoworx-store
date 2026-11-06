@@ -60,22 +60,42 @@ assert.equal(records.filter(row => !row.image_url_candidate).length, 38, '38 exa
 assert.ok(records.every(row => row.enrichment_status !== 'APPROVED_FOR_IMPORT'), 'Review records must never be silently promoted to import');
 
 const missingBrand = records.filter(row => !row.customer_brand_display.trim());
-assert.deepEqual(missingBrand.map(row => row.supplier_sku_reference_only), ['ON115-3LX'],
-  'Only the documented OneNav Evolution row may remain missing its parent-brand display');
+assert.deepEqual(missingBrand, [], 'Every OneNav audit row must retain its customer-facing parent brand');
 const evolution = bySku.get('ON115-3LX');
+assert.equal(evolution.customer_brand_display, 'OneNav');
 assert.match(evolution.customer_description, /OneNav Evolution/);
 assert.match(evolution.official_manufacturer_product_page, /onenav-9-inch-for-isuzu-rba-rbb/);
 assert.match(evolution.image_status, /image pending/i,
   'ON115-3LX has no official image asset; do not add a substitute');
 
+const coveragePath = 'catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv';
+const coverageParsed = parseCsv(fs.readFileSync(coveragePath, 'utf8'));
+const coverageHeaders = coverageParsed[0];
+const coverage = coverageParsed.slice(1).filter(row => row.some(value => value !== '')).map(values => {
+  const record = {};
+  coverageHeaders.forEach((header, index) => { record[header] = values[index] || ''; });
+  return record;
+});
+assert.equal(coverage.length, 19, 'All 19 uncovered storefront titles must remain reconciled');
+assert.ok(coverage.every(row => row.exact_source_title_match === 'YES'), 'Every uncovered title must link to an exact source title');
+assert.ok(coverage.every(row => row.source_row_candidates && row.supplier_sku_candidates), 'Every uncovered title must retain source row and supplier SKU references');
+assert.ok(coverage.every(row => row.import_status === 'DO NOT IMPORT'), 'Coverage reconciliation must not approve imports');
+assert.equal(coverage.filter(row => row.model_identity_status.startsWith('AMBIGUOUS')).length, 1,
+  'The ON019 same-title/two-SKU exception must remain explicit');
+assert.equal(coverage.filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')).length, 1,
+  'Only the independently verified ON016-2LX row is currently an official exact SKU/title match');
+
 console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
-  rows: records.length,
-  uniqueSkus: bySku.size,
+  auditRows: records.length,
+  uniqueAuditSkus: bySku.size,
   individualProductPages: 42,
   categoryFitments: 3,
   detailsVerifiedImagePending: statusCounts.DETAILS_VERIFIED_IMAGE_PENDING,
   ownerPreviewCandidates: statusCounts.OWNER_PREVIEW_CANDIDATE_ONLY,
   imageCandidates: imageRows.length,
   imageGaps: 38,
-  documentedBrandFieldException: 'ON115-3LX'
+  uncoveredStorefrontTitles: coverage.length,
+  sourceSkuRowsForUncoveredTitles: 20,
+  officialExactMatchesInUncoveredSet: 1,
+  ambiguousSameTitleGroups: 1
 }));
