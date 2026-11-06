@@ -4540,3 +4540,11 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - Workflow update commit: `a0acf1bead47dce6e0b686a13f8bd03e698c9e34`.
 - To finish verification, the owner must trigger **Owner Preview — Exact SHA Deploy and Browser QA** manually on branch `integration/owner-preview-single-task-2026-11-05` in GitHub Actions and provide the resulting run URL/ID. The workflow then checks the exact selected SHA, package build, both Node regressions, public SKU audit, deployed-SHA marker and hosted 390px/1365px browser checks including the single Aerials click-through.
 - No preview URL is authorized until that run succeeds. PR #178 remains draft/unmerged; production HOLD.
+
+
+## WORKFLOW DISPATCH LIMITATION CLARIFICATION — 2026-11-06
+
+- Checked the default-branch copy of `.github/workflows/owner-preview-exact-sha.yml`: it does not contain `workflow_dispatch`. GitHub only exposes manual dispatch when the workflow file on the default branch supports it, so adding that event only to the draft PR branch would not provide a usable manual trigger.
+- Removed the ineffective branch-only `workflow_dispatch` change; retained the Aerials Playwright navigation test and `assets/category-tree.json` path filters.
+- Do not make an unapproved change to `main` or merge PR #178 merely to create a trigger. The current GitHub connector does not expose a workflow-dispatch action and its run lookup filters to PR-triggered runs; exact-head status for the push-triggered preview remains unobservable here.
+- Await an owner-provided Actions run link/ID or an explicitly approved supported trigger path. Until then, no exact-head build/test pass or current preview can be claimed.
