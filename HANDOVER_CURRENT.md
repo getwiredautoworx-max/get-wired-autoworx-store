@@ -3683,3 +3683,12 @@ This checkpoint supersedes the earlier note that Aerials and Car Mats should rem
 - The first QA run exposed a stale assertion in `tests/three-category-storefront-structure.test.cjs` that still required Aerials and Car Mats under Auto Electrical. Updated that test to assert the owner's corrected parent mapping. This failure was a stale test expectation, not a category-tree defect.
 - Latest code/data/test head after photo crop + regression updates: `200288c1afe773fc88268e065c7d88c553892f7f`. Fresh exact-head Cloudflare package QA, owner-preview browser QA and deployment must complete before presenting the corrected preview URL. Earlier SHA QA is superseded for these corrections.
 - No live category assignments, product imports, price/stock updates, Supabase writes, checkout/payment activation, production deployment, DNS or Axxess changes.
+
+
+## 2026-11-06 — ASC CATEGORY ROUTE BROWSER QA DEBUG
+
+- Corrected preview parent placements and photo-only presentation are in the source branch. The 50 product photos now use a fixed crop window that excludes the printed catalogue description/SKU footer; Aerials use a lower image position to retain the full aerial. Category tile artwork has separate per-image positions for Aerials and Car Mats. Source image files and watermarks are unchanged.
+- Public package regression passed on `675a689c877f886eb5eb1e01f070d7b56e6b0af2` (run 42176515854). Browser QA then exposed malformed JavaScript quoting in the new dynamic parent breadcrumb, which prevented the ASC route from rendering. This was corrected in `8077d39a7c346a45ccad3155eaac6a662c4245cf`.
+- A stale browser QA assertion was also corrected to test Aerials under Car Audio Accessories and Car Mats under Car Care & Accessories, and the six catalogue route test now opens each catalogue from its actual parent. A wait condition and diagnostic message were added for the async catalogue heading.
+- Fresh exact-head browser QA, public-package QA and non-production deployment are running for code head `8077d39a7c346a45ccad3155eaac6a662c4245cf` (runs 42176549162, 42176549342, 42176549427). Do not send a new preview URL until the hosted SHA marker and mobile/desktop QA pass.
+- No production or live data actions. Production remains HOLD.
