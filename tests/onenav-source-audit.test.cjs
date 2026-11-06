@@ -82,8 +82,13 @@ assert.ok(coverage.every(row => row.source_row_candidates && row.supplier_sku_ca
 assert.ok(coverage.every(row => row.import_status === 'DO NOT IMPORT'), 'Coverage reconciliation must not approve imports');
 assert.equal(coverage.filter(row => row.model_identity_status.startsWith('AMBIGUOUS')).length, 1,
   'The ON019 same-title/two-SKU exception must remain explicit');
-assert.equal(coverage.filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')).length, 1,
-  'Only the independently verified ON016-2LX row is currently an official exact SKU/title match');
+const officialExactSkus = coverage
+  .filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_SITE_EXACT_SKU_AND_TITLE')
+    || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
+    || row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_CATALOGUE_EXACT_SKU_FITMENT'))
+  .map(row => row.supplier_sku_candidates).sort();
+assert.deepEqual(officialExactSkus, ['OA-5263BT', 'ON016-2LX', 'ON413-1A10'],
+  'Only independently verified official manufacturer SKU/title or catalogue-code matches may be marked exact');
 
 console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   auditRows: records.length,
@@ -96,6 +101,7 @@ console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   imageGaps: 38,
   uncoveredStorefrontTitles: coverage.length,
   sourceSkuRowsForUncoveredTitles: 20,
-  officialExactMatchesInUncoveredSet: 1,
+  officialExactMatchesInUncoveredSet: officialExactSkus.length,
+  officialExactSupplierSkus: officialExactSkus,
   ambiguousSameTitleGroups: 1
 }));
