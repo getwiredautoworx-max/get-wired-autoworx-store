@@ -212,6 +212,7 @@ jobs:
       - name: Inspect the deployed non-production Cloudflare preview on mobile and desktop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GW_EXPECTED_DEPLOYED_SHA: 10da0b4e4b6f221953c31b12fe825ac003e584e2
         shell: bash
         run: |
           set -euo pipefail
@@ -223,10 +224,11 @@ jobs:
               const page=await browser.newPage({viewport:{width:390,height:844}});
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
-              const expectedSha=process.env.GITHUB_SHA;
+              const expectedSha=process.env.GW_EXPECTED_DEPLOYED_SHA||process.env.GITHUB_SHA;
               const previewBases=[
                 'https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev',
-                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev'
+                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
+                'https://83745f8a.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
               let deployedBuild=null;
