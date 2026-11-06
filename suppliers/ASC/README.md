@@ -140,3 +140,11 @@ The dedicated integration regression and three-category structural regression pa
 - The automated workflow `.github/workflows/watermark-asc-catalogue-images.yml` runs the same treatment for new pilot images added later. Apply the same rule as the remaining ASC catalogue stock is populated; do not treat the current 50-record pilot as the complete catalogue.
 - Product descriptions and promotional catalogue copy must remain outside the image in the separate storefront description area. Preserve the full product in the crop, including the bottom edge of fuel pumps.
 - Watermarking is not proof of image-use rights, exact SKU/photo match, product identity, fitment, price or physical stock. All existing review-only and public-use hold statuses remain until separately verified and owner-approved.
+
+
+### Product-only crop pipeline — 2026-11-06
+
+- The ASC pilot image workflow now OCR-detects and removes catalogue headings and description lines from the prepared product photo, trims the crop around the product, then renders a square 600×600 preview image with the Get Wired AutoWorx watermark overlay.
+- The ASC watermark is preserved. Original card crops are kept unchanged in `assets/asc-auto-electrical-pilot-originals/`; reprocessing starts from those originals and does not stack watermarks.
+- The first 50 staged pilot images have passed the automated product-only crop/watermark run. The Fuel Pumps F1-012 visual check confirms the complete pump is visible and the catalogue description is no longer embedded in the image. Continue the same treatment for every additional ASC image as catalogue stock is populated.
+- This does not clear image rights, approve product identity, verify fitment, or make an item live. The remaining 933 of the 983-card extraction register still require reconciliation; the 50-record pilot is not full catalogue completion.
