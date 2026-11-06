@@ -1,6 +1,7 @@
 name: Owner Preview — Exact SHA Deploy and Browser QA
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - integration/owner-preview-single-task-2026-11-05
@@ -67,7 +68,7 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05'
     name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
