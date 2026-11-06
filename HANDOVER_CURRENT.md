@@ -1,3 +1,12 @@
+## ONENAV VARIANT CONFLICT CHECKPOINT — 2026-11-06 (SAST)
+
+- Official OneNav Evolution category confirms the Prado A11 title/fitment (2002–2009), but not SKU. A reseller lists ON014-1A11; the 2023 official OneNav PDF lists older ON014-1A10 for that fitment. Keep the A11/A10 code conflict unresolved.
+- Official OneNav H1 A11 product page identifies ON312-1LX, 9-inch. NXT Level Tech lists the supplier row ON412-1LX as 10.1-inch. Similar vehicle/year title is insufficient to treat them as the same variant; no spec/image transfer.
+- Updated uncovered-card CSV commit `e10e5a37d3391f55e7d677c35a0a5dc2414065d2`; detailed audit commit `53b4be9791a9f5180097027b8717de7fa87532fe`.
+- `ON016-2LX` remains the sole exact official manufacturer SKU/title match in the 19-card reconciliation. All entries remain DO NOT IMPORT; the other rows are category/reseller evidence or unresolved.
+- Next: continue OneNav official SKU/variant verification and image matching. Do not proceed to ASC until the OneNav workstream is complete or the remaining exceptions are explicitly owner-dependent and documented. Production remains HOLD.
+
+---
 ## ONENAV AUDIT REGRESSION UPDATE — 2026-11-06 (SAST)
 
 - Updated `tests/onenav-source-audit.test.cjs` after fixing the `ON115-3LX` parent-brand field. The test now requires all 45 audit rows to have a customer-facing brand, checks `ON115-3LX` is OneNav while retaining OneNav Evolution in its description, and validates the 19-card source-reconciliation CSV (19 exact source-title matches, all DO NOT IMPORT, one ambiguous two-SKU title group, and one official exact SKU/title match).
