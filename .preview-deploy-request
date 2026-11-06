@@ -104,3 +104,8 @@ required_checks=exact-sha-marker-on-integration-branch-alias;mobile-and-desktop;
 request=ASC-AUTO-ELECTRICAL-LOCAL-QA-PREVIEWBASE-REFERENCE-FIX
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;local-and-hosted-mobile;ASC-category-navigation;Car-Audio-brand-first;Car-Care-cards
+
+
+request=ASC-OWNER-CORRECTED-CATEGORY-AND-PRODUCT-ONLY-IMAGE-PREVIEW-2026-11-06
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;Aerials-under-Car-Audio-Accessories;Car-Mats-under-Car-Care;Sensors-Switches-Globes-Fuel-Pumps-under-Auto-Electrical;all-six-catalogue-routes;product-photo-crops-no-description-overlay;390px-mobile;1365px-desktop;checkout-hidden;supabase-writes-blocked;public-sku-audit
