@@ -3234,3 +3234,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## 2026-11-06 — TOYOTA HILUX / COROLLA CROSS IMAGE REJECTIONS
 - OA018-2 Classic Hilux 9-inch in 10.1-inch frame: surfaced ON018-2A Pro 10.1-inch Hilux image rejected. OA016-2 Classic Corolla Cross: ON016-2A / ON016-2A11 Pro and ON016-2LX Evolution/A11 assets rejected.
 - Review-only audit commit `9b3131a68fa10f3e33b7035546ea3accc8bb15e8`; no new candidate. Totals unchanged: 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Production HOLD.
+
+
+## 2026-11-06 — TRANSIT / SWIFT IMAGE TRIAGE
+- OA266-1 Transit/Tourneo: third-party listing reuses SKU but labels it Pro with conflicting screen/resolution/features; not accepted. Separate Evolution ON266-1LX image rejected. OA713-1 Swift: 10.1-inch Swift image not verified as Classic 9-inch OA713-1 in 10.1-inch frame; rejected.
+- Review-only audit commit `d5ed7b4b89cc6767ab9e7b6c214c49ba912caec9`; no new candidate. Totals remain 45 official pages, 45 descriptions, 8 image candidates, 37 gaps. Production HOLD.
