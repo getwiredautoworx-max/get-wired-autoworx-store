@@ -133,3 +133,7 @@ required_checks=exact-sha-marker;Aerials-under-Car-Audio-Accessories;Car-Mats-un
 request=ASC-HOSTED-CATEGORY-LEAF-LINK-EXPECTATION-FIX-2026-11-06
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;parent-category-links;leaf-catalogue-redirects;all-six-catalogue-routes;product-photo-crops;mobile-desktop-preview
+
+request=ASC-HOSTED-LEAF-AND-PARENT-ID-AUDIT-FIX-2026-11-06
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;parent-and-leaf-category-links;all-six-catalogue-routes;product-photo-crops;390px-mobile;1365px-desktop
