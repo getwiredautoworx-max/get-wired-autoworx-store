@@ -319,7 +319,7 @@ jobs:
               const hostedCatalogueAudit=[];
               for(const [label,expectedSections,parentId] of hostedCatalogues){
                 await frame.locator('body').evaluate(parentId=>{location.href='/category.html?id='+parentId},parentId);
-                await frame.locator('#grid > .card').filter({hasText:label}).waitFor({state:'visible',timeout:30000});
+                try{await frame.locator('#grid > .card').filter({hasText:label}).waitFor({state:'visible',timeout:30000})}catch(e){const debug=await frame.locator('#grid').evaluate(el=>({url:location.href,text:el.innerText,debug:el.dataset.debug,error:el.dataset.error}));throw new Error('Hosted '+label+' parent category did not render its catalogue link: '+JSON.stringify(debug)+' cause='+e.message)}
                 const card=frame.locator('#grid > .card').filter({hasText:label}).first();
                 await card.waitFor({state:'visible',timeout:20000});
                 const image=card.locator('img').first();
