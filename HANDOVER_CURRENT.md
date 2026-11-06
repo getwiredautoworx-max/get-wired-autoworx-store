@@ -4460,3 +4460,36 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - **OA425-1 / Mitsubishi Eclipse Cross 2018–2020:** surfaced CarVue image matches vehicle fitment but is not identified as OneNav or OA425-1; rejected.
 - **OA429-1 / “Mitsubishi 200m”:** NXT Level Tech lists Classic SKU OA429-1 under that title, while the official OneNav catalogue PDF identifies ON429-1A10 as “200MM Universal”. This appears to be a product/fitment identity ambiguity (possibly a 200mm universal opening, not a Mitsubishi model). No image or vehicle-specific description approved pending supplier/manufacturer clarification.
 - Review-only audit updated at `ae928865581f549c018f22aea93f9537b379e84b`. No new image candidate. Totals remain 45 official pages, 45 descriptions, 8 image candidates and 37 exact-image gaps. No customer-facing data or preview assets changed.
+
+
+---
+
+## OWNER-RESUMED PARALLEL EXECUTION — ASC + AUDIO — 2026-11-06 08:27 SAST
+
+### Owner instruction and task-start correction
+- Owner explicitly directed that ASC catalogue integration continue in parallel with the automated Audio category work; do not serialize the two workstreams or hold ASC until Audio is complete.
+- Workstreams remain isolated at source/data level and are coordinated through non-production preview integration. Do not overwrite or merge stale candidate branches. This entry records the task start and the verified ASC evidence gathered in this session; earlier inspection preceded this retrospective handover update.
+- The authoritative overlay `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` was read from `main`. It governs supplier scope, pricing, category architecture and release controls. The expected `AI_HANDOVER_PERMANENT.md` was not found at repository root on `main` or the active audio branch; do not claim it was read. Continue using the owner directive plus this current handover until the canonical permanent file is located.
+
+### ASC catalogue evidence verified
+- Current six source PDFs: Aerials, Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats and Fuel Pumps; 72 pages and 75 contents sections.
+- PR #173 extraction artifact `13331749468` was downloaded and inspected. It contains 983 individual product-card records and source-card crops. Extraction summary confirms all 983 printed supplier-code labels were visually checked; 115 OCR code corrections were manually visually checked; 868 codes had dual-OCR agreement; 0 unresolved supplier codes; 0 duplicate supplier codes; 0 duplicate normalized internal SKUs. This is source-code identity validation only, not description/fitment/image approval.
+- PR #173 latest described content review: 50 pilot descriptions editorially reviewed; 42 pilot fitment entries verified; 8 pilot cards have no fitment printed. The other 933 descriptions remain OCR drafts; their fitment/specifications/dimensions remain unverified.
+- PR #177 is the current independently verified ASC owner-preview candidate: six dedicated catalogue routes and six navigation cards, 75 original section headings, 50 visually reviewed pilot records and 50 watermarked review crops. All pilot records remain preview-only, null price/stock, no GW SKU and not cleared for production image use. ASC wording must remain exactly `Price On Request due to Limited Stock and Availability` where price is absent. No Buyers Guides.
+- PR #177 code/data/test SHA `1b6aaf1e29d68fb0254c71ecf3f538b417ad8ecf`; branch latest recorded head `6fd1c00af32946be482660b8219c48d465411d0f` (later README/handover-only). Public Package QA run `42077207779` completed SUCCESS; Owner Preview Browser QA run `42077207832` completed SUCCESS. Both jobs were inspected and all listed steps completed successfully.
+- Exact owner preview URL recorded for that tested code SHA: https://integration-asc-auto-electri.get-wired-autoworx-store.pages.dev/owner-preview.html . It is a non-production preview, not owner acceptance or production readiness. Do not describe the full 983-product catalogue as complete.
+
+### Parallel workstream correction
+- PR #178 remains the sole active audio/storefront-enrichment candidate on branch `integration/owner-preview-single-task-2026-11-05`; its current OneNav/audio work continues independently. The older PR #178 status text saying ASC is only a subsequent workstream is superseded by the owner's 2026-11-06 direct instruction to run both concurrently.
+- Do not merge PR #177 into PR #178 or main blindly. Keep ASC source records and audio enrichment isolated, then reconcile into one coordinated owner-preview candidate after checking exact diffs, current category mapping and shared storefront files.
+
+### Remaining ASC work before claiming catalogue completion
+1. Reconcile the preview's six category placements against the latest owner-approved mapping before carrying them into the coordinated candidate; never silently move a catalogue based on stale PR text.
+2. Continue editorial verification for the remaining 933 descriptions against the original catalogue card/page images; transcribe only printed fitment/specifications/dimensions and flag ambiguous OCR rather than guessing.
+3. Verify exact product-image-to-SKU identity. The 50 existing pilot crops retain catalogue watermarks; image-use rights/clean image approval remain unresolved. Do not substitute similar models or treat a watermarked crop as a cleared public product photo.
+4. Prepare review-only staging for the full catalogue with source filename/page/card, verified ASC SKU, exact description/fitment/specifications status, image status, proposed GW SKU only after collision checks, quote-only price state and DO NOT IMPORT guardrails.
+5. Reconcile the completed ASC candidate with the current audio branch without losing either workstream; run exact-head package tests and hosted mobile/desktop owner-preview checks on the single integrated candidate before presenting it as the current combined preview.
+
+### Release boundaries
+- No ASC Buyers Guides; no invented prices, stock, fitment, specs or GW SKUs; no supplier activation, public import, Supabase write, live category/product/price/stock mutation, checkout/payment activation, production deployment, Axxess upload or DNS change.
+- Functional/payment tests remain deferred until the owner adds banking details. Production remains HOLD pending exact-head checks, owner acceptance and explicit release approval.
