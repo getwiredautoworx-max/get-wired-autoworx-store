@@ -1,3 +1,13 @@
+## ONENAV AUDIT REGRESSION UPDATE — 2026-11-06 (SAST)
+
+- Updated `tests/onenav-source-audit.test.cjs` after fixing the `ON115-3LX` parent-brand field. The test now requires all 45 audit rows to have a customer-facing brand, checks `ON115-3LX` is OneNav while retaining OneNav Evolution in its description, and validates the 19-card source-reconciliation CSV (19 exact source-title matches, all DO NOT IMPORT, one ambiguous two-SKU title group, and one official exact SKU/title match).
+- Test-source update commit / current PR #178 head: `1fb96fba6972a3dbd5138ca96bd32b31b22a4753`.
+- Ran 12 equivalent direct data assertions against the current audit CSV, coverage CSV and test source: **12/12 passed**. This was not execution of the committed Node test. No local repository checkout is available in this session; do not claim Node or hosted CI pass.
+- Current branch ref and PR #178 both point to `1fb96fba6972a3dbd5138ca96bd32b31b22a4753`; PR remains open/draft/unmerged. Combined commit status is empty and GitHub Actions query for this SHA returns zero runs.
+- `.preview-deploy-request` still names older SHA `1bc6686f252bc08d55534fc7412ddfb2e44db2b4`. It was deliberately not changed: doing so may trigger hosted preview/release-credit workflows, which are not authorised. No current exact-head preview or hosted browser verification is claimed.
+- Next OneNav tasks remain exact manufacturer identity/image verification for the remaining 18 source-linked title groups, resolution of the `ON019-A121M` / `ON019-A14` ambiguity, and review of the 38 image gaps plus seven existing candidates. OneNav remains active; ASC is not yet ready to resume.
+
+---
 ## ONENAV OFFICIAL MODEL EVIDENCE — 2026-11-06 (SAST)
 
 - Verified one exact manufacturer product-page match among the 19 uncovered cards: `ON016-2LX`, OneNav 10.1inch for Corrola Cross A11 (2021+). Official OneNav page confirms exact SKU/title, OneNav Evolution line, Toyota fitment, 10-inch screen, OneConnect, Bluetooth 5.4, DSP and 4 × 45 W output. Image remains unextracted/unapproved. https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/
