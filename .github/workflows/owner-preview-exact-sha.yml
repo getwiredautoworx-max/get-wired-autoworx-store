@@ -437,7 +437,7 @@ jobs:
               if(await aerialCard.count()!==1) throw new Error('Accessories must render exactly one Aerials navigation card');
               await aerialCard.click();
               await accessoryPage.waitForURL(url=>/\/preview-audio(?:\.html)?$/.test(url.pathname)&&url.searchParams.get('department')==='Car Audio'&&url.searchParams.get('search')==='Aerials'&&url.searchParams.get('label')==='Aerials',{timeout:30000});
-              await accessoryPage.locator('#heading').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:30000});
+              await accessoryPage.locator('#audioSelectedDepartment').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:30000});
               console.log('GW_AERIALS_NAVIGATION_PASS',accessoryPage.url());
               await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
               await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
