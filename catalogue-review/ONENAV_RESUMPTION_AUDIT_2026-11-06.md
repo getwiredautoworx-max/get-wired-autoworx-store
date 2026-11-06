@@ -77,3 +77,14 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - Official OneNav Evolution category results list `OneNav 9inch for Prado A11 (2002-2009)`, confirming product-line title/fitment, but not its SKU. A reseller type reference says `ON014-1A11`; the 2023 official PDF catalogue lists older `ON014-1A10` for the same Prado years. Keep the A11/A10 code conflict open; do not pick one by inference. Official category: https://onenav.co.za/product-category/onenav-evolution/page/3/.
 - The H1 A11 discrepancy is now stronger: OneNav's own product page identifies the H1 A11 as `ON312-1LX` with a 9-inch screen, whereas NXT Level Tech lists the supplier row `ON412-1LX` as 10.1-inch. Same vehicle/year title does not establish same variant; treat as unresolved and do not transfer images/specs. Official page: https://onenav.co.za/product/onenav-9-inch-for-h1-2015-2018-a11/.
 - Updated evidence classifications in the uncovered-card CSV, commit `e10e5a37d3391f55e7d677c35a0a5dc2414065d2`. `ON016-2LX` remains the sole exact official SKU/title match in the 19-card set; all other entries are either category/reseller evidence or unresolved.
+
+
+## Additional exact catalogue checks — 2026-11-06
+
+- `OA-5263BT`: OneNav's official shop page confirms exact title and SKU for **OneAcoustic Pro Series 1DIN media player with Bluetooth**. This is a separate OneAcoustic product family, not a OneNav head unit; the storefront brand needs to reflect OneAcoustic if this card is ever approved. https://onenav.co.za/product/oneacoustic-pro-series-1din-media-player-with-bt/.
+- `ON413-1A10`: the official OneNav 2023 catalogue explicitly identifies Nissan Qashqai / X-Trail (2015+) and 10.1-inch screen. This is an exact manufacturer catalogue SKU/fitment match. The PDF image has not been extracted/approved.
+- `ON019-A121M` / `ON019-A14`: both supplier rows share the same title, while the official 2023 catalogue lists `ON019-A101M`. Keep both source SKUs and the code mismatch open; no merge or inferred alias.
+- `ON103-CPAA`: supplier code prefix conflicts with official catalogue `OA103-CPAA` for the 6.8-inch universal unit. Do not normalize ON/OA prefixes.
+- `ON665-1A11` and `ON669-A14`: official catalogue lists related but different codes `ON665-1A10` (Golf 7) and `ON669-A101M` (VW universal). Keep suffix/fitment conflicts unresolved.
+- Reconciliation CSV updated in commit `428c6ac5398e70ae8fa66097e3eba1985ed2234a`. It now contains three exact manufacturer-supported matches across the 19 uncovered cards: `OA-5263BT`, `ON016-2LX`, and `ON413-1A10`. The OA-5263BT match is OneAcoustic, not OneNav.
+- Regression test source updated to assert precisely those three official matches, commit `d3c322fc9a0671878b54d502d1dfb399f740406d`. The Node test remains unexecuted; direct data assertions will be rerun separately.
