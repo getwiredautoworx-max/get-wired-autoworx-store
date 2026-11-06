@@ -44,3 +44,11 @@ Project: `Store` / `ojytykqpvonxvepprgbh` (ACTIVE_HEALTHY). Read-only queries on
 - No Supabase data was changed. Do not import/activate or write catalogue rows without explicit owner approval.
 
 Latest queue commit: `ee7e5e68046a51e5d787b6be09ba9134d76f1123`. Full audio completion remains IN PROGRESS / BLOCKED ON DATA-SOURCE RECONCILIATION, image approval and exact model verification.
+
+
+## Preview source confirmed — 2026-11-06
+
+- `preview-products.html` reads active rows from the Supabase REST `products` table, not the private catalogue staging table.
+- Current project also has zero rows in `public.catalog_import_runs`, `public.catalog_full_import_payload` and `public.catalog_chunk_staging`; private `gw_private.catalogue_product_staging` has 770 rows; `public.products` remains 0.
+- Thus there is no existing import payload/run in this project to explain the historical 4,200-product audit. Treat the 4,200 figure as historical/unreconciled, not current. The source-of-truth mismatch is an active blocker for customer-preview integration.
+- No import, staging activation or product writes were attempted.
