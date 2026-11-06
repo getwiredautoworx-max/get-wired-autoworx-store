@@ -130,3 +130,13 @@ The dedicated integration regression and three-category structural regression pa
 - Car Mats → Car Care & Accessories.
 - Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps remain individual subcategories under Auto Electrical Parts & Spares.
 - Product-only image presentation: do not overlay descriptions on product photos; render copy separately in the store description area. Preserve supplier watermarks and keep public image use on hold until exact image/SKU and applicable usage approval are confirmed.
+
+
+## Owner-directed Get Wired AutoWorx image watermark — 2026-11-06
+
+- Every ASC catalogue product image staged for the Get Wired AutoWorx preview must carry a visible **GET WIRED AUTOWORX** ownership watermark overlay over the existing ASC watermark.
+- Retain the ASC watermark. Do not erase, blur, crop out or otherwise remove supplier attribution. The Get Wired overlay is additive and must not hide the product itself, important product features, model/code labels or fitment evidence.
+- Preserve untouched original extracted crops under `assets/asc-auto-electrical-pilot-originals/`; generate watermarked preview copies under `assets/asc-auto-electrical-pilot/`. Reprocessing must always start from the preserved originals so duplicate watermarks do not accumulate.
+- The automated workflow `.github/workflows/watermark-asc-catalogue-images.yml` runs the same treatment for new pilot images added later. Apply the same rule as the remaining ASC catalogue stock is populated; do not treat the current 50-record pilot as the complete catalogue.
+- Product descriptions and promotional catalogue copy must remain outside the image in the separate storefront description area. Preserve the full product in the crop, including the bottom edge of fuel pumps.
+- Watermarking is not proof of image-use rights, exact SKU/photo match, product identity, fitment, price or physical stock. All existing review-only and public-use hold statuses remain until separately verified and owner-approved.
