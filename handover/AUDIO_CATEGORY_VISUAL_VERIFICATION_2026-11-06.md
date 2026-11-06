@@ -27,3 +27,20 @@ Owner instruction: continue until the entire audio category is resolved to stand
 - Current generated category tree shows zero direct active products on the audio root and children. The tree has Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle, but no explicit Studio Equipment or Marine Audio child. These are category mapping gaps; no live category changes were made.
 - Created `catalogue-review/audio-category-architecture-data-flow-2026-11-06.md` to record current architecture and pipeline; created `catalogue-review/audio-image-description-approval-gap-report-2026-11-06.md` to record cross-brand image approval gaps.
 - Latest queue update commit: `7184e14c39af236914ca5b3059d3c2c511578176`. PR #178 comment ID `6690247859` records the OA015-1 image mismatch. PR remains draft/unmerged; production HOLD.
+
+
+## Read-only Supabase source-of-truth check — 2026-11-06
+
+Project: `Store` / `ojytykqpvonxvepprgbh` (ACTIVE_HEALTHY). Read-only queries only; no writes.
+
+- `public.products`: 0 rows.
+- `gw_private.supplier_catalog_items`: 0 rows.
+- `gw_private.product_supplier_codes`: 0 rows.
+- `gw_private.catalogue_product_staging`: 702 Planetworld rows + 68 Audio Connections rows, all `REVIEW_ONLY`.
+- Planetworld staging: 702/702 have model status `NOT VERIFIED`; 702/702 have image status `NOT VERIFIED`; 31/702 have no `category_id`.
+- Audio Connections staging: 68/68 remain `REVIEW_ONLY`; 61/68 have image status indicating not approved or exact image still required. The other seven statuses still require exact review; none is customer publication approval.
+- The staging `description` field is populated for all 770 rows, but it contains source/supplier descriptions, not necessarily verified customer-facing descriptions.
+- This current database snapshot conflicts with the historical 2026-10-30 audit that reported 4,200 public product rows. The project name/ref is verified as `Store` / `ojytykqpvonxvepprgbh`; investigate data-source/environment history and confirm which dataset the storefront preview reads before integrating or claiming completion.
+- No Supabase data was changed. Do not import/activate or write catalogue rows without explicit owner approval.
+
+Latest queue commit: `ee7e5e68046a51e5d787b6be09ba9134d76f1123`. Full audio completion remains IN PROGRESS / BLOCKED ON DATA-SOURCE RECONCILIATION, image approval and exact model verification.
