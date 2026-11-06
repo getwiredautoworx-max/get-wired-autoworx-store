@@ -60,3 +60,11 @@ Latest queue commit: `ee7e5e68046a51e5d787b6be09ba9134d76f1123`. Full audio comp
 - The 45-row OneNav audit was restored from its pre-edit commit after a malformed CSV rewrite, then correctly re-serialized. Readback confirms 45 data rows, 16 columns, and the OA716-1 row's rejected image status. Corrected audit commit: `2f470b5f15527f6631c68b28d0d5991c71590947`.
 - OA015-1 remains rejected: official gallery images show OA1409-CPAA / CA4090-CPAA. OA014-1 image remains pending.
 - Queue update commit: `43eb776897775f306ca46fed7cc1e7698b395d3d`. PR #178 comment ID `6690401307` records the OA716-1 rejection. PR remains draft/unmerged; production HOLD.
+
+
+## OA015-1 exact image rejection — 2026-11-06
+
+- Additional visual search of OA015-1 imagery confirmed the Go4LO image also displays OA1409-CPAA; the official OneNav gallery images display OA1409-CPAA and CA4090-CPAA. The Planetworld ON015-1A11 image is a different A11/Pro-generation variant. None is an exact approved image for Classic OA015-1.
+- The 45-row OneNav audit now marks both OA015-1 and OA716-1 `DETAILS_VERIFIED_IMAGE_REJECTED`, clears both candidate image URLs and retains the verified product description/specifications. Readback confirms 45 rows × 16 columns.
+- OA014-1 remains a third-party image candidate only; source rights and owner approval remain pending. No image is approved for publication by this session.
+- Audit update commit: `1dea6cce167b6939c22dd1e7c65a34af1c3db74c`. Queue update commit: `8163070e56b215f2b32845267edd5301b39b8d2c`. PR #178 comment ID `6690422407` records the rejection. Production remains HOLD.
