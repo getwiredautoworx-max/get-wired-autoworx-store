@@ -326,7 +326,7 @@ jobs:
                 const categoryImage=await image.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,width:img.naturalWidth}});
                 if(!categoryImage.loaded)throw new Error('Hosted '+label+' category image failed: '+JSON.stringify(categoryImage));
                 const href=await card.getAttribute('href');
-                if(!href||!href.includes('asc-auto-electrical-preview.html')||!href.includes('catalogue='+encodeURIComponent(label)))throw new Error('Hosted '+label+' route mismatch: '+href);
+                if(!href||!href.includes('category.html?id='+categoryId))throw new Error('Hosted '+label+' category link mismatch: '+href);
                 await card.click();
                 await frame.locator('#heading').filter({hasText:label}).waitFor({state:'visible',timeout:30000});
                 const sectionCount=await frame.locator('#sections [data-id]').count();
