@@ -4531,3 +4531,12 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - **Exact-head build, Node test execution, deployed-SHA marker and hosted Playwright result are NOT VERIFIED yet.** The connected workflow-run fetcher returned no runs for head `066384ce8c79a847b4cca14b07caeb4e5d8e19fa`, and the combined commit status returned no checks. That fetcher exposes PR-triggered runs only, not the push-triggered run used by the owner-preview workflow. A local clone/test attempt was blocked because the execution environment could not resolve github.com. Do not infer success or issue a preview URL.
 - PR #178 remains intended as draft/unmerged; no merge or production action was taken. Production remains HOLD.
 - Next action: obtain the actual exact-head Actions run/job evidence for `066384ce8c79a847b4cca14b07caeb4e5d8e19fa`; if the workflow did not trigger, use an authorized workflow trigger or restore a supported Actions visibility/trigger path, then complete package build, both Node regressions, public SKU audit, exact deployed-SHA check and hosted mobile/desktop browser QA. Only then issue the new preview.
+
+
+## EXACT-HEAD WORKFLOW TRIGGER ACCESS — 2026-11-06
+
+- Follow-up to the Aerials correction: the GitHub connector exposes PR-triggered workflow runs only and provides no workflow-dispatch action. Push-triggered run/status lookup for the Aerials preview head returned no run/check evidence.
+- Added `workflow_dispatch` to `.github/workflows/owner-preview-exact-sha.yml` and included that event in the existing non-production preview job condition. This permits a manual run against the selected branch/ref without changing the build or deploying production.
+- Workflow update commit: `a0acf1bead47dce6e0b686a13f8bd03e698c9e34`.
+- To finish verification, the owner must trigger **Owner Preview — Exact SHA Deploy and Browser QA** manually on branch `integration/owner-preview-single-task-2026-11-05` in GitHub Actions and provide the resulting run URL/ID. The workflow then checks the exact selected SHA, package build, both Node regressions, public SKU audit, deployed-SHA marker and hosted 390px/1365px browser checks including the single Aerials click-through.
+- No preview URL is authorized until that run succeeds. PR #178 remains draft/unmerged; production HOLD.
