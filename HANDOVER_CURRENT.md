@@ -4445,3 +4445,10 @@ The owner has instructed that the Audio category be preserved exactly as it curr
 - **OA018-2 / Hilux 2019+:** the surfaced OneNav image is for ON018-2A, the Pro-series 10.1-inch screen. The target is Classic OA018-2, a 9-inch unit in a 10.1-inch frame. Rejected.
 - **OA016-2 / Corolla Cross 2021+:** additional surfaced ON016-2A / ON016-2A11 (Pro) and ON016-2LX (Evolution/A11) images are not the Classic OA016-2 variant. Rejected.
 - Review-only audit updated at `9b3131a68fa10f3e33b7035546ea3accc8bb15e8`. No new image candidate; totals remain 45 official pages, 45 descriptions, 8 image candidates and 37 exact-image gaps. No public/customer data or preview assets changed.
+
+
+## 2026-11-06 — TRANSIT / SWIFT ONENAV IMAGE TRIAGE
+
+- **OA266-1 / Ford Transit-Tourneo 2017 without factory display:** official OneNav page confirms 9-inch 1024×600 and 4×40W MAX / 4.1-channel line-out. A third-party listing reuses SKU OA266-1 but labels it Pro and gives materially different 1280×720 / 4GB+64GB / 15-band DSP specifications; its image is not accepted. The separate ON266-1LX Evolution listing is also rejected.
+- **OA713-1 / Suzuki Swift 2018+:** surfaced 10.1-inch Swift OneNav image is not verified as the Classic 9-inch OA713-1 in a 10.1-inch frame; reject.
+- Review-only audit updated at `d5ed7b4b89cc6767ab9e7b6c214c49ba912caec9`. No image candidates added; totals remain 45 official pages, 45 descriptions, 8 candidates and 37 gaps. No public/customer data or preview assets changed.
