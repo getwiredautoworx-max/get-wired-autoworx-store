@@ -122,3 +122,11 @@ The dedicated integration regression and three-category structural regression pa
 - All 50 preview records now explicitly carry image_match_status=PENDING_EXACT_ASC_SKU_AND_PHYSICAL_FEATURE_VERIFICATION and image_rights_status=PUBLIC_USE_HOLD_PENDING_RIGHTS_EVIDENCE. Repository presence and browser loading do not prove exact image identity or usage rights.
 - MA522 has a legacy cross-reference conflict: the September illustrated catalogue described it as “Vehicle Aerial Replacement 2”, while the current August ASC catalogue OCR describes Opel / Mercedes W124 / Honda Ballade. Preserve the current ASC wording but do not approve fitment until the printed SKU and original page are checked.
 - H1865W-H has a technology/brand wording conflict: the earlier 53-SKU register calls it an H18 65W 12V Halogen Globe Huadiao, while current OCR reads HIDIAO and the source section heading is “HID Globes, Kits & Ballasts”. Verify the original PDF; do not classify it as HID or normalize the brand spelling before verification.
+
+
+## Owner correction — 2026-11-06
+
+- Aerials → Car Audio Accessories.
+- Car Mats → Car Care & Accessories.
+- Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps remain individual subcategories under Auto Electrical Parts & Spares.
+- Product-only image presentation: do not overlay descriptions on product photos; render copy separately in the store description area. Preserve supplier watermarks and keep public image use on hold until exact image/SKU and applicable usage approval are confirmed.
