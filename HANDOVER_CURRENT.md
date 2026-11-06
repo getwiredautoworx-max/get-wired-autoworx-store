@@ -1,3 +1,13 @@
+## ONENAV 19-CARD SOURCE RECONCILIATION — 2026-11-06 (SAST)
+
+- Located the actual preview data path from `preview-audio-products.html`: `assets/planetworld-catalogue-preview.json` (3,317 dated supplier-snapshot records). The `One` brand / `Head Units & Media Players` slice has 66 rows and 63 unique titles.
+- Compared 63 unique storefront titles with the 45-row official-model audit using normalized exact source titles: 44 titles matched; **19 unique storefront titles were outside the audit**. All 19 now map to 20 exact source rows in `catalogue-review/planetworld-row-chunks/planetworld-rows-05.csv`, source workbook `one-price-list-2026-10-25.xlsx`, Products sheet.
+- Added `catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv`, commit `2a1e773b9bdc146fde69ec2949ad8aeb6fc9f1eb`. All 19 are `DO NOT IMPORT`; manufacturer identity and image matching remain pending.
+- One exact title maps to two distinct source SKUs, `ON019-A121M` and `ON019-A14` (rows 116–117). Preserve both; do not merge or select without exact model/variant evidence. The other 18 title groups have one source-row match. The 19 also include OneAcoustic, generic Android radio, DVR and MOST box entries; do not automatically label all as OneNav head units.
+- Detailed audit updated in `catalogue-review/ONENAV_RESUMPTION_AUDIT_2026-11-06.md`, commit `09559cefa6d10e8313fe8728a8d004f267fd6857`. This closes source-row mapping only, not manufacturer identity, image rights, or import readiness.
+- Next: verify 19 source-linked model identities and exact images, resolve the ON019 two-SKU ambiguity, then finish the 38 image gaps and seven previously staged image candidates. OneNav remains active; do not move to the next brand yet.
+
+---
 ## ONENAV REVIEW DATA CORRECTION — 2026-11-06 (SAST)
 
 - Corrected the `ON115-3LX` row in `catalogue-review/planetworld-one-official-model-audit.csv`: `customer_brand_display` is now `OneNav`; its customer description retains OneNav Evolution for Isuzu RBA/RBB. Exact official page has no image asset, so image remains pending.
