@@ -63,5 +63,6 @@ jobs:
           path: |
             artifacts/asc-image-sample/
             assets/asc-auto-electrical-pilot-originals/*.jpg
+            suppliers/ASC/*.pdf
           if-no-files-found: error
           retention-days: 7
