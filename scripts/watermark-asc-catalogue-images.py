@@ -78,8 +78,10 @@ def _product_only_crop(image: Image.Image) -> Image.Image:
             red_rows.append(y)
     if blue_rows:
         crop_top = max(crop_top, max(blue_rows) + 4)
-    if len(red_rows) >= 8 and max(red_rows) - min(red_rows) >= 7:
-        crop_top = max(crop_top, max(red_rows) + 4)
+    if len(red_rows) >= 5 and max(red_rows) - min(red_rows) >= 4:
+        # The narrow red rule is a catalogue section-header remnant; remove
+        # the full header strip, not only the red pixels.
+        crop_top = max(crop_top, max(red_rows) + 20)
 
     # Remove the first catalogue-description line below the product photo.
     lower_words = [
