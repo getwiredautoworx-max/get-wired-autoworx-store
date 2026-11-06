@@ -12,7 +12,7 @@ Source: `catalogue-review/planetworld-one-official-model-audit.csv` on the activ
 - Product-line evidence in the existing audio regression suite: 43 Classic, 1 Evolution, 1 unclassified. Do not force the unclassified product into a series.
 - Enrichment states: 40 `DETAILS_VERIFIED_IMAGE_PENDING`; 5 `OWNER_PREVIEW_CANDIDATE_ONLY`.
 - Seven image URLs are staged as candidates (all distinct); 38 rows have no image URL. None of these figures represents production image approval.
-- The previous handover states that the 45-row audit covers 42 individual page entries plus 3 category-listed fitments, while 19 of 64 storefront cards are outside this audit. The 19 remain an explicit coverage gap.
+- The storefront-source reconciliation now identifies 63 unique `One`-brand `Head Units & Media Players` titles in the 3,317-row preview dataset. 44 titles match the 45-row official-model audit after whitespace/case normalization; 19 unique titles are outside it. All 19 now have exact source-title links to 20 supplier rows in the 25-Oct workbook snapshot. This is a source-row reconciliation only, not manufacturer identity verification or import approval.
 
 ## Evidence checks in this continuation
 
@@ -25,7 +25,7 @@ Source: `catalogue-review/planetworld-one-official-model-audit.csv` on the activ
 
 ## Next work
 
-1. Reconcile the 19 storefront cards not covered by the 45-row audit against the source catalogue; do not infer missing SKU/variant identity. The storefront source path has not yet been safely identified on the active branch; common `src/data/products.*` and `data/products.json` guesses returned NOT_FOUND and were not treated as evidence.
+1. Verify manufacturer model/variant identities and exact images for the 19 newly reconciled source rows. One duplicate-title group (`ON019-A121M` and `ON019-A14`, source rows 116–117) remains ambiguous; preserve both and do not merge or choose one without evidence. The other 18 title groups have one source-row match each, but still require manufacturer identity and image review.
 2. Resolve exact product-image matches for the 38 rows without image URLs and review all seven existing candidates. Keep all candidate images review-only until exact fitment and rights are verified.
 3. Keep OneNav as the active brand. Do not advance to Sony, JBL, Klipsch, Hertz, or another brand yet.
 4. Run the new standalone deterministic audit test locally when a repository checkout is available. Do not trigger hosted Actions merely to run this review; no Actions/release credits were intentionally consumed in this continuation.
@@ -52,3 +52,12 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - Corrected the `ON115-3LX` row's `customer_brand_display` from blank to `OneNav`; Evolution remains correctly represented in the product description. The image remains pending because the official page provides no exact image asset.
 - Commit: `8c570c275770471d27824f7da10e75368179fdd5`.
 - The 19-card reconciliation remains open. Initial guesses for common storefront product-data paths were not found on this branch; no source path or card identity has been invented.
+
+
+## Storefront coverage reconciliation — 2026-11-06
+
+- Located the actual preview data path from `preview-audio-products.html`: `assets/planetworld-catalogue-preview.json`. The file is a 3,317-record dated preview snapshot. Its exact One-brand/head-unit slice contains 66 rows and 63 unique titles.
+- Compared those 63 unique titles with the 45-row official OneNav model audit using normalized exact source titles. 44 unique titles match the audit; the remaining **19 unique storefront card titles** were mapped to **20 supplier rows** in `catalogue-review/planetworld-row-chunks/planetworld-rows-05.csv` (source workbook `one-price-list-2026-10-25.xlsx`, Products sheet).
+- Reconciliation output: `catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv`, commit `2a1e773b9bdc146fde69ec2949ad8aeb6fc9f1eb`. All rows are explicitly `DO NOT IMPORT`; manufacturer model and image matching remain unverified.
+- One title maps to two different supplier SKUs: `ON019-A121M` and `ON019-A14` (source rows 116–117). Do not merge or choose one without exact model/variant evidence. The other 18 title groups each link to one source row. The 19 include non-OneNav/adjacent items (OneAcoustic, generic Android radio, DVR, MOST box); preserve their current title/source identity and review correct brand/type before any customer-facing use.
+- Exact source-row links close the *source mapping* gap only. They do not establish manufacturer model identity, image correctness/rights, or import approval.
