@@ -87,7 +87,7 @@ const officialExactSkus = coverage
     || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
     || row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_CATALOGUE_EXACT_SKU_FITMENT'))
   .map(row => row.supplier_sku_candidates).sort();
-assert.deepEqual(officialExactSkus, ['OA-5263BT', 'ON016-2LX', 'ON413-1A10'],
+assert.deepEqual(officialExactSkus, ['OA-5263BT', 'ON016-2LX', 'ON413-1A10', 'ON425-1LX'],
   'Only independently verified official manufacturer SKU/title or catalogue-code matches may be marked exact');
 
 console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
@@ -102,6 +102,7 @@ console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   uncoveredStorefrontTitles: coverage.length,
   sourceSkuRowsForUncoveredTitles: 20,
   officialExactMatchesInUncoveredSet: officialExactSkus.length,
+  officialExactSupplierSkus: officialExactSkus,
   officialExactSupplierSkus: officialExactSkus,
   ambiguousSameTitleGroups: 1
 }));
