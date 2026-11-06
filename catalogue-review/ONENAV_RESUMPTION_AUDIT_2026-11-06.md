@@ -103,3 +103,10 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 - `ON425-1LX`: OneNav's official product page confirms the exact title **OneNav Mitsubishi Eclipse Cross 2018–2020 (9 Inch) A11**, exact SKU `ON425-1LX`, Mitsubishi fitment, 9-inch Evolution series and its 12-band DSP / 4 × 45 W feature set. Image remains unextracted/unapproved. https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/.
 - This raises official exact manufacturer SKU/title matches in the 19-card set to four: `OA-5263BT` (OneAcoustic, distinct brand), `ON016-2LX`, `ON413-1A10`, and `ON425-1LX`.
 - Updated CSV commit `27e44ce2220367f5df9df06807f625e82c07f529`; regression-test source commit `7303c77eab939b94b7eee7c3e85d12f20cbb3671`.
+
+
+## Exact image candidate — ON425-1LX — 2026-11-06
+
+- Inspected the official OneNav product page gallery. Its image label explicitly identifies `Mitsubishi ECLIPSE CROSS ON425-1LX`; the 600 × 600 image visually shows the vehicle-specific 9-inch fascia/radio. This is an exact model image candidate, not a generic image.
+- Image candidate URL: https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png.
+- Staged in the 19-card reconciliation row as `EXACT_OFFICIAL_MODEL_IMAGE_CANDIDATE; RIGHTS_REVIEW_PENDING`, commit `1308e01de8be366e52189af71d196575b656801a`. Do not publish or import until reuse rights are confirmed; OneNav site copyright notice does not itself grant reuse permission.
