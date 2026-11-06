@@ -137,3 +137,7 @@ required_checks=exact-sha-marker;parent-category-links;leaf-catalogue-redirects;
 request=ASC-HOSTED-LEAF-AND-PARENT-ID-AUDIT-FIX-2026-11-06
 requested_for=integration/asc-auto-electrical-clean-2026-11-05
 required_checks=exact-sha-marker;parent-and-leaf-category-links;all-six-catalogue-routes;product-photo-crops;390px-mobile;1365px-desktop
+
+request=ASC-FUEL-PUMP-FULL-PHOTO-VIEWPORT-VERIFY-2026-11-06
+requested_for=integration/asc-auto-electrical-clean-2026-11-05
+required_checks=exact-sha-marker;fuel-pump-photo-not-clipped;catalogue-text-not-overlapping-photo;390px-mobile;1365px-desktop;all-six-catalogue-routes;preview-only-no-live-writes
