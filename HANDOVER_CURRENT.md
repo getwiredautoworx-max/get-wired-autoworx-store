@@ -4798,3 +4798,15 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Branch head immediately before this handover entry: `9b2b2056fe2f74a395efe3792ba2360296bbc5a4`. The handover update itself is documentation-only and is excluded from preview path triggers.
 - Next: finish and inspect run `42350122261`; then refresh `.preview-deploy-request` so a new exact-head preview is built for the post-handover branch head. Continue OneNav only; remaining image/fitment and identity gaps still block completion.
 - No public product JSON, GW SKU, live price/stock, database/Supabase, supplier activation, merge, production deployment, Axxess, DNS or payment changes.
+
+
+## HOSTED IMAGE AUDIT RETRY AND EXACT-HEAD QA RESULT — 2026-11-07 09:13 SAST
+
+- Run `42350122261`, attempt 2, completed **SUCCESS** on exact triggering SHA `ca618b80eff319043d965362493315f389b6201a`. The first attempt had failed the hosted image audit at 33/74 because 41 Audison image requests returned browser image errors. A supported single-job retry was performed; attempt 2 loaded all 74/74. This was a transient hosted-origin/network failure, not a catalogue data change. Do not count attempt 1 as a successful image check.
+- Exact deployed-SHA marker passed; deployed non-production preview for that run: `https://993d7bd2.get-wiredautoworx-store.pages.dev`.
+- Hosted QA passed: 390px mobile and 1365px desktop, 0 JavaScript errors, no desktop horizontal overflow; three approved root categories; four homepage collage images; eight audio-department images loaded; 74/74 Planetworld/OneNav image URLs loaded; 66/66 Audio Connections image URLs loaded (BlackSpider Lynx remains a 104px low-resolution exception); five Auto Electrical and four Car Care subcategory images loaded in two-column mobile layouts.
+- OneNav product-review route still displays 64 products, 6 images and 6 image-review notes. This is an interim review surface, not a completed catalogue.
+- Exact-head build, OneNav source-audit regression (45-row official-model audit plus 23-row head-unit and 16-row camera/accessory registers), three-category structure, catalogue/package and public SKU/privacy checks passed.
+- Branch head immediately before this handover entry: `75b6060dd173ac87177b9d43219ed1630b9f3377`. The handover update is documentation-only; next refresh `.preview-deploy-request` to obtain a fresh deployment marker and hosted browser result for the post-handover exact head.
+- PR #178 remains OPEN / DRAFT / UNMERGED; production HOLD. No live product, price, stock, database, payment, DNS, Axxess, merge or production changes.
+- Remaining OneNav blockers are unchanged: 39/45 official-model rows have no image URL, 4 image candidates remain owner/rights-review only, 2 images are rejected; 245 source rows still require manual verification; 86 fitment-kit rows have no exact kit image; camera/accessory identities/images remain partially unresolved. Continue OneNav only.
