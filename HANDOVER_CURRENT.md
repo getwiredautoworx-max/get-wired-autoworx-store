@@ -4822,3 +4822,33 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Task focus for this run: continue OneNav only; review the OneX/CAM007-AHD camera image evidence against the official manufacturer specification and reject any third-party image that cannot be tied to the exact approved variant. Keep all catalogue evidence private and DO NOT IMPORT.
 - No ASC task, public product, live price/stock, Supabase write, supplier activation, checkout/payment, Axxess, DNS, merge, production deployment or release-credit action is included or authorised.
 
+
+
+## 2026-11-07 09:50 SAST — ONEX CAM007-AHD IMAGE EVIDENCE RECONCILIATION / OWNER PREVIEW CHECKPOINT
+
+### Bounded OneNav evidence increment
+- Updated only `catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv` on the existing PR #178 branch. Exact data commit: `ac65fdea242da87b4a57d6435fadacbdb35a24e9`.
+- CAM007-AHD remains manufacturer-identity/description verified, but its image remains **not approved**. The private review note now records the exact discrepancy:
+  - Official OneNav product page confirms CAM007-AHD, AHD 720P, 150-degree viewing angle, front/rear bracket mounting and compatibility only with the OneNav A101 multimedia system: https://onenav.co.za/product/onex-mountable-front-rear-camera-with-ahd/
+  - The third-party ANGRi listing identifies its image as Cam007-AHD but claims 170-degree view, IP67, universal compatibility and an included hole-saw kit: https://angrijeep.com/products/onex-universal-reverse-camera-front-and-rear
+  - The retrieved image has no visible model marking, and the third-party feature/compatibility claims conflict with the official OneNav page. Reject that image as an exact-variant match. No third-party image URL is used in the product data; exact official image remains pending.
+- No customer-facing product, SKU, price, stock, description, image, category, public JSON, Supabase record or deployment was changed by this evidence update.
+
+### Exact preview and test evidence
+- Before the audit-only note commit, exact-head owner-preview run `42350412161` completed **SUCCESS** on storefront SHA `0ed1d31ee15ae0ba617c6d876fc626b1bba367e5`.
+- Verified non-production preview: https://ae5e6ed2.get-wired-autoworx-store.pages.dev/owner-preview.html
+- OneNav review route: https://ae5e6ed2.get-wired-autoworx-store.pages.dev/preview-audio-products?department=Car%20Audio&brand=One&component=Head%20Units%20%26%20Media%20Players&label=Car%20Audio%20%26%20Video
+- Exact-head workflow steps all succeeded: customer-only Pages package build; `node tests/audio-catalogue-preview.test.cjs`; `node tests/onenav-source-audit.test.cjs`; `node tests/three-category-storefront-structure.test.cjs`; public SKU/privacy audit; dedicated non-production Cloudflare Pages deployment; exact deployed-SHA marker; hosted Playwright.
+- Hosted phone/desktop evidence: 390×844 mobile and 1365×900 desktop checks; three approved root categories; all eight audio department images loaded; OneNav logo, dedicated brand page and product-type route passed; 64 OneNav product cards, six product images and six image-review notes; 74/74 Planetworld image URLs and 66/66 Audio Connections image URLs loaded; zero JavaScript errors; desktop width and scroll width both 1365px; checkout hidden and preview writes blocked.
+- Audio Connections exception: BlackSpider Lynx image loaded but is only 104px wide. This is a low-resolution quality exception, not a failed image request.
+- The preview is a genuine **interim owner-review preview only**. It does not mean OneNav is complete, owner-accepted or production-ready.
+
+### Current branch and verification boundary
+- PR #178 remains OPEN / DRAFT / UNMERGED. Current branch head after the private audit note: `ac65fdea242da87b4a57d6435fadacbdb35a24e9`.
+- The exact preview run above deployed SHA `0ed1d31ee15ae0ba617c6d876fc626b1bba367e5`; the later `ac65f` commit changes only the private review-note CSV and does not alter storefront code or customer package content.
+- Workflow/status lookup for `ac65f` returned no associated run or status at this checkpoint. Therefore do not claim a new exact-head test/deployment for `ac65f`; retain the verified preview attribution to `0ed1d31`.
+- OneNav remains first and incomplete: 45 official-model rows with 45 description drafts; 39 image gaps, four owner-preview candidates, two rejected image rows; 23 unmatched head-unit evidence rows; 16 camera/accessory rows; 245 source rows still require manual verification; 86 fitment-kit rows still have zero exact kit images verified. The 64-card product review route is not a completed catalogue.
+- Next: continue OneNav only, prioritising exact image/model verification and the unresolved 245-row component/product classification. Do not move to another brand until OneNav is resolved.
+
+### Safety
+- All supplier-derived data remains private review-only / DO NOT IMPORT. No ASC work, Buyers Guides, live product/price/stock/category/active-flag change, Supabase write, supplier activation, payment/checkout action, Axxess, DNS, merge, production deployment or release-credit use.
