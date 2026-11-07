@@ -3405,3 +3405,30 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 - If an implementation step appears to require touching anything outside the expressly authorized task, stop and obtain owner approval before proceeding.
 - No production deployment, Axxess upload, DNS change, Supabase write, live stock/price change, payment activation or merge is authorized by this clarification.
 - Status of the ASC Aerials integration remains **not complete until evidence confirms the catalogue is uploaded/integrated and the required route, images, product identities and presentation checks pass**. Only then may the category freeze be marked reinstated.
+
+# Continuation Addendum — 2026-11-07: ASC Six-Catalogue Reload Milestone
+
+**Branch:** `task/asc-six-catalogue-reload-2026-11-07`
+**Status:** Verification complete; Review-only package ready; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
+
+## 1. Summary of Completed Work
+- Extracted and audited all 6 approved ASC product catalogues in `suppliers/ASC/` across 72 total pages:
+  1. `ASC- Aerials (1).pdf` (78 items)
+  2. `ASC- Automotive Sensors (1).pdf` (106 items)
+  3. `ASC- Automotive Switches (1).pdf` (368 items)
+  4. `ASC- Automotive globes (1).pdf` (158 items)
+  5. `ASC- Car Mats (1).pdf` (139 items)
+  6. `ASC- Fuel Pumps (1).pdf` (129 items)
+- Total source-verified items: **978 products**.
+- Reconciled supplier SKUs to proposed Get Wired SKUs (`GW-ASC-<supplier_sku>`) with 100% uniqueness (978 unique supplier SKUs, 978 unique GW SKUs, 0 collisions).
+- Generated master review dataset at `catalogue-review/asc-catalogue-extraction/asc-master-sku-register-review-only.csv` and staged import dataset at `staging/asc-staged-catalogue-products-do-not-import.csv` with explicit gate control `DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL`.
+- Prepared `ASC-IMAGE-VERIFICATION-EXCEPTIONS.md` auditing 952 watermarked card crops, 26 "Image on Request" items, 1 production-stopped notice (`M7-HY100`), 1 section count discrepancy (Car Mats page 10), and 3 clipped captions.
+- Enforced category mappings strictly per owner directives to Car Audio > Accessories > Aerials, Auto Electrical Spares & Parts, and Car Care & Accessories.
+- Formulated `catalogue-audits/ASC_BUYERS_GUIDE_OBSOLETE_CLEANUP_REGISTER.md` isolating obsolete buyer's guide files for separately authorized cleanup.
+- Wrote QA report at `catalogue-review/asc-catalogue-extraction/ASC-SIX-CATALOGUE-RELOAD-QA-REPORT.md` and added automated test suite `tests/test_asc_reload_validation.js`.
+
+## 2. Release & Execution Boundaries Preserved
+- No live Supabase writes, table migrations, or live product changes.
+- No production deployments, merges, or DNS changes.
+- Price status retained as "Price On Request Due to Stock Availability" without altering global store pricing.
+- PR opened in DRAFT status for private review only.
