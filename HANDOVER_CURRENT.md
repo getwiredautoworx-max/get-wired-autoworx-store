@@ -3405,3 +3405,34 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 - If an implementation step appears to require touching anything outside the expressly authorized task, stop and obtain owner approval before proceeding.
 - No production deployment, Axxess upload, DNS change, Supabase write, live stock/price change, payment activation or merge is authorized by this clarification.
 - Status of the ASC Aerials integration remains **not complete until evidence confirms the catalogue is uploaded/integrated and the required route, images, product identities and presentation checks pass**. Only then may the category freeze be marked reinstated.
+
+
+## 2026-11-07 07:37 SAST — Electrocity sample workflow for Jules
+
+### Authority and repository reconciliation
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from `main` (blob SHA `70166b277c2477472b39e3c11d94deb2c6840215`). It remains the binding owner-authority overlay.
+- `AI_HANDOVER_PERMANENT.md` is not present at repository root on `main` (GitHub contents API returned 404). Do not claim it was read; continue using the accessible owner directives and `HANDOVER_CURRENT.md` until the canonical permanent handover path is located.
+- Latest main commit observed at session start: `3e64d08a0c7c1ce124bdb1fb6db6c26905ec0717`.
+- The previous supplier inventory note in `suppliers/README.md` (2026-10-27) incorrectly/obsoletely reports zero Electrocity PDFs. Direct path fetch on main verified four source PDFs exist; this newer direct evidence supersedes the old inventory count.
+
+### Electrocity source files verified on main
+- `suppliers/Electrocity/converters.pdf` — blob `07f68c7c42f5f524ccd3c2dc7a6a37a250381ae1`.
+- `suppliers/Electrocity/Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf` — blob `5fdddd9bfeed32ac5c32263f724e8fd82db8583a`.
+- `suppliers/Electrocity/Ignition Looms-Coils-Modules/IGNITION COILS.pdf` — blob `5b1f20dd22a489e8fbe56ceed594c684ba09883b`.
+- `suppliers/Electrocity/Ignition Looms-Coils-Modules/IGNITION LOOMS.pdf` — blob `0875d983b2b535a79b66c55e6d818bb1ffb7c098`.
+- Existing `suppliers/Electrocity/catalogue-work/GLOWPLUGS_SKU_MAP.csv` and its README are historical review artifacts. The existing notes explicitly say multiple printed codes have unconfirmed roles and no supplier cost/stock was provided. Do not silently promote those assumptions into verified data.
+
+### Work completed in this session
+- Created branch `docs/electrocity-jules-catalogue-workflow-2026-11-07` from `main`.
+- Added `suppliers/Electrocity/JULES_CATALOGUE_WORKFLOW.md` (commit `1261576803d0853d74f051c4b9085742acdfe0ff`).
+- The workflow designates `converters.pdf` as the single first sample candidate, subject to a page/layout suitability inspection before extraction. It documents Electrocity-specific code-role ambiguity, page-level provenance, exact fitment/variant checks, separate raw and normalised files, source-vs-store taxonomy, provisional internal IDs, image verification, supplier-specific pricing/VAT treatment, QA outputs, and a copy-ready Jules execution prompt.
+- The workflow prohibits applying ASC quote-only assumptions or other suppliers' price formulas to Electrocity without evidence. It prohibits live product/price/stock/image/database/storefront/deployment changes and requires all outputs to be labelled REVIEW ONLY — DO NOT IMPORT.
+- No catalogue extraction has yet been run on `converters.pdf`; no product records have been created or changed. The pilot is NOT complete until Jules (or an authorised local runner) inspects and processes the sample and the acceptance gate passes.
+
+### Next actions
+1. Verify the new workflow file and its commit on the branch.
+2. Update the handover in the same branch and open a draft documentation PR for owner/Jules handoff; do not merge it.
+3. Have Jules execute only the `converters.pdf` sample pilot, first confirming page count/layout and suitability. If unsuitable, stop and report before switching to another source.
+4. Review row-level provenance, printed code labels, technical values/units, exact variants/fitments, price/VAT basis, image evidence, exceptions and QA report.
+5. Freeze/reuse the workflow only after the sample passes. Continue the ASC task separately; do not duplicate its running work.
+6. Production remains HOLD. No live catalogue, price, stock, image, database, category, payment, DNS, hosting or deployment changes are authorised by this work.
