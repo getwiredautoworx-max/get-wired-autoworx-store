@@ -249,7 +249,7 @@ public class MainActivity extends Activity {
     private class CaelexBridge {
         @JavascriptInterface
         public void captureCaelexPage() {
-            if (isCaelexUrl(web.getUrl())) MainActivity.this.captureCaelexPage();
+            MainActivity.this.captureCaelexPage();
         }
 
         @JavascriptInterface
