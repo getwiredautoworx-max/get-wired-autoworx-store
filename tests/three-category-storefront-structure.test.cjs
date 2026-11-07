@@ -54,6 +54,22 @@ assert.deepEqual(roots, [
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
+const autoElectricalNode = tree.categories.find(c => c.id === 'ba263c9f-d038-48bd-bca0-944f3ebdc5e9');
+const carCareNode = tree.categories.find(c => c.id === 'f98e7589-20a0-4825-9707-2680d29e5cb6');
+const autoElectricalChildren = tree.categories.filter(c => c.active && c.parent_id === autoElectricalNode.id).sort((a,b)=>a.sort_order-b.sort_order).map(c=>c.name);
+const carCareChildren = tree.categories.filter(c => c.active && c.parent_id === carCareNode.id).sort((a,b)=>a.sort_order-b.sort_order).map(c=>c.name);
+assert.deepEqual(autoElectricalChildren, ['Alternators & Starters','Batteries & Charging','Fuses, Relays & Wiring','Globes & Vehicle Lighting','Sensors & Switches'], 'Auto Electrical must retain its five approved customer-facing subcategories');
+assert.deepEqual(carCareChildren, ['Car Care','Car Mats','Seat Covers & Interior Accessories','Exterior Accessories'], 'Car Care must retain its four approved customer-facing subcategories');
+const artForStart = previewCategory.indexOf('function artFor(');
+const artForEnd = previewCategory.indexOf('\\nfunction ', artForStart + 1);
+assert.ok(artForStart >= 0 && artForEnd > artForStart, 'preview category page must expose a deterministic category artwork resolver');
+const artForSource = previewCategory.slice(artForStart, artForEnd);
+const previewCategoryArtFor = vm.runInNewContext('(' + artForSource + ')');
+for (const label of [...autoElectricalChildren, ...carCareChildren]) {
+  const imageUrl = previewCategoryArtFor(label);
+  assert.ok(typeof imageUrl === 'string' && imageUrl.startsWith('https://') && !imageUrl.endsWith('/'), 'non-Audio category must have an explicit usable artwork URL: ' + label);
+}
+assert.equal(previewCategoryArtFor('Unknown Catalogue Placeholder'), '', 'unknown categories must not receive a generic unrelated fallback image');
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
 const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessories');
 assert.ok(accessoriesNode && accessoriesNode.parent_id === carAudioNode.id, 'Accessories must be nested under Car Audio & Video');
