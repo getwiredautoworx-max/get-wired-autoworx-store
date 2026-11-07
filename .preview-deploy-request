@@ -1,3 +1,3 @@
 request=owner-preview
-requested_commit=ee63a6328dc294f1974a52aaead5431ee891640d
-reason=verify approved three-root storefront at the exact current PR head; build the customer-only non-production Pages package; run Node category/audio regressions and public SKU audit; deploy only to the dedicated owner-preview branch; verify deployed SHA marker; run 390px mobile and 1365px desktop browser QA including all five Auto Electrical and four Car Care subcategory cards, image naturalWidth and alt text, mobile two-column layout, navigation back to Audio, checkout hidden and preview writes blocked
+requested_commit=exact-triggering-commit
+reason=verify current three-root storefront and non-Audio category artwork at the exact triggering SHA; build customer-only non-production Pages package; run category/audio regressions and public SKU audit; verify exact deployed-SHA marker; run 390px mobile and 1365px desktop browser QA; assert all five Auto Electrical and four Car Care category images load with nonzero naturalWidth and correct alt text; verify two-column mobile layout, zero JS errors, and preview-only checkout/write safeguards; no production actions
