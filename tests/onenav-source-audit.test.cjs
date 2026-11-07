@@ -82,6 +82,65 @@ assert.ok(coverage.every(row => row.source_row_candidates && row.supplier_sku_ca
 assert.ok(coverage.every(row => row.import_status === 'DO NOT IMPORT'), 'Coverage reconciliation must not approve imports');
 assert.equal(coverage.filter(row => row.model_identity_status.startsWith('AMBIGUOUS')).length, 1,
   'The ON019 same-title/two-SKU exception must remain explicit');
+const headunitEvidencePath = 'catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv';
+const headunitParsed = parseCsv(fs.readFileSync(headunitEvidencePath, 'utf8'));
+const expectedHeadunitHeaders = [
+  'supplier_source_code_private',
+  'source_description_private',
+  'official_or_candidate_evidence_url',
+  'model_evidence_status',
+  'model_identity_status',
+  'image_status',
+  'review_note'
+];
+assert.deepEqual(headunitParsed[0], expectedHeadunitHeaders,
+  'The 23-row OneNav head-unit evidence register must expose all seven named columns');
+assert.ok(headunitParsed.slice(1).every(row => row.length === expectedHeadunitHeaders.length),
+  'Every head-unit evidence row must have exactly seven fields');
+const headunitRecords = headunitParsed.slice(1).filter(row => row.some(value => value !== '')).map(values => {
+  const record = {};
+  expectedHeadunitHeaders.forEach((header, index) => { record[header] = values[index] || ''; });
+  return record;
+});
+const byHeadunitCode = new Map(headunitRecords.map(row => [row.supplier_source_code_private, row]));
+assert.equal(headunitRecords.length, 23, 'All 23 unmatched head-unit evidence rows must be retained');
+assert.equal(byHeadunitCode.size, 23, 'Head-unit source codes must remain unique');
+assert.ok(headunitRecords.every(row => row.review_note.trim()), 'Every head-unit evidence row must explain its decision');
+const allowedIdentityStates = new Set([
+  'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY',
+  'UNVERIFIED',
+  'SOURCE_IDENTITY_ONLY',
+  'THIRD_PARTY_CANDIDATE_ONLY',
+  'VERIFIED_OFFICIAL_PRODUCT_PAGE',
+  'MODEL_CODE_VARIANT_MISMATCH',
+  'IDENTITY_CONFLICT',
+  'THIRD_PARTY_CROSSCHECK_ONLY',
+  'VERIFIED_OFFICIAL_CATALOGUE'
+]);
+const allowedImageStates = new Set([
+  'IMAGE_PENDING',
+  'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
+  'OWNER_PREVIEW_CANDIDATE_ONLY'
+]);
+assert.ok(headunitRecords.every(row => allowedIdentityStates.has(row.model_identity_status)),
+  'Head-unit identity decisions must use an explicit, recognised state');
+assert.ok(headunitRecords.every(row => allowedImageStates.has(row.image_status)),
+  'Head-unit image decisions must use an explicit, recognised state');
+const magniteClassic = byHeadunitCode.get('OA418-1');
+assert.equal(magniteClassic.model_identity_status, 'UNVERIFIED');
+assert.equal(magniteClassic.image_status, 'IMAGE_PENDING');
+assert.match(magniteClassic.model_evidence_status, /ON418-1LX Evolution/);
+assert.match(magniteClassic.official_or_candidate_evidence_url, /onenav\.co\.za\/product\/onenav-9inch-for-nissan-magnite/);
+const landCruiser70 = byHeadunitCode.get('ON015-3');
+assert.equal(landCruiser70.model_identity_status, 'IDENTITY_CONFLICT');
+assert.equal(landCruiser70.image_status, 'IMAGE_PENDING');
+assert.match(landCruiser70.model_evidence_status, /ONO15-3A14 \(letter O\)/);
+assert.match(landCruiser70.review_note, /Quarantine/);
+const isuzuAlias = byHeadunitCode.get('ISA-ON115-3LX');
+assert.equal(isuzuAlias.model_identity_status, 'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY');
+assert.equal(isuzuAlias.image_status, 'IMAGE_PENDING');
+assert.match(isuzuAlias.review_note, /Alias\/duplicate confirmation required/);
+
 const officialExactSkus = coverage
   .filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_SITE_EXACT_SKU_AND_TITLE')
     || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
