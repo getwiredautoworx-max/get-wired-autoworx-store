@@ -12,14 +12,14 @@ pw-0010,catalogue-source/suppliers/planetworld/incoming-xlsx/aiper-price-list-20
 pw-0011,catalogue-source/suppliers/planetworld/incoming-xlsx/aiper-price-list-2026-10-25.xlsx,5,Scuba V3,Aiper,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
 pw-0012,catalogue-source/suppliers/planetworld/incoming-xlsx/aiper-price-list-2026-10-25.xlsx,6,Scuba X1 Pro Max,Aiper,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
 pw-0013,catalogue-source/suppliers/planetworld/incoming-xlsx/aiper-price-list-2026-10-25.xlsx,7,Surfer S2,Aiper,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
-pw-0014,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,2,BBX-F1200,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
-pw-0015,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,3,BBX-T600,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
+pw-0014,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,2,BBX-F1200,Alpine,BBX-F1200,,NO_EXACT_MODEL_IMAGE_MATCH,MANUFACTURER_DESCRIPTION_VERIFIED
+pw-0015,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,3,BBX-T600,Alpine,BBX-T600,,NO_EXACT_MODEL_IMAGE_MATCH,MANUFACTURER_DESCRIPTION_VERIFIED
 pw-0016,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,4,CAM-ALP-ADP,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
 pw-0017,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,5,HCE-C2100RD,Alpine,HCE-C2100RD,https://www.alpine-asia.com/media/5baca7810efbd.png,OFFICIAL_MANUFACTURER_IMAGE_REVIEW_ONLY,MANUFACTURER_DESCRIPTION_VERIFIED
 pw-0018,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,6,HDZ-653,Alpine,HDZ-653,https://www.alpine-asia.com/media/62d65d1bd9391.png,OFFICIAL_MANUFACTURER_IMAGE_REVIEW_ONLY,MANUFACTURER_DESCRIPTION_VERIFIED
 pw-0019,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,7,I905-LC70,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
 pw-0020,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,8,I905-LC70-24,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
-pw-0021,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,9,Ilx-705D,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
+pw-0021,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,9,Ilx-705D,Alpine,iLX-705D,,NO_EXACT_MODEL_IMAGE_MATCH,MANUFACTURER_DESCRIPTION_VERIFIED
 pw-0022,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,10,ILX-F115D,Alpine,ILX-F115D,https://www.alpine.ch/fileadmin/images/MainNavigation/Products/Product_pics/01_Headunits/iLX-F115D/iLX-F115D_Media-Receiver-Home-Menu.jpg,official_manufacturer_image_verified_review_only,MANUFACTURER_DESCRIPTION_VERIFIED
 pw-0023,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,11,ILX-F905D,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
 pw-0024,catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx,12,KAC-001,Alpine,,,NO_EXACT_MODEL_IMAGE_MATCH,NO_MANUFACTURER_DESCRIPTION_MATCH
