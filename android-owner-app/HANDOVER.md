@@ -73,3 +73,8 @@ Pending until the GitHub Actions run for this branch reaches a terminal result. 
 - Build workflow now also declares a `pull_request` trigger for PRs targeting `main`.
 - GitHub Actions run metadata and commit status checks have not yet returned a run/check for the latest PR head. Therefore no build, artifact or emulator success is claimed.
 - Cloudflare's existing PR integration posted a separate storefront preview status; this is not an APK build or APK validation result. Do not use that preview as evidence of APK readiness.
+
+
+- Latest follow-up commit: `a2bfe6aa47eb8e92b0c6523fa37cc532b71e7225`.
+- Removed the Owner-screen Caelex capture button because capture is now deliberately available only through the Caelex page's limited bridge overlay. The Owner screen retains local capture review and clear controls.
+- Build/emulator validation remains unverified; no GitHub Actions run or commit status has been returned for this PR head.
