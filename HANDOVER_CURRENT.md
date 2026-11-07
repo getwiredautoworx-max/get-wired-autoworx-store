@@ -4782,3 +4782,19 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 ### Safety and next action
 - All OneNav findings remain private review-only / DO NOT IMPORT. No public product JSON, public SKU, GW SKU, price, stock, Supabase/live database, supplier activation, merge, production deployment, Axxess, DNS or payment changes.
 - Next: finish and inspect run `42349480834`; then request a fresh exact-head owner-preview run on the latest branch head after this handover update. Continue OneNav only, prioritising exact identity/image verification for remaining head-unit, camera/accessory and fitment-kit records. Do not move to another brand while OneNav remains incomplete.
+
+
+## ONENAV / ONEX CAMERA EVIDENCE UPDATE — 2026-11-07 09:10 SAST
+
+- Continued on the one active PR #178 integration branch only. PR remains OPEN / DRAFT / UNMERGED; production HOLD.
+- Additional official OneNav manufacturer evidence was recorded in the private 16-row camera/accessory register:
+  - `OX-4991DVR`: exact official SKU/title confirmed for the bracket-mount smart mirror; official page does not expose a product image or detailed specs, so image/specifications remain pending.
+  - `OX-LCAM001`: exact official SKU/title and description confirmed; the official `CL433RVDVR_web-600x600.jpg` image was visually inspected at 600×600 and matches the number-plate camera frame. Image state is rights/owner-review pending; it is not used publicly.
+  - `OX-4990DVR`: exact official SKU/title confirmed, but no image/specs are exposed by the official page. A third-party similar mirror image visibly carries code `ON4988-X`; rejected for OX-4990DVR.
+  - `OX434RC`: related official page prints `ON434`, and its image filenames carry `ON4988`; source code/variant conflict remains quarantined.
+- Extended `tests/onenav-source-audit.test.cjs` to validate all 16 camera/accessory rows, the recognised identity/image states, and the OX-4990DVR / OX-4991DVR / OX-LCAM001 / OX434RC decisions. The workflow already watches the 16-row register and the test file.
+- The previous exact-head run `42349975082` passed on SHA `311596d087b4ff4afee1d3007fb6a338ddb4340e`, preview `https://a40bd382.get-wired-autoworx-store.pages.dev`. This is not the current head after the camera/accessory evidence/test updates; do not reuse it as the latest preview.
+- Run `42350122261` on SHA `ca618b80eff319043d965362493315f389b6201a` had passed package build, regression/category/SKU checks, non-production deploy, exact deployed-SHA marker and Chromium setup; hosted mobile/desktop QA was still in progress at this checkpoint.
+- Branch head immediately before this handover entry: `9b2b2056fe2f74a395efe3792ba2360296bbc5a4`. The handover update itself is documentation-only and is excluded from preview path triggers.
+- Next: finish and inspect run `42350122261`; then refresh `.preview-deploy-request` so a new exact-head preview is built for the post-handover branch head. Continue OneNav only; remaining image/fitment and identity gaps still block completion.
+- No public product JSON, GW SKU, live price/stock, database/Supabase, supplier activation, merge, production deployment, Axxess, DNS or payment changes.
