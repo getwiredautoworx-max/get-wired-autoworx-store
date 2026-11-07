@@ -116,3 +116,40 @@ All content remains internal review/staging and **DO NOT IMPORT**. No GW SKU ass
 
 - Inspected the official OneNav 2023 catalogue PDF page 13 (zero-based PDF page 12). The visual is a Nissan Qashqai/X-Trail cabin with the displayed product label `ON413-1A10 (2015+)` and `10.1-inch screen`, matching the exact supplier SKU/fitment.
 - Staged as `EXACT_OFFICIAL_CATALOGUE_VISUAL_CANDIDATE; RIGHTS_REVIEW_PENDING` in the uncovered-card reconciliation CSV, commit `16568fe0a97e3dfb6331b1facf7cf5850121b61f`. This is a manufacturer-catalogue visual candidate, not approved for publication; image reuse rights remain unconfirmed.
+
+
+## 2026-11-07 — latest evidence and coverage reconciliation
+
+**This dated checkpoint supersedes the older image-count baseline above; it does not promote any candidate to import/publication approval.**
+
+### Reconciled 45-row official-model audit
+
+The current `planetworld-one-official-model-audit.csv` contains 45 unique source SKU rows and 45 customer-description drafts, with these current enrichment states:
+
+- 39 `DETAILS_VERIFIED_IMAGE_PENDING`
+- 4 `OWNER_PREVIEW_CANDIDATE_ONLY`
+- 2 `DETAILS_VERIFIED_IMAGE_REJECTED`
+- 6 distinct image URLs remain attached to review rows; 39 rows have no image URL.
+- The two rejected rows are OA015-1 and OA716-1. The observed gallery/product assets visibly identify other hardware codes, not the exact source SKU/fitment. Those images remain rejected; no replacement or generic image was substituted.
+
+The earlier baseline (40 pending / 5 candidate / 7 URLs / 38 gaps) is stale and must not be used in new status reports or tests. The deterministic audit test was corrected to assert the current 39 / 4 / 2 / 6 / 39 totals.
+
+### Two additional official-page identity checks
+
+- **OA418-1 Classic / Nissan Magnite:** the official OneNav page for this vehicle currently identifies `ON418-1LX` and describes OneNav Evolution. It does not establish a Classic `OA418-1` product. The official URL is recorded in the 23-row unmatched-head-unit evidence register, but OA418-1 remains `UNVERIFIED` with `IMAGE_PENDING`; do not transfer Evolution images/specifications.
+- **ON015-3 / Land Cruiser 70 Series with buttons:** the official OneNav page confirms a 9-inch Land Cruiser 70 Series product for 2012–2026, but the page's printed SKU is `ONO15-3A14` (letter O), whereas the supplier source row is `ON015-3` (zero). This is an identity/code conflict, not an exact SKU match. The row is quarantined as `IDENTITY_CONFLICT`; no image or specifications are assigned pending supplier confirmation.
+
+### Review-register integrity repair
+
+The 23-row unmatched-head-unit CSV had seven fields per record but only six column headers. The missing `model_identity_status` column is now named explicitly, the `image_status` and `review_note` columns are aligned, and the ISA-ON115-3LX alias-confirmation note is no longer misfiled as an image status. The dedicated test now validates all seven columns, all 23 unique rows, allowed identity/image states, and the three critical decisions above.
+
+The exact-head preview workflow now runs `tests/onenav-source-audit.test.cjs` whenever this private register or test changes. It no longer deploys solely because `HANDOVER_CURRENT.md` changed; handover-only commits do not alter customer assets and should not consume preview build/deploy runs.
+
+### Current blockers and next action
+
+- The 245-row unmatched OneNav source triage remains 245/245 `MANUAL_SOURCE_VERIFICATION_REQUIRED`; it is keyword triage, not manufacturer verification.
+- The 86-row fitment-kit crosswalk still has no exact kit image verified for any row (52 family-supported, 25 partial-variant, 6 no exact catalogue match, 3 conflicts).
+- The 16-row camera/accessory register still has 14 image-pending rows, one candidate not visually verified and one code-mismatch image rejection.
+- Continue OneNav only. Next priority is exact manufacturer evidence and exact images for the remaining head-unit/accessory records; do not advance to another brand while OneNav remains incomplete.
+
+All changes remain private review-only / DO NOT IMPORT. No customer-facing product JSON, price, stock, GW SKU, public product, Supabase/live database, supplier activation, merge, deployment, Axxess, DNS or payment data was changed by this audit correction.
