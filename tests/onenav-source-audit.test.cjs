@@ -141,6 +141,16 @@ const isuzuAlias = byHeadunitCode.get('ISA-ON115-3LX');
 assert.equal(isuzuAlias.model_identity_status, 'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY');
 assert.equal(isuzuAlias.image_status, 'IMAGE_PENDING');
 assert.match(isuzuAlias.review_note, /Alias\/duplicate confirmation required/);
+const clioA10 = byHeadunitCode.get('ON112-1A10');
+const clioA11 = byHeadunitCode.get('ON112-1A11');
+assert.equal(clioA10.model_identity_status, 'THIRD_PARTY_CROSSCHECK_ONLY');
+assert.equal(clioA11.model_identity_status, 'THIRD_PARTY_CROSSCHECK_ONLY');
+assert.equal(clioA10.image_status, 'IMAGE_PENDING');
+assert.equal(clioA11.image_status, 'IMAGE_PENDING');
+assert.match(clioA10.official_or_candidate_evidence_url, /no-display-a10/);
+assert.match(clioA11.official_or_candidate_evidence_url, /no-display-a11/);
+assert.match(clioA10.review_note, /do not transfer A11 specs or image/i);
+assert.match(clioA11.review_note, /no A10 specs\/image transferred/i);
 
 const cameraAccessoryPath = 'catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv';
 const cameraAccessoryParsed = parseCsv(fs.readFileSync(cameraAccessoryPath, 'utf8'));
