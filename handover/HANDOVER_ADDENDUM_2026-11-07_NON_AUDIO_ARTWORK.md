@@ -17,11 +17,14 @@
 - The category images are review-only illustrations, not exact product identity or fitment evidence.
 - External image reuse permissions are not confirmed. No images were downloaded, edited, or stripped of watermarks.
 
-## Verification still outstanding
-- The exact-head workflow lookup for the current branch head returned zero workflow runs; the GitHub commit status is `pending` with no checks. The PR preview workflow has not been verified as triggered.
-- No deployed-SHA marker, hosted mobile/desktop browser run, or new preview URL is verified.
-- The direct image URLs for the Magneti Marelli, DNI and Novsights images were visually inspected in web preview. The sensor and some general exterior imagery could not be fetched by the web inspection tool; exact browser naturalWidth checks remain mandatory.
-- Do not issue an owner preview link or mark this work preview-ready until the exact deployed SHA, 390px mobile and 1365px desktop checks, image naturalWidth, and visual semantic review pass.
+## Exact-head verification completed
+- Exact-head workflow run [42346944564](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42346944564) **PASSED** on source SHA `7828fe54723b93ed3a2de70c808613a04501d363`.
+- The customer-only preview package, category/audio regressions, public SKU audit, deployment and exact deployed-SHA marker all passed.
+- Verified non-production preview URL: https://50a3ce16.get-wired-autoworx-store.pages.dev
+- Hosted browser checks passed at 390px mobile and 1365px desktop. All five Auto Electrical and all four Car Care category images loaded with nonzero natural widths; mobile showed two columns; desktop had no horizontal overflow; JavaScript errors: 0.
+- Three approved root categories were confirmed. Aerials navigation passed. Exact product image audit: 74/74 loaded. Audio Connections image audit: 66/66 loaded; BlackSpider Lynx remains a low-resolution exception at 104px. No missing image URLs.
+- Image loading and semantic category suitability are separate checks. The new category cards were visually selected for the intended category, but the exterior-accessories image remains a general vehicle illustration rather than a specific accessory. External image reuse rights remain unconfirmed; this is an owner-preview only, not production approval.
+- The exact-head run verified SHA `7828fe...`; any subsequent branch commit requires a new exact-head run before issuing a replacement preview URL.
 
 ## Release gates
 - PR #178 remains OPEN / DRAFT / UNMERGED.
