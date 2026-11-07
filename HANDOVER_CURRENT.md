@@ -4852,3 +4852,18 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 
 ### Safety
 - All supplier-derived data remains private review-only / DO NOT IMPORT. No ASC work, Buyers Guides, live product/price/stock/category/active-flag change, Supabase write, supplier activation, payment/checkout action, Axxess, DNS, merge, production deployment or release-credit use.
+
+
+## 2026-11-07 10:08 SAST — ONENAV RENAULT CLIO A10/A11 EVIDENCE INCREMENT
+
+- Continued only on the existing PR #178 branch `integration/owner-preview-single-task-2026-11-05`; no new branch or PR created. OneNav remains the active brand; do not advance to another brand until its outstanding evidence is resolved.
+- Updated private review register `catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv` for `ON112-1A10` and `ON112-1A11`. Both now have separate exact-code reseller cross-check URLs from NXT Level Tech. A11 also has independent reseller corroboration from Car Audio Warehouse and SBR Pro Sound. Neither variant has manufacturer-level SKU verification in the evidence found during this pass; both remain `THIRD_PARTY_CROSSCHECK_ONLY`, with `IMAGE_PENDING`. No technical specifications, images, fitment assumptions or model aliases were transferred between A10 and A11.
+- Evidence URLs:
+  - A10: https://nxtleveltech.co.za/product/onenav-101inch-for-renault-clio-2017-with-no-display-a10
+  - A11: https://nxtleveltech.co.za/product/onenav-101inch-for-renault-clio-2017-with-no-display-a11
+  - A11 independent reseller cross-check: https://www.caraudiowarehouse.co.za/product/onenav-10-1inch-for-renault-clio-2017-with-no-display-a11/ and https://sbrprosound.co.za/product/onenav-on112-1a11/
+- Updated `tests/onenav-source-audit.test.cjs` with deterministic assertions that both codes remain separate, use the correct A10/A11 source URLs, remain image-pending, and explicitly prohibit cross-variant spec/image transfer.
+- Commits: evidence register `ec8902f8ad9b783971a2dfd25569d87a823fb628`; regression assertions `7fcba381a71c4a62462604534bfbcab578a0c19c`. The following handover commit records this checkpoint.
+- Validation: CSV row edits and test assertions were inspected through GitHub read-back. The Node test `node tests/onenav-source-audit.test.cjs` was **not executed in this environment**; no hosted Actions run was triggered to avoid unnecessary runner/credit use. Therefore this increment is not CI-verified, and no new exact-head preview is claimed.
+- Current work remains private review-only / DO NOT IMPORT. No public product data, GW SKU, price, stock, Supabase write, supplier activation, checkout/payment, ASC work, merge, deployment, Axxess, DNS or production change.
+- Next: continue OneNav exact-model/image reconciliation, prioritising unresolved head-unit and camera/accessory rows. Preserve the exact-image prohibition and one-brand-at-a-time gate. Keep PR #178 OPEN / DRAFT / UNMERGED and production HOLD.
