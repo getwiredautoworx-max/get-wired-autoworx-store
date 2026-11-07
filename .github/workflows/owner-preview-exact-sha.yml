@@ -28,6 +28,8 @@ on:
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/three-category-storefront-structure.test.cjs"
+      - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
+      - "tests/onenav-source-audit.test.cjs"
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
@@ -56,7 +58,8 @@ on:
       - "tests/audio-catalogue-preview.test.cjs"
       - "category.html"
       - "tests/three-category-storefront-structure.test.cjs"
-      - "HANDOVER_CURRENT.md"
+      - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
+      - "tests/onenav-source-audit.test.cjs"
 
 permissions:
   contents: read
@@ -107,6 +110,7 @@ jobs:
         run: |
           set -euo pipefail
           node tests/audio-catalogue-preview.test.cjs
+          node tests/onenav-source-audit.test.cjs
           node tests/three-category-storefront-structure.test.cjs
           python3 scripts/public-sku-audit.py
           echo "GW_EXACT_HEAD_REGRESSION_AND_SKU_AUDIT_PASS"
