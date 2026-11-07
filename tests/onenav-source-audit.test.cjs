@@ -177,7 +177,8 @@ const allowedCameraIdentityStates = new Set([
 const allowedCameraImageStates = new Set([
   'IMAGE_PENDING',
   'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
-  'IMAGE_REJECTED_FOR_THIS_CODE'
+  'IMAGE_REJECTED_FOR_THIS_CODE',
+  'OFFICIAL_IMAGE_CANDIDATE_RIGHTS_REVIEW_PENDING'
 ]);
 assert.ok(cameraAccessoryRecords.every(row => allowedCameraIdentityStates.has(row.model_evidence_status)),
   'Camera/accessory identity decisions must use an explicit, recognised state');
@@ -196,6 +197,16 @@ assert.equal(cam007.image_status, 'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED'
 const ox4990 = byCameraAccessoryCode.get('OX-4990DVR');
 assert.equal(ox4990.model_evidence_status, 'OFFICIAL_EXACT_SKU_AND_PRODUCT_IDENTITY_VERIFIED');
 assert.equal(ox4990.image_status, 'IMAGE_PENDING');
+assert.match(ox4990.review_note, /ON4988-X/);
+const ox4991 = byCameraAccessoryCode.get('OX-4991DVR');
+assert.equal(ox4991.model_evidence_status, 'OFFICIAL_EXACT_SKU_AND_PRODUCT_IDENTITY_VERIFIED');
+assert.equal(ox4991.image_status, 'IMAGE_PENDING');
+assert.match(ox4991.official_or_candidate_evidence_url, /onex-bracket-mount-smart-mirror/);
+const licensePlateCamera = byCameraAccessoryCode.get('OX-LCAM001');
+assert.equal(licensePlateCamera.model_evidence_status, 'OFFICIAL_EXACT_SKU_AND_PRODUCT_IDENTITY_VERIFIED');
+assert.equal(licensePlateCamera.image_status, 'OFFICIAL_IMAGE_CANDIDATE_RIGHTS_REVIEW_PENDING');
+assert.match(licensePlateCamera.review_note, /CL433RVDVR_web-600x600\.jpg/);
+assert.match(licensePlateCamera.review_note, /600x600/);
 
 const officialExactSkus = coverage
   .filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_SITE_EXACT_SKU_AND_TITLE')
