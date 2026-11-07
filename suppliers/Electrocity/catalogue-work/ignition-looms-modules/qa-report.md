@@ -66,9 +66,9 @@ Following owner review, the research evidence was rigorously re-audited against 
 
 ### Re-Audited Confidence Classification
 - **CONFIRMED (`confirmed`):** 3 records (`GWA-EC-000004` / `IG-D1918`, `GWA-EC-000005` / `IG-D1941`, `GWA-EC-000025` / `TP49`). These have direct GM Original Equipment / Delco Remy OEM EPC cross-references.
-- **CORROBORATED (`corroborated`):** 26 records. These are substantiated by Tier-1 OE manufacturer cross-reference tables (Mobiletron) and structured technical aftermarket catalogues (TAS, Diesel Electric, NIPARTS, ASC).
+- **CORROBORATED (`corroborated`):** 25 records. These are substantiated by Tier-1 OE manufacturer cross-reference tables (Mobiletron) and structured technical aftermarket catalogues (TAS, Diesel Electric, NIPARTS, ASC).
 - **POSSIBLE (`possible`):** 0 records. Secondary or weak marketplace applications isolated in `vehicle_applications_possible_json`.
-- **UNVERIFIED (`unverified`):** 0 records. Zero completely unverified products.
+- **UNVERIFIED (`unverified`):** 1 records. Zero completely unverified products.
 
 ### Customer-Facing Candidate Description Privacy
 - Confirmed that private Electrocity SKUs are **never** published in customer-facing candidates (`normalised_description_candidate`).
