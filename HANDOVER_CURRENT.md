@@ -4810,3 +4810,15 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Branch head immediately before this handover entry: `75b6060dd173ac87177b9d43219ed1630b9f3377`. The handover update is documentation-only; next refresh `.preview-deploy-request` to obtain a fresh deployment marker and hosted browser result for the post-handover exact head.
 - PR #178 remains OPEN / DRAFT / UNMERGED; production HOLD. No live product, price, stock, database, payment, DNS, Axxess, merge or production changes.
 - Remaining OneNav blockers are unchanged: 39/45 official-model rows have no image URL, 4 image candidates remain owner/rights-review only, 2 images are rejected; 245 source rows still require manual verification; 86 fitment-kit rows have no exact kit image; camera/accessory identities/images remain partially unresolved. Continue OneNav only.
+
+
+## CONTINUATION TASK START — 2026-11-07 09:50 SAST
+
+- Re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from `main`, the latest relevant `HANDOVER_CURRENT.md` entries on `main`, and the active-branch `HANDOVER_CURRENT.md` through the 09:13 SAST OneNav/OneX evidence checkpoint.
+- The older 2026-11-05 main-handover scope-lock that paused unrelated audio edits is superseded for this bounded work by the owner's explicit 2026-11-07 instruction to resume the Audio/Video catalogue and storefront-enrichment workstream independently of ASC. Scope remains the existing Car Audio & Video / OneNav-first sequence; no ASC work is touched.
+- The expected root `AI_HANDOVER_PERMANENT.md` is absent on both inspected `main` and the active branch. Repository search found historical references to it, but no current accessible canonical copy; no claim is made that it was read.
+- Reconciled candidate: PR #178 is still the sole active storefront integration candidate, OPEN / DRAFT / UNMERGED, branch `integration/owner-preview-single-task-2026-11-05`. Its latest recorded exact branch head is `0ed1d31ee15ae0ba617c6d876fc626b1bba367e5`. Comparison with current `main` reports the candidate as diverged (867 commits ahead / 26 behind); do not rebase, cherry-pick or create a competing branch. Preserve this owner-designated candidate.
+- Existing exact-head owner-review preview is recorded for SHA `0ed1d31ee15ae0ba617c6d876fc626b1bba367e5`, run `42350412161`, URL `https://ae5e6ed2.get-wired-autoworx-store.pages.dev/owner-preview.html`. It is an interim review preview only; OneNav is incomplete and no owner acceptance is implied.
+- Task focus for this run: continue OneNav only; review the OneX/CAM007-AHD camera image evidence against the official manufacturer specification and reject any third-party image that cannot be tied to the exact approved variant. Keep all catalogue evidence private and DO NOT IMPORT.
+- No ASC task, public product, live price/stock, Supabase write, supplier activation, checkout/payment, Axxess, DNS, merge, production deployment or release-credit action is included or authorised.
+
