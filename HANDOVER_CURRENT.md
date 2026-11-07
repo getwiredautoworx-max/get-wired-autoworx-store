@@ -4708,3 +4708,13 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Exact-head build/preview status remains unverified for the current active branch state. Do not reuse an older preview URL or claim owner-preview readiness until the triggering SHA, passing build/regressions, deployed-SHA marker, hosted image checks and mobile/desktop browser checks all match.
 - Scope for this session: continue evidence-backed OneNav product identity, description and exact-image reconciliation; preserve private DO NOT IMPORT review data. Do not touch ASC Buyers Guides, public products, live pricing/stock, Supabase writes, supplier activation, payments, Axxess, DNS, merge or production deployment.
 - Status at task start: repository and handover reconciled; no product/public data or deployment changes made in this entry. Next action: inspect current candidate data and continue the highest-confidence unresolved OneNav records, then run only safe exact-head checks when the active code/data head is ready.
+
+
+## CONTINUATION PROGRESS — 2026-11-07 07:25 SAST
+
+- Read the OneNav unmatched-headunit evidence register and the 16-row camera/accessory register. Confirmed that exact model identity, manufacturer evidence and image verification are separate gates; third-party-only and variant-mismatch rows remain quarantined.
+- New evidence correction committed to the private review register: `catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv` now links the H1 2015–2018 A11 source row `ON412-1LX` to the official OneNav H1 product page, which identifies the actual manufacturer SKU as `ON312-1LX`. The manufacturer catalogue identifies the `ON412` family as Nissan Navara. Status deliberately remains `IDENTITY_CONFLICT`; no ON312 image/specification is assigned to ON412 and supplier correction is still required. Evidence page: https://onenav.co.za/product/onenav-9-inch-for-h1-2015-2018-a11/ .
+- Commit: `70ea433a28dd1eae9d6ddf7c08f671baf9e7213e`. This is a private audit-register-only change; no customer-facing product data, public SKU, image, price, stock, category, Supabase record or deployment changed.
+- Official OneNav search for `ON112-1A10`, `ON1509-CS1` and `ON1410-A14` returned no exact official model page in this pass. Keep those rows unverified; do not infer descriptions or attach reseller images.
+- Preview status unchanged: exact-head build, deployment marker and hosted browser QA remain unverified. No preview URL issued. PR #178 remains draft/unmerged; production HOLD.
+- Next: continue manufacturer-first evidence on remaining OneNav head units and accessory models; resolve exact identity before image matching. Then progress fitment-kit images and remaining 245-row unmatched register in controlled batches.
