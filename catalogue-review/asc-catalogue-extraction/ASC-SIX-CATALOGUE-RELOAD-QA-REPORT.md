@@ -8,7 +8,7 @@
 
 ## 1. Executive Summary & Verification Metrics
 
-This QA report details the complete, verified extraction and reconciliation of the six retained ASC product catalogues, strictly adhering to owner directives. All buyer's guides have been excluded and catalogued for separate cleanup.
+This QA report details the complete, verified extraction and reconciliation of the six retained ASC product catalogues, strictly adhering to owner directives. All buyer's guides have been permanently excluded and deleted from the repository branch.
 
 | Metric | Target | Actual Result | Status |
 |---|---:|---:|:---:|
@@ -23,6 +23,7 @@ This QA report details the complete, verified extraction and reconciliation of t
 | Price-Rule Gate Compliance ("Price On Request Due to Stock Availability") | 978 | 978 | PASS (100% Compliant) |
 | Image Verification Exceptions Identified | 26 | 26 | PASS (Documented) |
 | Obsolete Buyer's Guide Ingestion | 0 | 0 | PASS (100% Excluded) |
+| Obsolete Buyer's Guide Files in Branch | 0 | 0 | PASS (Deleted) |
 | Live Supabase / Production Modifications | 0 | 0 | PASS (Strictly Read-Only) |
 
 ---
@@ -41,7 +42,24 @@ This QA report details the complete, verified extraction and reconciliation of t
 
 ---
 
-## 3. Image Verification & Exception Audit
+## 3. Row-by-Row Editorial Field Completion Matrix
+
+To ensure full transparency into the status of extracted product data, the table below provides the row-by-row editorial completion status across all 978 records:
+
+| Field Name | Visually Verified from Source | Review-Only / Draft from OCR | Missing / Not Provided in Source | Quarantine / Hold Status |
+|---|---:|---:|---:|---|
+| **Supplier SKU** | 978 (100%) | 0 (0%) | 0 (0%) | 0 quarantined (100% verified against blue labels) |
+| **Proposed GW SKU** | 978 (100%) | 0 (0%) | 0 (0%) | 0 collisions; mapped via `GW-ASC-<supplier_sku>` |
+| **Product Heading / Title** | 50 (Pilot cards) | 928 (Batch OCR) | 0 (0%) | 928 batch OCR titles require editorial proofing before production import |
+| **Vehicle Fitment** | 42 (Pilot cards) | 0 (0%) | 936 (Pending) | 936 fitment fields quarantined; fitment text exists on cards but requires editorial transcription |
+| **Technical Specs / Dimensions** | 0 (None in pilot) | 0 (0%) | 978 (Pending) | 978 technical dimensions/specs quarantined; preserved in original PDFs, pending manual transcription |
+| **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request Due to Stock Availability" |
+| **Physical Stock Count** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; unconfirmed dealer orderability only |
+| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos watermarked; quarantined from production storefront publication |
+
+---
+
+## 4. Image Verification & Exception Audit
 
 - **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks and are **not cleared for production publication**.
 - **Images on Request (No Photo Printed):** 26 products in `ASC- Car Mats (1).pdf` are printed without a product image. No placeholder or artificial images were invented.
@@ -51,7 +69,18 @@ This QA report details the complete, verified extraction and reconciliation of t
 
 ---
 
-## 4. Deliverables Package Structure
+## 5. Deletion of Obsolete Buyer's Guide Files
+
+In accordance with owner instructions, the obsolete buyer's guide audit and OCR files were permanently deleted using `git rm`:
+1. `catalogue-audits/JUNE_GUIDE_OCR_CORRECTIONS_2026-10-14.csv` (DELETED)
+2. `catalogue-audits/JUNE_SEPTEMBER_JOIN_AUDIT_2026-10-14.md` (DELETED)
+3. `staging/SEPTEMBER_QUOTE_PRICE_AND_IMAGE_RECONCILIATION_2026-10-14.md` (DELETED)
+
+A complete record of this action is preserved in `catalogue-audits/ASC_BUYERS_GUIDE_OBSOLETE_CLEANUP_REGISTER.md`.
+
+---
+
+## 6. Deliverables Package Structure
 
 The reload package cleanly separates review artifacts from staged import specifications:
 
@@ -65,16 +94,16 @@ The reload package cleanly separates review artifacts from staged import specifi
    - Path: `catalogue-review/asc-catalogue-extraction/ASC-IMAGE-VERIFICATION-EXCEPTIONS.md`
 4. **Source Verification Status & Inventory:**
    - Path: `catalogue-review/asc-catalogue-extraction/ASC-SOURCE-VERIFICATION-STATUS.md`
-5. **Obsolete Buyer's Guide Cleanup Register:**
+5. **Obsolete Buyer's Guide Deletion Register:**
    - Path: `catalogue-audits/ASC_BUYERS_GUIDE_OBSOLETE_CLEANUP_REGISTER.md`
 6. **Automated Validation Suite:**
-   - Path: `tests/test_asc_reload_validation.js` and `/home/jules/self_created_tools/asc_catalogue_qa.py`
+   - Path: `tests/test_asc_reload_validation.py` and `/home/jules/self_created_tools/asc_catalogue_qa.py`
 
 ---
 
-## 5. Outstanding Blockers & Next Actions
+## 7. Outstanding Blockers & Next Actions
 
 1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
 2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request Due to Stock Availability". Pricing updates require current ASC dealer cost sheets.
 3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
-4. **Authorised Cleanup Execution:** When explicitly authorized, obsolete buyer's guide files listed in `catalogue-audits/ASC_BUYERS_GUIDE_OBSOLETE_CLEANUP_REGISTER.md` may be safely deleted.
+4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.
