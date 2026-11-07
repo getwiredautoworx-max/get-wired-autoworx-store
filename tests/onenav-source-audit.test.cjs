@@ -142,6 +142,61 @@ assert.equal(isuzuAlias.model_identity_status, 'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY
 assert.equal(isuzuAlias.image_status, 'IMAGE_PENDING');
 assert.match(isuzuAlias.review_note, /Alias\/duplicate confirmation required/);
 
+const cameraAccessoryPath = 'catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv';
+const cameraAccessoryParsed = parseCsv(fs.readFileSync(cameraAccessoryPath, 'utf8'));
+const expectedCameraAccessoryHeaders = [
+  'supplier_source_code_private',
+  'source_description_private',
+  'official_or_candidate_evidence_url',
+  'model_evidence_status',
+  'image_status',
+  'review_note'
+];
+assert.deepEqual(cameraAccessoryParsed[0], expectedCameraAccessoryHeaders,
+  'The 16-row OneX/camera accessory register must retain its six-column schema');
+assert.ok(cameraAccessoryParsed.slice(1).every(row => row.length === expectedCameraAccessoryHeaders.length),
+  'Every camera/accessory evidence row must have exactly six fields');
+const cameraAccessoryRecords = cameraAccessoryParsed.slice(1).filter(row => row.some(value => value !== '')).map(values => {
+  const record = {};
+  expectedCameraAccessoryHeaders.forEach((header, index) => { record[header] = values[index] || ''; });
+  return record;
+});
+const byCameraAccessoryCode = new Map(cameraAccessoryRecords.map(row => [row.supplier_source_code_private, row]));
+assert.equal(cameraAccessoryRecords.length, 16, 'All 16 camera/accessory evidence rows must be retained');
+assert.equal(byCameraAccessoryCode.size, 16, 'Camera/accessory source codes must remain unique');
+assert.ok(cameraAccessoryRecords.every(row => row.review_note.trim()), 'Every camera/accessory evidence row must explain its decision');
+const allowedCameraIdentityStates = new Set([
+  'NO_EXACT_OFFICIAL_SKU_PAGE_FOUND',
+  'OFFICIAL_EXACT_SKU_AND_DESCRIPTION_VERIFIED',
+  'CODE_MISMATCH_OFFICIAL_PAGE_IS_ON4988-X',
+  'POSSIBLE_CODE_FORMAT_ALIAS_OFFICIAL_CODE_ONDVRSD',
+  'CODE_MISMATCH_OFFICIAL_PAGE_IS_ON434',
+  'OFFICIAL_EXACT_SKU_AND_PRODUCT_IDENTITY_VERIFIED',
+  'OFFICIAL_PRODUCT_TITLE_CANDIDATE_CODE_UNCONFIRMED'
+]);
+const allowedCameraImageStates = new Set([
+  'IMAGE_PENDING',
+  'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
+  'IMAGE_REJECTED_FOR_THIS_CODE'
+]);
+assert.ok(cameraAccessoryRecords.every(row => allowedCameraIdentityStates.has(row.model_evidence_status)),
+  'Camera/accessory identity decisions must use an explicit, recognised state');
+assert.ok(cameraAccessoryRecords.every(row => allowedCameraImageStates.has(row.image_status)),
+  'Camera/accessory image decisions must use an explicit, recognised state');
+const ox434rc = byCameraAccessoryCode.get('OX434RC');
+assert.equal(ox434rc.model_evidence_status, 'CODE_MISMATCH_OFFICIAL_PAGE_IS_ON434');
+assert.equal(ox434rc.image_status, 'IMAGE_PENDING');
+assert.match(ox434rc.review_note, /ON4988/);
+const on4989 = byCameraAccessoryCode.get('ON4989-X');
+assert.equal(on4989.model_evidence_status, 'CODE_MISMATCH_OFFICIAL_PAGE_IS_ON4988-X');
+assert.equal(on4989.image_status, 'IMAGE_REJECTED_FOR_THIS_CODE');
+const cam007 = byCameraAccessoryCode.get('CAM007-AHD');
+assert.equal(cam007.model_evidence_status, 'OFFICIAL_EXACT_SKU_AND_DESCRIPTION_VERIFIED');
+assert.equal(cam007.image_status, 'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED');
+const ox4990 = byCameraAccessoryCode.get('OX-4990DVR');
+assert.equal(ox4990.model_evidence_status, 'OFFICIAL_EXACT_SKU_AND_PRODUCT_IDENTITY_VERIFIED');
+assert.equal(ox4990.image_status, 'IMAGE_PENDING');
+
 const officialExactSkus = coverage
   .filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_SITE_EXACT_SKU_AND_TITLE')
     || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
