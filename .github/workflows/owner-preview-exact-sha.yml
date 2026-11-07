@@ -225,6 +225,12 @@ jobs:
               await auditNonAudioRoot(2,'Car Care & Accessories',4);
               await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
               await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').first().waitFor({state:'visible',timeout:30000});
+              await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
+              const audioRootLinkAgain=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]').first();
+              await audioRootLinkAgain.waitFor({state:'visible',timeout:30000});
+              await audioRootLinkAgain.click({noWaitAfter:true});
+              await frame.locator('#heading').filter({hasText:'Audio, Entertainment & Music'}).waitFor({state:'visible',timeout:30000});
+              await frame.locator('#grid > .card').filter({hasText:'Car Audio & Video'}).waitFor({state:'visible',timeout:15000});
               const carAudioCard=frame.locator('#grid .card').filter({hasText:'Car Audio & Video'});
               const carAudioHref=await carAudioCard.getAttribute('href');
               if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
