@@ -4752,3 +4752,33 @@ PR #178 remains OPEN / DRAFT / UNMERGED. Production remains HOLD. The Aerials pr
 - Found exact-head workflow run `42347079614`, attempt 2, on `d5d53c5edeef8872364bc2086fce7595c2a20fee`, completed SUCCESS. Job steps report successful customer-only package build, exact-head catalogue/category/package/SKU invariants, dedicated non-production Cloudflare Pages deploy, exact deployed-SHA wait/check, and hosted phone/desktop browser QA. Detailed logs and deployed preview URL still need inspection before any owner-preview statement.
 - Scope remains OneNav first; no move to another brand until OneNav is resolved. All uncertain identities/variants/images remain private review-only. No public product, price, stock, database, payment, hosting, DNS, merge or production changes authorised.
 - Task-start state: no new files or product records changed in this session. Next: inspect exact run logs/outputs and the current OneNav review registers, then make one evidence-backed private audit improvement if possible; update this handover again with exact results and verify the saved text.
+
+
+## ONENAV EVIDENCE AND QA RECONCILIATION — 2026-11-07 09:02 SAST
+
+### Scope and repository state
+- Continued only the existing Car Audio & Video / OneNav-first workstream on PR #178 and branch `integration/owner-preview-single-task-2026-11-05`. PR #178 remains OPEN / DRAFT / UNMERGED; production HOLD.
+- Re-read the binding owner directives from main and reconciled the main and active-branch handovers before work. The expected root `AI_HANDOVER_PERMANENT.md` is absent from the inspected main tree; do not claim it was read.
+- Code/data/test work batch before this handover entry: branch head `179714c12d2795d7fab33e1fff8e709533be5af4`. This checkpoint's handover update is documentation-only; no storefront customer product JSON was changed.
+
+### Evidence-backed OneNav corrections
+- Official OneNav Nissan Magnite page confirms `ON418-1LX` Evolution only. It does not verify source row `OA418-1` Classic. The 23-row private evidence register now records the official URL but keeps OA418-1 `UNVERIFIED` / `IMAGE_PENDING`; Evolution assets/specs are not reused.
+- Official OneNav Land Cruiser 70 Series (2012–2026) page prints SKU `ONO15-3A14` (letter O), while source row is `ON015-3` (zero). The 23-row register now records this as `IDENTITY_CONFLICT` / `IMAGE_PENDING`, quarantined pending supplier confirmation. No official image/specs are assigned to the source row.
+- Repaired a malformed 23-row head-unit CSV: records had seven fields but only six header names. The corrected schema explicitly names `model_identity_status`, `image_status` and `review_note`; all 23 rows now have seven fields and unique source codes. The ISA-ON115-3LX alias/duplicate-confirmation requirement is now a note, not an invalid image state.
+
+### Coverage and audit-count correction
+- Current 45-row official OneNav model audit: 45 unique source SKU rows / 45 description drafts; 39 `DETAILS_VERIFIED_IMAGE_PENDING`, 4 `OWNER_PREVIEW_CANDIDATE_ONLY`, 2 `DETAILS_VERIFIED_IMAGE_REJECTED`; 6 distinct image URLs and 39 rows without an image URL.
+- OA015-1 and OA716-1 images remain rejected because the observed artwork visibly identifies other hardware codes/variants. No lookalike replacement was added.
+- Corrected the standalone OneNav audit test to the actual counts. Previous assertions (40 pending / 5 candidates / 7 URLs / 38 gaps) were stale and caused run `42349341885` to fail at the OneNav audit test, before deploy. This was a stale test expectation, not a customer build failure.
+- The 245-row source triage remains 245/245 `MANUAL_SOURCE_VERIFICATION_REQUIRED`; breakdown is 123 harness/trim components, 76 mounting-frame/bracket components, 14 camera/monitor product-or-component candidates, 22 head-unit/media-player product candidates and 10 unresolved. Do not treat these 245 rows as ready-to-list products.
+- The 86-row fitment-kit crosswalk still has zero exact kit images verified (52 family-supported, 25 partial-variant, 6 no exact catalogue match, 3 conflicts). The 16-row camera/accessory register has 14 image-pending, one image candidate not visually verified and one code-mismatch image rejection.
+
+### Test and workflow changes
+- Extended `tests/onenav-source-audit.test.cjs` to validate the seven-column 23-row head-unit register, unique source codes, recognised identity/image states, and the OA418-1 / ON015-3 / ISA-ON115-3LX decisions.
+- Updated `.github/workflows/owner-preview-exact-sha.yml` to run that test and trigger when the 23-row register or test changes. Removed `HANDOVER_CURRENT.md` as a preview trigger so documentation-only updates do not unnecessarily consume build/deploy runs.
+- Run `42349341885` failed on the stale 40-vs-39 assertion. After correcting the counts, run `42349480834` on exact SHA `c437cbaeec7702e96c4e3866ddd5303059377975` has passed customer-only package build, all regression/category/SKU checks, non-production deploy and exact deployed-SHA marker. Hosted Playwright mobile/desktop QA was still in progress at this handover checkpoint; do not claim the run passed or use its preview URL until the run finishes and its logs are checked.
+- Earlier run `42347079614` passed on older code SHA `d5d53c5edeef8872364bc2086fce7595c2a20fee` with preview `https://bd9243e7.get-wired-autoworx-store.pages.dev`; it is superseded by the newer audit/test changes and must not be sent as the current preview.
+
+### Safety and next action
+- All OneNav findings remain private review-only / DO NOT IMPORT. No public product JSON, public SKU, GW SKU, price, stock, Supabase/live database, supplier activation, merge, production deployment, Axxess, DNS or payment changes.
+- Next: finish and inspect run `42349480834`; then request a fresh exact-head owner-preview run on the latest branch head after this handover update. Continue OneNav only, prioritising exact identity/image verification for remaining head-unit, camera/accessory and fitment-kit records. Do not move to another brand while OneNav remains incomplete.
