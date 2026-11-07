@@ -166,3 +166,15 @@ The current 245-row source triage register contains the following provisional gr
 - 10 Unresolved / Manual Review — no category/product-type decision.
 
 Overall: 199 provisional components, 14 provisional product-or-component rows, 22 provisional products and 10 unresolved rows. This is why the 245-row register must not be treated as 245 ready-to-list products. Continue item-level identity, exact fitment, bundle/component and image verification before any category or listing decision.
+
+
+## 2026-11-07 — OneX camera and smart-mirror manufacturer evidence
+
+The private 16-row camera/accessory register now includes these additional official OneNav findings:
+
+- **OX-4991DVR — Bracket Mount Smart Mirror:** official OneNav product page explicitly prints SKU `OX-4991DVR` and the matching bracket-mount smart-mirror/DVR/Wi-Fi/4K title. The page currently exposes no product-image filename or detailed specifications in the retrieved content. Identity/title are manufacturer-verified; image/specification state remains pending.
+- **OX-LCAM001 — License Plate Camera:** official OneNav page explicitly prints SKU `OX-LCAM001`, describes the number-plate holder with centred camera, adjustable viewing angle and 140° view, and links the exact `CL433RVDVR_web-600x600.jpg` asset. The official 600×600 image was visually inspected and depicts the matching camera/number-plate frame. Image status is `OFFICIAL_IMAGE_CANDIDATE_RIGHTS_REVIEW_PENDING`; no customer publication until reuse rights/owner approval are established. Image URL: `https://onenav.co.za/wp-content/uploads/2022/04/CL433RVDVR_web-600x600.jpg`.
+- **OX-4990DVR — Universal Mount Smart Mirror:** official OneNav page confirms exact SKU and title, but provides no retrievable image filename or detailed specifications. A third-party image-search result for a visually similar mirror visibly states `ON4988-X`; that asset is rejected for OX-4990DVR and the exact image remains pending.
+- **OX434RC — Bracket Mount Rear View Mirror Monitor:** official OneNav page identifies a related product as `ON434`, not `OX434RC`. Its visible image filenames are `SmartMirror-with-DVR-ON4988-B.png` and `SmartMirror-with-DVR-ON4988-C.png`, which carry another code family. Keep the source row quarantined and do not assign those images/specifications pending supplier confirmation.
+
+These are source-identity/image decisions only. No image was added to customer-facing data, no GW SKU was proposed, and no price/stock was inferred.
