@@ -201,6 +201,30 @@ jobs:
               if(audioCategoryImages.length!==6||audioCategoryImages.some(x=>!x.loaded))throw new Error('Audio subcategory picture cards failed to load: '+JSON.stringify(audioCategoryImages));
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
+              async function auditNonAudioRoot(rootIndex, headingText, expectedCount) {
+                await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
+                const rootLinks=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]');
+                const rootLink=rootLinks.nth(rootIndex);
+                await rootLink.waitFor({state:'visible',timeout:30000});
+                await rootLink.click({noWaitAfter:true});
+                await frame.locator('#heading').filter({hasText:headingText}).waitFor({state:'visible',timeout:30000});
+                const cards=frame.locator('#grid > .card');
+                await cards.first().waitFor({state:'visible',timeout:15000});
+                const imageAudit=await cards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{
+                  const img=card.querySelector('img');
+                  if(!img)return {label:card.innerText,loaded:false,naturalWidth:0,alt:'',src:''};
+                  if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});
+                  return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,alt:img.alt,src:img.currentSrc||img.src};
+                })));
+                if(imageAudit.length!==expectedCount||imageAudit.some(item=>!item.loaded||item.naturalWidth<120||!item.alt.trim()))throw new Error(headingText+' category artwork failed hosted image QA: '+JSON.stringify(imageAudit));
+                const layout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:cards.length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(card=>Math.round(card.getBoundingClientRect().width))}});
+                if(layout.columns<2||layout.count!==expectedCount||layout.cardWidths.some(width=>width<130))throw new Error(headingText+' category cards are not usable two-column mobile tiles: '+JSON.stringify(layout));
+                console.log('HOSTED_NON_AUDIO_CATEGORY_ART_AUDIT',JSON.stringify({headingText,imageAudit,layout}));
+              }
+              await auditNonAudioRoot(1,'Auto Electrical Parts & Spares',5);
+              await auditNonAudioRoot(2,'Car Care & Accessories',4);
+              await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
+              await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').first().waitFor({state:'visible',timeout:30000});
               const carAudioCard=frame.locator('#grid .card').filter({hasText:'Car Audio & Video'});
               const carAudioHref=await carAudioCard.getAttribute('href');
               if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
