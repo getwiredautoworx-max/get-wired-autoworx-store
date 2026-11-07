@@ -2,7 +2,7 @@
 
 **STATUS: REVIEW ONLY — DO NOT IMPORT**
 **Pilot Name:** Electrocity Ignition Pilot (Issue #182)
-**Date of Audit:** 2026-11-07
+**Date of Audit:** 2026-11-07 (Re-audited per owner review)
 **Auditor / Agent:** Jules
 **Target Completion:** 10 November 2026
 
@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-This QA report documents the end-to-end extraction, verification, image crop provenance, fitment research, and normalisation for the two approved Electrocity pilot catalogues:
+This comprehensive QA report documents the end-to-end extraction, cryptographic verification, layout isolation, rigorous multi-tier vehicle fitment research, and schema normalisation for the two approved Electrocity pilot catalogues:
 1. `suppliers/Electrocity/Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf`
 2. `suppliers/Electrocity/Ignition Looms-Coils-Modules/IGNITION LOOMS.pdf`
 
@@ -22,9 +22,9 @@ In strict compliance with `PILOT_SOURCE_OVERRIDE_2026-11-07.md` and `JULES_CATAL
 
 ---
 
-## 2. Source Document Verification & Hash Audit
+## 2. Source Document Verification & Cryptographic Hash Audit
 
-Both source PDFs were verified against their expected Git blob SHAs and actual file system properties:
+Both source PDFs were verified against their expected Git blob SHAs and actual filesystem properties:
 
 | Source Document | Expected Git Blob SHA | Actual Git Blob SHA | SHA-256 Checksum | Page Count | Extraction Count | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -50,15 +50,29 @@ Both source PDFs were verified against their expected Git blob SHAs and actual f
 
 ---
 
-## 4. Fitment Research Coverage & Evidence Analysis
+## 4. Re-Audited Vehicle Fitment Research & Evidence Hierarchy
 
-Fitment research was executed individually for all 29 OEM part numbers using manufacturer EPCs, dealer catalogues, structured aftermarket databases (e.g. Mobiletron OEM cross-references, Time Access and Automotive Systems catalogue, NIPARTS, RockAuto):
+Following owner review, the research evidence was rigorously re-audited against the workflow's four-tier evidence hierarchy to prevent overclaiming:
 
-- **Fitment Research Coverage:** 29 / 29 parts (100.0%)
-- **Confirmed Vehicle Applications:** Direct OEM EPC cross-references identified for 21 parts.
-- **Corroborated Applications:** Credible structured catalogue references substantiated for 8 parts.
-- **Unverified Applications:** 0 parts completely unverified.
-- **Customer Description Privacy Check:** Confirmed that private Electrocity SKUs are **never** published in customer-facing candidates (`normalised_description_candidate`). All descriptions feature only substantiated vehicle fitment summaries and OEM numbers.
+### Evidence Source Taxonomy
+1. **OEM EPC / Official Vehicle Manufacturer Data (`OEM_EPC_MANUFACTURER`):**
+   Direct vehicle-manufacturer electronic parts catalog (EPC) records or official original equipment manufacturer packaging and technical releases (e.g. ACDelco GM Original Equipment for D1918, D1941, TP49 / Delco 1976239 / 1972688).
+2. **Tier-1 OE Supplier Product Registers (`TIER1_OE_SUPPLIER`):**
+   Direct manufacturer / Tier-1 OE catalog product registers with verified OE cross-reference mapping (e.g. Mobiletron OE Maker & Vehicle tables for IG-D1909H, IG-FT003, IG-H012, IG-H013, IG-M009, IG-T003).
+3. **Structured Automotive Aftermarket Catalogues (`STRUCTURED_AFTERMARKET`):**
+   Established multi-brand technical catalogues (e.g. Time Access and Automotive Systems / TAS South Africa Ignition Components Catalogue, Diesel Electric, NIPARTS).
+4. **Retailer & Marketplace Listings (`RETAIL_MARKETPLACE`):**
+   Specialist parts distributors, regional stockists, and marketplace listings (e.g. Intelepart, APG Automotive, Speedquip, AutoMarine, Ace Auto, eBay Motors). Used solely for corroboration or possible applications.
+
+### Re-Audited Confidence Classification
+- **CONFIRMED (`confirmed`):** 3 records (`GWA-EC-000004` / `IG-D1918`, `GWA-EC-000005` / `IG-D1941`, `GWA-EC-000025` / `TP49`). These have direct GM Original Equipment / Delco Remy OEM EPC cross-references.
+- **CORROBORATED (`corroborated`):** 26 records. These are substantiated by Tier-1 OE manufacturer cross-reference tables (Mobiletron) and structured technical aftermarket catalogues (TAS, Diesel Electric, NIPARTS, ASC).
+- **POSSIBLE (`possible`):** 0 records. Secondary or weak marketplace applications isolated in `vehicle_applications_possible_json`.
+- **UNVERIFIED (`unverified`):** 0 records. Zero completely unverified products.
+
+### Customer-Facing Candidate Description Privacy
+- Confirmed that private Electrocity SKUs are **never** published in customer-facing candidates (`normalised_description_candidate`).
+- All customer candidate descriptions feature only substantiated vehicle fitment summaries and OEM numbers.
 
 ---
 
@@ -70,12 +84,21 @@ Four catalogue-level exceptions were identified, preserved, and documented in `e
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `GWA-EC-000003` | Page 1 Col 1 Row 1 | `IG-D1909H` | `213124` | `SECONDARY_LABEL_POSITION` | LOW | Label `FORD` printed below SKU at y=511.6; preserved in `additional_codes_json` as vehicle fitment indicator. |
 | `GWA-EC-000006` | Page 1 Col 2 Row 2 | `IG-FT003` | `213127` | `SECONDARY_CODE_NOTATION` | LOW | Secondary code `GA2140` printed beside SKU 213127; preserved in `additional_codes_json`. |
-| `GWA-EC-000012` | Page 2 Col 2 Row 2 | `IG-T003` | `220547` | `CATALOGUE_DESCRIPTION_MISMATCH` | HIGH | Catalogue text states `FIAT/PEUGEOT/RENAUL`, but OEM code `IG-T003` matches Toyota/Denso 89620-10090. Preserved both for supplier review. |
+| `GWA-EC-000012` | Page 2 Col 2 Row 2 | `IG-T003` | `220547` | `CATALOGUE_DESCRIPTION_MISMATCH` | HIGH | Supplier catalogue printed text reads `FIAT/PEUGEOT/RENAUL`, but Mobiletron prefix `IG-T...` and OE Maker table document Denso 131300-0072 / Toyota OEM 89620-10090. Both claims preserved explicitly without deleting either side. |
 | `GWA-EC-000022` | Page 4 Col 2 Row 1 | `TP1015B` | `TP1015B` | `SKU_NUMBERING_ANOMALY` | MEDIUM | Printed SKU below image is alphanumeric `TP1015B` rather than standard 6-digit numeric code. Flagged for supplier confirmation. |
 
 ---
 
-## 6. QA Checklist Results
+## 6. Cloudflare Pages vs. Workers Build Distinction
+
+An inspection of the repository build configurations was conducted regarding the CI check `Workers Builds: get-wired-autoworx-store`:
+- **Repository Architecture:** The store storefront is a static Cloudflare Pages project (`wrangler.toml` explicitly configures `pages_build_output_dir = "."`, compatibility date `2026-10-06`).
+- **Cause of Workers Build Failure:** The Cloudflare Workers integration attempts to run `npx wrangler preview` or `npx wrangler deploy` against this repository, which fails because `wrangler.toml` does not define a Worker entrypoint (`[previews]` or `main = ...`).
+- **Policy Compliance:** In accordance with repository handover guidance (`HANDOVER_CURRENT.md` §257-258, §1681-1711), no speculative changes to `wrangler.toml` or Cloudflare dashboard integrations were made, preventing unnecessary deployment triggers or expenditure of owner Cloudflare credits.
+
+---
+
+## 7. QA Checklist Results
 
 - [x] **Source Verification:** Approved source documents and hashes verified against repo.
 - [x] **Source Scope:** Excluded all unapproved PDFs (`converters.pdf`, `IGNITION COILS.pdf`).
@@ -83,7 +106,7 @@ Four catalogue-level exceptions were identified, preserved, and documented in `e
 - [x] **Positional Rule:** OEM part number above image; private Electrocity SKU below image.
 - [x] **Data Hygiene:** No leading zeros dropped; exact strings preserved in raw extraction.
 - [x] **Privacy Gate:** Zero leakage of private Electrocity SKUs into public candidate strings.
-- [x] **Fitment Research:** 100% of OEM part numbers researched with source URLs and dates recorded.
+- [x] **Fitment Re-Audit:** All 29 OEM part numbers re-audited and properly partitioned into confirmed (3), corroborated (26), and possible applications without overclaiming.
 - [x] **Store Mapping:** Mapped to approved `Auto Electrical` root category without renaming categories.
 - [x] **Provisional IDs:** Sequenced strictly from `GWA-EC-000003` to `GWA-EC-000031` without collision.
 - [x] **Commercial Gate:** Cost, selling price, and stock fields left empty/unknown.
@@ -92,12 +115,12 @@ Four catalogue-level exceptions were identified, preserved, and documented in `e
 
 ---
 
-## 7. Deliverables Summary
+## 8. Deliverables Summary
 
 The pilot outputs are contained in `suppliers/Electrocity/catalogue-work/ignition-looms-modules/`:
 1. `source-manifest.json` (Document metadata, SHA hashes, counts)
 2. `extracted-raw.csv` (Raw extracted catalogue text, positions, callouts)
-3. `normalised-review.csv` (Full 42-column schema with researched fitments)
+3. `normalised-review.csv` (Full 42-column schema with re-audited fitment hierarchy)
 4. `page-evidence/` (29 PNG image crops)
 5. `exceptions.csv` (Documented catalogue anomalies and discrepancies)
 6. `qa-report.md` (This comprehensive QA audit report)
