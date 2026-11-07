@@ -1,3 +1,14 @@
+
+
+## 2026-11-07 SAST — Car Audio Alpine manufacturer verification
+
+- Task start: reconciled the active PR #178 branch, re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, `HANDOVER_CURRENT.md`, and the 2026-11-06 audio addendum. PR #178 remains draft/unmerged; production HOLD.
+- Corrected the Planetworld division inventory from source chunks: Car Audio 702; Installed AV 435; Musical Instruments 1,719; Home CI 319; Home Retail 142. This confirms the full 3,317-row supplier catalogue must not be treated as all audio.
+- Car Audio brand audit shows Alpine 58 rows, with 9 image/description records previously verified; Kicker 189 rows (12 images, 11 descriptions); Audison 94 (41 images/descriptions); One 290 (6 image candidates, 9 model records); and smaller brands/accessory groups. These are audit coverage figures, not publication approvals.
+- Official Alpine South Africa product pages verified exact model and customer-safe product facts for BBX-F1200 (4-channel Class A/B amplifier), BBX-T600 (2-channel Class A/B amplifier), and iLX-705D (7-inch WXGA 2DIN digital media station with wireless Apple CarPlay and wired Android Auto). Source pages: https://www.alpine-electronics.co.za/p/Products/bbx-amplifiers4216/bbx-f1200 ; https://www.alpine-electronics.co.za/p/Products/bbx-amplifiers4216/bbx-t600 ; https://www.alpine-electronics.co.za/p/Products/SingleView/ilx-705d .
+- Updated only the internal audit's exact manufacturer model and description-verification fields for those three matching supplier rows. Product image URLs remain blank / no exact high-resolution asset staged; tiny 46×35 thumbnail derivatives were rejected as unsuitable. No customer-facing product JSON, prices, stock, category, or storefront assets changed. All candidate catalogue data remains DO NOT IMPORT.
+- Exact-head workflow/preview for the present PR head is not yet reconciled: the PR metadata points at `ca02c0b18cfdf1c3ea21cddf42b7c3fd075b7aaf`, while the connected PR-run wrapper returns no runs. Do not claim a current preview from the conflicting older handover entries.
+- Next: continue exact-model Car Audio enrichment in bounded batches, prioritising Kicker and Audison, then One/Alpine/JVC/Kenwood and the correctly mapped Harness & Trims; keep image rights and resolution as separate gates. No merge, production deployment, live write, supplier activation, or payment changes.
 ## ONENAV ON413 IMAGE CANDIDATE — 2026-11-06 (SAST)
 
 - Inspected official OneNav 2023 catalogue PDF page 13 (zero-based PDF page 12): the Nissan Qashqai/X-Trail cabin visual carries the exact label `ON413-1A10 (2015+)` and `10.1-inch screen`, matching the source SKU/fitment.
