@@ -46,17 +46,18 @@ const statusCounts = records.reduce((counts, row) => {
   counts[row.enrichment_status] = (counts[row.enrichment_status] || 0) + 1;
   return counts;
 }, {});
-assert.equal(statusCounts.DETAILS_VERIFIED_IMAGE_PENDING, 40);
-assert.equal(statusCounts.OWNER_PREVIEW_CANDIDATE_ONLY, 5);
-assert.equal(Object.keys(statusCounts).length, 2, 'No unrecognised or import-approved enrichment state is allowed');
+assert.equal(statusCounts.DETAILS_VERIFIED_IMAGE_PENDING, 39);
+assert.equal(statusCounts.OWNER_PREVIEW_CANDIDATE_ONLY, 4);
+assert.equal(statusCounts.DETAILS_VERIFIED_IMAGE_REJECTED, 2, 'Wrong-model image decisions must remain explicitly rejected');
+assert.equal(Object.keys(statusCounts).length, 3, 'Only verified-pending, preview-candidate and rejected-image states are allowed');
 
 const imageRows = records.filter(row => row.image_url_candidate);
 const imageUrls = imageRows.map(row => row.image_url_candidate);
-assert.equal(imageRows.length, 7, 'Only seven image URLs are currently staged as candidates');
-assert.equal(new Set(imageUrls).size, 7, 'Candidate image URLs must not be duplicated across SKU records');
+assert.equal(imageRows.length, 6, 'Only six image URLs are currently staged as candidates');
+assert.equal(new Set(imageUrls).size, 6, 'Candidate image URLs must not be duplicated across SKU records');
 assert.ok(imageUrls.every(url => /^https:\/\//.test(url)), 'Candidate image URLs must use HTTPS');
 assert.ok(imageRows.every(row => row.image_match_notes.trim()), 'Every image candidate must include its evidence/exception note');
-assert.equal(records.filter(row => !row.image_url_candidate).length, 38, '38 exact-model image gaps must remain explicit');
+assert.equal(records.filter(row => !row.image_url_candidate).length, 39, '39 exact-model image gaps must remain explicit');
 assert.ok(records.every(row => row.enrichment_status !== 'APPROVED_FOR_IMPORT'), 'Review records must never be silently promoted to import');
 
 const missingBrand = records.filter(row => !row.customer_brand_display.trim());
@@ -157,7 +158,8 @@ console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   detailsVerifiedImagePending: statusCounts.DETAILS_VERIFIED_IMAGE_PENDING,
   ownerPreviewCandidates: statusCounts.OWNER_PREVIEW_CANDIDATE_ONLY,
   imageCandidates: imageRows.length,
-  imageGaps: 38,
+  imageGaps: 39,
+  rejectedImageRows: statusCounts.DETAILS_VERIFIED_IMAGE_REJECTED,
   uncoveredStorefrontTitles: coverage.length,
   sourceSkuRowsForUncoveredTitles: 20,
   officialExactMatchesInUncoveredSet: officialExactSkus.length,
