@@ -224,8 +224,6 @@ jobs:
               await auditNonAudioRoot(1,'Auto Electrical Parts & Spares',5);
               await auditNonAudioRoot(2,'Car Care & Accessories',4);
               await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
-              await frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn').first().waitFor({state:'visible',timeout:30000});
-              await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
               const audioRootLinkAgain=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]').first();
               await audioRootLinkAgain.waitFor({state:'visible',timeout:30000});
               await audioRootLinkAgain.click({noWaitAfter:true});
