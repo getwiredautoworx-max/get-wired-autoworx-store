@@ -153,3 +153,16 @@ The exact-head preview workflow now runs `tests/onenav-source-audit.test.cjs` wh
 - Continue OneNav only. Next priority is exact manufacturer evidence and exact images for the remaining head-unit/accessory records; do not advance to another brand while OneNav remains incomplete.
 
 All changes remain private review-only / DO NOT IMPORT. No customer-facing product JSON, price, stock, GW SKU, public product, Supabase/live database, supplier activation, merge, deployment, Axxess, DNS or payment data was changed by this audit correction.
+
+
+### 245-row source workload decomposition
+
+The current 245-row source triage register contains the following provisional groups (these are keyword/source-description classifications only, not manufacturer verification or product approvals):
+
+- 123 Installation / Vehicle Harnesses / Trims — all provisional components.
+- 76 Mounting Frames / Brackets — all provisional components.
+- 14 Cameras / Monitors — product-or-component status still requires item-level verification.
+- 22 Head Units / Media Players — provisional product rows.
+- 10 Unresolved / Manual Review — no category/product-type decision.
+
+Overall: 199 provisional components, 14 provisional product-or-component rows, 22 provisional products and 10 unresolved rows. This is why the 245-row register must not be treated as 245 ready-to-list products. Continue item-level identity, exact fitment, bundle/component and image verification before any category or listing decision.
