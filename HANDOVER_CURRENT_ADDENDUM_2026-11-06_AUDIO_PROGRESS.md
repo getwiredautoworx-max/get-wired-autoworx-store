@@ -36,3 +36,21 @@ Continue the exact-model image audit for the remaining OneNav gaps and unmatched
 - Confirmed the trigger file is included in PR #178's changed-file list and the PR head now points to that exact commit.
 - Checked the commit workflow-run wrapper and combined commit status after the update: zero associated PR workflow runs and zero statuses were returned. Therefore no build, test, deployment, or hosted browser result exists yet. The marker is only a trigger attempt, not a preview.
 - The next blocker is repository Actions execution/visibility or permissions. Do not claim deployment, use a stale alias, or bypass the release gates. PR #178 remains draft and production remains on hold.
+
+
+## Exact-head owner preview verification — 2026-11-06 18:15 UTC
+
+- Corrected the OneNav enrichment audit/test expectations for six exact image candidates and 39 image gaps; rejected wrong-fitment artwork remains excluded. The earlier run at `492aca51903eb1ae620bed4981e54450f5985d3a` failed during enrichment because it still expected 45 OneNav rows while only 43 matched that earlier audit snapshot. Do not treat that failed run as current.
+- Current verified candidate head: `c98097a111c32f29a1b9573c8d0425533765dcdc`.
+- Exact-head GitHub Actions run [#42268763455](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42268763455) completed SUCCESS. Customer-only package build, Planetworld/Audio Connections regression checks, public SKU audit, preview deploy, exact deployed-SHA marker and hosted Playwright mobile/desktop QA all passed.
+- Exact deployment: https://a877160d.get-wired-autoworx-store.pages.dev/owner-preview.html (branch alias: https://owner-preview.get-wired-autoworx-store.pages.dev/owner-preview.html). The successful workflow log identifies the exact deployment URL and SHA.
+- Hosted evidence: 74/74 exact Planetworld image candidates loaded; Audio Connections 66/66 product images loaded and 66/66 records have descriptions. One Audio Connections image (BlackSpider Lynx) is only 104px wide and remains a quality exception. OneNav listing showed 64 products, 6 images and 6 review notes; the rest remain pending exact-photo verification. Audio department/category images loaded; Aerials navigation passed; no JavaScript errors; desktop horizontal overflow was zero at 1365px.
+- The Cloudflare Pages preview check succeeded. A separate legacy Cloudflare Workers production-build check reported failure on the same commit; it is not the dedicated Pages owner-preview deployment and no production deploy or production change was performed. Keep production HOLD.
+- PR #178 remains OPEN / DRAFT / UNMERGED. This preview is for owner review only, not catalogue completion or production approval.
+
+## Remaining audio catalogue work — owner target: 2026-11-07
+
+- Audio Connections: 66 records, all have descriptions and image URLs; improve/replace the 104px BlackSpider Lynx image and continue rights/quality review.
+- Planetworld preview catalogue: 3,317 rows overall. Current enrichment includes 68 verified manufacturer model records plus 45 OneNav exact product-page records (113 descriptions); current image candidates total 74 (68 verified-model plus 6 OneNav). The remaining records still need exact-model images and/or manufacturer-backed descriptions. Do not treat the 3,317-row Planetworld source as 3,317 verified audio products; the supplier divisions include Car Audio (702), Installed AV (435), Musical Instruments (1,719), Home CI (319), and Home Retail (142), which require correct storefront categorisation rather than indiscriminate placement.
+- Next execution priority: split and process remaining audio-relevant divisions/brands in batches, first Car Audio and Installed AV, then Home CI and Musical Instruments; reconcile each batch to the supplier model/SKU and manufacturer product page, attach only exact model images, and produce a gap report after each batch. Keep Home Retail products out of the audio category unless individually verified as audio-related.
+- Do not claim the entire catalogue complete while unverified products remain. Do not substitute generic/category images as product photos, publish unlicensed imagery, expose supplier SKUs/dealer costs, change live stock/prices, activate checkout, merge PR #178 or deploy production without explicit owner approval.
