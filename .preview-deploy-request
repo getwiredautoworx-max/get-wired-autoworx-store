@@ -1,3 +1,3 @@
 request=owner-preview
-requested_commit=a5d4356e168476499dee5b0a934f1d8a757f075d
-reason=remove misplaced duplicate Aerials node; assert exactly one canonical Aerials category under Car Audio Accessories, unique category ID and one route map; hosted Playwright clicks the single Aerials card and verifies the exact filtered Car Audio destination; run customer-only package, category/catalogue/SKU regressions, exact deployed-SHA marker and 390px/1365px browser QA
+requested_commit=ee63a6328dc294f1974a52aaead5431ee891640d
+reason=verify approved three-root storefront at the exact current PR head; build the customer-only non-production Pages package; run Node category/audio regressions and public SKU audit; deploy only to the dedicated owner-preview branch; verify deployed SHA marker; run 390px mobile and 1365px desktop browser QA including all five Auto Electrical and four Car Care subcategory cards, image naturalWidth and alt text, mobile two-column layout, navigation back to Audio, checkout hidden and preview writes blocked
