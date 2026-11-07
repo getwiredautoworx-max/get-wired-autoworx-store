@@ -1,5 +1,14 @@
 
 
+## 2026-11-07 SAST — Kicker DS speaker batch
+
+- Verified five Planetworld Car Audio Kicker rows against Kicker's official DS-series product pages: 43DSC3504 → DSC350 (3.5-inch), 43DSC404 → DSC40 (4-inch), 43DSC4604 → DSC460 (4×6-inch), 43DSC504 → DSC50 (5.25-inch), and 43DSC6504 → DSC650 (6.5-inch). Official pages: https://www.kicker.com/ds-coaxial-speakers-35 ; https://www.kicker.com/ds-coaxial-speakers-4 ; https://www.kicker.com/ds-coaxial-speakers-46 ; https://www.kicker.com/ds-coaxial-speakers-5 ; https://www.kicker.com/ds-coaxial-speakers-65 .
+- Added exact manufacturer model, official 480×360 product-image candidate URL, and verified description status for all five rows in the internal Planetworld audit. Images are marked `OFFICIAL_MANUFACTURER_IMAGE_REVIEW_ONLY`; manufacturer-hosted assets are not treated as licensed for reuse. No public product JSON or preview asset changed.
+- Kicker's official DS pages identify these as 2-way coaxial speaker pairs with polypropylene cones, PEI tweeters and model-specific power/size specifications. Keep customer copy limited to the exact model facts; do not transfer specifications across speaker sizes.
+- The current branch's legacy Cloudflare Pages and Workers checks for handover/audit-only head `0c2e60d777b115af43ec2ece024f206da22e9070` both completed with failure. The dedicated exact-SHA owner-preview workflow succeeded on the preceding storefront-code head `ca02c0b18cfdf1c3ea21cddf42b7c3fd075b7aaf`; do not conflate those separate checks or claim the latest audit-only head has a fresh deployed-SHA preview.
+- Continue with Kicker's remaining 189-row brand batch and the 41 remaining Audison records without generic-image substitution. All catalogue candidates remain review-only / DO NOT IMPORT; PR #178 remains draft/unmerged and production HOLD.
+
+
 ## 2026-11-07 SAST — Car Audio Alpine manufacturer verification
 
 - Task start: reconciled the active PR #178 branch, re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, `HANDOVER_CURRENT.md`, and the 2026-11-06 audio addendum. PR #178 remains draft/unmerged; production HOLD.
