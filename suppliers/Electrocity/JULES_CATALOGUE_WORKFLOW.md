@@ -21,12 +21,13 @@ The 2026-10-27 supplier inventory note saying Electrocity had zero PDFs is stale
 
 Do not copy the ASC extraction/import assumptions into this supplier workflow. Electrocity material may present several product/cross-reference codes together, and the existing historical glowplug working map explicitly records cases where the source did not identify which code is the supplier's primary code. That is a warning to preserve source labels and uncertainty, not permission to infer code roles.
 
-For every printed identifier:
-- Capture the exact string, punctuation, leading zeros and nearby printed label.
-- Record the page, row/diagram/callout and the exact source heading/column.
-- Store each code in its own field with its printed label.
-- If no label defines its role, use `UNCONFIRMED_ROLE`; do not call it a supplier SKU, OEM number, cross-reference or manufacturer part number.
-- Never merge codes or choose one as the canonical supplier code without evidence.
+For every product image/row in the Electrocity catalogue, apply this owner-confirmed visual rule:
+- **The number printed above the product picture is the OEM part number.** Capture it exactly as `oem_part_number`.
+- **The number printed below the product picture is the Electrocity SKU.** Capture it exactly as `electrocity_sku` and keep it internal/private; never show it in customer-facing descriptions.
+- Preserve punctuation, spaces, leading zeros and any suffixes. Record page and image/callout coordinates or a crop proving which number is above and which is below the product picture.
+- If a page layout is ambiguous or a number is missing, flag `LAYOUT_ROLE_REVIEW`; do not silently swap the two fields.
+- Other identifiers elsewhere on the page must be captured separately with their printed labels; do not reclassify them as either of these two fields without evidence.
+- This owner-confirmed positional rule supersedes the earlier generic instruction to leave these two positions' roles unconfirmed.
 
 Keep the original Electrocity document unchanged. ASC-specific quote-only wording, extraction scripts, price assumptions, and taxonomy rules must not be applied automatically.
 
@@ -56,7 +57,20 @@ For each candidate row capture, where present:
 - source category/subcategory and diagram/callout;
 - price, currency, VAT basis, pack quantity and validity/revision only if explicitly printed.
 
-Do not invent missing fitments, model years, dimensions, code roles, pack sizes or equivalence. A likely match is a review candidate, not a verified match. Keep one row per distinct sellable variant where the source distinguishes variants.
+Do not invent missing fitments, model years, dimensions, pack sizes or equivalence. A likely match is a review candidate, not a verified match. Keep one row per distinct sellable variant where the source distinguishes variants.
+
+### OEM-number web vehicle-application research (required)
+For **every product with an OEM part number printed above its product picture**, search the web using that exact OEM number and identify all vehicle applications that can be substantiated:
+1. Search the exact number in quotes and sensible formatting variants (spaces/hyphens removed or restored only as search variants; retain the printed original as the canonical value).
+2. Prioritise vehicle-manufacturer electronic parts catalogues (EPCs), manufacturer/dealer parts sources, and reputable structured parts catalogues such as TecDoc/TecAlliance. Use aftermarket catalogue pages and specialist suppliers as corroboration, not as sole authority where stronger sources exist.
+3. Search each discovered make/model/variant against the OEM number again. Capture make, model/platform, model years or production dates, engine/engine code, body/trim/drive where available, and market/region. Distinguish vehicle applications from cross-reference products or superseded/replacement numbers.
+4. Record every useful source URL, publisher, page title, access date, exact supporting statement/data, and confidence. Keep conflicting or region-specific results visible in `exceptions.csv`; do not resolve conflicts by guessing.
+5. Separate `CONFIRMED_APPLICATION` (direct OEM EPC/manufacturer evidence or strong independently corroborated catalogue linkage), `CORROBORATED_APPLICATION` (credible catalogue evidence but no direct OEM confirmation), `POSSIBLE_APPLICATION` (single/weak source), and `UNVERIFIED`. Do not present possible/unverified applications as confirmed fitment.
+6. Never claim the search found literally every compatible vehicle unless the source explicitly provides complete coverage for the relevant market and period. Report the sources and coverage limitations. Vehicle applications can vary by production date, engine, trim, market and supersession.
+7. Include a concise, customer-readable vehicle-application summary in `normalised_description_candidate`, based only on confirmed/corroborated applications. Include the OEM number in that description. Preserve the full detailed fitment list and source evidence in structured internal fields for review.
+8. If the OEM number yields no reliable fitment results, say that fitment is unverified; do not infer applications from the Electrocity SKU or product appearance.
+
+Important: OE-number search is a discovery method, not proof on its own. TecAlliance explains that OE reference data is linked to vehicle and aftermarket data using structured catalogue information; its help material also cautions that OE-number searches do not always create a direct OE-number-to-vehicle relationship. Use vehicle linkage records and corroborating sources, not a bare search-result snippet.
 
 ### D. Electrocity-to-store mapping
 1. Keep the source taxonomy and proposed Get Wired taxonomy in separate columns.
@@ -105,20 +119,21 @@ Mark every output **REVIEW ONLY — DO NOT IMPORT**. Preserve raw extraction sep
 ## 4. Required row-level review schema
 
 Minimum columns:
-`supplier`, `source_path`, `source_sha256`, `source_revision_date`, `source_page`, `source_row_or_callout`, `source_category`, `source_subcategory`, `printed_description_raw`, `normalised_description_candidate`, `brand`, `manufacturer_model`, `variant`, `code_1_raw`, `code_1_label`, `code_1_role_status`, `code_2_raw`, `code_2_label`, `code_2_role_status`, `additional_codes_json`, `vehicle_fitment_raw`, `dimensions_raw`, `specifications_json`, `price_raw`, `currency`, `price_type`, `vat_basis`, `pack_basis`, `stock_raw`, `image_source`, `image_match_status`, `proposed_store_root`, `proposed_store_subcategory`, `provisional_gw_id`, `existing_product_match_candidate`, `confidence`, `qa_status`, `review_notes`.
+`supplier`, `source_path`, `source_sha256`, `source_revision_date`, `source_page`, `source_row_or_callout`, `source_category`, `source_subcategory`, `printed_description_raw`, `normalised_description_candidate`, `brand`, `manufacturer_model`, `variant`, `oem_part_number`, `electrocity_sku`, `oem_number_source_position`, `electrocity_sku_source_position`, `vehicle_fitment_raw`, `vehicle_applications_confirmed_json`, `vehicle_applications_corroborated_json`, `vehicle_applications_possible_json`, `fitment_research_sources_json`, `fitment_research_accessed_at`, `fitment_coverage_limitations`, `additional_codes_json`, `dimensions_raw`, `specifications_json`, `price_raw`, `currency`, `price_type`, `vat_basis`, `pack_basis`, `stock_raw`, `image_source`, `image_match_status`, `proposed_store_root`, `proposed_store_subcategory`, `provisional_gw_id`, `existing_product_match_candidate`, `confidence`, `qa_status`, `review_notes`.
 
 Do not leave a critical unknown disguised as a normalised value. Use explicit null/blank plus an exception status.
 
 ## 5. Jules execution prompt
 
-> Work only on the Electrocity sample source explicitly assigned in this task. Read this workflow first, then verify the source path and blob SHA against the current repository. Do not assume the old supplier inventory is current. Begin with converters.pdf and inspect its pages/layout before extraction. Preserve the original PDF. Extract raw data with page-level provenance, then create a separate normalised review file. Preserve every printed code and its printed label; if a code role is not explicitly labelled, mark it UNCONFIRMED_ROLE. Do not guess fitment, technical values, category, image identity, price type, VAT basis or stock. Do not apply ASC rules or another supplier's pricing formula. Do not modify live product data, active flags, images, prices, stock, database records, storefront files, category structures, deployment settings or production. Do not merge/delete similar products. Generate the manifest, raw CSV, normalised review CSV, page evidence, exceptions CSV and QA report under the Electrocity catalogue-work sample folder. Mark all outputs REVIEW ONLY — DO NOT IMPORT. Run the QA checklist and report exact counts, failures, unresolved ambiguities and sample limitations. Stop before processing another catalogue or making any write outside the assigned review folder.
+> Work only on the Electrocity sample source explicitly assigned in this task. Read this workflow first, then verify the source path and blob SHA against the current repository. Do not assume the old supplier inventory is current. Begin with converters.pdf and inspect its pages/layout before extraction. Preserve the original PDF. Extract raw data with page-level provenance, then create a separate normalised review file. Apply the owner-confirmed positional rule: the number above each product picture is the OEM part number; the number below it is the Electrocity SKU. Capture both exactly with page/crop evidence; keep Electrocity SKU private. For every OEM number, search the web for vehicle applications, prioritising OEM EPC/manufacturer sources and reputable structured catalogues. Record all sources, access dates, make/model/year/engine/variant/market details and confidence. Separate confirmed, corroborated, possible and unverified applications; do not claim exhaustive coverage without evidence. Include the OEM number and only confirmed/corroborated vehicle applications in the customer-facing description candidate; retain detailed evidence internally. Do not guess fitment, technical values, category, image identity, price type, VAT basis or stock. Do not apply ASC rules or another supplier's pricing formula. Do not modify live product data, active flags, images, prices, stock, database records, storefront files, category structures, deployment settings or production. Do not merge/delete similar products. Generate the manifest, raw CSV, normalised review CSV, page evidence, exceptions CSV and QA report under the Electrocity catalogue-work sample folder. Mark all outputs REVIEW ONLY — DO NOT IMPORT. Run the QA checklist and report exact counts, failures, unresolved ambiguities and sample limitations. Stop before processing another catalogue or making any write outside the assigned review folder.
 
 ## 6. Pilot acceptance gate
 
 The pilot passes only when:
 - the sample source and hash are verified;
 - every extracted row is traceable to a page/row/callout;
-- every code is preserved and ambiguous roles are visibly unresolved;
+- the number above each product image is captured as OEM part number and the number below as private Electrocity SKU, with page/crop evidence;
+- every OEM number has a documented web fitment search, source URLs and confidence-separated vehicle applications;
 - technical values and units are faithful to the source;
 - exact model/variant and fitment are either evidenced or flagged;
 - price/VAT/stock unknowns remain unknown;
