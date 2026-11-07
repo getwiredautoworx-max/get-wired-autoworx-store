@@ -68,8 +68,8 @@ function categoryArtFallback(label){
 function artFor(label){
  const n=String(label||'').trim().toLowerCase();
  if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
- if(n==='auto electrical parts & spares')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
- if(n==='accessories')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
+ if(n==='auto electrical parts & spares')return 'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motori-avviamento.jpeg';
+ if(n==='accessories')return 'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motori-avviamento.jpeg';
  const localAudio=[
   [/car audio|car audio & video/,'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'],
   [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82'],
@@ -90,18 +90,19 @@ function artFor(label){
  ];
  const exact=localAudio.find(([re])=>re.test(n));
  if(exact)return exact[1];
+ // External category artwork is a review-only visual aid. Source reuse permission is not confirmed; do not treat these URLs as production-approved product imagery.
  const photos=[
   [/vacuum cleaners?/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82'],
   [/pool cleaners?/,'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=720&q=82'],
-  [/alternators? & starters?/,'https://fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png?v=1777822231&width=800'],
-  [/batteries? & charging/,'https://www.nbyichou.com/ck/userfiles/images/products/car/10001%282%29.jpg'],
-  [/fuses?,? relays? & wiring/,'https://fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png?v=1777822231&width=800'],
-  [/globes? & vehicle lighting/,'https://www.nbyichou.com/ck/userfiles/images/products/car/10001%282%29.jpg'],
-  [/sensors? & switches/,'https://fljoffroad.com/cdn/shop/collections/electricite_4x4_FLJ_Offroad.png?v=1777822231&width=800'],
+  [/alternators? & starters?/,'https://cdn.awsli.com.br/2500x2500/2861/2861170/produto/369645849/553-kit-pe-as-dni-01-33og4zi8rq.jpg'],
+  [/batteries? & charging/,'https://www.novsights.com/cdn/shop/files/N67EP-h7_9005.jpg?v=1777062410&width=1200'],
+  [/fuses?,? relays? & wiring/,'https://cdn.awsli.com.br/2500x2500/2861/2861170/produto/369645849/553-kit-pe-as-dni-01-33og4zi8rq.jpg'],
+  [/globes? & vehicle lighting/,'https://www.novsights.com/cdn/shop/files/N67EP-h7_9005.jpg?v=1777062410&width=1200'],
+  [/sensors? & switches/,'https://cdn.awsli.com.br/2500x2500/2861/2861170/produto/369645849/553-kit-pe-as-dni-01-33og4zi8rq.jpg'],
   [/car care/,'https://seatsavers.com/cdn/shop/files/8ATC15_Soaker-Outline_18Gloss_18Shampoo.jpg?v=1700453504&width=1707'],
   [/car mats/,'https://cdn.shopify.com/s/files/1/0554/9559/0048/files/MAXTRAC_EN_1280_6.jpg?v=1701333034'],
-  [/seat covers|interior accessories/,'https://autoignite.net/cdn/shop/collections/auto-parts-accessories.png?v=1776547411'],
-  [/exterior accessories/,'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82']
+  [/seat covers|interior accessories/,'https://static.winparts.net/interior-fabrics/car-interior/car-comfort/seat-and-steering-wheel-covers/car-seat-covers/c1104/universal-suede-leather-cloth-seat-cover-set-39-iconic-39-black-red-11-piece/p6800889_900_900.jpg'],
+  [/exterior accessories/,'https://image.made-in-china.com/2f0j00NqchPjSyMtfO/4X4-Automatic-Power-Side-Step-Running-Boards-with-LED-Light-for-Universal-Car.webp']
  ];
  const match=photos.find(([re])=>re.test(n));
  return match?match[1]:'';
