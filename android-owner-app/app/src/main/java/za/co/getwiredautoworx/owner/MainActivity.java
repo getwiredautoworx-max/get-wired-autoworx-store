@@ -60,6 +60,10 @@ public class MainActivity extends Activity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 configureBridgeForUrl(url);
+                if (url != null && (url.startsWith("https://") || url.startsWith("http://")) && !isCaelexUrl(url)) {
+                    view.stopLoading();
+                    openExternal(Uri.parse(url));
+                }
             }
 
             @Override
@@ -164,11 +168,7 @@ public class MainActivity extends Activity {
     }
 
     private void activateOwnerBridge() {
-        if (web == null || !caelexBridgeActive) {
-            if (web != null) web.addJavascriptInterface(new OwnerBridge(), "AndroidBridge");
-            caelexBridgeActive = false;
-            return;
-        }
+        if (web == null) return;
         web.removeJavascriptInterface("AndroidBridge");
         web.addJavascriptInterface(new OwnerBridge(), "AndroidBridge");
         caelexBridgeActive = false;
@@ -227,7 +227,7 @@ public class MainActivity extends Activity {
     private class OwnerBridge {
         @JavascriptInterface
         public void openCaelex(String target) {
-            openCaelex(target);
+            MainActivity.this.openCaelex(target);
         }
 
         @JavascriptInterface
