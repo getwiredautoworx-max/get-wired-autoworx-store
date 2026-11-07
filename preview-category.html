@@ -69,7 +69,7 @@ function artFor(label){
  const n=String(label||'').trim().toLowerCase();
  if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
  if(n==='auto electrical parts & spares')return 'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motori-avviamento.jpeg';
- if(n==='accessories')return 'https://image.made-in-china.com/2f0j00NqchPjSyMtfO/4X4-Automatic-Power-Side-Step-Running-Boards-with-LED-Light-for-Universal-Car.webp';
+ if(n==='accessories')return 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82';
  const localAudio=[
   [/car audio|car audio & video/,'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'],
   [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82'],
@@ -101,8 +101,8 @@ function artFor(label){
   [/sensors? & switches/,'https://static.wixstatic.com/media/37f6df_957fce1b12bf4f85a5eb017b68ce11ea~mv2.jpg/v1/fill/w_1699%2Ch_1168%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/37f6df_957fce1b12bf4f85a5eb017b68ce11ea~mv2.jpg'],
   [/car care/,'https://seatsavers.com/cdn/shop/files/8ATC15_Soaker-Outline_18Gloss_18Shampoo.jpg?v=1700453504&width=1707'],
   [/car mats/,'https://cdn.shopify.com/s/files/1/0554/9559/0048/files/MAXTRAC_EN_1280_6.jpg?v=1701333034'],
-  [/seat covers|interior accessories/,'https://static.winparts.net/interior-fabrics/car-interior/car-comfort/seat-and-steering-wheel-covers/car-seat-covers/c1104/universal-suede-leather-cloth-seat-cover-set-39-iconic-39-black-red-11-piece/p6800889_900_900.jpg'],
-  [/exterior accessories/,'https://image.made-in-china.com/2f0j00NqchPjSyMtfO/4X4-Automatic-Power-Side-Step-Running-Boards-with-LED-Light-for-Universal-Car.webp']
+  [/seat covers|interior accessories/,'https://shop2.daumcdn.net/shophow/p/O33570003019.jpg?opt=R500x500.q90&type=thumb&ut=20251226114655'],
+  [/exterior accessories/,'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82']
  ];
  const match=photos.find(([re])=>re.test(n));
  return match?match[1]:'';
