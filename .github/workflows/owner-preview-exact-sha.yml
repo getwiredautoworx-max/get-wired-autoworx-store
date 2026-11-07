@@ -29,6 +29,7 @@ on:
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/three-category-storefront-structure.test.cjs"
       - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
+      - "catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv"
       - "tests/onenav-source-audit.test.cjs"
   pull_request:
     types: [opened, synchronize, reopened]
@@ -59,6 +60,7 @@ on:
       - "category.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
+      - "catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv"
       - "tests/onenav-source-audit.test.cjs"
 
 permissions:
