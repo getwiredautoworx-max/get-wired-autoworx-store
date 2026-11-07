@@ -63,3 +63,13 @@ App identity on the integrated source:
 ## Current validation state
 
 Pending until the GitHub Actions run for this branch reaches a terminal result. No APK artifact or emulator result is claimed by this handover.
+
+
+## 2026-11-07 follow-up
+
+- Draft PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/184
+- Latest branch head at this checkpoint: `721952bf86fb8d498a95b8490d59f9d669106956`.
+- Follow-up fix ensures Caelex capture validation and WebView access happen on the Android UI thread.
+- Build workflow now also declares a `pull_request` trigger for PRs targeting `main`.
+- GitHub Actions run metadata and commit status checks have not yet returned a run/check for the latest PR head. Therefore no build, artifact or emulator success is claimed.
+- Cloudflare's existing PR integration posted a separate storefront preview status; this is not an APK build or APK validation result. Do not use that preview as evidence of APK readiness.
