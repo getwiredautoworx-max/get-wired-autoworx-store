@@ -24,15 +24,17 @@
     "unverified_price_or_stock": "do not invent; use approved Price On Request handling",
     "retry_policy": "one bounded retry for deterministic QA/extraction infrastructure failures; no blind retries of data writes or deploys",
     "concurrency": "one active worker per workstream; no overlapping edits to the same output",
-    "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run"
+    "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run",
+    "customer_price_display": "Price On Request for all supplier products until current supplier pricing and stock can be updated reliably; do not display historical RRP/dealer prices as current.",
+    "confidential_supplier_data": "Do not process confidential Audio Connections or Planetworld source files or derivatives on public runners, logs, artifacts, branches or commits; private execution boundary required."
   },
   "tasks": [
     {
       "id": "jules-handover-and-pr-reconciliation",
       "priority": 1,
-      "status": "in_progress",
-      "execution_mode": "scheduled-monitor",
-      "automatic": true,
+      "status": "review_required",
+      "execution_mode": "owner-assisted-reconciliation",
+      "automatic": false,
       "source": [
         "PR #183",
         "PR #185",
@@ -44,7 +46,7 @@
         "Record workflow results and exact commit SHAs",
         "List unresolved deliverables and supplier questions"
       ],
-      "next_action": "Monitor PRs and verify new commits; do not merge or publish."
+      "next_action": "Refresh PR heads and workflow evidence; this queue entry is not a continuously running monitor."
     },
     {
       "id": "asc-six-catalogue-source-extraction",
@@ -90,8 +92,8 @@
       "id": "electrocity-ignition-pilot",
       "priority": 4,
       "status": "review_required",
-      "execution_mode": "scheduled-qa",
-      "automatic": true,
+      "execution_mode": "read-only-review-required",
+      "automatic": false,
       "source": [
         "PR #185",
         "suppliers/Electrocity/Ignition Looms-Coils-Modules/"
@@ -106,7 +108,7 @@
     {
       "id": "audio-video-content-enrichment",
       "priority": 5,
-      "status": "in_progress",
+      "status": "blocked_on_private_processing_boundary",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -122,12 +124,12 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Continue bounded product batches; do not fabricate missing details or images."
+      "next_action": "Continue only public-safe navigation/presentation work. Hold source-dependent supplier catalogue processing until a private processing boundary is approved and verified."
     },
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 6,
-      "status": "in_progress",
+      "status": "blocked_on_private_processing_boundary",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -140,12 +142,12 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "Continue OneNav exact-model audit; never substitute a similar series or vehicle-fitment image."
+      "next_action": "Continue only public-safe navigation/presentation work. Hold source-dependent supplier catalogue processing until a private processing boundary is approved and verified."
     },
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "in_progress",
+      "status": "review_required",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
