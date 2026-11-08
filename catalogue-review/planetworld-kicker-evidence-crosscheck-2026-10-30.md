@@ -121,3 +121,40 @@ The revised Kicker totals are **18 standard Car Audio exact individual product p
 | 52GR12 | 12-inch round steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
 
 The revised Kicker totals are **18 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = 23 exact pages**, **95 official collection matches** (72 standard + 23 Marine), and **71 standard Car Audio rows still without an official page/collection match**. The VXA series is explicitly marked by KICKER as for international distribution only. No image binaries were downloaded or approved, and grille fitment still requires exact subwoofer compatibility checks.
+
+
+## Additional official KICKER model matches — 2026-11-08
+
+A new exact-code pass reconciled **52 additional supplier references** to official KICKER product/collection pages. The 189-row audit now records:
+
+- **Standard Car Audio (161 rows):** 23 exact individual product pages, 119 official collection matches, 19 still unresolved.
+- **Marine (28 rows, kept separate):** 5 exact individual product pages and 23 official collection matches.
+- **Combined:** 28 exact individual/verified product pages, 142 official collection matches, 19 unresolved.
+
+Newly matched models and official source groups:
+
+| Official KICKER source | Exact supplier references reconciled |
+|---|---|
+| [Brass Hardware](https://www.kicker.com/brass-hardware) | 46FHD, 46FHS, 46GT2 |
+| [Signal Cable](https://www.kicker.com/signal-cable) | 46KI24, 46KI25, 46KI44, 46KI46, 46KIYFM, 46KISL |
+| [LOCs and Interfaces](https://www.kicker.com/locs-interfaces) | 47KEYLOC, 46KISLOC2, 46KISLOAD4 |
+| [CompC Subwoofers](https://www.kicker.com/compc-subwoofers) | 50CWCS84, 50CWCD84, 50CWCS104, 50CWCS124, 50CWCS154, 50CWCD124 |
+| [Power Wire](https://www.kicker.com/power-wire) | 46PWB4100, 46PWB8200, 46PWG050, 46PWG4100, 46PWG8200 |
+| [CompRT Down-Firing Loaded Enclosures](https://www.kicker.com/2021-trtp-down-firing-loaded-enclosures) | 48TRTP82, 48TRTP102, 48TRTP122 |
+| [L7T Loaded Enclosures](https://www.kicker.com/l7t-loaded-enclosures) | 46TL7T82, 46TL7T122 |
+| [Warhorse Amplifiers](https://www.kicker.com/warhorse-amplifiers) | 49WXA36001, 49WXA10004 |
+| [CompRT Loaded Enclosures](https://shop.kicker.com/2021-comprt-loaded-enclosures) | 48TCWRT672, 48TCWRT82, 48TCWRT102, 48TCWRT122 |
+| [CompC Loaded Enclosures](https://www.kicker.com/compc-loaded-enclosures) | 50DCWC102, 50DCWC122, 50VCWC122, 50TCWC102, 50TCWC104 |
+| [PXA Waterproof Amplifiers](https://www.kicker.com/pxa-amplifiers) | 48PXA10005, 48PXA4004, 48PXA6001 |
+| [PowerBars](https://www.kicker.com/powerbars) | 47KPB1, 47KPB2 |
+| [Mini Speakers](https://www.kicker.com/mini-speakers) | 47PSM32 |
+| [PowerCans](https://www.kicker.com/powercans) | 48BTCAN65 |
+| [Hideaway HS10](https://www.kicker.com/hideaway-hs10) | 51HS10 |
+| [Hideaway HS12](https://www.kicker.com/hideaway-hs12) | 51HS12 |
+| [Speaker Wire](https://shop.kicker.com/speaker-wire) | 46KW16400 |
+| [Comp 10-inch Enclosure](https://www.kicker.com/comp-10-subwoofer-box) | 43TC104 |
+| [PL7TDF Powered Down-Firing](https://www.kicker.com/PL7TDF-powered-down-firing) | 53PL7TDF10, 53PL7TDF12 |
+
+Evidence level remains explicit: collection matches are not individual detail-page verification. Product image extraction/matching and detailed descriptions remain separate work; supplier codes are not GW SKUs. No prices, stock, product activation, live data or customer-facing listings were changed. All rows remain private review-only / DO NOT IMPORT.
+
+**Still unresolved (19):** 46CXA18001T; 48CVTDF102; 48CVTDF122; 48VCWR122; 49DL7TDF122; 49L7TDF102; 49L7TDF122; 51KBTR; 51KEYCHAIN; HS8; K11HS8; KEYCOMBO1; KEYCOMBO2; KICKBAKCOMBO; KICKCOMBO1 - 10; KICKCOMBO2; KICKCOMBO2 - 10; KICKCOMBO2-8; KW16400p/m.
