@@ -3405,3 +3405,44 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 - If an implementation step appears to require touching anything outside the expressly authorized task, stop and obtain owner approval before proceeding.
 - No production deployment, Axxess upload, DNS change, Supabase write, live stock/price change, payment activation or merge is authorized by this clarification.
 - Status of the ASC Aerials integration remains **not complete until evidence confirms the catalogue is uploaded/integrated and the required route, images, product identities and presentation checks pass**. Only then may the category freeze be marked reinstated.
+
+
+---
+
+## EXECUTION CHECKPOINT — 2026-11-08 18:30 SAST — continuation and automation QA
+
+### Main and release boundary
+- Current main head: `f51ee4bd547d733605e3197bfef73381d96633ae`. The owner-authoritative directives remain controlling; production HOLD. No merge, deployment, Cloudflare spend, Axxess upload, DNS/payment change, live Supabase write, live price/stock change or catalogue import was performed in this continuation.
+- PR #178 remains OPEN / DRAFT / UNMERGED at `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`; compare against current main is 1,001 commits ahead / 32 behind across 147 files. No exact-head workflow run or current hosted owner preview is verified. Do not merge wholesale; continue the clean-main selective-port strategy using the owner-preferred PR #168 homepage baseline.
+
+### Jules ASC — PR #183
+- Current branch head after owner-rule corrections: `b46160526efca792ee952d403e86699a1dfdfabd`.
+- Re-checked 978 staged rows: all 978/978 now carry the exact customer-facing label `Price On Request due to Limited Stock and Availability`; all 978/978 carry `OWNER_AUTHORIZED_EDIT_AND_VISUAL_QA_PENDING`; all 978 retain `DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL`.
+- Updated the ASC QA and image reports to reflect the owner's 2026-11-08 authorization to use/edit supplied images, the required ASC-to-Get Wired watermark replacement, and the need for crop cleanup and visual QA. No rights-clearance blocker is to be raised again.
+- Added a deterministic Python validation test for all 978 staged records.
+- Source-count discrepancy remains OPEN: independent source inventory reports 144 Car Mats labels/printed lines, while the PR extraction has 139 rows. The page-10 13-heading/8-card observation does not yet prove the five-row gap is reconciled. Do not invent products; compare every source label against the 139 rows and original PDF evidence before acceptance.
+- Current PR #183 QA run `42500074183` failed because the main-branch workflow attempted to execute missing optional Auto Electrical test files on this older isolated PR branch. Core supplier-routing, Deno and responsive checks passed before the failure. This is a CI workflow compatibility defect, not evidence that the 978-row pricing test passed or failed.
+
+### CI/controller repair — PR #187
+- Extended existing PR #187 (no new branch) at head `a940dd26b8f0c682a0902f7ceeed706a1190619d` to fix the schema-v2 controller failure and guard optional catalogue QA suites with file-existence checks. Added conditional execution of the ASC staged-data validation test when present.
+- Exact-head Background Task Controller run `42500218582` passed, including queue/controller execution and artifact cleanup. Catalogue QA run `42500218238` was still running at this checkpoint; inspect its final result before any readiness claim.
+- PR #187 remains OPEN / UNMERGED. Do not merge without explicit owner approval. After approval/merge, verify the next scheduled main-branch controller run and re-run PR #183 QA against the repaired workflow.
+
+### 24/7 public-safe worker
+- PR #186 was owner-approved and squash-merged to main as `f51ee4bd547d733605e3197bfef73381d96633ae`.
+- Exact PR validation runs `42497145655` and `42497346083` passed on their respective PR heads. They prove the worker validation and six-catalogue OCR extraction, not a scheduled main-branch run.
+- The workflow is present on main with cron `23 */4 * * *` (UTC). No scheduled run for workflow `store-24x7-catalogue-worker.yml` had appeared by 18:30 SAST. The next scheduled slot is 22:23 SAST; verify its run ID, commit, output counts and checkpoint branch before claiming recurring operation.
+- Automation remains limited to public-safe ASC OCR. Planetworld and Audio Connections confidential workbooks/pricing remain disabled until a private execution boundary exists. Model-assisted audio enrichment is not yet automated.
+
+### Jules Electrocity — PR #185
+- Current review package remains structurally complete for owner review: 29 rows/evidence crops; 28 review-passed; one quarantined supplier discrepancy `GWA-EC-000012 / IG-T003`.
+- The public repository/PR contains non-customer Electrocity supplier identifiers. Do not merge, republish, or further process these data on the public runner. A private execution boundary and owner decision on safe handling of the already-public Git history are still required. The passing Public SKU Exposure Audit does not remove this privacy issue.
+
+### Next execution order
+1. Inspect final PR #187 exact-head QA run `42500218238`; retain PR #187 unmerged pending owner approval.
+2. After approval to merge PR #187, verify the scheduled controller on main and rerun PR #183 QA; do not represent skipped optional suites as passed.
+3. Reconcile the 144-vs-139 Car Mats source labels against the original PDF; complete the authorized 50-image editing/visual-QA sample; retain 26 image-on-request exceptions.
+4. Keep PR #185 review-only and out of the public automation path until the private-data boundary and Git-history handling are resolved.
+5. Continue OneNav exact model/series/image reconciliation on the consolidated storefront candidate; do not substitute mismatched variants.
+6. Build one current-main-based storefront candidate, then run exact-head tests and hosted mobile/desktop preview verification. No current PR #178 preview is verified.
+7. Preserve all release restrictions; production remains HOLD.
