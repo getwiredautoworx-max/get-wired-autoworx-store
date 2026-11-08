@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "assets" / "planetworld-catalogue-preview.json"
 VERIFIED_PATH = ROOT / "assets" / "planetworld-verified-models-preview.json"
 ONE_AUDIT_PATH = ROOT / "catalogue-review" / "planetworld-one-official-model-audit.csv"
+HEADUNIT_AUDIT_PATH = ROOT / "catalogue-review" / "onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
 IMAGE_AUDIT_PATH = ROOT / "catalogue-review" / "PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv"
 CHUNK_DIR = ROOT / "catalogue-review" / "planetworld-row-chunks"
 CHUNKS = [CHUNK_DIR / f"planetworld-rows-{n:02d}.csv" for n in range(1, 8)]
@@ -44,7 +45,13 @@ def main() -> None:
         one_rows = list(csv.DictReader(handle))
     one_by_sku = {row["supplier_sku_reference_only"]: row for row in one_rows}
     if len(one_by_sku) != len(one_rows) or len(one_rows) != 45:
-        raise SystemExit("OneNav exact product-page audit must contain forty-two unique source matches")
+        raise SystemExit("OneNav exact product-page audit must contain forty-five unique source matches")
+
+    with HEADUNIT_AUDIT_PATH.open(newline="", encoding="utf-8-sig") as handle:
+        headunit_rows = list(csv.DictReader(handle))
+    headunit_by_sku = {row["supplier_source_code_private"]: row for row in headunit_rows}
+    if len(headunit_by_sku) != len(headunit_rows) or len(headunit_rows) != 23:
+        raise SystemExit("OneNav head-unit evidence register must contain twenty-three unique source codes")
 
     verified_by_sku: dict[str, dict] = {}
     for model in verified:
@@ -59,6 +66,7 @@ def main() -> None:
     ]
     audit_rows: list[dict[str, str]] = []
     one_matched = one_descriptions = one_images = one_no_image = 0
+    one_headunit_matched = one_headunit_descriptions = one_headunit_images = one_headunit_no_image = 0
     verified_matched = verified_images = verified_no_image = unmatched = 0
 
     for index, (source, product) in enumerate(zip(source_rows, products), start=1):
@@ -120,6 +128,50 @@ def main() -> None:
                 image_status = product["imageStatus"]
                 one_no_image += 1
 
+        headunit = headunit_by_sku.get(supplier_sku)
+        headunit_match = False
+        if (
+            not one
+            and headunit
+            and headunit.get("model_identity_status") == "VERIFIED_OFFICIAL_PRODUCT_PAGE"
+            and headunit.get("image_status") == "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"
+            and headunit.get("image_url_candidate", "").startswith("https://onenav.co.za/wp-content/uploads/")
+        ):
+            if (
+                source.get("brand_candidate") != "One"
+                or " ".join(source.get("description_candidate", "").split())
+                != " ".join(headunit.get("source_description_private", "").split())
+            ):
+                raise SystemExit(f"OneNav head-unit source mismatch for row {index}, SKU {supplier_sku!r}")
+            manufacturer_name = headunit.get("verified_manufacturer_product_title", "").strip()
+            description = headunit.get("customer_description", "").strip()
+            image_url = headunit.get("image_url_candidate", "").strip()
+            official_page = headunit.get("official_or_candidate_evidence_url", "").strip()
+            if (
+                not manufacturer_name or not description
+                or not official_page.startswith("https://onenav.co.za/product/")
+                or headunit.get("image_source_page", "").strip() != official_page
+                or headunit.get("image_crop", "").strip().lower() != "false"
+                or headunit.get("image_position", "").strip() != "center"
+            ):
+                raise SystemExit(f"OneNav head-unit provenance incomplete for row {index}, SKU {supplier_sku!r}")
+            product["title"] = manufacturer_name
+            product["brandDisplayName"] = "OneNav"
+            product["manufacturerProductName"] = manufacturer_name
+            product["manufacturerPage"] = official_page
+            product["description"] = description
+            product["descriptionStatus"] = "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED"
+            product["imageUrl"] = image_url
+            product["imageStatus"] = "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"
+            product["imageCrop"] = False
+            product["imagePosition"] = "center"
+            image_status = product["imageStatus"]
+            description_status = product["descriptionStatus"]
+            one_headunit_matched += 1
+            one_headunit_descriptions += 1
+            one_headunit_images += 1
+            headunit_match = True
+
         model = verified_by_sku.get(norm(supplier_sku))
         if model:
             verified_matched += 1
@@ -160,7 +212,7 @@ def main() -> None:
             "image_status": image_status,
             "description_status": description_status,
         })
-        if not model and not one:
+        if not model and not one and not headunit_match:
             unmatched += 1
 
     totals = {
@@ -168,6 +220,10 @@ def main() -> None:
         "oneNav_descriptions": one_descriptions,
         "oneNav_image_candidates": one_images,
         "oneNav_images_missing": one_no_image,
+        "oneNav_headunit_matches": one_headunit_matched,
+        "oneNav_headunit_descriptions": one_headunit_descriptions,
+        "oneNav_headunit_images": one_headunit_images,
+        "oneNav_headunit_images_missing": one_headunit_no_image,
         "verified_model_matches": verified_matched,
         "verified_model_images": verified_images,
         "verified_model_images_missing": verified_no_image,
@@ -178,22 +234,27 @@ def main() -> None:
         "oneNav_descriptions": 45,
         "oneNav_image_candidates": 6,
         "oneNav_images_missing": 39,
+        "oneNav_headunit_matches": 2,
+        "oneNav_headunit_descriptions": 2,
+        "oneNav_headunit_images": 2,
+        "oneNav_headunit_images_missing": 0,
         "verified_model_matches": 68,
         "verified_model_images": 68,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3204,
+        "unmatched_products": 3202,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 113,
-        "manufacturerDescriptionsVerified": 113,
-        "exactImageCandidatesApplied": 74,
+        "exactModelPagesReviewed": 115,
+        "manufacturerDescriptionsVerified": 115,
+        "exactImageCandidatesApplied": 76,
         "exactModelImagesMissing": 39,
-        "unmatchedProducts": 3204,
+        "unmatchedProducts": 3202,
+        "oneNavHeadunitExactImageMatches": 2,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
-        "note": "Exact-model product images and descriptions are owner-preview candidates; confirm fitment and owner acceptance before production. Supplier identifiers remain internal.",
+        "note": "The 68 verified manufacturer records, 45 audited OneNav product pages and two additional exact OneNav Evolution head-unit image matches are review-only. The 39 image gaps refer to the 45-row OneNav audit; other unmatched head-unit rows remain quarantined. Supplier identifiers remain internal.",
     }
 
     DATA_PATH.write_text(
