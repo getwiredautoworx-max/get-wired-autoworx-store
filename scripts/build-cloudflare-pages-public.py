@@ -15,7 +15,7 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "preview-product.html",
 ]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
@@ -44,8 +44,7 @@ for name in OPTIONAL_ROOT_FILES:
     if (ROOT / name).is_file():
         copy_file(name)
 
-# Preview routes are included only in the explicitly non-production preview build.
-# The production build remains unchanged unless this opt-in environment flag is set.
+# Safe preview routes are opt-in. The supplier-specific Planetworld review route is deliberately excluded from all public runner/Pages packages.
 include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
