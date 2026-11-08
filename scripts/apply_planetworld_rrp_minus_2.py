@@ -18,7 +18,7 @@ JSON_PATH = ROOT / "assets" / "planetworld-catalogue-preview.json"
 AUDIT_PATH = ROOT / "catalogue-review" / "PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
 CHUNK_DIR = ROOT / "catalogue-review" / "planetworld-row-chunks"
 CHUNKS = [CHUNK_DIR / f"planetworld-rows-{n:02d}.csv" for n in range(1, 8)]
-QUOTE_TEXT = "Price On Request Due to Stock Availability"
+QUOTE_TEXT = "Price On Request"
 SOURCE_SNAPSHOT = "2026-10-25 supplier workbook snapshot"
 
 

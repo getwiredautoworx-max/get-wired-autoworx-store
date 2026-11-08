@@ -23,7 +23,7 @@ for (const product of review.products) {
   assert.ok(product.supplierSku && !sourceSkus.has(product.supplierSku));
   sourceSkus.add(product.supplierSku);
   assert.equal(product.price, null);
-  assert.equal(product.priceDisplay, 'Price On Request due to Limited Stock and Availability');
+  assert.equal(product.priceDisplay, 'Price On Request');
   assert.equal(product.stock, null);
   assert.equal(product.importStatus, 'DO_NOT_IMPORT_REVIEW_ONLY');
   if (product.image) {
@@ -43,13 +43,13 @@ assert.deepEqual(preview.summary.categoryCounts, {
   'Automotive Globes': 8,
   'Fuel Pumps': 9
 });
-assert.equal(preview.summary.priceDisplay, 'Price On Request due to Limited Stock and Availability');
+assert.equal(preview.summary.priceDisplay, 'Price On Request');
 
 const forbiddenKeys = /^(?:internalSupplier|supplierSku|proposedGwSku|sourceFile|sourcePage|sourceBranch|catalogueSection|dealerCost|price|stock|stockQuantity)$/i;
 const imagePaths = new Set();
 for (const product of preview.products) {
   for (const key of Object.keys(product)) assert.ok(!forbiddenKeys.test(key), 'Private field exposed: ' + key);
-  assert.equal(product.priceDisplay, 'Price On Request due to Limited Stock and Availability');
+  assert.equal(product.priceDisplay, 'Price On Request');
   assert.equal(product.availabilityDisplay, 'Confirm current availability');
   assert.equal(product.description, null);
   assert.equal(product.technicalSpecifications, null);

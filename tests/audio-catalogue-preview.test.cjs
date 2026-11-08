@@ -15,8 +15,8 @@ const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf
 const enrichment = fs.readFileSync('scripts/enrich_planetworld_verified_models.py', 'utf8');
 
 const categoryCleanup = fs.readFileSync('assets/category-cleanup.js', 'utf8');
-const PRICE_ON_REQUEST_TEXT = 'Price On Request Due to Stock Availability';
-const CUSTOMER_PRICE_DISPLAY = 'Price On Request due to Limited Stock and Availability';
+const PRICE_ON_REQUEST_TEXT = 'Price On Request';
+const CUSTOMER_PRICE_DISPLAY = 'Price On Request';
 const ONE_LOGO = 'https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png';
 const AMPLIFIED_LOGO = 'https://planetworld.canto.global/direct/image/vhu1051tf93277757p4gkjes41/7rNanaRqMsc9p3HhnVNSIEeHbJQ/original?content-type=image%2Fpng&name=_AMPLIFIED.png';
 function parseCsvRows(source) {
@@ -87,7 +87,7 @@ assert.ok(productListingRoute.includes('Exact product photo pending verification
 assert.ok(productListingRoute.includes("title.className='productModel'")&&productListingRoute.includes("p.modelNumber||p.manufacturerProductName||p.title||p.name||'Product'"),'audio product cards must show the verified model first, falling back only to the verified catalogue title');
 assert.ok(productListingRoute.includes("meta.className='meta productBrand'")&&productListingRoute.includes("body.append(title,meta,desc,price)"),'brand must appear immediately below the product model, followed by description and price');
 assert.ok(productListingRoute.includes("desc.className='productDescription'")&&productListingRoute.includes("desc.textContent=p.description||'Product details to be confirmed.'"),'customer description must retain the verified concise product description and an honest pending state');
-assert.ok(productListingRoute.includes("price.textContent='Price On Request due to Limited Stock and Availability'")&&!productListingRoute.includes("toLocaleString('en-ZA'"),'all audio product cards must show the exact owner-approved Price On Request label until supplier-direct pricing and availability updates are available');
+assert.ok(productListingRoute.includes("price.textContent='Price On Request'")&&!productListingRoute.includes("toLocaleString('en-ZA'"),'all audio product cards must show the exact owner-approved Price On Request label until supplier-direct pricing and availability updates are available');
 assert.ok(productListingRoute.includes("media.append(missingPhoto())")&&productListingRoute.includes("img.alt=p.title||component"),'exact product photo or explicit missing-photo state must be retained');
 assert.ok(!productListingRoute.includes('supplierSku')&&!productListingRoute.includes('gwSku')&&!productListingRoute.includes('Supplier SKU'),'customer-facing audio cards must not expose supplier or internal GW SKU fields');
 
@@ -139,7 +139,7 @@ assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.
 assert.equal(planet.recordCount, 3317, 'full Planetworld source snapshot must be retained');
 assert.equal(planet.records.length, 3317);
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 19);
-assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === 'Price On Request Due to Stock Availability'));
+assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT));
 const uniquePlanetRows = new Set(planet.records.map(row => JSON.stringify([row.collection,row.brand,row.title,row.component,row.indicativePrice,row.hasStock,row.modelNumber||''])));
 assert.equal(uniquePlanetRows.size, 3135, 'exact duplicate source rows are suppressed in the customer browse view, not deleted from source data');
 assert.deepEqual(planet.collections, {
