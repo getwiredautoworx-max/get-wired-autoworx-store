@@ -15,6 +15,11 @@ const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf
 const enrichment = fs.readFileSync('scripts/enrich_planetworld_verified_models.py', 'utf8');
 
 const categoryCleanup = fs.readFileSync('assets/category-cleanup.js', 'utf8');
+
+const oneNavHeadunitAuditRows = parseCsvRows(fs.readFileSync('catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv', 'utf8'));
+const oneNavHeadunitAuditIndex = Object.fromEntries(oneNavHeadunitAuditRows[0].map((key,index)=>[key,index]));
+const oneNavHeadunitAuditBySku = new Map(oneNavHeadunitAuditRows.slice(1).map(row=>[row[oneNavHeadunitAuditIndex.supplier_source_code_private],row]));
+
 const PRICE_ON_REQUEST_TEXT = 'Price On Request';
 const CUSTOMER_PRICE_DISPLAY = 'Price On Request';
 const ONE_LOGO = 'https://planetworld.canto.global/direct/image/78grbk30lp5ejb3v0s93889d5v/9ECBwgB8vFryBOGFxljIuivToMw/original?content-type=image%2Fpng&name=_OneX.png';
@@ -433,7 +438,11 @@ assert.ok(oneNavPrado && oneNavLandCruiser && oneNavBaleno, 'the three audited O
 assert.ok(oneNavMagniteEvolution && oneNavEclipseCrossEvolution, 'both additional official OneNav Evolution head-unit rows must remain present');
 for (const row of [oneNavMagniteEvolution, oneNavEclipseCrossEvolution]) {
   assert.equal(row.brandDisplayName, 'OneNav');
-  assert.equal(row.imageStatus, 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH');
+  assert.equal(Object.hasOwn(row, 'imageStatus'), false, 'internal image-review status must not be exposed in the customer preview');
+  const sourceSku = row.id === 'pw-2264' ? 'ON418-1LX' : 'ON425-1LX';
+  const evidence = oneNavHeadunitAuditBySku.get(sourceSku);
+  assert.ok(evidence, sourceSku + ' must retain its internal OneNav evidence row');
+  assert.equal(evidence[oneNavHeadunitAuditIndex.image_status], 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH');
   assert.equal(row.imageCrop, false);
   assert.equal(row.imagePosition, 'center');
   assert.equal(row.descriptionStatus, 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED');
