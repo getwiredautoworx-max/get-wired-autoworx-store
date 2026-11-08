@@ -132,7 +132,7 @@ const allowedImageStates = new Set([
   'IMAGE_PENDING',
   'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
   'OWNER_PREVIEW_CANDIDATE_ONLY',
-  'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH'
+  'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH',
   'EXACT_SOURCE_CATALOGUE_IMAGE_VERIFIED_CROP_PENDING'
 ]);
 assert.ok(headunitRecords.every(row => allowedIdentityStates.has(row.model_identity_status)),
