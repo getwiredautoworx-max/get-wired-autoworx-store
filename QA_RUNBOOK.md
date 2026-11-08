@@ -1,3 +1,5 @@
+> **SUPERSESSION NOTICE — 2026-11-08:** Historical reference only. Current authority is `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` (including its dated Section 10), `HANDOVER_CURRENT.md`, and the latest direct owner instructions. This document's older supplier scope, category tree, and pricing formulas are not current instructions. Do not process ASC Buyers Guides. Display Price On Request for all supplier products until current supplier pricing and stock can be updated reliably. No live import or production change is authorised by this historical document.
+
 # Get Wired AutoWorx — Repeatable Store QA Runbook
 
 Date created: 2026-10-14 (South Africa)
@@ -33,11 +35,11 @@ Record each row separately. Allowed results: PASS, FAIL, BLOCKED, NOT RUN.
 | BUILD-01 | Version identity | Record page footer/version marker or compare a known approved file/asset with release evidence | Served version can be identified; if not, mark BLOCKED | |
 | NAV-D-01 | Desktop navigation | Open every main nav item and footer link | Correct destination; no broken/empty page | |
 | NAV-M-01 | Mobile navigation | Repeat at narrow viewport and on a real phone | Menu opens/closes, links work, no clipped controls/sideways overflow | |
-| CAT-01 | Category flow | Open each of the eight approved category roots, then a subcategory and product | Correct hierarchy, relevant products, no unexpected blank/error pages | |
+| CAT-01 | Category flow | Open each of the three approved departments, then its subcategory and product | Correct hierarchy, relevant products, no unexpected blank/error pages | |
 | IMG-01 | Product images | Inspect representative products from each category | Image loads, matches product, no obvious supplier overlay/wrong-category image | |
 | SEARCH-01 | Search | Search exact known SKU, part of description, and an impossible term | Exact item found; partial search sensible; empty-result state clear | |
 | CART-01 | Cart | Add item, change quantity, remove item, refresh | Cart totals/count update correctly and persist as intended | |
-| PRICE-01 | Price display | Compare a test product display price with approved staged formula evidence | VAT-inclusive price displayed consistently; no supplier cost exposed | |
+| PRICE-01 | Price display | Verify customer-facing product price state | Price On Request is shown for every supplier product until current supplier pricing and stock updates are reliable; no historical RRP/dealer price is displayed | |
 | CHECK-01 | Pickup checkout | Select pickup and proceed through validation without placing an unapproved live order | Pickup is free and checkout validation/errors behave correctly | |
 | CHECK-02 | Direct EFT | Inspect currently available Direct EFT instructions and order summary | Instructions are accurate; order summary matches cart; no false payment-success claim | |
 | CHECK-03 | Delivery | Select delivery only if a valid, confirmed charge is available | Charge is visible before order confirmation; otherwise mark BLOCKED and do not submit | |
