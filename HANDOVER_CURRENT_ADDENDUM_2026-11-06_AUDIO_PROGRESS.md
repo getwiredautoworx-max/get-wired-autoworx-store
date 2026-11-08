@@ -1,3 +1,5 @@
+> **HISTORICAL / SUPERSEDED — 2026-11-08:** This file records an earlier review or instruction set, not the current storefront specification. Current authority is `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` (including dated Section 10), `HANDOVER_CURRENT.md`, and the latest direct owner instructions. The current customer storefront has exactly three main departments: Auto Electrical Spares; Car Audio / Home Entertainment; Car Care & Accessories. Customer-facing price display is Price On Request for all supplier products until current supplier pricing and stock can be updated reliably. Do not use this historical file to authorise category changes, catalogue processing, price display, import or production release.
+
 # Audio continuation addendum — 2026-11-06
 
 **Scope:** PR #178 only; OneNav remains the active brand. Private review only; DO NOT IMPORT / DO NOT PUBLISH.
