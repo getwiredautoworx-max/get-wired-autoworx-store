@@ -1,0 +1,32 @@
+name: Store Operating System Reconciliation QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "automation/task-queue.json"
+      - "automation/24x7-worker-operating-contract.md"
+      - "scripts/background_task_controller.py"
+      - "scripts/task_queue_utils.py"
+      - "scripts/validate_automation_queue.py"
+      - "tests/test_task_queue_utils.py"
+      - ".github/workflows/store-operating-system-validation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile automation modules
+        run: python -m py_compile scripts/background_task_controller.py scripts/task_queue_utils.py scripts/validate_automation_queue.py
+      - name: Run task queue regression tests
+        run: python -m unittest discover -s tests -p 'test_task_queue_utils.py' -v
+      - name: Validate authoritative task queue
+        run: python scripts/validate_automation_queue.py
