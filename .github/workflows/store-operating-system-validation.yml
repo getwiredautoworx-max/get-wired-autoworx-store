@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md"
+      - "HANDOVER_CURRENT.md"
       - "automation/task-queue.json"
       - "automation/24x7-worker-operating-contract.md"
       - "scripts/background_task_controller.py"
@@ -11,6 +13,8 @@ on:
       - "scripts/validate_automation_queue.py"
       - "tests/test_task_queue_utils.py"
       - ".github/workflows/store-operating-system-validation.yml"
+      - ".github/workflows/background-task-controller.yml"
+      - ".github/workflows/catalogue-review-prototype-qa.yml"
 
 permissions:
   contents: read
