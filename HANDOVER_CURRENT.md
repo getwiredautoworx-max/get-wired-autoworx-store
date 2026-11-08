@@ -4983,3 +4983,13 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 3. Continue ASC description, fitment, technical-specification and image processing in review-only batches. The current Auto Electrical preview remains a 34-image pilot, not a complete catalogue.
 4. Correct the proposed Auto Electrical root label to the approved hierarchy only in the controlled review-data update after checking all dependent artifacts; keep the source catalogue headings intact.
 5. Keep Aerials and Car Mats separate under their owner-approved parents; do not process Buyers Guides.
+
+
+## 2026-11-08 — Exact customer-facing Price On Request wording correction
+
+- Owner's exact display instruction is `Price On Request due to Limited Stock and Availability` until supplier-direct pricing and stock availability can be synchronised. The earlier 8-Nov implementation used the shorter generic `Price On Request` label in several customer-facing views; that did not meet the owner's exact wording.
+- Corrected the literal display text in `index-new.html`, `product-details.js`, `product.html`, `products.html`, `preview-product.html`, `preview-products.html`, `preview-audio.html`, `preview-audio-products.html`, and `assets/progressive-store-enhancements.js`. The special-order audio note retains its special-order / price-on-application and currency-exchange explanation.
+- Updated `tests/pricing-display-policy.test.cjs` to assert the exact owner wording in the homepage, product detail/list, preview product/list, audio catalogue, audio product-type and search-enhancement display paths, while continuing to require cached numeric prices to remain suppressed.
+- Read-back verification against the active branch confirms the exact phrase appears in all nine customer-facing code paths checked and there are zero remaining generic `Price On Request` literals in those nine files. This is source read-back only; the test suite has not yet been executed on a runner.
+- The ten affected files were committed as separate file updates (latest test-file commit `5c94cfc9ae087fec31294f4baebce0040bb6fb1f`). Since the QA workflow watches these paths, do not trigger further QA runs until any push-triggered runs are reconciled; the available commit-run lookup returns only PR-triggered runs and combined status currently exposes no run IDs/statuses for these commits. Do not infer that tests passed.
+- No preview deployment, Cloudflare action, production change, live data write, price/stock update, merge or Axxess action was performed.
