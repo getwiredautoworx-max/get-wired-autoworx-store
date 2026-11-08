@@ -53,8 +53,7 @@
       const style=d.createElement('style');
       style.id='gw-category-presentation';
       style.textContent=`
-        /* Approved homepage design: exactly three columns at every viewport width.
-           Nine active root categories therefore form a 3 x 3 image-led button grid. */
+        /* Approved homepage design: exactly three main departments, with their subcategories nested beneath each tile. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
