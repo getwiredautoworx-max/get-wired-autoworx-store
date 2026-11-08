@@ -71,9 +71,9 @@
     {
       "id": "audio-planetworld-source-extraction",
       "priority": 3,
-      "status": "ready",
-      "execution_mode": "scheduled-deterministic",
-      "automatic": true,
+      "status": "awaiting-private-processing-boundary",
+      "execution_mode": "private-runner-required",
+      "automatic": false,
       "source": [
         "suppliers/Audio Connections/",
         "catalogue-source/suppliers/planetworld/incoming-xlsx/"
@@ -84,7 +84,7 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "Run existing source extraction script and retain review-only outputs."
+      "next_action": "Do not process confidential supplier pricing/workbooks on the public GitHub runner. Move this worker to an owner-controlled private repository or private execution environment before scheduling."
     },
     {
       "id": "electrocity-ignition-pilot",
