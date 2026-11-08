@@ -53,7 +53,7 @@ def main() -> int:
     summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else []
     extracted_names = {item.get("source_file") for item in summary}
     complete_inventory = extracted_names == APPROVED and len(summary) == len(APPROVED)
-    successful = result.returncode == 0 and complete_inventory and all(item.get("extraction_status") != "error" for item in summary)
+    successful = result.returncode == 0 and complete_inventory and all(item.get("extraction_status") == "review-text-extracted" for item in summary)
     report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "status": "success" if successful else "attention_required",
