@@ -186,7 +186,8 @@ else:
     lines.append("- No automatic retries requested in this checkpoint.")
 lines += ["", "## Persistent task queue", ""]
 for task in sorted(queue.get("tasks", []), key=lambda t: t.get("priority", 999)):
-    lines += [f"### {task['priority']}. {task['id']} — {task['status']}", "", task["description"], "", f"**Next action:** {task['next_action']}", ""]
+    description = task.get("description") or "; ".join(task.get("success_criteria", [])) or "No description supplied in task queue."
+    lines += [f"### {task['priority']}. {task['id']} — {task['status']}", "", description, "", f"**Next action:** {task.get('next_action', 'No next action recorded.')}", ""]
 lines += [
     "## Safety rules", "",
     "- No product, price, category, stock, or image database writes are performed by this controller.",
