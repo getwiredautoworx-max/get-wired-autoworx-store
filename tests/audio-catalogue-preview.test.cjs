@@ -73,7 +73,7 @@ assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must 
 assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
-assert.equal(planet.records.filter(row=>row.imageUrl).length,77,'77 exact product images (69 verified-model, six audited OneNav and two additional exact OneNav head-unit images) must be attached to the correct source product rows');
+assert.equal(planet.records.filter(row=>row.imageUrl).length,75,'75 exact product images (69 verified-model and six audited OneNav, including two exact official Evolution head-unit images) must be attached to the correct source product rows');
 const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
 const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
@@ -314,8 +314,8 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(oneNavImageCount, 8, 'six audited OneNav candidates plus two exact official Evolution head-unit images');
-assert.equal(imageCount, 143, '69 verified-model + 66 Audio Connections + eight OneNav exact-fitment images');
+assert.equal(oneNavImageCount, 6, 'six audited OneNav image candidates, including two exact official Evolution head-unit images');
+assert.equal(imageCount, 141, '69 verified-model + 66 Audio Connections + six OneNav exact-fitment images');
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
@@ -463,7 +463,7 @@ assert.equal(Object.hasOwn(oneNavBaleno, 'imageUrl'), false, 'OA716-1 must not r
  assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 116);
-assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 77);
+assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 75);
 assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 116);
 assert.equal(planet.productImageEnrichment.oneNavHeadunitExactImageMatches, 2);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
