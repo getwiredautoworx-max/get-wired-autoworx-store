@@ -16442,7 +16442,7 @@
       "Manual Product-Type Review": 1,
       "Head Unit Parts & Accessories": 2
     },
-    "note": "Review-only taxonomy. Combined Car Audio source count includes two Audison AFBMW harness rows reclassified from the separate Hertz-labelled Planetworld staging workbook. Supplier Item Code is not a GW SKU. Images remain unverified. Supplier prices and regional stock are review-only snapshots; 1%/2% below supplier retail are candidates only. One Kicker silicone keychain is retained in excluded_non_audio_merchandise and removed from the Car Audio navigation tree.",
+    "note": "Review-only taxonomy. Combined Car Audio source count includes two Audison AFBMW harness rows reclassified from the separate Hertz-labelled Planetworld staging workbook. Supplier Item Code is not a GW SKU. Images remain unverified. Supplier prices and regional stock are review-only snapshots; 1%/2% below supplier retail are candidates only. One Kicker silicone keychain is retained in excluded_non_audio_merchandise and removed from the Car Audio navigation tree. One Kicker silicone keychain is retained in excluded_non_audio_merchandise and removed from the Car Audio navigation tree.",
     "excluded_non_audio_merchandise": 1
   },
   "excluded_non_audio_merchandise": [
