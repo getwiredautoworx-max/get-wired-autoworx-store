@@ -1,16 +1,8 @@
 name: Populated Store Preview Browser QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'preview-store.html'
-      - 'preview-category.html'
-      - 'preview-products.html'
-      - 'preview-product.html'
-      - 'preview-planetworld.html'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
+  # Historical eight-root populated preview QA. Manual-only until rebuilt for the current three-department model and private supplier-data boundary.
+  workflow_dispatch:
 
 permissions:
   contents: read
