@@ -202,3 +202,12 @@ These are source-identity/image decisions only. No image was added to customer-f
 - Focused static/syntax validation: 8/8 passed — 45 audit rows, 45 unique source references, OA009 remains details-verified/image-pending, image URL remains blank, wrong Pro Series CANBUS image rejection is recorded, Classic W/O CANBUS mismatch is explicit, test file syntax compiles and new assertions are present.
 - The full Node test and hosted Actions were not executed; no run/status was returned for the previous checkpoint. All records remain private and DO NOT IMPORT.
 - Next: continue exact image reconciliation for OneNav Classic models. Do not substitute the Pro Series ON009-2A11 image or move to another brand.
+
+
+## 2026-11-08 09:57 SAST — OA017-1 Fortuner Classic/Evolution image separation
+
+- The official OneNav Fortuner page exposes the image OneNav-Fortuner-Dash-2-1.png but identifies the product as SKU ON017-1A. Its fitment is Toyota Fortuner 2016–2019, matching the vehicle family, but it is not source SKU OA017-1 Classic (10.1-inch frame). The same-fitment image is therefore rejected for OA017-1; no image URL was assigned.
+- Updated the 45-row official-model audit with the exact code/series mismatch and added a regression assertion that OA017-1 remains DETAILS_VERIFIED_IMAGE_PENDING with a blank image candidate.
+- Commits: audit row 34ac4a58bb599403feb51f40a73da9fd6f9de4ee; regression assertions c6cbb08b4cbefa20a4a3bfe2e2889cad5962f7a0.
+- Focused static/syntax validation: 8/8 passed — 45 rows and unique SKUs retained; OA009-1 and OA017-1 wrong-variant image rejections remain explicit; both product image URLs remain blank; test source compiles.
+- No image, product JSON, live data, SKU, price, stock, Supabase, storefront, deployment, merge or production change. Keep OneNav active and all records DO NOT IMPORT.
