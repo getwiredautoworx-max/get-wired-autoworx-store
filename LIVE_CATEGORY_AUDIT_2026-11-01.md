@@ -1,3 +1,5 @@
+> **HISTORICAL / SUPERSEDED — 2026-11-08:** This file records an earlier review or instruction set, not the current storefront specification. Current authority is `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` (including dated Section 10), `HANDOVER_CURRENT.md`, and the latest direct owner instructions. The current customer storefront has exactly three main departments: Auto Electrical Spares; Car Audio / Home Entertainment; Car Care & Accessories. Customer-facing price display is Price On Request for all supplier products until current supplier pricing and stock can be updated reliably. Do not use this historical file to authorise category changes, catalogue processing, price display, import or production release.
+
 # Live Category & Catalogue Audit — 1 November 2026
 
 **Status:** Read-only audit. No product/category/stock/price records were changed. This report is evidence for review, not approval to reclassify live products.
