@@ -1,26 +1,8 @@
 name: Owner Preview — Exact SHA Deploy and Browser QA
 
+# Manual-only to avoid automatic Cloudflare credit use. Run only after explicit owner approval.
 on:
   workflow_dispatch:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
-    paths:
-      - ".preview-deploy-request"
-      - ".github/workflows/owner-preview-exact-sha.yml"
-      - "index-new.html"
-      - "preview-category.html"
-      - "preview-audio.html"
-      - "preview-audio-brand.html"
-      - "preview-audio-products.html"
-      - "assets/audio-types/**"
-      - "assets/brand-logos/**"
-      - "scripts/build-cloudflare-pages-public.py"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - "category.html"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "HANDOVER_CURRENT.md"
 
 permissions:
   contents: read
