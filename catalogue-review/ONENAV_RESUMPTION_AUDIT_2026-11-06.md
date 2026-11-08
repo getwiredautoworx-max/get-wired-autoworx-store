@@ -211,3 +211,14 @@ These are source-identity/image decisions only. No image was added to customer-f
 - Commits: audit row 34ac4a58bb599403feb51f40a73da9fd6f9de4ee; regression assertions c6cbb08b4cbefa20a4a3bfe2e2889cad5962f7a0.
 - Focused static/syntax validation: 8/8 passed — 45 rows and unique SKUs retained; OA009-1 and OA017-1 wrong-variant image rejections remain explicit; both product image URLs remain blank; test source compiles.
 - No image, product JSON, live data, SKU, price, stock, Supabase, storefront, deployment, merge or production change. Keep OneNav active and all records DO NOT IMPORT.
+
+
+## Owner authorization clarification — 2026-11-08
+
+The owner has expressly confirmed that Get Wired AutoWorx is authorised to use the confidential supplier information, pricing information and product pictures supplied for this catalogue project. Do not treat generic image-copyright or separate image-rights review as a blocker for use of those authorised supplier assets.
+
+Continue to enforce **product identity and variant accuracy**: use the exact catalogue/manufacturer image for the matching SKU, vehicle fitment, series and screen/frame variant; reject lookalike or adjacent-variant assets. An image can be authorised for use and still be the wrong product image.
+
+For pricing, where current supplier price or stock cannot be verified, use the owner's approved **Price On Request** approach rather than inventing or publishing stale prices. Retain supplier-specific pricing rules where verified current RRP is available. Do not expose confidential supplier data or supplier names to customers.
+
+This owner clarification supersedes older notes in this audit that say image reuse permission or a generic rights review is pending. It does not authorise live imports, publication, database writes, merges or production deployment.
