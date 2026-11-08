@@ -73,15 +73,15 @@ assert.ok(route.includes('photo-1642784353476-d226d8d617b3'),'DJ Equipment must 
 assert.ok(categoryRoute.includes('function logo(b)')===false,'brand landing route logo helper is isolated from the department route');
 const brandLandingRoute=fs.readFileSync('preview-audio-brand.html','utf8');
 const productListingRoute=fs.readFileSync('preview-audio-products.html','utf8');
-assert.equal(planet.records.filter(row=>row.imageUrl).length,74,'74 exact product image candidates (68 verified-model plus six OneNav) must be attached to the correct source product rows');
+assert.equal(planet.records.filter(row=>row.imageUrl).length,76,'76 exact product images (68 verified-model, six audited OneNav and two additional exact OneNav head-unit images) must be attached to the correct source product rows');
 const audisonVerified=verified.records.find(row=>row.modelNumber==='69051075');
 const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT');
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
 assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946','Pioneer DMH-AP6650BT must use the exact South African model image');
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,113,'68 verified manufacturer records plus forty-five OneNav records must carry verified descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,113,'all 68 verified manufacturer records plus forty-five OneNav exact product pages must be named');
-assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,39,'thirty-nine exact OneNav model pages still have no approved image and must not receive a generic substitute');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,115,'68 verified manufacturer records plus forty-five audited and two additional OneNav records must carry verified descriptions');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,115,'all 68 verified manufacturer records plus forty-seven OneNav exact product pages must be named');
+assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,39,'thirty-nine rows in the 45-row audited OneNav product-page register still have no exact image; unmatched head-unit rows remain separately quarantined');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
 assert.ok(productListingRoute.includes("title.className='productModel'")&&productListingRoute.includes("p.modelNumber||p.manufacturerProductName||p.title||p.name||'Product'"),'audio product cards must show the verified model first, falling back only to the verified catalogue title');
@@ -314,7 +314,8 @@ for (const row of audioConnections.records) {
 
 const oneNavImageCount = planet.records.filter(row => row.brandDisplayName === 'OneNav' && row.imageUrl).length;
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length + oneNavImageCount;
-assert.equal(imageCount, 140, '68 verified-model + 66 Audio Connections + six OneNav exact-fitment image candidates');
+assert.equal(oneNavImageCount, 8, 'six audited OneNav candidates plus two exact official Evolution head-unit images');
+assert.equal(imageCount, 142, '68 verified-model + 66 Audio Connections + eight OneNav exact-fitment images');
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
 assert.ok(route.includes('new URLSearchParams(location.search)'));
@@ -426,7 +427,25 @@ assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.i
 const oneNavPrado = planet.records.find(row => row.id === 'pw-2120');
 const oneNavLandCruiser = planet.records.find(row => row.id === 'pw-2121');
 const oneNavBaleno = planet.records.find(row => row.id === 'pw-2159');
+const oneNavMagniteEvolution = planet.records.find(row => row.id === 'pw-0183');
+const oneNavEclipseCrossEvolution = planet.records.find(row => row.id === 'pw-0186');
 assert.ok(oneNavPrado && oneNavLandCruiser && oneNavBaleno, 'the three audited OneNav product rows must remain present');
+assert.ok(oneNavMagniteEvolution && oneNavEclipseCrossEvolution, 'both additional official OneNav Evolution head-unit rows must remain present');
+for (const row of [oneNavMagniteEvolution, oneNavEclipseCrossEvolution]) {
+  assert.equal(row.brandDisplayName, 'OneNav');
+  assert.equal(row.imageStatus, 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH');
+  assert.equal(row.imageCrop, false);
+  assert.equal(row.imagePosition, 'center');
+  assert.equal(row.descriptionStatus, 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED');
+  assert.ok(row.description.includes('Bluetooth 5.4') && row.description.includes('4 × 45 W'));
+  assert.equal(Object.hasOwn(row, 'supplierSku'), false);
+  assert.equal(Object.hasOwn(row, 'supplier_sku_candidate'), false);
+  assert.equal(Object.hasOwn(row, 'dealerCost'), false);
+}
+assert.equal(oneNavMagniteEvolution.imageUrl, 'https://onenav.co.za/wp-content/uploads/2025/03/Nissan-MAGNITE-ON418-1LX-600x600.png');
+assert.ok(oneNavMagniteEvolution.title.includes('Nissan Magnite') && oneNavMagniteEvolution.manufacturerPage === 'https://onenav.co.za/product/onenav-9inch-for-nissan-magnite-without-factory-camera-9-inch-2/');
+assert.equal(oneNavEclipseCrossEvolution.imageUrl, 'https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png');
+assert.ok(oneNavEclipseCrossEvolution.title.includes('Eclipse Cross') && oneNavEclipseCrossEvolution.manufacturerPage === 'https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/');
 for (const row of [oneNavPrado, oneNavLandCruiser, oneNavBaleno]) {
   assert.equal(row.brandDisplayName, 'OneNav');
   assert.ok(row.description.includes('1024 × 600') && row.description.includes('Apple CarPlay') && row.description.includes('4 × 40 W'));
@@ -443,12 +462,13 @@ assert.equal(oneNavBaleno.imageStatus, 'EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAI
 assert.equal(Object.hasOwn(oneNavBaleno, 'imageUrl'), false, 'OA716-1 must not receive artwork visibly marked OA1409-CPAA');
  assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
-assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 113);
-assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 74);
-assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 113);
+assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 115);
+assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 76);
+assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 115);
+assert.equal(planet.productImageEnrichment.oneNavHeadunitExactImageMatches, 2);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 43);
-assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 1);
+assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length, 3);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length, 1, 'OA266-1 series remains unclassified because the official page does not identify Classic, Evolution or Pro');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-isuzu-2012/')?.description.includes('Isuzu vehicles from 2012+'),'OA115-1 exact Isuzu fitment description must be present');
 assert.ok(planet.records.find(row=>row.manufacturerPage==='https://onenav.co.za/product/onenav-classic-9inch-for-isuzu-2/')?.description.includes('Isuzu'),'OA115-3 exact Isuzu fitment description must be present');
@@ -481,6 +501,7 @@ assert.ok(productListingRoute.includes('img.style.objectPosition=p.imagePosition
 assert.ok(productListingRoute.includes('p.brandDisplayName||p.brand'));
 
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length,6);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH').length,2);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length,43);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED').length,1);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.description_status]==='OFFICIAL_ONENAV_UNCLASSIFIED_SPECIFICATION_VERIFIED').length,1);
