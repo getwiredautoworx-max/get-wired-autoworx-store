@@ -8,7 +8,7 @@ const labels = sections.map(section => {
   return m ? m[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim() : '';
 });
 assert.deepEqual(labels, ['Auto Electrical Spares', 'Car Audio / Home Entertainment', 'Car Care & Accessories']);
-assert.match(category, /const ROOTS=\\[\\['Auto Electrical Spares'/);
-assert.match(category, /\\['Car Audio \/ Home Entertainment'/);
-assert.match(category, /\\['Car Care & Accessories'/);
+assert.match(category, /const ROOTS=\[\['Auto Electrical Spares'/);
+assert.match(category, /\['Car Audio \/ Home Entertainment'/);
+assert.match(category, /\['Car Care & Accessories'/);
 console.log('THREE_DEPARTMENT_ROOTS_OK:', labels.join(' | '));
