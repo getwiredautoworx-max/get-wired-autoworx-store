@@ -197,3 +197,10 @@ The Planetworld source workbook's raw cells confirm **Bundle=Yes** for eight unr
 **KW16400p/m** is a supplier per-metre wire SKU. KICKER's official speaker-wire page lists **46KW16400** as a 16AWG 400ft K-Series wire roll, making it a plausible parent model, but the supplier must confirm the per-metre SKU is cut from that exact wire before mapping it.
 
 The 14 remaining in-scope references are now classified as: 3 supplier-code mismatches, 3 manual-only references, 8 supplier-defined bundles requiring BOMs (one overlaps manual-only), and 1 per-metre parent-model candidate. No prices or stock values were copied into the public catalogue.
+
+
+## Per-metre speaker-wire mapping completed — 2026-11-08
+
+- **KW16400p/m** is now mapped to KICKER parent model **46KW16400**. Planetworld's exact supplier product page identifies the per-metre SKU and describes the underlying 16AWG 400ft K-Series spool; KICKER's official speaker-wire collection lists 46KW16400 as the 16AWG 400ft model. Supplier page: https://www.planetworld.co.za/products/auto-audio/car-audio/audio-accessories/wires/kicker-kw16400p/m-16awg-speaker-wire-p/m ; manufacturer collection: https://shop.kicker.com/speaker-wire
+- Exact Planetworld product image captured in the staging source URL: https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026 . The image visually shows the KICKER KW16400 16AWG 400ft spool. It is now recorded in the staging CSV and manufacturer product-review JSON; not yet copied into local preview assets.
+- Kicker manufacturer-description review now contains **42** private review records. One supplier SKU parent-model mapping is resolved; the remaining in-scope unresolved references reduce from 14 to **13**: 3 supplier-code mismatches, 3 manual-only references and 8 supplier-defined bundles requiring a BOM (one overlap with manual evidence).
