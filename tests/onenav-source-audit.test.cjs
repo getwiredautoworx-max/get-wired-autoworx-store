@@ -92,7 +92,13 @@ const expectedHeadunitHeaders = [
   'model_evidence_status',
   'model_identity_status',
   'image_status',
-  'review_note'
+  'review_note',
+  'verified_manufacturer_product_title',
+  'customer_description',
+  'image_url_candidate',
+  'image_source_page',
+  'image_crop',
+  'image_position'
 ];
 assert.deepEqual(headunitParsed[0], expectedHeadunitHeaders,
   'The 23-row OneNav head-unit evidence register must expose all seven named columns');
@@ -121,7 +127,8 @@ const allowedIdentityStates = new Set([
 const allowedImageStates = new Set([
   'IMAGE_PENDING',
   'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
-  'OWNER_PREVIEW_CANDIDATE_ONLY'
+  'OWNER_PREVIEW_CANDIDATE_ONLY',
+  'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH'
 ]);
 assert.ok(headunitRecords.every(row => allowedIdentityStates.has(row.model_identity_status)),
   'Head-unit identity decisions must use an explicit, recognised state');
@@ -141,6 +148,24 @@ const isuzuAlias = byHeadunitCode.get('ISA-ON115-3LX');
 assert.equal(isuzuAlias.model_identity_status, 'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY');
 assert.equal(isuzuAlias.image_status, 'IMAGE_PENDING');
 assert.match(isuzuAlias.review_note, /Alias\/duplicate confirmation required/);
+const magniteEvolution = byHeadunitCode.get('ON418-1LX');
+const eclipseCrossEvolution = byHeadunitCode.get('ON425-1LX');
+for (const row of [magniteEvolution, eclipseCrossEvolution]) {
+  assert.ok(row, 'both additional official Evolution head-unit rows must remain present');
+  assert.equal(row.model_identity_status, 'VERIFIED_OFFICIAL_PRODUCT_PAGE');
+  assert.equal(row.image_status, 'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH');
+  assert.ok(row.customer_description.includes('Bluetooth 5.4') && row.customer_description.includes('4 × 45 W'));
+  assert.equal(row.image_crop, 'false', 'square official images must be contained, not cropped');
+  assert.equal(row.image_position, 'center');
+}
+assert.equal(magniteEvolution.image_url_candidate, 'https://onenav.co.za/wp-content/uploads/2025/03/Nissan-MAGNITE-ON418-1LX-600x600.png');
+assert.equal(magniteEvolution.image_source_page, 'https://onenav.co.za/product/onenav-9inch-for-nissan-magnite-without-factory-camera-9-inch-2/');
+assert.match(magniteEvolution.customer_description, /Nissan Magnite without a factory camera/);
+assert.equal(eclipseCrossEvolution.image_url_candidate, 'https://onenav.co.za/wp-content/uploads/2025/03/Mitsubishi-ECLIPSE-CROSS-ON425-1LX-600x600.png');
+assert.equal(eclipseCrossEvolution.image_source_page, 'https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/');
+assert.match(eclipseCrossEvolution.customer_description, /Mitsubishi Eclipse Cross.*2018–2020/);
+assert.notEqual(magniteEvolution.supplier_source_code_private, magniteClassic.supplier_source_code_private,
+  'Evolution ON418-1LX must remain separate from unverified Classic OA418-1');
 const clioA10 = byHeadunitCode.get('ON112-1A10');
 const clioA11 = byHeadunitCode.get('ON112-1A11');
 assert.equal(clioA10.model_identity_status, 'THIRD_PARTY_CROSSCHECK_ONLY');
@@ -223,7 +248,7 @@ const officialExactSkus = coverage
     || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
     || row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_CATALOGUE_EXACT_SKU_FITMENT'))
   .map(row => row.supplier_sku_candidates).sort();
-assert.deepEqual(officialExactSkus, ['OA-5263BT', 'ON016-2LX', 'ON413-1A10', 'ON425-1LX'],
+assert.deepEqual(officialExactSkus, ['OA-5263BT', 'ON016-2LX', 'ON413-1A10'],
   'Only independently verified official manufacturer SKU/title or catalogue-code matches may be marked exact');
 
 console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
@@ -237,7 +262,7 @@ console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   imageGaps: 39,
   rejectedImageRows: statusCounts.DETAILS_VERIFIED_IMAGE_REJECTED,
   uncoveredStorefrontTitles: coverage.length,
-  sourceSkuRowsForUncoveredTitles: 20,
+  sourceSkuRowsForUncoveredTitles: 19,
   officialExactMatchesInUncoveredSet: officialExactSkus.length,
   officialExactSupplierSkus: officialExactSkus,
   officialExactSupplierSkus: officialExactSkus,
