@@ -1,0 +1,39 @@
+# Owner-side verification addendum — 2026-11-08
+
+**Scope:** Jules Electrocity paired ignition modules + ignition looms pilot (Issue #182 / PR #185).
+**Disposition:** Extraction package structurally verified; review-only pilot acceptance recorded with one quarantined supplier discrepancy. No import or live change.
+
+## Source identity
+
+The current `main` Git tree was checked directly:
+- `(1)IGNITION MODULES.pdf`: blob SHA `5fdddd9bfeed32ac5c32263f724e8fd82db8583a`, 342,493 bytes.
+- `IGNITION LOOMS.pdf`: blob SHA `0875d983b2b535a79b66c55e6d818bb1ffb7c098`, 66,694 bytes.
+
+Both match the owner-approved source override. The manifest records 5 pages / 26 module rows and 1 page / 3 loom rows (29 total). The rejected converters and ignition-coils PDFs are excluded.
+
+## Independent structural checks on the PR package
+
+- `extracted-raw.csv`: 29 data rows, 23 columns.
+- `normalised-review.csv`: 29 data rows, 42 columns.
+- All 29 provisional IDs are unique.
+- All 29 rows have source path, source SHA-256, page/callout, OEM number, private Electrocity SKU, positional labels, research sources/access date, confidence and QA status.
+- All required structured JSON fields parse; each row has at least one HTTP(S) research-source URL.
+- 29 page-evidence PNG files are present (3,685,221 bytes combined). These are source-evidence crops, not a claim that every crop was independently visually re-adjudicated in this review.
+- All six commercial fields (price, currency, price type, VAT basis, pack basis and stock) remain blank/unknown.
+- Row-level confidence totals: 3 confirmed, 25 corroborated, 0 possible-only, 1 unverified/quarantined.
+- QA status totals: 28 `REVIEW_PASSED`, 1 `QUARANTINED_SUPPLIER_CLARIFICATION_REQUIRED`.
+- The only row where the literal SKU string also appears in the candidate description is `TP1015B`; the source prints the same literal as both OEM number and SKU, and the row is already flagged as a numbering anomaly. It is retained as the OEM number, not treated as a distinct private SKU disclosure.
+
+## Corrections and workflow evidence
+
+- Corrected the QA report's inconsistent confidence totals in commit `2952d643b5f4a28450f78bec45cae69c9a1411b4`.
+- Public SKU Exposure Audit run `42470803229` completed successfully against that corrected commit. This workflow is a customer-facing source audit only; it is not a substitute for full catalogue-specific QA or independent fitment research.
+- The PR has no submitted review approvals and no combined commit statuses were returned at the time of this check.
+
+## Outstanding acceptance notes
+
+1. `GWA-EC-000012 / IG-T003` remains quarantined because the catalogue's Fiat/Peugeot/Renault text conflicts with the Mobiletron/Denso/Toyota cross-reference. Obtain supplier clarification before treating the fitment as customer-ready.
+2. The 29 source crops and research links are present, but the fitment classifications should remain evidence-tiered; do not promote corroborated or unverified applications to confirmed OEM fitment.
+3. PR #185 remains OPEN and UNMERGED. This review does not authorise merge, product creation, price/stock changes, image publication, database writes, Axxess uploads, deployment or production changes.
+
+**Final assessment:** Jules delivered the complete paired-pilot review package and its structural evidence. The pilot is suitable for owner review as a DO NOT IMPORT package. It is not an approved live catalogue import, and the quarantined IG-T003 record remains unresolved.
