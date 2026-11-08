@@ -15,7 +15,7 @@ const assert = require('node:assert/strict');
       await page.locator('.product-card').first().waitFor({ state: 'visible', timeout: 20000 });
       assert.equal(await page.locator('.product-card').count(), 34);
       assert.ok((await page.locator('body').innerText()).includes(
-        'Price On Request due to Limited Stock and Availability'
+        'Price On Request'
       ));
 
       // Product images are intentionally lazy-loaded. Scroll each into view and

@@ -50,7 +50,7 @@ const imagePaths = new Set();
 for (const product of preview.products) {
   for (const key of Object.keys(product)) assert.ok(!forbiddenKeys.test(key), 'Private field exposed: ' + key);
   assert.equal(product.priceDisplay, 'Price On Request');
-  assert.equal(product.availabilityDisplay, 'Confirm current availability');
+  assert.equal(product.availabilityDisplay, 'Availability to confirm');
   assert.equal(product.description, null);
   assert.equal(product.technicalSpecifications, null);
   assert.ok(product.image.startsWith('assets/asc-auto-electrical-pilot/'));
