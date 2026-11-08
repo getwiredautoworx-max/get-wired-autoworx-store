@@ -18,6 +18,7 @@ on:
       - "scripts/build-cloudflare-pages-public.py"
       - ".github/workflows/cloudflare-public-pages-build-qa.yml"
       - "tests/test_store_policy_reconciliation.cjs"
+      - ".github/workflows/catalogue-image-audit.yml"
       - "GEMINI_EXECUTION_BRIEF.md"
       - "catalogue-review/approved-root-coverage-review-only-2026-11-01.md"
       - "LIVE_CATEGORY_AUDIT_2026-11-01.md"
@@ -54,5 +55,7 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_task_queue_utils.py' -v
       - name: Verify exactly three approved homepage departments and matching root labels
         run: node tests/test_three_department_roots.cjs
+      - name: Verify public supplier-data and preview safety guards
+        run: node tests/test_store_policy_reconciliation.cjs
       - name: Validate authoritative task queue
         run: python scripts/validate_automation_queue.py
