@@ -1,6 +1,6 @@
 {
   "source": "Curated exact-model manufacturer references from Get Wired verified catalogue review; preview-only",
-  "recordCount": 68,
+  "recordCount": 69,
   "records": [
     {
       "gwSku": "GW-C7A2361D",
@@ -746,6 +746,16 @@
       "component": "Radios & Multimedia",
       "imageUrl": "https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946",
       "imageStatus": "official_manufacturer_image_verified_review_only"
+    },
+    {
+      "name": "Kicker KW16400 16AWG K-Series Speaker Wire (sold per metre)",
+      "description": "Kicker K-Series 16AWG speaker wire supplied by Planetworld as a per-metre cut from the KW16400 400ft spool. The square Frost Blue conductor identifies positive and the rounded Frost Clear conductor identifies negative. Both PVC-insulated conductors are silver-tinned and oxygen-free for signal transfer and sonic accuracy.",
+      "modelNumber": "KW16400p/m",
+      "manufacturerPage": "https://shop.kicker.com/speaker-wire",
+      "component": "Wiring & Installation",
+      "imageUrl": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026",
+      "imageStatus": "owner_authorized_exact_supplier_image_verified_review_only",
+      "imageSource": "Planetworld exact supplier product page — KW16400p/m"
     }
   ]
 }
