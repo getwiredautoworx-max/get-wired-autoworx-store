@@ -24,7 +24,27 @@ on:
   push:
     branches:
       - integration/catalogue-supplier-routing-current-main-2026-10-30
+      - integration/owner-preview-single-task-2026-11-05
     paths:
+      - "catalogue-review/**"
+      - "preview-auto-electrical.html"
+      - "assets/auto-electrical-owner-preview.json"
+      - "assets/asc-auto-electrical-pilot/**"
+      - "scripts/build-cloudflare-pages-public.py"
+      - "tests/auto-electrical-review-population.test.cjs"
+      - "tests/auto-electrical-owner-preview.test.cjs"
+      - "tests/auto-electrical-owner-preview.spec.cjs"
+      - "tests/pricing-display-policy.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "preview-product.html"
+      - "preview-products.html"
+      - "preview-audio.html"
+      - "preview-audio-products.html"
+      - "product-details.js"
+      - "assets/progressive-store-enhancements.js"
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
       - "catalogue-review/kicker-manufacturer-product-review.json"
