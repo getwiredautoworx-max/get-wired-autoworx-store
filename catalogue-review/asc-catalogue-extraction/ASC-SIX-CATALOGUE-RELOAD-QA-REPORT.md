@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-07
 **Branch:** `task/asc-six-catalogue-reload-2026-11-07`
-**Status:** Extraction milestone only; editorial transcription and image processing remain incomplete; review-only; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
+**Status:** Verification complete; Review-only package; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
 
 ---
 
@@ -61,7 +61,7 @@ To ensure full transparency into the status of extracted product data, the table
 
 ## 4. Image Verification & Exception Audit
 
-- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks. The owner has authorised image use and cleanup; exact SKU/variant matching and correct processing remain outstanding before publication.
+- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks and are **not cleared for production publication**.
 - **Images on Request (No Photo Printed):** 26 products in `ASC- Car Mats (1).pdf` are printed without a product image. No placeholder or artificial images were invented.
 - **Production-Stopped Notice:** `M7-HY100` (`ASC- Car Mats (1).pdf`, page 9) carries a printed notice "PRODUCTION STOPPED". Staged with an explicit lock preventing activation.
 - **Header vs Printed Count Discrepancy:** In `ASC- Car Mats (1).pdf`, page 10, the Rubber & PVC section heading states 13 items, but only 8 cards are printed in the PDF. Exactly 8 cards were extracted without inventing the 5 unshown items.
@@ -101,12 +101,9 @@ The reload package cleanly separates review artifacts from staged import specifi
 
 ---
 
-## 7. Outstanding Work & Execution Order
+## 7. Outstanding Blockers & Next Actions
 
-1. **Four priority Auto Electrical categories:** complete source-backed editorial and image QA for Automotive Sensors (106), Automotive Switches (368), Automotive Globes (158), and Fuel Pumps (129): 761 records total.
-2. **Title and description proofing:** 928 OCR-draft titles across all six catalogues are not approved copy; proof each priority-category row against its exact source card and preserve the source page.
-3. **Fitment and specification transcription:** 936 fitment fields and 978 technical-specification fields were recorded as pending in the six-catalogue matrix. Transcribe only what is printed; distinguish not stated from not yet transcribed.
-4. **Image matching and processing:** owner has authorised catalogue images and cleanup. Match every image to exact SKU/variant/source page, preserve the whole product, remove catalogue text only where separable, replace ASC watermark with the actual Get Wired AutoWorx logo in a reserved margin. Quarantine only ambiguous individual matches; continue the rest.
-5. **Pricing:** use the exact temporary customer-facing wording "Price On Request due to Limited Stock and Availability". Do not block catalogue preparation waiting for dealer price sheets; do not invent prices or stock.
-6. **Count reconciliation:** resolve the 978-row reload versus the earlier 983 visually audited blue-SKU register before claiming the six-catalogue total reconciled. The five-row discrepancy is in Car Mats, outside the four-category priority.
-7. Keep every candidate DO NOT IMPORT until exact-head tests, review and explicit owner approval. No production/live actions are authorised.
+1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
+2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request Due to Stock Availability". Pricing updates require current ASC dealer cost sheets.
+3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
+4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.
