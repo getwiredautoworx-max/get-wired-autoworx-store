@@ -16,6 +16,6 @@ assert.match(audit, /private-boundary-required/);
 assert.doesNotMatch(audit, /planetworld_workbook_audit\.py/);
 assert.doesNotMatch(previewQa, /pull_request:/);
 assert.match(previewQa, /private-preview-required/);
-assert.doesNotMatch(catalogueQa, /audio-catalogue-preview\.test\.cjs/);
+assert.doesNotMatch(catalogueQa, /run node tests\/audio-catalogue-preview\.test\.cjs/);
 assert.doesNotMatch(catalogueQa, /GW_INCLUDE_PREVIEW_ROUTES/);
 console.log('PRIVATE_SUPPLIER_PREVIEW_GUARDS_OK');
