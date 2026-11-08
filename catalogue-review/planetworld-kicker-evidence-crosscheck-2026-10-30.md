@@ -188,3 +188,12 @@ Evidence level remains explicit: collection matches are not individual detail-pa
 ## Manufacturer description review enrichment — 2026-11-08
 
 Eight additional Kicker manufacturer-derived descriptions/specification summaries were added to `kicker-manufacturer-product-review.json`: 43TC104, 47PSM32, 48BTCAN65, 48VCWR122, 51HS10, 51HS12, 53PL7TDF10 and 53PL7TDF12. The file now contains 41 manufacturer-description review records. Each remains INTERNAL REVIEW ONLY / NOT PUBLISHED; image assets still need to be staged and matched to the correct supplier model. No GW SKUs, customer listings, prices, stock or live data were changed.
+
+
+## Supplier bundle and per-metre SKU classification — 2026-11-08
+
+The Planetworld source workbook's raw cells confirm **Bundle=Yes** for eight unresolved Kicker references: **K11HS8, KEYCOMBO1, KEYCOMBO2, KICKBAKCOMBO, KICKCOMBO1 - 10, KICKCOMBO2, KICKCOMBO2 - 10 and KICKCOMBO2-8**. These are supplier-defined bundles, not single manufacturer model codes. Do not create individual product matches, images or specifications until Planetworld supplies the bundle component list/BOM. K11HS8 also has only legacy 11HS8 manual evidence; that does not identify the bundle contents.
+
+**KW16400p/m** is a supplier per-metre wire SKU. KICKER's official speaker-wire page lists **46KW16400** as a 16AWG 400ft K-Series wire roll, making it a plausible parent model, but the supplier must confirm the per-metre SKU is cut from that exact wire before mapping it.
+
+The 14 remaining in-scope references are now classified as: 3 supplier-code mismatches, 3 manual-only references, 8 supplier-defined bundles requiring BOMs (one overlaps manual-only), and 1 per-metre parent-model candidate. No prices or stock values were copied into the public catalogue.
