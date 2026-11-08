@@ -4928,3 +4928,12 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - Removed customer-facing wording that incorrectly said owner-authorised source images were awaiting usage-rights clearance.
 - The non-deploying default-branch QA workflow builds and tests the customer-only preview package. Automatic Cloudflare owner-preview deployments are now manual-only on both the default branch and the active integration branch to avoid unrequested Cloudflare credit use. Default-branch workflow guard commit: `260b54b9fe93a5efff8b7e205002dd7d7598f803`; integration-branch guard commit: `332b254edf0b5841812106874ffac483ed4652e7`.
 - One staging deployment run (#42457319292) had already started from the preceding branch push before the automatic-trigger guard was applied. It is non-production only; record its final result after monitoring. No production deployment, merge, Axxess upload or live data change.
+
+
+## 2026-11-08 09:08 SAST — continuation task start
+
+- Re-read the binding owner directives (`AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`) and the current active-branch handover before execution. Active integration candidate remains PR #178, branch `integration/owner-preview-single-task-2026-11-05`, head `d0d8d6db4e1e7112e72a3673ef9d136586bb7554`; PR is OPEN / DRAFT / UNMERGED and production remains HOLD.
+- Carry forward the owner's newest temporary pricing instruction: all customer-facing products display `Price On Request` until reliable supplier-direct pricing and stock availability updates are available; cached catalogue values remain internal audit data only. No numeric price sorting or customer-facing cached prices.
+- Continue the active private catalogue review workflow without import/publication. Preserve ASC catalogue-only scope (no Buyers Guides), owner-authorised source images, exact-model matching, and DO NOT IMPORT status.
+- Task selected for this session: reconcile and run the newly added non-deploying Auto Electrical owner-preview QA on the exact active candidate where possible, then monitor the already-started staging run `42457319292`; no new Cloudflare deployment/credits. Record exact evidence and update the handover after the result.
+- No merge, production deployment, Axxess upload, DNS change, live data/catalogue/price/stock write, supplier activation, or payment change authorised or performed.
