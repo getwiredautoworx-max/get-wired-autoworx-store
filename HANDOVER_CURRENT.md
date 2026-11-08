@@ -5085,3 +5085,41 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 3. Correct ASC's exact customer-facing Price On Request wording and owner-authorized image workflow, starting with the 50-image sample; finish editorial review of titles, fitment and technical fields before import consideration.
 4. Obtain Electrocity clarification for IG-T003; then retain PR #185 as a review-only evidence package until a separately approved integration step.
 5. Run exact-head tests, build the non-production hosted preview, verify deployed SHA and mobile/desktop journeys, then update this handover with the exact preview evidence. Production remains HOLD.
+
+
+---
+
+## 2026-11-08 — 24/7 execution foundation checkpoint
+
+### Owner approval and implementation
+- Owner approved the 24/7 automated execution plan and asked to proceed.
+- Created draft PR #186: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/186
+- Branch: `automation/24x7-store-workers-2026-11-08`
+- Head at checkpoint: `cc02fcc742f9271a0e39a1c76eaf346646b0d3a9`; 7 commits ahead / 0 behind main; PR remains draft, open and unmerged.
+- Replaced the obsolete eight-category task queue with the current three approved departments: Auto Electrical Spares; Car Audio / Home Entertainment; Car Care & Accessories.
+- Added fail-closed queue validation, a public-safe ASC OCR worker, a four-hour GitHub Actions workflow, and the operating contract.
+- The worker is deliberately restricted to the exact six approved ASC catalogue PDFs and refuses to run if any additional/missing PDF appears.
+
+### Exact verification evidence
+- New worker workflow run `42497145655` completed **successfully** on exact PR head `cc02fcc742f9271a0e39a1c76eaf346646b0d3a9`.
+- Queue validation passed: current three-category roots, release safety gates and private supplier-data boundary verified.
+- ASC worker completed: 6/6 PDFs, 72/72 pages with extracted text, all 72 pages OCR-processed; script exit code 0. Output remains review-only / DO NOT IMPORT.
+- Public SKU Exposure Audit run `42497145621` passed on the same PR head.
+- Cloudflare Pages check reported success; Cloudflare Workers Builds check reported failure. No production deployment was requested or performed. Investigate the Workers Builds check separately before treating the PR's entire check suite as green.
+- PR validation did not commit generated output. Scheduled runs are not active until the owner approves merging PR #186 into main.
+
+### Confidential supplier-data boundary
+- The repository is public. Audio Connections price lists and Planetworld workbooks can contain confidential dealer prices, costs, stock and supplier metadata.
+- Their automated processing is therefore disabled on the public runner and marked `private-runner-required` in the queue. Do not publish their extracted pricing in public logs, artifacts, branches or commits.
+- A private repository or private execution environment has not yet been provisioned. This is a genuine dependency for safe 24/7 processing of those supplier materials.
+- No new paid AI provider or Cloudflare credits were used by the worker. No live product, price, stock, category, database, Axxess, DNS, payment or production hosting changes were made.
+
+### Next actions
+1. Inspect and resolve the Cloudflare Workers Builds failure without spending Cloudflare credits or changing production.
+2. Independently review PR #186's exact diff and successful worker run; keep it draft until owner approval to merge the non-production automation workflow.
+3. Establish a private execution boundary for Audio Connections / Planetworld confidential materials before enabling their scheduled processing.
+4. Add safe Electrocity evidence QA and automated PR monitoring to the queue worker; preserve the IG-T003 quarantine pending supplier clarification.
+5. Expand model-assisted description/image/fitment work only after a private data boundary and an explicitly cost-bounded AI provider are configured.
+6. Do not describe the whole store as running 24/7 until the approved workflows are merged, the first scheduled run succeeds, and the private supplier-data worker is operational.
+7. Production remains HOLD.
+
