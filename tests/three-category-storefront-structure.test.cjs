@@ -182,8 +182,16 @@ assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
-assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,68);
+assert.equal(verifiedModels.records.length,69);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,69);
+const kickerPerMetreWire = verifiedModels.records.find(row => row.modelNumber === 'KW16400p/m');
+assert.ok(
+  kickerPerMetreWire &&
+  kickerPerMetreWire.imageUrl === 'https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026' &&
+  kickerPerMetreWire.imageStatus === 'owner_authorized_exact_supplier_image_verified_review_only',
+  'Kicker KW16400p/m must retain its exact Planetworld spool image and owner-authorised supplier-image status'
+);
+
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,48);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 assert.equal(verifiedModels.records.filter(row => row.imageUseAuthorization === 'OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04').length,2);
