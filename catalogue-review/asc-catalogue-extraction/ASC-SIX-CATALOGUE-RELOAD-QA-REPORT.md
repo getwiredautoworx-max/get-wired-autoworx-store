@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-07
 **Branch:** `task/asc-six-catalogue-reload-2026-11-07`
-**Status:** Verification complete; Review-only package; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
+**Status:** Extraction package prepared; source-count reconciliation, editorial proofing and image editing/QA remain incomplete; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
 
 ---
 
@@ -14,7 +14,7 @@ This QA report details the complete, verified extraction and reconciliation of t
 |---|---:|---:|:---:|
 | Approved Source Catalogues | 6 | 6 | PASS |
 | Source Catalogue Pages Processed | 72 | 72 | PASS |
-| Total Source-Verified Products | 978 | 978 | PASS |
+| Extracted Review Rows | 978 | 978 | PASS (extraction count only; see unresolved source-count reconciliation below) |
 | Unique ASC Supplier SKUs | 978 | 978 | PASS (100% Unique) |
 | Unique Proposed Get Wired SKUs (`GW-ASC-`) | 978 | 978 | PASS (100% Unique) |
 | SKU Mapping Collisions | 0 | 0 | PASS |
@@ -41,6 +41,12 @@ This QA report details the complete, verified extraction and reconciliation of t
 | **Total** | **72** | **75** | **978** | **978** | **978** | **100% Mapped to Approved Hierarchy** |
 
 ---
+
+
+
+### Source-count reconciliation — unresolved hold
+
+The independent source-page inventory records **144 Car Mats supplier-code labels / printed product lines**, while this PR's Car Mats review dataset contains **139 rows**. The report separately notes a page-10 section heading of 13 items but only 8 visible cards. That observation does not, by itself, prove that the five-record difference is fully explained. Reconcile all 144 source labels against the 139 extracted rows and original PDF page evidence before accepting the Car Mats extraction. Do not invent five products or close the discrepancy based only on the section heading.
 
 ## 3. Row-by-Row Editorial Field Completion Matrix
 
@@ -105,5 +111,5 @@ The reload package cleanly separates review artifacts from staged import specifi
 
 1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
 2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request due to Limited Stock and Availability". Pricing updates require current ASC dealer cost sheets.
-3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
+3. **Image preparation:** The owner explicitly authorised use and editing of the supplied ASC catalogue pictures on 2026-11-08. Remove the ASC watermark, apply the Get Wired AutoWorx watermark, and remove catalogue description text outside the actual product image. The 952 photo-card crops still require this editing and visual QA before customer publication; the 26 Image-on-Request records must remain without fabricated images.
 4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.
