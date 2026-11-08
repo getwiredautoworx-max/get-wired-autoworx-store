@@ -86,3 +86,14 @@
 - This is an additive, binding instruction overlay. It does not erase historical evidence or rewrite the very large legacy `HANDOVER_CURRENT.md`; all conflicting historical instructions in that file are superseded by this owner-authorised document and the owner's newest direct instructions.
 - Task outcome: SUCCESS — owner-authoritative precedence, ASC catalogue-only scope, exclusion of ASC Buyers Guides, RRP-supplier pricing distinction, catalogue-first reusable workflow, three-category storefront direction, and execution/release gates are recorded. No code, supplier workbook, live data, price, stock, active flag, PR, deployment, hosting, DNS or payment changes were made.
 - Next action: begin the repository-wide reconciliation under sections 1 and 7, then record verified branch/PR/workflow state and the first representative catalogue workflow result in the current handover. Do not resume Buyers Guide processing.
+
+
+## 10. Superseding owner pricing instruction — 2026-11-08
+
+This section is a later, binding owner instruction and supersedes the RRP-display and supplier-specific customer-price display rules in Sections 2 and 7 above wherever they conflict:
+
+- Until current supplier pricing and stock can be updated reliably through direct supplier updates, display **Price On Request for every supplier product** on the customer-facing store.
+- Do not display historical RRP, dealer price, cost, or previously calculated markup as a current customer price.
+- Preserve historical/source prices privately for traceability and future reconciliation. Keep historical source price, current verified supplier price, stock validity and customer display state as separate data fields.
+- ASC retains its exact customer wording: **Price On Request due to Limited Stock and Availability**.
+- This instruction does not authorise public disclosure of confidential supplier data, live price/stock changes, imports or production release.
