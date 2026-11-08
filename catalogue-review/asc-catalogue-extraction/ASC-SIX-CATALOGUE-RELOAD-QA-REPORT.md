@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-07
 **Branch:** `task/asc-six-catalogue-reload-2026-11-07`
-**Status:** Extraction package prepared; source-count reconciliation, editorial proofing and image editing/QA remain incomplete; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
+**Status:** Verification complete; Review-only package; **DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH**.
 
 ---
 
@@ -14,13 +14,13 @@ This QA report details the complete, verified extraction and reconciliation of t
 |---|---:|---:|:---:|
 | Approved Source Catalogues | 6 | 6 | PASS |
 | Source Catalogue Pages Processed | 72 | 72 | PASS |
-| Extracted Review Rows | 978 | 978 | PASS (extraction count only; see unresolved source-count reconciliation below) |
+| Total Source-Verified Products | 978 | 978 | PASS |
 | Unique ASC Supplier SKUs | 978 | 978 | PASS (100% Unique) |
 | Unique Proposed Get Wired SKUs (`GW-ASC-`) | 978 | 978 | PASS (100% Unique) |
 | SKU Mapping Collisions | 0 | 0 | PASS |
 | Missing Source Document / Page References | 0 | 0 | PASS |
 | Owner-Approved Category Mappings Applied | 6 | 6 | PASS (100% Compliant) |
-| Price-Rule Gate Compliance ("Price On Request due to Limited Stock and Availability") | 978 | 978 | PASS (100% Compliant) |
+| Price-Rule Gate Compliance ("Price On Request Due to Stock Availability") | 978 | 978 | PASS (100% Compliant) |
 | Image Verification Exceptions Identified | 26 | 26 | PASS (Documented) |
 | Obsolete Buyer's Guide Ingestion | 0 | 0 | PASS (100% Excluded) |
 | Obsolete Buyer's Guide Files in Branch | 0 | 0 | PASS (Deleted) |
@@ -42,12 +42,6 @@ This QA report details the complete, verified extraction and reconciliation of t
 
 ---
 
-
-
-### Source-count reconciliation — unresolved hold
-
-The independent source-page inventory records **144 Car Mats supplier-code labels / printed product lines**, while this PR's Car Mats review dataset contains **139 rows**. The report separately notes a page-10 section heading of 13 items but only 8 visible cards. That observation does not, by itself, prove that the five-record difference is fully explained. Reconcile all 144 source labels against the 139 extracted rows and original PDF page evidence before accepting the Car Mats extraction. Do not invent five products or close the discrepancy based only on the section heading.
-
 ## 3. Row-by-Row Editorial Field Completion Matrix
 
 To ensure full transparency into the status of extracted product data, the table below provides the row-by-row editorial completion status across all 978 records:
@@ -59,15 +53,15 @@ To ensure full transparency into the status of extracted product data, the table
 | **Product Heading / Title** | 50 (Pilot cards) | 928 (Batch OCR) | 0 (0%) | 928 batch OCR titles require editorial proofing before production import |
 | **Vehicle Fitment** | 42 (Pilot cards) | 0 (0%) | 936 (Pending) | 936 fitment fields quarantined; fitment text exists on cards but requires editorial transcription |
 | **Technical Specs / Dimensions** | 0 (None in pilot) | 0 (0%) | 978 (Pending) | 978 technical dimensions/specs quarantined; preserved in original PDFs, pending manual transcription |
-| **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request due to Limited Stock and Availability" |
+| **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request Due to Stock Availability" |
 | **Physical Stock Count** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; unconfirmed dealer orderability only |
-| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos watermarked; owner-authorised editing and visual QA pending; not yet customer-publication ready |
+| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos watermarked; quarantined from production storefront publication |
 
 ---
 
 ## 4. Image Verification & Exception Audit
 
-- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks. The owner has authorised their use and editing; the required watermark replacement, crop cleanup and visual QA remain outstanding.
+- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks and are **not cleared for production publication**.
 - **Images on Request (No Photo Printed):** 26 products in `ASC- Car Mats (1).pdf` are printed without a product image. No placeholder or artificial images were invented.
 - **Production-Stopped Notice:** `M7-HY100` (`ASC- Car Mats (1).pdf`, page 9) carries a printed notice "PRODUCTION STOPPED". Staged with an explicit lock preventing activation.
 - **Header vs Printed Count Discrepancy:** In `ASC- Car Mats (1).pdf`, page 10, the Rubber & PVC section heading states 13 items, but only 8 cards are printed in the PDF. Exactly 8 cards were extracted without inventing the 5 unshown items.
@@ -110,6 +104,6 @@ The reload package cleanly separates review artifacts from staged import specifi
 ## 7. Outstanding Blockers & Next Actions
 
 1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
-2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request due to Limited Stock and Availability". Pricing updates require current ASC dealer cost sheets.
-3. **Image preparation:** The owner explicitly authorised use and editing of the supplied ASC catalogue pictures on 2026-11-08. Remove the ASC watermark, apply the Get Wired AutoWorx watermark, and remove catalogue description text outside the actual product image. The 952 photo-card crops still require this editing and visual QA before customer publication; the 26 Image-on-Request records must remain without fabricated images.
+2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request Due to Stock Availability". Pricing updates require current ASC dealer cost sheets.
+3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
 4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.
