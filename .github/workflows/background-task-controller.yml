@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/background-task-controller.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/background_task_controller.py'
+      - 'automation/task-queue.json'
+      - '.github/workflows/background-task-controller.yml'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -46,7 +52,8 @@ jobs:
 
       - name: Build task checkpoint from queue and recent workflow results
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PR validation is read-only; suppress retry-capable token on PR runs.
+          GITHUB_TOKEN: ${{ github.event_name == 'pull_request' && '' || secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/background_task_controller.py
 
