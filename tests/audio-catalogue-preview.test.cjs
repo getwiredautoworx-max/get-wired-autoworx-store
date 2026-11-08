@@ -427,8 +427,8 @@ assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.i
 const oneNavPrado = planet.records.find(row => row.id === 'pw-2120');
 const oneNavLandCruiser = planet.records.find(row => row.id === 'pw-2121');
 const oneNavBaleno = planet.records.find(row => row.id === 'pw-2159');
-const oneNavMagniteEvolution = planet.records.find(row => row.id === 'pw-0183');
-const oneNavEclipseCrossEvolution = planet.records.find(row => row.id === 'pw-0186');
+const oneNavMagniteEvolution = planet.records.find(row => row.id === 'pw-2264');
+const oneNavEclipseCrossEvolution = planet.records.find(row => row.id === 'pw-2267');
 assert.ok(oneNavPrado && oneNavLandCruiser && oneNavBaleno, 'the three audited OneNav product rows must remain present');
 assert.ok(oneNavMagniteEvolution && oneNavEclipseCrossEvolution, 'both additional official OneNav Evolution head-unit rows must remain present');
 for (const row of [oneNavMagniteEvolution, oneNavEclipseCrossEvolution]) {
