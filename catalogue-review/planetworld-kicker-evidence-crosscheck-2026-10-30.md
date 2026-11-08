@@ -183,3 +183,8 @@ Evidence level remains explicit: collection matches are not individual detail-pa
 - **51KEYCHAIN:** source description identifies a branded silicone keychain, not an automotive audio product. Retain the source row for audit but exclude it from Car Audio product navigation.
 - Revised split: 161 standard Car Audio source rows include one non-audio keychain (excluded), leaving 160 in-scope. In-scope standard Car Audio = 24 individual product pages + 122 collection/range matches + 14 unresolved. Marine remains 28 rows = 5 individual product pages + 23 collection matches. The one excluded keychain is tracked separately.
 - Remaining 14 in-scope references without an exact product-page/collection match: **46CXA18001T (supplier suffix mismatch), 48CVTDF102 and 48CVTDF122 (supplier code mismatch to official 52-prefixed models), 51KBTR (manual only), HS8 (manual only), K11HS8 (manual only), KEYCOMBO1, KEYCOMBO2, KICKBAKCOMBO, KICKCOMBO1 - 10, KICKCOMBO2, KICKCOMBO2 - 10, KICKCOMBO2-8, KW16400p/m.**
+
+
+## Manufacturer description review enrichment — 2026-11-08
+
+Eight additional Kicker manufacturer-derived descriptions/specification summaries were added to `kicker-manufacturer-product-review.json`: 43TC104, 47PSM32, 48BTCAN65, 48VCWR122, 51HS10, 51HS12, 53PL7TDF10 and 53PL7TDF12. The file now contains 41 manufacturer-description review records. Each remains INTERNAL REVIEW ONLY / NOT PUBLISHED; image assets still need to be staged and matched to the correct supplier model. No GW SKUs, customer listings, prices, stock or live data were changed.
