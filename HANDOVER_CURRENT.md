@@ -5024,3 +5024,31 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - Focused static/syntax validation: 8/8 passed — 45 audit rows/45 unique SKUs retained, OA009-1 and OA017-1 wrong-variant rejections explicit, both image URLs blank, and test source compiles. Full Node test and hosted QA remain unexecuted; no workflow status returned. No Cloudflare deployment or spend.
 - All records remain private review-only / DO NOT IMPORT. No storefront JSON, image asset, GW SKU, price/stock, Supabase, ASC, customer route, checkout/payment, Axxess, DNS, merge, deployment or production changes.
 - Next: continue exact OneNav model/image matching. Do not promote same-fitment images from a different series/MPN; the ON413-1A10 PDF image crop is still pending because external PDF bytes cannot be retrieved from this runtime.
+
+
+---
+
+## OWNER CONTINUATION — 2026-11-08 — Jules Electrocity verification and supplier-image authorization
+
+### Jules paired Electrocity ignition pilot — owner-side verification
+
+- Jules delivered PR #185 for Issue #182 using the two owner-approved sources only: (1)IGNITION MODULES.pdf (5 pages / 26 items; Git blob SHA 5fdddd9bfeed32ac5c32263f724e8fd82db8583a) and IGNITION LOOMS.pdf (1 page / 3 items; Git blob SHA 0875d983b2b535a79b66c55e6d818bb1ffb7c098).
+- Independently inspected the PR package: 29 raw rows, 29 normalised rows (42 columns), 29 unique provisional IDs, 29 page-evidence PNGs, required provenance/research fields present on all rows, structured JSON parses, research URLs present, and commercial price/VAT/pack/stock fields blank.
+- Confidence totals: 3 confirmed, 25 corroborated, 0 possible-only, 1 unverified/quarantined. QA status: 28 REVIEW_PASSED and 1 QUARANTINED_SUPPLIER_CLARIFICATION_REQUIRED.
+- GWA-EC-000012 / IG-T003 remains quarantined because printed Fiat/Peugeot/Renault text conflicts with the Mobiletron/Denso/Toyota cross-reference. Do not present a definitive customer fitment until Electrocity clarifies.
+- Corrected inconsistent confidence totals in the QA report (commit 2952d643b5f4a28450f78bec45cae69c9a1411b4); Public SKU Exposure Audit run 42470803229 passed against that corrected commit. Added owner-side verification record OWNER_VERIFICATION_2026-11-08.md (commit 30fe3a92d0ce865d87b9369b02c42aaa7afab417).
+- PR #185 remains open/unmerged; all outputs are REVIEW ONLY — DO NOT IMPORT. No live products, prices, stock, images, categories, database or deployment were changed. The pilot is structurally complete for owner review, not approved for import.
+
+### Supplier image and pricing authorization clarification
+
+- Owner explicitly reconfirmed on 2026-11-08 that Get Wired AutoWorx is authorised to use the confidential supplier information, pricing information and product pictures supplied for this catalogue project.
+- Do not use generic image-rights review or a separate permission check as a blocker for authorised supplier catalogue images. Continue exact product/SKU/series/variant/vehicle-fitment matching; an authorised image can still be the wrong product image and must be rejected if mismatched.
+- When current supplier pricing or stock cannot be verified, use the owner's Price On Request approach rather than inventing or publishing stale values. Retain the correct supplier-specific RRP rules where current RRP is available. Never expose supplier names or confidential supplier metadata to customers.
+- This clarification supersedes older generic rights-pending notes in the OneNav review audit; it does not authorise imports, publication, database writes, merge or production deployment.
+
+### Storefront and category release boundary
+
+- PR #178 remains OPEN / DRAFT / UNMERGED. The last documented storefront QA candidate was 578f5402a417b00d2502d95fd4a4632b9561ff40; focused static checks passed 8/8, but full Node and hosted browser QA were not run for that candidate.
+- The OneNav audit remains incomplete: 45 official-model records, 39 exact-image gaps, four owner-preview candidates, two rejected images, plus unresolved head-unit, accessory, fitment-kit and supplier-row reconciliation. Continue OneNav as the active brand; do not move to another brand until this workstream is resolved.
+- ASC source reconciliation remains 978 catalogue rows across six catalogues. The 34-image pilot and 727 missing images in the 761-row Auto Electrical subset remain review-only; no catalogue import or live change.
+- No current new owner preview is verified for the latest PR #178 branch head. No Cloudflare spend, Axxess upload, Supabase write, merge, DNS/payment change or production deployment was performed. Production remains HOLD.
