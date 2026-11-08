@@ -77,7 +77,11 @@ const coverage = coverageParsed.slice(1).filter(row => row.some(value => value !
   coverageHeaders.forEach((header, index) => { record[header] = values[index] || ''; });
   return record;
 });
-assert.equal(coverage.length, 19, 'All 19 uncovered storefront titles must remain reconciled');
+assert.equal(coverage.length, 18, 'All 18 distinct uncovered storefront titles must remain reconciled');
+const uncoveredSourceSkuCount = coverage.reduce((total, row) =>
+  total + row.supplier_sku_candidates.split(';').filter(Boolean).length, 0);
+assert.equal(uncoveredSourceSkuCount, 19,
+  'The 18 uncovered storefront titles must account for all 19 source SKU rows, including the two-code ON019 title group');
 assert.ok(coverage.every(row => row.exact_source_title_match === 'YES'), 'Every uncovered title must link to an exact source title');
 assert.ok(coverage.every(row => row.source_row_candidates && row.supplier_sku_candidates), 'Every uncovered title must retain source row and supplier SKU references');
 assert.ok(coverage.every(row => row.import_status === 'DO NOT IMPORT'), 'Coverage reconciliation must not approve imports');
@@ -177,6 +181,28 @@ assert.match(clioA11.official_or_candidate_evidence_url, /no-display-a11/);
 assert.match(clioA10.review_note, /do not transfer A11 specs or image/i);
 assert.match(clioA11.review_note, /no A10 specs\/image transferred/i);
 
+const pradoA11 = byHeadunitCode.get('ON014-1A11');
+assert.equal(pradoA11.model_identity_status, 'THIRD_PARTY_CANDIDATE_ONLY');
+assert.equal(pradoA11.image_status, 'IMAGE_PENDING');
+assert.match(pradoA11.official_or_candidate_evidence_url, /onenav\.co\.za\/product-category\/onenav-evolution\/page\/3/);
+assert.match(pradoA11.model_evidence_status, /category page does not display a SKU/i);
+assert.match(pradoA11.review_note, /keep the exact supplier code third-party-only/i);
+
+const fortunerA11 = byHeadunitCode.get('ON017-2A11');
+assert.equal(fortunerA11.model_identity_status, 'MODEL_CODE_VARIANT_MISMATCH');
+assert.equal(fortunerA11.image_status, 'IMAGE_PENDING');
+assert.match(fortunerA11.model_evidence_status, /ON017-2A, not supplier ON017-2A11/);
+assert.match(fortunerA11.review_note, /do not normalize the codes/i);
+
+const corollaCrossA11 = byHeadunitCode.get('ON016-2LX');
+assert.equal(corollaCrossA11.model_identity_status, 'VERIFIED_OFFICIAL_PRODUCT_PAGE');
+assert.equal(corollaCrossA11.image_status, 'IMAGE_PENDING');
+assert.match(corollaCrossA11.official_or_candidate_evidence_url, /onenav-10-1inch-for-corrola-cross-a11-2021/);
+assert.match(corollaCrossA11.verified_manufacturer_product_title, /Corrola Cross A11/);
+assert.match(corollaCrossA11.customer_description, /Toyota Corolla Cross A11 \(2021\+\)/);
+assert.match(corollaCrossA11.customer_description, /Bluetooth 5\.4/);
+assert.match(corollaCrossA11.customer_description, /4 × 45 W/);
+
 const cameraAccessoryPath = 'catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv';
 const cameraAccessoryParsed = parseCsv(fs.readFileSync(cameraAccessoryPath, 'utf8'));
 const expectedCameraAccessoryHeaders = [
@@ -262,6 +288,7 @@ console.log('ONENAV_AUDIT_INTEGRITY_PASS', JSON.stringify({
   imageGaps: 39,
   rejectedImageRows: statusCounts.DETAILS_VERIFIED_IMAGE_REJECTED,
   uncoveredStorefrontTitles: coverage.length,
+  uncoveredSourceSkuRows: uncoveredSourceSkuCount,
   sourceSkuRowsForUncoveredTitles: 19,
   officialExactMatchesInUncoveredSet: officialExactSkus.length,
   officialExactSupplierSkus: officialExactSkus,
