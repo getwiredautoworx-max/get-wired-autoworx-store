@@ -24,6 +24,9 @@ def validate() -> list[str]:
     for key in ("live_store_mutations", "production_deploy", "axxess_dns_payment_supabase_live_writes"):
         if "prohibited" not in str(policy.get(key, "")).lower():
             errors.append(f"policy.{key} must remain prohibited")
+    expected_price = "Price On Request for all supplier products until current supplier pricing and stock can be updated reliably; do not display historical RRP/dealer prices as current."
+    if policy.get("customer_price_display") != expected_price:
+        errors.append("policy.customer_price_display does not match latest owner instruction")
     tasks = data.get("tasks", [])
     ids = [t.get("id") for t in tasks]
     if len(ids) != len(set(ids)):
