@@ -1,3 +1,5 @@
+> **SUPERSESSION NOTICE — 2026-11-08:** Historical reference only. Current authority is `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` (including its dated Section 10), `HANDOVER_CURRENT.md`, and the latest direct owner instructions. This document's older supplier scope, category tree, and pricing formulas are not current instructions. Do not process ASC Buyers Guides. Display Price On Request for all supplier products until current supplier pricing and stock can be updated reliably. No live import or production change is authorised by this historical document.
+
 # Get Wired AutoWorx — Proposed Final Category Tree & Mapping Plan
 Updated: 2026-10-11
 Status: PROPOSAL ONLY — NO DATABASE OR STOREFRONT CATEGORY CHANGES AUTHORISED BY THIS FILE
