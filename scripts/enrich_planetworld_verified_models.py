@@ -162,7 +162,10 @@ def main() -> None:
             product["description"] = description
             product["descriptionStatus"] = "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED"
             product["imageUrl"] = image_url
-            product["imageStatus"] = "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"
+            # Keep the image-review state in the private audit CSV, never in
+            # customer-facing catalogue JSON.
+            product.pop("imageStatus", None)
+            image_status = "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"
             product["imageCrop"] = False
             product["imagePosition"] = "center"
             image_status = product["imageStatus"]
