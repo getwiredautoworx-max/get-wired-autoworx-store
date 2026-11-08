@@ -55,9 +55,9 @@ jobs:
         with:
           script: |
             const now = Date.now();
-            const checkpointCutoff = now - 24 * 60 * 60 * 1000;
-            const staleBuildCutoff = now - 24 * 60 * 60 * 1000;
-            const staleQaCutoff = now - 3 * 24 * 60 * 60 * 1000;
+            const checkpointCutoff = now - 7 * 24 * 60 * 60 * 1000;
+            const staleBuildCutoff = now - 7 * 24 * 60 * 60 * 1000;
+            const staleQaCutoff = now - 14 * 24 * 60 * 60 * 1000;
             let page = 1;
             let deletedCheckpoints = 0;
             let deletedApks = 0;
@@ -81,7 +81,7 @@ jobs:
             const packages = artifacts
               .filter(a => /^(axxess-storefront-upload(?:-ready)?|storefront-upload(?:-ready)?)$/i.test(a.name))
               .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-            const newestPackageId = packages[0]?.id;
+            const protectedPackageIds = new Set(packages.slice(0, 2).map(a => a.id));
             for (const artifact of artifacts) {
               const created = new Date(artifact.created_at).getTime();
               let reason = null;
@@ -89,7 +89,7 @@ jobs:
                 reason = 'expired checkpoint';
               } else if (/\.apk$|\b(apk|android-build|owner-apk|store-apk)\b/i.test(artifact.name) && created < staleBuildCutoff) {
                 reason = 'obsolete APK/build artifact older than 7 days';
-              } else if (/^(axxess-storefront-upload(?:-ready)?|storefront-upload(?:-ready)?)$/i.test(artifact.name) && artifact.id !== newestPackageId) {
+              } else if (/^(axxess-storefront-upload(?:-ready)?|storefront-upload(?:-ready)?)$/i.test(artifact.name) && !protectedPackageIds.has(artifact.id)) {
                 reason = 'duplicate storefront package; preserve newest recovery candidate';
               } else if (/qa|screenshot|evidence/i.test(artifact.name) && created < staleQaCutoff) {
                 reason = 'stale QA/screenshot/evidence artifact older than 3 days';
