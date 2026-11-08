@@ -79,8 +79,8 @@ const pioneerVerified=verified.records.find(row=>row.modelNumber==='DMH-AP6650BT
 assert.equal(audisonVerified.imageUrl,'https://static.audison.com/media/2022/10/APBMW-K4M.jpg','Audison APBMW K4M must use the exact official model image');
 assert.equal(pioneerVerified.imageUrl,'https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946','Pioneer DMH-AP6650BT must use the exact South African model image');
 assert.ok(audisonVerified.description.includes('100 W peak / 50 W continuous')&&pioneerVerified.description.includes('9-inch WSVGA capacitive multimedia receiver'),'manufacturer specifications must be present in the matching product descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,116,'69 verified manufacturer records plus forty-five audited and two additional OneNav records must carry verified descriptions');
-assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,116,'all 69 verified manufacturer records plus forty-seven OneNav exact product pages must be named');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName&&row.description).length,114,'69 verified manufacturer records plus forty-five OneNav records must carry verified descriptions; head-unit descriptions are included in that total');
+assert.equal(planet.records.filter(row=>row.manufacturerProductName).length,114,'all 69 verified manufacturer records plus forty-five OneNav exact product pages must be named');
 assert.equal(planet.records.filter(row=>row.imageStatus==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,39,'thirty-nine rows in the 45-row audited OneNav product-page register still have no exact image; unmatched head-unit rows remain separately quarantined');
 assert.ok(!productListingRoute.includes('p.imageUrl||typeImage(component)'),'individual product cards must never substitute a generic product-type photograph');
 assert.ok(productListingRoute.includes('Exact product photo pending verification'),'products without exact images must show an honest pending state, not an unrelated photo');
@@ -462,9 +462,9 @@ assert.equal(oneNavBaleno.imageStatus, 'EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAI
 assert.equal(Object.hasOwn(oneNavBaleno, 'imageUrl'), false, 'OA716-1 must not receive artwork visibly marked OA1409-CPAA');
  assert.ok(oneNavPrado.manufacturerPage.includes('onenav.co.za/product/'));
 assert.ok(oneNavLandCruiser.manufacturerPage.includes('onenav.co.za/product/'));
-assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 116);
+assert.ok(planet.productImageEnrichment && planet.productImageEnrichment.manufacturerDescriptionsVerified === 114);
 assert.equal(planet.productImageEnrichment.exactImageCandidatesApplied, 75);
-assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 116);
+assert.equal(planet.productImageEnrichment.exactModelPagesReviewed, 114);
 assert.equal(planet.productImageEnrichment.oneNavHeadunitExactImageMatches, 2);
 assert.equal(planet.records.filter(row => row.imageStatus === 'EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE').length, 6);
 assert.equal(planet.records.filter(row => row.descriptionStatus === 'OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED').length, 43);
