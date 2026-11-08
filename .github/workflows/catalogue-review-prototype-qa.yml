@@ -12,6 +12,17 @@ on:
       - "tests/auto-electrical-review-population.test.cjs"
       - "tests/auto-electrical-owner-preview.test.cjs"
       - "tests/auto-electrical-owner-preview.spec.cjs"
+      - "tests/pricing-display-policy.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - "preview-audio.html"
+      - "preview-audio-products.html"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "preview-product.html"
+      - "preview-products.html"
+      - "product-details.js"
+      - "assets/progressive-store-enhancements.js"
       - "scripts/catalogue-review-prototype.spec.js"
       - "scripts/supplier-routing.test.mjs"
       - "scripts/supplier-quote-routing-static.test.mjs"
@@ -102,6 +113,8 @@ jobs:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
           CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: python3 scripts/build-cloudflare-pages-public.py
+      - name: Verify audio catalogue pricing, source mappings and product enrichment
+        run: node tests/audio-catalogue-preview.test.cjs
       - name: Verify Auto Electrical owner preview at mobile and desktop widths
         run: |
           python3 -m http.server 4174 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
