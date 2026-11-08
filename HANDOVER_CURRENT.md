@@ -4975,3 +4975,33 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - Preview status at task start: no current exact-head preview is verified for SHA `0271733b8fc038bddda10c99e86baeb80d4b9b76`. The earlier preview URLs are stale for this head. Automatic Cloudflare preview deployment remains manual-only and no deployment/Cloudflare spend is authorised in this run.
 - Task for this run: inspect current OneNav registers and available manufacturer evidence; advance only source-supported identity/fitment/image/description records; preserve ambiguous code/variant rows as quarantined; run the relevant local/static checks if an execution environment is available; update this handover with exact evidence and the next safe action.
 - No merge, deployment, Axxess/DNS change, Supabase/live database write, live price/stock/catalogue change, supplier activation, checkout/payment change or production action is authorised or performed.
+
+
+## 2026-11-08 09:52 SAST — audio/video continuation: OneNav ON413-1A10
+
+### Authority and repository state
+- Read the binding AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md from main (blob 70166b277c2477472b39e3c11d94deb2c6840215) before reviewing this handover and the active branch. The owner's current instruction explicitly resumes autonomous audio/video catalogue enrichment in parallel with ASC; this run did not modify or take over ASC work.
+- PR #178 remains the sole audio/storefront integration candidate: OPEN / DRAFT / UNMERGED, branch integration/owner-preview-single-task-2026-11-05. The branch handover recorded its start head as 0271733b8fc038bddda10c99e86baeb80d4b9b76; this run's commits advance that same branch, with no competing branch or PR.
+- A GitHub compare against current main reports the candidate as diverged: 965 commits ahead and 31 behind. This is a material merge/release risk. Do not merge, rebase, retarget or create a replacement branch as part of this audio-only continuation; preserve the current draft candidate and production HOLD until the owner authorises a coordinated integration decision.
+- Inspected the active branch workflows. catalogue-review-prototype-qa.yml is non-deploying and includes the OneNav/audio tests, but no associated run or commit status was returned for this increment. owner-preview-exact-sha.yml is manual-only and includes a Cloudflare Pages deployment; it was not dispatched. No Cloudflare credits or hosted deployment were used.
+
+### Completed OneNav increment
+- Official OneNav 2023 catalogue PDF, page 13, visually confirms ON413-1A10, Nissan Qashqai / X-Trail (2015+), and 10.1-inch screen. The same page contains the exact vehicle-fitment dashboard image. Official catalogue feature panel supports Android 10, Bluetooth, Wi-Fi, wireless OneConnect for Android/iPhone, steering-control integration, software updates and a 3-year warranty.
+- Updated catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv: populated manufacturer-verified title and paraphrased description; retained VERIFIED_OFFICIAL_CATALOGUE; set image state to EXACT_SOURCE_CATALOGUE_IMAGE_VERIFIED_CROP_PENDING; recorded the exact PDF page reference. The direct image URL is deliberately blank until the exact page image is extracted into a private staging asset. No substitute image was used.
+- Updated tests/onenav-source-audit.test.cjs: added the crop-pending state and checks for exact code/fitment, customer description, source page and the fail-closed blank image URL. A missing comma discovered by reviewing the first test diff was fixed in commit 6da177f0d081bf8838f1964e929abefd6d6f3110; latest test source compiles successfully in the JavaScript validation runtime.
+- Updated catalogue-review/ONENAV_RESUMPTION_AUDIT_2026-11-06.md with evidence and next steps.
+
+### Exact commits and validation
+- Data: fd26f96a3fb8774d4beecea1f241a2137bce2e99.
+- Initial test assertions: e414c498befea854816c80a62d57e91d9575178a.
+- Test syntax correction: 6da177f0d081bf8838f1964e929abefd6d6f3110.
+- Audit report: 9287ffda9350c3890e280e8e97fa38cb973e5ccc.
+- This handover update records the resulting checkpoint.
+- Focused static validation: 9/9 passed — test file JavaScript syntax compilation; 23 head-unit evidence rows and 23 unique source codes; ON413-1A10 official catalogue state; crop-pending state; page-13 source reference; no fabricated image URL; populated manufacturer feature description and exact fitment title.
+- The committed node tests/onenav-source-audit.test.cjs was not executed in this environment. GitHub workflow-run and combined-status lookups for the data/test/audit commits returned no run/status. Do not claim full Node test or CI pass.
+- OneNav counts carried forward from read-back: 45 official-model audit rows (39 details verified/image pending, 4 preview candidates, 2 rejected; 7 distinct image URLs); 23 unmatched head-unit rows; 16 camera/accessory rows; 86 fitment kits (all 86 exact kit images pending); 76 frame/trim rows; 32 harness/fitment rows; 245 unmatched source rows all still manual verification required. These are private review counts, not import-ready products.
+
+### Release/data boundaries and next action
+- All records remain private review/staging and DO NOT IMPORT. No live product JSON, GW SKU assignment, price/stock, Supabase, customer-facing catalogue, checkout/payment, Axxess, DNS, production, merge or deployment change.
+- Existing preview URL/run ae5e6ed2... / 42350412161 is verified only for older storefront SHA 0ed1d31ee15ae0ba617c6d876fc626b1bba367e5; it is not current for this branch head and is not reissued as ready.
+- Next: extract the exact Nissan Qashqai/X-Trail catalogue image from PDF page 13 into the private review asset tree, verify crop bounds/dimensions and image identity, then continue OneNav's remaining exact image gaps and unresolved variants. Do not advance to another brand until OneNav is resolved. ASC remains an independent owner workstream.
