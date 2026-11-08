@@ -158,3 +158,11 @@ Newly matched models and official source groups:
 Evidence level remains explicit: collection matches are not individual detail-page verification. Product image extraction/matching and detailed descriptions remain separate work; supplier codes are not GW SKUs. No prices, stock, product activation, live data or customer-facing listings were changed. All rows remain private review-only / DO NOT IMPORT.
 
 **Still unresolved (19):** 46CXA18001T; 48CVTDF102; 48CVTDF122; 48VCWR122; 49DL7TDF122; 49L7TDF102; 49L7TDF122; 51KBTR; 51KEYCHAIN; HS8; K11HS8; KEYCOMBO1; KEYCOMBO2; KICKBAKCOMBO; KICKCOMBO1 - 10; KICKCOMBO2; KICKCOMBO2 - 10; KICKCOMBO2-8; KW16400p/m.
+
+
+## L7TDF follow-up and manual-only evidence — 2026-11-08
+
+- Verified **49DL7TDF122**, **49L7TDF102** and **49L7TDF122** against the exact model labels in KICKER's official L7TDF down-firing loaded-enclosure collection: https://www.kicker.com/2022-l7tdf-down-firing-loaded-enclosures
+- Located KICKER's official **51KBTR** model-specific manual: https://www.kicker.com/files/manuals/51KBTR.pdf. This supports the model identity and installation/troubleshooting evidence, but is **not** an individual product page or collection listing; keep it separately classified and do not upgrade it to a product-page match.
+- Revised totals: 161 standard Car Audio rows = 23 individual product pages + 122 collection/range matches + 16 without an exact product-page/collection match. The 16 include the manual-only 51KBTR record. Marine remains separate at 5 individual pages + 23 collection matches.
+- Remaining references requiring further resolution: **46CXA18001T, 48CVTDF102, 48CVTDF122, 48VCWR122, 51KBTR (manual only), 51KEYCHAIN, HS8, K11HS8, KEYCOMBO1, KEYCOMBO2, KICKBAKCOMBO, KICKCOMBO1 - 10, KICKCOMBO2, KICKCOMBO2 - 10, KICKCOMBO2-8, KW16400p/m.**
