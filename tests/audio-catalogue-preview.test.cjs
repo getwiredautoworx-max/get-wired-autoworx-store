@@ -86,7 +86,7 @@ assert.ok(productListingRoute.includes('Exact product photo pending verification
 assert.ok(productListingRoute.includes("title.className='productModel'")&&productListingRoute.includes("p.modelNumber||p.manufacturerProductName||p.title||p.name||'Product'"),'audio product cards must show the verified model first, falling back only to the verified catalogue title');
 assert.ok(productListingRoute.includes("meta.className='meta productBrand'")&&productListingRoute.includes("body.append(title,meta,desc,price)"),'brand must appear immediately below the product model, followed by description and price');
 assert.ok(productListingRoute.includes("desc.className='productDescription'")&&productListingRoute.includes("desc.textContent=p.description||'Product details to be confirmed.'"),'customer description must retain the verified concise product description and an honest pending state');
-assert.ok(productListingRoute.includes("price.className='price productPrice'")&&productListingRoute.includes("toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2})"),'verified product prices must display in South African Rand formatting');
+assert.ok(productListingRoute.includes("price.textContent='Price On Request'")&&!productListingRoute.includes("toLocaleString('en-ZA'"),'all audio product cards must show Price On Request until supplier-direct pricing and availability updates are available');
 assert.ok(productListingRoute.includes("media.append(missingPhoto())")&&productListingRoute.includes("img.alt=p.title||component"),'exact product photo or explicit missing-photo state must be retained');
 assert.ok(!productListingRoute.includes('supplierSku')&&!productListingRoute.includes('gwSku')&&!productListingRoute.includes('Supplier SKU'),'customer-facing audio cards must not expose supplier or internal GW SKU fields');
 
@@ -116,9 +116,9 @@ const priceHelperEnd = route.indexOf('function draw(){', priceHelperStart);
 assert.ok(priceHelperStart >= 0 && priceHelperEnd > priceHelperStart, 'supplier-aware price helper must be extractable for unit testing');
 const priceContext = vm.createContext({});
 vm.runInContext(route.slice(priceHelperStart, priceHelperEnd) + '\nthis.audioPriceLabel = audioPriceLabel;', priceContext);
-assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5}), 'R125,50', 'validated numeric supplier prices remain visible');
-assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5, priceNote: 'Preview-only estimate using dealer cost ex VAT'}), PRICE_ON_REQUEST_TEXT, 'unapproved cost-derived estimates remain quote-only');
-assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5, priceBasis: 'SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE'}), PRICE_ON_REQUEST_TEXT, 'retail comparables remain quote-only');
+assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5}), 'Price On Request', 'cached numeric supplier prices must remain hidden until supplier-direct updates are available');
+assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5, priceNote: 'Preview-only estimate using dealer cost ex VAT'}), 'Price On Request', 'all cached prices remain quote-only');
+assert.equal(priceContext.audioPriceLabel({indicativePrice: 125.5, priceBasis: 'SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE'}), 'Price On Request', 'retail comparables remain quote-only');
 const poaLabel = priceContext.audioPriceLabel({title: 'Special Order amplifier POA', indicativePrice: 999});
 assert.ok(poaLabel.includes('SPECIAL ORDER — PRICE ON APPLICATION') && poaLabel.includes('currency exchange-rate fluctuations'), 'POA/POR products must show the special-order and exchange-rate explanation');
 assert.ok(route.includes('SPECIAL ORDER — PRICE ON APPLICATION'), 'POA/POR special-order rows must explain enquiry-time pricing and exchange-rate variation');

@@ -1,67 +1,8 @@
 name: Owner Preview — Exact SHA Deploy and Browser QA
 
+# Manual-only to avoid automatic Cloudflare credit use.
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - integration/owner-preview-single-task-2026-11-05
-    paths:
-      - ".preview-deploy-request"
-      - "assets/category-tree.json"
-      - ".github/workflows/owner-preview-exact-sha.yml"
-      - "preview-audio.html"
-      - "preview-audio-brand.html"
-      - "preview-audio-products.html"
-      - "preview-category.html"
-      - "category.html"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json"
-      - "assets/audio-types/**"
-      - "assets/brand-logos/**"
-      - "assets/planetworld-catalogue-preview.json"
-      - "scripts/apply_planetworld_rrp_minus_2.py"
-      - "scripts/enrich_planetworld_verified_models.py"
-      - "assets/planetworld-verified-models-preview.json"
-      - "catalogue-review/planetworld-row-chunks/**"
-      - "catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv"
-      - "catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
-      - "scripts/build-cloudflare-pages-public.py"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
-      - "catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv"
-      - "tests/onenav-source-audit.test.cjs"
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
-    paths:
-      - ".preview-deploy-request"
-      - "assets/category-tree.json"
-      - ".github/workflows/owner-preview-exact-sha.yml"
-      - "index-new.html"
-      - "preview-category.html"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "catalogue-review/AUDIO_CONNECTIONS_MISSING_PRODUCT_IMAGES_2026-11-05.json"
-      - "preview-audio.html"
-      - "preview-audio-brand.html"
-      - "preview-audio-products.html"
-      - "assets/audio-types/**"
-      - "assets/brand-logos/**"
-      - "assets/planetworld-catalogue-preview.json"
-      - "scripts/apply_planetworld_rrp_minus_2.py"
-      - "scripts/enrich_planetworld_verified_models.py"
-      - "assets/planetworld-verified-models-preview.json"
-      - "catalogue-review/planetworld-row-chunks/**"
-      - "catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv"
-      - "catalogue-review/PLANETWORLD_RRP_MINUS_2_AUDIT_2026-11-05.csv"
-      - "scripts/build-cloudflare-pages-public.py"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - "category.html"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv"
-      - "catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv"
-      - "tests/onenav-source-audit.test.cjs"
 
 permissions:
   contents: read
