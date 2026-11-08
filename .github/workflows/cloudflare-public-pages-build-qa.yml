@@ -43,7 +43,7 @@ jobs:
         run: |
           set -euo pipefail
           for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html; do
-            test ! "pages-public/$page"
+            test ! -e "pages-public/$page"
           done
           echo "PAGES_STANDARD_PREVIEW_EXCLUSION_PASS"
       - name: Build isolated non-production preview package
