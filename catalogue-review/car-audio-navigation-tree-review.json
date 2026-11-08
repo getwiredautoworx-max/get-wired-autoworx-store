@@ -4126,7 +4126,7 @@
       }
     },
     "Kicker": {
-      "item_count": 161,
+      "item_count": 160,
       "components": {
         "Subwoofers": [
           {
@@ -7114,29 +7114,6 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Accessory description; retain source wording pending exact model verification."
-          },
-          {
-            "supplier_item_code": "51KEYCHAIN",
-            "supplier_item_name": "Kicker Performance Audio Silicone 3D Keychain",
-            "supplier_product_type": "FG",
-            "component_candidate": "Accessories",
-            "classification_confidence": "High",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 147,
-            "retail_price_incl_vat_source": "2399",
-            "candidate_price_1pct_below_source_retail_incl": "2375.01",
-            "candidate_price_2pct_below_source_retail_incl": "2351.02",
-            "supplier_stock_snapshot": {
-              "jhb": "27",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Kicker branded silicone keychain; accessory, not audio equipment."
           },
           {
             "supplier_item_code": "52GL710",
@@ -16429,7 +16406,7 @@
   },
   "totals": {
     "car_audio_source_rows": 704,
-    "brand_product_rows": 629,
+    "brand_product_rows": 628,
     "brand_count": 9,
     "harness_component_group": 47,
     "marine_audio_separated": 28,
@@ -16441,7 +16418,7 @@
       "Focal": 2,
       "JVC": 13,
       "Kenwood": 4,
-      "Kicker": 161,
+      "Kicker": 160,
       "One": 290,
       "Pioneer": 2
     },
@@ -16451,7 +16428,7 @@
       "Cameras & Monitors": 14,
       "Speakers & Component Kits": 68,
       "Head Units & Vehicle Infotainment": 253,
-      "Accessories": 41,
+      "Accessories": 40,
       "Subwoofers": 78,
       "Wiring & Installation": 23,
       "Vehicle-Specific Audio Kits": 1,
@@ -16465,6 +16442,32 @@
       "Manual Product-Type Review": 1,
       "Head Unit Parts & Accessories": 2
     },
-    "note": "Review-only taxonomy. Combined Car Audio source count includes two Audison AFBMW harness rows reclassified from the separate Hertz-labelled Planetworld staging workbook. Supplier Item Code is not a GW SKU. Images remain unverified. Supplier prices and regional stock are review-only snapshots; 1%/2% below supplier retail are candidates only."
-  }
+    "note": "Review-only taxonomy. Combined Car Audio source count includes two Audison AFBMW harness rows reclassified from the separate Hertz-labelled Planetworld staging workbook. Supplier Item Code is not a GW SKU. Images remain unverified. Supplier prices and regional stock are review-only snapshots; 1%/2% below supplier retail are candidates only. One Kicker silicone keychain is retained in excluded_non_audio_merchandise and removed from the Car Audio navigation tree.",
+    "excluded_non_audio_merchandise": 1
+  },
+  "excluded_non_audio_merchandise": [
+    {
+      "supplier_item_code": "51KEYCHAIN",
+      "supplier_item_name": "Kicker Performance Audio Silicone 3D Keychain",
+      "supplier_product_type": "FG",
+      "component_candidate": "Excluded — Non-Audio Merchandise",
+      "classification_confidence": "High",
+      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+      "source_sheet": "Products",
+      "source_row": 147,
+      "retail_price_incl_vat_source": "2399",
+      "candidate_price_1pct_below_source_retail_incl": "2375.01",
+      "candidate_price_2pct_below_source_retail_incl": "2351.02",
+      "supplier_stock_snapshot": {
+        "jhb": "27",
+        "dbn": "0",
+        "cpt": "0"
+      },
+      "gw_sku": "",
+      "gw_sku_status": "NOT ASSIGNED",
+      "image_status": "NOT VERIFIED",
+      "manufacturer_description_status": "NOT VERIFIED",
+      "note": "Owner-reviewed: branded silicone keychain is merchandise, not an audio product; excluded from Car Audio navigation."
+    }
+  ]
 }
