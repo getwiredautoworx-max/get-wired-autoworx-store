@@ -4919,3 +4919,12 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - All 761 Auto Electrical records remain review-only / DO NOT IMPORT, with price null, stock null and the exact owner-approved ASC label `Price On Request due to Limited Stock and Availability`. No technical specifications or full customer descriptions are claimed complete.
 - Added non-deploying QA coverage for the 761-row register, sanitised 34-product owner preview, Get Wired logo watermark, mobile/desktop rendering and source-image loading. The default-branch QA workflow was narrowly extended in commit `6e3eafc1b104481082cc6455b7229d12f1d133c8`; it builds and tests the preview package locally and does not deploy to Cloudflare or spend Cloudflare credits.
 - Exact-head GitHub Actions QA is pending the new PR #178 commit. No hosted preview deployment, merge, production action or live data change was performed.
+
+
+## 2026-11-08 — Temporary pricing display enforcement and preview deployment guard
+
+- Applied the owner's latest temporary pricing rule across customer-facing storefront and preview code: every product now displays `Price On Request` until reliable supplier-direct pricing and stock availability updates are available. Previously stored supplier values remain internal audit data only and are not treated as current customer selling prices. Price-based sorting options were removed from customer product lists.
+- Audio product cards no longer display cached Planetworld RRP or Audio Connections supplier-price-list amounts. Quote-only wording remains; special-order rows retain the exchange-rate explanation. Product search results and product detail templates also display Price On Request.
+- Removed customer-facing wording that incorrectly said owner-authorised source images were awaiting usage-rights clearance.
+- The non-deploying default-branch QA workflow builds and tests the customer-only preview package. Automatic Cloudflare owner-preview deployments are now manual-only on both the default branch and the active integration branch to avoid unrequested Cloudflare credit use. Default-branch workflow guard commit: `260b54b9fe93a5efff8b7e205002dd7d7598f803`; integration-branch guard commit: `332b254edf0b5841812106874ffac483ed4652e7`.
+- One staging deployment run (#42457319292) had already started from the preceding branch push before the automatic-trigger guard was applied. It is non-production only; record its final result after monitoring. No production deployment, merge, Axxess upload or live data change.
