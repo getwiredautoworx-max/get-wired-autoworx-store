@@ -133,6 +133,7 @@ const allowedImageStates = new Set([
   'IMAGE_SOURCE_CANDIDATE_NOT_VISUALLY_VERIFIED',
   'OWNER_PREVIEW_CANDIDATE_ONLY',
   'OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH'
+  'EXACT_SOURCE_CATALOGUE_IMAGE_VERIFIED_CROP_PENDING'
 ]);
 assert.ok(headunitRecords.every(row => allowedIdentityStates.has(row.model_identity_status)),
   'Head-unit identity decisions must use an explicit, recognised state');
@@ -202,6 +203,17 @@ assert.match(corollaCrossA11.verified_manufacturer_product_title, /Corrola Cross
 assert.match(corollaCrossA11.customer_description, /Toyota Corolla Cross A11 \(2021\+\)/);
 assert.match(corollaCrossA11.customer_description, /Bluetooth 5\.4/);
 assert.match(corollaCrossA11.customer_description, /4 × 45 W/);
+
+const qashqaiXtrailA10 = byHeadunitCode.get('ON413-1A10');
+assert.equal(qashqaiXtrailA10.model_identity_status, 'VERIFIED_OFFICIAL_CATALOGUE');
+assert.equal(qashqaiXtrailA10.image_status, 'EXACT_SOURCE_CATALOGUE_IMAGE_VERIFIED_CROP_PENDING');
+assert.match(qashqaiXtrailA10.model_evidence_status, /ON413-1A10.*Qashqai.*X-Trail.*10\.1-inch/i);
+assert.match(qashqaiXtrailA10.verified_manufacturer_product_title, /Qashqai \/ X-Trail \(2015\+\)/);
+assert.match(qashqaiXtrailA10.customer_description, /Android 10.*Bluetooth.*Wi-Fi.*OneConnect.*3-year warranty/i);
+assert.equal(qashqaiXtrailA10.image_url_candidate, '',
+  'Do not invent a direct image URL while the exact catalogue crop has not been extracted');
+assert.match(qashqaiXtrailA10.image_source_page, /OneNav-Catalogue_Web\.pdf#page=13/);
+assert.match(qashqaiXtrailA10.review_note, /crop extraction into a staging image asset remains pending/i);
 
 const cameraAccessoryPath = 'catalogue-review/onenav-16-camera-accessory-evidence-2026-11-06.csv';
 const cameraAccessoryParsed = parseCsv(fs.readFileSync(cameraAccessoryPath, 'utf8'));
