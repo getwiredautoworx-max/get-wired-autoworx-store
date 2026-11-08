@@ -92,6 +92,7 @@ def guess_component(division, description, model, brand=""):
     d = norm(division)
     b = norm(brand)
     t = norm(" ".join([brand, description, model]))
+    if b == "kicker" and norm(model) == "51keychain": return "Excluded — Non-Audio Merchandise"
     if any(x in t for x in ("marine", "boat", "waterproof marine")): return "Marine Audio"
     if "car audio" in d:
         if model.lower().startswith("s2-s69c") or model in ("69030020", "69030021"): return "Car Speakers"
@@ -99,7 +100,7 @@ def guess_component(division, description, model, brand=""):
         if model.lower().startswith("on669"): return "Car Audio Accessories"
         if model.lower().startswith("on1509-cs"): return "Car Head Units & Receivers"
         if b == "kicker":
-            if any(x in model.lower() for x in ("46kisload", "46pwb", "46pw", "46pkd", "47keyloc", "47kpb", "51keychain")): return "Car Audio Accessories"
+            if any(x in model.lower() for x in ("46kisload", "46pwb", "46pw", "46pkd", "47keyloc", "47kpb")): return "Car Audio Accessories"
             if any(x in model.lower() for x in ("51hs8", "hs8")): return "Car Subwoofers"
             if model.lower().startswith("51lx"): return "Car Amplifiers"
             if model.lower().startswith("47psm"): return "Car Speakers"
