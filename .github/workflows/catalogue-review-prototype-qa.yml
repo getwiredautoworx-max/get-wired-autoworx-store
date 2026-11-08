@@ -14,6 +14,7 @@ on:
       - "tests/auto-electrical-owner-preview.spec.cjs"
       - "tests/pricing-display-policy.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/onenav-source-audit.test.cjs"
       - "tests/three-category-storefront-structure.test.cjs"
       - "scripts/apply_planetworld_rrp_minus_2.py"
       - "scripts/enrich_planetworld_verified_models.py"
@@ -132,5 +133,7 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           node tests/auto-electrical-owner-preview.spec.cjs
-      - name: Verify audio catalogue pricing, source mappings and product enrichment
-        run: node tests/audio-catalogue-preview.test.cjs
+      - name: Verify OneNav evidence register and audio catalogue enrichment
+        run: |
+          node tests/onenav-source-audit.test.cjs
+          node tests/audio-catalogue-preview.test.cjs
