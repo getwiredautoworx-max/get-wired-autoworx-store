@@ -1,7 +1,7 @@
 {
   "status": "INTERNAL REVIEW ONLY — NOT PUBLISHED",
   "brand": "Kicker",
-  "verified_products": 41,
+  "verified_products": 42,
   "products": [
     {
       "supplier_item_code": "51KSC404",
@@ -533,6 +533,22 @@
       "manufacturer_evidence_label": "Official manufacturer collection listing",
       "official_manufacturer_page": "https://www.kicker.com/PL7TDF-powered-down-firing",
       "image_status": "Official manufacturer collection contains product imagery; asset not yet downloaded and matched to supplier image",
+      "gw_sku_status": "NOT ASSIGNED — supplier code is not a GW SKU",
+      "publication_status": "REVIEW ONLY — NOT PUBLISHED"
+    },
+    {
+      "supplier_item_code": "KW16400p/m",
+      "manufacturer_model": "46KW16400",
+      "display_name": "Kicker K-Series 16AWG Speaker Wire — Sold Per Metre (KW16400p/m)",
+      "manufacturer_description": "Kicker K-Series 16AWG speaker wire supplied by Planetworld as a per-metre cut from the KW16400 400ft spool. The square Frost Blue conductor identifies positive and the rounded Frost Clear conductor identifies negative. Both PVC-insulated conductors are silver-tinned and oxygen-free for signal transfer and sonic accuracy.",
+      "manufacturer_specifications": "16AWG; K-Series; parent spool 400ft; supplier unit of sale per metre; square Frost Blue positive conductor; rounded Frost Clear negative conductor; silver-tinned oxygen-free conductors; PVC insulation.",
+      "manufacturer_description_status": "VERIFIED — official KICKER speaker-wire collection and Planetworld product page confirm parent model and per-metre SKU",
+      "manufacturer_evidence_type": "official_collection_plus_supplier_product_page",
+      "official_manufacturer_page": "https://shop.kicker.com/speaker-wire",
+      "supplier_product_page": "https://www.planetworld.co.za/products/auto-audio/car-audio/audio-accessories/wires/kicker-kw16400p/m-16awg-speaker-wire-p/m",
+      "official_image_url": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026",
+      "image_status": "VERIFIED — exact supplier product image visually matches the KW16400 16AWG 400ft spool",
+      "unit_of_sale": "Per metre",
       "gw_sku_status": "NOT ASSIGNED — supplier code is not a GW SKU",
       "publication_status": "REVIEW ONLY — NOT PUBLISHED"
     }
