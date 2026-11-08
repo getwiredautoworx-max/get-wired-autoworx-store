@@ -68,7 +68,7 @@ Following owner review, the research evidence was rigorously re-audited against 
 - **CONFIRMED (`confirmed`):** 3 records (`GWA-EC-000004` / `IG-D1918`, `GWA-EC-000005` / `IG-D1941`, `GWA-EC-000025` / `TP49`). These have direct GM Original Equipment / Delco Remy OEM EPC cross-references.
 - **CORROBORATED (`corroborated`):** 25 records. These are substantiated by Tier-1 OE manufacturer cross-reference tables (Mobiletron) and structured technical aftermarket catalogues (TAS, Diesel Electric, NIPARTS, ASC).
 - **POSSIBLE (`possible`):** 0 records. Secondary or weak marketplace applications isolated in `vehicle_applications_possible_json`.
-- **UNVERIFIED (`unverified`):** 1 records. Zero completely unverified products.
+- **UNVERIFIED (`unverified`):** 1 record (`GWA-EC-000012` / `IG-T003`), quarantined pending Electrocity clarification. This item must not be treated as a verified vehicle application or customer-ready listing.
 
 ### Customer-Facing Candidate Description Privacy
 - Confirmed that private Electrocity SKUs are **never** published in customer-facing candidates (`normalised_description_candidate`).
@@ -106,7 +106,7 @@ An inspection of the repository build configurations was conducted regarding the
 - [x] **Positional Rule:** OEM part number above image; private Electrocity SKU below image.
 - [x] **Data Hygiene:** No leading zeros dropped; exact strings preserved in raw extraction.
 - [x] **Privacy Gate:** Zero leakage of private Electrocity SKUs into public candidate strings.
-- [x] **Fitment Re-Audit:** All 29 OEM part numbers re-audited and properly partitioned into confirmed (3), corroborated (26), and possible applications without overclaiming.
+- [x] **Fitment Re-Audit:** All 29 OEM part numbers have documented research. Final confidence totals are 3 confirmed, 25 corroborated, 0 possible-only, and 1 unverified/quarantined. Possible applications remain separately recorded and are not promoted into customer descriptions.
 - [x] **Store Mapping:** Mapped to approved `Auto Electrical` root category without renaming categories.
 - [x] **Provisional IDs:** Sequenced strictly from `GWA-EC-000003` to `GWA-EC-000031` without collision.
 - [x] **Commercial Gate:** Cost, selling price, and stock fields left empty/unknown.
