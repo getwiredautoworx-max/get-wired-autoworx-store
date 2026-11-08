@@ -6,6 +6,15 @@ on:
     paths:
       - "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md"
       - "HANDOVER_CURRENT.md"
+      - "index-new.html"
+      - "category.html"
+      - "category-navigation.js"
+      - "CATALOGUE_IMPORT_RULES.md"
+      - "QA_RUNBOOK.md"
+      - "CATEGORY_MAPPING_REVIEW_2026-10-09.md"
+      - "PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md"
+      - "catalogue-audits/SUPPLIER_TO_STORE_PROFIT_PLAN_2026-10-27.md"
+      - "tests/test_three_department_roots.cjs"
       - "automation/task-queue.json"
       - "automation/24x7-worker-operating-contract.md"
       - "scripts/background_task_controller.py"
@@ -32,5 +41,7 @@ jobs:
         run: python -m py_compile scripts/background_task_controller.py scripts/task_queue_utils.py scripts/validate_automation_queue.py
       - name: Run task queue regression tests
         run: python -m unittest discover -s tests -p 'test_task_queue_utils.py' -v
+      - name: Verify exactly three approved homepage departments and matching root labels
+        run: node tests/test_three_department_roots.cjs
       - name: Validate authoritative task queue
         run: python scripts/validate_automation_queue.py
