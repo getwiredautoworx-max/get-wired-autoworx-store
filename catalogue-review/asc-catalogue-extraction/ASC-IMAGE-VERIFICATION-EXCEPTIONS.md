@@ -12,22 +12,22 @@ Across the six approved catalogues, 978 product items were extracted and audited
 - **Total Products Audited:** 978
 - **Products with Photographic Catalogue Cards:** 952 (97.3%)
 - **Products with Catalogue "Image on Request" (No Photo Printed):** 26 (2.7%)
-- **Watermarking & Copyright Notice:** Original ASC supplier watermarking is present across catalogue product photos. These crops are preserved strictly as source evidence and are **NOT cleared for production storefront publication**.
+- **Watermarking & Copyright Notice:** Original ASC supplier watermarking is present across catalogue product photos. The owner explicitly authorised use and editing on 2026-11-08. Remove the ASC watermark, apply the Get Wired AutoWorx watermark, and remove catalogue description text outside the actual product image. Editing and visual QA remain pending before customer publication.
 - **Source-Page Visual Traceability:** 100% (978/978) of items trace to explicit PDF pages (pages 3–22 across the 6 documents).
 
 ---
 
 ## 2. Image Audit by Catalogue
 
-| Catalogue Name | Total Products | Photo Cards Present | Image on Request (No Photo) | Watermark Status | Image Production Rights |
+| Catalogue Name | Total Products | Photo Cards Present | Image on Request (No Photo) | Watermark Status | Image Production Status |
 |---|---:|---:|---:|---|---|
-| ASC- Aerials (1).pdf | 78 | 78 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive Sensors (1).pdf | 106 | 106 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive Switches (1).pdf | 368 | 368 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive globes (1).pdf | 158 | 158 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Car Mats (1).pdf | 139 | 113 | 26 | ASC watermark present | NOT CLEARED |
-| ASC- Fuel Pumps (1).pdf | 129 | 129 | 0 | ASC watermark present | NOT CLEARED |
-| **Total** | **978** | **952** | **26** | **Watermarked** | **NOT CLEARED** |
+| ASC- Aerials (1).pdf | 78 | 78 | 0 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| ASC- Automotive Sensors (1).pdf | 106 | 106 | 0 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| ASC- Automotive Switches (1).pdf | 368 | 368 | 0 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| ASC- Automotive globes (1).pdf | 158 | 158 | 0 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| ASC- Car Mats (1).pdf | 139 | 113 | 26 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| ASC- Fuel Pumps (1).pdf | 129 | 129 | 0 | ASC watermark present | OWNER AUTHORIZED; EDITING/QA PENDING |
+| **Total** | **978** | **952** | **26** | **Watermarked** | **OWNER AUTHORIZED; EDITING/QA PENDING** |
 
 ---
 
