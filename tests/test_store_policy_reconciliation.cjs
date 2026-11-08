@@ -1,0 +1,15 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const build = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf8');
+const audit = fs.readFileSync('.github/workflows/planetworld-workbook-audit.yml', 'utf8');
+const previewQa = fs.readFileSync('.github/workflows/store-preview-browser-qa.yml', 'utf8');
+const catalogueQa = fs.readFileSync('.github/workflows/catalogue-review-prototype-qa.yml', 'utf8');
+assert.match(build, /PREVIEW_ROOT_FILES = \[[\s\S]*preview-product\.html/);
+assert.doesNotMatch(build, /PREVIEW_ROOT_FILES = \[[\s\S]*preview-planetworld\.html/);
+assert.match(audit, /private-boundary-required/);
+assert.doesNotMatch(audit, /planetworld_workbook_audit\.py/);
+assert.doesNotMatch(previewQa, /pull_request:/);
+assert.match(previewQa, /private-preview-required/);
+assert.doesNotMatch(catalogueQa, /audio-catalogue-preview\.test\.cjs/);
+assert.doesNotMatch(catalogueQa, /GW_INCLUDE_PREVIEW_ROUTES/);
+console.log('PRIVATE_SUPPLIER_PREVIEW_GUARDS_OK');
