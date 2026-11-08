@@ -15,6 +15,7 @@ on:
       - "PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md"
       - "catalogue-audits/SUPPLIER_TO_STORE_PROFIT_PLAN_2026-10-27.md"
       - "tests/test_three_department_roots.cjs"
+      - ".github/workflows/button-only-storefront-smoke.yml"
       - "automation/task-queue.json"
       - "automation/24x7-worker-operating-contract.md"
       - "scripts/background_task_controller.py"
