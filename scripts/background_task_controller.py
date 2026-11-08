@@ -11,6 +11,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from task_queue_utils import format_task_summary, task_description
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "getwiredautoworx-max/get-wired-autoworx-store")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -186,7 +187,7 @@ else:
     lines.append("- No automatic retries requested in this checkpoint.")
 lines += ["", "## Persistent task queue", ""]
 for task in sorted(queue.get("tasks", []), key=lambda t: t.get("priority", 999)):
-    lines += [f"### {task['priority']}. {task['id']} — {task['status']}", "", task["description"], "", f"**Next action:** {task['next_action']}", ""]
+    lines += [f"### {format_task_summary(task)}", "", task_description(task), "", f"**Next action:** {task.get('next_action') or 'No next action recorded.'}", ""]
 lines += [
     "## Safety rules", "",
     "- No product, price, category, stock, or image database writes are performed by this controller.",
