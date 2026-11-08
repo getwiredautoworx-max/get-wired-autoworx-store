@@ -166,3 +166,12 @@ Evidence level remains explicit: collection matches are not individual detail-pa
 - Located KICKER's official **51KBTR** model-specific manual: https://www.kicker.com/files/manuals/51KBTR.pdf. This supports the model identity and installation/troubleshooting evidence, but is **not** an individual product page or collection listing; keep it separately classified and do not upgrade it to a product-page match.
 - Revised totals: 161 standard Car Audio rows = 23 individual product pages + 122 collection/range matches + 16 without an exact product-page/collection match. The 16 include the manual-only 51KBTR record. Marine remains separate at 5 individual pages + 23 collection matches.
 - Remaining references requiring further resolution: **46CXA18001T, 48CVTDF102, 48CVTDF122, 48VCWR122, 51KBTR (manual only), 51KEYCHAIN, HS8, K11HS8, KEYCOMBO1, KEYCOMBO2, KICKBAKCOMBO, KICKCOMBO1 - 10, KICKCOMBO2, KICKCOMBO2 - 10, KICKCOMBO2-8, KW16400p/m.**
+
+
+## CompR and legacy-model follow-up — 2026-11-08
+
+- **48VCWR122** is now verified against KICKER's individual CompR 12-inch loaded enclosure page: https://www.kicker.com/12-compr-subwoofer-box. This is a product-page match, not just a range listing.
+- **46CXA18001T** remains unapproved as an exact match. KICKER's page verifies model **CXA1800.1 / 46CXA1800.1**, but the supplier reference has an additional trailing **T**. Keep this as a source-code discrepancy until Planetworld confirms whether the suffix is a typo or a distinct variant.
+- The official legacy **11HS8** manual was found for the HS8-related rows. It confirms a legacy Hideaway unit, but does not establish that the supplier's “replacement woofer” line and generic “active subwoofer” line are the same sellable item. Both remain manual-only / supplier-confirmation required.
+- Revised product-page/collection totals: 161 standard Car Audio rows = 24 individual pages + 122 collections/ranges + 15 unresolved; Marine remains separate = 5 individual pages + 23 collections. Three of the 15 unresolved rows have official manuals but no product page/collection.
+- Current 15 references without an exact product-page/collection match: **46CXA18001T (suffix mismatch), 48CVTDF102, 48CVTDF122, 51KBTR (manual only), 51KEYCHAIN, HS8 (manual only), K11HS8 (manual only), KEYCOMBO1, KEYCOMBO2, KICKBAKCOMBO, KICKCOMBO1 - 10, KICKCOMBO2, KICKCOMBO2 - 10, KICKCOMBO2-8, KW16400p/m.**
