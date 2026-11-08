@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-07
 **Scope:** Six owner-approved ASC product catalogues (`suppliers/ASC/`)
-**Status:** Verification complete; Review-only; **DO NOT IMPORT / DO NOT PUBLISH**.
+**Status:** Source-image inventory complete; authorised cleanup and exact SKU/variant matching still required; **DO NOT IMPORT / DO NOT PUBLISH**.
 
 ---
 
@@ -12,7 +12,7 @@ Across the six approved catalogues, 978 product items were extracted and audited
 - **Total Products Audited:** 978
 - **Products with Photographic Catalogue Cards:** 952 (97.3%)
 - **Products with Catalogue "Image on Request" (No Photo Printed):** 26 (2.7%)
-- **Watermarking & Copyright Notice:** Original ASC supplier watermarking is present across catalogue product photos. These crops are preserved strictly as source evidence and are **NOT cleared for production storefront publication**.
+- **Watermarking & Copyright Notice:** Original ASC supplier watermarking is present across catalogue product photos. The owner has authorised use and cleanup. These images remain unprocessed source evidence until each image is matched to its exact printed SKU/variant and cleaned without cropping product components.
 - **Source-Page Visual Traceability:** 100% (978/978) of items trace to explicit PDF pages (pages 3–22 across the 6 documents).
 
 ---
@@ -21,13 +21,13 @@ Across the six approved catalogues, 978 product items were extracted and audited
 
 | Catalogue Name | Total Products | Photo Cards Present | Image on Request (No Photo) | Watermark Status | Image Production Rights |
 |---|---:|---:|---:|---|---|
-| ASC- Aerials (1).pdf | 78 | 78 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive Sensors (1).pdf | 106 | 106 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive Switches (1).pdf | 368 | 368 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Automotive globes (1).pdf | 158 | 158 | 0 | ASC watermark present | NOT CLEARED |
-| ASC- Car Mats (1).pdf | 139 | 113 | 26 | ASC watermark present | NOT CLEARED |
-| ASC- Fuel Pumps (1).pdf | 129 | 129 | 0 | ASC watermark present | NOT CLEARED |
-| **Total** | **978** | **952** | **26** | **Watermarked** | **NOT CLEARED** |
+| ASC- Aerials (1).pdf | 78 | 78 | 0 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| ASC- Automotive Sensors (1).pdf | 106 | 106 | 0 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| ASC- Automotive Switches (1).pdf | 368 | 368 | 0 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| ASC- Automotive globes (1).pdf | 158 | 158 | 0 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| ASC- Car Mats (1).pdf | 139 | 113 | 26 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| ASC- Fuel Pumps (1).pdf | 129 | 129 | 0 | ASC watermark present | OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING |
+| **Total** | **978** | **952** | **26** | **Watermarked** | **OWNER AUTHORISED; EXACT SKU MATCH AND CLEANUP QA PENDING** |
 
 ---
 
@@ -62,7 +62,7 @@ In `ASC- Car Mats (1).pdf`, 26 product cards do not contain an actual photograph
 25. `M7-101` (Page 10) - FLOOR EDGING FOR M7-100 OR LDV BIN MATS INTERLOCKING MATS BLACK
 26. `M7-DM002` (Page 10) - UNIVERSAL RUBBER DOOR MATS 1KG 520X360MM SAME AS OT-514
 
-*Action Taken:* Preserved without fabricated or guessed placeholder images. Status marked as `IMAGE_ON_REQUEST_IN_SOURCE; NO_PRODUCT_PHOTO`.
+*Action Taken:* Preserved without fabricated or guessed placeholder images. These specific SKUs require a genuine matched image or retain `IMAGE_ON_REQUEST_IN_SOURCE; NO_PRODUCT_PHOTO`.
 
 ### B. Production-Stopped Items
 - **Product:** `M7-HY100` (Page 9, `ASC- Car Mats (1).pdf`)
@@ -88,3 +88,16 @@ The following printed captions appear truncated or clipped on the physical print
 ## 4. Source-Page Verification Artifacts
 - Source renders and evidence sheets are stored under `catalogue-review/asc/source-pages/` (all 60 product pages).
 - All 978 extracted items match visual evidence on these pages.
+
+
+## 5. Owner-authorised image cleanup procedure (2026-11-08)
+
+Image permissions are confirmed by the owner; do not request further rights clearance. For each of the 952 photo-bearing products:
+1. Match the source image to the exact printed supplier SKU and variant on the cited source page.
+2. Preserve the complete product, all included components and original proportions.
+3. Remove catalogue description text from image pixels only where safely separable.
+4. Remove the ASC watermark and apply the actual Get Wired AutoWorx logo watermark in a reserved margin; never stack watermarks.
+5. Retain the untouched original and source PDF/page traceability.
+6. Quarantine only an individual uncertain match and continue processing other exact matches.
+
+The 26 Image-on-Request records have no printed product photo and must not receive a guessed substitute.
