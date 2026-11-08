@@ -5123,3 +5123,10 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 6. Do not describe the whole store as running 24/7 until the approved workflows are merged, the first scheduled run succeeds, and the private supplier-data worker is operational.
 7. Production remains HOLD.
 
+
+
+### 2026-11-08 follow-up — PR #186 verification refresh
+- PR #186 head advanced to `28e2a1d110c3dfdfbf7eeff4d4630199ffbb9ae0` after pinning the existing read-only Playwright smoke workflow from `ubuntu-latest` to `ubuntu-24.04`. PR remains draft/open/unmerged and compares 8 commits ahead / 0 behind main.
+- Re-run on the updated exact head: public-safe ASC worker `42497346083` **passed**; Public SKU Exposure Audit `42497346072` **passed**; Cloudflare Pages check **passed**; Cloudflare Workers Builds check **failed** again. The worker workflow and queue validation are green; the Playwright runner pin itself remains unverified until the next scheduled smoke run.
+- The 24/7 scheduled workflow is still not active because PR #186 has not been merged. Owner approval is required before merging.
+- No live changes or deployments were made. The Cloudflare Pages/Workers checks were automatic PR integration checks; no manual Cloudflare deployment or credit spend was initiated.
