@@ -5140,3 +5140,10 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - Jules PR #185 (Electrocity) remains open/unmerged at `30fe3a92d0ce865d87b9369b02c42aaa7afab417`. Structural pilot package: 29 rows, 29 evidence crops, 28 REVIEW_PASSED, one quarantined supplier discrepancy; confidence tiers 3 confirmed / 25 corroborated / 1 unverified. Keep `GWA-EC-000012 / IG-T003` quarantined. Critical: repository is public and this PR contains private Electrocity supplier SKU data in raw/normalised review CSVs. Do not merge or further publish these data. It needs a private processing boundary; closing a PR alone does not erase public Git history.
 - PRs #183 and #185 are each divergent from current `main` (ASC: 12 ahead / 6 behind; Electrocity: 6 ahead / 6 behind). Do not merge wholesale. Rebase/reconcile only after content and privacy issues are resolved.
 - Cloudflare Pages automatic check succeeded on the PR #187 head; Cloudflare Workers Builds continues to fail as an unrelated integration check. No manual Cloudflare deployment was initiated. Production remains HOLD; no Axxess upload, live data change, Supabase write, pricing/stock change, DNS/payment change, or production deployment is authorized by this checkpoint.
+
+
+### Follow-up: controller compatibility PR validation
+
+- PR #187 was extended to run the controller on pull requests in read-only mode (the retry-capable token is suppressed for PR runs). Current head: `43a284e0c3bf2a82ec418bb2f933e8bd31b7d741`.
+- Controller PR validation run `42498338380` completed successfully: Python syntax validation, task-queue/controller execution, and artifact-cleanup step all passed. Checkpoint artifact upload remained disabled as configured. Cloudflare Pages/Workers integration checks are separate from this controller validation; do not treat them as deployment approval.
+- PR #187 remains open/unmerged pending owner approval. Once merged, verify the next scheduled 15-minute controller run on `main` succeeds before marking the main-branch controller repaired.
