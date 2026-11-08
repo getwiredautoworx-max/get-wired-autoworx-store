@@ -194,7 +194,7 @@ def main() -> None:
                 verified_no_image += 1
             product["descriptionStatus"] = "MANUFACTURER_DESCRIPTION_VERIFIED"
             description_status = product["descriptionStatus"]
-        elif not one:
+        elif not one and not headunit_match:
             product.pop("manufacturerProductName", None)
             product.pop("imageUrl", None)
             product.pop("imageStatus", None)
