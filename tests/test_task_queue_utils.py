@@ -1,5 +1,5 @@
 import unittest
-from task_queue_utils import format_task_summary, task_description
+from scripts.task_queue_utils import format_task_summary, task_description
 
 class TaskQueueRenderingTests(unittest.TestCase):
     def test_schema_v2_without_legacy_description(self):
