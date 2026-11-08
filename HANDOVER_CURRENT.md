@@ -3425,7 +3425,7 @@ The owner clarified and reaffirmed the approval boundary for the ASC Aerials tas
 
 ### CI/controller repair — PR #187
 - Extended existing PR #187 (no new branch) at head `a940dd26b8f0c682a0902f7ceeed706a1190619d` to fix the schema-v2 controller failure and guard optional catalogue QA suites with file-existence checks. Added conditional execution of the ASC staged-data validation test when present.
-- Exact-head Background Task Controller run `42500218582` passed, including queue/controller execution and artifact cleanup. Catalogue QA run `42500218238` was still running at this checkpoint; inspect its final result before any readiness claim.
+- Exact tested code head `a940dd26b8f0c682a0902f7ceeed706a1190619d`: Background Task Controller run `42500218582` and Catalogue QA run `42500218238` both completed **SUCCESS**. Core supplier-routing/static tests, Deno type-check, responsive review and customer-only package build passed. The optional Auto Electrical, ASC staged-data, audio and hosted-preview suites were **SKIPPED** because their test files are absent on this isolated PR branch; skipped suites are not passes.
 - PR #187 remains OPEN / UNMERGED. Do not merge without explicit owner approval. After approval/merge, verify the next scheduled main-branch controller run and re-run PR #183 QA against the repaired workflow.
 
 ### 24/7 public-safe worker
