@@ -161,3 +161,40 @@ These are a snapshot, not a substitute for refreshing PR heads and workflow resu
 - Handling: do not wholesale merge #178; do not merge #183/#185 until exact-head QA and review-only data checks pass; reconcile #187/#188 into the single #189 controller fix rather than merging duplicates. No PR has been merged or closed.
 - Security remains a critical unresolved owner decision: repository is public while confidential supplier originals/derivatives are present. No private migration, visibility change, history rewrite or ref deletion was performed or authorised. Do not create/process new confidential derivatives on public runners.
 - No production deployment, Axxess upload, live data write, DNS/payment change, paid hosting credit use or confidential supplier processing occurred in this reconciliation.
+
+
+## 2026-11-08 — Reconciliation implementation and validation checkpoint
+
+### Canonical instruction alignment
+- Added a dated Section 10 to `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` to make the latest global Price On Request instruction explicit and binding over the older RRP-display rule. This preserves the original owner directive history while resolving the conflict.
+- The queue and operating contract now use Price On Request for every supplier product until current supplier pricing/stock can be updated reliably; ASC keeps its exact longer wording.
+- The queue marks confidential Audio Connections / Planetworld source-dependent processing blocked until private processing is approved and verified. No such files were processed during this work.
+
+### Automation reconciliation
+- Controller now formats both legacy `description` and schema-v2 `success_criteria` task records safely; added missing-field defaults and regression tests.
+- Ported PR #187's useful optional QA-suite guards into the single reconciliation candidate.
+- Ported read-only pull-request controller validation with the retry-capable token suppressed on PR runs. Added an explicit guard so the artifact-cleanup step does not run on pull requests.
+- Retention now keeps checkpoints/build artifacts for seven days, QA/evidence for fourteen days, and protects the newest two storefront recovery packages.
+- Reconciliation validation workflow covers the directives, handover, queue, controller, QA workflow and regression tests.
+
+### Exact evidence from first reconciled code checkpoint
+- Tested commit: `1233e2790ad9ff940d6e639812fdf472cf42dc7c`.
+- [Run 42508048963 — controller compile, regression tests and queue validation: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42508048963). All three steps passed.
+- [Run 42508048956 — public-safe ASC PR validation: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42508048956). Queue validation and bounded ASC extraction passed; checkpoint branch commit was correctly skipped in PR mode. This is PR validation, not a scheduled main-branch execution.
+- [Run 42508048962 — customer-facing source audit: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42508048962).
+- Cloudflare Pages reported a successful branch preview for the reconciliation PR at `https://70974945.get-wired-autoworx-store.pages.dev`; this is an automation/documentation candidate preview, not a consolidated storefront owner preview. No production deployment is claimed.
+- Cloudflare Workers Builds reported FAILURE for this commit; the check is an external Cloudflare integration check. Its detailed cause has not been retrieved, so do not infer a reason. This remains a failed check, not a passed release gate.
+- After the first successful validation, PR #187's optional QA guards and the dated owner-pricing addendum were ported, and validation triggers were expanded. Those later changes are on the newer PR #189 head and require their own final-head checks before acceptance.
+
+### Refreshed PR/branch reconciliation
+- Main remains `5e748e09343f7879c66124778d42ee202caf1e00`; no merge occurred.
+- PR #189 is the only current-main-based reconciliation candidate. Its previous tested checkpoint is recorded above; final-head checks are pending after subsequent additions.
+- PR #187 and #188 both remain open and target the old main base `f51ee4bd547d733605e3197bfef73381d96633ae`. Their overlapping controller fixes are being consolidated into #189. PR #187's optional QA guards were selectively ported; do not merge either duplicate.
+- PR #183 is 18 commits ahead / 7 behind main; its current checks include ASC worker SUCCESS, Cloudflare Pages SUCCESS, responsive-review FAILURE and Workers Builds FAILURE. Review the responsive failure and the staged data before any integration.
+- PR #185 is 6 commits ahead / 7 behind main; its audit and Pages checks succeeded, Workers Builds failed. Keep its 29-product ignition pilot review-only and quarantine GWA-EC-000012 / IG-T003.
+- PR #178 is 1,001 commits ahead / 33 behind main, with 147 changed files. Its Planetworld price-derived data and audio/customer preview payloads are not eligible for wholesale integration. Current global Price On Request supersedes its historical RRP-minus-2 customer-price logic. Use only selectively verified public-safe storefront changes after a private data boundary is resolved.
+
+### Critical unresolved exposure and release holds
+- The repository is public. PR #178 contains public branch derivatives including a 36,974-line Planetworld catalogue preview JSON and a 3,318-line Planetworld RRP-minus-2 audit; supplier source/derivative material and internal data are also present in other repository refs. PR #185 includes Electro-city internal review/source derivatives. These refs are publicly accessible while open.
+- This work does not create a private repository, change visibility, rewrite history, delete refs or close PRs. Those actions require explicit owner approval and a verified backup/migration plan. Until approved and completed, do not create or process additional confidential supplier derivatives on public runners/branches.
+- Production HOLD. No merge, production deploy, Axxess upload, DNS/payment change, live data write, or paid infrastructure action was performed by this reconciliation.
