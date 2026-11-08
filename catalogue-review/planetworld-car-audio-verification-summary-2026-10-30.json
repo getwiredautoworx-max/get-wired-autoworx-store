@@ -55,7 +55,9 @@
       "note": "Counts recomputed from 189 unique supplier references. Of 161 standard Car Audio source rows, one is a branded keychain and is excluded from Car Audio navigation; 160 remain in-scope. In-scope standard Car Audio: 24 exact individual product pages, 122 official collection/range matches and 14 references without an exact product-page/collection match. Three of those 14 have model-specific official manuals but no product page/collection; supplier code mismatches and bundle SKUs remain unresolved. Marine is separate: 5 exact individual pages and 23 collection matches.",
       "official_model_specific_manual_matches": 3,
       "in_scope_standard_car_audio_rows": 160,
-      "out_of_scope_non_audio_merchandise": 1
+      "out_of_scope_non_audio_merchandise": 1,
+      "manufacturer_description_review_records": 41,
+      "manufacturer_description_review_note": "41 Kicker records have manufacturer-derived names/descriptions/specifications staged in kicker-manufacturer-product-review.json; eight additional product descriptions were added on 2026-11-08. These are private review-only and not published."
     },
     "Audison": {
       "rows": 96,
