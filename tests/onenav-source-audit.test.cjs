@@ -69,6 +69,12 @@ assert.equal(toyota280Classic.image_url_candidate, '',
 assert.match(toyota280Classic.image_match_notes, /ON009-2A11-Toyota-280mm-with-Canbus\.png/);
 assert.match(toyota280Classic.image_match_notes, /different Pro Series CANBUS variant.*not this Classic W\/O CANBUS SKU/i);
 assert.match(toyota280Classic.official_manufacturer_product_page, /onenav-classic-9inch-for-toyota-280mm/);
+const fortunerClassic = bySku.get('OA017-1');
+assert.equal(fortunerClassic.enrichment_status, 'DETAILS_VERIFIED_IMAGE_PENDING');
+assert.equal(fortunerClassic.image_url_candidate, '',
+  'Do not use the same-fitment Evolution image for Classic OA017-1');
+assert.match(fortunerClassic.image_match_notes, /OneNav-Fortuner-Dash-2-1\.png/);
+assert.match(fortunerClassic.image_match_notes, /SKU ON017-1A.*not OA017-1 Classic/i);
 const evolution = bySku.get('ON115-3LX');
 assert.equal(evolution.customer_brand_display, 'OneNav');
 assert.match(evolution.customer_description, /OneNav Evolution/);
