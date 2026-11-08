@@ -768,8 +768,8 @@ function componentGroup(p){
  if(raw.includes("processor")||raw.includes("crossover"))return "Signal Processing & Crossovers";
  return p.component||"Other / Review";
 }
-const PRICE_ON_REQUEST_TEXT="Price On Request Due to Stock Availability";
-const CUSTOMER_PRICE_DISPLAY="Price On Request";
+const PRICE_ON_REQUEST_TEXT="Price On Request due to Limited Stock and Availability";
+const CUSTOMER_PRICE_DISPLAY="Price On Request due to Limited Stock and Availability";
 function audioPriceLabel(p){
  const specialOrder=/\b(?:POA|POR)\b|price on application|special order/i.test([p.title,p.priceNote,p.priceOnRequestText].join(" "));
  if(specialOrder)return CUSTOMER_PRICE_DISPLAY+" — SPECIAL ORDER — PRICE ON APPLICATION. Final pricing is confirmed at the time of enquiry and may vary due to currency exchange-rate fluctuations.";
