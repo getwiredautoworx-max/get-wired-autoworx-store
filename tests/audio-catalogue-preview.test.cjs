@@ -432,8 +432,8 @@ assert.ok(!route.includes('photo-1608043152269-423dbba4e7e1') && !productRoute.i
 const oneNavPrado = planet.records.find(row => row.id === 'pw-2120');
 const oneNavLandCruiser = planet.records.find(row => row.id === 'pw-2121');
 const oneNavBaleno = planet.records.find(row => row.id === 'pw-2159');
-const oneNavMagniteEvolution = planet.records.find(row => row.id === 'pw-2264');
-const oneNavEclipseCrossEvolution = planet.records.find(row => row.id === 'pw-2267');
+const oneNavMagniteEvolution = planet.records.find(row => row.manufacturerPage === 'https://onenav.co.za/product/onenav-9inch-for-nissan-magnite-without-factory-camera-9-inch-2/');
+const oneNavEclipseCrossEvolution = planet.records.find(row => row.manufacturerPage === 'https://onenav.co.za/product/onenav-mitsubishi-eclipse-cross-2018-2020-9-inch-a11/');
 assert.ok(oneNavPrado && oneNavLandCruiser && oneNavBaleno, 'the three audited OneNav product rows must remain present');
 assert.ok(oneNavMagniteEvolution && oneNavEclipseCrossEvolution, 'both additional official OneNav Evolution head-unit rows must remain present');
 for (const row of [oneNavMagniteEvolution, oneNavEclipseCrossEvolution]) {
