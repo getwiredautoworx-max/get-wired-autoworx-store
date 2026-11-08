@@ -31,7 +31,7 @@ def test_owner_rules_and_four_category_scope():
 
     assert all(r["price_status"] == PRICE for r in master)
     assert all(r["pricing_label"] == "Price On Request due to Limited Stock and Availability" for r in staged)
-    assert all("DO_NOT_IMPORT" in r["import_status"] for r in master)
+    assert all(r["import_status"] == "REVIEW_ONLY_NOT_IMPORTED" for r in master)
     assert all(r["import_gate_control"] == "DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL" for r in staged)
 
     # Rights and current dealer-price sheets must not appear as blockers.
