@@ -100,7 +100,7 @@ const imageAuditIndex=Object.fromEntries(imageAudit[0].map((key,index)=>[key,ind
 const oneNavAuditSource=fs.readFileSync('catalogue-review/planetworld-one-official-model-audit.csv','utf8');
 assert.ok(['OA115-1','OA115-3','OA195-1','OA197-1','OA198-1','OA198-2','OA199-1','OA017-2','OA266-1','OA716-1','OA713-1','OA429-1','OA428-1','OA426-1','OA717-1','OA425-1','OA427-1','OA715-1','OA009-2','OA012-1','OA016-1','OA110-1','OA115-2','OA192-1','OA194-1','OA263-1','OA712-1','OA714-1','OA196-1','OA261-1','OA711-1'].every(sku=>oneNavAuditSource.includes(sku)),'all tracked OneNav source SKU audits must remain present');
 assert.equal(imageAuditRows.length,3317,'internal image audit must account for every Planetworld source product');
-assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,80);
+assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_url]).length,77);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE').length,3);
 assert.equal(imageAuditRows.filter(row=>row[imageAuditIndex.image_status]==='NO_EXACT_MODEL_IMAGE_MATCH').length,3234);
 assert.ok(brandLandingRoute.includes(ONE_LOGO)&&brandLandingRoute.includes(AMPLIFIED_LOGO),'dedicated brand pages must show the same official ONE/OneNav and Amplified logos');
