@@ -40,10 +40,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "planetworld-catalogue-preview.json",
+    "planetworld-catalogue-preview.json", "auto-electrical-owner-preview.json",
     "audio-connections-catalogue-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
@@ -55,6 +55,7 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
+PREVIEW_ASSET_DIRS = ["asc-auto-electrical-pilot"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
@@ -92,6 +93,11 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
+    for name in PREVIEW_ASSET_DIRS:
+        source_dir = ROOT / "assets" / name
+        if not source_dir.is_dir():
+            raise SystemExit(f"Required preview asset directory missing: assets/{name}")
+        shutil.copytree(source_dir, OUT / "assets" / name)
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -125,6 +131,9 @@ if include_preview:
     for name in PREVIEW_ASSET_FILES:
         if not (OUT / "assets" / name).is_file():
             raise SystemExit(f"Preview package missing catalogue data: assets/{name}")
+    for name in PREVIEW_ASSET_DIRS:
+        if not (OUT / "assets" / name).is_dir():
+            raise SystemExit(f"Preview package missing asset directory: assets/{name}")
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
     print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
 else:
