@@ -124,17 +124,13 @@ jobs:
       - name: Validate ASC staged pricing, image workflow and import gates
         if: hashFiles('tests/test_asc_reload_validation.py') != ''
         run: python tests/test_asc_reload_validation.py
-      - name: Build customer-only preview package without deployment
+      - name: Build customer-only package without supplier-specific preview routes or deployment
         if: hashFiles('scripts/build-cloudflare-pages-public.py') != ''
         env:
-          GW_INCLUDE_PREVIEW_ROUTES: "1"
           CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: python3 scripts/build-cloudflare-pages-public.py
-      - name: Verify audio catalogue pricing, source mappings and product enrichment
-        if: hashFiles('tests/audio-catalogue-preview.test.cjs') != ''
-        run: node tests/audio-catalogue-preview.test.cjs
       - name: Verify Auto Electrical owner preview at mobile and desktop widths
-        if: hashFiles('tests/auto-electrical-owner-preview.spec.cjs') != ''
+        if: false # Owner-preview routes require a private owner-only preview boundary.
         run: |
           python3 -m http.server 4174 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
           SERVER_PID=$!
