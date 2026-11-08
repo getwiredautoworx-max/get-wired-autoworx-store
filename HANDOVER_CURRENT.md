@@ -5015,3 +5015,12 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - Focused static/syntax validation: 8/8 passed — 45 rows/45 unique source references, OA009 remains image-pending with no candidate URL, wrong CANBUS Pro Series image rejection is explicit, Classic W/O CANBUS variant mismatch is asserted, and the test source compiles. Full Node test/CI was not executed; no workflow run/status was returned. No deployment/Cloudflare spend.
 - No storefront/product JSON, image asset, GW SKU, price/stock, Supabase/live data, ASC work, customer route, checkout/payment, Axxess, DNS, merge or production changes.
 - Next: continue exact OneNav Classic image reconciliation; the ON413-1A10 exact catalogue image crop remains pending because this runtime cannot retrieve the PDF bytes (external DNS/network unavailable), despite the official page screenshot being visually verified. Keep OneNav first and DO NOT IMPORT.
+
+
+## 2026-11-08 09:57 SAST — OneNav Fortuner Classic image isolation
+
+- Continued OneNav only on the existing PR #178 branch. The official OneNav Fortuner product page shows the image OneNav-Fortuner-Dash-2-1.png but identifies the page SKU as ON017-1A (Evolution). Although the vehicle/year match Toyota Fortuner 2016–2019, the source product is OA017-1 Classic with a 10.1-inch frame; the Evolution image is not an exact model/series match and is rejected.
+- Updated catalogue-review/planetworld-one-official-model-audit.csv (commit 34ac4a58bb599403feb51f40a73da9fd6f9de4ee) and tests/onenav-source-audit.test.cjs (commit c6cbb08b4cbefa20a4a3bfe2e2889cad5962f7a0). Updated catalogue-review/ONENAV_RESUMPTION_AUDIT_2026-11-06.md (commit f03a2d181de245e582aa0ac3f6f9c2367be3fe45).
+- Focused static/syntax validation: 8/8 passed — 45 audit rows/45 unique SKUs retained, OA009-1 and OA017-1 wrong-variant rejections explicit, both image URLs blank, and test source compiles. Full Node test and hosted QA remain unexecuted; no workflow status returned. No Cloudflare deployment or spend.
+- All records remain private review-only / DO NOT IMPORT. No storefront JSON, image asset, GW SKU, price/stock, Supabase, ASC, customer route, checkout/payment, Axxess, DNS, merge, deployment or production changes.
+- Next: continue exact OneNav model/image matching. Do not promote same-fitment images from a different series/MPN; the ON413-1A10 PDF image crop is still pending because external PDF bytes cannot be retrieved from this runtime.
