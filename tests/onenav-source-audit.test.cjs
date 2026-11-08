@@ -62,6 +62,13 @@ assert.ok(records.every(row => row.enrichment_status !== 'APPROVED_FOR_IMPORT'),
 
 const missingBrand = records.filter(row => !row.customer_brand_display.trim());
 assert.deepEqual(missingBrand, [], 'Every OneNav audit row must retain its customer-facing parent brand');
+const toyota280Classic = bySku.get('OA009-1');
+assert.equal(toyota280Classic.enrichment_status, 'DETAILS_VERIFIED_IMAGE_PENDING');
+assert.equal(toyota280Classic.image_url_candidate, '',
+  'Do not attach the similarly named Pro Series CANBUS image to Classic OA009-1 W/O CANBUS');
+assert.match(toyota280Classic.image_match_notes, /ON009-2A11-Toyota-280mm-with-Canbus\.png/);
+assert.match(toyota280Classic.image_match_notes, /different Pro Series CANBUS variant.*not this Classic W\/O CANBUS SKU/i);
+assert.match(toyota280Classic.official_manufacturer_product_page, /onenav-classic-9inch-for-toyota-280mm/);
 const evolution = bySku.get('ON115-3LX');
 assert.equal(evolution.customer_brand_display, 'OneNav');
 assert.match(evolution.customer_description, /OneNav Evolution/);
