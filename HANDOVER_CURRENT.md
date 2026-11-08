@@ -5005,3 +5005,13 @@ The owner has explicitly reconfirmed the following operating rules. These supers
 - All records remain private review/staging and DO NOT IMPORT. No live product JSON, GW SKU assignment, price/stock, Supabase, customer-facing catalogue, checkout/payment, Axxess, DNS, production, merge or deployment change.
 - Existing preview URL/run ae5e6ed2... / 42350412161 is verified only for older storefront SHA 0ed1d31ee15ae0ba617c6d876fc626b1bba367e5; it is not current for this branch head and is not reissued as ready.
 - Next: extract the exact Nissan Qashqai/X-Trail catalogue image from PDF page 13 into the private review asset tree, verify crop bounds/dimensions and image identity, then continue OneNav's remaining exact image gaps and unresolved variants. Do not advance to another brand until OneNav is resolved. ASC remains an independent owner workstream.
+
+
+## 2026-11-08 09:55 SAST — OneNav OA009-1 exact-image variant rejection
+
+- Continued on the same PR #178 branch; no new branch/PR. Re-read the official OneNav OA009-1 product page, which confirms Toyota 280mm, 9-inch Classic without CANBUS and the existing Classic description facts.
+- Rejected the official OneNav-hosted ON009-2A11-Toyota-280mm-with-Canbus.png image for OA009-1. The filename identifies a Pro Series CANBUS variant; it is not the Classic W/O CANBUS product. The audit keeps OA009-1 DETAILS_VERIFIED_IMAGE_PENDING with image_url_candidate blank. The wrong asset URL is retained only in the private rejection note for traceability.
+- Updated catalogue-review/planetworld-one-official-model-audit.csv (commit 24c6aada2c615a8a178204341641a7681e2a6956), tests/onenav-source-audit.test.cjs (commit 309cedcb5320c2bd7bc807262af5fe466fad569e), and catalogue-review/ONENAV_RESUMPTION_AUDIT_2026-11-06.md (commit b2ad1312401070e711d99f54fa1c24a8271fe434).
+- Focused static/syntax validation: 8/8 passed — 45 rows/45 unique source references, OA009 remains image-pending with no candidate URL, wrong CANBUS Pro Series image rejection is explicit, Classic W/O CANBUS variant mismatch is asserted, and the test source compiles. Full Node test/CI was not executed; no workflow run/status was returned. No deployment/Cloudflare spend.
+- No storefront/product JSON, image asset, GW SKU, price/stock, Supabase/live data, ASC work, customer route, checkout/payment, Axxess, DNS, merge or production changes.
+- Next: continue exact OneNav Classic image reconciliation; the ON413-1A10 exact catalogue image crop remains pending because this runtime cannot retrieve the PDF bytes (external DNS/network unavailable), despite the official page screenshot being visually verified. Keep OneNav first and DO NOT IMPORT.
