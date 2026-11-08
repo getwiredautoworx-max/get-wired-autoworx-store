@@ -50,7 +50,7 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
-      - name: Verify preview package includes only the five approved preview routes
+      - name: Verify preview package includes only the four approved non-supplier preview routes
         shell: bash
         run: |
           set -euo pipefail
