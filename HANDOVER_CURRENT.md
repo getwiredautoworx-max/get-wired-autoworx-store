@@ -198,3 +198,34 @@ These are a snapshot, not a substitute for refreshing PR heads and workflow resu
 - The repository is public. PR #178 contains public branch derivatives including a 36,974-line Planetworld catalogue preview JSON and a 3,318-line Planetworld RRP-minus-2 audit; supplier source/derivative material and internal data are also present in other repository refs. PR #185 includes Electro-city internal review/source derivatives. These refs are publicly accessible while open.
 - This work does not create a private repository, change visibility, rewrite history, delete refs or close PRs. Those actions require explicit owner approval and a verified backup/migration plan. Until approved and completed, do not create or process additional confidential supplier derivatives on public runners/branches.
 - Production HOLD. No merge, production deploy, Axxess upload, DNS/payment change, live data write, or paid infrastructure action was performed by this reconciliation.
+
+
+## 2026-11-08 — Final repository-wide reconciliation findings (PR #189)
+
+### Storefront hierarchy and stale QA reconciliation
+- The customer homepage source now has exactly three top-level departments, in the owner-approved order: **Auto Electrical Spares → Car Audio / Home Entertainment → Car Care & Accessories**. The category root labels/order match in `category.html`; the obsolete nine-root comment was corrected.
+- Updated the button-only browser smoke test from eight to three root buttons and added static regression coverage for the exact labels/order. Updated the dormant full-store-mode smoke test to three department tiles plus Find a Part.
+- Marked the older eight-root taxonomy plans, old pricing rules, and prior audio/RRP handover addendum as historical/superseded; the dated 2026-11-08 owner pricing addendum now controls.
+
+### Public supplier-data protection
+- Disabled the Planetworld workbook audit on public runners; the workflow now fails closed before reading supplier source files.
+- Disabled the legacy populated-preview browser QA pending a private owner-preview boundary; it tested the obsolete eight-root page and opened the Planetworld-specific review page.
+- Removed the Planetworld supplier-specific route from the public preview-package allowlist and removed its link from the populated store preview. The public package QA now expects four safe preview routes, while the standard customer package must exclude all five preview-only routes.
+- Removed audio supplier catalogue pricing tests from the public catalogue QA workflow and disabled the owner-preview browser step until a private owner-only preview boundary exists.
+- The existing approved preview host is still serving `/preview-planetworld.html` with HTTP 200. This was verified by workflow run [42509534013](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509534013); the new safety gate correctly FAILS because the currently deployed host has not yet been updated. No staging or production deployment was made. The candidate code removes this route from future public preview packages, but it cannot remove the already-deployed copy without a separately approved staging update.
+
+### Exact test evidence on code snapshot `a77dae023d7d01beaa02b79f00c1b72b443c7fe6`
+- [Run 42509533859 — compile, controller regression tests, three-department structure test, supplier-preview safety test and queue validation: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509533859).
+- [Run 42509533843 — mobile/desktop buttons-only browser test: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509533843). Exact three root labels/order, expansion/collapse, no product/pricing/search UI and no horizontal overflow passed at 360, 390, 768 and 1280px.
+- [Run 42509533853 — responsive review and supplier-routing static/type checks: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509533853). Customer-only package build passed; private owner-preview step was intentionally skipped.
+- [Run 42509534099 — public Pages package QA: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509534099). Standard package excludes all preview-only routes; non-production package contains only four approved non-supplier preview routes.
+- [Run 42509534014 — customer-facing source audit: SUCCESS](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509534014).
+- [Run 42509534013 — public preview-route safety audit: EXPECTED FAILURE](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42509534013), because the old deployed preview host still serves the supplier-specific Planetworld route (HTTP 200 instead of 404). This is an unresolved exposure, not a code-test defect.
+- Earlier first checkpoint 1233e27 also passed controller regression tests, queue validation, ASC PR validation and customer-facing source audit. Latest code snapshot has more complete coverage above.
+
+### PR and release state
+- PR #189 remains **DRAFT / OPEN / UNMERGED**, based on main `5e748e09343f7879c66124778d42ee202caf1e00`. At this checkpoint it contains 33 changed files and 51 commits; all changes remain isolated on `reconcile/store-operating-system-2026-11-08`.
+- The current code snapshot above passed the listed tests except the deliberately failing public-route exposure gate. Cloudflare Pages branch check was still pending at the time of this handover update; no hosted preview acceptance is claimed.
+- PR #183 and #185 remain separate review-only catalogue candidates with stale bases and outstanding checks; #178 remains highly divergent and is not eligible for wholesale merge. PR #187/#188 remain duplicate controller candidates and should not be merged separately.
+- The public repository still contains confidential supplier source files and derivatives in its public history/branches. The workflow changes stop additional public processing but do not make existing files private. A private migration, backup/hash verification and any history/ref cleanup still require explicit owner approval.
+- Production remains HOLD. No PR merge, production deploy, Axxess upload, live data write, DNS/payment change, repository visibility change, private-repository migration or paid hosting action occurred.
