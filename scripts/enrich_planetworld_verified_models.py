@@ -35,7 +35,7 @@ def main() -> None:
     data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     verified = json.loads(VERIFIED_PATH.read_text(encoding="utf-8")).get("records", [])
     products = data.get("records", [])
-    if len(source_rows) != 3317 or len(products) != len(source_rows) or len(verified) != 68:
+    if len(source_rows) != 3317 or len(products) != len(source_rows) or len(verified) != 69:
         raise SystemExit(
             f"Unexpected image-enrichment input counts: source={len(source_rows)}, "
             f"products={len(products)}, verified_models={len(verified)}"
@@ -238,23 +238,23 @@ def main() -> None:
         "oneNav_headunit_descriptions": 2,
         "oneNav_headunit_images": 2,
         "oneNav_headunit_images_missing": 0,
-        "verified_model_matches": 68,
-        "verified_model_images": 68,
+        "verified_model_matches": 69,
+        "verified_model_images": 69,
         "verified_model_images_missing": 0,
-        "unmatched_products": 3202,
+        "unmatched_products": 3201,
     }
     if totals != expected:
         raise SystemExit("Exact-model enrichment totals changed unexpectedly: " + json.dumps(totals, sort_keys=True))
 
     data["productImageEnrichment"] = {
-        "exactModelPagesReviewed": 115,
-        "manufacturerDescriptionsVerified": 115,
-        "exactImageCandidatesApplied": 76,
+        "exactModelPagesReviewed": 116,
+        "manufacturerDescriptionsVerified": 116,
+        "exactImageCandidatesApplied": 77,
         "exactModelImagesMissing": 39,
-        "unmatchedProducts": 3202,
+        "unmatchedProducts": 3201,
         "oneNavHeadunitExactImageMatches": 2,
         "status": "OWNER_PREVIEW_ONLY_PENDING_OWNER_REVIEW",
-        "note": "The 68 verified manufacturer records, 45 audited OneNav product pages and two additional exact OneNav Evolution head-unit image matches are review-only. The 39 image gaps refer to the 45-row OneNav audit; other unmatched head-unit rows remain quarantined. Supplier identifiers remain internal.",
+        "note": "The 69 verified manufacturer records, 45 audited OneNav product pages and two additional exact OneNav Evolution head-unit image matches are review-only. The 39 image gaps refer to the 45-row OneNav audit; other unmatched head-unit rows remain quarantined. Supplier identifiers remain internal.",
     }
 
     DATA_PATH.write_text(
