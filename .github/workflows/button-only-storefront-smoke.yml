@@ -42,7 +42,11 @@ jobs:
                 await page.locator('[data-storefront-mode="buttons-only"]').waitFor();
                 const roots = page.locator('button.category');
                 const rootCount = await roots.count();
-                if (rootCount !== 8) throw new Error(width+'px: expected 8 main category buttons; got '+rootCount);
+                if (rootCount !== 3) throw new Error(width+'px: expected exactly 3 approved main department buttons; got '+rootCount);
+                const rootLabels = await roots.allTextContents();
+                const normalisedLabels = rootLabels.map(x => x.replace(/[+−]/g, '').trim());
+                const expectedLabels = ['Auto Electrical Spares', 'Car Audio / Home Entertainment', 'Car Care & Accessories'];
+                if (JSON.stringify(normalisedLabels) !== JSON.stringify(expectedLabels)) throw new Error(width+'px: department labels/order mismatch '+JSON.stringify(normalisedLabels));
                 const childCount = await page.locator('button.child').count();
                 if (childCount < 1) throw new Error(width+'px: no subcategory/brand buttons found');
                 const forbidden = await page.locator('.product, .product-card, .price, .product-grid, [data-product], #featuredGrid, #allProductsLink, #searchInput, input[type="search"]').count();
@@ -57,7 +61,7 @@ jobs:
                 await roots.nth(1).click();
                 if ((await roots.nth(0).getAttribute('aria-expanded')) !== 'false' || (await roots.nth(1).getAttribute('aria-expanded')) !== 'true') throw new Error(width+'px: accordion state did not update correctly');
                 if (errors.length) throw new Error(width+'px: browser errors '+errors.join('; '));
-                console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' main buttons, '+childCount+' subcategory/brand buttons, expand/collapse works, no product/pricing/search UI, no horizontal overflow');
+                console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' approved department buttons, '+childCount+' subcategory/brand buttons, expand/collapse works, no product/pricing/search UI, no horizontal overflow');
                 await page.close();
               }
             } finally { await browser.close(); }
