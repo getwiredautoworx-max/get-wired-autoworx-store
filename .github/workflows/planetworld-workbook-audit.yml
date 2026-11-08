@@ -1,73 +1,16 @@
-name: Planetworld Workbook Audit (Read Only)
+name: Planetworld Workbook Audit — BLOCKED Pending Private Data Boundary
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - reconcile/repo-file-inventory-planetworld-2026-10-29
-    paths:
-      - 'suppliers/Planetworld/**'
-      - 'scripts/planetworld_workbook_audit.py'
-      - '.github/workflows/planetworld-workbook-audit.yml'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'suppliers/Planetworld/**'
-      - 'scripts/planetworld_workbook_audit.py'
-      - '.github/workflows/planetworld-workbook-audit.yml'
 
 permissions:
   contents: read
 
 jobs:
-  audit:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
+  private-boundary-required:
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out source workbooks
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install workbook reader
-        run: python -m pip install --disable-pip-version-check openpyxl
-      - name: Run read-only workbook audit
-        run: python scripts/planetworld_workbook_audit.py
-      - name: Publish audit counts in job summary
-        if: always()
-        shell: bash
+      - name: Fail closed before reading supplier source files
         run: |
-          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json
-          from pathlib import Path
-          p = Path("planetworld-audit-output/summary.json")
-          if not p.exists():
-              print("## Planetworld read-only audit")
-              print("Summary file missing; inspect the audit step logs.")
-              raise SystemExit(0)
-          s = json.loads(p.read_text(encoding="utf-8"))
-          print("## Planetworld read-only audit summary")
-          print("| Measure | Result |")
-          print("|---|---:|")
-          for label, key in [
-              ("XLSX workbooks found", "xlsx_files_found"),
-              ("Sheets scanned", "sheets_scanned"),
-              ("Rows extracted", "rows_extracted"),
-              ("Workbooks with errors", "workbooks_with_errors"),
-              ("Zero-RRP rows (owner hold)", "rows_with_zero_rrp"),
-              ("Positive-RRP rows below estimated cost at RRP −1%", "rows_where_rrp_minus_1pct_is_below_estimated_cost_incl_vat"),
-              ("Positive-RRP rows below estimated cost at RRP −2%", "rows_where_rrp_minus_2pct_is_below_estimated_cost_incl_vat"),
-              ("Rows in identical duplicate workbooks", "rows_from_identical_duplicate_workbooks"),
-          ]:
-              print(f"| {label} | {s.get(key, 'n/a')} |")
-          print("\\n**Scope:** review-only. No catalogue, price or stock writes. Zero-RRP rows remain excluded from positive-RRP price-risk counts.")
-          PY
-      # Detailed source-traceable review outputs are committed under catalogue-review/.
-      # Keep this workflow artifact-free while the repository Actions storage quota recalculates.
-
-
-# 2026-10-26: harmless workflow edit to rerun the read-only audit against current branch inputs.
-
-# 2026-10-29: publish compact audit counts to the job summary if Actions artifact storage is full; artifact upload is best-effort. No supplier files modified.
+          echo "::error::Planetworld workbook audit is disabled in this public repository. Do not read or process confidential supplier source files on public runners. Establish and verify a private owner-controlled source, runner, logs and artifact boundary first."
+          exit 1
