@@ -191,3 +191,14 @@ These are source-identity/image decisions only. No image was added to customer-f
 - Validation performed in this run: read-back of the 23-row CSV retained 23 unique codes; ON413-1A10 has the exact new description, official catalogue source page 13, crop-pending state and intentionally blank image URL; test assertions were read back. A JavaScript syntax-compile and focused data assertions are recorded in the handover. The committed Node test was not executed and no hosted Actions workflow was triggered; do not claim full test-suite/CI pass.
 - No storefront JSON, product image asset, GW SKU, price, stock, Supabase/live catalogue, customer-facing route, deployment, merge, Axxess, DNS, payment or production data was changed.
 - Next: extract the exact Qashqai/X-Trail catalogue image crop into the private review asset tree, then verify crop dimensions and match. Continue OneNav only; do not transfer the image to Classic/Evolution variants or another model.
+
+
+## 2026-11-08 09:55 SAST — OA009-1 Toyota 280mm image-variant rejection
+
+- Rechecked the official OneNav Classic product page for exact SKU OA009-1. It confirms Toyota 280mm, 9-inch Classic, without CANBUS, and the Classic 9-inch feature set already retained in the description draft.
+- An official OneNav-hosted image result surfaced the asset ON009-2A11-Toyota-280mm-with-Canbus.png. Its filename identifies a different Pro Series CANBUS variant, so it is explicitly rejected for Classic OA009-1 W/O CANBUS. No image URL was assigned to OA009-1; its enrichment remains DETAILS_VERIFIED_IMAGE_PENDING.
+- Updated catalogue-review/planetworld-one-official-model-audit.csv with the exact variant-rejection note and tests/onenav-source-audit.test.cjs with fail-closed assertions. The candidate image URL is retained only inside the rejection note for traceability, never as the product image candidate.
+- Commits: audit row 24c6aada2c615a8a178204341641a7681e2a6956; regression assertions 309cedcb5320c2bd7bc807262af5fe466fad569e.
+- Focused static/syntax validation: 8/8 passed — 45 audit rows, 45 unique source references, OA009 remains details-verified/image-pending, image URL remains blank, wrong Pro Series CANBUS image rejection is recorded, Classic W/O CANBUS mismatch is explicit, test file syntax compiles and new assertions are present.
+- The full Node test and hosted Actions were not executed; no run/status was returned for the previous checkpoint. All records remain private and DO NOT IMPORT.
+- Next: continue exact image reconciliation for OneNav Classic models. Do not substitute the Pro Series ON009-2A11 image or move to another brand.
