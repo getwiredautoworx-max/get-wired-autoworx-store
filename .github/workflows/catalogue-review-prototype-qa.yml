@@ -121,6 +121,9 @@ jobs:
         run: |
           node tests/auto-electrical-review-population.test.cjs
           node tests/auto-electrical-owner-preview.test.cjs
+      - name: Validate ASC staged pricing, image workflow and import gates
+        if: hashFiles('tests/test_asc_reload_validation.py') != ''
+        run: python tests/test_asc_reload_validation.py
       - name: Build customer-only preview package without deployment
         if: hashFiles('scripts/build-cloudflare-pages-public.py') != ''
         env:
