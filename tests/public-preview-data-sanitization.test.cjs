@@ -41,6 +41,14 @@ assert.equal(arcam.imageStatus, 'official_manufacturer_image_verified_review_onl
 assert.ok(arcam.imageUrl && arcam.description, 'ARCAM AVR21 must have exact manufacturer image and description');
 assert.equal(arcam.indicativePrice, null);
 assert.equal(arcam.hasStock, null);
+const arcam11 = primary.records.find(record => record.brand === 'ARCAM' && record.title === 'ARCAM AVR11 HDMI 2.1 Class AB AV Receiver');
+assert.ok(arcam11, 'verified ARCAM AVR11 Home Entertainment preview record must be present');
+assert.equal(arcam11.modelNumber, 'AVR11');
+assert.equal(arcam11.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(arcam11.imageUrl && arcam11.description, 'ARCAM AVR11 must have exact manufacturer image and technical description');
+assert.equal(arcam11.indicativePrice, null);
+assert.equal(arcam11.hasStock, null);
+
 const adeo = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen');
 assert.ok(adeo, 'verified Adeo Plano 135-inch Home Entertainment preview record must be present');
 assert.equal(adeo.modelNumber, 'Plano 135-inch Vision Acoustic');
