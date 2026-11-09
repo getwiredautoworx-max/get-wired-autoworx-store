@@ -47,13 +47,14 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const frame = page.frames().find(f => f.url().includes('index-new.html'));
       assert.ok(frame, 'owner preview must embed the current three-category storefront');
       await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
-      const checkoutVisible = await frame.locator('a[href*="checkout"], .checkoutNow').evaluateAll(nodes =>
-        nodes.some(node => {
+      await frame.waitForFunction(() => document.documentElement.dataset.gwPreviewLocked === '1', null, { timeout: 10000 });
+      const visibleCheckoutControls = await frame.locator('a[href*="checkout"], .checkoutNow, #checkout, .checkout-fab').evaluateAll(nodes =>
+        nodes.filter(node => {
           const style = getComputedStyle(node);
           return style.display !== 'none' && style.visibility !== 'hidden' && !node.hasAttribute('disabled');
-        })
+        }).map(node => ({ tag: node.tagName, text: (node.innerText || '').trim(), href: node.getAttribute('href'), className: node.className }))
       );
-      assert.equal(checkoutVisible, false, 'owner preview must keep checkout and order actions blocked');
+      assert.deepEqual(visibleCheckoutControls, [], 'owner preview must keep checkout and order actions blocked; visible controls: ' + JSON.stringify(visibleCheckoutControls));
       const frameRoots = await frame.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
       assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the three approved root categories');
 
