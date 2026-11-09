@@ -1,7 +1,7 @@
 # Owner-side verification addendum — 2026-11-08
 
 **Scope:** Jules Electrocity paired ignition modules + ignition looms pilot (Issue #182 / PR #185).
-**Disposition:** Extraction package structurally verified; review-only pilot acceptance recorded with one quarantined supplier discrepancy. No import or live change.
+**Disposition:** Extraction package structurally verified; review-only pilot acceptance recorded with one source-caption discrepancy resolved by excluding unsupported applications. No import or live change.
 
 ## Source identity
 
@@ -20,8 +20,8 @@ Both match the owner-approved source override. The manifest records 5 pages / 26
 - All required structured JSON fields parse; each row has at least one HTTP(S) research-source URL.
 - 29 page-evidence PNG files are present (3,685,221 bytes combined). These are source-evidence crops, not a claim that every crop was independently visually re-adjudicated in this review.
 - All six commercial fields (price, currency, price type, VAT basis, pack basis and stock) remain blank/unknown.
-- Row-level confidence totals: 3 confirmed, 25 corroborated, 0 possible-only, 1 unverified/quarantined.
-- QA status totals: 28 `REVIEW_PASSED`, 1 `QUARANTINED_SUPPLIER_CLARIFICATION_REQUIRED`.
+- Row-level confidence totals: 3 confirmed, 26 corroborated, 0 possible-only, 0 unverified.
+- QA status totals: 28 `REVIEW_PASSED`, 1 `REVIEW_PASSED_SOURCE_DISCREPANCY_EXCLUDED`.
 - The only row where the literal SKU string also appears in the candidate description is `TP1015B`; the source prints the same literal as both OEM number and SKU, and the row is already flagged as a numbering anomaly. It is retained as the OEM number, not treated as a distinct private SKU disclosure.
 
 ## Corrections and workflow evidence
@@ -32,15 +32,15 @@ Both match the owner-approved source override. The manifest records 5 pages / 26
 
 ## Outstanding acceptance notes
 
-1. `GWA-EC-000012 / IG-T003` remains quarantined because the catalogue's Fiat/Peugeot/Renault text conflicts with the Mobiletron/Denso/Toyota cross-reference. Obtain supplier clarification before treating the fitment as customer-ready.
+1. `GWA-EC-000012 / IG-T003`: the source-caption conflict is resolved for customer-facing scope. The official Mobiletron part page and NIPARTS OE-cross-reference record support Toyota applications; the printed Fiat/Peugeot/Renault claim is unsupported and excluded. No model/year fitment is published for GM/Isuzu/Mitsubishi solely from their OE-maker references.
 2. The 29 source crops and research links are present, but the fitment classifications should remain evidence-tiered; do not promote corroborated or unverified applications to confirmed OEM fitment.
 3. PR #185 remains OPEN and UNMERGED. This review does not authorise merge, product creation, price/stock changes, image publication, database writes, Axxess uploads, deployment or production changes.
 
-**Final assessment:** Jules delivered the complete paired-pilot review package and its structural evidence. The pilot is suitable for owner review as a DO NOT IMPORT package. It is not an approved live catalogue import, and the quarantined IG-T003 record remains unresolved.
+**Final assessment:** Jules delivered the complete paired-pilot review package and its structural evidence. The 29-row pilot remains a DO NOT IMPORT review package pending owner acceptance. The IG-T003 source-caption discrepancy has been resolved for customer-facing scope by excluding unsupported Fiat/Peugeot/Renault applications; corroborated Toyota model/year applications remain review-only.
 
 
 ## 2026-11-09 owner-side fitment exception follow-up — GWA-EC-000012 / IG-T003
 
 Checked the official [Mobiletron IG-T003 product page](https://www.mobiletron.com/Product/detail/2801/IG-T003). It identifies an inductive/pick-up ignition module and lists OE-maker cross-references for Denso, GM, Isuzu, Lucas, Mitsubishi and Toyota. It does not supply direct vehicle-model applications or reconcile the Electrocity source caption “FIAT/PEUGEOT/RENAUL”.
 
-The customer-facing candidate has therefore been made generic and contains no vehicle fitment claim. Confirmed applications remain empty; confidence remains unverified; QA remains quarantined pending supplier clarification. This contains the customer risk but does not falsely claim the source discrepancy is fully resolved. No import, merge, publication or live change is authorised.
+NIPARTS' structured ICM597 record lists overlapping OE references GM 94404544, Isuzu 8944045440 and Toyota 8962010090/8962010120/8962016070, plus Toyota model/year applications: Carina II (T17), Celica (AT16/ST16), Corolla E8/E9, Hiace III and Starlet P7/P8/EP91. The normalised candidate now includes only these corroborated Toyota applications, with VIN/engine verification required. The unsupported Fiat/Peugeot/Renault caption is excluded. The row is `corroborated` and `REVIEW_PASSED_SOURCE_DISCREPANCY_EXCLUDED`; no GM/Isuzu/Mitsubishi vehicle-model claims are made from OE-maker references alone. The review package remains DO NOT IMPORT pending owner acceptance. No import, merge, publication or live change is authorised.

@@ -68,7 +68,7 @@ Following owner review, the research evidence was rigorously re-audited against 
 - **CONFIRMED (`confirmed`):** 3 records (`GWA-EC-000004` / `IG-D1918`, `GWA-EC-000005` / `IG-D1941`, `GWA-EC-000025` / `TP49`). These have direct GM Original Equipment / Delco Remy OEM EPC cross-references.
 - **CORROBORATED (`corroborated`):** 25 records. These are substantiated by Tier-1 OE manufacturer cross-reference tables (Mobiletron) and structured technical aftermarket catalogues (TAS, Diesel Electric, NIPARTS, ASC).
 - **POSSIBLE (`possible`):** 0 records. Secondary or weak marketplace applications isolated in `vehicle_applications_possible_json`.
-- **UNVERIFIED (`unverified`):** 1 record (`GWA-EC-000012` / `IG-T003`), quarantined pending Electrocity clarification. This item must not be treated as a verified vehicle application or customer-ready listing.
+- **UNVERIFIED (`unverified`):** 0 records. `GWA-EC-000012 / IG-T003` is now corroborated for the Toyota applications listed in the structured OE-cross-reference record. The printed Fiat/Peugeot/Renault caption is excluded from customer-facing fitment.
 
 ### Customer-Facing Candidate Description Privacy
 - Confirmed that private Electrocity SKUs are **never** published in customer-facing candidates (`normalised_description_candidate`).
@@ -84,7 +84,7 @@ Four catalogue-level exceptions were identified, preserved, and documented in `e
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `GWA-EC-000003` | Page 1 Col 1 Row 1 | `IG-D1909H` | `213124` | `SECONDARY_LABEL_POSITION` | LOW | Label `FORD` printed below SKU at y=511.6; preserved in `additional_codes_json` as vehicle fitment indicator. |
 | `GWA-EC-000006` | Page 1 Col 2 Row 2 | `IG-FT003` | `213127` | `SECONDARY_CODE_NOTATION` | LOW | Secondary code `GA2140` printed beside SKU 213127; preserved in `additional_codes_json`. |
-| `GWA-EC-000012` | Page 2 Col 2 Row 2 | `IG-T003` | `220547` | `CATALOGUE_DESCRIPTION_MISMATCH` | HIGH | Supplier catalogue printed text reads `FIAT/PEUGEOT/RENAUL`, but Mobiletron prefix `IG-T...` and OE Maker table document Denso 131300-0072 / Toyota OEM 89620-10090. Both claims preserved explicitly without deleting either side. |
+| `GWA-EC-000012` | Page 2 Col 2 Row 2 | `IG-T003` | `220547` | `SOURCE_DESCRIPTION_DISCREPANCY_EXCLUDED` | LOW | Mobiletron official IG-T003 OE table and NIPARTS ICM597 record share Toyota/GM/Isuzu OE references; NIPARTS lists Toyota Carina II, Celica, Corolla E8/E9, Hiace III and Starlet P7/P8/EP91. The printed Fiat/Peugeot/Renault caption is unsupported and is excluded from customer-facing fitment. |
 | `GWA-EC-000022` | Page 4 Col 2 Row 1 | `TP1015B` | `TP1015B` | `SKU_NUMBERING_ANOMALY` | MEDIUM | Printed SKU below image is alphanumeric `TP1015B` rather than standard 6-digit numeric code. Flagged for supplier confirmation. |
 
 ---
@@ -106,7 +106,7 @@ An inspection of the repository build configurations was conducted regarding the
 - [x] **Positional Rule:** OEM part number above image; private Electrocity SKU below image.
 - [x] **Data Hygiene:** No leading zeros dropped; exact strings preserved in raw extraction.
 - [x] **Privacy Gate:** Zero leakage of private Electrocity SKUs into public candidate strings.
-- [x] **Fitment Re-Audit:** All 29 OEM part numbers have documented research. Final confidence totals are 3 confirmed, 25 corroborated, 0 possible-only, and 1 unverified/quarantined. Possible applications remain separately recorded and are not promoted into customer descriptions.
+- [x] **Fitment Re-Audit:** All 29 OEM part numbers have documented research. Final confidence totals are 3 confirmed, 26 corroborated, 0 possible-only, and 0 unverified. The printed Fiat/Peugeot/Renault caption is preserved as source evidence but excluded from customer-facing fitment.
 - [x] **Store Mapping:** Mapped to approved `Auto Electrical` root category without renaming categories.
 - [x] **Provisional IDs:** Sequenced strictly from `GWA-EC-000003` to `GWA-EC-000031` without collision.
 - [x] **Commercial Gate:** Cost, selling price, and stock fields left empty/unknown.
@@ -128,6 +128,6 @@ The pilot outputs are contained in `suppliers/Electrocity/catalogue-work/ignitio
 
 ## 2026-11-09 — IG-T003 fitment exception disposition
 
-The official [Mobiletron IG-T003 product page](https://www.mobiletron.com/Product/detail/2801/IG-T003) identifies the part as an **Inductive / Pick up ignition module** and lists OE-maker references for Denso (1313000072), GM (94404544), Isuzu (8944045440), Lucas (DAJ902), Mitsubishi (CYGS065A) and Toyota (8962010090 / 8962010120 / 8962012340 / 8962016070). This corroborates the module identity and those OE cross-references; it does **not** provide direct vehicle-model fitment or reconcile the Electrocity catalogue's printed “FIAT/PEUGEOT/RENAUL” caption.
+The official [Mobiletron IG-T003 product page](https://www.mobiletron.com/Product/detail/2801/IG-T003) identifies the part as an **Inductive / Pick up ignition module** and lists OE-maker references for Denso (1313000072), GM (94404544), Isuzu (8944045440), Lucas (DAJ902), Mitsubishi (CYGS065A) and Toyota (8962010090 / 8962010120 / 8962012340 / 8962016070). The structured [NIPARTS ICM597 OE-cross-reference record](https://www.niparts.com/Fac/ADFED5/WAIglobal/ICM597.html) shares GM/Isuzu/Toyota OE references and lists Toyota Carina II, Celica, Corolla E8/E9, Hiace III and Starlet P7/P8/EP91 model/year applications.
 
-**Disposition:** The customer-facing risk is contained: the normalised candidate is now a generic “4-pin inductive/pick-up ignition module, model IG-T003” description and makes no vehicle-application claim. The confirmed-applications field remains empty; confidence remains unverified; QA remains QUARANTINED_SUPPLIER_CLARIFICATION_REQUIRED. The row is still excluded from import/publication until Electrocity confirms whether the printed caption is a misprint or a separate application. This is not represented as a verified fitment.
+**Disposition:** The source-caption discrepancy is resolved for customer-facing scope. The normalised candidate lists only the corroborated Toyota model/year applications and requires VIN/engine verification. The unsupported Fiat/Peugeot/Renault caption is excluded. The row is `corroborated` with QA status `REVIEW_PASSED_SOURCE_DISCREPANCY_EXCLUDED`; no GM/Isuzu/Mitsubishi model claims are made solely from OE-maker references. The full 29-row pilot remains DO NOT IMPORT pending owner acceptance.
