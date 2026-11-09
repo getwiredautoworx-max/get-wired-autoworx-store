@@ -6,7 +6,7 @@
   "recordCount": 3317,
   "status": "PREVIEW_ONLY_INDICATIVE_PRICE_AND_DATED_AVAILABILITY_SNAPSHOT_NO_LIVE_SYNC",
   "classificationNote": "Car Audio split uses exact source-file/row joins: 627 brand products, 47 Harnesses & Trims, 28 Marine Audio. Three rows with conflicting marine keyword labels remain in Car Audio & Video under a separate review component. Car Audio component labels use the review taxonomy; 236 source rows remain manual review. Other division component labels are keyword-based browse aids.",
-  "pricingNote": "All supplier products display Price On Request until current supplier pricing and stock can be synchronised reliably and approved by the owner. No dated RRP or historical stock snapshot is a current retail offer.",
+  "pricingNote": "All supplier products display Price On Request until current supplier pricing and stock can be synchronised reliably and the owner approves that process.",
   "availabilityNote": "Current supplier availability is not synchronised. Availability must be confirmed at the time of enquiry.",
   "divisions": {
     "Home CI": 319,
@@ -3698,7 +3698,7 @@
       "component": "Harnesses, Trims & Fitment",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -8396,7 +8396,7 @@
       "component": "Guitars & Basses",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -14700,7 +14700,7 @@
       "component": "Conferencing & Collaboration",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -14723,7 +14723,7 @@
       "component": "Conferencing & Collaboration",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -14746,7 +14746,7 @@
       "component": "Other Installed AV",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -15033,7 +15033,7 @@
       "component": "AV Infrastructure & Control",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -15067,7 +15067,7 @@
       "component": "Other Installed AV",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -15079,7 +15079,7 @@
       "component": "AV Infrastructure & Control",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -15135,7 +15135,7 @@
       "component": "Other Installed AV",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -16659,7 +16659,7 @@
       "component": "Harness & Installation",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -16671,7 +16671,7 @@
       "component": "Harness & Installation",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -18845,7 +18845,7 @@
       "component": "Subwoofers",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -24049,7 +24049,7 @@
       "component": "Cameras",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -25651,7 +25651,7 @@
       "component": "Fascia & Fitting Kits",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -30497,7 +30497,7 @@
       "component": "Studio & Recording Equipment",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -30575,7 +30575,7 @@
       "component": "Other Musical Instruments",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -30587,7 +30587,7 @@
       "component": "Studio & Recording Equipment",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -30621,7 +30621,7 @@
       "component": "Studio & Recording Equipment",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -31953,7 +31953,7 @@
       "component": "Instrument Accessories",
       "indicativePrice": null,
       "hasStock": null,
-      "priceOnRequestText": "Price On Request Due to Stock Availability",
+      "priceOnRequestText": "Price On Request",
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
@@ -36955,7 +36955,8 @@
     "display": "Price On Request",
     "status": "OWNER_POLICY_PENDING_RELIABLE_SUPPLIER_PRICE_AND_STOCK_SYNC",
     "numericCustomerPrices": false,
-    "stockClaims": false
+    "stockClaims": false,
+    "customerDisplay": "Price On Request"
   },
   "productImageEnrichment": {
     "sourceAudit": "official-model-image-audit.csv",
