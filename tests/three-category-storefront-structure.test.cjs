@@ -6,7 +6,8 @@ const read = p => fs.readFileSync(p, 'utf8');
 const tree = JSON.parse(read('assets/category-tree.json'));
 const home = read('index-new.html');
 const categoryPage = read('category.html');
-const previewCategory = read('preview-category.html');\nconst previewAutoElectrical = read('preview-auto-electrical.html');
+const previewCategory = read('preview-category.html');
+const previewAutoElectrical = read('preview-auto-electrical.html');
 const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
 const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
 const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
@@ -63,7 +64,8 @@ const carCareChildren = tree.categories.filter(c => c.active && c.parent_id === 
 assert.deepEqual(autoElectricalChildren, ['Alternators & Starters','Batteries & Charging','Fuses, Relays & Wiring','Globes & Vehicle Lighting','Sensors & Switches'], 'Auto Electrical must retain its five approved customer-facing subcategories');
 assert.deepEqual(carCareChildren, ['Car Care','Car Mats','Seat Covers & Interior Accessories','Exterior Accessories'], 'Car Care must retain its four approved customer-facing subcategories');
 const artForStart = previewCategory.indexOf('function artFor(');
-const artForEnd = previewCategory.indexOf('\nfunction ', artForStart + 1);
+const artForEnd = previewCategory.indexOf('
+function ', artForStart + 1);
 assert.ok(artForStart >= 0 && artForEnd > artForStart, 'preview category page must expose a deterministic category artwork resolver');
 const artForSource = previewCategory.slice(artForStart, artForEnd);
 const previewCategoryArtFor = vm.runInNewContext('(' + artForSource + ')');
@@ -251,7 +253,10 @@ for (const obj of [planet,verifiedModels,audio,autoElectrical,imageSample]) {
   assert.ok(!/Planetworld|Audio Connections/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
   assert.ok(!/dealerCost|dealerPrice|wholesalePrice|supplierSku|supplierName|supplierModelNumber|internalSku|gwSku/i.test(customerRows),'internal supplier identifiers and costs must not appear in customer-facing product records');
 }
-assert.ok(previewCategory.includes("'owner-auto-sensors':'preview-auto-electrical.html?category=Automotive%20Sensors'") && previewCategory.includes("'owner-auto-switches':'preview-auto-electrical.html?category=Automotive%20Switches'") && previewCategory.includes("'owner-auto-fuel-pumps':'preview-auto-electrical.html?category=Fuel%20Pumps'"), 'verified Auto Electrical subcategories must route to their matching review-only product filters');\nassert.ok(previewCategory.includes("items=items.filter(c=>c.name!=='Sensors & Switches')") && previewCategory.includes("name:'Automotive Sensors',count:9") && previewCategory.includes("name:'Automotive Switches',count:8") && previewCategory.includes("name:'Fuel Pumps',count:9"), 'combined Sensors & Switches must be split and Fuel Pumps added as separate catalogue categories');\nassert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');\nconst audioPageBodyStart = audioPage.indexOf('<body');
+assert.ok(previewCategory.includes("'owner-auto-sensors':'preview-auto-electrical.html?category=Automotive%20Sensors'") && previewCategory.includes("'owner-auto-switches':'preview-auto-electrical.html?category=Automotive%20Switches'") && previewCategory.includes("'owner-auto-fuel-pumps':'preview-auto-electrical.html?category=Fuel%20Pumps'"), 'verified Auto Electrical subcategories must route to their matching review-only product filters');
+assert.ok(previewCategory.includes("items=items.filter(c=>c.name!=='Sensors & Switches')") && previewCategory.includes("name:'Automotive Sensors',count:9") && previewCategory.includes("name:'Automotive Switches',count:8") && previewCategory.includes("name:'Fuel Pumps',count:9"), 'combined Sensors & Switches must be split and Fuel Pumps added as separate catalogue categories');
+assert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');
+const audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
 const audioPageVisibleMarkup = audioPage.slice(audioPageBodyStart, audioPageScriptStart < 0 ? audioPage.length : audioPageScriptStart);
 assert.ok(!/Planetworld|Audio Connections/i.test(audioPageVisibleMarkup), 'supplier names must not appear in customer-facing audio page markup');
