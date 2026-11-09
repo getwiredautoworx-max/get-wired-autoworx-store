@@ -79,7 +79,7 @@ def main():
         require(row["stock_availability"].startswith("Unconfirmed"), f"Stock must remain unconfirmed: {sku}")
         require(row["staging_status"] == "STAGED_REVIEW_ONLY", f"Unexpected staging status: {sku}")
         require(row["import_gate_control"] == "DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL", f"Missing import gate: {sku}")
-        require(row["image_status"].startswith("OWNER_AUTHORIZED"), f"Image status not aligned with owner authorization: {sku}")
+        require(row["image_approval_status"].startswith("OWNER_AUTHORIZED"), f"Image status not aligned with owner authorization: {sku}")
 
     pilot_skus = [r["supplier_sku"] for r in pilot]
     require(len(set(pilot_skus)) == 50, "Duplicate pilot supplier SKU")
@@ -89,6 +89,9 @@ def main():
     require(fitment_count == 42, f"Expected 42 manually verified pilot fitments, got {fitment_count}")
     require(spec_count == 0, f"Expected no transcribed technical specs yet, got {spec_count}")
     require(all(r["import_status"] == "REVIEW_ONLY_NOT_IMPORTED" for r in pilot), "Pilot contains a non-review-only row")
+    require(all(r["treated_image_path"].strip() for r in pilot), "A pilot treated-image path is missing")
+    require(all(r["logo_watermark_applied"].lower() == "true" for r in pilot), "Get Wired logo watermark missing from a pilot image")
+    require(all(r["image_treatment_status"] in {"TREATED_PENDING_VISUAL_QA", "MANUAL_REVIEW_NO_MASK", "MANUAL_REVIEW_MASK_TOO_LARGE"} for r in pilot), "Unexpected image treatment status")
     print("PASS: ASC review register 978/978; unique supplier/GW SKUs; six source totals; source-page/category mapping; exact POR labels; no numeric price/stock invention; DO NOT IMPORT.")
     print(f"PILOT: 50 rows; {fitment_count} printed fitments transcribed; {spec_count} technical-spec rows transcribed; all review-only.")
 
