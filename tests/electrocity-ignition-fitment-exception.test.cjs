@@ -23,6 +23,6 @@ assert.match(row.fitment_research_sources_json,/mobiletron\.com\/Product\/detail
 assert.match(row.fitment_research_sources_json,/niparts\.com\/Fac\/ADFED5\/WAIglobal\/ICM597/);
 assert.equal(row.import_status,"REVIEW_ONLY_NOT_IMPORTED");
 const exception=fs.readFileSync(path.join(base,'exceptions.csv'),'utf8');
-assert.match(exception,/RESOLVED_CUSTOMER_SCOPE_EXCLUDED/);
+assert.match(exception,/SOURCE_DESCRIPTION_DISCREPANCY_EXCLUDED/);
 assert.match(exception,/FIAT\/PEUGEOT\/RENAUL/);
 console.log("PASS: 29 Electrocity ignition pilot rows; IG-T003 source-caption conflict resolved for customer-facing scope with corroborated Toyota OE applications; unsupported Fiat/Peugeot/Renault excluded; no import or commercial values.");
