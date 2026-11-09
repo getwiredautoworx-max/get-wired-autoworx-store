@@ -38,5 +38,5 @@ for filename in FILES:
     if not path.is_file():
         continue
     data = json.loads(path.read_text(encoding="utf-8"))
-    path.write_text(json.dumps(clean(data), ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    path.write_text(json.dumps(clean(data), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"PUBLIC_PREVIEW_DATA_SANITIZED {filename}")
