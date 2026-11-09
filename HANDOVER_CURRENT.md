@@ -215,3 +215,25 @@ These are a snapshot, not a substitute for refreshing PR heads and workflow resu
 4. Have Jules address the missing optional-test guard on PR #183 only if this can be done without processing confidential material; then re-run exact-head checks. Do not wholesale rebase or merge the 18-commit branch.
 5. Keep PR #178 unchanged until a single current-main-based integration plan and private data boundary are established.
 6. Preserve production HOLD and all no-deploy/no-live-write restrictions.
+
+
+---
+
+## OWNER CLARIFICATION — RETAIL CATALOGUE PROCESSING AND PUBLIC REPOSITORY — 2026-11-09
+
+The owner has clarified the business model and corrected the previous blanket confidentiality restriction:
+- Get Wired AutoWorx is a **retailer to the general public**. Supplier catalogues are source material for product identity, descriptions, images and specifications. Their wholesale value is limited because wholesale pricing requires a separate qualifying dealer relationship with the supplier.
+- Keep the main GitHub repository public. Do not require a private repository, private runner or separate private execution environment as a prerequisite for authorised catalogue extraction, review, enrichment or storefront work. Do not pause catalogue work on that basis.
+- Continue catalogue processing in the existing repository and approved workflows. Avoid unnecessary infrastructure or hosting changes.
+- Keep supplier names and internal supplier SKUs out of customer-facing pages. Do not expose dealer-only wholesale costs as retail prices. Follow the owner's Price On Request and supplier-specific pricing rules; never invent prices or stock.
+- Normal protection of credentials, tokens and genuinely sensitive personal/security data remains required. This is not a reason to block catalogue source processing.
+- Production remains HOLD. No production deployment, Axxess upload, DNS change, live Supabase/catalogue/price/stock write, payment activation or publication without the required explicit owner approval. A staging preview still requires exact-head build/tests, deployed-SHA confirmation and mobile/desktop browser verification.
+
+### Corrected execution priority
+1. Resume the approved ASC catalogue workflow and complete product-level verification; the existing 72-page OCR checkpoint is extraction progress, not completion.
+2. Reconcile Jules' ASC and Electro-city deliverables against current main and fix their QA/test dependencies without discarding valid catalogue work.
+3. Resume audio/video product and image enrichment using the approved catalogue sources; keep supplier identity and internal SKU fields out of customer views.
+4. Build one consolidated three-category storefront candidate from current main; do not wholesale merge the stale, highly divergent PR #178.
+5. Run exact-head regression and mobile/desktop preview QA, then request explicit approval for the staging deployment if it requires Cloudflare credits. Do not use production deployment.
+
+This owner clarification supersedes the earlier blanket private-data-boundary statements in this handover and any automation prompts. Those statements must not be used to stop authorised catalogue work.
