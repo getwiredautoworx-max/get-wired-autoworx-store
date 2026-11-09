@@ -35,15 +35,27 @@ def audit(name, path):
     if overrides_path.is_file():
         override_rows = json.loads(overrides_path.read_text(encoding="utf-8")).get("records", [])
         for override in override_rows:
-            if override.get("id"):
-                matches = [row for row in rows if row.get("id") == override["id"]]
-            else:
-                match = override.get("match") or {}
-                matches = [row for row in rows if match and all(row.get(k) == v for k, v in match.items())]
-            if len(matches) != 1:
-                raise SystemExit(f"AUDIO_AUDIT_FAIL expected one exact override match, found {len(matches)}")
+            match = override.get("match") or {}
+            matches = [row for row in rows if row.get("id") == override["id"]] if override.get("id") and any(row.get("id") == override["id"] for row in rows) else []
+            if not matches and match:
+                def match_row(row):
+                    for key, expected in match.items():
+                        if key == "title_contains":
+                            if str(expected).casefold() not in str(row.get("title", "")).casefold():
+                                return False
+                        elif str(row.get(key, "")).casefold() != str(expected).casefold():
+                            return False
+                    return True
+                matches = [row for row in rows if match_row(row)]
+            if len(matches) > 1:
+                raise SystemExit(f"AUDIO_AUDIT_FAIL expected at most one exact override match, found {len(matches)}")
+            if not matches and override.get("appendIfMissing"):
+                matches = [{"id": override.get("id")}]
+                rows.append(matches[0])
+            elif not matches:
+                raise SystemExit("AUDIO_AUDIT_FAIL verified override target not found")
             for key, value in override.items():
-                if key not in ("id", "match"):
+                if key not in ("id", "match", "appendIfMissing"):
                     matches[0][key] = value
     summary = {
         "records": len(rows),
