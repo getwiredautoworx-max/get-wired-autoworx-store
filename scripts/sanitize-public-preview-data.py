@@ -17,7 +17,7 @@ FORBIDDEN_KEYS = re.compile(
     r"^(supplier(name|sku|modelnumber)?|dealer(cost|price)|wholesaleprice|internal(sku|id)|gwsku)$",
     re.I,
 )
-SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\\s+Connections", re.I)
+SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections", re.I)
 
 def clean(value):
     if isinstance(value, dict):
