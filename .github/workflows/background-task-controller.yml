@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/background-task-controller.yml'
+      - 'scripts/background_task_controller.py'
+      - 'automation/task-queue.json'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
