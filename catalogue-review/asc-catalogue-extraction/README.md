@@ -28,7 +28,7 @@ No product, price, stock, supplier activation, or database records are created o
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
 - The pilot rows are marked as visually checked on their source pages, but remain **proposed / not approved / not imported**.
 - All 50 candidate image crops were visually inspected and matched to the corresponding source-page product caption and supplier SKU. The crops remain on the separate PR #168 preview branch and are not copied into this review branch.
-- ASC watermarking is visible on the crop images. They are **not approved production assets**; asset permission/clean-image suitability remains a separate approval gate.
+- ASC watermarking is visible on the source crops. The owner has authorised use and editing of these catalogue images. The 50-image treatment sample is being refined to remove outer catalogue text and overlay the Get Wired AutoWorx watermark; it remains review-only until visual QA. This is an image-treatment gate, not a permission blocker.
 - The source-page render review corrected the globe descriptions: `H1865W-H` and `H1960/55W-H` are HUADIAO E-MARKED variants; `H355W-H` is transcribed as HDIAO exactly as printed in the source.
 - No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and require a current dealer cost before any price can be calculated.
 - Physical stock is not supplied by these catalogues. Availability remains unconfirmed and separate from price.
@@ -105,3 +105,13 @@ The pilot CSV has been corrected to use these owner-approved destinations while 
 - Do not write to Supabase or import products.
 - Do not activate ASC products, merge a PR, deploy production, change payment settings, or change Axxess/DNS.
 - This branch is internal review material only; owner approval is required before any later import or publication.
+
+
+## Owner clarification — image treatment and current retail price display (2026-11-09)
+
+- The owner has authorised use and editing of the ASC catalogue images for Get Wired AutoWorx. Do not describe image permissions as unresolved or block catalogue work on that basis.
+- The 50-image sample uses the 50 manually reviewed pilot products. The separate treatment run generated 50 outputs, but the first contact-sheet review showed outer caption text still present. The crop/OCR treatment is being refined; do not mark the sample approved until all 50 outputs are visually checked against their source cards.
+- The owner-authorised treatment is to remove catalogue text outside the actual product image and overlay the Get Wired AutoWorx watermark over the source watermark. Keep original PDFs and raw crops unchanged.
+- Current ASC customer-facing price wording is exactly **Price On Request due to Limited Stock and Availability**. All 978 staged rows must use it. No numeric price or stock quantity is supplied; availability remains unconfirmed.
+- The verified register remains 978 products, not 983. Five apparent Car Mats entries were only a section heading count (13 stated, 8 physical cards); do not invent the five absent products.
+- Product-field completion remains incomplete: 50 product headings manually verified; 42 fitment values manually verified; 0 technical specification/dimension fields transcribed; 928 remaining titles require editorial proofing; 936 fitment fields and all 978 technical specification fields remain pending. Source SKU/page/category reconciliation is complete, not full editorial enrichment.
