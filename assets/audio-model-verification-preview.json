@@ -10,7 +10,9 @@
       "modelNumber": "HCE-C2100RD",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hce-c2100rd",
       "component": "Cameras & Parking",
-      "imageUrl": "https://www.alpine-asia.com/media/5baca7810efbd.png"
+      "imageUrl": "https://www.alpine-asia.com/media/5baca7810efbd.png",
+      "primaryPreviewRecordId": "pw-0017",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-D8D34153",
@@ -20,7 +22,9 @@
       "modelNumber": "HDZ-653",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hdz-653",
       "component": "Speakers",
-      "imageUrl": "https://www.alpine-asia.com/media/62d65d1bd9391.png"
+      "imageUrl": "https://www.alpine-asia.com/media/62d65d1bd9391.png",
+      "primaryPreviewRecordId": "pw-0018",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-23B4075D",
@@ -32,7 +36,9 @@
       "component": "Radios & Multimedia",
       "imageUrl": "https://www.alpine.com.tr/fileadmin/images/MainNavigation/Products/Product_pics/01_Headunits/iLX-F115D/iLX-F115D_Alpine-Halo-11-XXL-11-Inch-Media-Receiver.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageSource": "Alpine official iLX-F115D product page gallery"
+      "imageSource": "Alpine official iLX-F115D product page gallery",
+      "primaryPreviewRecordId": "pw-0022",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-242085C6",
@@ -42,7 +48,9 @@
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/products/R2-A60F/product-pic/R2-A60F_Alpine-R-Series-4-channel-Power-Amplifier.jpg",
       "modelNumber": "R2-A60F.",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/r-series-amplifiers/r2-a60f",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "primaryPreviewRecordId": "pw-0035",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-44A846C9",
@@ -52,7 +60,9 @@
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/images/MainNavigation/Products/Product_pics/15_Subwoofers/08_R-Series-Subwoofer/R2-W10D2/R2-W10D2_10-inch-R-Series-Subwoofer-with-Dual-2-Ohm-Voice-Coils_Front-Back.jpg",
       "modelNumber": "R2-W10D2",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-r-speakers36/r2-w10d2",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "primaryPreviewRecordId": "pw-0042",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-D44711C5",
@@ -65,7 +75,9 @@
       "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/R2-W12D4_1.jpg?v=1718761708",
       "imageStatus": "EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY",
       "imageSource": "Gentec International exact-model R2-W12D4 product image; distributor-hosted image candidate, not yet hosted-preview verified",
-      "imageSourceUrl": "https://www.gentec-intl.com/products/alpine-r2-w12d4-r-series-gen-2-subwoofer"
+      "imageSourceUrl": "https://www.gentec-intl.com/products/alpine-r2-w12d4-r-series-gen-2-subwoofer",
+      "primaryPreviewRecordId": "pw-0045",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-DF31C0C3",
@@ -75,7 +87,9 @@
       "modelNumber": "S2-A55V",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/s-series-amplifiers/s2-a55v",
       "component": "Amplifiers",
-      "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg"
+      "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg",
+      "primaryPreviewRecordId": "pw-0053",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-DDF900C0",
@@ -85,7 +99,9 @@
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/products/S2-S40C/product-pic/S2-S40C_S-Series-10cm-4-inch-Component-2-Way-Speakers.jpg",
       "modelNumber": "S2-S40C",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-s-speakers37/s2-s40c",
-      "component": "Speakers"
+      "component": "Speakers",
+      "primaryPreviewRecordId": "pw-0056",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-3363298A",
@@ -98,7 +114,9 @@
       "imageUrl": "https://www.alpine-asia.com/media/65e98a0997ee3.jpg",
       "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
       "imageSource": "Alpine Asia official product image",
-      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04"
+      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04",
+      "primaryPreviewRecordId": "pw-0058",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-3C0AADF7",
@@ -109,7 +127,9 @@
       "manufacturerPage": "https://audison.com/product/bit-dmi/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0113",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-E83DE640",
@@ -120,7 +140,9 @@
       "manufacturerPage": "https://audison.com/product/b-con/",
       "component": "Radios & Multimedia",
       "imageUrl": "https://static.audison.com/media/2022/10/AUDISON_B-CON_PROSP.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0114",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-F965C965",
@@ -131,7 +153,9 @@
       "manufacturerPage": "https://audison.com/product/bit-one-hd-virtuoso/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0115",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-AC0030BA",
@@ -142,7 +166,9 @@
       "manufacturerPage": "https://audison.com/product/bit-ten/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison_bitTen.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0116",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-2D691DD3",
@@ -153,7 +179,9 @@
       "manufacturerPage": "https://audison.com/product/bit-tune/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2023/02/Audison_bitTune.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0117",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-356A6B66",
@@ -164,7 +192,9 @@
       "manufacturerPage": "https://audison.com/product/ap4-d/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0118",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-51F781DA",
@@ -175,7 +205,9 @@
       "modelNumber": "66755100",
       "manufacturerPage": "https://audison.com/product/af-m12-14-bit/",
       "component": "Amplifiers",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0119",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-ED176A31",
@@ -186,7 +218,9 @@
       "modelNumber": "66755105",
       "manufacturerPage": "https://audison.com/product/af-m8-14-bit/",
       "component": "Amplifiers",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0120",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-0D9576AB",
@@ -197,7 +231,9 @@
       "manufacturerPage": "https://audison.com/product/af-c8-14-bit/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0121",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-6525B0FB",
@@ -208,7 +244,9 @@
       "manufacturerPage": "https://audison.com/product/af-m5-11-bit/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0122",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-39F15E3C",
@@ -219,7 +257,9 @@
       "manufacturerPage": "https://audison.com/product/af-c4-10-bit/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0123",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-19C53819",
@@ -230,7 +270,9 @@
       "manufacturerPage": "https://audison.com/product/f2o/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0127",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-AB4172D6",
@@ -241,7 +283,9 @@
       "manufacturerPage": "https://audison.com/product/f4in/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0128",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-6404BB95",
@@ -252,7 +296,9 @@
       "manufacturerPage": "https://audison.com/product/apl2/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0132",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-F2D5E7C5",
@@ -263,7 +309,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-reamp-1/",
       "component": "Amplifiers",
       "imageUrl": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0137",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-95CF26BF",
@@ -274,7 +322,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-biamp-2/",
       "component": "Accessories & Installation",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0138",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-D1C8ED40",
@@ -285,7 +335,9 @@
       "manufacturerPage": "https://audison.com/product/av-1-1/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0139",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-5060536B",
@@ -296,7 +348,9 @@
       "manufacturerPage": "https://audison.com/product/av-1-1-ii/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0140",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-E543202D",
@@ -307,7 +361,9 @@
       "manufacturerPage": "https://audison.com/product/av-3-0/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/06/p_1315389333_AV30b.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0142",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-76BF5AEA",
@@ -318,7 +374,9 @@
       "manufacturerPage": "https://audison.com/product/av-3-0-ii/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0143",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-BAB87976",
@@ -329,7 +387,9 @@
       "manufacturerPage": "https://audison.com/product/av-6-5/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0146",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-A93B7539",
@@ -340,7 +400,9 @@
       "manufacturerPage": "https://audison.com/product/av-6-5-p-ii/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-65-P-II_EMO-CONO_2024_10_16-copia.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0147",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-C8678B08",
@@ -351,7 +413,9 @@
       "manufacturerPage": "https://audison.com/product/apbx-8-ds/",
       "component": "Subwoofers",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APBX-8-DS_EMO-B_2022_11_28_JPG-108.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0149",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-E633A44B",
@@ -362,7 +426,9 @@
       "manufacturerPage": "https://audison.com/product/apk-130/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-130_2022_12_13_JPG-55.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0169",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-D305752A",
@@ -373,7 +439,9 @@
       "manufacturerPage": "https://audison.com/product/apk-165/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-165_2022_10_05_JPG-72.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0170",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-6BAAF481",
@@ -384,7 +452,9 @@
       "manufacturerPage": "https://audison.com/product/apk-165p/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165P.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0171",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-3AD21309",
@@ -395,7 +465,9 @@
       "manufacturerPage": "https://audison.com/product/apk-165-2-ohm/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165-2-ohm.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0172",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-B44A3E68",
@@ -406,7 +478,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-k4e/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4E_emo.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0173",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-68BEEE9F",
@@ -417,7 +491,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-k4m/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4M.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0174",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-23039F26",
@@ -428,7 +504,9 @@
       "manufacturerPage": "https://audison.com/product/apk-690/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2026/06/Audison_APK-690.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0175",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-9BE74766",
@@ -439,7 +517,9 @@
       "manufacturerPage": "https://audison.com/product/apk-163/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-163_SISTEMA_prova-01-2.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0176",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-747C1CAB",
@@ -450,7 +530,9 @@
       "manufacturerPage": "https://audison.com/product/apx-4/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0179",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-D50EC36C",
@@ -461,7 +543,9 @@
       "manufacturerPage": "https://audison.com/product/apx-5/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0180",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-083D24ED",
@@ -472,7 +556,9 @@
       "manufacturerPage": "https://audison.com/product/apx-6-5/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0181",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-1B6B540E",
@@ -482,7 +568,9 @@
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
       "modelNumber": "69070060",
       "manufacturerPage": "https://audison.com/product/apx-690/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "primaryPreviewRecordId": "pw-0182",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-A1F328AF",
@@ -493,7 +581,9 @@
       "manufacturerPage": "https://audison.com/product/apx-570/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0183",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-CC9AD160",
@@ -504,7 +594,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-x4e/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0184",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-A10FB3F7",
@@ -515,7 +607,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-x4m/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0185",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-BCB7EFB4",
@@ -526,7 +620,9 @@
       "manufacturerPage": "https://audison.com/product/apbmw-a4e/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0192",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-C44B188C",
@@ -537,7 +633,9 @@
       "manufacturerPage": "https://audison.com/product/av-k6/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0165",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-614DED8A",
@@ -548,7 +646,9 @@
       "manufacturerPage": "https://audison.com/product/av-x6-5/",
       "component": "Speakers",
       "imageUrl": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-0177",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-AF7A2133",
@@ -558,7 +658,9 @@
       "imageUrl": "https://dam.focal-naim.com/m/3b701e6a6657201d/original/HiloV3_Av_Cable-jpg.jpg",
       "modelNumber": "HILO V3",
       "manufacturerPage": "https://www.focal.com/products/hilov3",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "primaryPreviewRecordId": "pw-0262",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-C6E9DE57",
@@ -571,7 +673,9 @@
       "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
       "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
       "imageSource": "Focal official digital asset image",
-      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04"
+      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04",
+      "primaryPreviewRecordId": "pw-0263",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-BCCE104C",
@@ -582,7 +686,9 @@
       "manufacturerPage": "https://www.jvc.com/in/car-entertainment/speakers/cs-dr162/",
       "component": "Speakers",
       "imageUrl": "https://jasc.jvc.com//files/image/1628/1/1280x1024-10/223928_18_CS-DR162_W.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1478",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-B5C3FB36",
@@ -595,7 +701,9 @@
       "imageUrl": "https://images.crutchfieldonline.com/ImageHandler/trim/869/652/products/2024/22/105/g105KWM590B-o_other0.jpg",
       "imageStatus": "EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY",
       "imageSource": "Crutchfield exact-model KW-M590BT product image; retailer-hosted image candidate, not yet hosted-preview verified",
-      "imageSourceUrl": "https://www.crutchfield.com/p_105KWM590B/JVC-KW-M590BT.html"
+      "imageSourceUrl": "https://www.crutchfield.com/p_105KWM590B/JVC-KW-M590BT.html",
+      "primaryPreviewRecordId": "pw-1489",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-C0C3EE3F",
@@ -606,7 +714,9 @@
       "manufacturerPage": "https://www.kenwood.eu/car/navigation_multimedia/multimedia/DMX5023DABS",
       "component": "Radios & Multimedia",
       "imageUrl": "https://www.kenwoodstore.it/cdn/shop/files/DMX5023_AA_Front_2.png?v=1724938798&width=1024",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1494",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-A518043D",
@@ -616,7 +726,9 @@
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c104/images/480x360-front.jpg",
       "modelNumber": "43C104",
       "manufacturerPage": "https://www.kicker.com/comp-10-4-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "primaryPreviewRecordId": "pw-1499",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-414870FF",
@@ -627,7 +739,9 @@
       "manufacturerPage": "https://www.kicker.com/comp-12-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c124/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only"
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "primaryPreviewRecordId": "pw-1500",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-34B8712E",
@@ -638,7 +752,9 @@
       "manufacturerPage": "https://www.kicker.com/43C84",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c84/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only"
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "primaryPreviewRecordId": "pw-1501",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-3A16656D",
@@ -649,7 +765,9 @@
       "manufacturerPage": "https://shop.kicker.com/solo-baric-l7s-12-2-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/solobaricl7s/solo_baric_l7s_12_2_ohm_subwoofer/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1512",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-B435B3F2",
@@ -660,7 +778,9 @@
       "manufacturerPage": "https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp",
       "component": "Amplifiers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa12001/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only"
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "primaryPreviewRecordId": "pw-1549",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-31954ABD",
@@ -670,7 +790,9 @@
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa3604/images/480x360-front.jpg",
       "modelNumber": "46CXA3604",
       "manufacturerPage": "https://www.kicker.com/CXA3604-4x90-Watt-4-Channel-Full-Range-Amp",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "primaryPreviewRecordId": "pw-1551",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-E3E19CA3",
@@ -680,7 +802,9 @@
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa4001/images/480x360-front.jpg",
       "modelNumber": "46CXA4001",
       "manufacturerPage": "https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "primaryPreviewRecordId": "pw-1552",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-6A3D2257",
@@ -690,7 +814,9 @@
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa6605/images/480x360-front.jpg",
       "modelNumber": "46CXA6605",
       "manufacturerPage": "https://www.kicker.com/CXA6605-4x90-Watt-4-Channel-Full-Range-Amp-with-300-watt-Class-D-Sub-Channel",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "primaryPreviewRecordId": "pw-1553",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-382FCDC3",
@@ -701,7 +827,9 @@
       "manufacturerPage": "https://www.kicker.com/comp-r-10-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr104/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only"
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "primaryPreviewRecordId": "pw-1595",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-9BFF6101",
@@ -712,7 +840,9 @@
       "manufacturerPage": "https://shop.kicker.com/comp-r-12-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr124/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1596",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-4E3751C1",
@@ -723,7 +853,9 @@
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-2-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt102/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1597",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-4493A427",
@@ -734,7 +866,9 @@
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt104/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-1598",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "gwSku": "GW-8C685D65",
@@ -745,7 +879,9 @@
       "manufacturerPage": "https://pioneercarentertainment.com/products/dmh-ap6650bt/",
       "component": "Radios & Multimedia",
       "imageUrl": "https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "primaryPreviewRecordId": "pw-2450",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
     },
     {
       "name": "Kicker KW16400 16AWG K-Series Speaker Wire (sold per metre)",
@@ -756,7 +892,10 @@
       "imageStatus": "owner_authorized_exact_supplier_image_verified_review_only",
       "imageUrl": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026",
       "brand": "Kicker",
-      "gwSkuStatus": "NOT_ASSIGNED — per-metre wire listing requires distinct Get Wired SKU review"
+      "gwSkuStatus": "NOT_ASSIGNED — per-metre wire listing requires distinct Get Wired SKU review",
+      "primaryPreviewRecordId": "pw-1687",
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_GW_SKU_PENDING",
+      "manufacturerModelNumber": "KW16400"
     }
   ]
 }
