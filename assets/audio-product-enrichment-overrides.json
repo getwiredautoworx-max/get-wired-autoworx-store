@@ -36,6 +36,27 @@
       "hasStock": null,
       "id": "preview-audison-bit-dmi",
       "appendIfMissing": true
+    },
+    {
+      "id": "preview-audison-bcon",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "B-CON - HI-RES BLUETOOTH RECEIVER"
+      },
+      "appendIfMissing": true,
+      "title": "Audison B-CON Hi-Res Bluetooth Receiver",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Bluetooth Streaming Receivers",
+      "modelNumber": "B-CON",
+      "description": "Bluetooth 5.0 + EDR receiver with Hi-Res Audio Wireless certification. Supports LDAC streaming up to 96 kHz / 24-bit on compatible Android devices, plus AAC and SBC codecs. Provides RCA analogue outputs and optical S/PDIF input/output (up to 24-bit / 192 kHz), hands-free call management and Absolute Volume. Technical data: 6–24 VDC supply, 70 mA idle current, 2 VRMS analogue output, 100 dBA signal-to-noise ratio and 0.003% THD at 1 kHz / 1 VRMS.",
+      "imageUrl": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison B-CON official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
