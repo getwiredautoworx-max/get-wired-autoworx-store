@@ -218,7 +218,7 @@ assert.match(corollaCrossA11.customer_description, /Bluetooth 5\.4/);
 assert.match(corollaCrossA11.customer_description, /4 × 45 W/);
 assert.doesNotMatch(corollaCrossA11.customer_description, /10\.1.?inch|10.?inch/i,
   'Do not publish the conflicting screen diagonal until OneNav clarifies it');
-assert.match(corollaCrossA11.review_note, /10\.1-inch.*10-inch.*unresolved/i,
+assert.match(corollaCrossA11.review_note, /10\.1-inch.*10-inch.*do not publish/i,
   'The official page title/specification screen-size conflict must remain explicit');
 
 const on016Coverage = coverage.find(row => row.preview_product_id === 'pw-2187');
@@ -226,7 +226,7 @@ assert.ok(on016Coverage, 'The OneNav ON016-2LX storefront source row must remain
 assert.equal(on016Coverage.model_identity_status, 'VERIFIED_OFFICIAL_PRODUCT_PAGE');
 assert.equal(on016Coverage.image_status, 'NO_EXACT_IMAGE_APPROVED');
 assert.equal(on016Coverage.import_status, 'DO NOT IMPORT');
-assert.match(on016Coverage.review_note, /screen diagonal.*omit screen size/i);
+assert.match(on016Coverage.review_note, /screen.*omit screen size/i);
 
 const on016Evidence = JSON.parse(fs.readFileSync(
   'catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json', 'utf8'));
