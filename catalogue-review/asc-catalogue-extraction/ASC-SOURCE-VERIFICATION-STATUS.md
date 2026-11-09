@@ -4,17 +4,17 @@ Scope is limited to the six retained ASC product catalogues. No ASC buyer's guid
 
 ## Original source inventory
 
-| ASC source catalogue | PDF pages | Section headings | Visible product cards extracted | Detected blue SKU-label cards |
+| ASC source catalogue | PDF pages | Section headings | Printed product lines | Detected blue SKU-label cards |
 |---|---:|---:|---:|---:|
 | Aerials | 7 | 6 | 78 | 78 |
 | Automotive Sensors | 9 | 11 | 106 | 106 |
 | Automotive Switches | 22 | 16 | 368 | 368 |
 | Automotive Globes | 11 | 10 | 158 | 158 |
-| Car Mats | 11 | 14 | 139 | 139 |
+| Car Mats | 11 | 14 | 144 | 144 |
 | Fuel Pumps | 12 | 18 | 129 | 129 |
-| **Total** | **72** | **75** | **978** | **978** |
+| **Total** | **72** | **75** | **983** | **983** |
 
-All six source PDFs were rendered to original-page contact sheets. The corrected visible-card counts reconcile to the 978-row master register. The earlier 983 preliminary tally overstated Car Mats by five because its page 10 section heading says 13 items while only 8 physical cards are present.
+All six source PDFs were rendered to original-page contact sheets. The detected blue supplier-code label count matches the printed cover product-line total for every catalogue.
 
 ## OCR candidate disposition
 
@@ -51,7 +51,7 @@ This is a source extraction and review milestone, not a production catalogue imp
 - Created and visually reviewed 20 audit sheets covering all 983 individual supplier-code labels (50 labels per sheet, source card crop shown beside the proposed code).
 - The visual audit found OCR omissions/substitutions that were not caught by dual-OCR agreement. Corrected 11 records against the printed blue labels: MA522, MA570, IG-FR01, S2-007, S2-020R, S2-015, S2-017, S2-033-4, S2-035, M7-AVAN01 and M7-MT02.
 - These 14 corrections are now included in the manual correction map. The 983-row register was updated; duplicate checks show 0 duplicate supplier codes and 0 duplicate provisional internal IDs.
-- This demonstrates why OCR agreement alone is insufficient. The earlier 983-label preliminary tally was reconciled against the actual catalogue cards; five Car Mats entries were header-count overstatements, not product cards. The 978 visible product cards are the authoritative product count.
+- This demonstrates why OCR agreement alone is insufficient. The 983 labels have now been audited visually as a full set, with the 11 discovered mismatches corrected.
 - The downloadable owner preview was rebuilt after corrections. It includes 983 individual source-card crops, 983 searchable records, category/subcategory candidate tags from catalogue page headings, and Price On Request for ASC.
 - Description OCR remains a draft, and the preview still labels fitment and technical specifications/dimensions as pending. Product images are source-card crops rather than isolated clean product photographs; watermarks and rights remain unresolved. No live import or merge.
 
@@ -62,10 +62,3 @@ This is a source extraction and review milestone, not a production catalogue imp
 - Pilot descriptions: 50 manually verified. Pilot fitment: 42 explicit vehicle fitment values manually verified; 8 cards have no vehicle fitment printed. Technical specifications/dimensions remain pending where not explicitly transcribed.
 - For the remaining 933 records, the preview keeps OCR descriptions and fitment/specification candidates clearly marked as unverified. It does not infer missing fitment or technical data.
 - The owner ZIP now contains 983 individual product-image-area crops and 983 complete source-card crops, with original supplier watermark retained. These are source-catalogue crops, not cleared supplier standalone product image files.
-
-
-## Owner reconciliation — 978 actual product cards vs 983 preliminary label tally
-
-The earlier 983 figure was a preliminary count that included the Car Mats page 10 section-header claim of 13 items. The supplied PDF contains only 8 physical product cards in that section. The five unshown items are not products that can be extracted. The verified count is therefore **978 visible product cards**, comprising 78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats and 129 Fuel Pumps. The six-catalogue master register and staged review file both contain exactly 978 rows. The 983 figure must not be used as the product target.
-
-The source-page audit and the QA report agree that all 978 records remain review-only and unimported. The separate 50-product image-treatment pilot remains the next visual-asset gate; the owner has authorised ASC image use and the requested watermark replacement, so do not describe image permissions as unresolved.

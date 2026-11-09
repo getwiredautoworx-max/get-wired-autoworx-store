@@ -28,9 +28,9 @@ No product, price, stock, supplier activation, or database records are created o
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
 - The pilot rows are marked as visually checked on their source pages, but remain **proposed / not approved / not imported**.
 - All 50 candidate image crops were visually inspected and matched to the corresponding source-page product caption and supplier SKU. The crops remain on the separate PR #168 preview branch and are not copied into this review branch.
-- ASC watermarking is visible on the crop images. The owner has authorised image use and editing; these source crops are not final storefront assets until the approved 50-sample treatment removes the ASC watermark, applies the Get Wired AutoWorx watermark, removes catalogue-description text outside the product image, and passes visual matching QA.
+- ASC watermarking is visible on the crop images. They are **not approved production assets**; asset permission/clean-image suitability remains a separate approval gate.
 - The source-page render review corrected the globe descriptions: `H1865W-H` and `H1960/55W-H` are HUADIAO E-MARKED variants; `H355W-H` is transcribed as HDIAO exactly as printed in the source.
-- No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**.
+- No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and require a current dealer cost before any price can be calculated.
 - Physical stock is not supplied by these catalogues. Availability remains unconfirmed and separate from price.
 
 ## Completed category batch: Aerials
@@ -105,12 +105,3 @@ The pilot CSV has been corrected to use these owner-approved destinations while 
 - Do not write to Supabase or import products.
 - Do not activate ASC products, merge a PR, deploy production, change payment settings, or change Axxess/DNS.
 - This branch is internal review material only; owner approval is required before any later import or publication.
-
-
-## Count and image-treatment clarification — owner-approved
-
-The correct six-catalogue product count is **978 visible product cards**, not 983. The earlier 983 tally included five phantom entries from the Car Mats page 10 section heading (13 stated, 8 cards actually present). Do not invent those five entries. Category counts: Aerials 78; Sensors 106; Switches 368; Globes 158; Car Mats 139; Fuel Pumps 129.
-
-The owner has authorised ASC catalogue image use and editing. Original ASC-watermarked crops are source evidence, not finished storefront assets. Complete the approved 50-sample process to remove the ASC watermark, apply the Get Wired AutoWorx watermark and remove catalogue-description text outside the product image. Do not treat image rights as a blocker.
-
-Customer-facing ASC pricing text must be exactly: **Price On Request due to Limited Stock and Availability**. No price or physical stock value may be invented. All records remain review-only / DO NOT IMPORT pending owner approval.

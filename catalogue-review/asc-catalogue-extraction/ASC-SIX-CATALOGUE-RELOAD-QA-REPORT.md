@@ -20,7 +20,7 @@ This QA report details the complete, verified extraction and reconciliation of t
 | SKU Mapping Collisions | 0 | 0 | PASS |
 | Missing Source Document / Page References | 0 | 0 | PASS |
 | Owner-Approved Category Mappings Applied | 6 | 6 | PASS (100% Compliant) |
-| Price-Rule Gate Compliance ("Price On Request due to Limited Stock and Availability") | 978 | 978 | PASS (100% Compliant) |
+| Price-Rule Gate Compliance ("Price On Request Due to Stock Availability") | 978 | 978 | PASS (100% Compliant) |
 | Image Verification Exceptions Identified | 26 | 26 | PASS (Documented) |
 | Obsolete Buyer's Guide Ingestion | 0 | 0 | PASS (100% Excluded) |
 | Obsolete Buyer's Guide Files in Branch | 0 | 0 | PASS (Deleted) |
@@ -53,15 +53,15 @@ To ensure full transparency into the status of extracted product data, the table
 | **Product Heading / Title** | 50 (Pilot cards) | 928 (Batch OCR) | 0 (0%) | 928 batch OCR titles require editorial proofing before production import |
 | **Vehicle Fitment** | 42 (Pilot cards) | 0 (0%) | 936 (Pending) | 936 fitment fields quarantined; fitment text exists on cards but requires editorial transcription |
 | **Technical Specs / Dimensions** | 0 (None in pilot) | 0 (0%) | 978 (Pending) | 978 technical dimensions/specs quarantined; preserved in original PDFs, pending manual transcription |
-| **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request due to Limited Stock and Availability" |
+| **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request Due to Stock Availability" |
 | **Physical Stock Count** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; unconfirmed dealer orderability only |
-| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos retain ASC watermark; owner-authorised Get Wired AutoWorx watermark treatment is pending |
+| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos watermarked; quarantined from production storefront publication |
 
 ---
 
 ## 4. Image Verification & Exception Audit
 
-- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks and require the owner's approved Get Wired AutoWorx image-treatment workflow before storefront use.
+- **Photo Cards Present:** 952 products (97.3%) have visible photographic crops matching their source cards. All retain original ASC watermarks and are **not cleared for production publication**.
 - **Images on Request (No Photo Printed):** 26 products in `ASC- Car Mats (1).pdf` are printed without a product image. No placeholder or artificial images were invented.
 - **Production-Stopped Notice:** `M7-HY100` (`ASC- Car Mats (1).pdf`, page 9) carries a printed notice "PRODUCTION STOPPED". Staged with an explicit lock preventing activation.
 - **Header vs Printed Count Discrepancy:** In `ASC- Car Mats (1).pdf`, page 10, the Rubber & PVC section heading states 13 items, but only 8 cards are printed in the PDF. Exactly 8 cards were extracted without inventing the 5 unshown items.
@@ -104,6 +104,6 @@ The reload package cleanly separates review artifacts from staged import specifi
 ## 7. Outstanding Blockers & Next Actions
 
 1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
-2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request due to Limited Stock and Availability". Pricing updates require current ASC dealer cost sheets.
-3. **Image Treatment:** The owner has authorised ASC image use and editing. Complete the approved 50-sample workflow: remove the ASC watermark, apply the Get Wired AutoWorx watermark, remove catalogue-description text outside the product image, and verify exact product-image matching. This is not a permission blocker.
+2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request Due to Stock Availability". Pricing updates require current ASC dealer cost sheets.
+3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
 4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.

@@ -1,79 +1,183 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "project": "Get Wired AutoWorx",
+  "updated": "2026-11-08",
+  "authority": [
+    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
+    "latest owner instructions in the active conversation",
+    "latest verified execution checkpoint on the coordinated storefront branch"
+  ],
+  "storefront_roots": [
+    "Auto Electrical Spares",
+    "Car Audio / Home Entertainment",
+    "Car Care & Accessories"
+  ],
   "policy": {
-    "live_store_mutations": "prohibited_by_controller",
-    "production_deploy": "only_after_explicit_approval_and_passing_exact_head_qa",
-    "retry_limit": 2,
-    "checkpoint_after_each_run": true,
-    "never_invent_sku_price_or_source_evidence": true,
-    "no_payment_work_until_storefront_and_catalogue_acceptance": true,
-    "no_supplier_import_or_publication_without_owner_approval": true,
-    "functional_testing": "defer_until_last_after_owner_adds_banking_details"
+    "source_scope": "approved supplier catalogues only; no ASC Buyers Guides",
+    "candidate_data": "review-only; DO NOT IMPORT until independently verified and owner-approved",
+    "live_store_mutations": "prohibited",
+    "production_deploy": "prohibited without separate explicit owner approval",
+    "axxess_dns_payment_supabase_live_writes": "prohibited",
+    "supplier_names_in_customer_content": "prohibited",
+    "exact_model_image_match": "required; never substitute similar variants",
+    "asc_price_label": "Price On Request due to Limited Stock and Availability",
+    "unverified_price_or_stock": "do not invent; use approved Price On Request handling",
+    "retry_policy": "one bounded retry for deterministic QA/extraction infrastructure failures; no blind retries of data writes or deploys",
+    "concurrency": "one active worker per workstream; no overlapping edits to the same output",
+    "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run"
   },
   "tasks": [
     {
-      "id": "storefront-restoration-and-preview",
+      "id": "jules-handover-and-pr-reconciliation",
       "priority": 1,
-      "status": "owner_confirms_loading_restoration_candidate_open_diverged_14_commits",
-      "description": "Owner confirms storefront loads. PR #163 restores the earlier full storefront with brighter styling and includes the ASC/Audio Connections/Hertz preview work, but it is 58 commits ahead and 14 behind current main; its 92-file diff means the PR description's CSS-only scope is not accurate. PR #162 is also draft/unmerged. No functional testing before banking details.",
-      "next_action": "Prepare a clean current-main integration candidate by selectively reconciling the approved storefront restoration and required preview/catalogue files; inspect exact diffs and preserve all release gates. Do not merge stale PRs, test clicks/routes, trigger Workers or production deployment.",
-      "automatic": false
+      "status": "in_progress",
+      "execution_mode": "scheduled-monitor",
+      "automatic": true,
+      "source": [
+        "PR #183",
+        "PR #185",
+        "PR #178"
+      ],
+      "success_criteria": [
+        "Compare current PR heads and changed files against latest owner checkpoint",
+        "Verify all Jules outputs exist in GitHub, not only in an agent workspace",
+        "Record workflow results and exact commit SHAs",
+        "List unresolved deliverables and supplier questions"
+      ],
+      "next_action": "Monitor PRs and verify new commits; do not merge or publish."
     },
     {
-      "id": "storefront-eight-category-navigation",
+      "id": "asc-six-catalogue-source-extraction",
       "priority": 2,
-      "status": "eight_root_static_audit_pass_preview_link_code_candidate_pending_reconciliation",
-      "description": "Static audit confirms exactly eight approved root labels and matching root map; 4X4 OUTDOOR remains a child under Camping / Leisure / Outdoors. PR #162/163 candidate adds ASC catalogue preview links under Auto Electrical Spares (34), Car Audio & Entertainment (8) and Automotive Accessories (8). Functional navigation remains deferred.",
-      "next_action": "Carry the exact category mapping and neutral preview links into the clean current-main candidate; no click/route tests until the owner banking-details step.",
-      "automatic": false
+      "status": "ready",
+      "execution_mode": "scheduled-deterministic",
+      "automatic": true,
+      "source": [
+        "suppliers/ASC/ASC- Aerials (1).pdf",
+        "suppliers/ASC/ASC- Automotive Sensors (1).pdf",
+        "suppliers/ASC/ASC- Automotive Switches (1).pdf",
+        "suppliers/ASC/ASC- Automotive globes (1).pdf",
+        "suppliers/ASC/ASC- Car Mats (1).pdf",
+        "suppliers/ASC/ASC- Fuel Pumps (1).pdf"
+      ],
+      "success_criteria": [
+        "Extract page text with source filename and page number",
+        "Preserve original PDFs",
+        "Keep OCR output review-only and DO NOT IMPORT",
+        "Retain exact owner-approved ASC Price On Request wording in any customer-facing staging presentation"
+      ],
+      "next_action": "Run repeatable OCR extraction and generate source-page review evidence."
     },
     {
-      "id": "approved-supplier-catalogue-reconciliation",
+      "id": "audio-planetworld-source-extraction",
       "priority": 3,
-      "status": "partial_preview_integrated_source_bytes_and_image_rights_pending",
-      "description": "ASC review-only pilot has 50 records/50 matched images across 12 source subcategories; Audio Connections has 68 private rows/66 preview rows and 13 Sony GW SKU candidates staged privately; Hertz preview has 12 private rows; Planetworld has a 3,317-row historical snapshot and 68 exact-model candidates. None is a live supplier feed.",
-      "next_action": "Continue private source/image/description/SKU reconciliation using evidence already in repository. November ASC PDF bytes are still unavailable through Gmail; request the six PDFs only when the remaining local source evidence is exhausted. Do not publish or activate suppliers.",
-      "automatic": false
+      "status": "awaiting-private-processing-boundary",
+      "execution_mode": "private-runner-required",
+      "automatic": false,
+      "source": [
+        "suppliers/Audio Connections/",
+        "catalogue-source/suppliers/planetworld/incoming-xlsx/"
+      ],
+      "success_criteria": [
+        "Extract source PDF text and embedded image references",
+        "Extract workbook rows with source file, sheet and row provenance",
+        "Keep current-price and stock validity separate from historical source values",
+        "Do not expose supplier metadata in customer-facing output"
+      ],
+      "next_action": "Do not process confidential supplier pricing/workbooks on the public GitHub runner. Move this worker to an owner-controlled private repository or private execution environment before scheduling."
     },
     {
-      "id": "planetworld-current-audit-and-price-verification",
+      "id": "electrocity-ignition-pilot",
       "priority": 4,
-      "status": "private_image_crosswalk_expanded_review_page_sanitized_current_audit_pending",
-      "description": "Private Planetworld/Audio image crosswalk now records 14 distinct official manufacturer image-source URLs (10 Planetworld, 4 Sony); zero images are downloaded/approved. The 68-model Car Audio review page has supplier identity, supplier SKU label, stale stock quantities, unapproved price proposals and generic image placeholders removed. The 25-Oct workbook remains historical only.",
-      "next_action": "Continue exact model/variant visual and usage-permission review of the 14 image URLs; obtain current Planetworld workbook/stock and price effective-date confirmation. Owner still needs to run the read-only Planetworld Workbook Audit from Actions on main; do not use 25-Oct stock as current or publish proposal prices.",
-      "automatic": false
+      "status": "review_required",
+      "execution_mode": "scheduled-qa",
+      "automatic": true,
+      "source": [
+        "PR #185",
+        "suppliers/Electrocity/Ignition Looms-Coils-Modules/"
+      ],
+      "success_criteria": [
+        "Verify all 29 pilot records and source evidence remain present",
+        "Keep GWA-EC-000012 / IG-T003 quarantined pending supplier clarification",
+        "Do not promote corroborated fitment to confirmed"
+      ],
+      "next_action": "Run read-only PR and evidence checks; supplier clarification remains owner/supplier dependent."
     },
     {
-      "id": "audio-connections-model-sku-image-review",
+      "id": "audio-video-content-enrichment",
       "priority": 5,
-      "status": "13_sony_gw_candidates_4_images_7_starsound_listings_1_blackspider_page_45_unmatched",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately (not inserted); four official Sony image-source candidates are linked but not approved. Seven non-Sony Starsound models have official category-listing matches; one BlackSpider Lynx has an exact official product page. Forty-five other non-Sony models remain without an official listing/page. No generic image placeholders or supplier names are shown in the noindex review page.",
-      "next_action": "Capture direct high-resolution image assets and verify usage permission for the four Sony candidates and BlackSpider Lynx; review official Starsound listing images at exact model/variant level. Continue exact-model and GW SKU reconciliation for the 45 unmatched rows. Obtain current dealer price/availability; keep all rows private/inactive and do not activate the supplier.",
-      "automatic": true
+      "status": "in_progress",
+      "execution_mode": "model-assisted-review-required",
+      "automatic": false,
+      "source": [
+        "PR #178",
+        "catalogue-review/",
+        "suppliers/Audio Connections/",
+        "suppliers/Planetworld/"
+      ],
+      "success_criteria": [
+        "Exact model and variant verified",
+        "Correct product image and description",
+        "Supplier-specific pricing treatment preserved",
+        "Correct brand to product-type navigation",
+        "No supplier identity in customer-facing content"
+      ],
+      "next_action": "Continue bounded product batches; do not fabricate missing details or images."
     },
     {
-      "id": "category-review-198-rows",
+      "id": "onenav-model-image-reconciliation",
       "priority": 6,
-      "status": "pending_visual_source_page_review",
-      "description": "The 198 historical OCR candidate rows still require source-page review. OCR presence is not visual approval; no automatic category moves. Eight approved roots and 4X4 placement have passed static audit.",
-      "next_action": "Continue exact-SKU source-page review against original guides where available; preserve source page/heading provenance and never auto-move products.",
-      "automatic": false
+      "status": "in_progress",
+      "execution_mode": "model-assisted-review-required",
+      "automatic": false,
+      "source": [
+        "PR #178",
+        "catalogue-review/planetworld-one-official-model-audit.csv"
+      ],
+      "success_criteria": [
+        "Exact model/series/variant match for every image",
+        "Rejected mismatched images remain excluded",
+        "Unmatched products remain explicitly image-pending",
+        "Record source evidence for each accepted match"
+      ],
+      "next_action": "Continue OneNav exact-model audit; never substitute a similar series or vehicle-fitment image."
     },
     {
-      "id": "protected-october-and-asterisk-pricing",
+      "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "verified_preserve_no_write",
-      "description": "Preserve 107/107 October rows with verified cost/source/formula evidence. Preserve nine asterisk-price records as quote-only/inactive.",
-      "next_action": "Do not alter protected October prices or activate the nine quote-only rows without new exact supplier evidence and separate approval.",
-      "automatic": false
+      "status": "in_progress",
+      "execution_mode": "model-assisted-development-and-qa",
+      "automatic": false,
+      "source": [
+        "PR #168",
+        "PR #178",
+        "main"
+      ],
+      "success_criteria": [
+        "Three approved homepage departments only",
+        "Consistent shared shell and correct department/subcategory/brand/product-type navigation",
+        "Populated product pages use verified catalogue data",
+        "No obsolete eight-root navigation"
+      ],
+      "next_action": "Reconcile a single current-main-based candidate; do not merge divergent PRs wholesale."
     },
     {
-      "id": "exact-head-qa-owner-acceptance-and-release-gate",
+      "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "deferred_until_last_after_owner_banking_details",
-      "description": "Functional testing is last, after banking details are added and non-functional catalogue/category work is complete. Production remains HOLD.",
-      "next_action": "Only after owner confirms banking details are added, perform exact-head desktop/mobile functional tests and obtain owner acceptance. No merge, Axxess/DNS, live data or production release without separate explicit approval.",
-      "automatic": false
+      "status": "blocked_on_candidate",
+      "execution_mode": "scheduled-qa",
+      "automatic": true,
+      "source": [
+        "GitHub Actions",
+        "coordinated storefront candidate"
+      ],
+      "success_criteria": [
+        "Exact-head automated tests pass",
+        "Hosted staging preview is tied to the same SHA",
+        "Desktop and mobile browser checks pass",
+        "Owner receives preview and evidence"
+      ],
+      "next_action": "Run QA when a current candidate is available; production remains on hold."
     }
   ]
 }
