@@ -46,6 +46,8 @@ assert.match(productsPage,/function isOneNavOn016\(p\)/,
  "The exact ON016-2LX review gate must identify the model by code or exact source title");
 assert.match(productsPage,/const imageSrc=on016\?''/,
  "ON016-2LX must not display an unverified source image");
+assert.match(productsPage,/if\(!on016&&p\.imageStatus/,
+ "ON016-2LX must not be labelled as an owner-approved image candidate");
 assert.match(productsPage,/OneNav Evolution Multimedia Receiver for Toyota Corolla Cross A11 \(2021\+\)/,
  "ON016-2LX must use the corrected, size-neutral customer title");
 assert.match(productsPage,/Touchscreen multimedia receiver for Toyota Corolla Cross A11/,
