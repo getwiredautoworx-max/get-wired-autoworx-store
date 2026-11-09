@@ -33,8 +33,9 @@ PREVIEW_ROOT_FILES = [
     "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "planetworld-catalogue-preview.json", "auto-electrical-owner-preview.json",
-    "audio-connections-catalogue-preview.json",
+    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
+    "product-image-treatment-sample.json",
+    "audio-catalogue-secondary-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
     "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
@@ -45,7 +46,7 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
-PREVIEW_ASSET_DIRS = ["asc-auto-electrical-pilot"]
+PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",

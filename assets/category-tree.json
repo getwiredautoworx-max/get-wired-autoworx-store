@@ -4,7 +4,7 @@
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "name": "Audio, Entertainment & Music",
+      "name": "Car Audio / Home Entertainment",
       "slug": "audio-entertainment-music",
       "parent_id": null,
       "active": true,
@@ -13,7 +13,7 @@
     },
     {
       "id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "name": "Auto Electrical Parts & Spares",
+      "name": "Auto Electrical Spares",
       "slug": "auto-electrical-parts-spares",
       "parent_id": null,
       "active": true,

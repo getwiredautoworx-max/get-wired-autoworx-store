@@ -7,9 +7,11 @@ const tree = JSON.parse(read('assets/category-tree.json'));
 const home = read('index-new.html');
 const categoryPage = read('category.html');
 const previewCategory = read('preview-category.html');
-const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
-const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
-const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
+const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
+const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
+const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
+const autoElectrical = JSON.parse(read('assets/auto-electrical-owner-preview.json'));
+const imageSample = JSON.parse(read('assets/product-image-treatment-sample.json'));
 const audioPage = read('preview-audio.html');
 const audioBrandPage = read('preview-audio-brand.html');
 const audioProductsPage = read('preview-audio-products.html');
@@ -50,8 +52,8 @@ const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
 assert.deepEqual(roots, [
-  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Audio, Entertainment & Music'],
-  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
+  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio / Home Entertainment'],
+  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
 const autoElectricalNode = tree.categories.find(c => c.id === 'ba263c9f-d038-48bd-bca0-944f3ebdc5e9');
@@ -159,7 +161,7 @@ for (const [i,page] of shellPages.entries()) {
   assert.ok(page.includes('class="gw-top"') && page.includes('class="gw-header"') && page.includes('class="gw-nav"') && page.includes('class="gw-mobile-nav"'), 'subpage '+i+' must use the shared homepage shell markup');
 }
 assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare package builder must copy the shared subpage shell stylesheet');
-assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"') && !builder.includes('asc-catalogue-preview.html') && !builder.includes('asc-catalogue-preview-data.json'), 'current supplier pilot package must include Planetworld/Audio Connections routes but exclude deferred ASC catalogue assets');
+assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"preview-audio-brand.html"') && builder.includes('"preview-audio-products.html"') && builder.includes('"product-image-treatment-pilot.html"') && builder.includes('"product-image-treatment-sample.json"') && builder.includes('"get-wired-product-pilot"') && !builder.includes('asc-catalogue-preview.html') && !builder.includes('asc-catalogue-preview-data.json') && !builder.includes('planetworld-catalogue-preview.json') && !builder.includes('audio-connections-catalogue-preview.json'), 'preview package must include neutral audio assets and the 50-image sample, but exclude supplier-named files and full catalogue assets');
 assert.ok(!home.includes('ascCatalogueNode') && !home.includes('asc-catalogue-preview.html'), 'deferred ASC catalogue buttons must not appear in the current pilot storefront');
 assert.ok(home.includes('id="gw-subpage-shell-actions"') && home.includes('location.hash==="#cartPanel"') && home.includes('location.hash==="#part-search"') && home.includes('window.openPartSearch()'), 'homepage must open cart and part-search overlays when invoked from subpage shell links');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
@@ -241,7 +243,7 @@ assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
-assert.ok(previewCategory.includes("const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
+assert.ok(previewCategory.includes("const ROOTS=[['Car Audio / Home Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
 assert.ok(!/Vehicle Security|Marine Spares & Accessories|Tools, Hardware & Consumables|Camping, Leisure & Outdoors|Trailer & Canopy/.test(previewCategory), 'obsolete eight-root category buttons must be removed from the preview category route');
 assert.ok(returns.includes('<main class="wrap"><div class="card">'), 'returns page main content wrapper must remain intact after shell update');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
