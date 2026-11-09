@@ -67,10 +67,11 @@ def blue_label_bottom(im):
 def crop_bounds(im):
     w,h=im.size
     lines=ocr_lines(im)
-    top=blue_label_bottom(im)
+    top=0
     bottom=h
     for line in lines:
         span=line["x1"]-line["x0"]
+        if line["y0"]<=h*.30 and span>=w*.25: top=max(top,line["y1"]+12)
         if line["y0"]>=h*.55 and span>=w*.25: bottom=min(bottom,line["y0"]-18)
     
     top=max(0,min(top,int(h*.48)))
@@ -121,7 +122,7 @@ def main():
         with Image.open(path) as im:
             thumb=ImageOps.contain(im.convert("RGB"),(200,126),method=Image.Resampling.LANCZOS)
             sheet.paste(thumb,(x+(cw-thumb.width)//2,y+3))
-        draw.text((x+8,y+134),f"{sid}  {title[:24]}",font=lf,fill=(15,45,70))
+        draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=font(10),fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-ASC-PILOT-*.jpg")))!=EXPECTED: raise SystemExit("Output count is not 50")
     print(f"ASC_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} OCR_outer_crop=true watermark=GET_WIRED_AUTOWORX")
