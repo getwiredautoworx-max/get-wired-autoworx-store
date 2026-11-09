@@ -184,7 +184,30 @@ assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
+assert.equal(audio.powerSpecificationReconciliation.heldRecords.length,3,"only three unresolved Audio Connections model identity/specification holds may remain");
+assert.deepEqual(audio.powerSpecificationReconciliation.resolvedSubwooferRecords,["ac-021","ac-025"]);
+assert.ok(audio.powerSpecificationReconciliation.resolvedAmplifierRecords.includes("ac-038"),"SSA-HORNET-7600.4 must use the higher official impedance-specific output");
 assert.equal(verifiedModels.records.length,69);
+const oneNavPreviewRows=planet.records.filter(row=>row.brandDisplayName==="OneNav");
+assert.equal(new Set(oneNavPreviewRows.map(row=>row.modelNumber)).size,43,"43 unique OneNav models must be integrated into the primary audio catalogue");
+assert.equal(oneNavPreviewRows.length,44,"the exact duplicate ON115-3LX source row must be deduplicated in the rendered catalogue");
+assert.ok(oneNavPreviewRows.every(row=>row.description&&row.manufacturerPage),"integrated OneNav models must carry verified descriptions and official pages");
+assert.equal(oneNavPreviewRows.filter(row=>row.imageUrl).length,6,"only six OneNav owner-preview image candidates may be displayed");
+assert.ok(oneNavPreviewRows.every(row=>row.imageCrop===false),"OneNav product images must preserve full height without cropping");
+assert.ok(!planet.records.some(row=>["OA115-2","OA115-3"].includes(row.modelNumber)),"two ambiguous OneNav source-title collisions must remain held");
+assert.ok(planet.records.every(row=>!Object.keys(row).some(key=>/^(supplierSku|supplier_sku|gwSku|gw_sku)$/i.test(key))),"public preview data must not expose supplier or Get Wired SKU fields");
+assert.equal(planet.records.filter(row=>row.modelVerificationStatus==="OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY").length,68,"68 exact manufacturer-model records must be linked to the primary preview");
+const kickerWirePreview=planet.records.find(row=>row.id==="pw-1687");
+assert.ok(kickerWirePreview&&kickerWirePreview.modelNumber==="KW16400"&&kickerWirePreview.modelVariant==="Sold per metre"&&kickerWirePreview.imageUrl,"Kicker per-metre wire must be reconciled without exposing its internal supplier variant code");
+assert.ok(planet.records.filter(row=>row.division==="Car Audio"&&row.imageUrl).every(row=>row.imageCrop===false),"all Car Audio preview images must use full-image presentation");
+assert.ok(audioPage.includes("displayBrand(p)===brand")&&audioPage.includes("productModelNumber")&&audioPage.includes('const imageFit="contain"'),"audio navigation must use verified brand labels, show model numbers and preserve full images");
+assert.ok(audioBrandPage.includes("brandDisplayName(p.brandDisplayName||p.brand)===brand"),"audio brand pages must route by the verified customer-facing brand label");
+assert.ok(audioProductsPage.includes("displayBrandName(p.brandDisplayName||p.brand)===brand")&&audioProductsPage.includes("img.style.objectFit='contain'"),"audio product pages must route by verified brand and preserve complete product images");
+const oneNavAudit=read('catalogue-review/planetworld-one-official-model-audit.csv');
+assert.equal((oneNavAudit.match(/INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY/g)||[]).length,42,"42 OneNav models must have a unique primary-row integration");
+assert.equal((oneNavAudit.match(/INTEGRATED_PRIMARY_PREVIEW_DUPLICATE_SOURCE_ROWS_DEDUPED/g)||[]).length,1,"the exact duplicate OneNav source row must be recorded");
+assert.equal((oneNavAudit.match(/HOLD_SOURCE_TITLE_COLLISION_TWO_VARIANT_CODES_SHARE_TWO_PRIMARY_ROWS/g)||[]).length,2,"two ambiguous OneNav model codes must remain held");
+assert.ok(verifiedModels.records.every(row=>row.primaryPreviewRecordId&&row.integrationStatus),"all 69 manufacturer-verification records must link to their primary preview row");
 assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,69);
 const kickerPerMetreWire = verifiedModels.records.find(row => row.modelNumber === 'KW16400p/m');
 assert.ok(
@@ -298,8 +321,8 @@ for (const asset of ['audio-types/speakers.svg','audio-types/subwoofers.svg','au
 }
 
 assert.ok(audioBrandPage.includes("if(n.includes('kicker'))return 'https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76'"),'dedicated Kicker brand page must render its logo instead of a text-only fallback');
-assert.ok(audioPage.includes('const ONENAV_WORDMARK=') && audioPage.includes('"one":ONENAV_WORDMARK') && audioPage.includes('"onenav":ONENAV_WORDMARK'),'OneNav directory buttons must use a distinct OneNav wordmark');
-assert.ok(audioBrandPage.includes("if(n==='one'||n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK") && audioBrandPage.includes("if(n==='one x'||n==='onex')return 'https://planetworld.canto.global/"),'OneNav dedicated page must not reuse the OneX logo');
+assert.ok(audioPage.includes('const ONENAV_WORDMARK=') && audioPage.includes('"onenav":ONENAV_WORDMARK') && !audioPage.includes('"one":ONENAV_WORDMARK'),'OneNav must use its own wordmark without assigning it to the unverified One family');
+assert.ok(audioBrandPage.includes("if(n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK") && audioBrandPage.includes("if(n==='one x'||n==='onex')return 'https://planetworld.canto.global/"),'OneNav dedicated page must use its own wordmark and not reuse the OneX logo');
 assert.ok(audioBrandPage.includes("img[alt*='Kicker']{width:135px!important;height:80px!important;max-width:none!important;transform:scale(1.5)!important"),'Kicker logo must be visibly enlarged on the dedicated brand page');
 
 assert.equal(planet.pricingRule.display,'Price On Request','all supplier products must use the current owner Price On Request policy');
