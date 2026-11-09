@@ -216,6 +216,39 @@ assert.match(corollaCrossA11.verified_manufacturer_product_title, /Corrola Cross
 assert.match(corollaCrossA11.customer_description, /Toyota Corolla Cross A11 \(2021\+\)/);
 assert.match(corollaCrossA11.customer_description, /Bluetooth 5\.4/);
 assert.match(corollaCrossA11.customer_description, /4 × 45 W/);
+assert.doesNotMatch(corollaCrossA11.customer_description, /10\.1.?inch|10.?inch/i,
+  'Do not publish the conflicting screen diagonal until OneNav clarifies it');
+assert.match(corollaCrossA11.review_note, /10\.1-inch.*10-inch.*unresolved/i,
+  'The official page title/specification screen-size conflict must remain explicit');
+
+const on016Coverage = coverage.find(row => row.preview_product_id === 'pw-2187');
+assert.ok(on016Coverage, 'The OneNav ON016-2LX storefront source row must remain in coverage');
+assert.equal(on016Coverage.model_identity_status, 'VERIFIED_OFFICIAL_PRODUCT_PAGE');
+assert.equal(on016Coverage.image_status, 'NO_EXACT_IMAGE_APPROVED');
+assert.equal(on016Coverage.import_status, 'DO NOT IMPORT');
+assert.match(on016Coverage.review_note, /screen diagonal.*omit screen size/i);
+
+const on016Evidence = JSON.parse(fs.readFileSync(
+  'catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json', 'utf8'));
+assert.equal(on016Evidence.manufacturer_model_code, 'ON016-2LX');
+assert.equal(on016Evidence.manufacturer_evidence.status, 'VERIFIED_EXACT_SKU_AND_FITMENT');
+assert.equal(on016Evidence.source_record.row, 106);
+assert.equal(on016Evidence.category_path.join(' / '),
+  'Audio, Entertainment & Music / Car Audio & Video / OneNav / Head Units & Media Players');
+assert.equal(on016Evidence.screen_size.status, 'CONFLICT_UNRESOLVED');
+assert.equal(on016Evidence.customer_content.customer_title,
+  'OneNav Evolution Multimedia Receiver for Toyota Corolla Cross A11 (2021+)');
+assert.doesNotMatch(on016Evidence.customer_content.customer_title, /10\.1|10-inch/i);
+assert.doesNotMatch(on016Evidence.customer_content.customer_description, /10\.1.?inch|10.?inch/i);
+assert.equal(on016Evidence.image.url, null);
+assert.equal(on016Evidence.image.status, 'IMAGE_PENDING');
+assert.equal(on016Evidence.image.approved, false);
+assert.equal(on016Evidence.image.rejected_candidates[0].model, 'ON1609-A111');
+assert.equal(on016Evidence.proposed_gw_sku, null);
+assert.equal(on016Evidence.pricing.customer_display, 'Price On Request');
+assert.equal(on016Evidence.pricing.numeric_price, null);
+assert.equal(on016Evidence.stock.stock_status, null);
+assert.equal(on016Evidence.review_status, 'DO NOT IMPORT');
 
 const qashqaiXtrailA10 = byHeadunitCode.get('ON413-1A10');
 assert.equal(qashqaiXtrailA10.model_identity_status, 'VERIFIED_OFFICIAL_CATALOGUE');
