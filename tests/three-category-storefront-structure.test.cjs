@@ -65,8 +65,7 @@ const carCareChildren = tree.categories.filter(c => c.active && c.parent_id === 
 assert.deepEqual(autoElectricalChildren, ['Alternators & Starters','Batteries & Charging','Fuses, Relays & Wiring','Globes & Vehicle Lighting','Sensors & Switches'], 'Auto Electrical must retain its five approved customer-facing subcategories');
 assert.deepEqual(carCareChildren, ['Car Care','Car Mats','Seat Covers & Interior Accessories','Exterior Accessories'], 'Car Care must retain its four approved customer-facing subcategories');
 const artForStart = previewCategory.indexOf('function artFor(');
-const artForEnd = previewCategory.indexOf('
-function ', artForStart + 1);
+const artForEnd = previewCategory.indexOf('\\nfunction ', artForStart + 1);
 assert.ok(artForStart >= 0 && artForEnd > artForStart, 'preview category page must expose a deterministic category artwork resolver');
 const artForSource = previewCategory.slice(artForStart, artForEnd);
 const previewCategoryArtFor = vm.runInNewContext('(' + artForSource + ')');
