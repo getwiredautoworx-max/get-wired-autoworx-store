@@ -89,7 +89,7 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "Continue authorised catalogue extraction and enrichment in bounded batches in the public repository; retain source provenance, Price On Request, exact model/image matching, and customer-facing supplier/SKU suppression. No private-processing prerequisite."
+      "next_action": "Continue authorised public-repository catalogue work; 3,317 Planetworld source-snapshot records exist, with 236 source rows still manual review. Keep all prices Price On Request, do not display supplier identities or internal identifiers, and verify image/model matching before publication."
     },
     {
       "id": "electrocity-ignition-pilot",
@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Continue bounded product-level reconciliation; group Planetworld and Audio Connections products by product, verify exact models/variants, images, descriptions and Audio Connections wattage; apply higher output only where source conflict is documented."
+      "next_action": "Preview now withholds Audio Connections rows without exact verified image/model match; 61 of 66 records qualify for preview, 3 model/spec holds, 1 failed image and 1 low-resolution image remain excluded. Continue exact model/image reconciliation, Planetworld 236-row manual review, wattage and brand/type routing."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -182,12 +182,12 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Run after category routing, image regeneration, audio reconciliation and ASC review pass on one exact candidate SHA; hosted staging preview must match that SHA."
+      "next_action": "Latest exact-head Cloudflare package QA must pass after the current category, supplier-safe preview sanitization and audio image-hold changes; then verify same-SHA staging preview on mobile and desktop."
     },
     {
       "id": "three-department-category-assignment-repair",
       "priority": 1,
-      "status": "ready",
+      "status": "in_progress",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -206,12 +206,12 @@
         "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
         "Customer display hides supplier names/internal SKUs and uses Price On Request"
       ],
-      "next_action": "Audit current category IDs, slugs, page routes and preview JSON; produce a mapping report first, then repair the single candidate and add route/population regression tests."
+      "next_action": "Candidate now splits the 34 verified pilot records into Sensors (9), Switches (8), Globes (8) and Fuel Pumps (9), with deep links into the filtered Auto Electrical preview. Finish regression QA, then reconcile remaining unpopulated Auto Electrical and Car Care subcategories without inventing records."
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
       "priority": 2,
-      "status": "ready",
+      "status": "in_progress",
       "execution_mode": "workflow-dispatch-and-visual-review",
       "automatic": false,
       "source": [
@@ -226,7 +226,7 @@
         "All 50 output images and contact sheet exist, with checksums and 50 unique sample IDs",
         "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
       ],
-      "next_action": "Run the existing workflow_dispatch image treatment workflow on this candidate branch; inspect regenerated outputs before calling sample complete."
+      "next_action": "50 outputs regenerated with 100% source-height preservation and zero bottom crop; contact sheet reviewed with no product bottoms clipped. The source card captions and blue catalogue code strips are still visible in some crops. Separate those external labels from the product photographs without cutting product content, then inspect all 50 at full resolution and obtain owner acceptance."
     }
   ]
 }
