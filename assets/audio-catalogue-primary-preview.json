@@ -24277,19 +24277,7 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
-      "brandDisplayName": "OneNav",
-      "modelNumber": "OA115-2",
-      "manufacturerModelNumber": "OA115-2",
-      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-isuzu/",
-      "manufacturerProductName": "OneNav Classic 9inch for Isuzu",
-      "description": "Vehicle-specific OneNav Classic 9-inch media receiver for Isuzu. Features a 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
-      "imageUrl": "",
-      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
-      "imageCrop": false,
-      "imagePosition": "center",
-      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
       "id": "pw-2131",
@@ -24300,19 +24288,7 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
-      "brandDisplayName": "OneNav",
-      "modelNumber": "OA115-2",
-      "manufacturerModelNumber": "OA115-2",
-      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-isuzu/",
-      "manufacturerProductName": "OneNav Classic 9inch for Isuzu",
-      "description": "Vehicle-specific OneNav Classic 9-inch media receiver for Isuzu. Features a 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
-      "imageUrl": "",
-      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
-      "imageCrop": false,
-      "imagePosition": "center",
-      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
     },
     {
       "id": "pw-2132",
@@ -37722,15 +37698,20 @@
   },
   "productImageEnrichment": {
     "sourceAudit": "official-model-image-audit.csv",
-    "descriptionsEnriched": 45,
+    "descriptionsEnriched": 43,
     "exactImageCandidatesApplied": 68,
     "exactModelPagesReviewed": 113,
     "status": "OWNER_PREVIEW_ONLY_PENDING_HOSTED_IMAGE_QA_AND_OWNER_REVIEW",
-    "note": "Reconciled 45 OneNav official model pages to 46 source rows (one duplicate source row), integrated all 45 descriptions and six owner-preview image candidates; linked 68 additional manufacturer-model records to primary by exact manufacturer page; added the Kicker KW16400 speaker-wire per-metre record with its owner-authorised exact supplier image, while keeping its Get Wired SKU unassigned. OneNav's other 39 model images remain pending or rejected. Car Audio remains review-only; no numeric supplier prices, stock, supplier SKUs or Get Wired SKUs are exposed in this public preview dataset.",
+    "note": "Reconciled 43 of 45 OneNav official model pages to 44 primary rows (one exact duplicate source row); two OneNav model codes remain on hold because the same source title maps to two primary rows and the exact variant-to-row assignment is not proven. All 43 integrated descriptions are official-page verified; six OneNav image candidates are review-only and the other 37 images remain pending/rejected. Linked 68 additional manufacturer-model records to primary by exact manufacturer page and added the Kicker KW16400 per-metre wire record with its owner-authorised exact supplier image; its Get Wired SKU remains unassigned. Current Car Audio preview has 113 description rows, 75 image assets and 113 model-number rows (112 unique model numbers). No supplier SKU, Get Wired SKU, numeric supplier price or stock is exposed.",
     "manufacturerDescriptionsVerified": 113,
     "oneNavImageCandidatesApplied": 6,
     "totalPreviewImageAssets": 75,
     "manufacturerImagesVerified": 60,
-    "oneNavImageCandidatesReviewOnly": 6
+    "oneNavImageCandidatesReviewOnly": 6,
+    "manufacturerDescriptionsIntegrated": 111,
+    "manufacturerDescriptionRowsIntegrated": 112,
+    "oneNavModelPagesIntegrated": 43,
+    "oneNavModelPagesOnHold": 2,
+    "oneNavPrimaryRowsIntegrated": 44
   }
 }
