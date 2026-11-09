@@ -55,7 +55,7 @@ To ensure full transparency into the status of extracted product data, the table
 | **Technical Specs / Dimensions** | 0 (None in pilot) | 0 (0%) | 978 (Pending) | 978 technical dimensions/specs quarantined; preserved in original PDFs, pending manual transcription |
 | **Pricing Value** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; labeled "Price On Request due to Limited Stock and Availability" |
 | **Physical Stock Count** | 0 (0%) | 0 (0%) | 978 (100%) | Quarantined; unconfirmed dealer orderability only |
-| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos watermarked; quarantined from production storefront publication |
+| **Product Photo Image** | 50 (Pilot crops) | 902 (Photo cards) | 26 (Image on Request) | All 952 photos retain ASC watermark; owner-authorised Get Wired AutoWorx watermark treatment is pending |
 
 ---
 
@@ -105,5 +105,5 @@ The reload package cleanly separates review artifacts from staged import specifi
 
 1. **Owner Approval of Review Datasets:** Owner review and sign-off on the 978-row extraction and category mappings.
 2. **Current Dealer Pricing:** ASC supplier pricing is unconfirmed. Products remain labeled "Price On Request due to Limited Stock and Availability". Pricing updates require current ASC dealer cost sheets.
-3. **Image Rights Clearance:** The 952 photographic assets are watermarked source-card crops. Clean, unwatermarked high-resolution images or explicit ASC image distribution permissions must be secured before public storefront publishing.
+3. **Image Treatment:** The owner has authorised ASC image use and editing. Complete the approved 50-sample workflow: remove the ASC watermark, apply the Get Wired AutoWorx watermark, remove catalogue-description text outside the product image, and verify exact product-image matching. This is not a permission blocker.
 4. **Editorial Proofing of Fitment & Specifications:** Complete row-by-row manual transcription of technical dimensions, specifications, and fitment before admitting beyond review status.
