@@ -19,7 +19,7 @@
     {
       "match": {
         "brand": "Audison",
-        "title": "Audison - bit DMI - Digital Most Interface"
+        "title_contains": "bit DMI"
       },
       "title": "Audison bit DMI Digital MOST Interface",
       "brand": "Audison",
@@ -33,7 +33,9 @@
       "imageReviewNote": "Exact Audison bit DMI product page and manufacturer image verified; review-only owner preview. No supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "id": "preview-audison-bit-dmi",
+      "appendIfMissing": true
     }
   ]
 }
