@@ -263,6 +263,8 @@ assert.ok(audioPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && a
 assert.ok(audioBrandPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioProductsPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"'), 'Audio brand and product routes must use the same verified-only secondary catalogue filter');
 assert.ok(imageSample.records.every(p=>/REGENERATED_FULL_SOURCE_HEIGHT/.test(p.imageStatus||'')), '50-image sample status must reflect regenerated full-height outputs without claiming owner acceptance');
 assert.ok(imageProcessor.includes('PRODUCT_MASK_OVERRIDES') && imageProcessor.includes('mask_draw.rectangle') && imageProcessor.includes('"f1-012"') && imageProcessor.includes('0.92'), 'image treatment must mask external catalogue labels while preserving the full product bounds, including fuel-pump bodies');
+assert.ok(audioPage.includes('ONENAV_WORDMARK') && audioPage.includes('"onenav":ONENAV_WORDMARK') && audioPage.includes('"amplified":"https://planetworld.canto.global/'), 'OneNav and Amplified brand buttons must use their mapped brand artwork');
+assert.ok(audioPage.includes('min-width:184px') && audioPage.includes('height:72px') && audioPage.includes('transform:scale(1.5)'), 'Kicker brand logo must use the enlarged owner-requested display size');
 const audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
 const audioPageVisibleMarkup = audioPage.slice(audioPageBodyStart, audioPageScriptStart < 0 ? audioPage.length : audioPageScriptStart);
