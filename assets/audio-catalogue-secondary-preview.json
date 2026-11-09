@@ -502,7 +502,7 @@
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_EXACT_MODEL",
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-12-6300/",
       "specificationStatus": "OFFICIAL_400W_RMS_VERIFIED_SUPPLIER_300W_BASIS_UNSPECIFIED_HIGHER_OFFICIAL_VALUE_USED",
-      "specificationSource": "Current official Starsound product page lists 400 W RMS; Audio Connections source label states 300 W without RMS/maximum basis. Owner rule applied: use the higher verified manufacturer output.",
+      "specificationSource": "Current official Starsound product page lists 400 W RMS; supplier source label states 300 W without RMS/maximum basis. Owner rule applied: use the higher verified manufacturer output.",
       "imageSourceUrl": "https://starsound.co.za/product/ssw-12-6300/",
       "specificationEvidenceStatus": "MANUFACTURER_PRIMARY_SOURCE_VERIFIED",
       "specificationSourceUrls": [
@@ -616,7 +616,7 @@
       "priceBasis": "SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE",
       "manufacturerMatchStatus": "OFFICIAL_MODEL_AND_4_OHM_CONFIRMED; SUPPLIER_300W_RMS_USED; MANUFACTURER_RMS_UNPUBLISHED",
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-b12-2800/",
-      "specificationSource": "Audio Connections 5 August 2026 supplier catalogue explicitly lists 300 W RMS. Official Starsound page confirms the exact 12-inch 4-ohm vented enclosure but does not publish an RMS rating; the lower third-party 250 W figure is not adopted.",
+      "specificationSource": "supplier catalogue dated 5 August 2026 explicitly lists 300 W RMS. Official Starsound page confirms the exact 12-inch 4-ohm vented enclosure but does not publish an RMS rating; the lower third-party 250 W figure is not adopted.",
       "specificationStatus": "SUPPLIER_300W_RMS_EXPLICIT_MANUFACTURER_RMS_NOT_PUBLISHED",
       "sourcePriceListDateLabel": "Price list · 5 August 2026",
       "imageSourceUrl": "https://starsound.co.za/product/ssw-b12-2800/",
