@@ -184,6 +184,69 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-one-hd-virtuoso",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit One HD Virtuoso"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit One HD Virtuoso 13-Channel High-Resolution DSP",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit One HD Virtuoso",
+      "description": "High-resolution digital signal processor with 12 high-level inputs, six low-level inputs, two optical S/PDIF inputs and up to 13 processed output channels. Uses 24-bit / 96 kHz floating-point processing, with 10-band parametric equalisation per channel, crossover and time-alignment controls, and support for complex OEM and aftermarket audio systems. Optical inputs accept up to 24-bit / 192 kHz; maximum pre-out level is 4 V.",
+      "imageUrl": "https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit One HD Virtuoso manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-ten",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit Ten"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit Ten 5-Channel Digital Signal Processor",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit Ten",
+      "description": "Compact digital signal processor with four high-level inputs, four low-level inputs and five processed outputs for front, rear and subwoofer channels. Uses 24-bit / 48 kHz fixed-point processing, with crossover filters, time alignment and 31-band graphic equalisation. Specifications include 4 V maximum pre-out level, 96 dBA signal-to-noise ratio and 11–15 VDC operating supply.",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison_bitTen.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit Ten manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-tune",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit Tune"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit Tune DSP Calibration and Measurement Tool",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "DSP Tuning & Calibration Tools",
+      "modelNumber": "bit Tune",
+      "description": "Automatic calibration and electro-acoustic analysis tool for Audison bit processors. Assists with time alignment, equalisation and level setup, and helps diagnose common installation issues such as channel inversion, phase errors and missing signal or cabling. Designed to speed up system verification while leaving final tuning decisions to the installer.",
+      "imageUrl": "https://static.audison.com/media/2023/02/Audison_bitTune.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit Tune manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
