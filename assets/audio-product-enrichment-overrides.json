@@ -100,6 +100,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-adeo-plano-120-reference-white-2",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "120\\\" - 2.657 - PLANO - 1.78-REFERENCE WHITE 2"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Plano 120-inch Reference White 2 Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Plano 120-inch Reference White 2",
+      "description": "120-inch fixed-frame home-cinema projection screen in 16:9 format. The Reference White 2 surface is designed for a conventional front-projection installation and is not acoustically transparent, so front speakers should be placed beside or below the screen rather than behind it. The Plano aluminium frame and elastic tensioning system keep the projection surface flat. Approximate viewing area: 2,657 mm wide × 1,494 mm high; wall-mounted installation.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Adeo_Plano_Screen-1000x1000_53aeaebb-ca25-4995-870b-b2e2e03e1d57.webp?v=1781091175&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Plano 120-inch Reference White 2 product listing and listing image verified against the 120-inch, 16:9, non-acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
