@@ -125,7 +125,7 @@ if include_preview:
     for name in PREVIEW_ASSET_DIRS:
         if not (OUT / "assets" / name).is_dir():
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
-    for test in ["pricing-display-policy.test.cjs"]:
+    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
     print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
