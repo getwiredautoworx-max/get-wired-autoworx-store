@@ -13,6 +13,7 @@ FILES = {
 IMAGE_KEYS = ("imageUrl", "image", "image_url", "productImage", "product_image", "photoUrl", "thumbnail")
 DESCRIPTION_KEYS = ("description", "productDescription", "shortDescription", "longDescription", "technicalSpecifications", "specifications", "features")
 VERIFIED_IMAGE_STATUSES = {
+    "owner_authorized_exact_retailer_image_verified_review_only",
     "official_manufacturer_image_verified_review_only",
     "official_manufacturer_image_owner_authorized_for_store_preview",
     "EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY",
@@ -30,6 +31,10 @@ def nonempty(record, keys):
 def audit(name, path):
     data = json.loads(path.read_text(encoding="utf-8"))
     rows = data.get("records", data.get("products", []))
+    overrides_path = ROOT / "assets/audio-product-enrichment-overrides.json"
+    if overrides_path.is_file():
+        overrides = {r.get("id"): r for r in json.loads(overrides_path.read_text(encoding="utf-8")).get("records", [])}
+        rows = [dict(row, **{k:v for k,v in overrides.get(row.get("id"), {}).items() if k != "id"}) for row in rows]
     summary = {
         "records": len(rows),
         "missingImage": 0,
