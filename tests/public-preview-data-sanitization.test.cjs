@@ -34,6 +34,14 @@ assert.equal(bcon.imageStatus, 'official_manufacturer_image_verified_review_only
 assert.ok(bcon.imageUrl && bcon.description, 'Audison B-CON must have exact official image and technical description');
 assert.equal(bcon.indicativePrice, null);
 assert.equal(bcon.hasStock, null);
+const arcam = primary.records.find(record => record.brand === 'ARCAM' && record.title === 'ARCAM AVR21 HDMI 2.1 AV Receiver');
+assert.ok(arcam, 'verified ARCAM AVR21 Home Entertainment preview record must be present');
+assert.equal(arcam.modelNumber, 'AVR21');
+assert.equal(arcam.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(arcam.imageUrl && arcam.description, 'ARCAM AVR21 must have exact manufacturer image and description');
+assert.equal(arcam.indicativePrice, null);
+assert.equal(arcam.hasStock, null);
+
 
 
 let checked = 0;
