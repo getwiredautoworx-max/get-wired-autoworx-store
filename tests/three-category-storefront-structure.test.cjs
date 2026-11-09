@@ -259,6 +259,9 @@ assert.ok(previewCategory.includes("items=items.filter(c=>c.name!=='Sensors & Sw
 assert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');
 assert.ok(previewCategory.includes("'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-asc-sample.html?category=Aerials'") && previewCategory.includes("'c35d15c1-d665-413f-b528-878b6a655d5d':'preview-asc-sample.html?category=Car%20Mats'"), 'ASC Aerials and Car Mats must route to their own sample catalogue records');
 assert.ok(previewAscSample.includes("const allowed=['Aerials','Car Mats']") && previewAscSample.includes("p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'"), 'ASC sample page must restrict itself to the two authorised review-only sample categories');
+assert.ok(audio.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audio.includes('imageStatus==="OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"') && audio.includes('&&p.imageUrl'), 'Audio Connections preview must exclude held, failed-image and low-resolution records');
+assert.ok(audioBrandPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioProductsPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"'), 'Audio brand and product routes must use the same verified-only secondary catalogue filter');
+assert.ok(imageSample.records.every(p=>/REGENERATED_FULL_SOURCE_HEIGHT/.test(p.imageStatus||'')), '50-image sample status must reflect regenerated full-height outputs without claiming owner acceptance');
 const audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
 const audioPageVisibleMarkup = audioPage.slice(audioPageBodyStart, audioPageScriptStart < 0 ? audioPage.length : audioPageScriptStart);
