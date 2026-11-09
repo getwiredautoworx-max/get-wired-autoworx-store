@@ -251,3 +251,45 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - PR #190 description also claims a successful Pages deployment on the same SHA, while the latest owner-provided run context reports a Cloudflare PR build failure and no verified exact-SHA preview. These signals conflict and the Cloudflare dashboard build log/credit implication is not available through the current GitHub connector. Treat hosted preview status as **UNVERIFIED / NOT READY**. No deployment, workflow dispatch, credit use or further commit to PR #190 is permitted until that conflict is understood.
 - To continue safe catalogue/QA work without changing PR #190, created a non-PR work branch `work/audio-one-nav-enrichment-2026-11-09` from the exact PR #190 head. This is a temporary work branch only, not a competing integration candidate or pull request. It will hold one bounded OneNav review/test increment for later selective reconciliation; no Cloudflare PR build should be triggered because no PR is opened.
 - Workstream remains OneNav only. Next action: reconcile the OneNav audit rows and product page behaviour, focusing on exact image and route integrity; keep all candidate records review-only / DO NOT IMPORT. Do not touch ASC work or production.
+
+
+## 2026-11-09 09:19–09:42 SAST — ONENAV ON016-2LX EVIDENCE AND BRAND-ROUTE QA INCREMENT
+
+### Live integration/Cloudflare gate rechecked
+- Current main head at task start: `f947d33d6a102129307f4e74833798525974c4c3`.
+- The sole coordinated storefront candidate remains PR #190, branch `integration/storefront-current-main-2026-11-09`, exact head `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40`. It is **24 commits ahead / 3 behind** current main, merge base `8a1119e44b6586934e32265e0bd7729263f6ea95`; do not describe it as 1 ahead / 0 behind.
+- Eleven GitHub PR workflow runs associated with `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40` completed SUCCESS: 42567300754, 42567300792, 42567300834, 42567300845, 42567300848, 42567300874, 42567300878, 42567300892, 42567300907, 42567300931, 42567301056. These are GitHub workflow results; they do not resolve the separate Cloudflare Git-integration bot failure.
+- PR #190 description claims a successful Pages deployment on the same SHA at `https://a46fe243.get-wired-autoworx-store.pages.dev/owner-preview.html`, while the current owner run instruction reports a Cloudflare PR build failure and says no exact-SHA hosted preview is verified. The Cloudflare dashboard build log and automatic-build/credit implication are not accessible through the GitHub connector. Status remains **CONFLICTING / UNVERIFIED / NOT READY**. No further commits were pushed to PR #190; no workflow dispatch, deployment or Cloudflare/Netlify credit use occurred.
+- Created `work/audio-one-nav-enrichment-2026-11-09` from PR #190 head `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40` solely to hold a bounded non-deploy OneNav evidence/test increment while PR #190 is frozen. This is not a pull request or competing integration candidate. Keep PR #190 as the sole coordinated candidate.
+
+### OneNav product increment — ON016-2LX
+- Source reconciliation: internal supplier product-list row `one-price-list-2026-10-25.xlsx`, `Products`, row 106, source code `ON016-2LX`. Official manufacturer page: https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/
+- Manufacturer page confirms exact SKU `ON016-2LX`, OneNav Evolution family and Toyota Corolla Cross A11 (2021+) fitment. Manufacturer-listed features recorded: wired/wireless OneConnect; Wireless CarPlay and Android Auto; Bluetooth 5.4; FM/AM RDS; USB media/high-speed charging; 5 × 4 V RCA outputs; 4 × 45 W speaker output; DSP; 12-band equaliser; optional front/rear cameras; three-year warranty.
+- **Screen-size exception:** manufacturer page title says 10.1-inch, while its Additional Information and Specifications say 10-inch. This is explicitly `CONFLICT_UNRESOLVED`. Customer title and description omit a numeric diagonal until manufacturer clarification.
+- Exact product image remains **IMAGE_PENDING**. Image search surfaced a universal 9-inch OneNav `ON1609-A111` image; it was rejected as a different model/fitment. No image URL was assigned. No GW SKU was invented or assigned.
+- Customer display remains `Price On Request`; numeric price is null and stock remains unconfirmed. Product remains `DO NOT IMPORT`.
+- Updated `catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv`: ON016-2LX row now explicitly records the screen-size conflict, corrected size-free customer description, rejected non-exact image and pending image state.
+- Updated `catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv`: storefront row `pw-2187` is now `VERIFIED_OFFICIAL_PRODUCT_PAGE` for exact SKU/fitment, but remains no-exact-image-approved / DO NOT IMPORT.
+- Added `catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json` with full field-level evidence/status, source row, category path, customer title/description, screen-size exception, image rejection, no-SKU decision, price/stock policy and import gate.
+
+### OneNav brand page and deterministic QA
+- Updated `preview-audio-brand.html` so the OneNav route no longer presents a generated text SVG as an official logo. It shows a text label and an owner-preview note that the official logo asset is pending verification.
+- For OneNav only, product-type tiles may use an exact image from that same brand/type. They may not borrow another brand's product image or fall back to generic Unsplash stock. If no exact OneNav image exists, the tile explicitly shows `Exact OneNav product-type image pending verification`. Other brands' existing fallback logic was not changed.
+- Updated `tests/onenav-source-audit.test.cjs` to protect exact SKU/fitment identity, the unresolved screen-size conflict, size-free customer copy, pending/rejected image state, price/stock suppression and DO NOT IMPORT.
+- Updated `tests/audio-catalogue-preview.test.cjs` to check brand-route isolation, department/brand/product-type navigation parameters, OneNav image/logo fail-closed handling, product-page brand/type filtering, Price On Request and absence of internal supplier metadata from audio page code.
+- Latest work-branch commits:
+  - `53de6c1c5b78dad82a2bbbcdf39019c1ac13b760` — head-unit evidence update.
+  - `4f242db64ba54d7f292edb6b7c22b07015b80436` — storefront coverage update.
+  - `e9a1b405178d7cac78bdeafc69db8daa06c85f9e` — structured ON016-2LX evidence record.
+  - `22a8af26a9553089567070d5e65fab83d70fa98b` — OneNav source-audit assertions.
+  - `b604b4ae85c07381ce318d8a7633c08e75321e42` — OneNav logo/type-image fail-closed page change.
+  - `558a80348b4e7a9c2f4da7b601093570ed6f0844` — audio brand-route and image-gate regression assertions.
+- Read-back validation: 18 connector-side assertions PASS; both updated Node test files and both inline page scripts compile in the V8 static syntax check. The actual Node commands `node tests/onenav-source-audit.test.cjs` and `node tests/audio-catalogue-preview.test.cjs` were **not executed**. No GitHub Actions run or hosted preview was triggered; do not claim CI verification.
+- Read-back counts: 23 OneNav unmatched head-unit rows retained; ON016-2LX is exact-SKU/fitment verified, image pending; the other 22 head-unit rows were not changed. The 45-row official-model audit and 16-row camera/accessory register were not changed in this increment.
+
+### Remaining OneNav work / next action
+- Obtain manufacturer clarification on the 10-inch versus 10.1-inch wording and an exact ON016-2LX image.
+- Locate/verify an official OneNav brand logo asset; the page currently uses a text label rather than an unverified logo.
+- Assign no proposed GW SKU until the approved allocation method/evidence is available.
+- Continue OneNav only. Do not advance to another brand until its remaining model/image exceptions are resolved. The full OneNav enrichment is not complete.
+- No ASC files/workstream were changed. No live catalogue, Supabase, price, stock, active flag, payment, checkout, Axxess, DNS, hosting, merge, deployment, publication or production changes were made. Production remains HOLD.
