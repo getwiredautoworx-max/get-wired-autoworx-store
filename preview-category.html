@@ -91,7 +91,13 @@ function artFor(label){
  const exact=localAudio.find(([re])=>re.test(n));
  if(exact)return exact[1];
  // External category artwork is a review-only visual aid. Source reuse permission is not confirmed; do not treat these URLs as production-approved product imagery.
- const photos=[\n  [/automotive sensors?/,'assets/get-wired-product-pilot/GW-PILOT-005.jpg'],\n  [/automotive switches?/,'assets/get-wired-product-pilot/GW-PILOT-010.jpg'],\n  [/fuel pumps?/,'assets/get-wired-product-pilot/GW-PILOT-022.jpg'],\n  [/automotive globes?/,'assets/get-wired-product-pilot/GW-PILOT-014.jpg'],\n  [/car mats?/,'assets/get-wired-product-pilot/GW-PILOT-018.jpg'],\n  [/aerials?/,'assets/get-wired-product-pilot/GW-PILOT-001.jpg'],
+ const photos=[
+  [/automotive sensors?/,'assets/get-wired-product-pilot/GW-PILOT-005.jpg'],
+  [/automotive switches?/,'assets/get-wired-product-pilot/GW-PILOT-010.jpg'],
+  [/fuel pumps?/,'assets/get-wired-product-pilot/GW-PILOT-022.jpg'],
+  [/automotive globes?/,'assets/get-wired-product-pilot/GW-PILOT-014.jpg'],
+  [/car mats?/,'assets/get-wired-product-pilot/GW-PILOT-018.jpg'],
+  [/aerials?/,'assets/get-wired-product-pilot/GW-PILOT-001.jpg'],
   [/vacuum cleaners?/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82'],
   [/pool cleaners?/,'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=720&q=82'],
   [/alternators? & starters?/,'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motores-avviamento.jpeg'],
