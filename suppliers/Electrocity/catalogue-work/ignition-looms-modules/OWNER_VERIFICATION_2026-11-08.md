@@ -37,3 +37,10 @@ Both match the owner-approved source override. The manifest records 5 pages / 26
 3. PR #185 remains OPEN and UNMERGED. This review does not authorise merge, product creation, price/stock changes, image publication, database writes, Axxess uploads, deployment or production changes.
 
 **Final assessment:** Jules delivered the complete paired-pilot review package and its structural evidence. The pilot is suitable for owner review as a DO NOT IMPORT package. It is not an approved live catalogue import, and the quarantined IG-T003 record remains unresolved.
+
+
+## 2026-11-09 owner-side fitment exception follow-up — GWA-EC-000012 / IG-T003
+
+Checked the official [Mobiletron IG-T003 product page](https://www.mobiletron.com/Product/detail/2801/IG-T003). It identifies an inductive/pick-up ignition module and lists OE-maker cross-references for Denso, GM, Isuzu, Lucas, Mitsubishi and Toyota. It does not supply direct vehicle-model applications or reconcile the Electrocity source caption “FIAT/PEUGEOT/RENAUL”.
+
+The customer-facing candidate has therefore been made generic and contains no vehicle fitment claim. Confirmed applications remain empty; confidence remains unverified; QA remains quarantined pending supplier clarification. This contains the customer risk but does not falsely claim the source discrepancy is fully resolved. No import, merge, publication or live change is authorised.

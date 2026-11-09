@@ -124,3 +124,10 @@ The pilot outputs are contained in `suppliers/Electrocity/catalogue-work/ignitio
 4. `page-evidence/` (29 PNG image crops)
 5. `exceptions.csv` (Documented catalogue anomalies and discrepancies)
 6. `qa-report.md` (This comprehensive QA audit report)
+
+
+## 2026-11-09 — IG-T003 fitment exception disposition
+
+The official [Mobiletron IG-T003 product page](https://www.mobiletron.com/Product/detail/2801/IG-T003) identifies the part as an **Inductive / Pick up ignition module** and lists OE-maker references for Denso (1313000072), GM (94404544), Isuzu (8944045440), Lucas (DAJ902), Mitsubishi (CYGS065A) and Toyota (8962010090 / 8962010120 / 8962012340 / 8962016070). This corroborates the module identity and those OE cross-references; it does **not** provide direct vehicle-model fitment or reconcile the Electrocity catalogue's printed “FIAT/PEUGEOT/RENAUL” caption.
+
+**Disposition:** The customer-facing risk is contained: the normalised candidate is now a generic “4-pin inductive/pick-up ignition module, model IG-T003” description and makes no vehicle-application claim. The confirmed-applications field remains empty; confidence remains unverified; QA remains QUARANTINED_SUPPLIER_CLARIFICATION_REQUIRED. The row is still excluded from import/publication until Electrocity confirms whether the printed caption is a misprint or a separate application. This is not represented as a verified fitment.
