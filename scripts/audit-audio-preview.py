@@ -72,6 +72,7 @@ def audit(name, path):
         "harnessTrimExamples": [],
         "byDivision": {},
         "byCollection": {},
+        "sampleRowsByDivision": {},
         "imageStatuses": Counter(),
         "publicationStatuses": Counter(),
         "divisions": Counter(),
@@ -123,6 +124,9 @@ def audit(name, path):
         summary["divisions"][str(row.get("division", "unspecified"))] += 1
         summary["collections"][str(row.get("collection", "unspecified"))] += 1
         summary["components"][str(row.get("component", "unspecified"))] += 1
+        division_name = str(row.get("division", "unspecified"))
+        if division_name in ("Home CI", "Home Retail", "Installed AV") and len(summary["sampleRowsByDivision"].setdefault(division_name, [])) < 15:
+            summary["sampleRowsByDivision"][division_name].append({"brand": row.get("brand"), "title": row.get("title"), "component": row.get("component"), "collection": row.get("collection")})
         brand = str(row.get("brand", "")).strip().casefold()
         model = str(row.get("modelNumber") or row.get("model") or "").strip().casefold()
         if brand and model:
