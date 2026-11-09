@@ -16,9 +16,13 @@ for(const data of [primary,secondary]){
  }
 }
 const raw=JSON.stringify([primary,secondary,models]);
-assert.doesNotMatch(raw,/Planetworld|Audio Connections/i,"supplier names must not appear in customer preview data or image URLs");
+// Image hosts may retain the original supplier domain because the owner has
+// authorised those exact catalogue/manufacturer images. The host is not a
+// customer-facing supplier label; audit visible metadata separately.
+const customerVisibleMetadata=raw.replace(/https?:\/\/[^\s"'<>]+/gi,"[image-asset-url]");
+assert.doesNotMatch(customerVisibleMetadata,/Planetworld|Audio Connections/i,"supplier names must not appear in customer-visible catalogue metadata");
 for(const file of ["preview-audio.html","preview-audio-products.html","preview-audio-brand.html"]){
  const html=fs.readFileSync(file,"utf8");
  assert.doesNotMatch(html,/assets\/(?:planetworld|audio-connections)[^"' ]*\.json/i);
 }
-console.log("PASS: 3,317 + 66 audio review records; generic Price On Request; no numeric prices, stock, supplier names or supplier image URLs.");
+console.log("PASS: 3,317 + 66 audio review records; generic Price On Request; no numeric prices, stock or visible supplier names.");
