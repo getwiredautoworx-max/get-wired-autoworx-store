@@ -48,6 +48,14 @@ assert.equal(adeo.imageStatus, 'owner_authorized_exact_retailer_image_verified_r
 assert.ok(adeo.imageUrl && adeo.description, 'Adeo Plano must have exact listing image and verified 135-inch dimensions');
 assert.equal(adeo.indicativePrice, null);
 assert.equal(adeo.hasStock, null);
+const adeo120 = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Plano 120-inch Reference White 2 Fixed-Frame Projection Screen');
+assert.ok(adeo120, 'verified Adeo Plano 120-inch Home Entertainment preview record must be present');
+assert.equal(adeo120.modelNumber, 'Plano 120-inch Reference White 2');
+assert.equal(adeo120.imageStatus, 'owner_authorized_exact_retailer_image_verified_review_only');
+assert.ok(adeo120.imageUrl && adeo120.description, 'Adeo Plano 120-inch must have exact listing image and verified dimensions');
+assert.equal(adeo120.indicativePrice, null);
+assert.equal(adeo120.hasStock, null);
+
 
 
 
