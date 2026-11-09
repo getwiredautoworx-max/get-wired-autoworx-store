@@ -69,6 +69,14 @@ assert.equal(bitTune.imageStatus, 'official_manufacturer_image_verified_review_o
 assert.ok(bitTune.imageUrl && bitTune.description);
 assert.equal(bitTune.indicativePrice, null);
 assert.equal(bitTune.hasStock, null);
+const ap4d = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Prima AP4 D 4-Channel Class D Amplifier');
+assert.ok(ap4d, 'verified Audison Prima AP4 D preview record must be present');
+assert.equal(ap4d.modelNumber, 'AP4 D');
+assert.equal(ap4d.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(ap4d.imageUrl && ap4d.description && ap4d.description.includes('4 × 130 W at 2 Ω'));
+assert.equal(ap4d.indicativePrice, null);
+assert.equal(ap4d.hasStock, null);
+
 
 
 const adeo = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen');
