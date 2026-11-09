@@ -15,21 +15,8 @@ EXPECTED=50
 CANVAS=(900,600)
 CROP_RATIO=1.0
 WATERMARK="GET WIRED AUTOWORX"
-# Preserve the complete source image height. Only remove a top catalogue code
-# strip where a source card layout proves it is outside the product photograph.
-# Never crop the lower edge: several source images place product details there.
-CROP_OVERRIDES={
-    "asc-f1-001.jpg":(0.20,1.0), "asc-f1-001-e.jpg":(0.20,1.0),
-    "asc-9005-cbl-h.jpg":(0.0,1.0), "asc-9005-h.jpg":(0.0,1.0),
-    "asc-9005-nb.jpg":(0.0,1.0), "asc-9005xs.jpg":(0.0,1.0),
-    "asc-m7-avan01.jpg":(0.0,1.0), "asc-m7-con01.jpg":(0.0,1.0),
-    "asc-m7-cor01.jpg":(0.0,1.0), "asc-m7-cor02.jpg":(0.0,1.0),
-    "asc-h1865w-h.jpg":(0.0,1.0), "asc-h1960-55w-h.jpg":(0.0,1.0),
-    "asc-h355w-cbl.jpg":(0.0,1.0), "asc-h355w-h.jpg":(0.0,1.0),
-    "asc-m7-gf1.jpg":(0.0,1.0), "asc-m7-bme36.jpg":(0.0,1.0),
-    "asc-m7-bme46.jpg":(0.0,1.0), "asc-m7-bme87.jpg":(0.0,1.0),
-    "asc-f1-028.jpg":(0.42,1.0)
-}
+# The owner explicitly requires the complete source photo height to remain visible.
+# Do not crop the top or bottom: fit the whole source image inside the output canvas.
 
 def sha256(path):
     h=hashlib.sha256()
@@ -44,19 +31,17 @@ def font(size):
     return ImageFont.load_default()
 
 def crop_bounds(image, source_name):
-    w,h=image.size
-    top_ratio,bottom_ratio=CROP_OVERRIDES.get(source_name,(0.0,CROP_RATIO))
-    top=int(round(h*top_ratio))
-    bottom=int(round(h*bottom_ratio))
-    if bottom-top < int(h*.50):
-        raise ValueError(f"Crop would remove too much product area: {source_name}")
-    return top,bottom,("TOP_CODE_LABEL_CROPPED_FULL_REMAINING_IMAGE_PRESERVED" if top_ratio else "FULL_SOURCE_IMAGE_HEIGHT_PRESERVED")
+    _w,h=image.size
+    # Full-height preservation is an acceptance condition, not a per-image option.
+    return 0,h,"FULL_SOURCE_IMAGE_PRESERVED_NO_CROP"
 
 def treat(src,dst):
     with Image.open(src) as original:
         im=ImageOps.exif_transpose(original).convert("RGB")
         w,h=im.size
         top,bottom,method=crop_bounds(im,src.name)
+        if top != 0 or bottom != h:
+            raise ValueError(f"Full source image height was not preserved: {src.name}")
         crop=im.crop((0,top,w,bottom))
         contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
         canvas=Image.new("RGB",CANVAS,(255,255,255))
@@ -99,6 +84,6 @@ def main():
         draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=lf,fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-PILOT-*.jpg")))!=EXPECTED:raise SystemExit("Output count is not 50")
-    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} crop_ratio={CROP_RATIO} overrides={len(CROP_OVERRIDES)} watermark=GET_WIRED_AUTOWORX")
+    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} full_source_height=100_percent bottom_crop=0 watermark=GET_WIRED_AUTOWORX")
 
 if __name__=="__main__":main()
