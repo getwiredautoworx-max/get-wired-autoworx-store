@@ -27,9 +27,9 @@ PRODUCT_CROP_OVERRIDES={
         "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
     ]},
     # Heading/code strips on these fuel-pump source cards are masked, not cropped into the product.
-    "asc-f1-001.jpg":(0.0,0.78),
-    "asc-f1-001-e.jpg":(0.0,0.78),
-    "asc-f1-028.jpg":(0.0,0.78),
+    **{f"asc-{name}.jpg":(0.0,0.92) for name in [
+        "f1-012","f1-019","f1-060","f1-067","f1-001","f1-001-e","f1-009","f1-017","f1-028"
+    ]},
 }
 PRODUCT_MASK_OVERRIDES={
     **{f"asc-{name}.jpg":[(0.0,0.62,1.0,0.78)] for name in [
@@ -41,9 +41,10 @@ PRODUCT_MASK_OVERRIDES={
     **{f"asc-{name}.jpg":[(0.0,0.61,1.0,0.78)] for name in [
         "h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
     ]},
-    "asc-f1-001.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.68,1.0,0.78)],
-    "asc-f1-001-e.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.68,1.0,0.78)],
-    "asc-f1-028.jpg":[(0.0,0.0,1.0,0.18),(0.0,0.68,1.0,0.78)],
+    **{f"asc-{name}.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.88,1.0,0.92)] for name in [
+        "f1-012","f1-019","f1-060","f1-067","f1-001","f1-001-e","f1-009","f1-017"
+    ]},
+    "asc-f1-028.jpg":[(0.0,0.0,1.0,0.18),(0.0,0.88,1.0,0.92)],
 }
 
 def sha256(path):
