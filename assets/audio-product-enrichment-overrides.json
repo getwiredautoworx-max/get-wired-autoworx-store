@@ -310,6 +310,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m4d",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M4D"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M4D 4-Channel Class D Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M4D",
+      "description": "Four-channel, fully bridgeable Class D companion amplifier designed to add power channels to Audison AF bit DSP amplifiers or systems controlled by a standalone bit processor. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 4 × 160 W at 4 Ω or 4 × 260 W at 2 Ω; bridged output is 2 × 520 W at 4 Ω. Total rated RMS power is 1,040 W. Uses a straight-wire architecture without onboard crossover filtering, so it is intended to work with an external processor.",
+      "imageUrl": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M4D manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
