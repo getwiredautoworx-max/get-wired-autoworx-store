@@ -90,6 +90,14 @@ assert.equal(afm814.imageStatus, 'official_manufacturer_image_verified_review_on
 assert.ok(afm814.imageUrl && afm814.description && afm814.description.includes('8 × 140 W at 2 Ω'));
 assert.equal(afm814.indicativePrice, null);
 assert.equal(afm814.hasStock, null);
+const afm4d = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Forza AF M4D 4-Channel Class D Amplifier');
+assert.ok(afm4d, 'verified Audison AF M4D preview record must be present');
+assert.equal(afm4d.modelNumber, 'AF M4D');
+assert.equal(afm4d.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(afm4d.imageUrl && afm4d.description && afm4d.description.includes('4 × 260 W at 2 Ω'));
+assert.equal(afm4d.indicativePrice, null);
+assert.equal(afm4d.hasStock, null);
+
 
 
 
