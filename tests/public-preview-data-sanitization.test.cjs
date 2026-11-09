@@ -48,6 +48,28 @@ assert.equal(arcam11.imageStatus, 'official_manufacturer_image_verified_review_o
 assert.ok(arcam11.imageUrl && arcam11.description, 'ARCAM AVR11 must have exact manufacturer image and technical description');
 assert.equal(arcam11.indicativePrice, null);
 assert.equal(arcam11.hasStock, null);
+const bitOne = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison bit One HD Virtuoso 13-Channel High-Resolution DSP');
+assert.ok(bitOne, 'verified Audison bit One HD Virtuoso preview record must be present');
+assert.equal(bitOne.modelNumber, 'bit One HD Virtuoso');
+assert.equal(bitOne.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(bitOne.imageUrl && bitOne.description);
+assert.equal(bitOne.indicativePrice, null);
+assert.equal(bitOne.hasStock, null);
+const bitTen = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison bit Ten 5-Channel Digital Signal Processor');
+assert.ok(bitTen, 'verified Audison bit Ten preview record must be present');
+assert.equal(bitTen.modelNumber, 'bit Ten');
+assert.equal(bitTen.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(bitTen.imageUrl && bitTen.description);
+assert.equal(bitTen.indicativePrice, null);
+assert.equal(bitTen.hasStock, null);
+const bitTune = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison bit Tune DSP Calibration and Measurement Tool');
+assert.ok(bitTune, 'verified Audison bit Tune preview record must be present');
+assert.equal(bitTune.modelNumber, 'bit Tune');
+assert.equal(bitTune.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(bitTune.imageUrl && bitTune.description);
+assert.equal(bitTune.indicativePrice, null);
+assert.equal(bitTune.hasStock, null);
+
 
 const adeo = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen');
 assert.ok(adeo, 'verified Adeo Plano 135-inch Home Entertainment preview record must be present');
