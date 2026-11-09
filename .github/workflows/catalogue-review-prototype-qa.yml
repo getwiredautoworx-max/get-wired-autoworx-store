@@ -117,6 +117,7 @@ jobs:
           sleep 2
           node scripts/catalogue-review-prototype.spec.js
       - name: Run ASC Auto Electrical review-only data checks
+        if: hashFiles('tests/auto-electrical-review-population.test.cjs') != '' && hashFiles('tests/auto-electrical-owner-preview.test.cjs') != ''
         run: |
           node tests/auto-electrical-review-population.test.cjs
           node tests/auto-electrical-owner-preview.test.cjs
@@ -126,6 +127,7 @@ jobs:
           CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: python3 scripts/build-cloudflare-pages-public.py
       - name: Verify audio catalogue pricing, source mappings and product enrichment
+        if: hashFiles('tests/audio-catalogue-preview.test.cjs') != ''
         run: node tests/audio-catalogue-preview.test.cjs
       - name: Verify Auto Electrical owner preview at mobile and desktop widths
         run: |

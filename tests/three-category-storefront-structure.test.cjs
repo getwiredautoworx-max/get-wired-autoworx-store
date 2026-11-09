@@ -241,7 +241,7 @@ assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
-assert.ok(previewCategory.includes("const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
+assert.ok(previewCategory.includes("const ROOTS=[['Car Audio / Home Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
 assert.ok(!/Vehicle Security|Marine Spares & Accessories|Tools, Hardware & Consumables|Camping, Leisure & Outdoors|Trailer & Canopy/.test(previewCategory), 'obsolete eight-root category buttons must be removed from the preview category route');
 assert.ok(returns.includes('<main class="wrap"><div class="card">'), 'returns page main content wrapper must remain intact after shell update');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
@@ -299,6 +299,12 @@ assert.ok(audioBrandPage.includes("if(n.includes('kicker'))return 'https://down-
 assert.ok(audioPage.includes('const ONENAV_WORDMARK=') && audioPage.includes('"one":ONENAV_WORDMARK') && audioPage.includes('"onenav":ONENAV_WORDMARK'),'OneNav directory buttons must use a distinct OneNav wordmark');
 assert.ok(audioBrandPage.includes("if(n==='one'||n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK") && audioBrandPage.includes("if(n==='one x'||n==='onex')return 'https://planetworld.canto.global/"),'OneNav dedicated page must not reuse the OneX logo');
 assert.ok(audioBrandPage.includes("img[alt*='Kicker']{width:135px!important;height:80px!important;max-width:none!important;transform:scale(1.5)!important"),'Kicker logo must be visibly enlarged on the dedicated brand page');
+
+assert.equal(planet.pricingRule.display,'Price On Request','all supplier products must use the current owner Price On Request policy');
+assert.ok(planet.records.every(row=>row.indicativePrice===null&&row.hasStock===null),'Planetworld preview must not expose stale numeric prices or stock snapshots');
+assert.ok(audio.records.every(row=>row.indicativePrice===null&&row.hasStock===null&&row.priceOnRequestText==='Price On Request'&&!('gwSku' in row)),'Audio Connections preview must suppress stale prices, stock and proposed internal GW SKUs');
+assert.ok(!/Planetworld|Audio Connections/i.test(JSON.stringify(planet))&&!/Planetworld|Audio Connections/i.test(JSON.stringify(audio)),'supplier names must not appear in public preview data');
+
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
 assert.ok(previewCategory.includes("routeLabel==='car audio & video'") && previewCategory.includes("preview-audio.html?department=Car%20Audio"), 'Car Audio & Video must route by its customer-facing category label into the brand directory');

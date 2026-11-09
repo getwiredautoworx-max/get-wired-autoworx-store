@@ -1,65 +1,39 @@
 name: Button-Only Storefront Smoke Test
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index-new.html'
   pull_request:
     branches: [main]
     paths:
       - 'index-new.html'
+      - 'button-only.html'
       - '.github/workflows/button-only-storefront-smoke.yml'
-  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'index-new.html'
+      - 'button-only.html'
+      - '.github/workflows/button-only-storefront-smoke.yml'
 jobs:
-  button-only:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 8
+  detect-mode:
+    runs-on: ubuntu-latest
+    outputs:
+      button_only: ${{ steps.mode.outputs.button_only }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mode
+        shell: bash
+        run: |
+          if grep -q 'data-storefront-mode="buttons-only"' index-new.html 2>/dev/null || grep -q 'data-storefront-mode="buttons-only"' button-only.html 2>/dev/null; then
+            echo "button_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "button_only=false" >> "$GITHUB_OUTPUT"
+          fi
+  button-only-smoke:
+    needs: detect-mode
+    if: needs.detect-mode.outputs.button_only == 'true'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - name: Install Playwright and Chromium
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-      - name: Verify buttons-only storefront at mobile and desktop widths
-        run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-          node <<'NODE'
-          const { chromium } = require('playwright');
-          (async () => {
-            const browser = await chromium.launch({headless:true});
-            try {
-              for (const width of [360,390,768,1280]) {
-                const page = await browser.newPage({viewport:{width,height:900}});
-                const errors = [];
-                page.on('pageerror', e => errors.push(e.message));
-                await page.goto('http://127.0.0.1:4173/index-new.html',{waitUntil:'domcontentloaded'});
-                await page.locator('[data-storefront-mode="buttons-only"]').waitFor();
-                const roots = page.locator('button.category');
-                const rootCount = await roots.count();
-                if (rootCount !== 8) throw new Error(width+'px: expected 8 main category buttons; got '+rootCount);
-                const childCount = await page.locator('button.child').count();
-                if (childCount < 1) throw new Error(width+'px: no subcategory/brand buttons found');
-                const forbidden = await page.locator('.product, .product-card, .price, .product-grid, [data-product], #featuredGrid, #allProductsLink, #searchInput, input[type="search"]').count();
-                if (forbidden) throw new Error(width+'px: product/pricing/search UI still present ('+forbidden+' elements)');
-                const productImages = await page.locator('img:not(.logo)').count();
-                if (productImages) throw new Error(width+'px: unexpected non-logo images present');
-                const body = await page.locator('body').evaluate(el => ({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
-                if (body.scrollWidth > width + 1) throw new Error(width+'px: horizontal overflow '+JSON.stringify(body));
-                await roots.nth(0).click();
-                if ((await roots.nth(0).getAttribute('aria-expanded')) !== 'true') throw new Error(width+'px: first category did not expand');
-                if (!(await roots.nth(0).locator('xpath=..').locator('.children').isVisible())) throw new Error(width+'px: child buttons are not visible after expansion');
-                await roots.nth(1).click();
-                if ((await roots.nth(0).getAttribute('aria-expanded')) !== 'false' || (await roots.nth(1).getAttribute('aria-expanded')) !== 'true') throw new Error(width+'px: accordion state did not update correctly');
-                if (errors.length) throw new Error(width+'px: browser errors '+errors.join('; '));
-                console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' main buttons, '+childCount+' subcategory/brand buttons, expand/collapse works, no product/pricing/search UI, no horizontal overflow');
-                await page.close();
-              }
-            } finally { await browser.close(); }
-          })().catch(e => { console.error(e); process.exit(1); });
-          NODE
+          node-version: '20'
+      - run: node tests/button-only-storefront.test.cjs

@@ -58,13 +58,13 @@ body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#
 <nav class="gw-nav"><div class="gw-navin"><a href="index-new.html#home">HOME</a><a href="index-new.html#categories">SHOP BY CATEGORY</a><a href="index-new.html#featured">SPECIALS</a><a href="index-new.html#services">SERVICES</a><a href="index-new.html#contact">CONTACT US</a></div></nav>
 <nav class="gw-mobile-nav" aria-label="Store navigation"><a href="index-new.html#home"><b>⌂</b>HOME</a><a href="index-new.html#categories"><b>☰</b>CATEGORIES</a><a href="index-new.html#featured"><b>★</b>SPECIALS</a><a href="index-new.html#cartPanel"><b>🛒</b>CART</a></nav><main class="wrap"><div class="crumb"><a href="store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading categories…</div></div></main><script>
 const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug');
-const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']];
+const ROOTS=[['Car Audio / Home Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']];
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function artFor(label){
  const n=String(label||'').trim().toLowerCase();
- if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
- if(n==='auto electrical parts & spares')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
+ if(n==='car audio / home entertainment')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
+ if(n==='auto electrical spares')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
  if(n==='accessories')return 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=720&q=82';
- if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
+ if(n==='car audio & video'||n==='car audio / home entertainment')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
  const photos=[
   [/fuse.*regulator|regulator.*fuse/,'photo-1581092160562-40aa08e78837'],
   [/fuse|blade fuse|fuse holder/,'photo-1586864387967-d02ef85d93e8'],
