@@ -1,6 +1,6 @@
 name: Owner Preview — Exact SHA Deploy and Browser QA
 
-# Manual-only to avoid automatic Cloudflare credit use. Run only after explicit owner approval.
+# Manual-only to avoid automatic Cloudflare credit use.
 on:
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/integration/owner-preview-single-task-2026-11-05') || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.pull_request.head.ref == 'integration/storefront-current-main-2026-11-09'
     name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -49,18 +49,16 @@ jobs:
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
-      - name: Set up Node.js for exact-head regression checks
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
       - name: Verify exact-head catalogue, category, package and SKU invariants
         run: |
           set -euo pipefail
-          node tests/audio-catalogue-preview.test.cjs
+          node tests/pricing-display-policy.test.cjs
+          node tests/onenav-source-audit.test.cjs
           node tests/three-category-storefront-structure.test.cjs
           python3 scripts/public-sku-audit.py
           echo "GW_EXACT_HEAD_REGRESSION_AND_SKU_AUDIT_PASS"
       - name: Deploy to dedicated non-production Cloudflare Pages branch
+        id: deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -70,16 +68,23 @@ jobs:
       - name: Wait for the exact deployed SHA and reject stale aliases
         env:
           EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          DEPLOYMENT_ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          WRANGLER_OUTPUT: ${{ steps.deploy.outputs.command-output }}
         shell: bash
         run: |
           set -euo pipefail
-          aliases=(
-            "https://owner-preview.get-wired-autoworx-store.pages.dev"
-          )
+          mapfile -t command_urls < <(printf '%s' "$WRANGLER_OUTPUT" | grep -Eo 'https://[A-Za-z0-9.-]+\.get-wired-autoworx-store\.pages\.dev' | sort -u || true)
+          aliases=()
+          for candidate in "$DEPLOYMENT_URL" "$DEPLOYMENT_ALIAS_URL" "${command_urls[@]}" "https://owner-preview.get-wired-autoworx-store.pages.dev" "https://integration-owner-preview-si.get-wired-autoworx-store.pages.dev"; do
+            if [ -n "$candidate" ]; then
+              aliases+=("${candidate%/}")
+            fi
+          done
           matched=""
           for attempt in $(seq 1 24); do
             for base in "${aliases[@]}"; do
-              body="$(curl -fsS --max-time 5 "$base/qa-build-result.json" 2>/dev/null || true)"
+              body="$(curl -fsS -H 'Cache-Control: no-cache' --max-time 5 "$base/qa-build-result.json?sha=$EXPECTED_SHA" 2>/dev/null || true)"
               if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$EXPECTED_SHA"; then
                 matched="$base"
                 break
@@ -143,11 +148,40 @@ jobs:
               if(audioCategoryImages.length!==6||audioCategoryImages.some(x=>!x.loaded))throw new Error('Audio subcategory picture cards failed to load: '+JSON.stringify(audioCategoryImages));
               const mobileCategoryLayout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(x=>Math.round(x.getBoundingClientRect().width)),cardHeights:cards.map(x=>Math.round(x.getBoundingClientRect().height)),count:cards.length}});
               if(mobileCategoryLayout.columns<2||mobileCategoryLayout.count<6||mobileCategoryLayout.cardWidths.some(w=>w<130)||mobileCategoryLayout.cardHeights.some(h=>h>220))throw new Error('Audio subcategories are not compact two-column cards on mobile: '+JSON.stringify(mobileCategoryLayout));
+              async function auditNonAudioRoot(rootIndex, headingText, expectedCount) {
+                await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
+                const rootLinks=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]');
+                const rootLink=rootLinks.nth(rootIndex);
+                await rootLink.waitFor({state:'visible',timeout:30000});
+                await rootLink.click({noWaitAfter:true});
+                await frame.locator('#heading').filter({hasText:headingText}).waitFor({state:'visible',timeout:30000});
+                const cards=frame.locator('#grid > .card');
+                await cards.first().waitFor({state:'visible',timeout:15000});
+                const imageAudit=await cards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{
+                  const img=card.querySelector('img');
+                  if(!img)return {label:card.innerText,loaded:false,naturalWidth:0,alt:'',src:''};
+                  if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});
+                  return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,alt:img.alt,src:img.currentSrc||img.src};
+                })));
+                if(imageAudit.length!==expectedCount||imageAudit.some(item=>!item.loaded||item.naturalWidth<120||!item.alt.trim()))throw new Error(headingText+' category artwork failed hosted image QA: '+JSON.stringify(imageAudit));
+                const layout=await frame.locator('#grid').evaluate(grid=>{const cards=[...grid.querySelectorAll(':scope > .card')];return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,count:cards.length,width:Math.round(grid.getBoundingClientRect().width),cardWidths:cards.map(card=>Math.round(card.getBoundingClientRect().width))}});
+                if(layout.columns<2||layout.count!==expectedCount||layout.cardWidths.some(width=>width<130))throw new Error(headingText+' category cards are not usable two-column mobile tiles: '+JSON.stringify(layout));
+                console.log('HOSTED_NON_AUDIO_CATEGORY_ART_AUDIT',JSON.stringify({headingText,imageAudit,layout}));
+              }
+              await auditNonAudioRoot(1,'Auto Electrical Parts & Spares',5);
+              await auditNonAudioRoot(2,'Car Care & Accessories',4);
+              await frame.locator('body').evaluate(()=>{location.href='index-new.html'});
+              const audioRootLinkAgain=frame.locator('#categoryGrid > .rootCategoryLink > a.catBtn[href*="preview-category.html"]').first();
+              await audioRootLinkAgain.waitFor({state:'visible',timeout:30000});
+              await audioRootLinkAgain.click({noWaitAfter:true});
+              await frame.locator('#heading').filter({hasText:'Audio, Entertainment & Music'}).waitFor({state:'visible',timeout:30000});
+              await frame.locator('#grid > .card').filter({hasText:'Car Audio & Video'}).waitFor({state:'visible',timeout:15000});
               const carAudioCard=frame.locator('#grid .card').filter({hasText:'Car Audio & Video'});
               const carAudioHref=await carAudioCard.getAttribute('href');
               if(!carAudioHref||!carAudioHref.includes('preview-audio.html'))throw new Error('Car Audio & Video card did not link to the brand directory: '+carAudioHref);
               await carAudioCard.click();
-              await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              if(await frame.locator('#audioDepartments').isVisible())throw new Error('Car Audio selection left the previous department menu visible');
               const brandButton=frame.locator('#brands a[aria-label="Sony"][role="button"]');
               await brandButton.waitFor({state:'visible',timeout:30000});
               if(await frame.locator('#components').isVisible())throw new Error('Car Audio & Video must show brands before component cards');
@@ -170,13 +204,144 @@ jobs:
               const brandTypeCards=brandDoc.locator('#types .typeCard');
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               const categoryImageAudit=await brandTypeCards.evaluateAll(async cards=>Promise.all(cards.map(async card=>{const img=card.querySelector('img');if(!img)return {label:card.innerText,loaded:false};if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {label:card.innerText,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
-              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded))throw new Error('Hosted product-type image cards failed: '+JSON.stringify(categoryImageAudit));
+              if(!categoryImageAudit.length||categoryImageAudit.some(x=>!x.loaded||/\.svg(?:$|\\?)/i.test(x.src)))throw new Error('Hosted product-type image cards must load real photographs, not illustrated SVGs: '+JSON.stringify(categoryImageAudit));
               await brandTypeCards.filter({hasText:'Amplifiers'}).first().click();
               await page.waitForFunction(()=>/\/preview-audio-products(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const productDoc=page.frameLocator('#store');
               await productDoc.locator('.product').first().waitFor({state:'visible',timeout:30000});
               const audioAmpCount=await productDoc.locator('.product').count();
               if(audioAmpCount<1)throw new Error('Sony -> Amplifiers dedicated product page returned no products');
+
+              // Alpine Halo 11: exact-model photo/details plus centred two-column product-card layout.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio-products.html?department=Car%20Audio&brand=Alpine&component=Head%20Units%20%26%20Media%20Players'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return (u.pathname.endsWith('/preview-audio-products.html')||u.pathname.endsWith('/preview-audio-products'))&&u.searchParams.get('brand')==='Alpine'},{timeout:30000});
+              const alpinePage=page.frameLocator('#store');
+              const alpineCard=alpinePage.locator('#products .product').filter({hasText:'iLX-F115D'}).first();
+              await alpineCard.waitFor({state:'visible',timeout:30000});
+              const alpineImageLoaded=await alpineCard.locator('.productMedia img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,15000)});return img.complete&&img.naturalWidth>0});
+              const alpineAudit=await alpineCard.evaluate((card,imageLoaded)=>{const img=card.querySelector('.productMedia img');const details=card.querySelector('.productDetails');const rect=details?.getBoundingClientRect();const media=card.querySelector('.productMedia')?.getBoundingClientRect();return {text:card.innerText,imageLoaded,imageWidth:img?.naturalWidth||0,textAlign:details?getComputedStyle(details).textAlign:'missing',mediaAndDetailsSeparated:!!media&&!!rect&&media.right<=rect.left+2,description:card.querySelector('.productDetails p')?.innerText||''}},alpineImageLoaded);
+              console.log('HOSTED_ALPINE_HALO11_PRODUCT_AUDIT',JSON.stringify(alpineAudit));
+              if(!alpineAudit.imageLoaded||alpineAudit.textAlign!=='center'||!alpineAudit.mediaAndDetailsSeparated||!alpineAudit.description.includes('DAB+')||!alpineAudit.description.includes('Apple CarPlay'))throw new Error('Alpine Halo 11 exact-model image, verified description or centred product layout failed: '+JSON.stringify(alpineAudit));
+
+              // OneNav and Amplified must use the official Planetworld brand artwork in both directory and dedicated brand views.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const oneNavButton=frame.locator('#brands .brandLogoButton[aria-label="One"]');
+              await oneNavButton.waitFor({state:'visible',timeout:30000});
+              const oneNavDirectoryLogo=oneNavButton.locator('img');
+              await oneNavDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const oneNavDirectoryAudit=await oneNavDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,alt:img.alt}});
+              console.log('HOSTED_ONENAV_BRAND_LOGO_AUDIT',JSON.stringify(oneNavDirectoryAudit));
+              if(!oneNavDirectoryAudit.loaded||!oneNavDirectoryAudit.src.startsWith('data:image/svg+xml')||!oneNavDirectoryAudit.alt.includes('OneNav'))throw new Error('Distinct ONE / OneNav wordmark did not load in the brand directory: '+JSON.stringify(oneNavDirectoryAudit));
+              await oneNavButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              const oneNavBrandPage=page.frameLocator('#store');
+              await oneNavBrandPage.locator('.brandHero').filter({hasText:'ONE / OneNav'}).waitFor({state:'visible',timeout:30000});
+              const oneNavHeroLogo=oneNavBrandPage.locator('.brandHero img');
+              await oneNavHeroLogo.waitFor({state:'visible',timeout:15000});
+              const oneNavLogoLoaded=await oneNavHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0});
+              const oneNavLogoSrc=await oneNavHeroLogo.getAttribute('src');
+              if(!oneNavLogoLoaded||!oneNavLogoSrc||!oneNavLogoSrc.startsWith('data:image/svg+xml'))throw new Error('ONE / OneNav must use its own OneNav wordmark, not the OneX logo');
+              const oneNavTypeCard=oneNavBrandPage.locator('.typeCard').first();
+              await oneNavTypeCard.waitFor({state:'visible',timeout:30000});
+              await oneNavTypeCard.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-products(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='One'},{timeout:30000});
+              const oneNavProductPage=page.frameLocator('#store');
+              // Product records load asynchronously after the route changes; wait for either populated cards or the explicit empty state before auditing.
+              await oneNavProductPage.locator('#products .product').first().waitFor({state:'visible',timeout:30000});
+              const oneNavProductCount=await oneNavProductPage.locator('.product').count();
+              const oneNavProductImageCount=await oneNavProductPage.locator('.product img').count();
+              const oneNavReviewNoteCount=await oneNavProductPage.locator('.imageReviewNote').count();
+              const oneNavProductText=(await oneNavProductPage.locator('.product').allTextContents()).join(' ');
+              console.log('HOSTED_ONENAV_PRODUCT_DETAIL_AUDIT',JSON.stringify({url:await oneNavProductPage.locator('body').evaluate(()=>location.href),products:oneNavProductCount,images:oneNavProductImageCount,reviewNotes:oneNavReviewNoteCount,details:oneNavProductText.includes('9-inch 1024 × 600 touchscreen'),text:oneNavProductText.slice(0,1200)}));
+              if(oneNavProductCount<9||oneNavProductImageCount!==6||oneNavReviewNoteCount!==6||!oneNavProductText.includes('9-inch 1024 × 600 touchscreen'))throw new Error('OneNav product details, photos or fitment pages failed hosted QA');
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const amplifiedButton=frame.locator('#brands .brandLogoButton[aria-label="Amplified"]');
+              await amplifiedButton.waitFor({state:'visible',timeout:30000});
+              const amplifiedDirectoryLogo=amplifiedButton.locator('img');
+              await amplifiedDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const amplifiedDirectoryAudit=await amplifiedDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,alt:img.alt}});
+              console.log('HOSTED_AMPLIFIED_BRAND_LOGO_AUDIT',JSON.stringify(amplifiedDirectoryAudit));
+              if(!amplifiedDirectoryAudit.loaded||!amplifiedDirectoryAudit.src.includes('planetworld.canto.global'))throw new Error('Official Amplified brand-button logo did not load: '+JSON.stringify(amplifiedDirectoryAudit));
+              await amplifiedButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Amplified'},{timeout:30000});
+              const amplifiedBrandPage=page.frameLocator('#store');
+              await amplifiedBrandPage.locator('.brandHero').filter({hasText:'Amplified'}).waitFor({state:'visible',timeout:30000});
+              const amplifiedHeroLogo=amplifiedBrandPage.locator('.brandHero img');
+              await amplifiedHeroLogo.waitFor({state:'visible',timeout:15000});
+              if(!await amplifiedHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return img.complete&&img.naturalWidth>0}))throw new Error('Amplified logo failed on its dedicated brand page');
+
+              // Kicker logo must load and render at a readable size in both the brand directory and its dedicated brand page.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html?department=Car%20Audio'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Car Audio'},{timeout:30000});
+              const kickerButton=frame.locator('#brands .brandLogoButton[aria-label="Kicker"]');
+              await kickerButton.waitFor({state:'visible',timeout:30000});
+              const kickerDirectoryLogo=kickerButton.locator('img');
+              await kickerDirectoryLogo.waitFor({state:'visible',timeout:15000});
+              const kickerDirectoryAudit=await kickerDirectoryLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});const r=img.getBoundingClientRect();return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,renderedWidth:Math.round(r.width),renderedHeight:Math.round(r.height)}}); 
+              console.log('HOSTED_KICKER_DIRECTORY_LOGO_AUDIT',JSON.stringify(kickerDirectoryAudit));
+              if(!kickerDirectoryAudit.loaded||kickerDirectoryAudit.renderedWidth<170)throw new Error('Kicker directory logo failed to load or remains too small: '+JSON.stringify(kickerDirectoryAudit));
+              await kickerButton.click();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio-brand(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('brand')==='Kicker'},{timeout:30000});
+              const kickerBrandPage=page.frameLocator('#store');
+              await kickerBrandPage.locator('.brandHero').filter({hasText:'Kicker'}).waitFor({state:'visible',timeout:30000});
+              const kickerHeroLogo=kickerBrandPage.locator('.brandHero img');
+              await kickerHeroLogo.waitFor({state:'visible',timeout:15000});
+              const kickerHeroAudit=await kickerHeroLogo.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});const r=img.getBoundingClientRect();return {src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,renderedWidth:Math.round(r.width),renderedHeight:Math.round(r.height)}}); 
+              console.log('HOSTED_KICKER_BRAND_PAGE_LOGO_AUDIT',JSON.stringify(kickerHeroAudit));
+              if(!kickerHeroAudit.loaded||kickerHeroAudit.renderedWidth<200)throw new Error('Kicker dedicated brand-page logo failed to load or remains too small: '+JSON.stringify(kickerHeroAudit));
+
+              // Audit every audio-department tile image, including DJ and Studio Equipment.
+              await frame.locator('body').evaluate(()=>{location.href='preview-audio.html'});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&!u.searchParams.has('department')},{timeout:30000});
+              const departmentImages=frame.locator('#departments .audioTile img.departmentImage');
+              await departmentImages.first().waitFor({state:'visible',timeout:30000});
+              const departmentImageAudit=await departmentImages.evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,width:img.naturalWidth,src:img.currentSrc||img.src}})));
+              console.log('HOSTED_AUDIO_DEPARTMENT_IMAGE_AUDIT',JSON.stringify(departmentImageAudit));
+              if(departmentImageAudit.length!==8||departmentImageAudit.some(x=>!x.loaded))throw new Error('One or more of the eight audio-department images failed to load: '+JSON.stringify(departmentImageAudit));
+
+              // Confirm the live preview data uses VAT-inclusive RRP less 2%, with no extra VAT.
+              const previewPriceAudit=await frame.locator('body').evaluate(async()=>{const d=await(await fetch('assets/planetworld-catalogue-preview.json')).json();return {sample:d.records.find(x=>x.id==='pw-0001'),zero:d.records.find(x=>x.id==='pw-0310'),rule:d.pricingRule,imageCount:d.records.filter(x=>x.imageUrl).length,describedModelCount:d.records.filter(x=>x.manufacturerProductName&&x.description).length}});
+              if(previewPriceAudit.sample.indicativePrice!==46589.2||previewPriceAudit.sample.priceBasis!=='RRP_INCL_VAT_MINUS_2_PERCENT'||previewPriceAudit.zero.indicativePrice!==null||previewPriceAudit.rule.zeroRrpQuoteOnly!==19||previewPriceAudit.imageCount!==74||previewPriceAudit.describedModelCount!==113)throw new Error('Hosted Planetworld RRP-2/VAT rule failed: '+JSON.stringify(previewPriceAudit));
+              console.log('HOSTED_PLANETWORLD_RRP_MINUS_2_AUDIT',JSON.stringify({samplePrice:previewPriceAudit.sample.indicativePrice,zeroRrp:previewPriceAudit.zero.id,rule:previewPriceAudit.rule}));
+
+              const exactProductImageAudit=await frame.locator('body').evaluate(async()=>{
+                const data=await(await fetch('assets/planetworld-catalogue-preview.json')).json();
+                const rows=data.records.filter(x=>x.imageUrl);
+                const results=[];
+                for(let i=0;i<rows.length;i+=8){
+                  const batch=await Promise.all(rows.slice(i,i+8).map(p=>new Promise(resolve=>{
+                    const img=new Image();const timer=setTimeout(()=>resolve({id:p.id,loaded:false,reason:'timeout',src:p.imageUrl}),15000);
+                    img.onload=()=>{clearTimeout(timer);resolve({id:p.id,loaded:img.naturalWidth>0,width:img.naturalWidth,src:p.imageUrl})};
+                    img.onerror=()=>{clearTimeout(timer);resolve({id:p.id,loaded:false,reason:'image error',src:p.imageUrl})};
+                    img.src=p.imageUrl;
+                  })));
+                  results.push(...batch);
+                }
+                return {count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded)};
+              });
+              console.log('HOSTED_EXACT_PRODUCT_IMAGE_AUDIT',JSON.stringify(exactProductImageAudit));
+              if(exactProductImageAudit.count!==74||exactProductImageAudit.loaded!==74||exactProductImageAudit.failed.length)throw new Error('Planetworld exact-model and OneNav candidate photos failed hosted loading: '+JSON.stringify(exactProductImageAudit));
+
+              const audioConnectionsImageAudit=await frame.locator('body').evaluate(async()=>{
+                const data=await(await fetch('assets/audio-connections-catalogue-preview.json')).json();
+                const rows=data.records.filter(x=>x.imageUrl);
+                const results=[];
+                for(let i=0;i<rows.length;i+=8){
+                  const batch=await Promise.all(rows.slice(i,i+8).map(p=>new Promise(resolve=>{
+                    const img=new Image();const timer=setTimeout(()=>resolve({model:p.modelNumber,loaded:false,reason:'timeout',src:p.imageUrl}),15000);
+                    img.onload=()=>{clearTimeout(timer);resolve({model:p.modelNumber,loaded:img.naturalWidth>0,width:img.naturalWidth,src:p.imageUrl})};
+                    img.onerror=()=>{clearTimeout(timer);resolve({model:p.modelNumber,loaded:false,reason:'image error',src:p.imageUrl})};
+                    img.src=p.imageUrl;
+                  })));
+                  results.push(...batch);
+                }
+                return {records:data.records.length,described:data.records.filter(x=>x.description).length,count:rows.length,loaded:results.filter(x=>x.loaded).length,failed:results.filter(x=>!x.loaded),lowRes:results.filter(x=>x.loaded&&x.width<200),missing:data.records.filter(x=>!x.imageUrl).map(x=>x.modelNumber)};
+              });
+              console.log('HOSTED_AUDIO_CONNECTIONS_EXACT_MODEL_IMAGE_AUDIT',JSON.stringify(audioConnectionsImageAudit));
+              if(audioConnectionsImageAudit.records!==66||audioConnectionsImageAudit.described!==66||audioConnectionsImageAudit.count!==66||audioConnectionsImageAudit.failed.length||audioConnectionsImageAudit.missing.length!==0)throw new Error('Audio Connections product image/description coverage failed: '+JSON.stringify(audioConnectionsImageAudit));
+
 
               // Home Entertainment: department -> brand -> product type -> filtered products.
               await frame.locator('body').evaluate(()=>{location.href='index-new.html?ownerPreview=1'});
@@ -185,14 +350,25 @@ jobs:
               await homeRoot.nth(0).click();
               const homeDepartment=frame.locator('#grid > .card').filter({hasText:'Home Entertainment'});
               await homeDepartment.waitFor({state:'visible',timeout:30000});
+              const homeDepartmentArt=homeDepartment.locator('.card-art img');
+              await homeDepartmentArt.waitFor({state:'visible',timeout:15000});
+              await homeDepartmentArt.evaluate(img=>img.decode());
+              if(!await homeDepartmentArt.evaluate(img=>img.complete&&img.naturalWidth>0&&img.currentSrc.includes('images.unsplash.com')))throw new Error('Home Entertainment category card must load photographic artwork');
               const homeDepartmentHref=await homeDepartment.getAttribute('href');
               if(!homeDepartmentHref||!homeDepartmentHref.includes('department=Home%20Entertainment'))throw new Error('Home Entertainment category route missing: '+homeDepartmentHref);
               await homeDepartment.click();
-              await page.waitForFunction(()=>/\/preview-audio(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');const u=new URL(f.contentWindow.location.href);return /\/preview-audio(?:\.html)?$/.test(u.pathname)&&u.searchParams.get('department')==='Home Entertainment'},{timeout:30000});
+              if(await frame.locator('#audioDepartments').isVisible())throw new Error('Home Entertainment selection left the previous department menu visible');
+              await frame.locator('#brands').waitFor({state:'visible',timeout:15000});
+              await frame.locator('#brands .brandLogoButton').first().waitFor({state:'visible',timeout:30000});
+              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete after catalogue load');
               const klipsch=frame.locator('#brands .brandLogoButton[aria-label="Klipsch"]');
               await klipsch.waitFor({state:'visible',timeout:30000});
-              await klipsch.locator('img').waitFor({state:'visible',timeout:15000});
-              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete');
+              const klipschLogo=klipsch.locator('img');
+              await klipschLogo.waitFor({state:'visible',timeout:15000});
+              await klipschLogo.evaluate(img=>img.decode());
+              if(!await klipschLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw new Error('Klipsch brand logo image failed to load');
+              if(await frame.locator('#brands .brandLogoButton').count()<8)throw new Error('Home Entertainment brand directory is incomplete after catalogue load');
               await klipsch.click();
               await page.waitForFunction(()=>/\/preview-audio-brand(?:\.html)?$/.test(document.querySelector('#store').contentWindow.location.pathname),{timeout:30000});
               const homeBrandPage=page.frameLocator('#store');
@@ -232,10 +408,25 @@ jobs:
               await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
               const accessoryNames=(await accessoryPage.locator('#grid .card h2').allTextContents()).map(x=>x.trim()).sort();
               if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child category cards mismatch: '+JSON.stringify(accessoryNames));
+              const aerialCard=accessoryPage.locator('#grid .card').filter({hasText:'Aerials'});
+              if(await aerialCard.count()!==1) throw new Error('Accessories must render exactly one Aerials navigation card');
+              await aerialCard.click();
+              await accessoryPage.waitForURL(url=>/\/preview-audio(?:\.html)?$/.test(url.pathname)&&url.searchParams.get('department')==='Car Audio'&&url.searchParams.get('search')==='Aerials'&&url.searchParams.get('label')==='Aerials',{timeout:30000});
+              await accessoryPage.locator('#audioSelectedDepartment').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:30000});
+              console.log('GW_AERIALS_NAVIGATION_PASS',accessoryPage.url());
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:20000});
+              const accessoryImageAudit=await accessoryPage.locator('#grid .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(accessoryImageAudit.length!==2||accessoryImageAudit.some(x=>!x.loaded))throw new Error('Accessories subcategory artwork failed: '+JSON.stringify(accessoryImageAudit));
               await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
               await accessoryPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              await accessoryPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount=await accessoryPage.locator('#products .audioProduct').count();
               if(trimCount!==47) throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html?id=f91c7c30-82b4-42d4-bf4f-e807172cedc4',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#heading').filter({hasText:'Lifestyle'}).waitFor({state:'visible',timeout:20000});
+              const lifestyleImageAudit=await accessoryPage.locator('#grid .card img').evaluateAll(async imgs=>Promise.all(imgs.map(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,12000)});return {alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src}})));
+              if(lifestyleImageAudit.length!==2||lifestyleImageAudit.some(x=>!x.loaded))throw new Error('Lifestyle subcategory artwork failed: '+JSON.stringify(lifestyleImageAudit));
               await accessoryPage.close();
               await page.setViewportSize({width:1365,height:900});
               await page.waitForTimeout(500);

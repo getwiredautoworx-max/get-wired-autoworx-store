@@ -1,0 +1,393 @@
+{
+  "status": "OWNER PREVIEW ONLY — REVIEW ONLY — DO NOT IMPORT",
+  "summary": {
+    "pilotProducts": 34,
+    "categoryCounts": {
+      "Automotive Sensors": 9,
+      "Automotive Switches": 8,
+      "Automotive Globes": 8,
+      "Fuel Pumps": 9
+    },
+    "sourceVerifiedFitments": 30,
+    "detailedDescriptionsPending": 34,
+    "technicalSpecificationsPending": 34,
+    "remainingAutoElectricalRecords": 727,
+    "priceDisplay": "Price On Request"
+  },
+  "products": [
+    {
+      "title": "CAMSHAFT POSITION SENSOR GOLF-JETTA IV-BEETLE 2",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Golf / Jetta IV / Beetle 2",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-01080.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "CRANKSHAFT POSITION SENSOR GOLF-JETTA IV",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Golf / Jetta IV",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-02883.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "CRANKSHAFT POSITION SENSOR OPEL CORSA (B-C) ASTRA (F)",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Opel Corsa (B-C) / Astra (F)",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-03822.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "CRANKSHAFT POSITION SENSOR GOLF JETTA 4 1.6 1.8 2.0",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Golf / Jetta 4 1.6 / 1.8 / 2.0",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-09103.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "CAMSHAFT POSITION SENSOR GOLF-JETTA-TIGUAN-TOUAREG-TOURAN",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Golf / Jetta / Tiguan / Touareg / Touran",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-09396.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH E90/92 86-96",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "E90/92 86–96",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-21849.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION LOOM SWITCH TOYOTA COR.RWD/VENT/S",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Toyota Cor. RWD / Vent / S",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-cs-112048.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH MAZDA B1600",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Mazda B1600",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-csc105.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH ISUZU KB20",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Isuzu KB20",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-csc106.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "HALOGEN BULB 60W 12V COOL BLUE",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": null,
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-9005-cbl-h.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "GLOBE 60W 12V HB3",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": null,
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-9005-h.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "12V 60W QUARTZ GLOBE 30% BRIGHTER",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": null,
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-9005-nb.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "GLOBE HALOGEN 65W 12V E1",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": null,
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-9005xs.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC BMW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "BMW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-012.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC BMW.PEUGEOT.VW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "BMW / Peugeot / VW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-019.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC BMW.VW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "BMW / VW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-060.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC BMW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "BMW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-067.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "AIR MASS SENSOR (4 PIN) AUDI-BEETLE-GOLF-JETTA 1.8-2.0",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Audi / Beetle / Golf / Jetta 1.8–2.0",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-02761.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "AIR MASS SENSOR GOLF IV 1.6 (4PIN-4 HOLE)",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Golf IV 1.6 (4-pin / 4-hole)",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-04818.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "AIR FLOW SENSOR QUANTUM/D4D",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Quantum / D4D",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-14163.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "AIR FLOW SENSOR CHEV CAPTIVA 2.2D",
+      "category": "Automotive Sensors",
+      "subcategory": "Automotive Sensors",
+      "fitment": "Chevrolet Captiva 2.2D",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-29601.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH FORD RANGER/BT-50 98-08",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Ford Ranger / BT-50 98–08",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-ig-fr01.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH HONDA ACCORD CIVIC 96-",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Honda Accord / Civic 96–",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-ig-hn04.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH ISUZU TFR SERIES 97-",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Isuzu TFR Series 97–",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-ig-izt.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "IGNITION SWITCH NISSAN NP300/TIIDA",
+      "category": "Automotive Switches",
+      "subcategory": "Automotive Switches",
+      "fitment": "Nissan NP300 / Tiida",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-ig-np300.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "H18 65W 12V H/GLOBE HUADIAO E-MARKED H7 WITH BASE DIFFERENCE",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": "H18 / H7 base variant",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-h1865w-h.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "H19 60/55W 12V H/GLOBE HUADIAO E-MARKED H4P43T WITH BASE DIFFERENCE",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": "H19 / H4P43T base variant",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-h1960-55w-h.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "H3 55W 12V COOL BLUE GLOBE",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": "H3 55W 12V",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-h355w-cbl.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "HALOGEN BULB H3 55W 12V HDIAO",
+      "category": "Automotive Globes",
+      "subcategory": "Automotive Globes",
+      "fitment": "H3 55W 12V",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-h355w-h.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "Ford / Mazda / Honda / Isuzu",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-001.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU NO SPARE PLUG INCLUDED/ECONOMIC PUMPS",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "Ford / Mazda / Honda / Isuzu",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-001-e.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC FORD.VW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "Ford / VW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-009.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP ELECTRIC FORD.BMW",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "Ford / BMW",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-017.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    },
+    {
+      "title": "FUEL PUMP MAZDA.FORD LDV",
+      "category": "Fuel Pumps",
+      "subcategory": "Fuel Pumps",
+      "fitment": "Mazda / Ford LDV",
+      "technicalSpecifications": null,
+      "description": null,
+      "image": "assets/asc-auto-electrical-pilot/asc-f1-028.jpg",
+      "priceDisplay": "Price On Request",
+      "availabilityDisplay": "Availability to confirm"
+    }
+  ]
+}

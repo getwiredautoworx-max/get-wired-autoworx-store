@@ -1,0 +1,31 @@
+/* Shared Get Wired AutoWorx homepage shell for every catalogue and subpage. */
+:root{--gw-shell-blue:#087fce;--gw-shell-ink:#173650;--gw-shell-line:#d5e0ea}
+body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#172b3d}
+.gw-top{height:34px;background:#fff;color:#29415a;border-bottom:1px solid var(--gw-shell-line);display:flex;align-items:center;justify-content:space-between;padding:0 max(5%,calc((100% - 1320px)/2));font:12px Arial,Helvetica,sans-serif}
+.gw-top .rating{color:#9a6b00;font-weight:700}
+.gw-header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--gw-shell-line)}
+.gw-head{max-width:1400px;margin:auto;min-height:105px;display:flex;align-items:center;gap:22px;padding:12px 24px}
+.gw-menu{width:44px;flex:0 0 44px;color:#173650;text-decoration:none;font-size:30px;line-height:1;text-align:center}
+.gw-brand{display:flex;align-items:center;min-width:0}
+.gw-logo{height:88px;width:min(430px,52vw);object-fit:contain;display:block}
+.gw-part-search{margin-left:auto;border:1px solid #1688d0;border-radius:9px;background:#f4faff;color:#075d91;padding:12px 17px;font-size:13px;font-weight:900;text-decoration:none;white-space:nowrap}
+.gw-cart{border:0;border-radius:9px;background:#ff1c2d;color:#fff;padding:12px 16px;font-size:16px;font-weight:900;text-decoration:none;white-space:nowrap}
+.gw-nav{background:#102b45;border-bottom:1px solid #173e5d}
+.gw-navin{max-width:1400px;margin:auto;display:flex;gap:30px;padding:12px 24px;font:700 13px Arial,Helvetica,sans-serif}
+.gw-nav a{color:#fff;text-decoration:none}
+.gw-nav a:hover{text-decoration:underline}
+.gw-mobile-nav{display:none}
+@media(max-width:700px){
+ .gw-top{height:auto;min-height:30px;padding:7px 10px;font-size:10px;gap:8px}
+ .gw-head{min-height:72px;padding:7px 10px;gap:9px}
+ .gw-menu{width:30px;flex-basis:30px;font-size:25px}
+ .gw-logo{height:57px;width:min(260px,52vw)}
+ .gw-part-search{padding:9px 8px;font-size:10px}
+ .gw-cart{padding:9px 10px;font-size:12px}
+ .gw-nav{display:none}
+ .gw-mobile-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #c9dce9;box-shadow:0 -5px 20px rgba(23,55,83,.10);padding:7px 4px calc(7px + env(safe-area-inset-bottom))}
+ .gw-mobile-nav a{color:#17324a;text-decoration:none;text-align:center;font:700 10px Arial,Helvetica,sans-serif}
+ .gw-mobile-nav b{display:block;font-size:17px;margin-bottom:2px}
+ body{padding-bottom:58px}
+}
+@media(max-width:360px){.gw-logo{width:44vw}.gw-part-search{font-size:9px;padding:8px 6px}.gw-cart{font-size:11px;padding:8px}}

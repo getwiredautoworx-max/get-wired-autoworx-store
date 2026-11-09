@@ -42,75 +42,98 @@ body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#
   html body .grid { gap: 6px; }
   html body .card h2 { font-size: 12px; padding: 0 6px; }
 }
-.brand-mark{display:grid;place-items:center;width:100%;height:100%;font-size:36px;font-weight:900;letter-spacing:1px;color:#087fce;background:linear-gradient(135deg,#e4f2fb,#f7fbff)}
-</style><style id="owner-category-art-correction">.card-art{background:#e5f0f8!important}.card-art img{width:100%;height:100%;object-fit:cover;display:block}</style><style id="gw-preview-only">#gwPreviewNotice{position:sticky;top:0;z-index:99999;background:#fff2c6;color:#533d00;border-bottom:1px solid #e0b84f;padding:10px 14px;text-align:center;font:700 12px/1.45 Arial,sans-serif}body[data-preview-mode="true"] .cart,body[data-preview-mode="true"] .cartPanel,body[data-preview-mode="true"] #mobileBuyBar,body[data-preview-mode="true"] .checkoutNow,body[data-preview-mode="true"] #mobileCartLink,body[data-preview-mode="true"] .add,body[data-preview-mode="true"] .actions,body[data-preview-mode="true"] .product button,body[data-preview-mode="true"] #mbCart,body[data-preview-mode="true"] #mbBuy,body[data-preview-mode="true"] #detailContent .btn{display:none!important}</style></head><body data-preview-mode="true"><div id="gwPreviewNotice">STORE PREVIEW • ASC STOCK REMOVED • Current store stock records shown for review only — confirm availability before ordering. Checkout and supplier submissions are disabled.</div><header class="header"><div class="head"><button class="back" onclick="history.length>1?history.back():location.href='preview-store.html'">← BACK</button><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx"><div class="search"><input id="search" placeholder="Search categories..."></div></div></header><main class="wrap"><div class="crumb"><a href="preview-store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading categories…</div></div></main><script>
-const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug'),audioArea=p.get('audio_area');
-const ROOTS=[['Auto Electrical Spares','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],['Car Audio & Entertainment','5ab55c53-eee3-41ce-ad48-04ad6df85181'],['Automotive Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],['Tools, Hardware & Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],['Camping, Leisure & Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']];
+.brand-mark{display:grid;place-items:center;width:100%;height:100%;font-size:36px;font-weight:900;letter-spacing:1px;color:#087fce;background:linear-gradient(135deg,#e4f2fb,#f7fbff)}.brand-logo-wrap{display:grid;place-items:center;width:100%;height:100%;padding:18px;background:#fff}.brand-logo{display:block;max-width:82%;max-height:78%;object-fit:contain}
+</style><style id="owner-category-art-correction">.card-art{background:#e5f0f8!important}.card-art img{width:100%;height:100%;object-fit:cover;display:block}</style><style id="gw-preview-only">#gwPreviewNotice{position:sticky;top:0;z-index:99999;background:#fff2c6;color:#533d00;border-bottom:1px solid #e0b84f;padding:10px 14px;text-align:center;font:700 12px/1.45 Arial,sans-serif}body[data-preview-mode="true"] .cart,body[data-preview-mode="true"] .cartPanel,body[data-preview-mode="true"] #mobileBuyBar,body[data-preview-mode="true"] .checkoutNow,body[data-preview-mode="true"] #mobileCartLink,body[data-preview-mode="true"] .add,body[data-preview-mode="true"] .actions,body[data-preview-mode="true"] .product button,body[data-preview-mode="true"] #mbCart,body[data-preview-mode="true"] #mbBuy,body[data-preview-mode="true"] #detailContent .btn{display:none!important}</style><link rel="stylesheet" href="assets/storefront-subpage-shell.css">
+<style id="compact-category-page-grid">
+/* Compact category tiles: keep phone layouts in a two-column grid, never full-width vertical bars. */
+#grid.grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:14px!important}
+#grid.grid>.card{display:grid!important;grid-template-rows:88px auto 1fr auto!important;min-width:0!important;min-height:0!important;height:100%!important;padding:0!important}
+#grid.grid>.card .card-art{width:100%!important;height:88px!important;min-height:0!important}
+#grid.grid>.card h2{font-size:15px!important;line-height:1.25!important;padding:9px 11px 3px!important;margin:0!important;overflow-wrap:anywhere}
+#grid.grid>.card .card-count{font-size:11px!important;padding:2px 11px 7px!important}
+#grid.grid>.card .arrow{margin:0 10px 7px auto!important;align-self:end!important}
+@media(max-width:700px){#grid.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#grid.grid>.card{grid-template-rows:76px auto 1fr auto!important}#grid.grid>.card .card-art{height:76px!important}#grid.grid>.card h2{font-size:13px!important;line-height:1.2!important;padding:8px 9px 3px!important}#grid.grid>.card .card-count{font-size:10px!important;padding:2px 9px 6px!important}#grid.grid>.card .arrow{font-size:19px!important}}
+</style>
+</head><body data-preview-mode="true"><div id="gwPreviewNotice">STORE PREVIEW • ASC STOCK REMOVED • Current store stock records shown for review only — confirm availability before ordering. Checkout and supplier submissions are disabled.</div><div class="gw-top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; Pickup by appointment only</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div>
+<header class="gw-header"><div class="gw-head"><a class="gw-menu" href="index-new.html" aria-label="Home">☰</a><a class="gw-brand" href="index-new.html" aria-label="Get Wired AutoWorx home"><img class="gw-logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"></a><a class="gw-part-search" href="index-new.html#part-search">⌕ PART SEARCH</a><a class="gw-cart" href="index-new.html#cartPanel" aria-label="View cart">🛒 CART</a></div></header>
+<nav class="gw-nav"><div class="gw-navin"><a href="index-new.html#home">HOME</a><a href="index-new.html#categories">SHOP BY CATEGORY</a><a href="index-new.html#featured">SPECIALS</a><a href="index-new.html#services">SERVICES</a><a href="index-new.html#contact">CONTACT US</a></div></nav>
+<nav class="gw-mobile-nav" aria-label="Store navigation"><a href="index-new.html#home"><b>⌂</b>HOME</a><a href="index-new.html#categories"><b>☰</b>CATEGORIES</a><a href="index-new.html#featured"><b>★</b>SPECIALS</a><a href="index-new.html#cartPanel"><b>🛒</b>CART</a></nav><main class="wrap"><div class="crumb"><a href="preview-store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading categories…</div></div></main><script>
+const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug'),audioArea=p.get('audio_area'),audioBrand=p.get('audio_brand');
+const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']];
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function explicitBrand(product){const spec=product&&product.specifications;if(!spec||typeof spec!=='object'||Array.isArray(spec))return 'Brand not specified';const keys=Object.keys(spec);const key=keys.find(k=>['brand','manufacturer','make'].includes(k.toLowerCase()));const value=key?String(spec[key]||'').trim():'';return value||'Brand not specified'}
 function audioAreaMatch(product,area){const t=[product.name,product.description].join(' ').toLowerCase();const studio=/studio|microphone|\bmic\b|mixer|mixing desk|\bdj\b|recording|audio interface|monitor speaker|\bpa system\b|public address|\bxlr\b|condenser|dynamic mic|headphone/.test(t);const home=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|\btv\b|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/.test(t);if(area==='studio')return studio;if(area==='home')return home;if(area==='car')return !studio&&!home;return false}
+function categoryArtFallback(label){
+ return artFor(label)||"";
+}
 function artFor(label){
  const n=String(label||'').trim().toLowerCase();
+ if(n==='audio, entertainment & music')return 'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82';
+ if(n==='auto electrical parts & spares')return 'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motori-avviamento.jpeg';
+ if(n==='accessories')return 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82';
+ const localAudio=[
+  [/car audio|car audio & video/,'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'],
+  [/home entertainment|home audio|home cinema/,'https://images.unsplash.com/photo-1558284296-7579da2deb30?auto=format&fit=crop&w=720&q=82'],
+  [/speakers?|component kits/,'https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82'],
+  [/subwoofers?/,'https://images.unsplash.com/photo-1776176359206-a1d34436ddff?auto=format&fit=crop&w=720&q=82'],
+  [/amplifiers?/,'https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82'],
+  [/head units|media players|radios/,'https://images.unsplash.com/photo-1470948062737-aeb014e274c2?auto=format&fit=crop&w=720&q=82'],
+  [/cameras? & monitors?/,'https://images.unsplash.com/photo-1738138986988-add3dd7cde9a?auto=format&fit=crop&w=720&q=82'],
+  [/signal processing|crossovers?/,'https://images.unsplash.com/photo-1543017471-62c14029f7ce?auto=format&fit=crop&w=720&q=82'],
+  [/trims? & harnesses?|harnesses?, trims/,'https://images.unsplash.com/photo-1677230017860-a8cc67785f0a?auto=format&fit=crop&w=720&q=82'],
+  [/aerials?/,'https://images.unsplash.com/photo-1759667880866-702f9f615489?auto=format&fit=crop&w=720&q=82'],
+  [/band equipment|band & live sound/,'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=720&q=82'],
+  [/dj equipment/,'https://images.unsplash.com/photo-1642784353476-d226d8d617b3?auto=format&fit=crop&w=720&q=82'],
+  [/studio equipment/,'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=720&q=82'],
+  [/instruments?/,'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=720&q=82'],
+  [/marine audio/,'https://images.unsplash.com/photo-1769724839524-ea4bd870f813?auto=format&fit=crop&w=720&q=82'],
+  [/lifestyle/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82']
+ ];
+ const exact=localAudio.find(([re])=>re.test(n));
+ if(exact)return exact[1];
+ // External category artwork is a review-only visual aid. Source reuse permission is not confirmed; do not treat these URLs as production-approved product imagery.
  const photos=[
-  [/fuse.*regulator|regulator.*fuse/,'photo-1581092160562-40aa08e78837'],
-  [/fuse|blade fuse|fuse holder/,'photo-1586864387967-d02ef85d93e8'],
-  [/regulator|voltage|alternator|starter|ignition|engine|spark plug/,'photo-1486262715619-67b85e0b08d3'],
-  [/relay|contactor|switch|sensor|electrical|wiring|wire|cable|connector|terminal|harness/,'photo-1518770660439-4636190af475'],
-  [/battery|accumulator/,'photo-1621905251918-48416bd8575a'],
-  [/speaker|subwoofer|audio|radio|stereo|multimedia|amplifier|aerial/,'photo-1600003014755-ba31aa59c4b6'],
-  [/security|alarm|immobil|lock|remote|key|tracker|camera/,'photo-1558002038-1055907df827'],
-  [/light|lamp|bulb|globe|lighting|headlight/,'photo-1558618666-fcd25c85cd64'],
-  [/spanner|wrench|socket|screwdriver|pliers|drill|tool|hardware|consumable|workshop|clamp|abrasive/,'photo-1530124566582-a618bc2615dc'],
-  [/marine|boat|outboard|anchor|bilge/,'photo-1544551763-46a013bb70d5'],
-  [/camp|outdoor|leisure|caravan|tent|sleep|lantern|4x4|recovery|winch/,'photo-1478131143081-80f7f84ca84d'],
-  [/trailer|canopy|tow|hitch|jockey wheel|coupling/,'photo-1500530855697-b586d89ba3ee'],
-  [/accessor|spare|automotive|vehicle/,'photo-1492144534655-ae79c964c9d7']
+  [/vacuum cleaners?/,'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=720&q=82'],
+  [/pool cleaners?/,'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=720&q=82'],
+  [/alternators? & starters?/,'https://www.magnetimarelli-parts-and-services.pt/news/2018/news/catalogo-alternadores-e-motores-de-arranque/_jcr_content/root/enh_responsivegrid/mm_container/par_0/twovariantscolumn/par_0/image.coreimg.jpeg/1714663683362/alternatori-e-motores-avviamento.jpeg'],
+  [/batteries? & charging/,'https://www.nbyichou.com/ck/userfiles/images/products/car/10001%282%29.jpg'],
+  [/fuses?,? relays? & wiring/,'https://cdn.awsli.com.br/2500x2500/2861/2861170/produto/369645849/553-kit-pe-as-dni-01-33og4zi8rq.jpg'],
+  [/globes? & vehicle lighting/,'https://www.novsights.com/cdn/shop/files/N67EP-h7_9005.jpg?v=1777062410&width=1200'],
+  [/sensors? & switches/,'https://static.wixstatic.com/media/37f6df_957fce1b12bf4f85a5eb017b68ce11ea~mv2.jpg/v1/fill/w_1699%2Ch_1168%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/37f6df_957fce1b12bf4f85a5eb017b68ce11ea~mv2.jpg'],
+  [/car care/,'https://seatsavers.com/cdn/shop/files/8ATC15_Soaker-Outline_18Gloss_18Shampoo.jpg?v=1700453504&width=1707'],
+  [/car mats/,'https://cdn.shopify.com/s/files/1/0554/9559/0048/files/MAXTRAC_EN_1280_6.jpg?v=1701333034'],
+  [/seat covers|interior accessories/,'https://shop2.daumcdn.net/shophow/p/O33570003019.jpg?opt=R500x500.q90&type=thumb&ut=20251226114655'],
+  [/exterior accessories/,'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=720&q=82']
  ];
  const match=photos.find(([re])=>re.test(n));
- const photo=match?match[1]:'photo-1492144534655-ae79c964c9d7';
- return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
+ return match?match[1]:'';
 }
+function audioProductType(product){const t=[product.name,product.description].join(' ').toLowerCase();if(/head unit|car radio|stereo|receiver|radio|multimedia player/.test(t))return 'Radios & Head Units';if(/subwoofer|sub woofer/.test(t))return 'Subwoofers';if(/speaker|tweeter|woofer/.test(t))return 'Speakers';if(/amplifier|\bamp\b/.test(t))return 'Amplifiers';if(/crossover/.test(t))return 'Crossovers';if(/aerial|antenna/.test(t))return 'Aerials';if(/wiring|installation|cable|connector|fuse|harness|adapter/.test(t))return 'Wiring & Accessories';return 'Other Products'}
+function brandLogo(label){const key=String(label||'').trim().toLowerCase();const known={jbl:'jbl',sony:'sony',pioneer:'pioneer',alpine:'alpine',kenwood:'kenwood',hertz:'hertz',audison:'audison',kicker:'kicker',starsound:'starsound'};const slug=known[key]||key.replace(/[^a-z0-9]+/g,'');return 'https://cdn.simpleicons.org/'+encodeURIComponent(slug)}
 function render(items,title,sub){
  document.getElementById('heading').textContent=title;
  document.getElementById('subtitle').textContent=sub;
  document.getElementById('count').textContent=items.length+' options';
  document.getElementById('grid').innerHTML=items.length?items.map(c=>{
   const label=c.label||c.name;
-  const href=c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):(c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):(c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):(c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id))));
-  const artMarkup=c.audioBrand?'<span class="brand-mark" aria-hidden="true">'+esc(String(label).slice(0,2).toUpperCase())+'</span>':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.style.background=\'linear-gradient(135deg,#dcebf6,#edf5fb)\'">';return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
+  const audioRoutes={'07b76301-da5c-4810-a19f-d8b6e2ae2f06':'preview-audio.html?department=Home%20Entertainment&label=Home%20Entertainment','862605ef-5223-4525-aad6-ee17c2c6f9e7':'preview-audio.html?department=Band%20%26%20Live%20Sound&label=Band%20Equipment','83ea8ae6-a464-40a2-a503-272792f70be8':'preview-audio.html?department=DJ&label=DJ%20Equipment','76aee522-bf0e-4e7e-809c-e5c31afd3f6b':'preview-audio.html?department=Musical%20Instruments&label=Instruments','b6d72815-c634-424c-9520-abed7cbdee1a':'preview-audio.html?department=Lifestyle&search=vacuum&label=Vacuum%20Cleaners','a8593e12-53fb-4514-ad19-d9e9a19b6953':'preview-audio.html?department=Lifestyle&search=pool&label=Pool%20Cleaners','934a47fc-14b2-4d08-a3ea-9c5254076a5a':'preview-audio.html?department=Car%20Audio&component=Speakers%20%26%20Component%20Kits&label=Speakers%20%26%20Component%20Kits','4eebc099-4821-4bb9-82ac-8181192f5e00':'preview-audio.html?department=Car%20Audio&component=Subwoofers&label=Subwoofers','1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca':'preview-audio.html?department=Car%20Audio&component=Amplifiers&label=Amplifiers','7dfa871f-ae4d-4be0-87f2-8685d50ae6bb':'preview-audio.html?department=Car%20Audio&component=Head%20Units%20%26%20Media%20Players&label=Head%20Units%20%26%20Media%20Players','b467d7f9-7ef3-4fa2-8e87-41530e1bcabb':'preview-audio.html?department=Car%20Audio&component=Cameras%20%26%20Monitors&label=Cameras%20%26%20Monitors','3fb18314-b5c5-4edf-8db2-00a29e18d027':'preview-audio.html?department=Car%20Audio&component=Signal%20Processing%20%26%20Crossovers&label=Signal%20Processing%20%26%20Crossovers','b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-audio.html?department=Car%20Audio&search=Aerials&label=Aerials','13b36e2a-a5c7-471e-83ef-3ad180e66d3d':'preview-audio.html?department=Car%20Audio&brand=All%20brands&component=Harnesses%2C%20Trims%20%26%20Fitment&label=Trims%20%26%20Harnesses'};let href=audioRoutes[c.id]||'';
+  if(!href){
+    const routeLabel=String(c.name||c.label||label).trim().toLowerCase();
+    if(routeLabel==='car audio & video') href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video';
+    else if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b') href='preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video';
+    else if(c.audioComponent) href='preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand)+'&audio_component='+encodeURIComponent(c.audioComponent);
+    else if(c.audioArea) href='preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea)+(c.audioBrand?'&audio_brand='+encodeURIComponent(c.audioBrand):'');
+    else if(c.audioBrand) href='preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand);
+    else if(c.audioGroup) href='preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup);
+    else if(c.isAllProducts) href='preview-products.html?category='+encodeURIComponent(c.id);
+    else href='preview-category.html?id='+encodeURIComponent(c.id);
+  }
+  
+  const artMarkup=c.audioBrand?'<span class="brand-logo-wrap"><img class="brand-logo" src="'+brandLogo(label)+'" alt="'+esc(label)+' logo" loading="eager" onerror="this.style.display=\'none\';this.parentElement.textContent=this.alt.replace(\' logo\',\'\')"></span>':(c.audioArea==='car'?'<img src="https://images.unsplash.com/photo-1654447398824-dbcbefeafdd6?auto=format&fit=crop&w=720&q=82" alt="Car audio speakers and vehicle sound equipment" loading="eager" referrerpolicy="no-referrer" onerror="this.remove()">':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="eager" onerror="this.onerror=null;this.src=categoryArtFallback(this.alt)">');return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
  }).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>';
 }
 async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;
-if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&!audioArea){
- const groups=[
-  {id:current.id,label:'Car Audio & Video',audioArea:'car',description:'Car stereos, head units, speakers, amplifiers and multimedia'},
-  {id:current.id,label:'Home Entertainment',audioArea:'home',description:'Home audio, soundbars, home theatre and related equipment'},
-  {id:current.id,label:'Studio Equipment',audioArea:'studio',description:'Microphones, mixers, recording and PA equipment'},
-  {id:current.id,label:'All Car Audio Products',audioGroup:'car',isAllProducts:true,description:'Browse all products currently assigned to Car Audio'}
- ];
- const children=cats.filter(x=>x.parent_id===current.id&&total(x)>0).map(x=>({...x,count:total(x)}));
- render([...groups,...children],current.name,'Choose an audio area. Brand and product-type groups use only explicit current catalogue data; no product assignments are changed.');
- return;
-}
-if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&audioArea){
- if(!['car','home','studio'].includes(audioArea))throw Error('Unknown audio area');
- const audioIds=[current.id,...cats.filter(x=>x.parent_id===current.id).map(x=>x.id)];
- const url=U+'/rest/v1/products?select=id,name,description,specifications,category_id,active&category_id=in.('+audioIds.join(',')+')&active=eq.true&order=name.asc';
- const response=await fetch(url,{headers:{apikey:K,Authorization:'Bearer '+K,'Range-Unit':'items',Range:'0-999'}});
- if(!response.ok)throw Error('Unable to load audio brand options ('+response.status+')');
- let items=await response.json();
- items=items.filter(item=>audioAreaMatch(item,audioArea));
- const brandCounts=new Map();
- items.forEach(item=>{const brand=explicitBrand(item);brandCounts.set(brand,(brandCounts.get(brand)||0)+1)});
- const brands=[...brandCounts.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([brand,count])=>({id:current.id,label:brand,audioBrand:brand==='Brand not specified'?'__unspecified__':brand,audioGroup:audioArea,count,description:count+' matching catalogue products'}));
- const areaTitle={car:'Car Audio & Video',home:'Home Entertainment',studio:'Studio Equipment'}[audioArea];
- document.title=areaTitle+' Brands | Get Wired AutoWorx';
- document.getElementById('crumb').textContent=areaTitle+' / Brands';
- render(brands,areaTitle+' — CHOOSE A BRAND',items.length?'Only brands explicitly present in product specifications are listed. Products without a recorded brand are kept under “Brand not specified”.':'No current catalogue products match this area.');
- if(!items.length){document.getElementById('grid').innerHTML='<div class="empty">No products are currently matched to this area. Use “CAN’T FIND IT? SOURCE A PART” to ask us to source the item.</div>'}
- return;
-}
-if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c&&total(c)>0?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}if(total(current)===0){render([],'CATEGORY UNAVAILABLE','There are no active products assigned to this category yet. Please choose another category or use Search / WhatsApp.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;const children=cats.filter(c=>c.parent_id===current.id&&total(c)>0);const items=[];if((direct.get(current.id)||0)>0)items.push({id:current.id,label:'View '+(direct.get(current.id)||0)+' products in '+current.name,isAllProducts:true});children.forEach(c=>items.push({...c,count:total(c)}));if(children.length){render(items,current.name,'Choose products assigned directly to this category or browse a populated sub-category.');return}location.replace('preview-products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
-document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'flex':'none')});main();</script></body></html><script id="gw-preview-guard">
+if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;if(current.id==='e3d19d20-fb46-426c-9f64-221d863add0b'){location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video');return}const children=cats.filter(c=>c.parent_id===current.id);if(children.length){const items=children.map(c=>({...c,count:total(c)}));render(items,current.name,'Choose a sub-category to continue. Each category opens its own page.');return}if(total(current)===0){render([],'CATEGORY NOT POPULATED YET','This category page is ready, but products have not yet been assigned to it. Please choose another sub-category or contact us.');return}location.replace('preview-products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
+document.getElementById('search')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'flex':'none')});main();</script></body></html><script id="gw-preview-guard">
 document.addEventListener('click',function(e){
  const target=e.target&&e.target.closest?e.target.closest('#gwSourceSend,a[href*="checkout"],button.add,.product button,#mbCart,#mbBuy,#detailContent .btn,.checkoutNow,#mobileCartLink'):null;
  if(!target)return;

@@ -1,11 +1,26 @@
 #!/usr/bin/env python3
 """Build a customer-only Cloudflare Pages directory; never deploy repository source data."""
 from pathlib import Path
+import json
 import os
 import shutil
+import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pages-public"
+
+# Preview catalogue JSON is prebuilt and versioned in assets. The current owner
+# retail policy suppresses all numeric supplier prices until reliable live
+# price-and-stock synchronisation is approved; never recalculate customer prices
+# as part of a preview build.
+
+# Run the exact storefront/catalogue regression suite before packaging either
+# standard or preview output. GitHub-hosted public-repository runners are enabled.
+node = shutil.which("node")
+if not node:
+    raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
+subprocess.run([node, str(ROOT / "tests" / "three-category-storefront-structure.test.cjs")], cwd=ROOT, check=True)
 
 REQUIRED_ROOT_FILES = [
     "index.html", "store.html", "index-new.html", "product.html", "products.html",
@@ -14,12 +29,26 @@ REQUIRED_ROOT_FILES = [
 ]
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
-    "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html",
 ]
+PREVIEW_ASSET_FILES = [
+    "planetworld-catalogue-preview.json", "auto-electrical-owner-preview.json",
+    "audio-connections-catalogue-preview.json",
+    "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
+    "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
+    "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
+    "audio-types/harnesses-trims.svg", "audio-types/aerials.svg",
+    "audio-types/home-entertainment.svg", "audio-types/home-audio-cinema.svg",
+    "audio-types/projection-screens-projectors.svg", "audio-types/cables-mounts-accessories.svg",
+    "audio-types/av-infrastructure-control.svg", "audio-types/installed-audio.svg",
+    "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
+    "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
+]
+PREVIEW_ASSET_DIRS = ["asc-auto-electrical-pilot"]
 REQUIRED_ASSET_FILES = [
-    "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
-    "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
+    "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
+    "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
 ]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
@@ -44,12 +73,21 @@ for name in OPTIONAL_ROOT_FILES:
     if (ROOT / name).is_file():
         copy_file(name)
 
-# Preview routes are included only in the explicitly non-production preview build.
-# The production build remains unchanged unless this opt-in environment flag is set.
-include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
+# Cloudflare supplies CF_PAGES_BRANCH. Include owner-preview routes on non-main
+# branches automatically; main always receives the clean production package.
+# The explicit flag remains available for local/manual preview builds.
+branch = os.environ.get("CF_PAGES_BRANCH")
+include_preview = (branch is not None and branch != "main") or os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    for name in PREVIEW_ASSET_FILES:
+        copy_file(f"assets/{name}")
+    for name in PREVIEW_ASSET_DIRS:
+        source_dir = ROOT / "assets" / name
+        if not source_dir.is_dir():
+            raise SystemExit(f"Required preview asset directory missing: assets/{name}")
+        shutil.copytree(source_dir, OUT / "assets" / name)
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -80,7 +118,16 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         if not (OUT / name).is_file():
             raise SystemExit(f"Preview package missing route: {name}")
+    for name in PREVIEW_ASSET_FILES:
+        if not (OUT / "assets" / name).is_file():
+            raise SystemExit(f"Preview package missing catalogue data: assets/{name}")
+    for name in PREVIEW_ASSET_DIRS:
+        if not (OUT / "assets" / name).is_dir():
+            raise SystemExit(f"Preview package missing asset directory: assets/{name}")
+    for test in ["pricing-display-policy.test.cjs"]:
+        subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
+    print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
@@ -89,3 +136,16 @@ else:
 
 print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} webp_images={image_count}")
 print("PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github")
+if include_preview:
+    # Public, non-sensitive proof that the exact structural regression suite ran
+    # before this owner-preview package was emitted.
+    qa_marker = {
+        "result": "PASS",
+        "test": "tests/three-category-storefront-structure.test.cjs",
+        "commit": os.environ.get("CF_PAGES_COMMIT_SHA") or os.environ.get("GITHUB_SHA"),
+        "branch": os.environ.get("CF_PAGES_BRANCH"),
+        "preview_only": True,
+    }
+    (OUT / "qa-build-result.json").write_text(json.dumps(qa_marker, indent=2) + "\n", encoding="utf-8")
+    print("PAGES_STOREFRONT_REGRESSION_PASS")
+
