@@ -13,12 +13,12 @@ MANIFEST=ROOT/"catalogue-review/asc-catalogue-extraction/asc-image-treatment-pil
 CONTACT=ROOT/"catalogue-review/asc-catalogue-extraction/asc-image-treatment-pilot-contact-sheet.jpg"
 EXPECTED=50
 CANVAS=(900,600)
-CROP_RATIO=0.72
+CROP_RATIO=0.68
 WATERMARK="GET WIRED AUTOWORX"
 # This card places the part photo below its top catalogue code bar. Crop the
 # bar rather than the lower product photograph. Other pilot cards place their
 # description/caption strip below the photo and use the common bottom crop.
-CROP_OVERRIDES={"asc-f1-028.jpg":(0.42,1.0)}
+CROP_OVERRIDES={"asc-f1-001.jpg":(0.20,0.88),"asc-f1-001-e.jpg":(0.20,0.88),"asc-f1-028.jpg":(0.42,1.0)}
 
 def sha256(path):
     h=hashlib.sha256()
