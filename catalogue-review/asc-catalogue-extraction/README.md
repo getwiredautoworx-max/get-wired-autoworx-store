@@ -105,3 +105,12 @@ The pilot CSV has been corrected to use these owner-approved destinations while 
 - Do not write to Supabase or import products.
 - Do not activate ASC products, merge a PR, deploy production, change payment settings, or change Axxess/DNS.
 - This branch is internal review material only; owner approval is required before any later import or publication.
+
+
+## Count and image-treatment clarification — owner-approved
+
+The correct six-catalogue product count is **978 visible product cards**, not 983. The earlier 983 tally included five phantom entries from the Car Mats page 10 section heading (13 stated, 8 cards actually present). Do not invent those five entries. Category counts: Aerials 78; Sensors 106; Switches 368; Globes 158; Car Mats 139; Fuel Pumps 129.
+
+The owner has authorised ASC catalogue image use and editing. Original ASC-watermarked crops are source evidence, not finished storefront assets. Complete the approved 50-sample process to remove the ASC watermark, apply the Get Wired AutoWorx watermark and remove catalogue-description text outside the product image. Do not treat image rights as a blocker.
+
+Customer-facing ASC pricing text must be exactly: **Price On Request due to Limited Stock and Availability**. No price or physical stock value may be invented. All records remain review-only / DO NOT IMPORT pending owner approval.
