@@ -21,18 +21,26 @@ WATERMARK="GET WIRED AUTOWORX"
 # This is a conservative starting boundary; the regenerated 50-image sheet
 # must be inspected and any product-specific boundary corrected before approval.
 PRODUCT_CROP_OVERRIDES={
-    # Carpet-set product silhouettes end above the printed product caption.
-    **{f"asc-{name}.jpg":(0.0,0.62) for name in [
-        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
-    ]},
-    # Bulb captions sit below the complete bulb photograph.
-    **{f"asc-{name}.jpg":(0.0,0.65) for name in [
+    # Keep the full product bounds, then mask printed catalogue captions below.
+    **{f"asc-{name}.jpg":(0.0,0.78) for name in [
+        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87",
         "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
     ]},
-    # These source cards have a supplier/category heading above the product.
-    "asc-f1-001.jpg":(0.12,0.78),
-    "asc-f1-001-e.jpg":(0.12,0.78),
-    "asc-f1-028.jpg":(0.12,0.78),
+    # Heading/code strips on these fuel-pump source cards are masked, not cropped into the product.
+    "asc-f1-001.jpg":(0.0,0.78),
+    "asc-f1-001-e.jpg":(0.0,0.78),
+    "asc-f1-028.jpg":(0.0,0.78),
+}
+PRODUCT_MASK_OVERRIDES={
+    **{f"asc-{name}.jpg":[(0.0,0.62,1.0,0.78)] for name in [
+        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
+    ]},
+    **{f"asc-{name}.jpg":[(0.0,0.65,1.0,0.78)] for name in [
+        "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
+    ]},
+    "asc-f1-001.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.68,1.0,0.78)],
+    "asc-f1-001-e.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.68,1.0,0.78)],
+    "asc-f1-028.jpg":[(0.0,0.0,1.0,0.18),(0.0,0.68,1.0,0.78)],
 }
 
 def sha256(path):
@@ -54,7 +62,7 @@ def crop_bounds(image, source_name):
     bottom=int(round(h*bottom_ratio))
     if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
         raise ValueError(f"Unsafe product-area boundary for {source_name}: {top}:{bottom}/{h}")
-    return top,bottom,"PRODUCT_PHOTO_AREA_ONLY_EXTERNAL_CAPTION_CODE_STRIP_REMOVED_PENDING_VISUAL_QA"
+    return top,bottom,"PRODUCT_PHOTO_AREA_WITH_EXTERNAL_CAPTION_CODE_MASKS_PENDING_VISUAL_QA"
 
 def treat(src,dst):
     with Image.open(src) as original:
@@ -64,6 +72,14 @@ def treat(src,dst):
         if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
             raise ValueError(f"Unsafe product-area crop boundary: {src.name}")
         crop=im.crop((0,top,w,bottom))
+        masks=PRODUCT_MASK_OVERRIDES.get(src.name,[])
+        if masks:
+            mask_draw=ImageDraw.Draw(crop)
+            for x1,y1,x2,y2 in masks:
+                left=int(round(w*x1)); upper=max(0,int(round(h*y1))-top)
+                right=int(round(w*x2)); lower=min(crop.height,int(round(h*y2))-top)
+                if lower>upper and right>left:
+                    mask_draw.rectangle((left,upper,right,lower),fill=(255,255,255))
         contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
         canvas=Image.new("RGB",CANVAS,(255,255,255))
         canvas.paste(contained,((CANVAS[0]-contained.width)//2,(CANVAS[1]-contained.height)//2))
@@ -105,6 +121,6 @@ def main():
         draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=lf,fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-PILOT-*.jpg")))!=EXPECTED:raise SystemExit("Output count is not 50")
-    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} per_image_overrides={len(PRODUCT_CROP_OVERRIDES)} watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
+    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} per_image_crop_overrides={len(PRODUCT_CROP_OVERRIDES)} per_image_mask_overrides={len(PRODUCT_MASK_OVERRIDES)} watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
 
 if __name__=="__main__":main()
