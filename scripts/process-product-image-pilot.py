@@ -13,10 +13,14 @@ MANIFEST=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment
 CONTACT=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg"
 EXPECTED=50
 CANVAS=(900,600)
-CROP_RATIO=1.0
+PRODUCT_AREA_BOTTOM_RATIO=0.70
 WATERMARK="GET WIRED AUTOWORX"
-# The owner explicitly requires the complete source photo height to remain visible.
-# Do not crop the top or bottom: fit the whole source image inside the output canvas.
+# Source catalogue cards contain a product photograph followed by printed
+# description/model text and a blue catalogue code strip. Keep the complete
+# product area (no top crop), but exclude the external caption/code region.
+# This is a conservative starting boundary; the regenerated 50-image sheet
+# must be inspected and any product-specific boundary corrected before approval.
+PRODUCT_BOTTOM_OVERRIDES={}
 
 def sha256(path):
     h=hashlib.sha256()
@@ -32,16 +36,20 @@ def font(size):
 
 def crop_bounds(image, source_name):
     _w,h=image.size
-    # Full-height preservation is an acceptance condition, not a per-image option.
-    return 0,h,"FULL_SOURCE_IMAGE_PRESERVED_NO_CROP"
+    ratio=PRODUCT_BOTTOM_OVERRIDES.get(source_name,PRODUCT_AREA_BOTTOM_RATIO)
+    top=0
+    bottom=int(round(h*ratio))
+    if bottom < int(h*.60) or bottom > h:
+        raise ValueError(f"Unsafe product-area boundary for {source_name}: {bottom}/{h}")
+    return top,bottom,"PRODUCT_AREA_ONLY_NO_TOP_CROP_CAPTION_AND_CODE_STRIP_EXCLUDED_PENDING_VISUAL_QA"
 
 def treat(src,dst):
     with Image.open(src) as original:
         im=ImageOps.exif_transpose(original).convert("RGB")
         w,h=im.size
         top,bottom,method=crop_bounds(im,src.name)
-        if top != 0 or bottom != h:
-            raise ValueError(f"Full source image height was not preserved: {src.name}")
+        if top != 0 or bottom <= int(h*.60) or bottom > h:
+            raise ValueError(f"Unsafe product-area crop boundary: {src.name}")
         crop=im.crop((0,top,w,bottom))
         contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
         canvas=Image.new("RGB",CANVAS,(255,255,255))
@@ -84,6 +92,6 @@ def main():
         draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=lf,fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-PILOT-*.jpg")))!=EXPECTED:raise SystemExit("Output count is not 50")
-    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} full_source_height=100_percent bottom_crop=0 watermark=GET_WIRED_AUTOWORX")
+    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} top_crop=0 watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
 
 if __name__=="__main__":main()
