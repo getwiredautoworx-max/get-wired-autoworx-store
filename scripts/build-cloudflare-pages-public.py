@@ -89,6 +89,7 @@ if include_preview:
         if not source_dir.is_dir():
             raise SystemExit(f"Required preview asset directory missing: assets/{name}")
         shutil.copytree(source_dir, OUT / "assets" / name)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "apply-audio-preview-overrides.py"), str(OUT / "assets")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
