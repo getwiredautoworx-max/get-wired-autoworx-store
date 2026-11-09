@@ -13,9 +13,9 @@ const assert = require("node:assert/strict");
    const sample=await page.evaluate(()=>({cards:document.querySelectorAll(".product-card").length,overflow:document.documentElement.scrollWidth>innerWidth,price:document.body.innerText.includes("Price On Request due to Limited Stock and Availability"),leak:/Planetworld|Audio Connections|supplier SKU|dealer cost/i.test(document.body.innerText)}));
    assert.equal(sample.cards,50);assert.equal(sample.overflow,false);assert.equal(sample.price,true);assert.equal(sample.leak,false);
    await page.goto(base+"/preview-auto-electrical.html",{waitUntil:"networkidle"});
-   await page.locator("#grid img").evaluateAll(imgs=>imgs.forEach(img=>img.loading="eager"));
-   await page.waitForFunction(()=>[...document.querySelectorAll("#grid img")].every(i=>i.complete&&i.naturalWidth>0),{timeout:30000});
-   const auto=await page.evaluate(()=>({images:document.querySelectorAll("#grid img").length,overflow:document.documentElement.scrollWidth>innerWidth,price:document.body.innerText.includes("Price On Request due to Limited Stock and Availability")}));
+   await page.locator("#products img").evaluateAll(imgs=>imgs.forEach(img=>img.loading="eager"));
+   await page.waitForFunction(()=>[...document.querySelectorAll("#products img")].every(i=>i.complete&&i.naturalWidth>0),{timeout:30000});
+   const auto=await page.evaluate(()=>({images:document.querySelectorAll("#products img").length,overflow:document.documentElement.scrollWidth>innerWidth,price:document.body.innerText.includes("Price On Request due to Limited Stock and Availability")}));
    assert.equal(auto.images,34);assert.equal(auto.overflow,false);assert.equal(auto.price,true);
    await page.close();
   }
