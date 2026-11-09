@@ -5,6 +5,7 @@ on:
     branches: [main, integration/storefront-current-main-2026-11-09]
     paths:
       - "scripts/build-cloudflare-pages-public.py"
+      - "scripts/audit-audio-preview.py"
       - ".github/workflows/cloudflare-pages-deploy.yml"
       - ".github/workflows/cloudflare-layout-preview.yml"
       - ".github/workflows/publish-approved-storefront-preview.yml"
