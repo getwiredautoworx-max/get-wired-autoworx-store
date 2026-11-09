@@ -247,6 +247,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-ap4d",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AP4 D"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Prima AP4 D 4-Channel Class D Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AP4 D",
+      "description": "Four-channel, fully bridgeable Class D amplifier designed to extend Audison AP 4.9 bit and AP 5.9 bit systems. Rated output at 14.4 V and 1% THD: 4 × 70 W at 4 Ω or 4 × 130 W at 2 Ω; bridged output is 2 × 260 W at 4 Ω. The manufacturer also lists 4 × 180 W at 2 Ω at 10% THD. Features high- and low-level inputs, 10 Hz–30 kHz bandwidth, 100 dBA signal-to-noise ratio and 7.5–15 VDC operating supply.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Prima AP4 D manufacturer product page and image verified; rated and maximum power figures retain their stated THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
