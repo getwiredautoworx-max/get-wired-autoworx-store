@@ -1,0 +1,88 @@
+{
+  "record_id": "ON016-2LX",
+  "review_status": "DO NOT IMPORT",
+  "manufacturer": "OneNav",
+  "manufacturer_model_code": "ON016-2LX",
+  "product_family": "OneNav Evolution",
+  "source_record": {
+    "workbook": "one-price-list-2026-10-25.xlsx",
+    "sheet": "Products",
+    "row": 106,
+    "source_title_exact": "OneNav 10.1inch for Corrola Cross A11 (2021+)",
+    "supplier_sku_private": "ON016-2LX",
+    "source_record_status": "SOURCE_ROW_LINKED"
+  },
+  "category_path": [
+    "Audio, Entertainment & Music",
+    "Car Audio & Video",
+    "OneNav",
+    "Head Units & Media Players"
+  ],
+  "vehicle_fitment": {
+    "manufacturer": "Toyota",
+    "model": "Corolla Cross",
+    "variant": "A11",
+    "years": "2021+",
+    "status": "MANUFACTURER_PAGE_CONFIRMED"
+  },
+  "manufacturer_evidence": {
+    "url": "https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/",
+    "exact_sku_visible": true,
+    "family": "Evolution",
+    "status": "VERIFIED_EXACT_SKU_AND_FITMENT",
+    "specifications": [
+      "Wired and wireless OneConnect",
+      "Wireless Apple CarPlay and Android Auto",
+      "Bluetooth 5.4",
+      "FM/AM RDS radio tuner",
+      "High-speed USB charging",
+      "USB media input",
+      "5 × 4 V RCA outputs",
+      "4 × 45 W speaker output",
+      "Digital sound processor",
+      "12-band equaliser",
+      "Optional front and rear camera inputs",
+      "Three-year warranty"
+    ]
+  },
+  "screen_size": {
+    "product_title_claim": "10.1-inch",
+    "manufacturer_specification_claim": "10-inch",
+    "status": "CONFLICT_UNRESOLVED",
+    "customer_copy_rule": "Omit screen diagonal until manufacturer clarification."
+  },
+  "customer_content": {
+    "customer_brand": "OneNav",
+    "customer_title": "OneNav Evolution Multimedia Receiver for Toyota Corolla Cross A11 (2021+)",
+    "customer_description": "Touchscreen multimedia receiver for Toyota Corolla Cross A11 (2021+). Supports wired and wireless OneConnect, Wireless CarPlay and Android Auto, Bluetooth 5.4, FM/AM RDS radio, high-speed USB charging and USB media input. Audio connections include 5 × 4 V RCA outputs and 4 × 45 W speaker output; digital sound processing with a 12-band equaliser is built in. Front and rear camera inputs are optional. Manufacturer lists a three-year warranty.",
+    "description_status": "MANUFACTURER_VERIFIED_WITH_CONFLICTING_SCREEN_SIZE_OMITTED"
+  },
+  "product_type": "Head Units & Media Players",
+  "proposed_gw_sku": null,
+  "gw_sku_status": "NOT_ASSIGNED_NO_APPROVED_ALLOCATION_EVIDENCE",
+  "image": {
+    "url": null,
+    "status": "IMAGE_PENDING",
+    "approved": false,
+    "manufacturer_image_search": "No exact ON016-2LX image was retrievable/visually verified from the official page in this pass.",
+    "rejected_candidates": [
+      {
+        "model": "ON1609-A111",
+        "description": "Universal 9-inch OneNav head unit image",
+        "source_url": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/on1609-a111/pictures/onenav-2-din-universal-9-inch_egv4.png?format=png",
+        "status": "REJECTED_WRONG_MODEL_AND_FITMENT"
+      }
+    ]
+  },
+  "pricing": {
+    "customer_display": "Price On Request",
+    "numeric_price": null,
+    "status": "SUPPRESSED_BY_OWNER_POLICY"
+  },
+  "stock": {
+    "customer_display": "Availability to be confirmed",
+    "stock_status": null,
+    "status": "UNCONFIRMED"
+  },
+  "next_action": "Obtain manufacturer clarification on 10-inch versus 10.1-inch screen wording and an exact ON016-2LX product image; do not use the universal ON1609-A111 image."
+}
