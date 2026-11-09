@@ -241,3 +241,14 @@ This owner clarification supersedes the earlier blanket private-data-boundary st
 
 ## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
 The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
+
+
+## 2026-11-09 owner-reported preview defects — repair branch update
+
+- Owner reports the consolidated store preview is unpopulated and the 50 ASC sample product images are clipped at the bottom by approximately one quarter.
+- Root causes confirmed: owner-preview homepage skipped live category refresh but still fetched active products only from Supabase, while committed category snapshot reports zero direct active products for the three root categories. Local catalogue review data (34 Auto Electrical pilot products and 66 Audio review products) was not connected to the owner-preview renderer. No Car Care product dataset was found in the inspected assets; do not invent products.
+- Image root causes confirmed: image processor retained only 68% of source height by default and had per-image bottom crops; Auto Electrical pilot page used a fixed 3:2 overflow-hidden window for portrait source photos. Both source processing and CSS display have been corrected on repair branch `fix/owner-preview-population-and-full-height-images-2026-11-09` to preserve full image height.
+- Owner-preview homepage now loads the 34 Auto Electrical and 66 Audio records from committed read-only review datasets, marks the page as review-only, displays Price On Request and unconfirmed availability, hides numeric supplier SKU data, and avoids the live Supabase product query in owner-preview mode. These remain preview-only and are not imports or live stock.
+- Auto Electrical category page now links to its 34-product review pilot. Car Audio already routes to the Audio preview catalogue. Car Care remains visibly unpopulated until a valid catalogue dataset is completed; do not add invented products.
+- **Not yet complete:** regenerate all 50 image output assets and manifest from original source images using the corrected processor; inspect outputs/contact sheet for full lower product edges; run automated checks; deploy same-SHA Pages staging preview; inspect mobile/desktop; then ask owner to recheck. Current hosted preview is unchanged until those steps succeed.
+- No production deployment, live Supabase write, import, Axxess upload, DNS change or paid spend was performed or authorised.
