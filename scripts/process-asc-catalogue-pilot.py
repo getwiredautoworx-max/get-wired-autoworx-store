@@ -69,11 +69,28 @@ def crop_bounds(im):
     lines=ocr_lines(im)
     top=0
     bottom=h
+    def density(y0,y1):
+        y0=max(0,min(int(y0),h-1))
+        y1=max(y0+1,min(int(y1),h))
+        region=im.crop((8,y0,max(9,w-8),y1)).convert("RGB")
+        pixels=list(region.getdata())
+        if not pixels:return 0.0
+        nonwhite=sum(1 for r,g,b in pixels if min(r,g,b)<225 and (max(r,g,b)-min(r,g,b))>5)
+        return nonwhite/len(pixels)
     for line in lines:
         span=line["x1"]-line["x0"]
-        if line["y0"]<=h*.30 and span>=w*.25: top=max(top,line["y1"]+12)
-        if line["y0"]>=h*.55 and span>=w*.25: bottom=min(bottom,line["y0"]-18)
-    
+        if span<w*.25:continue
+        if line["y0"]<h*.25:
+            top=max(top,line["y1"]+10)
+        elif line["y0"]>h*.72:
+            bottom=min(bottom,line["y0"]-25)
+        else:
+            below=density(line["y1"]+3,h-5)
+            above=density(5,line["y0"]-3)
+            if below>max(.045,above*1.2):
+                top=max(top,line["y1"]+10)
+            else:
+                bottom=min(bottom,line["y0"]-25)
     top=max(0,min(top,int(h*.48)))
     bottom=max(top+int(h*.30),min(bottom,h))
     return top,bottom,lines
