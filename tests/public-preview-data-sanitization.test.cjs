@@ -27,6 +27,14 @@ assert.ok(bitDmi.imageUrl && bitDmi.description, 'Audison bit DMI must have exac
 assert.equal(bitDmi.modelNumber, 'bit DMI', 'customer model label must not expose the supplier item code');
 assert.equal(bitDmi.indicativePrice, null);
 assert.equal(bitDmi.hasStock, null);
+const bcon = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison B-CON Hi-Res Bluetooth Receiver');
+assert.ok(bcon, 'verified Audison B-CON preview record must be present');
+assert.equal(bcon.modelNumber, 'B-CON');
+assert.equal(bcon.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(bcon.imageUrl && bcon.description, 'Audison B-CON must have exact official image and technical description');
+assert.equal(bcon.indicativePrice, null);
+assert.equal(bcon.hasStock, null);
+
 
 let checked = 0;
 for (const file of files) {
