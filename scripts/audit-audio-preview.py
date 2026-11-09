@@ -33,6 +33,8 @@ def audit(name, path):
         "reviewFlagged": 0,
         "harnessTrimKeywordCounts": Counter(),
         "harnessTrimExamples": [],
+        "byDivision": {},
+        "byCollection": {},
         "imageStatuses": Counter(),
         "publicationStatuses": Counter(),
         "divisions": Counter(),
@@ -53,13 +55,19 @@ def audit(name, path):
             summary["missingBrand"] += 1
         if not nonempty(row, COMPONENT_KEYS):
             summary["missingComponent"] += 1
+        for group_key, group_name in (("byDivision", str(row.get("division", "unspecified"))), ("byCollection", str(row.get("collection", "unspecified")))):
+            bucket = summary[group_key].setdefault(group_name, Counter())
+            bucket["records"] += 1
+            bucket["withImage"] += int(nonempty(row, IMAGE_KEYS))
+            bucket["withDescription"] += int(nonempty(row, DESCRIPTION_KEYS))
+            bucket["withBoth"] += int(nonempty(row, IMAGE_KEYS) and nonempty(row, DESCRIPTION_KEYS))
         review_values = " ".join(str(row.get(k, "")) for k in ("reviewStatus", "publicationStatus", "imageStatus", "classificationStatus"))
         if row.get("manualReview") or row.get("needsReview") or row.get("reviewRequired") or row.get("component") == "Manual Product-Type Review" or re.search(r"(?:^|\b)(?:HOLD|MANUAL_REVIEW|REVIEW_REQUIRED|UNCLASSIFIED)", review_values, re.I):
             summary["reviewFlagged"] += 1
         if row.get("collection") == "Harnesses & Trims" or row.get("component") == "Harnesses, Trims & Fitment":
             title = " ".join(str(row.get(k, "")) for k in ("title", "name", "description", "modelNumber")).lower()
-            harness = bool(re.search(r"\b(harness|loom|adapter|interface|patch lead|wiring|iso)\b", title))
-            trim = bool(re.search(r"\b(trim|fascia|bezel|surround|dash kit|panel)\b", title))
+            harness = bool(re.search(r"\b(harness|loom|adapter|adaptor|interface|patch lead|wiring|iso2car|fakra|mute)\b", title))
+            trim = bool(re.search(r"\b(trim|fascia|bezel|surround|dash kit|panel|2[- ]?din)\b", title))
             label = "both" if harness and trim else "harness" if harness else "trim" if trim else "unclassified"
             summary["harnessTrimKeywordCounts"][label] += 1
             if label == "unclassified" and len(summary["harnessTrimExamples"]) < 12:
@@ -76,6 +84,8 @@ def audit(name, path):
     summary["duplicateBrandModelGroups"] = sum(1 for n in model_keys.values() if n > 1)
     for key in ("imageStatuses", "publicationStatuses", "divisions", "collections", "components", "harnessTrimKeywordCounts"):
         summary[key] = dict(summary[key].most_common(40))
+    for group_key in ("byDivision", "byCollection"):
+        summary[group_key] = {k: dict(v) for k, v in summary[group_key].items()}
     return name, summary
 
 results = dict(audit(name, path) for name, path in FILES.items() if path.is_file())
