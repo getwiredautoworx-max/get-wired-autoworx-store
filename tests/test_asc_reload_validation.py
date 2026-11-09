@@ -79,7 +79,7 @@ def main():
         require(row["stock_availability"].startswith("Unconfirmed"), f"Stock must remain unconfirmed: {sku}")
         require(row["staging_status"] == "STAGED_REVIEW_ONLY", f"Unexpected staging status: {sku}")
         require(row["import_gate_control"] == "DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL", f"Missing import gate: {sku}")
-        require(row["image_status"].startswith("OWNER_AUTHORIZED"), f"Image status not aligned with owner authorization: {sku}")
+        require(row["image_approval_status"].startswith("OWNER_AUTHORIZED"), f"Image status not aligned with owner authorization: {sku}")
 
     pilot_skus = [r["supplier_sku"] for r in pilot]
     require(len(set(pilot_skus)) == 50, "Duplicate pilot supplier SKU")
