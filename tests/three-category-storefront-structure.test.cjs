@@ -173,9 +173,9 @@ assert.ok(audioPage.includes('rows=enriched.concat(audioConnections)'), 'pre-enr
 assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio"'), 'Car Audio & Video must include every Car Audio source row together, not separate supplier pages');
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
-assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
+assert.ok(audioProductsPage.includes('displayBrandName(p.brandDisplayName||p.brand)===brand&&group(p)===component'), 'product page must filter catalogue rows by verified brand and selected product type');
 assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1654447398824-dbcbefeafdd6') && audioBrandPage.includes('images.unsplash.com/photo-1543017471-62c14029f7ce'), 'brand page must use photographic product-type artwork');
-assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
 assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
 assert.ok(planetPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'legacy Planetworld review route must redirect into the unified Car Audio & Video catalogue');
@@ -289,7 +289,7 @@ assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/fil
 assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'department and brand landing pages must hide stock while direct search routes and selected component routes show filtered products');
 assert.ok(audioPage.includes('const directSearchRoute=!!query'), 'direct category search routes must open their own filtered product listing');
 assert.ok(audioPage.includes('component==="All product types"&&!directSearchRoute'), 'normal department and brand pages must hide stock until a component or direct search is selected');
-assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
+assert.ok(audioPage.includes('(brand==="All brands"||displayBrand(p)===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(previewCategory.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'Car Audio & Video must enter the brand-first audio landing page without preselecting All brands');
@@ -315,7 +315,7 @@ for (const photo of [
   assert.ok(audioPage.includes(photo) || previewCategory.includes(photo) || audioBrandPage.includes(photo), 'audio category photography includes '+photo);
 }
 assert.ok(audioPage.includes('el("departments").hidden=!!department;'), 'selected department must hide the previous menu');
-assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand component cards must prefer exact product images');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl)'), 'brand component cards must prefer exact product images');
 for (const asset of ['audio-types/speakers.svg','audio-types/subwoofers.svg','audio-types/amplifiers.svg','audio-types/head-units.svg','audio-types/cameras-monitors.svg','audio-types/signal-processing.svg','audio-types/harnesses-trims.svg','audio-types/aerials.svg','audio-types/home-audio-cinema.svg','audio-types/musical-instruments.svg','audio-types/marine-audio.svg','audio-types/lifestyle-audio.svg']) {
   assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package retains safe category fallback '+asset);
 }
