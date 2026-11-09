@@ -15,6 +15,25 @@
       "indicativePrice": null,
       "hasStock": null,
       "modelNumber": null
+    },
+    {
+      "match": {
+        "brand": "Audison",
+        "title": "Audison - bit DMI - Digital Most Interface"
+      },
+      "title": "Audison bit DMI Digital MOST Interface",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit DMI",
+      "description": "A high-quality digital interface that connects a vehicle's original MOST digital audio source to compatible Audison signal processors, preserving the factory audio functions while providing clean digital signal transfer. Features a MOST optical input, S/PDIF optical stereo PCM output (16-bit, 44.1 or 48 kHz depending on the system), USB/mini-B 2.0 configuration, programmable MOST-system integration, automatic MOST-triggered power switching with remote output, and retention of OEM volume, balance, tone, hands-free, navigation and parking-sensor signals.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit DMI product page and manufacturer image verified; review-only owner preview. No supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
