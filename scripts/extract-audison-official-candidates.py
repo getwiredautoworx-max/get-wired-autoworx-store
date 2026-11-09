@@ -197,7 +197,10 @@ def main():
     for row in rows:
         if row.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE": continue
         url = clean_text(row.get("official_product_page_url"))
-        if not url or url in existing: continue
+        if not url: continue
+        prior = existing.get(url)
+        if prior and prior.get("status") != "FETCH_FAILED_RETRY": continue
+        if prior and int(prior.get("attempts", 0)) >= 3: continue
         host = (urlparse(url).hostname or "").lower()
         if host not in ALLOWED_PAGE_HOSTS: continue
         title = clean_text(row.get("source_title"))
@@ -225,7 +228,9 @@ def main():
             page = get_page(url)
             item.update(page)
             item["model_match_status"] = model_match(source_model, source_title, page["page_title"], page["h1"], page["meta_description"])
-            item.update(download_image(page["image_url"], candidate_id))
+            candidate_image = page["image_url"] or clean_text(row.get("image_url_candidate"))
+            item["image_url"] = candidate_image
+            item.update(download_image(candidate_image, candidate_id))
             item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
         except Exception as exc:
             previous = existing.get(url, {})
