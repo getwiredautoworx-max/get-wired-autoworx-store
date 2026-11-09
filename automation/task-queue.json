@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Preview now withholds Audio Connections rows without exact verified image/model match; 61 of 66 records qualify for preview, 3 model/spec holds, 1 failed image and 1 low-resolution image remain excluded. Continue exact model/image reconciliation, Planetworld 236-row manual review, wattage and brand/type routing."
+      "next_action": "Audio Connections now excludes unverified products from all audio routes; 61 exact model/image matches remain preview-eligible, while ac-006, ac-032, ac-041, ac-044 and ac-058 are held. Continue Planetworld product-level reconciliation and its 236 manual-review rows, correct image/spec mapping, and brand-first/type-second navigation."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -182,7 +182,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Latest exact-head Cloudflare package QA must pass after the current category, supplier-safe preview sanitization and audio image-hold changes; then verify same-SHA staging preview on mobile and desktop."
+      "next_action": "Await the exact-head Cloudflare package QA on f13c319 and subsequent candidate head. It must pass standard and isolated preview package checks, including supplier-safe JSON sanitizer and new ASC Aerials/Car Mats routes; then confirm same-SHA staging preview on mobile and desktop."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -206,7 +206,7 @@
         "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
         "Customer display hides supplier names/internal SKUs and uses Price On Request"
       ],
-      "next_action": "Candidate now splits the 34 verified pilot records into Sensors (9), Switches (8), Globes (8) and Fuel Pumps (9), with deep links into the filtered Auto Electrical preview. Finish regression QA, then reconcile remaining unpopulated Auto Electrical and Car Care subcategories without inventing records."
+      "next_action": "Verified pilot navigation is now split into Sensors (9), Switches (8), Globes (8), Fuel Pumps (9); ASC Aerials (8) and Car Mats (8) have dedicated review-only sample routes. Finish exact-head QA and confirm all three department routes work; other non-pilot Car Care/Auto Electrical subcategories remain source-pending."
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
@@ -226,7 +226,7 @@
         "All 50 output images and contact sheet exist, with checksums and 50 unique sample IDs",
         "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
       ],
-      "next_action": "50 outputs regenerated with 100% source-height preservation and zero bottom crop; contact sheet reviewed with no product bottoms clipped. The source card captions and blue catalogue code strips are still visible in some crops. Separate those external labels from the product photographs without cutting product content, then inspect all 50 at full resolution and obtain owner acceptance."
+      "next_action": "50 images regenerated at full source height, contact sheet reviewed with no clipped bottoms. Source-card captions/code strips still remain in some images; isolate those labels from the actual product photos without cutting product content, then inspect all 50 individually at full resolution and seek owner acceptance."
     }
   ]
 }
