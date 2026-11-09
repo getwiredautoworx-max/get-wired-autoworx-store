@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Read-only validation of the 978-row ASC review dataset and editorial pilot."""
+"""Read-only validation of the 978-row ASC review dataset and editorial pilot.
+Owner policy: all customer prices remain Price On Request; no supplier stock or numeric price is invented.
+"""
 import csv
 from collections import Counter
 from pathlib import Path
