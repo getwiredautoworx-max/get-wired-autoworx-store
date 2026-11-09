@@ -20,7 +20,21 @@ WATERMARK="GET WIRED AUTOWORX"
 # product area (no top crop), but exclude the external caption/code region.
 # This is a conservative starting boundary; the regenerated 50-image sheet
 # must be inspected and any product-specific boundary corrected before approval.
-PRODUCT_BOTTOM_OVERRIDES={}
+PRODUCT_CROP_OVERRIDES={
+    # Carpet-set product silhouettes end above the printed product caption.
+    **{f"asc-{name}.jpg":(0.0,0.62) for name in [
+        "m7-avan01","m7-taz01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
+    ]},
+    # Bulb captions sit below the complete bulb photograph.
+    **{f"asc-{name}.jpg":(0.0,0.65) for name in [
+        "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
+    ]},
+    # These source cards have a supplier/category heading above the product.
+    "asc-f1-028.jpg":(0.10,0.78),
+    "asc-f1-046.jpg":(0.12,0.78),
+    "asc-f1-047.jpg":(0.12,0.78),
+    "asc-f1-050.jpg":(0.12,0.78),
+}
 
 def sha256(path):
     h=hashlib.sha256()
@@ -36,19 +50,19 @@ def font(size):
 
 def crop_bounds(image, source_name):
     _w,h=image.size
-    ratio=PRODUCT_BOTTOM_OVERRIDES.get(source_name,PRODUCT_AREA_BOTTOM_RATIO)
-    top=0
-    bottom=int(round(h*ratio))
-    if bottom < int(h*.60) or bottom > h:
-        raise ValueError(f"Unsafe product-area boundary for {source_name}: {bottom}/{h}")
-    return top,bottom,"PRODUCT_AREA_ONLY_NO_TOP_CROP_CAPTION_AND_CODE_STRIP_EXCLUDED_PENDING_VISUAL_QA"
+    top_ratio,bottom_ratio=PRODUCT_CROP_OVERRIDES.get(source_name,(0.0,PRODUCT_AREA_BOTTOM_RATIO))
+    top=int(round(h*top_ratio))
+    bottom=int(round(h*bottom_ratio))
+    if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
+        raise ValueError(f"Unsafe product-area boundary for {source_name}: {top}:{bottom}/{h}")
+    return top,bottom,"PRODUCT_PHOTO_AREA_ONLY_EXTERNAL_CAPTION_CODE_STRIP_REMOVED_PENDING_VISUAL_QA"
 
 def treat(src,dst):
     with Image.open(src) as original:
         im=ImageOps.exif_transpose(original).convert("RGB")
         w,h=im.size
         top,bottom,method=crop_bounds(im,src.name)
-        if top != 0 or bottom <= int(h*.60) or bottom > h:
+        if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
             raise ValueError(f"Unsafe product-area crop boundary: {src.name}")
         crop=im.crop((0,top,w,bottom))
         contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
@@ -92,6 +106,6 @@ def main():
         draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=lf,fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-PILOT-*.jpg")))!=EXPECTED:raise SystemExit("Output count is not 50")
-    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} top_crop=0 watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
+    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} per_image_overrides={len(PRODUCT_CROP_OVERRIDES)} watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
 
 if __name__=="__main__":main()
