@@ -50,12 +50,15 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
-      - name: Verify preview package includes only the five approved preview routes
+      - name: Verify current non-production preview routes and supplier-safe exclusions
         shell: bash
         run: |
           set -euo pipefail
-          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-audio.html preview-audio-brand.html preview-audio-products.html preview-auto-electrical.html product-image-treatment-pilot.html; do
             test -s "pages-public/$page"
+          done
+          for page in preview-planetworld.html asc-catalogue-preview.html asc-catalogue-preview-data.json planetworld-catalogue-preview.json audio-connections-catalogue-preview.json; do
+            test ! -e "pages-public/$page"
           done
           test ! -d pages-public/suppliers
           test ! -d pages-public/catalogue-review
