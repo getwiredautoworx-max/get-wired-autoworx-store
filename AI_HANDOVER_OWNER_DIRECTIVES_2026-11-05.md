@@ -95,3 +95,11 @@
 - Customer-facing rules remain: hide supplier names and internal supplier SKUs; do not expose dealer-only cost/wholesale information as retail prices; apply the owner's Price On Request and other supplier-specific pricing instructions; never invent price or stock.
 - This clarification does not authorise exposing credentials, access tokens, personal data, or other genuine secrets. It also does not relax the production hold, no-live-write rules, exact-head QA, staging verification, or owner approval for release.
 - This section supersedes any older handover language that made a private supplier-data boundary a blanket blocker to catalogue processing.
+
+
+## 11. Owner clarification — current retail price display (2026-11-09)
+- The owner's latest instruction supersedes the older supplier-specific RRP display assumptions: **all supplier products must use Price On Request for now**, because supplier pricing and stock fluctuate and cannot yet be synchronised reliably.
+- Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current customer prices. Preserve source price evidence in the review dataset for later reconciliation, but keep customer-facing price values suppressed until a reliable direct supplier price-and-stock update process is operating and the owner approves its use.
+- For ASC, use the exact customer-facing wording: **"Price On Request due to Limited Stock and Availability"**.
+- For other suppliers, use the approved generic **"Price On Request"** label unless the owner provides a different exact wording.
+- Never invent stock availability. Treat catalogue orderability as unconfirmed until current supplier availability is verified.
