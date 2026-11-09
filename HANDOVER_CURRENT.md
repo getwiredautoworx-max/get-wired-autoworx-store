@@ -374,3 +374,50 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - The image processor has now been refined to retain the full product area while removing the external caption/code region: no top crop by default, a conservative product-area bottom boundary, and per-image overrides for carpet sets, globes and fuel-pump cards with headings. The next contact sheet must be inspected to confirm no product component is clipped and no source caption/code remains. Do not equate card-height preservation with product-photo correctness.
 - A previous image-workflow run generated outputs but its Git push was rejected because a separate candidate commit landed during processing. The workflow now rebases the generated-image commit onto the latest candidate before pushing, to avoid losing work to a normal concurrent code commit. No blind force-push is permitted.
 - The exact-head package QA has also had repeated failures caused by regression assertions that did not match valid owner-preview route changes. Assertions are being corrected to test actual behaviour; they must not be disabled or weakened to bypass real defects.
+
+
+---
+
+## OWNER CONTINUATION CHECKPOINT — 2026-11-09 (latest evidence)
+
+### ASC 50-image sample
+- The 50 outputs have been regenerated from the source crops. The processor now preserves product-area bounds (no bottom crop of product content), masks external catalogue caption/code strips on the specific affected source cards, and overlays the Get Wired AutoWorx watermark over the ASC watermark.
+- The contact sheet was reviewed at full sheet resolution; high-resolution spot checks were performed on representative bulb, fuel-pump and accessory images. The previously clipped fuel-pump bases and printed captions are corrected in the latest sample.
+- The 50-row manifest and contact sheet are present. Current manifest status is being changed to `CONTACT_SHEET_REVIEWED; HIGH_RESOLUTION_SPOT_CHECKS_PASSED; OWNER_ACCEPTANCE_PENDING` by the latest image workflow run. The sample is **not** production-imported and owner acceptance is still pending.
+- Review contact sheet: `catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg`.
+
+### Audio: verified-only product display and current enrichment
+- The owner-preview now filters Planetworld product cards to records with both a product image URL and description, and an accepted exact-model image status. Records with rejected wrong-variant images, image candidates, page-link-only candidates, or missing descriptions are withheld from product cards.
+- The build applies `assets/audio-product-enrichment-overrides.json` to the preview copy before public-data sanitisation. The override file itself is not copied into the public package. Every override keeps `indicativePrice=null`, `hasStock=null`, and `Price On Request`; supplier names and supplier item codes are not displayed.
+- Nine model-specific review-only overrides now cover:
+  1. OneNav Classic 9-inch Toyota Prado 2002–2009 (OA014-1 source match; retailer image visually checked)
+  2. Audison bit DMI (official manufacturer product page/image)
+  3. Audison B-CON (official manufacturer product page/image)
+  4. ARCAM AVR21 (official manufacturer product page/image)
+  5. ARCAM AVR11 (official manufacturer product page/image)
+  6. Adeo Plano 135-inch Vision Acoustic
+  7. Adeo Plano 120-inch Reference White 2
+  8. Adeo Plano 135-inch Reference White 2
+  9. Adeo Prestige 180-inch Vision Acoustic
+- The exact image/description evidence is sourced from the model-specific product pages, including Audison `https://audison.com/product/bit-dmi/` and `https://audison.com/product/b-con`, ARCAM `https://www.arcam.co.uk/product,hda,av-receivers,avr21.htm`, `https://www.arcam.co.uk/product,hda,av-receivers,avr11.htm`, and exact Adeo product listings. These remain review-only owner-preview entries.
+- The latest read-only audit (run 42607717703 on SHA `1e97ee09496d4dbcc20531e269a043b49de6f28a`) reported 3,321 Planetworld preview-copy rows after overrides, 72 exact image+description verified, 3,240 missing image fields and 3,202 missing descriptions.
+- By division in that audit: Car Audio 702 source rows / 66 exact image+description verified; Home CI 323 rows / 6 verified; Home Retail 142 / 0; Installed AV 435 / 0; Musical Instruments 1,719 / 0.
+- By collection: Car Audio & Video 627 rows / 66 verified; Home Entertainment 465 / 6 verified; Band & Live Sound 792 / 0; Musical Instruments 850 / 0; Installed AV 435 / 0; DJ 15 / 0; Harnesses & Trims 47 / 0; Marine Audio 28 / 0; Studio Equipment 62 / 0.
+- Audio Connections review data remains 66 records, 61 exact model/image matches eligible for owner preview, and five held: `ac-006`, `ac-032`, `ac-041`, `ac-044`, `ac-058`.
+- The 47 Planetworld Harnesses & Trims rows are now separated in preview navigation into 24 Harnesses and 23 Trims. None currently has a verified product image/description, so both subcategory routes show an explicit reconciliation-pending message rather than misleading product cards.
+- Kicker brand-logo display size has been increased. OneNav wordmark and Amplified brand-art mappings remain. Audio brand-first then product-type navigation is preserved.
+
+### Package QA and release boundary
+- Cloudflare Pages standard customer-only package and isolated owner-preview package both passed the package QA and supplier/SKU exposure audit on SHA `1e97ee09496d4dbcc20531e269a043b49de6f28a` (workflow run 42607717703; public SKU audit 42607717716).
+- The latest image manifest-status update is running separately; rerun exact-head package QA after the image workflow's bot commit so the checks match the final branch SHA.
+- This is package QA, **not** a hosted staging-preview verification. The hosted preview, mobile-first and desktop browser acceptance checks remain outstanding. Do not spend Cloudflare credits or deploy unless separately approved.
+- Production HOLD remains. No merge, live Supabase write, Axxess upload, DNS/payment change or production deployment was performed.
+- The existing 15-minute controller monitors task/workflow state; the four-hour ASC worker extracts catalogue source data only. Neither performs continuous Audio product enrichment. Audio enrichment remains bounded, model-assisted review batches; do not claim a complete autonomous 24/7 workforce until a worker actually performs and checkpoints that work.
+
+### Next execution order
+1. Continue Audio model-by-model enrichment, prioritising the 636 Car Audio source rows not yet exact-image/description verified and the 459 Home Entertainment source rows not yet verified; then Home Retail, Installed AV, Band & Live Sound, DJ and Musical Instruments.
+2. Add exact image/description evidence only where the model/variant is confirmed. Keep wrong-variant, collection-only and image-pending rows out of product cards.
+3. Complete the full ASC six-catalogue product verification beyond the 50-image sample.
+4. Complete remaining category assignments and verified Car Care / Auto Electrical catalogue population.
+5. Complete Electro-city pilot evidence review.
+6. Run exact-head package QA after the latest image workflow commit, then obtain a same-SHA hosted staging preview and mobile/desktop owner acceptance before any readiness claim.
