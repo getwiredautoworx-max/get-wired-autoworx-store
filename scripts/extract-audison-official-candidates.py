@@ -63,7 +63,7 @@ class PageParser(HTMLParser):
         if self._script_json: self._script_parts.append(data)
 
 def clean_text(value):
-    return re.sub(r"\\s+", " ", html.unescape(str(value or ""))).strip()
+    return re.sub(r"\s+", " ", html.unescape(str(value or ""))).strip()
 
 def slug(value):
     value = re.sub(r"[^a-zA-Z0-9]+", "-", str(value or "")).strip("-").lower()
@@ -121,7 +121,7 @@ def get_page(url):
 def model_match(source_model, source_title, page_title, h1, description):
     target = clean_text(source_model) or clean_text(source_title)
     haystack = clean_text(" ".join([page_title, h1, description])).casefold()
-    token = re.sub(r"\\s+", " ", target).casefold()
+    token = re.sub(r"\s+", " ", target).casefold()
     if token and token in haystack: return "EXACT_MODEL_TEXT_FOUND"
     # The exact page URL is already owner-audited; a near match still requires visual/manual confirmation.
     model_tokens = [x for x in re.findall(r"[a-z0-9.]+", token) if len(x) >= 3 and x not in {"audison", "amplifier", "amplifiers", "digital", "processor"}]
@@ -243,7 +243,7 @@ def main():
         "review_only": True,
     })
     manifest["updated_at"] = datetime.now(timezone.utc).isoformat()
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     make_contact_sheet(manifest["items"])
     print("AUDISON_OFFICIAL_CANDIDATE_BATCH")
     print(json.dumps({"processed": len(new_items), "remaining": max(0, len(pending)-len(batch)), "total_candidates": len(manifest["items"]), "review_only": True}, indent=2))
