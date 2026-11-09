@@ -131,7 +131,7 @@ jobs:
         run: node tests/audio-catalogue-preview.test.cjs
       - name: Verify Auto Electrical owner preview at mobile and desktop widths
         run: |
-          python3 -m http.server 4174 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
