@@ -163,6 +163,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-arcam-avr11",
+      "match": {
+        "brand": "ARCAM",
+        "title_contains": "AVR11"
+      },
+      "appendIfMissing": true,
+      "title": "ARCAM AVR11 HDMI 2.1 Class AB AV Receiver",
+      "brand": "ARCAM",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "AV Receivers & Home Cinema",
+      "modelNumber": "AVR11",
+      "description": "High-performance 7-channel Class AB home-cinema receiver with Dolby Atmos, DTS:X and Auro-3D 7.1.4 decoding. Includes dual ESS 9026PRO DACs and Dirac Live room correction. Provides 7 HDMI 2.1 inputs and 2 HDMI outputs with eARC, HDCP 2.3, 8K/60 and 4K/120 support, plus Dolby Vision, HDR10+, HDR10 and HLG. Streaming includes Apple AirPlay 2, Google Chromecast, Bluetooth aptX HD, Spotify Connect, TIDAL Connect, MQA and Roon Ready. Wi-Fi, Ethernet, RS232 and IR control are included.",
+      "imageUrl": "https://www.arcam.co.uk/ugc-1/productalternate/203/33_main.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact ARCAM AVR11 official product page and front-panel manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
