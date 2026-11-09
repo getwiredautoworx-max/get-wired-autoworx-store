@@ -26,5 +26,5 @@ for override in overrides:
             continue
         row[key] = value
     applied += 1
-base_path.write_text(json.dumps(base, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+base_path.write_text(json.dumps(base, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"AUDIO_PREVIEW_OVERRIDES_APPLIED records={applied}")
