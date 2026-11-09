@@ -341,3 +341,11 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - No category mapping was yet changed; only the exact defects and required mapping work were recorded.
 - No audio product records were edited in this session.
 - No PR was merged; no deployment, live data write, Axxess upload or paid service was used.
+
+
+### Additional candidate data audit — 2026-11-09
+- `assets/auto-electrical-owner-preview.json` contains 34 review-only records: 9 Automotive Sensors, 8 Automotive Switches, 8 Automotive Globes and 9 Fuel Pumps. This is useful evidence that the pilot data exists, but it is not the full six-catalogue population and it is not live product data.
+- `assets/audio-catalogue-primary-preview.json` contains 3,317 source-snapshot records (47 source workbooks / 94 sheets / 35 component groups). The separate Audio Connections / car-audio review snapshot contains 66 records from 68 source rows; 2 are explicitly excluded (one sold out, one exact accessory model/image unverified). Some audio records have image exceptions and must remain held; do not mark all audio fully reconciled.
+- The 66-record audio review dataset has brand, model and component fields but does not expose an explicit `categoryPath` on each record. Category routing therefore has to be derived and tested against the approved component taxonomy; do not infer that the data is correctly assigned just because the records exist.
+- The customer preview's source category tree has zero direct active products for all 29 categories. Local preview records must therefore be deliberately joined to the approved local category tree. The current Auto Electrical pilot is the only clearly quantified populated category set; Car Care remains without verified preview product rows.
+- Current candidate workflow run `42599322442` (head `ad8375ca7a28c26e4a1a06310d8dcba25bd65fe3`) failed in step **Build and verify standard customer-only Pages directory**. The companion Public SKU Exposure Audit passed on the same SHA. The package failure is release-blocking; exact log text is not available through the connected GitHub read interface. Do not retry blindly: inspect the failed step output, repair its actual cause, and rerun exact-head package QA.
