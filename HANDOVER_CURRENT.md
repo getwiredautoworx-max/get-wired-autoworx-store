@@ -181,3 +181,37 @@ These are a snapshot, not a substitute for refreshing PR heads and workflow resu
 2. Verify the next scheduled ASC worker run and inspect its summary/checkpoint, distinguishing no-change success from new extraction progress.
 3. Keep the two audio automations separated (monitor vs sole editor), verify their next recorded runs, and keep PR #178 unchanged until its live head/base/mergeability and private-data boundaries are resolved.
 4. Keep production HOLD; no Axxess, DNS, live database, live catalogue, price/stock, payment or publication changes.
+
+
+---
+
+## EXECUTION CONTINUATION — 2026-11-09 05:36 SAST
+
+### Background Task Controller — repaired and exact main-run verified
+- Main commits: `04e56042fb982ec43e5c31d627ace03ab81ed201` updates `scripts/background_task_controller.py` to render schema-v2 tasks using `success_criteria` when legacy `description` is absent, with safe defaults for optional display fields; `ad0c9dc43a4685b6285795c0d7fc5017bd0d2548` adds push validation triggers for controller code and task-queue changes.
+- Exact-main workflow run [42557051967](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42557051967), head `ad0c9dc43a4685b6285795c0d7fc5017bd0d2548`, completed **SUCCESS**. Confirmed steps: Python syntax validation, controller/task-queue checkpoint generation, artifact cleanup. Artifact upload was skipped by the existing quota/configuration guard. This resolves the reproduced `KeyError: 'description'` failure for this code path; continue monitoring scheduled runs for recurrence.
+- The repair was applied directly to main; no PR was merged. PR #187 and #188 remain open and are now redundant/stale candidates. Do not merge either; do not close them without owner direction. PR #187 still contains optional QA-suite guards that were not included in the minimal main repair.
+- The controller is scheduled every 15 minutes, but scheduled reliability is not yet proven by a sustained sequence of successful runs. A single successful push-triggered run is not 24/7 reliability proof.
+
+### Jules PR reconciliation — exact evidence
+- PR #183 (ASC six-catalogue reload): head `a1e0b2a201533caabb0ba6e0eb2827051007c6db`; current compare to main `ad0c9dc43a4685b6285795c0d7fc5017bd0d2548` is 18 ahead / 10 behind, diverged. Public-safe catalogue worker run [42500731670](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42500731670) passed but made no new extraction commit. Catalogue QA run [42500731634](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42500731634) failed in the ASC review-data check because `tests/auto-electrical-review-population.test.cjs` is absent on that PR branch. Core supplier routing/static tests, Deno type-check and responsive checks passed; preview build/audio/owner-preview suites were skipped. The PR advertises 978 catalogue rows (979 CSV lines including header), but all records remain review-only / DO NOT IMPORT; no merge or import.
+- PR #185 (Electrocity ignition pilot): head `30fe3a92d0ce865d87b9369b02c42aaa7afab417`; current compare is 6 ahead / 10 behind, diverged. Public SKU Exposure Audit run [42470895672](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42470895672) passed; this is not full catalogue/fitment QA. No import or merge.
+- Confidentiality stop: PR #185 contains supplier-derived review artefacts in this public repository. The owner's rule is that Electrocity's internal supplier SKU must not be customer-facing; more broadly, confidential supplier originals, internal SKUs and sensitive derivatives must not be processed or exposed through public repository/runners. Do not inspect, copy, process, publish, merge or further enrich those supplier-derived files until an owner-controlled private execution boundary or explicit redaction/containment plan is approved. Do not change repository visibility or rewrite history without owner approval.
+- PR #178 remains OPEN / DRAFT / UNMERGED, head `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`; current compare is 1,001 ahead / 36 behind, diverged; mergeable=false. No current exact-head preview exists. Do not rebase, merge, deploy or claim preview readiness.
+
+### ASC worker schedule
+- Latest confirmed scheduled main-branch ASC worker remains run [42520746794](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42520746794), SUCCESS, with no changed extraction outputs. No later scheduled ASC worker run is visible in the latest 100 main-branch Actions runs inspected at 05:36 SAST.
+- Worker cron is `23 */4 * * *`; next expected slot after this audit is 06:23 SAST. Verify the actual run and outputs before claiming schedule reliability or new catalogue progress.
+
+### Current automation execution state
+- The controller now has a verified successful main run, but this does not establish continuous operation. The ChatGPT automation records still show the last scheduled audio editing run completed on 2026-11-08 with OneNav-only review changes, while the coordination monitor's last recorded scheduled run is failed; the updated monitor prompt has not yet produced a new recorded successful run. The ASC daily monitor has no recorded run yet. Next-run timestamps are null in the automation dashboard.
+- Continue one audio editor only, with separate monitoring; however, PR #178's divergence and the public supplier-data boundary currently block further edits to its branch. No Cloudflare/Netlify credits, deployment, Axxess, DNS, live database, live price/stock, checkout/payment or production changes.
+- Production remains HOLD. All supplier-derived candidate data remains review-only / DO NOT IMPORT. Do not process ASC Buyers Guides.
+
+### Next actions
+1. Observe the next 06:23 SAST ASC worker slot; confirm run ID, conclusion and whether any outputs actually changed.
+2. Keep monitoring the 15-minute controller schedule and confirm at least several consecutive scheduled successes, not just the push-triggered repair run.
+3. Resolve the public-repository confidentiality boundary before further Electrocity, Planetworld or Audio Connections processing.
+4. Have Jules address the missing optional-test guard on PR #183 only if this can be done without processing confidential material; then re-run exact-head checks. Do not wholesale rebase or merge the 18-commit branch.
+5. Keep PR #178 unchanged until a single current-main-based integration plan and private data boundary are established.
+6. Preserve production HOLD and all no-deploy/no-live-write restrictions.
