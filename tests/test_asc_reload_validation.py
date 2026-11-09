@@ -89,7 +89,7 @@ def main():
     require(fitment_count == 42, f"Expected 42 manually verified pilot fitments, got {fitment_count}")
     require(spec_count == 0, f"Expected no transcribed technical specs yet, got {spec_count}")
     require(all(r["import_status"] == "REVIEW_ONLY_NOT_IMPORTED" for r in pilot), "Pilot contains a non-review-only row")
-    print("PASS: ASC review register 978/978; unique supplier/GW SKUs; six source totals; source-page/category mapping; exact POR labels; no numeric price/stock invention; DO NOT IMPORT.")
+    print("PASS: exact-head ASC review register 978/978; unique supplier/GW SKUs; six source totals; source-page/category mapping; exact POR labels; no numeric price/stock invention; DO NOT IMPORT.")
     print(f"PILOT: 50 rows; {fitment_count} printed fitments transcribed; {spec_count} technical-spec rows transcribed; all review-only.")
 
 if __name__ == "__main__":
