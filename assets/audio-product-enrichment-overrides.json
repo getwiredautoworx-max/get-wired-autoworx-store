@@ -58,6 +58,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-arcam-avr21",
+      "match": {
+        "brand": "ARCAM",
+        "title_contains": "AVR21"
+      },
+      "appendIfMissing": true,
+      "title": "ARCAM AVR21 HDMI 2.1 AV Receiver",
+      "brand": "ARCAM",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "AV Receivers & Home Cinema",
+      "modelNumber": "AVR21",
+      "description": "High-power 7-channel Class AB home cinema receiver with native 16-channel Dolby Atmos, DTS:X and Auro-3D decoding. Includes Dirac Live room correction and dual ESS 9026PRO audiophile DACs. Connectivity includes 7 HDMI inputs and 3 HDMI outputs (including Zone 2), HDMI 2.1 with HDCP 2.3, eARC, 8K/60 and 4K/120 support, Dolby Vision, HDR10+, HDR10 and HLG. Streaming and control include Apple AirPlay 2, Google Chromecast, Bluetooth aptX HD, Spotify Connect, TIDAL Connect, Roon Ready, Wi-Fi, Ethernet, RS232 and IR. Ready for optional Dirac Live Bass Control.",
+      "imageUrl": "https://www.arcam.co.uk/ugc-1/productalternate/204/32_main.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact ARCAM AVR21 official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
