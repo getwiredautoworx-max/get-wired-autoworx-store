@@ -79,6 +79,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-adeo-plano-135-vision-acoustic",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "135\\\" - 3000 - PLANO - 1.78-VISION ACOUSTIC"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Plano 135-inch Vision Acoustic",
+      "description": "135-inch fixed-frame home-cinema projection screen in 16:9 format. The Vision Acoustic surface is acoustically transparent, allowing the front left, centre and right speakers to be positioned behind the screen. The Plano aluminium frame uses elastic tensioning to maintain a flat projection surface and a concealed wall-mount bracket system. Approximate viewing area: 2,981 mm wide × 1,677 mm high.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Adeo_Planar_Projector_Screen.png?v=1781091757&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Plano 135-inch Vision Acoustic product listing and listing image verified against the 135-inch, 16:9, Vision Acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
