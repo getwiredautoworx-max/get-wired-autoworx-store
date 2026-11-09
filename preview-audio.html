@@ -761,8 +761,8 @@ function componentGroup(p){
  const raw=String(p.component||"").trim().toLowerCase();
  if(p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment"){
   const title=[p.title,p.name,p.modelNumber,p.description].join(" ").toLowerCase();
-  if(/\\b(trim|fascia|bezel|surround|dash kit|panel|[0-9]+[- ]?din|[0-9]+[- ]?inch)\\b/.test(title))return "Trims";
-  if(/\\b(harness|loom|adapter|adaptor|interface|patch lead|wiring|iso2car|fakra|mute|iso speaker plug|to iso|new jvc to)\\b/.test(title))return "Harnesses";
+  if(/\b(trim|fascia|bezel|surround|dash kit|panel|[0-9]+[- ]?din|[0-9]+[- ]?inch)\b/.test(title))return "Trims";
+  if(/\b(harness|loom|adapter|adaptor|interface|patch lead|wiring|iso2car|fakra|mute|iso speaker plug|to iso|new jvc to)\b/.test(title))return "Harnesses";
   return "Accessories — Review";
  }
  if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";
