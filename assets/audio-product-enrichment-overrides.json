@@ -14,7 +14,8 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null,
-      "modelNumber": null
+      "modelNumber": null,
+      "appendIfMissing": true
     },
     {
       "match": {
