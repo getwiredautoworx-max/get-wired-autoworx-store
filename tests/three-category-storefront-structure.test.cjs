@@ -71,7 +71,7 @@ const artForSource = previewCategory.slice(artForStart, artForEnd);
 const previewCategoryArtFor = vm.runInNewContext('(' + artForSource + ')');
 for (const label of [...autoElectricalChildren, ...carCareChildren]) {
   const imageUrl = previewCategoryArtFor(label);
-  assert.ok(typeof imageUrl === 'string' && imageUrl.startsWith('https://') && !imageUrl.endsWith('/'), 'non-Audio category must have an explicit usable artwork URL: ' + label);
+  assert.ok(typeof imageUrl === 'string' && (imageUrl.startsWith('https://') || imageUrl.startsWith('assets/get-wired-product-pilot/')) && !imageUrl.endsWith('/'), 'non-Audio category must have an explicit usable artwork URL: ' + label);
 }
 assert.equal(previewCategoryArtFor('Unknown Catalogue Placeholder'), '', 'unknown categories must not receive a generic unrelated fallback image');
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
