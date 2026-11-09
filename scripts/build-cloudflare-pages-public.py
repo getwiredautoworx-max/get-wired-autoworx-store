@@ -30,7 +30,7 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
 ]
 PREVIEW_ASSET_FILES = [
     "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
