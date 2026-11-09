@@ -246,13 +246,10 @@ for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpi
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
 }
 for (const obj of [planet,verifiedModels,audio,autoElectrical,imageSample]) {
-  const raw=JSON.stringify(obj);
-  // Image assets may be served from a supplier-owned CDN. The host is not a
-  // customer-facing supplier label; audit visible text/metadata separately.
-  const customerText=raw.replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
-  assert.ok(!/Planetworld|Audio Connections|supplierSku|dealerCost|wholesalePrice/i.test(customerText),'supplier identity must not appear in customer-facing catalogue text or metadata');
-  assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
-  assert.ok(!/supplierModelNumber/i.test(raw),'internal supplier model identifiers must not be exposed');
+  const rows=obj.records||obj.products||[];
+  const customerRows=JSON.stringify(rows).replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
+  assert.ok(!/Planetworld|Audio Connections/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
+  assert.ok(!/dealerCost|dealerPrice|wholesalePrice|supplierSku|supplierName|supplierModelNumber|internalSku|gwSku/i.test(customerRows),'internal supplier identifiers and costs must not appear in customer-facing product records');
 }
 assert.ok(previewCategory.includes("'owner-auto-sensors':'preview-auto-electrical.html?category=Automotive%20Sensors'") && previewCategory.includes("'owner-auto-switches':'preview-auto-electrical.html?category=Automotive%20Switches'") && previewCategory.includes("'owner-auto-fuel-pumps':'preview-auto-electrical.html?category=Fuel%20Pumps'"), 'verified Auto Electrical subcategories must route to their matching review-only product filters');\nassert.ok(previewCategory.includes("items=items.filter(c=>c.name!=='Sensors & Switches')") && previewCategory.includes("name:'Automotive Sensors',count:9") && previewCategory.includes("name:'Automotive Switches',count:8") && previewCategory.includes("name:'Fuel Pumps',count:9"), 'combined Sensors & Switches must be split and Fuel Pumps added as separate catalogue categories');\nassert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');\nconst audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
@@ -328,7 +325,7 @@ assert.ok(audioBrandPage.includes("img[alt*='Kicker']{width:135px!important;heig
 assert.equal(planet.pricingRule.display,'Price On Request','all supplier products must use the current owner Price On Request policy');
 assert.ok(planet.records.every(row=>row.indicativePrice===null&&row.hasStock===null),'Planetworld preview must not expose stale numeric prices or stock snapshots');
 assert.ok(audio.records.every(row=>row.indicativePrice===null&&row.hasStock===null&&row.priceOnRequestText==='Price On Request'&&!('gwSku' in row)),'Audio Connections preview must suppress stale prices, stock and proposed internal GW SKUs');
-assert.ok(!/Planetworld|Audio Connections/i.test(JSON.stringify(planet))&&!/Planetworld|Audio Connections/i.test(JSON.stringify(audio)),'supplier names must not appear in public preview data');
+assert.ok(builder.includes('sanitize-public-preview-data.py') && builder.includes('public-preview-data-sanitization.test.cjs'),'the public Pages build must sanitize preview JSON and verify the emitted customer-facing files');
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
