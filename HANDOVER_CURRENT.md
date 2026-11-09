@@ -241,3 +241,32 @@ This owner clarification supersedes the earlier blanket private-data-boundary st
 
 ## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
 The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
+
+
+## LIVE EXECUTION STATUS — 2026-11-09 06:34 SAST
+
+### Consolidated storefront candidate — PR #190
+- Current PR head: `54bf3d49b6e8de25586abf0bb5df1d516eba9112`; base: `8a1119e44b6586934e32265e0bd7729263f6ea95`; OPEN / DRAFT. No merge, deployment or live write.
+- Latest exact-head checks (run set at 2026-11-09 06:28 SAST): Button-Only Storefront Smoke PASS; Public SKU Exposure Audit PASS; Preview Approved Catalogue Gate PASS; Delivery Quote Security PASS; Customer Authentication Security PASS; Axxess package preparation PASS (package-only, no upload).
+- Failed: Cloudflare Pages Public Package QA, Catalogue & Supplier Routing Review QA, Storefront Smoke Test, Owner Preview Mobile/Desktop Browser QA.
+- Root cause from exact build log: `tests/three-category-storefront-structure.test.cjs:121` fails the assertion for storefront root `Audio, Entertainment & Music`. This is a mismatch between the test's expected root and the current three-root storefront contract; it is not a Cloudflare infrastructure outage and not a supplier-name exposure finding. Correct the test/markup contract without restoring a fourth top-level category.
+- Storefront policy test fails on the same root assertion. Browser QA starts its local server but times out waiting for obsolete selector `#categories .catWrap`; update browser assertions to the actual owner-preview markup and then rerun exact-head mobile/desktop tests.
+- No current hosted staging deployment for this exact SHA has been verified. No preview is ready.
+
+### ASC six-catalogue — PR #183
+- Current PR head: `327d9a271196efe2144e93d81109b93cca83cbdd`; OPEN; not mergeable. Master and staging registers remain 978 rows, unique IDs, matching row sets, correct category mapping, no invented price/stock, all review-only / DO NOT IMPORT.
+- Current branch workflow file now invokes `python3 tests/test_asc_reload_validation.py`; this is the intended deterministic replacement for the missing optional test files. No workflow run is recorded against the current PR head yet, so this fix is **not yet QA-verified**.
+- Editorial status in QA report: 50 titles in pilot; 928 titles still OCR candidates requiring proofing; technical specifications/dimensions pending for all 978; pricing and physical stock remain unknown; 952 photo cards exist and 26 products have no source photo.
+- The 50-record image pilot register exists, but its image paths are still marked reference-only/not copied to staging. First contact-sheet review found catalogue caption text remains. No completed/accepted 50-image treatment set is verified yet. Next step is to create/collect all 50 correct source crops, remove text outside product image, overlay Get Wired AutoWorx watermark over ASC watermark, then compare each output to its source card and inspect a contact sheet. Do not use invented images for the 26 no-photo records.
+- ASC customer-facing price label remains exactly: `Price On Request due to Limited Stock and Availability`.
+
+### Electro-city ignition pilot — PR #185
+- Current PR head: `b00778af1c0ae7561b6e697a32f953b67d993bbf`; OPEN / UNMERGED.
+- Exact-head Supplier Catalogue Review Data QA and Public SKU Exposure Audit both PASS (run set 42562409988 / 42562410040).
+- IG-T003 / GWA-EC-000012 discrepancy is resolved for customer-facing scope: exclude the unsupported Fiat/Peugeot/Renault catalogue caption; retain only corroborated Toyota applications as corroborated, not confirmed. Do not publish a model/year fitment without VIN/engine verification. The 29-row package remains review-only / DO NOT IMPORT pending owner acceptance.
+
+### ETA and remaining critical path
+- **Initial verified staging preview target: 10 November 2026**, conditional on correcting PR #190's root-category contract and browser selector, passing all exact-head static and mobile/desktop checks, and obtaining permission for any Cloudflare credit use needed for the hosted staging build. This is a target, not a guarantee; no deployed preview SHA currently exists.
+- **Full ASC product-level editorial completion is a separate, longer task**: 928 titles still require proofing, 978 technical-spec/dimension rows remain pending, and the 50-image treatment pilot is not yet accepted. Do not represent the initial staging-preview target as full catalogue completion.
+- Electro-city fitment discrepancy no longer blocks the pilot; remaining gate is owner acceptance and the evidence-tier restrictions above.
+- Production remains HOLD. No Axxess upload, DNS change, live database/catalogue/price/stock write, payment activation or production deployment.
