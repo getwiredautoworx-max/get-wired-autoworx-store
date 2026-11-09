@@ -1,3 +1,4 @@
+// Owner-approved fitment disposition: exclude the disputed Fiat/Peugeot/Renault caption; retain only corroborated Toyota applications.
 const fs = require("node:fs");
 const assert = require("node:assert/strict");
 function parseCsv(text) {
