@@ -293,3 +293,13 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - Assign no proposed GW SKU until the approved allocation method/evidence is available.
 - Continue OneNav only. Do not advance to another brand until its remaining model/image exceptions are resolved. The full OneNav enrichment is not complete.
 - No ASC files/workstream were changed. No live catalogue, Supabase, price, stock, active flag, payment, checkout, Axxess, DNS, hosting, merge, deployment, publication or production changes were made. Production remains HOLD.
+
+
+## 2026-11-09 09:42 SAST — ON016-2LX CUSTOMER-PREVIEW FAIL-CLOSED OVERRIDE
+
+- Extended the OneNav increment in `preview-audio-products.html`: exact `ON016-2LX` model-code or exact source-title match now uses the verified size-neutral customer title and description, suppresses the source image, and suppresses any stale “owner-authorised source image — review-only preview” badge. The card therefore shows the explicit exact-photo-pending placeholder and the current `Price On Request` label.
+- Added regression assertions in `tests/audio-catalogue-preview.test.cjs` for the exact-code/title matcher, title/description override, image suppression and candidate-badge suppression.
+- Commits: page override `e353ab817a07506a3aa63adf72fd8de8399006db`; initial UI regression `405ef1a2524dabdc2e85cf13af75b89a2f7d10ac`; candidate-badge suppression `4de25088ffcbae29f4bb5722c1fb6d20ec1653fc`; regression `781132fd7aed1d8f53b114722a8b0e4dae18c0e8`.
+- Read-back validation: 22 connector-side data/model-matcher/image/price/privacy/route assertions PASS; both Node test files and both inline page scripts compile in V8. Actual Node test commands remain unexecuted; no GitHub Actions or hosted preview was triggered.
+- Data access limitation: `assets/audio-catalogue-primary-preview.json` is too large for the current GitHub connector response; UTF-8, base64 and line-range fetches returned empty content, and the PR file-patch response was empty. Existing run 42567300892 and 42567300834 have no downloadable artifacts. Therefore the actual primary-data row for ON016-2LX could not be read back in this session. The page override is guarded by the exact model code or exact source title and its matcher was tested with both expected identifiers, but the record's presence/field mapping in that oversized JSON remains **UNVERIFIED**. Do not claim the hosted page has been visually verified.
+- No change to the oversized primary catalogue JSON was attempted. All changes remain on the non-PR work branch; PR #190 remains untouched and 24 ahead / 3 behind current main. No Cloudflare credit, deployment, live write, ASC work, merge or production action occurred.
