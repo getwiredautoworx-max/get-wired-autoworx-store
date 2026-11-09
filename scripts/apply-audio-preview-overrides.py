@@ -15,11 +15,18 @@ if len(by_id) != len(base.get("records", [])):
 applied = 0
 for override in overrides:
     record_id = override.get("id")
-    if not record_id or record_id not in by_id:
-        raise SystemExit(f"AUDIO_OVERRIDE_FAIL primary record not found: {record_id}")
-    row = by_id[record_id]
+    if record_id:
+        row = by_id.get(record_id)
+        if row is None:
+            raise SystemExit(f"AUDIO_OVERRIDE_FAIL primary record not found: {record_id}")
+    else:
+        match = override.get("match") or {}
+        matches = [candidate for candidate in base.get("records", []) if match and all(candidate.get(k) == v for k, v in match.items())]
+        if len(matches) != 1:
+            raise SystemExit(f"AUDIO_OVERRIDE_FAIL expected one exact match, found {len(matches)} for {match}")
+        row = matches[0]
     for key, value in override.items():
-        if key == "id":
+        if key in ("id", "match"):
             continue
         if key == "modelNumber" and value is None:
             row.pop("modelNumber", None)
