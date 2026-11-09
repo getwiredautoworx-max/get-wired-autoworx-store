@@ -142,6 +142,27 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-adeo-prestige-180-vision-acoustic",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "180 INCHES PRESTIGE - VISION ACOUSTIC"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Prestige 180-inch Vision Acoustic Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Prestige 180-inch Vision Acoustic",
+      "description": "180-inch fixed-frame home-cinema projection screen in 16:9 format, with an acoustically transparent Vision Acoustic surface for front speakers positioned behind the screen. Approximate viewing area: 4,000 mm wide × 2,247 mm high. The Prestige range uses an ultra-slim black aluminium frame (10 × 6 mm), a spring-tensioned fabric system and wall-mounted installation.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Prestige_e77bdad4-113f-476f-a5d6-51f82783a7b6_2.webp?v=1781093561&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Prestige 180-inch Vision Acoustic listing and product image verified against the 180-inch, 16:9, acoustic-transparent specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
