@@ -28,9 +28,9 @@ No product, price, stock, supplier activation, or database records are created o
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
 - The pilot rows are marked as visually checked on their source pages, but remain **proposed / not approved / not imported**.
 - All 50 candidate image crops were visually inspected and matched to the corresponding source-page product caption and supplier SKU. The crops remain on the separate PR #168 preview branch and are not copied into this review branch.
-- ASC watermarking is visible on the crop images. They are **not approved production assets**; asset permission/clean-image suitability remains a separate approval gate.
+- ASC watermarking is visible on the crop images. The owner has authorised image use and editing; these source crops are not final storefront assets until the approved 50-sample treatment removes the ASC watermark, applies the Get Wired AutoWorx watermark, removes catalogue-description text outside the product image, and passes visual matching QA.
 - The source-page render review corrected the globe descriptions: `H1865W-H` and `H1960/55W-H` are HUADIAO E-MARKED variants; `H355W-H` is transcribed as HDIAO exactly as printed in the source.
-- No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and require a current dealer cost before any price can be calculated.
+- No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**.
 - Physical stock is not supplied by these catalogues. Availability remains unconfirmed and separate from price.
 
 ## Completed category batch: Aerials
