@@ -23,17 +23,16 @@ WATERMARK="GET WIRED AUTOWORX"
 PRODUCT_CROP_OVERRIDES={
     # Carpet-set product silhouettes end above the printed product caption.
     **{f"asc-{name}.jpg":(0.0,0.62) for name in [
-        "m7-avan01","m7-taz01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
+        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
     ]},
     # Bulb captions sit below the complete bulb photograph.
     **{f"asc-{name}.jpg":(0.0,0.65) for name in [
         "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
     ]},
     # These source cards have a supplier/category heading above the product.
-    "asc-f1-028.jpg":(0.10,0.78),
-    "asc-f1-046.jpg":(0.12,0.78),
-    "asc-f1-047.jpg":(0.12,0.78),
-    "asc-f1-050.jpg":(0.12,0.78),
+    "asc-f1-001.jpg":(0.12,0.78),
+    "asc-f1-001-e.jpg":(0.12,0.78),
+    "asc-f1-028.jpg":(0.12,0.78),
 }
 
 def sha256(path):
