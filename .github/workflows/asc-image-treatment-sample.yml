@@ -21,8 +21,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install deterministic image-processing dependency
-        run: python -m pip install --disable-pip-version-check Pillow==11.0.0
+      - name: Install OCR and image-processing dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tesseract-ocr
+          python -m pip install --disable-pip-version-check Pillow==11.0.0 pytesseract==0.3.13
       - name: Process the 50 owner-authorised sample crops
         run: python scripts/process-asc-catalogue-pilot.py
       - name: Commit treated images and review evidence
@@ -34,9 +37,6 @@ jobs:
           git add assets/asc-catalogue-pilot-treated
           git add catalogue-review/asc-catalogue-extraction/asc-image-treatment-pilot-manifest.csv
           git add catalogue-review/asc-catalogue-extraction/asc-image-treatment-pilot-contact-sheet.jpg
-          if git diff --cached --quiet; then
-            echo "No image-treatment output changes."
-            exit 0
-          fi
-          git commit -m "chore(asc): generate 50-image owner watermark-treatment sample"
+          if git diff --cached --quiet; then echo "No image-treatment output changes."; exit 0; fi
+          git commit -m "chore(asc): refine 50-image watermark treatment and remove card text"
           git push origin HEAD:asc-image-treatment-pilot-2026-11-09

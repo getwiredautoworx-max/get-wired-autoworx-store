@@ -1,156 +1,130 @@
 #!/usr/bin/env python3
-"""Create a deterministic 50-image ASC owner-review watermark-treatment sample.
-
-This is a non-production asset transformation only. It does not write to Supabase,
-change catalogue records, publish products, or alter supplier source files.
-"""
 from __future__ import annotations
-import csv
-import hashlib
+import csv, hashlib
+from collections import defaultdict
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+import pytesseract
+from pytesseract import Output
 
-ROOT = Path(__file__).resolve().parents[1]
-RAW = ROOT / "assets" / "asc-catalogue-pilot-raw"
-OUT = ROOT / "assets" / "asc-catalogue-pilot-treated"
-SOURCE_CSV = ROOT / "catalogue-review" / "asc-catalogue-extraction" / "asc-product-pilot-review-only.csv"
-MANIFEST = ROOT / "catalogue-review" / "asc-catalogue-extraction" / "asc-image-treatment-pilot-manifest.csv"
-CONTACT = ROOT / "catalogue-review" / "asc-catalogue-extraction" / "asc-image-treatment-pilot-contact-sheet.jpg"
-EXPECTED = 50
-CROP_RATIO = 0.78
-CANVAS = (900, 600)
-WATERMARK = "GET WIRED AUTOWORX"
+ROOT=Path(__file__).resolve().parents[1]
+RAW=ROOT/"assets/asc-catalogue-pilot-raw"
+OUT=ROOT/"assets/asc-catalogue-pilot-treated"
+SOURCE_CSV=ROOT/"catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv"
+MANIFEST=ROOT/"catalogue-review/asc-catalogue-extraction/asc-image-treatment-pilot-manifest.csv"
+CONTACT=ROOT/"catalogue-review/asc-catalogue-extraction/asc-image-treatment-pilot-contact-sheet.jpg"
+EXPECTED=50
+CANVAS=(900,600)
+WATERMARK="GET WIRED AUTOWORX"
 
-def sha256(path: Path) -> str:
-    h = hashlib.sha256()
+def sha256(path):
+    h=hashlib.sha256()
     with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            h.update(chunk)
+        for chunk in iter(lambda:f.read(1024*1024),b""): h.update(chunk)
     return h.hexdigest()
 
-def load_font(size: int):
-    candidates = [
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-        "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf",
-    ]
-    for candidate in candidates:
-        try:
-            return ImageFont.truetype(candidate, size)
-        except OSError:
-            pass
+def font(size):
+    for p in ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf","/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf"]:
+        try: return ImageFont.truetype(p,size)
+        except OSError: pass
     return ImageFont.load_default()
 
-def apply_treatment(source: Path, destination: Path) -> tuple[int, int]:
-    with Image.open(source) as original:
-        image = ImageOps.exif_transpose(original).convert("RGB")
-        width, height = image.size
-        crop_bottom = max(1, min(height, int(round(height * CROP_RATIO))))
-        # The source-card caption/description occupies the bottom strip. Crop only
-        # that strip; preserve the original product photo and its proportions.
-        product_crop = image.crop((0, 0, width, crop_bottom))
-        contained = ImageOps.contain(product_crop, (860, 540), method=Image.Resampling.LANCZOS)
-        canvas = Image.new("RGB", CANVAS, (255, 255, 255))
-        canvas.paste(contained, ((CANVAS[0] - contained.width) // 2, (CANVAS[1] - contained.height) // 2))
+def ocr_lines(im):
+    w,h=im.size
+    data=pytesseract.image_to_data(im.resize((w*3,h*3),Image.Resampling.LANCZOS).convert("L"),config="--psm 6",output_type=Output.DICT)
+    groups=defaultdict(list)
+    for i,raw in enumerate(data["text"]):
+        word=str(raw).strip()
+        try: conf=float(data["conf"][i])
+        except (TypeError,ValueError): conf=-1
+        if not word or conf<22: continue
+        key=(data["block_num"][i],data["par_num"][i],data["line_num"][i])
+        x,y,bw,bh=(int(data[k][i]/3) for k in ("left","top","width","height"))
+        groups[key].append((word,x,y,bw,bh))
+    out=[]
+    for words in groups.values():
+        out.append({"text":" ".join(x[0] for x in words),"x0":min(x[1] for x in words),"y0":min(x[2] for x in words),"x1":max(x[1]+x[3] for x in words),"y1":max(x[2]+x[4] for x in words)})
+    return sorted(out,key=lambda x:(x["y0"],x["x0"]))
 
-        # Overlay the Get Wired AutoWorx watermark across the existing source
-        # watermark area. This is intentionally a translucent overlay so the
-        # underlying product remains identifiable for owner review.
-        watermark_layer = Image.new("RGBA", CANVAS, (0, 0, 0, 0))
-        font = load_font(38)
-        bbox = font.getbbox(WATERMARK, stroke_width=1)
-        text_w = bbox[2] - bbox[0] + 48
-        text_h = bbox[3] - bbox[1] + 32
-        text_layer = Image.new("RGBA", (text_w, text_h), (0, 0, 0, 0))
-        draw = ImageDraw.Draw(text_layer)
-        draw.text(
-            (24 - bbox[0], 16 - bbox[1]),
-            WATERMARK,
-            font=font,
-            fill=(4, 55, 91, 92),
-            stroke_width=1,
-            stroke_fill=(255, 255, 255, 125),
-        )
-        rotated = text_layer.rotate(12, resample=Image.Resampling.BICUBIC, expand=True)
-        watermark_layer.alpha_composite(
-            rotated,
-            ((CANVAS[0] - rotated.width) // 2, (CANVAS[1] - rotated.height) // 2),
-        )
-        result = Image.alpha_composite(canvas.convert("RGBA"), watermark_layer).convert("RGB")
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        result.save(destination, format="JPEG", quality=94, optimize=True, progressive=True)
-        return image.size
+def blue_label_bottom(im):
+    w,h=im.size
+    hits=[]
+    for y in range(max(1,int(h*.44))):
+        n=0
+        for x in range(w):
+            r,g,b=im.getpixel((x,y))[:3]
+            if b>105 and b>r*1.45 and b>g*1.15: n+=1
+        if n/w>=.22: hits.append(y)
+    if not hits:return 0
+    groups=[]; start=prev=hits[0]
+    for y in hits[1:]:
+        if y>prev+2: groups.append((start,prev));start=y
+        prev=y
+    groups.append((start,prev))
+    valid=[b for a,b in groups if b-a>=5 and b<h*.44]
+    return max((b+4 for b in valid),default=0)
+
+def crop_bounds(im):
+    w,h=im.size
+    lines=ocr_lines(im)
+    top=blue_label_bottom(im)
+    bottom=h
+    for line in lines:
+        span=line["x1"]-line["x0"]
+        if line["y0"]<=h*.30 and span>=w*.25: top=max(top,line["y1"]+3)
+        if line["y0"]>=h*.60 and span>=w*.30: bottom=min(bottom,line["y0"]-3)
+    if bottom==h and top==0: bottom=int(h*.70)
+    top=max(0,min(top,int(h*.48)))
+    bottom=max(top+int(h*.30),min(bottom,h))
+    return top,bottom,lines
+
+def treat(src,dst):
+    with Image.open(src) as original:
+        im=ImageOps.exif_transpose(original).convert("RGB")
+        w,h=im.size
+        top,bottom,lines=crop_bounds(im)
+        crop=im.crop((0,top,w,bottom))
+        contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
+        canvas=Image.new("RGB",CANVAS,(255,255,255))
+        canvas.paste(contained,((CANVAS[0]-contained.width)//2,(CANVAS[1]-contained.height)//2))
+        layer=Image.new("RGBA",CANVAS,(0,0,0,0))
+        f=font(30); bb=f.getbbox(WATERMARK,stroke_width=1)
+        txt=Image.new("RGBA",(bb[2]-bb[0]+40,bb[3]-bb[1]+28),(0,0,0,0))
+        ImageDraw.Draw(txt).text((20-bb[0],14-bb[1]),WATERMARK,font=f,fill=(4,55,91,118),stroke_width=1,stroke_fill=(255,255,255,145))
+        rot=txt.rotate(12,resample=Image.Resampling.BICUBIC,expand=True)
+        layer.alpha_composite(rot,((CANVAS[0]-rot.width)//2,(CANVAS[1]-rot.height)//2))
+        result=Image.alpha_composite(canvas.convert("RGBA"),layer).convert("RGB")
+        dst.parent.mkdir(parents=True,exist_ok=True)
+        result.save(dst,format="JPEG",quality=94,optimize=True,progressive=True)
+        return (w,h),top,bottom,[x["text"] for x in lines]
 
 def main():
-    if not SOURCE_CSV.is_file():
-        raise SystemExit(f"Missing source manifest: {SOURCE_CSV}")
-    with SOURCE_CSV.open(newline="", encoding="utf-8-sig") as f:
-        rows = list(csv.DictReader(f))
-    if len(rows) != EXPECTED:
-        raise SystemExit(f"Expected exactly {EXPECTED} reviewed source rows, found {len(rows)}")
-    if len({r["asc_sku"].strip() for r in rows}) != EXPECTED:
-        raise SystemExit("Duplicate or blank ASC SKU in 50-row sample manifest")
-    if len({Path(r["image_file"]).name for r in rows}) != EXPECTED:
-        raise SystemExit("Duplicate or blank source image filename in 50-row sample manifest")
+    with SOURCE_CSV.open(newline="",encoding="utf-8-sig") as f: rows=list(csv.DictReader(f))
+    if len(rows)!=EXPECTED: raise SystemExit(f"Expected {EXPECTED} source rows, got {len(rows)}")
+    if len({r["asc_sku"].strip() for r in rows})!=EXPECTED: raise SystemExit("Duplicate/blank ASC SKU")
+    if len({Path(r["image_file"]).name for r in rows})!=EXPECTED: raise SystemExit("Duplicate/blank image filename")
+    OUT.mkdir(parents=True,exist_ok=True)
+    manifest=[]; items=[]
+    for i,row in enumerate(rows,1):
+        sid=f"GW-ASC-PILOT-{i:03d}"
+        source=RAW/Path(row["image_file"]).name
+        if not source.is_file(): raise SystemExit(f"Missing source crop {source}")
+        outname=sid+".jpg"; dest=OUT/outname
+        dims,top,bottom,ocr=treat(source,dest)
+        manifest.append({"sample_id":sid,"asc_sku_reference_only":row["asc_sku"],"source_file":row["source_file"],"source_page":row["source_page"],"product_name_as_printed":row["product_name_as_printed"],"source_image_file":source.name,"output_image_file":outname,"source_sha256":sha256(source),"output_sha256":sha256(dest),"source_dimensions":f"{dims[0]}x{dims[1]}","output_dimensions":f"{CANVAS[0]}x{CANVAS[1]}","crop_top_px":top,"crop_bottom_px":bottom,"ocr_outer_text_detected":" | ".join(ocr),"treatment_status":"OUTER_CAPTION_AND_CODE_LABEL_CROPPED_WHERE_DETECTED; GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK; OWNER_VISUAL_QA_PENDING","release_status":"REVIEW_ONLY_NOT_IMPORTED"})
+        items.append((sid,row["product_name_as_printed"],dest))
+    with MANIFEST.open("w",newline="",encoding="utf-8") as f:
+        writer=csv.DictWriter(f,fieldnames=list(manifest[0].keys()));writer.writeheader();writer.writerows(manifest)
+    cols,rows_n,cw,ch=5,10,220,166
+    sheet=Image.new("RGB",(cols*cw,rows_n*ch),(242,246,250));draw=ImageDraw.Draw(sheet);lf=font(12)
+    for i,(sid,title,path) in enumerate(items):
+        x,y=(i%cols)*cw,(i//cols)*ch
+        with Image.open(path) as im:
+            thumb=ImageOps.contain(im.convert("RGB"),(200,126),method=Image.Resampling.LANCZOS)
+            sheet.paste(thumb,(x+(cw-thumb.width)//2,y+3))
+        draw.text((x+8,y+134),f"{sid}  {title[:24]}",font=lf,fill=(15,45,70))
+    CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
+    if len(list(OUT.glob("GW-ASC-PILOT-*.jpg")))!=EXPECTED: raise SystemExit("Output count is not 50")
+    print(f"ASC_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} OCR_outer_crop=true watermark=GET_WIRED_AUTOWORX")
 
-    OUT.mkdir(parents=True, exist_ok=True)
-    manifest_rows = []
-    contact_items = []
-    for index, row in enumerate(rows, start=1):
-        sample_id = f"GW-ASC-PILOT-{index:03d}"
-        source_name = Path(row["image_file"]).name
-        source = RAW / source_name
-        if not source.is_file():
-            raise SystemExit(f"Missing source crop for {row['asc_sku']}: {source}")
-        output_name = sample_id + ".jpg"
-        output = OUT / output_name
-        original_dimensions = apply_treatment(source, output)
-        output_hash = sha256(output)
-        manifest_rows.append({
-            "sample_id": sample_id,
-            "asc_sku_reference_only": row["asc_sku"],
-            "source_file": row["source_file"],
-            "source_page": row["source_page"],
-            "product_name_as_printed": row["product_name_as_printed"],
-            "source_image_file": source_name,
-            "output_image_file": output_name,
-            "source_sha256": sha256(source),
-            "output_sha256": output_hash,
-            "source_dimensions": f"{original_dimensions[0]}x{original_dimensions[1]}",
-            "output_dimensions": f"{CANVAS[0]}x{CANVAS[1]}",
-            "crop_ratio": CROP_RATIO,
-            "treatment_status": "DESCRIPTION_STRIP_CROPPED; GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK; OWNER_VISUAL_QA_PENDING",
-            "release_status": "REVIEW_ONLY_NOT_IMPORTED",
-        })
-        contact_items.append((sample_id, row["product_name_as_printed"], output))
-
-    fieldnames = list(manifest_rows[0].keys())
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    with MANIFEST.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(manifest_rows)
-
-    columns, rows_count = 5, 10
-    cell_w, cell_h = 220, 166
-    sheet = Image.new("RGB", (columns * cell_w, rows_count * cell_h), (242, 246, 250))
-    sheet_draw = ImageDraw.Draw(sheet)
-    label_font = load_font(12)
-    for index, (sample_id, title, output) in enumerate(contact_items):
-        col, row_index = index % columns, index // columns
-        x, y = col * cell_w, row_index * cell_h
-        with Image.open(output) as im:
-            thumb = ImageOps.contain(im.convert("RGB"), (200, 126), method=Image.Resampling.LANCZOS)
-            sheet.paste(thumb, (x + (cell_w - thumb.width) // 2, y + 3))
-        label = f"{sample_id}  {title[:24]}"
-        sheet_draw.text((x + 8, y + 134), label, font=label_font, fill=(15, 45, 70))
-    CONTACT.parent.mkdir(parents=True, exist_ok=True)
-    sheet.save(CONTACT, format="JPEG", quality=88, optimize=True)
-
-    if len(list(OUT.glob("GW-ASC-PILOT-*.jpg"))) != EXPECTED:
-        raise SystemExit("Output count does not equal 50")
-    print(f"ASC_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} crop_ratio={CROP_RATIO} output={OUT.relative_to(ROOT)}")
-    print(f"MANIFEST={MANIFEST.relative_to(ROOT)}")
-    print(f"CONTACT_SHEET={CONTACT.relative_to(ROOT)}")
-
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": main()
