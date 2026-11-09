@@ -15,8 +15,15 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const writes = [];
       await page.route('**/rest/v1/**', async route => {
         const method = route.request().method();
-        if (method !== 'GET' && method !== 'HEAD') writes.push({ method, url: route.request().url() });
-        await route.fulfill({ status: 200, contentType: 'application/json', body: '[]' });
+        const url = route.request().url();
+        if (method !== 'GET' && method !== 'HEAD') {
+          writes.push({ method, url });
+          return route.abort();
+        }
+        if (/\/rest\/v1\/products(?:\?|$)/.test(url)) {
+          return route.fulfill({ status: 200, contentType: 'application/json', body: '[]' });
+        }
+        return route.continue();
       });
 
       await page.goto(BASE + '/index-new.html?ownerPreview=1&previewBuild=exact-head-qa', { waitUntil: 'domcontentloaded' });
