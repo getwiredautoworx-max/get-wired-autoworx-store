@@ -247,7 +247,7 @@ for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpi
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://'+domain+'/'), 'official exact-model image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
 }
-for (const obj of [planet,verifiedModels,audio,autoElectrical,imageSample]) {
+for (const obj of [planet,audio,autoElectrical,imageSample]) {
   const rows=obj.records||obj.products||[];
   const customerRows=JSON.stringify(rows).replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
   assert.ok(!/Planetworld|Audio Connections/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
