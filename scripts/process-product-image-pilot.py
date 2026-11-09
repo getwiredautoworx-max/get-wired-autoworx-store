@@ -13,22 +13,22 @@ MANIFEST=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment
 CONTACT=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg"
 EXPECTED=50
 CANVAS=(900,600)
-CROP_RATIO=0.68
+CROP_RATIO=1.0
 WATERMARK="GET WIRED AUTOWORX"
-# This card places the part photo below its top catalogue code bar. Crop the
-# bar rather than the lower product photograph. Other pilot cards place their
-# description/caption strip below the photo and use the common bottom crop.
+# Preserve the complete source image height. Only remove a top catalogue code
+# strip where a source card layout proves it is outside the product photograph.
+# Never crop the lower edge: several source images place product details there.
 CROP_OVERRIDES={
-    "asc-f1-001.jpg":(0.20,0.88), "asc-f1-001-e.jpg":(0.20,0.88),
-    "asc-9005-cbl-h.jpg":(0.0,0.62), "asc-9005-h.jpg":(0.0,0.62),
-    "asc-9005-nb.jpg":(0.0,0.62), "asc-9005xs.jpg":(0.0,0.62),
-    "asc-m7-avan01.jpg":(0.0,0.62), "asc-m7-con01.jpg":(0.0,0.62),
-    "asc-m7-cor01.jpg":(0.0,0.62), "asc-m7-cor02.jpg":(0.0,0.62),
-    "asc-h1865w-h.jpg":(0.0,0.62), "asc-h1960-55w-h.jpg":(0.0,0.62),
-    "asc-h355w-cbl.jpg":(0.0,0.62), "asc-h355w-h.jpg":(0.0,0.62),
-    "asc-m7-gf1.jpg":(0.0,0.62), "asc-m7-bme36.jpg":(0.0,0.62),
-    "asc-m7-bme46.jpg":(0.0,0.62), "asc-m7-bme87.jpg":(0.0,0.62),
-    "asc-f1-028.jpg":(0.42,0.78)
+    "asc-f1-001.jpg":(0.20,1.0), "asc-f1-001-e.jpg":(0.20,1.0),
+    "asc-9005-cbl-h.jpg":(0.0,1.0), "asc-9005-h.jpg":(0.0,1.0),
+    "asc-9005-nb.jpg":(0.0,1.0), "asc-9005xs.jpg":(0.0,1.0),
+    "asc-m7-avan01.jpg":(0.0,1.0), "asc-m7-con01.jpg":(0.0,1.0),
+    "asc-m7-cor01.jpg":(0.0,1.0), "asc-m7-cor02.jpg":(0.0,1.0),
+    "asc-h1865w-h.jpg":(0.0,1.0), "asc-h1960-55w-h.jpg":(0.0,1.0),
+    "asc-h355w-cbl.jpg":(0.0,1.0), "asc-h355w-h.jpg":(0.0,1.0),
+    "asc-m7-gf1.jpg":(0.0,1.0), "asc-m7-bme36.jpg":(0.0,1.0),
+    "asc-m7-bme46.jpg":(0.0,1.0), "asc-m7-bme87.jpg":(0.0,1.0),
+    "asc-f1-028.jpg":(0.42,1.0)
 }
 
 def sha256(path):
@@ -48,9 +48,9 @@ def crop_bounds(image, source_name):
     top_ratio,bottom_ratio=CROP_OVERRIDES.get(source_name,(0.0,CROP_RATIO))
     top=int(round(h*top_ratio))
     bottom=int(round(h*bottom_ratio))
-    if bottom-top < int(h*.30):
+    if bottom-top < int(h*.50):
         raise ValueError(f"Crop would remove too much product area: {source_name}")
-    return top,bottom,("TOP_CODE_LABEL_AND_BOTTOM_CAPTION_CROPPED" if top_ratio and bottom_ratio<1 else "TOP_CODE_LABEL_CROPPED" if top_ratio else "BOTTOM_OUTER_CAPTION_STRIP_CROPPED")
+    return top,bottom,("TOP_CODE_LABEL_CROPPED_FULL_REMAINING_IMAGE_PRESERVED" if top_ratio else "FULL_SOURCE_IMAGE_HEIGHT_PRESERVED")
 
 def treat(src,dst):
     with Image.open(src) as original:
