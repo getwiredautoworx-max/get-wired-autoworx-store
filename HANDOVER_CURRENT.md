@@ -237,3 +237,7 @@ The owner has clarified the business model and corrected the previous blanket co
 5. Run exact-head regression and mobile/desktop preview QA, then request explicit approval for the staging deployment if it requires Cloudflare credits. Do not use production deployment.
 
 This owner clarification supersedes the earlier blanket private-data-boundary statements in this handover and any automation prompts. Those statements must not be used to stop authorised catalogue work.
+
+
+## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
+The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
