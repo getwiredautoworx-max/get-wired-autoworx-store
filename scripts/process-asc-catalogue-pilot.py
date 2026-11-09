@@ -54,14 +54,14 @@ def blue_label_bottom(im):
         for x in range(w):
             r,g,b=im.getpixel((x,y))[:3]
             if b>105 and b>r*1.45 and b>g*1.15: n+=1
-        if n/w>=.22: hits.append(y)
+        if n/w>=.52: hits.append(y)
     if not hits:return 0
     groups=[]; start=prev=hits[0]
     for y in hits[1:]:
         if y>prev+2: groups.append((start,prev));start=y
         prev=y
     groups.append((start,prev))
-    valid=[b for a,b in groups if b-a>=5 and b<h*.44]
+    valid=[b for a,b in groups if b-a>=8 and b<h*.44]
     return max((b+4 for b in valid),default=0)
 
 def crop_bounds(im):
@@ -71,9 +71,8 @@ def crop_bounds(im):
     bottom=h
     for line in lines:
         span=line["x1"]-line["x0"]
-        if line["y0"]<=h*.30 and span>=w*.25: top=max(top,line["y1"]+3)
-        if line["y0"]>=h*.60 and span>=w*.30: bottom=min(bottom,line["y0"]-3)
-    if bottom==h and top==0: bottom=int(h*.70)
+        if line["y0"]>=h*.55 and span>=w*.25: bottom=min(bottom,line["y0"]-18)
+    
     top=max(0,min(top,int(h*.48)))
     bottom=max(top+int(h*.30),min(bottom,h))
     return top,bottom,lines
@@ -90,7 +89,7 @@ def treat(src,dst):
         layer=Image.new("RGBA",CANVAS,(0,0,0,0))
         f=font(30); bb=f.getbbox(WATERMARK,stroke_width=1)
         txt=Image.new("RGBA",(bb[2]-bb[0]+40,bb[3]-bb[1]+28),(0,0,0,0))
-        ImageDraw.Draw(txt).text((20-bb[0],14-bb[1]),WATERMARK,font=f,fill=(4,55,91,118),stroke_width=1,stroke_fill=(255,255,255,145))
+        ImageDraw.Draw(txt).text((20-bb[0],14-bb[1]),WATERMARK,font=f,fill=(4,55,91,100),stroke_width=1,stroke_fill=(255,255,255,130))
         rot=txt.rotate(12,resample=Image.Resampling.BICUBIC,expand=True)
         layer.alpha_composite(rot,((CANVAS[0]-rot.width)//2,(CANVAS[1]-rot.height)//2))
         result=Image.alpha_composite(canvas.convert("RGBA"),layer).convert("RGB")
