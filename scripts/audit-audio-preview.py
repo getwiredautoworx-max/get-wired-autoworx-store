@@ -33,8 +33,18 @@ def audit(name, path):
     rows = data.get("records", data.get("products", []))
     overrides_path = ROOT / "assets/audio-product-enrichment-overrides.json"
     if overrides_path.is_file():
-        overrides = {r.get("id"): r for r in json.loads(overrides_path.read_text(encoding="utf-8")).get("records", [])}
-        rows = [dict(row, **{k:v for k,v in overrides.get(row.get("id"), {}).items() if k != "id"}) for row in rows]
+        override_rows = json.loads(overrides_path.read_text(encoding="utf-8")).get("records", [])
+        for override in override_rows:
+            if override.get("id"):
+                matches = [row for row in rows if row.get("id") == override["id"]]
+            else:
+                match = override.get("match") or {}
+                matches = [row for row in rows if match and all(row.get(k) == v for k, v in match.items())]
+            if len(matches) != 1:
+                raise SystemExit(f"AUDIO_AUDIT_FAIL expected one exact override match, found {len(matches)}")
+            for key, value in override.items():
+                if key not in ("id", "match"):
+                    matches[0][key] = value
     summary = {
         "records": len(rows),
         "missingImage": 0,
