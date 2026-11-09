@@ -148,3 +148,36 @@ These are a snapshot, not a substitute for refreshing PR heads and workflow resu
 - No confidential supplier files processed or copied.
 - No production deployment, Axxess upload, DNS/payment change, live Supabase write, live catalogue/price/stock change or paid service/credit use.
 - This handover update records verified evidence and the implementation path; it does not claim the workflow has already been fully implemented or proven 90% reliable.
+
+
+---
+
+## AUTOMATION RECOVERY AUDIT — 2026-11-09 05:26 SAST
+
+### Background Task Controller — confirmed main-branch failure
+- Current main head observed in GitHub Actions: `5e748e09343f7879c66124778d42ee202caf1e00`.
+- Scheduled controller run `42535626925` (2026-11-08 23:32 UTC) and run `42553921263` (2026-11-09 02:59 UTC) both failed in step **Build task checkpoint from queue and recent workflow results**.
+- Exact traceback: `scripts/background_task_controller.py:189`, `KeyError: 'description'`. Queue schema v2 supplies `success_criteria` and `next_action`; the main controller still dereferences the removed legacy `description` field. Syntax validation passes; controller execution fails.
+
+### Controller repair candidates
+- PR #187: OPEN, UNMERGED, current head `873054fa31a89acb10bed72b8ec3e56feb70319a`, current compare against main is 6 commits ahead / 1 behind, status diverged, GitHub reports mergeable=false. Exact-head controller run `42500323085` and catalogue QA run `42500323139` both passed. Catalogue QA explicitly skipped optional ASC staged-data, ASC owner-preview, audio catalogue and hosted browser suites because those files were absent on that isolated PR branch; skipped suites are not passes. PR #187 contains the queue-schema fix plus optional-suite guards. No merge or deployment performed.
+- PR #188: OPEN / DRAFT / UNMERGED, head `c74c100f88f4c260a40fb787105479cc0eea3440`, one-file queue-schema fix, GitHub reports mergeable=true, but no workflow runs were returned for its head. It duplicates the controller fix without the additional QA guards from PR #187. No merge performed.
+- Do not merge either PR automatically. Reconcile one tested repair against current main, preserve the single-fix approach, obtain owner approval before merge, then verify a new scheduled main controller run.
+
+### Public-safe ASC extraction worker
+- Scheduled worker run `42520746794` (2026-11-08 20:33 UTC) completed SUCCESS on main SHA `5e748e09343f7879c66124778d42ee202caf1e00`. All workflow steps, including task-queue validation and bounded ASC extraction, passed.
+- The worker log reports **no source extraction changes; no checkpoint commit required**. Existing checkpoint branch `automation/catalogue-extraction-checkpoints` contains review-only text for the six approved ASC catalogues: 72/72 source pages have text/OCR extraction (Aerials 7, Sensors 9, Switches 22, Globes 11, Car Mats 11, Fuel Pumps 12). This is extraction evidence only, not product identity, fitment, image, specification or listing approval.
+- No later scheduled worker run was present in the latest 100 workflow runs inspected at 05:26 SAST; the 2026-11-09 00:23 UTC slot was not observed. Check the next expected 04:23 UTC slot (06:23 SAST) before claiming the four-hour schedule is reliable.
+- The controller's failures do not themselves invalidate the independent ASC worker run. No ASC data was imported or published.
+
+### Audio/storefront automation reconciliation
+- PR #178 was re-read from GitHub: OPEN / DRAFT / UNMERGED, head `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`, mergeable=false. This differs from the older automation checkpoint `578f5402a417b00d2502d95fd4a4632b9561ff40`; the older SHA must not be treated as current. No current preview for the latest head is verified.
+- The scheduled automation previously titled “Continue Get Wired AutoWorx catalogue work” has been changed to a coordination/recovery monitor so it does not duplicate product edits. “Advance Get Wired audio and video catalogue” remains the sole audio catalogue editing worker. Both saved prompts now enforce the public-repository confidentiality boundary and the live-PR/head verification gate. Both updates were confirmed successful.
+- The immediate run request for the previously failed catalogue automation was accepted as inline work, but the automation dashboard still records the prior scheduled attempt as failed; no successful new run record is yet present. Do not report the scheduled automation as recovered until a later run is recorded successful.
+- Critical security boundary remains active: do not process confidential supplier originals, price lists, costs, stock, workbooks, internal supplier SKUs or sensitive derivatives on the public repository/runner. Planetworld and Audio Connections processing requires an owner-controlled private execution boundary. No deployment, Cloudflare/Netlify credit use, merge, live data change or production action was performed.
+
+### Next actions
+1. Reconcile PR #187's tested controller fix against the current main handover-only commit; resolve the branch conflict/mergeability and re-run exact-head checks without triggering paid preview deployments. Obtain owner approval before any merge.
+2. Verify the next scheduled ASC worker run and inspect its summary/checkpoint, distinguishing no-change success from new extraction progress.
+3. Keep the two audio automations separated (monitor vs sole editor), verify their next recorded runs, and keep PR #178 unchanged until its live head/base/mergeability and private-data boundaries are resolved.
+4. Keep production HOLD; no Axxess, DNS, live database, live catalogue, price/stock, payment or publication changes.
