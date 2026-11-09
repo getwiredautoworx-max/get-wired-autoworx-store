@@ -41,6 +41,14 @@ assert.equal(arcam.imageStatus, 'official_manufacturer_image_verified_review_onl
 assert.ok(arcam.imageUrl && arcam.description, 'ARCAM AVR21 must have exact manufacturer image and description');
 assert.equal(arcam.indicativePrice, null);
 assert.equal(arcam.hasStock, null);
+const adeo = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen');
+assert.ok(adeo, 'verified Adeo Plano 135-inch Home Entertainment preview record must be present');
+assert.equal(adeo.modelNumber, 'Plano 135-inch Vision Acoustic');
+assert.equal(adeo.imageStatus, 'owner_authorized_exact_retailer_image_verified_review_only');
+assert.ok(adeo.imageUrl && adeo.description, 'Adeo Plano must have exact listing image and verified 135-inch dimensions');
+assert.equal(adeo.indicativePrice, null);
+assert.equal(adeo.hasStock, null);
+
 
 
 
