@@ -150,6 +150,10 @@ const harnessExample={collection:'Harnesses & Trims',component:'Harnesses, Trims
 const trimExample={collection:'Harnesses & Trims',component:'Harnesses, Trims & Fitment',title:'2-Din Toyota Corolla 2007-2013'};
 assert.equal(classifyAudioComponent(harnessExample),'Harnesses','ISO2CAR/adaptor rows must classify as Harnesses');
 assert.equal(classifyAudioComponent(trimExample),'Trims','2-Din fascia rows must classify as Trims');
+const harnessTrimRows=planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment");
+assert.equal(harnessTrimRows.filter(p=>classifyAudioComponent(p)==='Harnesses').length,24,'all 24 verified harness-title rows must map to Harnesses');
+assert.equal(harnessTrimRows.filter(p=>classifyAudioComponent(p)==='Trims').length,23,'all 23 1-Din/2-Din/9-inch fascia rows must map to Trims');
+assert.equal(harnessTrimRows.filter(p=>!['Harnesses','Trims'].includes(classifyAudioComponent(p))).length,0,'no Harnesses & Trims source row may remain unclassified');
 assert.equal(planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment").length,47,'the 47 original source rows must be retained and split at preview time into Trims and Harnesses');
 assert.equal(planet.records.filter(p=>p.division==="Car Audio"&&p.component==="Unclassified — owner/source confirmation").length,0,'all two previously held Planetworld component classifications are resolved');
 assert.equal(planet.records.find(p=>p.id==="pw-2088").component,"Car Audio Accessories");
