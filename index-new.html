@@ -1410,7 +1410,7 @@ function applyShopControls(list,scroll=true){
  currentShopList=list.slice();
  const sort=document.getElementById('sortProducts')?.value||'relevance';
  let out=currentShopList.slice();
- else if(sort==='name')out.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+ if(sort==='name')out.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
  
  document.getElementById('shopControls').hidden=false;
  document.getElementById('shopResultCount').textContent=out.length+' of '+currentShopList.length+' products';
