@@ -54,12 +54,12 @@ def audit(name, path):
         if not nonempty(row, COMPONENT_KEYS):
             summary["missingComponent"] += 1
         review_values = " ".join(str(row.get(k, "")) for k in ("reviewStatus", "publicationStatus", "imageStatus", "classificationStatus"))
-        if row.get("manualReview") or row.get("needsReview") or row.get("reviewRequired") or row.get("component") == "Manual Product-Type Review" or re.search(r"(?:^|\\b)(?:HOLD|MANUAL_REVIEW|REVIEW_REQUIRED|UNCLASSIFIED)", review_values, re.I):
+        if row.get("manualReview") or row.get("needsReview") or row.get("reviewRequired") or row.get("component") == "Manual Product-Type Review" or re.search(r"(?:^|\b)(?:HOLD|MANUAL_REVIEW|REVIEW_REQUIRED|UNCLASSIFIED)", review_values, re.I):
             summary["reviewFlagged"] += 1
         if row.get("collection") == "Harnesses & Trims" or row.get("component") == "Harnesses, Trims & Fitment":
             title = " ".join(str(row.get(k, "")) for k in ("title", "name", "description", "modelNumber")).lower()
-            harness = bool(re.search(r"\\b(harness|loom|adapter|interface|patch lead|wiring|iso)\\b", title))
-            trim = bool(re.search(r"\\b(trim|fascia|bezel|surround|dash kit|panel)\\b", title))
+            harness = bool(re.search(r"\b(harness|loom|adapter|interface|patch lead|wiring|iso)\b", title))
+            trim = bool(re.search(r"\b(trim|fascia|bezel|surround|dash kit|panel)\b", title))
             label = "both" if harness and trim else "harness" if harness else "trim" if trim else "unclassified"
             summary["harnessTrimKeywordCounts"][label] += 1
             if label == "unclassified" and len(summary["harnessTrimExamples"]) < 12:
