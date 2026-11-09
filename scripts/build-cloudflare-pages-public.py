@@ -89,6 +89,7 @@ if include_preview:
         if not source_dir.is_dir():
             raise SystemExit(f"Required preview asset directory missing: assets/{name}")
         shutil.copytree(source_dir, OUT / "assets" / name)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -127,6 +128,7 @@ if include_preview:
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
     for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
+    subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
     print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
 else:
