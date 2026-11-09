@@ -12,6 +12,13 @@ FILES = {
 }
 IMAGE_KEYS = ("imageUrl", "image", "image_url", "productImage", "product_image", "photoUrl", "thumbnail")
 DESCRIPTION_KEYS = ("description", "productDescription", "shortDescription", "longDescription", "technicalSpecifications", "specifications", "features")
+VERIFIED_IMAGE_STATUSES = {
+    "official_manufacturer_image_verified_review_only",
+    "official_manufacturer_image_owner_authorized_for_store_preview",
+    "EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY",
+    "EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY",
+    "owner_authorized_exact_supplier_image_verified_review_only",
+}
 MODEL_KEYS = ("modelNumber", "model", "model_number", "manufacturerProductName", "title", "name")
 BRAND_KEYS = ("brand", "brandName", "manufacturer", "manufacturerName")
 COMPONENT_KEYS = ("component", "productType", "category", "type")
@@ -31,6 +38,7 @@ def audit(name, path):
         "missingBrand": 0,
         "missingComponent": 0,
         "reviewFlagged": 0,
+        "verifiedImageAndDescription": 0,
         "harnessTrimKeywordCounts": Counter(),
         "harnessTrimExamples": [],
         "byDivision": {},
@@ -61,6 +69,9 @@ def audit(name, path):
             bucket["withImage"] += int(nonempty(row, IMAGE_KEYS))
             bucket["withDescription"] += int(nonempty(row, DESCRIPTION_KEYS))
             bucket["withBoth"] += int(nonempty(row, IMAGE_KEYS) and nonempty(row, DESCRIPTION_KEYS))
+            bucket["verifiedImageAndDescription"] += int(nonempty(row, IMAGE_KEYS) and nonempty(row, DESCRIPTION_KEYS) and row.get("imageStatus") in VERIFIED_IMAGE_STATUSES)
+        if nonempty(row, IMAGE_KEYS) and nonempty(row, DESCRIPTION_KEYS) and row.get("imageStatus") in VERIFIED_IMAGE_STATUSES:
+            summary["verifiedImageAndDescription"] += 1
         review_values = " ".join(str(row.get(k, "")) for k in ("reviewStatus", "publicationStatus", "imageStatus", "classificationStatus"))
         if row.get("manualReview") or row.get("needsReview") or row.get("reviewRequired") or row.get("component") == "Manual Product-Type Review" or re.search(r"(?:^|\b)(?:HOLD|MANUAL_REVIEW|REVIEW_REQUIRED|UNCLASSIFIED)", review_values, re.I):
             summary["reviewFlagged"] += 1
