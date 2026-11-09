@@ -16,8 +16,8 @@ for (const file of files) {
   if (!fs.existsSync(p)) continue;
   const data = JSON.parse(fs.readFileSync(p, 'utf8'));
   const raw = JSON.stringify(data);
-  assert.ok(!/Planetworld|Audio\\s+Connections/i.test(raw), file+' must not expose supplier identities');
-  assert.ok(!/"(?:supplierName|supplierSku|supplierModelNumber|dealerCost|dealerPrice|wholesalePrice|internalSku|internalId|gwSku)"\\s*:/i.test(raw), file+' must not expose internal supplier or procurement fields');
+  assert.ok(!/Planetworld|Audio\s+Connections/i.test(raw), file+' must not expose supplier identities');
+  assert.ok(!/"(?:supplierName|supplierSku|supplierModelNumber|dealerCost|dealerPrice|wholesalePrice|internalSku|internalId|gwSku)"\s*:/i.test(raw), file+' must not expose internal supplier or procurement fields');
   checked++;
 }
 assert.ok(checked >= 4, 'at least four public preview catalogue files must be sanitized');
