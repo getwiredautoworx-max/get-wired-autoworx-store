@@ -243,6 +243,33 @@ This owner clarification supersedes the earlier blanket private-data-boundary st
 The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
 
 
+## LIVE EXECUTION STATUS — 2026-11-09 06:34 SAST
+
+### Consolidated storefront candidate — PR #190
+- Current PR head: `54bf3d49b6e8de25586abf0bb5df1d516eba9112`; base: `8a1119e44b6586934e32265e0bd7729263f6ea95`; OPEN / DRAFT. No merge, deployment or live write.
+- Latest exact-head checks (run set at 2026-11-09 06:28 SAST): Button-Only Storefront Smoke PASS; Public SKU Exposure Audit PASS; Preview Approved Catalogue Gate PASS; Delivery Quote Security PASS; Customer Authentication Security PASS; Axxess package preparation PASS (package-only, no upload).
+- Failed: Cloudflare Pages Public Package QA, Catalogue & Supplier Routing Review QA, Storefront Smoke Test, Owner Preview Mobile/Desktop Browser QA.
+- Root cause from exact build log: `tests/three-category-storefront-structure.test.cjs:121` fails the assertion for storefront root `Audio, Entertainment & Music`. This is a mismatch between the test's expected root and the current three-root storefront contract; it is not a Cloudflare infrastructure outage and not a supplier-name exposure finding. Correct the test/markup contract without restoring a fourth top-level category.
+- Storefront policy test fails on the same root assertion. Browser QA starts its local server but times out waiting for obsolete selector `#categories .catWrap`; update browser assertions to the actual owner-preview markup and then rerun exact-head mobile/desktop tests.
+- No current hosted staging deployment for this exact SHA has been verified. No preview is ready.
+
+### ASC six-catalogue — PR #183
+- Current PR head: `327d9a271196efe2144e93d81109b93cca83cbdd`; OPEN; not mergeable. Master and staging registers remain 978 rows, unique IDs, matching row sets, correct category mapping, no invented price/stock, all review-only / DO NOT IMPORT.
+- Current branch workflow file now invokes `python3 tests/test_asc_reload_validation.py`; this is the intended deterministic replacement for the missing optional test files. No workflow run is recorded against the current PR head yet, so this fix is **not yet QA-verified**.
+- Editorial status in QA report: 50 titles in pilot; 928 titles still OCR candidates requiring proofing; technical specifications/dimensions pending for all 978; pricing and physical stock remain unknown; 952 photo cards exist and 26 products have no source photo.
+- The 50-record image pilot register exists, but its image paths are still marked reference-only/not copied to staging. First contact-sheet review found catalogue caption text remains. No completed/accepted 50-image treatment set is verified yet. Next step is to create/collect all 50 correct source crops, remove text outside product image, overlay Get Wired AutoWorx watermark over ASC watermark, then compare each output to its source card and inspect a contact sheet. Do not use invented images for the 26 no-photo records.
+- ASC customer-facing price label remains exactly: `Price On Request due to Limited Stock and Availability`.
+
+### Electro-city ignition pilot — PR #185
+- Current PR head: `b00778af1c0ae7561b6e697a32f953b67d993bbf`; OPEN / UNMERGED.
+- Exact-head Supplier Catalogue Review Data QA and Public SKU Exposure Audit both PASS (run set 42562409988 / 42562410040).
+- IG-T003 / GWA-EC-000012 discrepancy is resolved for customer-facing scope: exclude the unsupported Fiat/Peugeot/Renault catalogue caption; retain only corroborated Toyota applications as corroborated, not confirmed. Do not publish a model/year fitment without VIN/engine verification. The 29-row package remains review-only / DO NOT IMPORT pending owner acceptance.
+
+### ETA and remaining critical path
+- **Initial verified staging preview target: 10 November 2026**, conditional on correcting PR #190's root-category contract and browser selector, passing all exact-head static and mobile/desktop checks, and obtaining permission for any Cloudflare credit use needed for the hosted staging build. This is a target, not a guarantee; no deployed preview SHA currently exists.
+- **Full ASC product-level editorial completion is a separate, longer task**: 928 titles still require proofing, 978 technical-spec/dimension rows remain pending, and the 50-image treatment pilot is not yet accepted. Do not represent the initial staging-preview target as full catalogue completion.
+- Electro-city fitment discrepancy no longer blocks the pilot; remaining gate is owner acceptance and the evidence-tier restrictions above.
+- Production remains HOLD. No Axxess upload, DNS change, live database/catalogue/price/stock write, payment activation or production deployment.
 ## 2026-11-09 owner-reported preview defects — repair branch update
 
 - Owner reports the consolidated store preview is unpopulated and the 50 ASC sample product images are clipped at the bottom by approximately one quarter.
@@ -252,3 +279,20 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - Auto Electrical category page now links to its 34-product review pilot. Car Audio already routes to the Audio preview catalogue. Car Care remains visibly unpopulated until a valid catalogue dataset is completed; do not add invented products.
 - **Not yet complete:** regenerate all 50 image output assets and manifest from original source images using the corrected processor; inspect outputs/contact sheet for full lower product edges; run automated checks; deploy same-SHA Pages staging preview; inspect mobile/desktop; then ask owner to recheck. Current hosted preview is unchanged until those steps succeed.
 - No production deployment, live Supabase write, import, Axxess upload, DNS change or paid spend was performed or authorised.
+
+
+## 2026-11-09 live check refresh — PR #190
+- The 06:34 SAST status above is historical and superseded by the current GitHub evidence. PR #190 is currently OPEN / DRAFT at head `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40`, based on `8a1119e44b6586934e32265e0bd7729263f6ea95`.
+- On that exact head, Cloudflare Pages completed **successfully**; GitHub Cloudflare Pages Public Package QA, public package, storefront smoke, responsive review and mobile/desktop browser QA all completed successfully. The separate Cloudflare Workers Builds integration check failed; do not misreport that as a Pages build failure.
+- PR #190 remains a draft candidate, not an owner-accepted release. Its preview does not substitute for verification of the newer PR #192 head or owner phone acceptance.
+
+## 2026-11-09 audio category reconciliation — PR #192
+- Single working candidate: [PR #192](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/192), branch `fix/owner-preview-population-and-full-height-images-2026-11-09`, still DRAFT / UNMERGED. Current main commit `f947d33d6a102129307f4e74833798525974c4c3` is merged into this candidate branch; retarget PR #192 to `main` only after confirming the merge commit and then run the exact-head public package QA. No production merge or deployment.
+- Planetworld primary preview contains 3,317 source records. The Car Audio division has 702 records: **113 description rows, 75 image assets and 113 model-number rows (112 unique model numbers)**. Of the 75 images, 60 are official manufacturer images marked verified; the rest are owner-preview/review-only candidates or non-manufacturer sources. All audio product images now render with full-image `contain` fit; no bottom cropping.
+- OneNav: 45 official model pages were audited. **43 unique models** are integrated into 44 primary rows (one exact duplicate source row is deduplicated by the preview). Two codes, `OA115-2` and `OA115-3`, remain held because the same source title maps to two primary rows and the exact variant-to-row assignment is not proven. Six exact-model/fitment image candidates are owner-preview-only; 39 of the 45 models still have no approved image. Rejected `OA015-1` imagery was removed; the `OA715-1` candidate was added. OneNav now has its own brand grouping/wordmark; the remaining unclassified `One` family is clearly labelled separately.
+- A further 68 manufacturer-model records were linked to the primary audio catalogue by exact manufacturer page. The Kicker `KW16400` speaker-wire item is linked to its per-metre product row with an owner-authorised exact supplier image; its Get Wired SKU remains unassigned and is not exposed in the public preview. All 69 internal model-verification records now point to their primary preview record.
+- Audio Connections secondary preview contains 66 records, 66 descriptions, 62 images and generic **Price On Request** for every record. Three model identity/specification holds remain (`ac-032`, `ac-041`, `ac-044`); a separate failed image remains held for `XS-W104ES`. Resolved output records: `ac-021`, `ac-025`, `ac-038`; the higher verified manufacturer output is used where the exact model and impedance basis are confirmed. No supplier numeric price or stock is displayed.
+- The 3,317-row Planetworld dataset is **not fully reconciled**: the other 2,615 non-Car-Audio rows currently have no product descriptions or images; within Car Audio, 589 rows still lack descriptions and 627 lack images. A further 245 `One`-family source records remain to be classified/reconciled. The 47 harness/trim records and 28 marine-audio records also require product-level image/description verification. Do not claim the audio category is complete.
+- The preview regression suite now checks the OneNav integration, model links, Audio Connections holds, Price On Request policy and full-image presentation. `audio-catalogue-preview.test.cjs` has been added to the public package build test list. These new tests have **not yet run on the final PR #192 head**; retarget to main and verify exact-head results before presenting the updated hosted preview.
+- The separate ASC image defect is not closed: crop code and preview CSS are corrected, but the 50 original sample image outputs/manifest still need regeneration and visual inspection. No corrected ASC sample output has been deployed.
+- No production deployment, live Supabase write, catalogue import, Axxess upload, DNS/payment change, numeric price/stock update or unapproved paid spend was performed. Production remains **HOLD**.
