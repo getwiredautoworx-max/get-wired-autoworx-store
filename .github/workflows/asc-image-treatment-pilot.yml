@@ -1,8 +1,8 @@
 name: ASC 50-Image Owner-Authorised Treatment Pilot
 on:
-  push:
+  pull_request:
     branches:
-      - work/asc-image-pilot-2026-11-09
+      - work/asc-pilot-runner-base-2026-11-09
     paths:
       - 'scripts/reconcile_asc_review_data.py'
       - 'scripts/process_asc_image_pilot.py'
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
           path: workspace
           fetch-depth: 0
       - uses: actions/checkout@v4
@@ -68,5 +68,5 @@ jobs:
           git add catalogue-review/asc-catalogue-extraction/ staging/asc-staged-catalogue-products-do-not-import.csv staging/asc-image-treatment-pilot/
           if ! git diff --cached --quiet; then
             git commit -m "artifacts(asc): add owner-authorised 50-image treatment pilot"
-            git push origin HEAD:${GITHUB_REF_NAME}
+            git push origin HEAD:${GITHUB_HEAD_REF}
           fi
