@@ -14,7 +14,7 @@ Scope is limited to the six retained ASC product catalogues. No ASC buyer's guid
 | Fuel Pumps | 12 | 18 | 129 | 129 |
 | **Total** | **72** | **75** | **978** | **978** |
 
-All six source PDFs were rendered to original-page contact sheets. The detected blue supplier-code label count matches the printed cover product-line total for every catalogue.
+All six source PDFs were rendered to original-page contact sheets. The corrected visible-card counts reconcile to the 978-row master register. The earlier 983 preliminary tally overstated Car Mats by five because its page 10 section heading says 13 items while only 8 physical cards are present.
 
 ## OCR candidate disposition
 
@@ -51,7 +51,7 @@ This is a source extraction and review milestone, not a production catalogue imp
 - Created and visually reviewed 20 audit sheets covering all 983 individual supplier-code labels (50 labels per sheet, source card crop shown beside the proposed code).
 - The visual audit found OCR omissions/substitutions that were not caught by dual-OCR agreement. Corrected 11 records against the printed blue labels: MA522, MA570, IG-FR01, S2-007, S2-020R, S2-015, S2-017, S2-033-4, S2-035, M7-AVAN01 and M7-MT02.
 - These 14 corrections are now included in the manual correction map. The 983-row register was updated; duplicate checks show 0 duplicate supplier codes and 0 duplicate provisional internal IDs.
-- This demonstrates why OCR agreement alone is insufficient. The 983 labels have now been audited visually as a full set, with the 11 discovered mismatches corrected.
+- This demonstrates why OCR agreement alone is insufficient. The earlier 983-label preliminary tally was reconciled against the actual catalogue cards; five Car Mats entries were header-count overstatements, not product cards. The 978 visible product cards are the authoritative product count.
 - The downloadable owner preview was rebuilt after corrections. It includes 983 individual source-card crops, 983 searchable records, category/subcategory candidate tags from catalogue page headings, and Price On Request for ASC.
 - Description OCR remains a draft, and the preview still labels fitment and technical specifications/dimensions as pending. Product images are source-card crops rather than isolated clean product photographs; watermarks and rights remain unresolved. No live import or merge.
 
