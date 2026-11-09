@@ -13,6 +13,10 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const page = await browser.newPage({ viewport: { width, height: 900 } });
       page.setDefaultTimeout(20000);
       const writes = [];
+      const pageErrors = [];
+      const consoleErrors = [];
+      page.on('pageerror', error => pageErrors.push(error.message));
+      page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
       await page.route('**/rest/v1/**', async route => {
         const method = route.request().method();
         const url = route.request().url();
@@ -27,13 +31,10 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       });
 
       await page.goto(BASE + '/index-new.html?ownerPreview=1&previewBuild=exact-head-qa', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('#categoryGrid .catWrap', { state: 'attached' });
-      await page.waitForFunction(() => {
-        const labels = [...document.querySelectorAll('#categoryGrid .catWrap .catContent b')].map(x => x.textContent.trim());
-        return labels.length === 3;
-      });
-      const roots = await page.locator('#categoryGrid .catWrap .catContent b').allTextContents();
+      await page.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
+      const roots = await page.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
       assert.deepEqual(roots.map(x => x.trim()), EXPECTED_ROOTS, 'homepage must expose exactly the three owner-approved main categories');
+      assert.deepEqual(pageErrors, [], 'homepage must not raise JavaScript errors: ' + pageErrors.join('; '));
       const homeText = await page.locator('body').innerText();
       assert.ok(!SUPPLIER_NAMES.test(homeText), 'supplier names must not appear on customer-facing homepage content');
       assert.ok(!/Supplier SKU|Dealer Cost|Dealer Price|Proposed Get Wired SKU/i.test(homeText), 'internal supplier and proposed SKU fields must not be shown');
@@ -45,7 +46,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       await page.waitForSelector('iframe');
       const frame = page.frames().find(f => f.url().includes('index-new.html'));
       assert.ok(frame, 'owner preview must embed the current three-category storefront');
-      await frame.waitForSelector('#categoryGrid .catWrap');
+      await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
       const checkoutVisible = await frame.locator('a[href*="checkout"], .checkoutNow').evaluateAll(nodes =>
         nodes.some(node => {
           const style = getComputedStyle(node);
@@ -53,6 +54,8 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
         })
       );
       assert.equal(checkoutVisible, false, 'owner preview must keep checkout and order actions blocked');
+      const frameRoots = await frame.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
+      assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the three approved root categories');
 
       await page.goto(BASE + '/preview-audio.html?department=Car%20Audio&brand=Sony&component=Component%20Speakers&label=Car%20Audio%20%26%20Video', { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => {
