@@ -6,6 +6,7 @@ on:
     paths:
       - "scripts/build-cloudflare-pages-public.py"
       - "scripts/audit-audio-preview.py"
+      - "scripts/apply-audio-preview-overrides.py"
       - ".github/workflows/cloudflare-pages-deploy.yml"
       - ".github/workflows/cloudflare-layout-preview.yml"
       - ".github/workflows/publish-approved-storefront-preview.yml"
@@ -33,6 +34,7 @@ on:
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
       - "catalogue-review/planetworld-one-official-model-audit.csv"
+      - "assets/audio-product-enrichment-overrides.json"
 permissions:
   contents: read
 jobs:
