@@ -303,3 +303,41 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - The audio navigation now correctly groups/filters products by `displayBrandName` so OneNav is distinct from the unverified One family. Four legacy string assertions in `tests/three-category-storefront-structure.test.cjs` still expected `p.brand===brand` in the product page, brand image selection and direct component route. These expectations contradicted the updated page code and would fail the pre-package regression test. Corrected the assertions to match the new customer-facing brand routing.
 - Updated `.github/workflows/cloudflare-public-pages-build-qa.yml` to run for PRs based on `integration/storefront-current-main-2026-11-09` as well as `main`, and to watch the audio pages, regression tests and OneNav audit file. The workflow builds both standard and isolated non-production preview packages; it does not deploy to production.
 - The next single staging attempt will provide the exact test failure/success evidence. If Pages still fails, inspect that run and the GitHub QA logs before any further build attempt. Production remains HOLD.
+
+
+---
+
+## OWNER EXECUTION RESET — 2026-11-09 (supersedes conflicting older sections)
+
+### Latest owner authority
+- The owner's authoritative clarification in `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` §10 explicitly keeps the repository public and authorises catalogue processing in the existing repository/workflows. A private repository, private runner or private-processing boundary is **not** a prerequisite. The older security-boundary block and any task status that blocks Audio Connections / Planetworld on that basis are superseded. Protect actual credentials/secrets and continue to suppress supplier names/internal SKUs from customer-facing pages.
+- The latest owner instruction in §11 is that **all supplier products display Price On Request** until reliable supplier price/stock synchronisation is approved. Do not display stale RRP or wholesale values as current customer prices.
+- Production HOLD, no live data writes, no Axxess uploads, no DNS/payment changes, no production deployment and no paid-credit spend remain in force without separate explicit approval.
+
+### Current verified repository observations
+- Repository default branch is `main`; repository visibility is public.
+- PR #192 is OPEN and its head is `f86a329771bce03052a8b188904449cc9ba6ed11` at the time of this checkpoint. Its image processor now sets `CROP_RATIO=1.0` and all configured bottom bounds to 1.0, preserving the full remaining source image height. It also uses `ImageOps.contain` inside a 900x600 white canvas, rather than cropping to a fixed aspect ratio.
+- **The image processor correction is not the same as regenerated deliverables.** The committed manifest still describes the old output treatment as `BOTTOM_OUTER_CAPTION_STRIP_CROPPED`, with sample source dimensions 181x209 and crop_bottom_px values 130/142. This is evidence the 50 outputs and manifest are stale relative to the corrected processor. The workflow `.github/workflows/product-image-treatment-sample.yml` is manual (`workflow_dispatch`) and commits regenerated images, manifest and contact sheet to its checked-out branch. Regeneration and visual inspection remain outstanding.
+- `assets/category-tree.json` contains 29 category records and exactly three root categories, but every record reports `direct_active_products: 0`. The preview must therefore render from the committed review-only local datasets, not rely on active/live Supabase rows.
+- The category tree is not yet aligned to the owner's detailed catalogue taxonomy: Auto Electrical currently has a combined `Sensors & Switches` node rather than separate Automotive Sensors and Automotive Switches; the required ASC Fuel Pumps node is not present; audio Accessories has combined `Trims & Harnesses` rather than separate Trims and Harnesses; the Car Mats node is under the correct Car Care & Accessories root. Do not fabricate category UUIDs or mutate live Supabase. Audit route slugs/parent IDs and candidate preview mapping, then make a safe candidate-only repair using valid category identifiers or a self-contained preview taxonomy.
+- The 50-image source script is `scripts/process-product-image-pilot.py`; source assets are under `assets/catalogue-source-crops/`; output images are under `assets/get-wired-product-pilot/`; manifest and contact sheet are under `catalogue-review/asc-catalogue-extraction/`.
+
+### Reprioritised completion sequence
+1. **Repair all three department category routes and assignments.** Validate the visible customer path and the review-only data behind each route. Auto Electrical: separate Sensors, Switches, Globes and Fuel Pumps; Car Audio & Video: Planetworld and Audio Connections together, Accessories with Aerials / Trims / Harnesses; Car Care & Accessories: Car Mats and only verified catalogue-backed records. No category route may dead-end or show an empty state merely because active/live Supabase products are zero.
+2. **Regenerate the 50 ASC image sample.** Run the existing manual image-treatment workflow on the candidate branch. Confirm 50 outputs, manifest checksums, full source-height preservation (bottom bound equals source height), no clipped product bottoms, appropriate watermark placement and a new contact sheet. Visually inspect all 50 before declaring complete.
+3. **Continue Audio / Home Entertainment product reconciliation.** This is authorised and must not be blocked by a private-runner requirement. Reconcile exact product/model/variant, correct image, description, Audio Connections wattage and brand → product-type → product routes. Preserve Planetworld and Audio Connections together by product; keep all customer prices Price On Request; hide supplier names and internal SKUs.
+4. **Complete ASC six-catalogue product-level verification**, preserving source filename/page, exact product identity, image match, category, technical details and exceptions. ASC Buyers Guides remain excluded.
+5. **Verify Electro-city 29-record ignition looms/modules pilot**, retaining all fitment exceptions and internal SKU suppression.
+6. **Consolidate into one candidate based on current main / owner-preferred visual baseline.** Do not wholesale-merge divergent historical PRs.
+7. **Run exact-head tests and one same-SHA staging preview**, followed by mobile-first and desktop browser verification. Do not call preview ready until actual hosted routes and images are verified on the deployed SHA.
+
+### Automation truth
+- The existing 15-minute controller is a monitor/checkpoint process, not a product-enrichment worker. The four-hour ASC job is extraction-only, not editorial verification or storefront population. The daily monitor is read-only. These schedules do not yet constitute a complete 24/7 catalogue workforce.
+- The task queue has been reprioritised on this PR branch: category assignment repair first; 50-image regeneration second; Audio and OneNav reconciliation next; ASC and Electro-city review thereafter; consolidated QA last. Newly added tasks are bounded and review-only. Automation remains limited to configured workflows; no claim of continuous autonomous execution is permitted until worker runs and recovery are demonstrated.
+- Checkpoint commit for task-queue reprioritisation: `e6053e0b478e1f1b788345440dedea2f50c2c871` on `fix/owner-preview-population-and-full-height-images-2026-11-09`.
+
+### This checkpoint does not claim completion
+- No images were regenerated or visually approved in this session.
+- No category mapping was yet changed; only the exact defects and required mapping work were recorded.
+- No audio product records were edited in this session.
+- No PR was merged; no deployment, live data write, Axxess upload or paid service was used.
