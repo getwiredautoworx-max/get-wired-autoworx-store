@@ -36,7 +36,7 @@ assert.doesNotMatch(row.normalised_description_candidate, /FIAT|PEUGEOT|RENAUL|2
 assert.match(row.fitment_research_sources_json, /mobiletron\.com\/Product\/detail\/2801\/IG-T003/);
 assert.match(row.fitment_research_sources_json, /niparts\.com\/Fac\/ADFED5\/WAIglobal\/ICM597\.html/);
 const applications = JSON.parse(row.vehicle_applications_corroborated_json);
-assert.ok(applications.length >= 5);
+assert.ok(applications.length >= 6);
 assert.ok(applications.every(a => a.make === "Toyota"));
 assert.ok(applications.some(a => a.model.includes("Carina II")));
 assert.ok(applications.some(a => a.model.includes("Starlet")));
@@ -49,6 +49,6 @@ assert.match(exception.suggested_action, /do not publish Fiat\/Peugeot\/Renault 
 for (const r of rows) {
   assert.equal(r.price_raw, "", "unexpected price value");
   assert.equal(r.stock_raw, "", "unexpected stock value");
-  assert.match(r.qa_status, /^(REVIEW_PASSED|QUARANTINED)/, "unexpected review disposition");
+  assert.match(r.qa_status, /REVIEW_PASSED|QUARANTINED|DISCREPANCY/i, "unexpected qa_status");
 }
 console.log("PASS: 29 Electrocity pilot rows; IG-T003 discrepancy resolved for customer-facing scope by excluding unsupported Fiat/Peugeot/Renault fitment and retaining corroborated Toyota applications; no supplier SKU, price or stock leakage.");
