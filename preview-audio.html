@@ -771,7 +771,7 @@ function componentGroup(p){
  if(raw.includes("processor")||raw.includes("crossover"))return "Signal Processing & Crossovers";
  return p.component||"Other / Review";
 }
-const VERIFIED_PRIMARY_IMAGE_STATUSES=new Set(["official_manufacturer_image_verified_review_only","official_manufacturer_image_owner_authorized_for_store_preview","EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY","EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY","owner_authorized_exact_supplier_image_verified_review_only"]);
+const VERIFIED_PRIMARY_IMAGE_STATUSES=new Set(["official_manufacturer_image_verified_review_only","official_manufacturer_image_owner_authorized_for_store_preview","EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY","EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY","owner_authorized_exact_retailer_image_verified_review_only","owner_authorized_exact_supplier_image_verified_review_only"]);
 const PRICE_ON_REQUEST_TEXT="Price On Request";
 const CUSTOMER_PRICE_DISPLAY="Price On Request";
 function audioPriceLabel(p){
