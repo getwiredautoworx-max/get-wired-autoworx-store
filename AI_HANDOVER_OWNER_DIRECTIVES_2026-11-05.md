@@ -86,3 +86,12 @@
 - This is an additive, binding instruction overlay. It does not erase historical evidence or rewrite the very large legacy `HANDOVER_CURRENT.md`; all conflicting historical instructions in that file are superseded by this owner-authorised document and the owner's newest direct instructions.
 - Task outcome: SUCCESS — owner-authoritative precedence, ASC catalogue-only scope, exclusion of ASC Buyers Guides, RRP-supplier pricing distinction, catalogue-first reusable workflow, three-category storefront direction, and execution/release gates are recorded. No code, supplier workbook, live data, price, stock, active flag, PR, deployment, hosting, DNS or payment changes were made.
 - Next action: begin the repository-wide reconciliation under sections 1 and 7, then record verified branch/PR/workflow state and the first representative catalogue workflow result in the current handover. Do not resume Buyers Guide processing.
+
+
+## 10. Owner clarification — retail catalogue use and repository visibility (2026-11-09)
+- The business is a **retailer to the general public**. Supplier catalogues are source material for Get Wired AutoWorx retail product listings: product identity, descriptions, images and specifications. Their wholesale value is limited because wholesale prices require a separate qualifying dealer relationship with the supplier.
+- Keep the main GitHub repository public. **Do not require a private repository, private runner or separate private execution environment as a prerequisite** for catalogue extraction, review or storefront enrichment. Do not pause authorised catalogue work on that basis.
+- Use the existing public repository and approved workflows for catalogue processing, subject to the owner's existing product-data and release rules. Do not change repository visibility, create unnecessary infrastructure, or introduce extra hosting services.
+- Customer-facing rules remain: hide supplier names and internal supplier SKUs; do not expose dealer-only cost/wholesale information as retail prices; apply the owner's Price On Request and other supplier-specific pricing instructions; never invent price or stock.
+- This clarification does not authorise exposing credentials, access tokens, personal data, or other genuine secrets. It also does not relax the production hold, no-live-write rules, exact-head QA, staging verification, or owner approval for release.
+- This section supersedes any older handover language that made a private supplier-data boundary a blanket blocker to catalogue processing.
