@@ -268,6 +268,48 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m12-14-bit",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M12.14 bit"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M12.14 bit 12-Channel DSP Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M12.14 bit",
+      "description": "Twelve-channel fully bridgeable Class D DSP amplifier with native 24-bit / 96 kHz processing and High-Resolution Audio certification. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 12 × 60 W at 4 Ω or 12 × 90 W at 2 Ω; bridged output is 6 × 180 W at 4 Ω. Total rated RMS power is 1,080 W. Includes optical S/PDIF input, eight high-level and eight low-level inputs, two pre-outs, adjustable crossovers and time alignment.",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M12.14 bit manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m8-14-bit",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M8.14 bit"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M8.14 bit 8-Channel DSP Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M8.14 bit",
+      "description": "Eight-channel fully bridgeable Class D DSP amplifier with native 24-bit / 96 kHz processing and High-Resolution Audio certification. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 8 × 90 W at 4 Ω or 8 × 140 W at 2 Ω; bridged output is 4 × 280 W at 4 Ω. Total rated RMS power is 1,120 W. Includes optical S/PDIF input, eight high-level and eight low-level inputs, six processed pre-outs, adjustable crossovers and time alignment.",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M8.14 bit manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
