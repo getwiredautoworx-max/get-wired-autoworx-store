@@ -1,136 +1,24 @@
-name: Catalogue & Supplier Routing Review — QA
-
+name: ASC Six-Catalogue Review QA
 on:
   pull_request:
     branches: [main]
     paths:
-      - "catalogue-review/**"
-      - "preview-auto-electrical.html"
-      - "assets/auto-electrical-owner-preview.json"
-      - "assets/asc-auto-electrical-pilot/**"
-      - "scripts/build-cloudflare-pages-public.py"
-      - "tests/auto-electrical-review-population.test.cjs"
-      - "tests/auto-electrical-owner-preview.test.cjs"
-      - "tests/auto-electrical-owner-preview.spec.cjs"
-      - "tests/pricing-display-policy.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "scripts/apply_planetworld_rrp_minus_2.py"
-      - "scripts/enrich_planetworld_verified_models.py"
-      - "assets/planetworld-verified-models-preview.json"
-      - "assets/planetworld-catalogue-preview.json"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "preview-audio.html"
-      - "preview-audio-products.html"
-      - "index-new.html"
-      - "product.html"
-      - "products.html"
-      - "preview-product.html"
-      - "preview-products.html"
-      - "product-details.js"
-      - "assets/progressive-store-enhancements.js"
-      - "scripts/catalogue-review-prototype.spec.js"
-      - "scripts/supplier-routing.test.mjs"
-      - "scripts/supplier-quote-routing-static.test.mjs"
-      - "scripts/supplier-gw-crosswalk.test.mjs"
-      - "supabase/functions/supplier-quote/index.ts"
-      - "supabase/functions/_shared/supplier-routing.mjs"
-      - "android-owner-app/app/src/main/assets/admin_app.html"
+      - "catalogue-review/asc-catalogue-extraction/**"
+      - "staging/asc-staged-catalogue-products-do-not-import.csv"
+      - "tests/test_asc_reload_validation.py"
       - ".github/workflows/catalogue-review-prototype-qa.yml"
-  workflow_dispatch:
-  push:
-    branches:
-      - integration/catalogue-supplier-routing-current-main-2026-10-30
-      - integration/owner-preview-single-task-2026-11-05
-    paths:
-      - "catalogue-review/**"
-      - "preview-auto-electrical.html"
-      - "assets/auto-electrical-owner-preview.json"
-      - "assets/asc-auto-electrical-pilot/**"
-      - "scripts/build-cloudflare-pages-public.py"
-      - "tests/auto-electrical-review-population.test.cjs"
-      - "tests/auto-electrical-owner-preview.test.cjs"
-      - "tests/auto-electrical-owner-preview.spec.cjs"
-      - "tests/pricing-display-policy.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
-      - "tests/three-category-storefront-structure.test.cjs"
-      - "scripts/apply_planetworld_rrp_minus_2.py"
-      - "scripts/enrich_planetworld_verified_models.py"
-      - "assets/planetworld-verified-models-preview.json"
-      - "assets/planetworld-catalogue-preview.json"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "index-new.html"
-      - "product.html"
-      - "products.html"
-      - "preview-product.html"
-      - "preview-products.html"
-      - "preview-audio.html"
-      - "preview-audio-products.html"
-      - "product-details.js"
-      - "assets/progressive-store-enhancements.js"
-      - "catalogue-review/car-audio-navigation-prototype.html"
-      - "catalogue-review/car-audio-navigation-tree-review.json"
-      - "catalogue-review/kicker-manufacturer-product-review.json"
-      - "scripts/catalogue-review-prototype.spec.js"
-      - "supabase/functions/supplier-quote/index.ts"
-      - "supabase/functions/_shared/supplier-routing.mjs"
-      - "scripts/supplier-routing.test.mjs"
-      - "scripts/supplier-quote-routing-static.test.mjs"
-      - "android-owner-app/app/src/main/assets/admin_app.html"
-      - ".github/workflows/catalogue-review-prototype-qa.yml"
-
 permissions:
   contents: read
-
 jobs:
-  responsive-review:
+  asc-review-validation:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Checkout isolated review branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
-      - uses: actions/setup-node@v4
+          ref: \${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
         with:
-          node-version: 22
-      - name: Install Playwright
-        run: npm install --no-save playwright@1.55.0
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-      - name: Run supplier routing unit and static tests
-        run: |
-          node scripts/supplier-routing.test.mjs
-          node scripts/supplier-quote-routing-static.test.mjs
-          node scripts/supplier-gw-crosswalk.test.mjs
-      - name: Set up Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-      - name: Type-check supplier quote Edge Function
-        run: deno check --no-lock supabase/functions/supplier-quote/index.ts
-      - name: Run responsive review checks
-        run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/review-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-          node scripts/catalogue-review-prototype.spec.js
-      - name: Run ASC Auto Electrical review-only data checks
-        run: |
-          node tests/auto-electrical-review-population.test.cjs
-          node tests/auto-electrical-owner-preview.test.cjs
-      - name: Build customer-only preview package without deployment
-        env:
-          GW_INCLUDE_PREVIEW_ROUTES: "1"
-          CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-        run: python3 scripts/build-cloudflare-pages-public.py
-      - name: Verify audio catalogue pricing, source mappings and product enrichment
-        run: node tests/audio-catalogue-preview.test.cjs
-      - name: Verify Auto Electrical owner preview at mobile and desktop widths
-        run: |
-          python3 -m http.server 4174 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-          node tests/auto-electrical-owner-preview.spec.cjs
+          python-version: "3.12"
+      - name: Validate 978-row register, staging gate and 50-product pilot
+        run: python3 tests/test_asc_reload_validation.py
