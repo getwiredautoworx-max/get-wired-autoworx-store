@@ -10,6 +10,16 @@ const files = [
   'auto-electrical-owner-preview.json',
   'product-image-treatment-sample.json'
 ];
+const primaryPath = path.join(root, 'audio-catalogue-primary-preview.json');
+const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf8'));
+const oneNavPrado = primary.records.find(record => record.id === 'pw-2120');
+assert.ok(oneNavPrado, 'verified OneNav Prado preview record must be present');
+assert.equal(oneNavPrado.brand, 'OneNav');
+assert.equal(oneNavPrado.imageStatus, 'owner_authorized_exact_retailer_image_verified_review_only');
+assert.ok(oneNavPrado.imageUrl && oneNavPrado.description, 'OneNav Prado record must have its exact image and verified description');
+assert.equal(oneNavPrado.modelNumber, undefined, 'internal supplier reference must not be exposed as a customer model number');
+assert.equal(oneNavPrado.indicativePrice, null);
+assert.equal(oneNavPrado.hasStock, null);
 let checked = 0;
 for (const file of files) {
   const p = path.join(root, file);
