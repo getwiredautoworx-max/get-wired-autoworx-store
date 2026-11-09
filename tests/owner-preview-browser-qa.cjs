@@ -27,12 +27,12 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       });
 
       await page.goto(BASE + '/index-new.html?ownerPreview=1&previewBuild=exact-head-qa', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('#categories .catWrap', { state: 'attached' });
+      await page.waitForSelector('#categoryGrid .catWrap', { state: 'attached' });
       await page.waitForFunction(() => {
-        const labels = [...document.querySelectorAll('#categories .catWrap .catContent b')].map(x => x.textContent.trim());
+        const labels = [...document.querySelectorAll('#categoryGrid .catWrap .catContent b')].map(x => x.textContent.trim());
         return labels.length === 3;
       });
-      const roots = await page.locator('#categories .catWrap .catContent b').allTextContents();
+      const roots = await page.locator('#categoryGrid .catWrap .catContent b').allTextContents();
       assert.deepEqual(roots.map(x => x.trim()), EXPECTED_ROOTS, 'homepage must expose exactly the three owner-approved main categories');
       const homeText = await page.locator('body').innerText();
       assert.ok(!SUPPLIER_NAMES.test(homeText), 'supplier names must not appear on customer-facing homepage content');
@@ -45,7 +45,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       await page.waitForSelector('iframe');
       const frame = page.frames().find(f => f.url().includes('index-new.html'));
       assert.ok(frame, 'owner preview must embed the current three-category storefront');
-      await frame.waitForSelector('#categories .catWrap');
+      await frame.waitForSelector('#categoryGrid .catWrap');
       const checkoutVisible = await frame.locator('a[href*="checkout"], .checkoutNow').evaluateAll(nodes =>
         nodes.some(node => {
           const style = getComputedStyle(node);
@@ -67,8 +67,8 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       assert.ok(!/\bR\s?[\d,]+(?:\.\d{2})?\b/.test(audioText), 'stale numeric supplier prices must not appear');
       const dataAudit = await page.evaluate(async () => {
         const [planet, audio] = await Promise.all([
-          fetch('assets/planetworld-catalogue-preview.json').then(r => r.json()),
-          fetch('assets/audio-connections-catalogue-preview.json').then(r => r.json())
+          fetch('assets/audio-catalogue-primary-preview.json').then(r => r.json()),
+          fetch('assets/audio-catalogue-secondary-preview.json').then(r => r.json())
         ]);
         return {
           planetRows: planet.records.length,
