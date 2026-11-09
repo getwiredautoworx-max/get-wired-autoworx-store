@@ -142,7 +142,7 @@ assert.ok(audioPage.includes('["Car Audio & Video","Car Audio"]'), 'the single C
 assert.ok(!audioPage.includes('["Car Audio","Car Audio"]'), 'duplicate Car Audio department label must not return');
 assert.ok(audioPage.includes('if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";'), 'Car Audio collection labels must not be duplicated as product-type buttons');
 const componentGroupStart=audioPage.indexOf('function componentGroup(p){');
-const componentGroupEnd=audioPage.indexOf('\\nfunction ',componentGroupStart+1);
+const componentGroupEnd=audioPage.indexOf('\nfunction ',componentGroupStart+1);
 assert.ok(componentGroupStart>=0&&componentGroupEnd>componentGroupStart,'audio preview must define a dedicated product-type classifier');
 const componentGroupSource=audioPage.slice(componentGroupStart,componentGroupEnd);
 const classifyAudioComponent=vm.runInNewContext('('+componentGroupSource+')');
