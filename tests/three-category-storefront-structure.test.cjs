@@ -141,8 +141,16 @@ assert.ok(planet.records.some(p => p.division === 'Home CI' && p.collection === 
 assert.ok(audioPage.includes('["Car Audio & Video","Car Audio"]'), 'the single Car Audio department button must be labelled Car Audio & Video');
 assert.ok(!audioPage.includes('["Car Audio","Car Audio"]'), 'duplicate Car Audio department label must not return');
 assert.ok(audioPage.includes('if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";'), 'Car Audio collection labels must not be duplicated as product-type buttons');
-assert.ok(audioPage.includes('if(p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment")return "Harnesses, Trims & Fitment";'), 'Harnesses, Trims & Fitment must use the dedicated source collection, not broad keyword matches');
-assert.equal(planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment").length,47,'the separate harness/trim/fitment button must resolve to the 47 dedicated Planetworld records');
+const componentGroupStart=audioPage.indexOf('function componentGroup(p){');
+const componentGroupEnd=audioPage.indexOf('\\nfunction ',componentGroupStart+1);
+assert.ok(componentGroupStart>=0&&componentGroupEnd>componentGroupStart,'audio preview must define a dedicated product-type classifier');
+const componentGroupSource=audioPage.slice(componentGroupStart,componentGroupEnd);
+const classifyAudioComponent=vm.runInNewContext('('+componentGroupSource+')');
+const harnessExample={collection:'Harnesses & Trims',component:'Harnesses, Trims & Fitment',title:'ISO2CAR mute adaptor Audi A1 2010'};
+const trimExample={collection:'Harnesses & Trims',component:'Harnesses, Trims & Fitment',title:'2-Din Toyota Corolla 2007-2013'};
+assert.equal(classifyAudioComponent(harnessExample),'Harnesses','ISO2CAR/adaptor rows must classify as Harnesses');
+assert.equal(classifyAudioComponent(trimExample),'Trims','2-Din fascia rows must classify as Trims');
+assert.equal(planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment").length,47,'the 47 original source rows must be retained and split at preview time into Trims and Harnesses');
 assert.equal(planet.records.filter(p=>p.division==="Car Audio"&&p.component==="Unclassified — owner/source confirmation").length,0,'all two previously held Planetworld component classifications are resolved');
 assert.equal(planet.records.find(p=>p.id==="pw-2088").component,"Car Audio Accessories");
 assert.equal(planet.records.find(p=>p.id==="pw-2172").component,"Fascia & Fitting Kits");
