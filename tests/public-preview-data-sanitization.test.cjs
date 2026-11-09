@@ -62,6 +62,14 @@ assert.equal(adeo135rw.imageStatus, 'owner_authorized_exact_retailer_image_verif
 assert.ok(adeo135rw.imageUrl && adeo135rw.description, 'Adeo Plano 135-inch Reference White 2 must have exact listing image and dimensions');
 assert.equal(adeo135rw.indicativePrice, null);
 assert.equal(adeo135rw.hasStock, null);
+const prestige180 = primary.records.find(record => record.brand === 'Adeo Screens' && record.title === 'Adeo Prestige 180-inch Vision Acoustic Fixed-Frame Projection Screen');
+assert.ok(prestige180, 'verified Adeo Prestige 180-inch Home Entertainment preview record must be present');
+assert.equal(prestige180.modelNumber, 'Prestige 180-inch Vision Acoustic');
+assert.equal(prestige180.imageStatus, 'owner_authorized_exact_retailer_image_verified_review_only');
+assert.ok(prestige180.imageUrl && prestige180.description, 'Adeo Prestige 180-inch must have exact listing image and verified dimensions');
+assert.equal(prestige180.indicativePrice, null);
+assert.equal(prestige180.hasStock, null);
+
 
 
 
