@@ -182,7 +182,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Await the exact-head Cloudflare package QA on f13c319 and subsequent candidate head. It must pass standard and isolated preview package checks, including supplier-safe JSON sanitizer and new ASC Aerials/Car Mats routes; then confirm same-SHA staging preview on mobile and desktop."
+      "next_action": "Exact-head Pages QA is being rerun after the category sample routes, public JSON sanitizer and regression assertion repairs. Wait for green checks on the current candidate SHA; then verify same-SHA staging preview."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -226,7 +226,7 @@
         "All 50 output images and contact sheet exist, with checksums and 50 unique sample IDs",
         "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
       ],
-      "next_action": "50 images regenerated at full source height, contact sheet reviewed with no clipped bottoms. Source-card captions/code strips still remain in some images; isolate those labels from the actual product photos without cutting product content, then inspect all 50 individually at full resolution and seek owner acceptance."
+      "next_action": "The full-height regeneration exposed catalogue-card captions and code strips inside the 181x209 source crops. The candidate now uses a conservative product-area crop with no top crop by default plus explicit per-image boundaries for mats, bulbs and fuel-pump heading strips. Regenerate the 50 outputs, inspect the new contact sheet at full resolution, and adjust any item where product content is clipped or source text remains."
     }
   ]
 }
