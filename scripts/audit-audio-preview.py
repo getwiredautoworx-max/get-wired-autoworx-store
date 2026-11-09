@@ -39,6 +39,8 @@ def audit(name, path):
         "missingComponent": 0,
         "reviewFlagged": 0,
         "verifiedImageAndDescription": 0,
+        "imageFieldCounts": Counter(),
+        "descriptionFieldCounts": Counter(),
         "harnessTrimKeywordCounts": Counter(),
         "harnessTrimExamples": [],
         "byDivision": {},
@@ -55,6 +57,12 @@ def audit(name, path):
     for row in rows:
         if not nonempty(row, IMAGE_KEYS):
             summary["missingImage"] += 1
+        for key in IMAGE_KEYS:
+            if isinstance(row.get(key), str) and row[key].strip():
+                summary["imageFieldCounts"][key] += 1
+        for key in DESCRIPTION_KEYS:
+            if isinstance(row.get(key), str) and row[key].strip():
+                summary["descriptionFieldCounts"][key] += 1
         if not nonempty(row, DESCRIPTION_KEYS):
             summary["missingDescription"] += 1
         if not nonempty(row, MODEL_KEYS):
@@ -77,8 +85,8 @@ def audit(name, path):
             summary["reviewFlagged"] += 1
         if row.get("collection") == "Harnesses & Trims" or row.get("component") == "Harnesses, Trims & Fitment":
             title = " ".join(str(row.get(k, "")) for k in ("title", "name", "description", "modelNumber")).lower()
-            harness = bool(re.search(r"\b(harness|loom|adapter|adaptor|interface|patch lead|wiring|iso2car|fakra|mute)\b", title))
-            trim = bool(re.search(r"\b(trim|fascia|bezel|surround|dash kit|panel|2[- ]?din)\b", title))
+            harness = bool(re.search(r"\b(harness|loom|adapter|adaptor|interface|patch lead|wiring|iso2car|fakra|mute|iso speaker plug|to iso|new jvc to)\b", title))
+            trim = bool(re.search(r"\b(trim|fascia|bezel|surround|dash kit|panel|[0-9]+[- ]?din|[0-9]+[- ]?inch)\b", title))
             label = "both" if harness and trim else "harness" if harness else "trim" if trim else "unclassified"
             summary["harnessTrimKeywordCounts"][label] += 1
             if label == "unclassified" and len(summary["harnessTrimExamples"]) < 12:
@@ -93,7 +101,7 @@ def audit(name, path):
         if brand and model:
             model_keys[(brand, model)] += 1
     summary["duplicateBrandModelGroups"] = sum(1 for n in model_keys.values() if n > 1)
-    for key in ("imageStatuses", "publicationStatuses", "divisions", "collections", "components", "harnessTrimKeywordCounts"):
+    for key in ("imageStatuses", "publicationStatuses", "divisions", "collections", "components", "harnessTrimKeywordCounts", "imageFieldCounts", "descriptionFieldCounts"):
         summary[key] = dict(summary[key].most_common(40))
     for group_key in ("byDivision", "byCollection"):
         summary[group_key] = {k: dict(v) for k, v in summary[group_key].items()}
