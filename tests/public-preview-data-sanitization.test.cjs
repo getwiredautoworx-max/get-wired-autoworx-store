@@ -76,6 +76,21 @@ assert.equal(ap4d.imageStatus, 'official_manufacturer_image_verified_review_only
 assert.ok(ap4d.imageUrl && ap4d.description && ap4d.description.includes('4 × 130 W at 2 Ω'));
 assert.equal(ap4d.indicativePrice, null);
 assert.equal(ap4d.hasStock, null);
+const afm1214 = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Forza AF M12.14 bit 12-Channel DSP Amplifier');
+assert.ok(afm1214, 'verified Audison AF M12.14 bit preview record must be present');
+assert.equal(afm1214.modelNumber, 'AF M12.14 bit');
+assert.equal(afm1214.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(afm1214.imageUrl && afm1214.description && afm1214.description.includes('12 × 90 W at 2 Ω'));
+assert.equal(afm1214.indicativePrice, null);
+assert.equal(afm1214.hasStock, null);
+const afm814 = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Forza AF M8.14 bit 8-Channel DSP Amplifier');
+assert.ok(afm814, 'verified Audison AF M8.14 bit preview record must be present');
+assert.equal(afm814.modelNumber, 'AF M8.14 bit');
+assert.equal(afm814.imageStatus, 'official_manufacturer_image_verified_review_only');
+assert.ok(afm814.imageUrl && afm814.description && afm814.description.includes('8 × 140 W at 2 Ω'));
+assert.equal(afm814.indicativePrice, null);
+assert.equal(afm814.hasStock, null);
+
 
 
 
