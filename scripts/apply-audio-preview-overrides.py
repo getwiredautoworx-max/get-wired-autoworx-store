@@ -21,12 +21,27 @@ for override in overrides:
             raise SystemExit(f"AUDIO_OVERRIDE_FAIL primary record not found: {record_id}")
     else:
         match = override.get("match") or {}
-        matches = [candidate for candidate in base.get("records", []) if match and all(candidate.get(k) == v for k, v in match.items())]
-        if len(matches) != 1:
-            raise SystemExit(f"AUDIO_OVERRIDE_FAIL expected one exact match, found {len(matches)} for {match}")
-        row = matches[0]
+        def matches(candidate):
+            for key, expected in match.items():
+                if key == "title_contains":
+                    if str(expected).casefold() not in str(candidate.get("title", "")).casefold():
+                        return False
+                elif str(candidate.get(key, "")).casefold() != str(expected).casefold():
+                    return False
+            return bool(match)
+        found = [candidate for candidate in base.get("records", []) if matches(candidate)]
+        if len(found) > 1:
+            raise SystemExit(f"AUDIO_OVERRIDE_FAIL expected at most one exact match, found {len(found)} for {match}")
+        if not found and override.get("appendIfMissing"):
+            row = {"id": record_id}
+            base.setdefault("records", []).append(row)
+            by_id[record_id] = row
+        elif len(found) == 1:
+            row = found[0]
+        else:
+            raise SystemExit(f"AUDIO_OVERRIDE_FAIL primary record not found for {match}")
     for key, value in override.items():
-        if key in ("id", "match"):
+        if key in ("id", "match", "appendIfMissing"):
             continue
         if key == "modelNumber" and value is None:
             row.pop("modelNumber", None)
