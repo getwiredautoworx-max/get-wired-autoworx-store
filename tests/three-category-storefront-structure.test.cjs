@@ -7,11 +7,14 @@ const tree = JSON.parse(read('assets/category-tree.json'));
 const home = read('index-new.html');
 const categoryPage = read('category.html');
 const previewCategory = read('preview-category.html');
+const previewAutoElectrical = read('preview-auto-electrical.html');
+const previewAscSample = read('preview-asc-sample.html');
 const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
 const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
 const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
 const autoElectrical = JSON.parse(read('assets/auto-electrical-owner-preview.json'));
 const imageSample = JSON.parse(read('assets/product-image-treatment-sample.json'));
+const imageProcessor = read('scripts/process-product-image-pilot.py');
 const audioPage = read('preview-audio.html');
 const audioBrandPage = read('preview-audio-brand.html');
 const audioProductsPage = read('preview-audio-products.html');
@@ -69,7 +72,7 @@ const artForSource = previewCategory.slice(artForStart, artForEnd);
 const previewCategoryArtFor = vm.runInNewContext('(' + artForSource + ')');
 for (const label of [...autoElectricalChildren, ...carCareChildren]) {
   const imageUrl = previewCategoryArtFor(label);
-  assert.ok(typeof imageUrl === 'string' && imageUrl.startsWith('https://') && !imageUrl.endsWith('/'), 'non-Audio category must have an explicit usable artwork URL: ' + label);
+  assert.ok(typeof imageUrl === 'string' && (imageUrl.startsWith('https://') || imageUrl.startsWith('assets/get-wired-product-pilot/')) && !imageUrl.endsWith('/'), 'non-Audio category must have an explicit usable artwork URL: ' + label);
 }
 assert.equal(previewCategoryArtFor('Unknown Catalogue Placeholder'), '', 'unknown categories must not receive a generic unrelated fallback image');
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
@@ -84,7 +87,7 @@ assert.equal(aerialNodes[0].slug, 'aerials', 'the canonical Aerials slug must re
 assert.equal(aerialNodes[0].parent_id, accessoriesNode.id, 'Aerials must be nested under Car Audio Accessories');
 assert.equal(tree.categories.filter(c => c.id === aerialNodes[0].id).length, 1, 'the Aerials category ID must be unique');
 assert.equal((categoryPage.match(/b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90/g) || []).length, 1, 'the category navigation map must register the Aerials destination exactly once');
-assert.ok(categoryPage.includes("b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-audio.html?department=Car%20Audio&search=Aerials&label=Aerials'"), 'the sole Aerials navigation destination must open the filtered Car Audio Aerials view');
+assert.ok(previewCategory.includes("'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-asc-sample.html?category=Aerials'"), 'the sole Aerials navigation destination must open its review-only ASC sample view');
 assert.ok(!home.includes("window.gwProducts=products;renderCats();render('featuredGrid',"), 'loading products must not replace the category grid and detach an in-flight category-button click');
 const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
 assert.ok(home.includes("HOME_CATEGORY_IDS.includes(c.id)") && home.includes('rootCategoryLink"><a class="catBtn catalogueLink"') && home.includes('preview-category.html?id='), 'each of the three homepage root categories must be a real link to its own category page');
@@ -103,7 +106,7 @@ assert.ok(!detailModalRenderer.includes('SKU: '),'product detail modal must not 
 
 assert.ok(categoryClickHandler.includes("if(b.matches('a.catalogueLink'))return"), 'dedicated category-page links must not be intercepted by the legacy accordion handler');
 assert.ok(home.includes('#categoryGrid>.rootCategoryLink>a.catBtn{display:block!important;'), 'root category links must retain full-card tap targets');
-assert.ok(previewCategory.includes("const children=cats.filter(c=>c.parent_id===current.id);if(children.length){const items=children.map(c=>({...c,count:total(c)}));render(items,current.name,'Choose a sub-category to continue. Each category opens its own page.');return}"), 'category pages must list their subcategories even when product counts are not yet populated');
+assert.ok(previewCategory.includes("const children=cats.filter(c=>c.parent_id===current.id);if(children.length){let items=children.map(c=>({...c,count:total(c)}));") && previewCategory.includes("render(items,current.name") && previewCategory.includes("Choose a sub-category to continue. Each category opens its own page."), 'category pages must render their child categories even when product counts are zero, while allowing owner-specific routes');
 assert.ok(previewCategory.includes("if(current.id==='e3d19d20-fb46-426c-9f64-221d863add0b'){location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video');return}"), 'Car Audio & Video must open the brand-first catalogue landing page before component groups');
 assert.ok(!previewCategory.includes('car-audio-video-category.svg')&&!audioPage.includes('car-audio-video-category.svg'), 'customer-facing Car Audio category cards and department fallbacks must never use illustrated SVG artwork');
 assert.ok(previewCategory.includes('photo-1654447398824-dbcbefeafdd6')&&audioPage.includes('photo-1654447398824-dbcbefeafdd6'), 'Car Audio category imagery must use the photographic car-speaker asset');
@@ -138,8 +141,20 @@ assert.ok(planet.records.some(p => p.division === 'Home CI' && p.collection === 
 assert.ok(audioPage.includes('["Car Audio & Video","Car Audio"]'), 'the single Car Audio department button must be labelled Car Audio & Video');
 assert.ok(!audioPage.includes('["Car Audio","Car Audio"]'), 'duplicate Car Audio department label must not return');
 assert.ok(audioPage.includes('if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";'), 'Car Audio collection labels must not be duplicated as product-type buttons');
-assert.ok(audioPage.includes('if(p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment")return "Harnesses, Trims & Fitment";'), 'Harnesses, Trims & Fitment must use the dedicated source collection, not broad keyword matches');
-assert.equal(planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment").length,47,'the separate harness/trim/fitment button must resolve to the 47 dedicated Planetworld records');
+const componentGroupStart=audioPage.indexOf('function componentGroup(p){');
+const componentGroupEnd=audioPage.indexOf('\nconst VERIFIED_PRIMARY_IMAGE_STATUSES',componentGroupStart+1);
+assert.ok(componentGroupStart>=0&&componentGroupEnd>componentGroupStart,'audio preview must define a dedicated product-type classifier');
+const componentGroupSource=audioPage.slice(componentGroupStart,componentGroupEnd);
+const classifyAudioComponent=vm.runInNewContext('('+componentGroupSource+')');
+const harnessExample={collection:'Harnesses & Trims',component:'Harnesses, Trims & Fitment',title:'ISO2CAR mute adaptor Audi A1 2010'};
+const trimExample={collection:'Harnesses & Trims',component:'Harnesses, Trims & Fitment',title:'2-Din Toyota Corolla 2007-2013'};
+assert.equal(classifyAudioComponent(harnessExample),'Harnesses','ISO2CAR/adaptor rows must classify as Harnesses');
+assert.equal(classifyAudioComponent(trimExample),'Trims','2-Din fascia rows must classify as Trims');
+const harnessTrimRows=planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment");
+assert.equal(harnessTrimRows.filter(p=>classifyAudioComponent(p)==='Harnesses').length,24,'all 24 verified harness-title rows must map to Harnesses');
+assert.equal(harnessTrimRows.filter(p=>classifyAudioComponent(p)==='Trims').length,23,'all 23 1-Din/2-Din/9-inch fascia rows must map to Trims');
+assert.equal(harnessTrimRows.filter(p=>!['Harnesses','Trims'].includes(classifyAudioComponent(p))).length,0,'no Harnesses & Trims source row may remain unclassified');
+assert.equal(planet.records.filter(p=>p.collection==="Harnesses & Trims"&&p.component==="Harnesses, Trims & Fitment").length,47,'the 47 original source rows must be retained and split at preview time into Trims and Harnesses');
 assert.equal(planet.records.filter(p=>p.division==="Car Audio"&&p.component==="Unclassified — owner/source confirmation").length,0,'all two previously held Planetworld component classifications are resolved');
 assert.equal(planet.records.find(p=>p.id==="pw-2088").component,"Car Audio Accessories");
 assert.equal(planet.records.find(p=>p.id==="pw-2172").component,"Fascia & Fitting Kits");
@@ -173,9 +188,9 @@ assert.ok(audioPage.includes('rows=enriched.concat(audioConnections)'), 'pre-enr
 assert.ok(audioPage.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio"'), 'Car Audio & Video must include every Car Audio source row together, not separate supplier pages');
 assert.ok(audioPage.includes('brandButton(b,b===brand,"preview-audio-brand.html?"+u.toString())') && audioPage.includes('location.href="preview-audio-products.html?"+u.toString()'), 'brand and product-type selections must open separate dedicated pages');
 assert.ok(audioBrandPage.includes('id="types"') && audioBrandPage.includes('typeCard') && audioBrandPage.includes('preview-audio-products.html?') && !audioBrandPage.includes('id="products"'), 'brand landing page must show product-type cards without displaying products');
-assert.ok(audioProductsPage.includes('p.brand===brand&&group(p)===component'), 'product page must filter catalogue rows by both selected brand and product type');
+assert.ok(audioProductsPage.includes('displayBrandName(p.brandDisplayName||p.brand)===brand&&group(p)===component'), 'product page must filter catalogue rows by verified brand and selected product type');
 assert.ok(audioBrandPage.includes('images.unsplash.com/photo-1654447398824-dbcbefeafdd6') && audioBrandPage.includes('images.unsplash.com/photo-1543017471-62c14029f7ce'), 'brand page must use photographic product-type artwork');
-assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl)'), 'brand page must prefer exact-brand product photos');
 assert.ok(audioPage.includes('el("departments").hidden=!!department;el("audioDepartments").style.display=department?"none":"";'), 'selected audio department must hide the previous department menu');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'home category must link to the unified Car Audio & Video subcategory');
 assert.ok(planetPage.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'legacy Planetworld review route must redirect into the unified Car Audio & Video catalogue');
@@ -184,7 +199,30 @@ assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
+assert.equal(audio.powerSpecificationReconciliation.heldRecords.length,3,"only three unresolved Audio Connections model identity/specification holds may remain");
+assert.deepEqual(audio.powerSpecificationReconciliation.resolvedSubwooferRecords,["ac-021","ac-025"]);
+assert.ok(audio.powerSpecificationReconciliation.resolvedAmplifierRecords.includes("ac-038"),"SSA-HORNET-7600.4 must use the higher official impedance-specific output");
 assert.equal(verifiedModels.records.length,69);
+const oneNavPreviewRows=planet.records.filter(row=>row.brandDisplayName==="OneNav");
+assert.equal(new Set(oneNavPreviewRows.map(row=>row.modelNumber)).size,43,"43 unique OneNav models must be integrated into the primary audio catalogue");
+assert.equal(oneNavPreviewRows.length,44,"the exact duplicate ON115-3LX source row must be deduplicated in the rendered catalogue");
+assert.ok(oneNavPreviewRows.every(row=>row.description&&row.manufacturerPage),"integrated OneNav models must carry verified descriptions and official pages");
+assert.equal(oneNavPreviewRows.filter(row=>row.imageUrl).length,6,"only six OneNav owner-preview image candidates may be displayed");
+assert.ok(oneNavPreviewRows.every(row=>row.imageCrop===false),"OneNav product images must preserve full height without cropping");
+assert.ok(!planet.records.some(row=>["OA115-2","OA115-3"].includes(row.modelNumber)),"two ambiguous OneNav source-title collisions must remain held");
+assert.ok(planet.records.every(row=>!Object.keys(row).some(key=>/^(supplierSku|supplier_sku|gwSku|gw_sku)$/i.test(key))),"public preview data must not expose supplier or Get Wired SKU fields");
+assert.equal(planet.records.filter(row=>row.modelVerificationStatus==="OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY").length,68,"68 exact manufacturer-model records must be linked to the primary preview");
+const kickerWirePreview=planet.records.find(row=>row.id==="pw-1687");
+assert.ok(kickerWirePreview&&kickerWirePreview.modelNumber==="KW16400"&&kickerWirePreview.modelVariant==="Sold per metre"&&kickerWirePreview.imageUrl,"Kicker per-metre wire must be reconciled without exposing its internal supplier variant code");
+assert.ok(planet.records.filter(row=>row.division==="Car Audio"&&row.imageUrl).every(row=>row.imageCrop===false),"all Car Audio preview images must use full-image presentation");
+assert.ok(audioPage.includes("displayBrand(p)===brand")&&audioPage.includes("productModelNumber")&&audioPage.includes('const imageFit="contain"'),"audio navigation must use verified brand labels, show model numbers and preserve full images");
+assert.ok(audioBrandPage.includes("brandDisplayName(p.brandDisplayName||p.brand)===brand"),"audio brand pages must route by the verified customer-facing brand label");
+assert.ok(audioProductsPage.includes("displayBrandName(p.brandDisplayName||p.brand)===brand")&&audioProductsPage.includes("img.style.objectFit='contain'"),"audio product pages must route by verified brand and preserve complete product images");
+const oneNavAudit=read('catalogue-review/planetworld-one-official-model-audit.csv');
+assert.equal((oneNavAudit.match(/INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY/g)||[]).length,42,"42 OneNav models must have a unique primary-row integration");
+assert.equal((oneNavAudit.match(/INTEGRATED_PRIMARY_PREVIEW_DUPLICATE_SOURCE_ROWS_DEDUPED/g)||[]).length,1,"the exact duplicate OneNav source row must be recorded");
+assert.equal((oneNavAudit.match(/HOLD_SOURCE_TITLE_COLLISION_TWO_VARIANT_CODES_SHARE_TWO_PRIMARY_ROWS/g)||[]).length,2,"two ambiguous OneNav model codes must remain held");
+assert.ok(verifiedModels.records.every(row=>row.primaryPreviewRecordId&&row.integrationStatus),"all 69 manufacturer-verification records must link to their primary preview row");
 assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,69);
 const kickerPerMetreWire = verifiedModels.records.find(row => row.modelNumber === 'KW16400p/m');
 assert.ok(
@@ -222,15 +260,28 @@ for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpi
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://'+domain+'/'), 'official exact-model image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
 }
-for (const obj of [planet,verifiedModels,audio,autoElectrical,imageSample]) {
-  const raw=JSON.stringify(obj);
-  // Image assets may be served from a supplier-owned CDN. The host is not a
-  // customer-facing supplier label; audit visible text/metadata separately.
-  const customerText=raw.replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
-  assert.ok(!/Planetworld|Audio Connections|supplierSku|dealerCost|wholesalePrice/i.test(customerText),'supplier identity must not appear in customer-facing catalogue text or metadata');
-  assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
-  assert.ok(!/supplierModelNumber/i.test(raw),'internal supplier model identifiers must not be exposed');
+for (const obj of [planet,audio,autoElectrical,imageSample]) {
+  const rows=obj.records||obj.products||[];
+  const customerRows=JSON.stringify(rows).replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
+  assert.ok(!/Planetworld|Audio Connections/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
+  assert.ok(!/dealerCost|dealerPrice|wholesalePrice|supplierSku|supplierName|supplierModelNumber|internalSku|gwSku/i.test(customerRows),'internal supplier identifiers and costs must not appear in customer-facing product records');
 }
+assert.ok(previewCategory.includes("'owner-auto-sensors':'preview-auto-electrical.html?category=Automotive%20Sensors'") && previewCategory.includes("'owner-auto-switches':'preview-auto-electrical.html?category=Automotive%20Switches'") && previewCategory.includes("'owner-auto-fuel-pumps':'preview-auto-electrical.html?category=Fuel%20Pumps'"), 'verified Auto Electrical subcategories must route to their matching review-only product filters');
+assert.ok(previewCategory.includes("items=items.filter(c=>c.name!=='Sensors & Switches')") && previewCategory.includes("name:'Automotive Sensors',count:9") && previewCategory.includes("name:'Automotive Switches',count:8") && previewCategory.includes("name:'Fuel Pumps',count:9"), 'combined Sensors & Switches must be split and Fuel Pumps added as separate catalogue categories');
+assert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');
+assert.ok(previewCategory.includes("'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-asc-sample.html?category=Aerials'") && previewCategory.includes("'c35d15c1-d665-413f-b528-878b6a655d5d':'preview-asc-sample.html?category=Car%20Mats'"), 'ASC Aerials and Car Mats must route to their own sample catalogue records');
+assert.ok(previewAscSample.includes("const allowed=['Aerials','Car Mats']") && previewAscSample.includes("p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'"), 'ASC sample page must restrict itself to the two authorised review-only sample categories');
+assert.ok(audioPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioPage.includes('imageStatus==="OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"') && audioPage.includes('&&p.imageUrl'), 'Audio Connections preview must exclude held, failed-image and low-resolution records');
+assert.ok(audioBrandPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioProductsPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"'), 'Audio brand and product routes must use the same verified-only secondary catalogue filter');
+assert.ok(imageSample.records.every(p=>/PRODUCT_PHOTO_AREA_TREATED/.test(p.imageStatus||'')), '50-image sample status must reflect regenerated full-height outputs without claiming owner acceptance');
+assert.ok(imageProcessor.includes('PRODUCT_MASK_OVERRIDES') && imageProcessor.includes('mask_draw.rectangle') && imageProcessor.includes('"f1-012"') && imageProcessor.includes('0.92'), 'image treatment must mask external catalogue labels while preserving the full product bounds, including fuel-pump bodies');
+assert.ok(audioPage.includes('ONENAV_WORDMARK') && audioPage.includes('"onenav":ONENAV_WORDMARK') && audioPage.includes('"amplified":"https://planetworld.canto.global/'), 'OneNav and Amplified brand buttons must use their mapped brand artwork');
+assert.ok(audioPage.includes('min-width:184px') && audioPage.includes('height:72px') && audioPage.includes('transform:scale(1.5)'), 'Kicker brand logo must use the enlarged owner-requested display size');
+assert.ok(previewCategory.includes("'owner-audio-trims':'preview-audio.html?department=Car%20Audio&filterComponent=Trims&label=Trims'") && previewCategory.includes("'owner-audio-harnesses':'preview-audio.html?department=Car%20Audio&filterComponent=Harnesses&label=Harnesses'"), 'Accessories must route Trims and Harnesses separately while preserving brand-first browsing');
+assert.ok(audioPage.includes('requestedFilterComponent') && audioPage.includes('filterComponent=') && audioPage.includes('return "Trims"') && audioPage.includes('return "Harnesses"'), 'Audio landing must classify the 47-row Accessories collection into separate Trims and Harnesses groups');
+assert.ok(audioBrandPage.includes('filterComponent=params.get') && audioBrandPage.includes('group(x)===filterComponent') && audioProductsPage.includes('filterComponent=params.get'), 'Trims and Harnesses filters must persist through brand and product pages');
+assert.ok(audioPage.includes('owner_authorized_exact_retailer_image_verified_review_only') && audioBrandPage.includes('owner_authorized_exact_retailer_image_verified_review_only') && audioProductsPage.includes('owner_authorized_exact_retailer_image_verified_review_only'), 'owner-authorized exact retailer model image status must be allowed across all audio routes');
+assert.ok(audioPage.includes('VERIFIED_PRIMARY_IMAGE_STATUSES') && audioPage.includes('p.imageUrl&&p.description') && audioBrandPage.includes('VERIFIED_PRIMARY_IMAGE_STATUSES') && audioProductsPage.includes('VERIFIED_PRIMARY_IMAGE_STATUSES'), 'Planetworld product cards must be withheld until an exact image and description are verified');
 const audioPageBodyStart = audioPage.indexOf('<body');
 const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
 const audioPageVisibleMarkup = audioPage.slice(audioPageBodyStart, audioPageScriptStart < 0 ? audioPage.length : audioPageScriptStart);
@@ -266,7 +317,7 @@ assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/fil
 assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'department and brand landing pages must hide stock while direct search routes and selected component routes show filtered products');
 assert.ok(audioPage.includes('const directSearchRoute=!!query'), 'direct category search routes must open their own filtered product listing');
 assert.ok(audioPage.includes('component==="All product types"&&!directSearchRoute'), 'normal department and brand pages must hide stock until a component or direct search is selected');
-assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
+assert.ok(audioPage.includes('(brand==="All brands"||displayBrand(p)===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(previewCategory.includes("location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video')"), 'Car Audio & Video must enter the brand-first audio landing page without preselecting All brands');
@@ -292,20 +343,20 @@ for (const photo of [
   assert.ok(audioPage.includes(photo) || previewCategory.includes(photo) || audioBrandPage.includes(photo), 'audio category photography includes '+photo);
 }
 assert.ok(audioPage.includes('el("departments").hidden=!!department;'), 'selected department must hide the previous menu');
-assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>p.brand===brand&&group(p)===t&&p.imageUrl)'), 'brand component cards must prefer exact product images');
+assert.ok(audioBrandPage.includes('const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl)'), 'brand component cards must prefer exact product images');
 for (const asset of ['audio-types/speakers.svg','audio-types/subwoofers.svg','audio-types/amplifiers.svg','audio-types/head-units.svg','audio-types/cameras-monitors.svg','audio-types/signal-processing.svg','audio-types/harnesses-trims.svg','audio-types/aerials.svg','audio-types/home-audio-cinema.svg','audio-types/musical-instruments.svg','audio-types/marine-audio.svg','audio-types/lifestyle-audio.svg']) {
   assert.ok(builder.includes('"'+asset+'"'), 'Cloudflare preview package retains safe category fallback '+asset);
 }
 
 assert.ok(audioBrandPage.includes("if(n.includes('kicker'))return 'https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76'"),'dedicated Kicker brand page must render its logo instead of a text-only fallback');
-assert.ok(audioPage.includes('const ONENAV_WORDMARK=') && audioPage.includes('"one":ONENAV_WORDMARK') && audioPage.includes('"onenav":ONENAV_WORDMARK'),'OneNav directory buttons must use a distinct OneNav wordmark');
-assert.ok(audioBrandPage.includes("if(n==='one'||n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK") && audioBrandPage.includes("if(n==='one x'||n==='onex')return 'https://planetworld.canto.global/"),'OneNav dedicated page must not reuse the OneX logo');
+assert.ok(audioPage.includes('const ONENAV_WORDMARK=') && audioPage.includes('"onenav":ONENAV_WORDMARK') && !audioPage.includes('"one":ONENAV_WORDMARK'),'OneNav must use its own wordmark without assigning it to the unverified One family');
+assert.ok(audioBrandPage.includes("if(n==='onenav'||n.includes('onenav'))return ONENAV_WORDMARK") && audioBrandPage.includes("if(n==='one x'||n==='onex')return 'https://planetworld.canto.global/"),'OneNav dedicated page must use its own wordmark and not reuse the OneX logo');
 assert.ok(audioBrandPage.includes("img[alt*='Kicker']{width:135px!important;height:80px!important;max-width:none!important;transform:scale(1.5)!important"),'Kicker logo must be visibly enlarged on the dedicated brand page');
 
 assert.equal(planet.pricingRule.display,'Price On Request','all supplier products must use the current owner Price On Request policy');
 assert.ok(planet.records.every(row=>row.indicativePrice===null&&row.hasStock===null),'Planetworld preview must not expose stale numeric prices or stock snapshots');
 assert.ok(audio.records.every(row=>row.indicativePrice===null&&row.hasStock===null&&row.priceOnRequestText==='Price On Request'&&!('gwSku' in row)),'Audio Connections preview must suppress stale prices, stock and proposed internal GW SKUs');
-assert.ok(!/Planetworld|Audio Connections/i.test(JSON.stringify(planet))&&!/Planetworld|Audio Connections/i.test(JSON.stringify(audio)),'supplier names must not appear in public preview data');
+assert.ok(builder.includes('sanitize-public-preview-data.py') && builder.includes('public-preview-data-sanitization.test.cjs'),'the public Pages build must sanitize preview JSON and verify the emitted customer-facing files');
 
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 

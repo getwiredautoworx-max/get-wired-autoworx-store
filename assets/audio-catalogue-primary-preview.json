@@ -218,7 +218,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hce-c2100rd",
       "imageUrl": "https://www.alpine-asia.com/media/5baca7810efbd.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine HCE-C2100RD HDR multi-view rear camera system"
+      "manufacturerProductName": "Alpine HCE-C2100RD HDR multi-view rear camera system",
+      "modelNumber": "HCE-C2100RD",
+      "manufacturerModelNumber": "HCE-C2100RD",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0018",
@@ -234,7 +238,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hdz-653",
       "imageUrl": "https://www.alpine-asia.com/media/62d65d1bd9391.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine Status Hi-Res 6.5-inch 3-way component speaker set"
+      "manufacturerProductName": "Alpine Status Hi-Res 6.5-inch 3-way component speaker set",
+      "modelNumber": "HDZ-653",
+      "manufacturerModelNumber": "HDZ-653",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0019",
@@ -283,7 +291,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/ilx-f115d",
       "imageUrl": "https://www.alpine.ch/fileadmin/images/MainNavigation/Products/Product_pics/01_Headunits/iLX-F115D/iLX-F115D_Media-Receiver-Home-Menu.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine Halo 11 iLX-F115D 11-inch media receiver"
+      "manufacturerProductName": "Alpine Halo 11 iLX-F115D 11-inch media receiver",
+      "modelNumber": "ILX-F115D",
+      "manufacturerModelNumber": "ILX-F115D",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0023",
@@ -431,7 +443,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/r-series-amplifiers/r2-a60f",
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/products/R2-A60F/product-pic/R2-A60F_Alpine-R-Series-4-channel-Power-Amplifier.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine R-Series R2-A60F 4-channel power amplifier"
+      "manufacturerProductName": "Alpine R-Series R2-A60F 4-channel power amplifier",
+      "modelNumber": "R2-A60F.",
+      "manufacturerModelNumber": "R2-A60F.",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0036",
@@ -513,7 +529,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-r-speakers36/r2-w10d2",
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/images/MainNavigation/Products/Product_pics/15_Subwoofers/08_R-Series-Subwoofer/R2-W10D2/R2-W10D2_10-inch-R-Series-Subwoofer-with-Dual-2-Ohm-Voice-Coils_Front-Back.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine R-Series R2-W10D2 10-inch subwoofer with dual 2-ohm voice coils"
+      "manufacturerProductName": "Alpine R-Series R2-W10D2 10-inch subwoofer with dual 2-ohm voice coils",
+      "modelNumber": "R2-W10D2",
+      "manufacturerModelNumber": "R2-W10D2",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0043",
@@ -552,8 +572,11 @@
       "imageStatus": "EXACT_MODEL_DISTRIBUTOR_IMAGE_REVIEW_ONLY",
       "manufacturerProductName": "Alpine R-Series R2-W12D4 12-inch subwoofer with dual 4-ohm voice coils",
       "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/R2-W12D4_1.jpg?v=1718761708",
-      "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imageCrop": false,
+      "imagePosition": "center 40%",
+      "modelNumber": "R2-W12D4",
+      "manufacturerModelNumber": "R2-W12D4",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-0046",
@@ -646,7 +669,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/s-series-amplifiers/s2-a55v",
       "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine S-Series S2-A55V 5-channel power amplifier"
+      "manufacturerProductName": "Alpine S-Series S2-A55V 5-channel power amplifier",
+      "modelNumber": "S2-A55V",
+      "manufacturerModelNumber": "S2-A55V",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0054",
@@ -684,7 +711,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-s-speakers37/s2-s40c",
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/products/S2-S40C/product-pic/S2-S40C_S-Series-10cm-4-inch-Component-2-Way-Speakers.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Alpine S-Series S2-S40C 10 cm 2-way component speaker set"
+      "manufacturerProductName": "Alpine S-Series S2-S40C 10 cm 2-way component speaker set",
+      "modelNumber": "S2-S40C",
+      "manufacturerModelNumber": "S2-S40C",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0057",
@@ -711,7 +742,11 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/s2-s65",
       "imageUrl": "https://www.alpine-asia.com/media/65e98a0997ee3.jpg",
       "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
-      "manufacturerProductName": "Alpine S-Series S2-S65 6.5-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Alpine S-Series S2-S65 6.5-inch coaxial 2-way speakers",
+      "modelNumber": "S2-S65",
+      "manufacturerModelNumber": "S2-S65",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0059",
@@ -1321,7 +1356,11 @@
       "manufacturerPage": "https://audison.com/product/bit-dmi/",
       "imageUrl": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison bit DMI MOST digital audio interface"
+      "manufacturerProductName": "Audison bit DMI MOST digital audio interface",
+      "modelNumber": "66750650",
+      "manufacturerModelNumber": "66750650",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0114",
@@ -1337,7 +1376,11 @@
       "manufacturerPage": "https://audison.com/product/b-con/",
       "imageUrl": "https://static.audison.com/media/2022/10/AUDISON_B-CON_PROSP.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison B-CON Hi-Res Bluetooth 5.0 receiver"
+      "manufacturerProductName": "Audison B-CON Hi-Res Bluetooth 5.0 receiver",
+      "modelNumber": "66750800",
+      "manufacturerModelNumber": "66750800",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0115",
@@ -1353,7 +1396,11 @@
       "manufacturerPage": "https://audison.com/product/bit-one-hd-virtuoso/",
       "imageUrl": "https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison bit One HD Virtuoso 13-channel digital signal processor"
+      "manufacturerProductName": "Audison bit One HD Virtuoso 13-channel digital signal processor",
+      "modelNumber": "66751501",
+      "manufacturerModelNumber": "66751501",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0116",
@@ -1369,7 +1416,11 @@
       "manufacturerPage": "https://audison.com/product/bit-ten/",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison_bitTen.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison bit Ten 5-channel digital signal processor"
+      "manufacturerProductName": "Audison bit Ten 5-channel digital signal processor",
+      "modelNumber": "66752000",
+      "manufacturerModelNumber": "66752000",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0117",
@@ -1385,7 +1436,11 @@
       "manufacturerPage": "https://audison.com/product/bit-tune/",
       "imageUrl": "https://static.audison.com/media/2023/02/Audison_bitTune.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison bit Tune automatic audio calibration tool"
+      "manufacturerProductName": "Audison bit Tune automatic audio calibration tool",
+      "modelNumber": "66753000",
+      "manufacturerModelNumber": "66753000",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0118",
@@ -1401,7 +1456,11 @@
       "manufacturerPage": "https://audison.com/product/ap4-d/",
       "imageUrl": "https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima AP4 D 4-channel Class-D amplifier"
+      "manufacturerProductName": "Audison Prima AP4 D 4-channel Class-D amplifier",
+      "modelNumber": "66755030",
+      "manufacturerModelNumber": "66755030",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0119",
@@ -1417,7 +1476,11 @@
       "manufacturerPage": "https://audison.com/product/af-m12-14-bit/",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "AF M12.14 bit 12-channel DSP amplifier"
+      "manufacturerProductName": "AF M12.14 bit 12-channel DSP amplifier",
+      "modelNumber": "66755100",
+      "manufacturerModelNumber": "66755100",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0120",
@@ -1433,7 +1496,11 @@
       "manufacturerPage": "https://audison.com/product/af-m8-14-bit/",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "AF M8.14 bit 8-channel DSP amplifier"
+      "manufacturerProductName": "AF M8.14 bit 8-channel DSP amplifier",
+      "modelNumber": "66755105",
+      "manufacturerModelNumber": "66755105",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0121",
@@ -1449,7 +1516,11 @@
       "manufacturerPage": "https://audison.com/product/af-c8-14-bit/",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "AF C8.14 bit 8-channel DSP amplifier"
+      "manufacturerProductName": "AF C8.14 bit 8-channel DSP amplifier",
+      "modelNumber": "66755107",
+      "manufacturerModelNumber": "66755107",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0122",
@@ -1465,7 +1536,11 @@
       "manufacturerPage": "https://audison.com/product/af-m5-11-bit/",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "AF M5.11 bit 5-channel DSP amplifier"
+      "manufacturerProductName": "AF M5.11 bit 5-channel DSP amplifier",
+      "modelNumber": "66755110",
+      "manufacturerModelNumber": "66755110",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0123",
@@ -1481,7 +1556,11 @@
       "manufacturerPage": "https://audison.com/product/af-c4-10-bit/",
       "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "AF C4.10 bit 4-channel DSP amplifier"
+      "manufacturerProductName": "AF C4.10 bit 4-channel DSP amplifier",
+      "modelNumber": "66755115",
+      "manufacturerModelNumber": "66755115",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0124",
@@ -1530,7 +1609,11 @@
       "manufacturerPage": "https://audison.com/product/f2o/",
       "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison F2O digital input expansion board"
+      "manufacturerProductName": "Audison F2O digital input expansion board",
+      "modelNumber": "66755156",
+      "manufacturerModelNumber": "66755156",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0128",
@@ -1546,7 +1629,11 @@
       "manufacturerPage": "https://audison.com/product/f4in/",
       "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison F4IN analogue input expansion board"
+      "manufacturerProductName": "Audison F4IN analogue input expansion board",
+      "modelNumber": "66755157",
+      "manufacturerModelNumber": "66755157",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0129",
@@ -1595,7 +1682,11 @@
       "manufacturerPage": "https://audison.com/product/apl2/",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APL2 link cable for AP4 D and AP1 D amplifiers"
+      "manufacturerProductName": "Audison APL2 link cable for AP4 D and AP1 D amplifiers",
+      "modelNumber": "66771820",
+      "manufacturerModelNumber": "66771820",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0133",
@@ -1655,7 +1746,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-reamp-1/",
       "imageUrl": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW ReAMP 1 BMW amplifier replacement T-harness"
+      "manufacturerProductName": "Audison APBMW ReAMP 1 BMW amplifier replacement T-harness",
+      "modelNumber": "66772201",
+      "manufacturerModelNumber": "66772201",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0138",
@@ -1671,7 +1766,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-biamp-2/",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW BIAMP 2 BMW/MINI plug-and-play T-harness"
+      "manufacturerProductName": "Audison APBMW BIAMP 2 BMW/MINI plug-and-play T-harness",
+      "modelNumber": "66772203",
+      "manufacturerModelNumber": "66772203",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0139",
@@ -1687,7 +1786,11 @@
       "manufacturerPage": "https://audison.com/product/av-1-1/",
       "imageUrl": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison AV 1.1 28 mm tweeter set"
+      "manufacturerProductName": "Audison AV 1.1 28 mm tweeter set",
+      "modelNumber": "69010020",
+      "manufacturerModelNumber": "69010020",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0140",
@@ -1703,7 +1806,11 @@
       "manufacturerPage": "https://audison.com/product/av-1-1-ii/",
       "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison VOCE II AV 1.1 II Hi-Res tweeter set"
+      "manufacturerProductName": "Audison VOCE II AV 1.1 II Hi-Res tweeter set",
+      "modelNumber": "69010021",
+      "manufacturerModelNumber": "69010021",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0141",
@@ -1730,7 +1837,11 @@
       "manufacturerPage": "https://audison.com/product/av-3-0/",
       "imageUrl": "https://static.audison.com/media/2023/06/p_1315389333_AV30b.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison AV 3.0 70 mm midrange speaker"
+      "manufacturerProductName": "Audison AV 3.0 70 mm midrange speaker",
+      "modelNumber": "69020020",
+      "manufacturerModelNumber": "69020020",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0143",
@@ -1746,7 +1857,11 @@
       "manufacturerPage": "https://audison.com/product/av-3-0-ii/",
       "imageUrl": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison VOCE II AV 3.0 II 70 mm midrange speaker"
+      "manufacturerProductName": "Audison VOCE II AV 3.0 II 70 mm midrange speaker",
+      "modelNumber": "69020021",
+      "manufacturerModelNumber": "69020021",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0144",
@@ -1784,7 +1899,11 @@
       "manufacturerPage": "https://audison.com/product/av-6-5/",
       "imageUrl": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison AV 6.5 165 mm woofer"
+      "manufacturerProductName": "Audison AV 6.5 165 mm woofer",
+      "modelNumber": "69030020",
+      "manufacturerModelNumber": "69030020",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0147",
@@ -1800,7 +1919,11 @@
       "manufacturerPage": "https://audison.com/product/av-6-5-p-ii/",
       "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-65-P-II_EMO-CONO_2024_10_16-copia.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison VOCE II AV 6.5 P II 165 mm mid-bass woofer"
+      "manufacturerProductName": "Audison VOCE II AV 6.5 P II 165 mm mid-bass woofer",
+      "modelNumber": "69030021",
+      "manufacturerModelNumber": "69030021",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0148",
@@ -1827,7 +1950,11 @@
       "manufacturerPage": "https://audison.com/product/apbx-8-ds/",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APBX-8-DS_EMO-B_2022_11_28_JPG-108.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBX 8 DS 8-inch sealed subwoofer enclosure"
+      "manufacturerProductName": "Audison APBX 8 DS 8-inch sealed subwoofer enclosure",
+      "modelNumber": "69035010",
+      "manufacturerModelNumber": "69035010",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0150",
@@ -2008,7 +2135,11 @@
       "manufacturerPage": "https://audison.com/product/av-k6/",
       "imageUrl": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison VOCE AV K6 2-way component speaker kit"
+      "manufacturerProductName": "Audison VOCE AV K6 2-way component speaker kit",
+      "modelNumber": "69051030",
+      "manufacturerModelNumber": "69051030",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0166",
@@ -2057,7 +2188,11 @@
       "manufacturerPage": "https://audison.com/product/apk-130/",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-130_2022_12_13_JPG-55.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 130 2-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 130 2-way component speaker kit",
+      "modelNumber": "69051040",
+      "manufacturerModelNumber": "69051040",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0170",
@@ -2073,7 +2208,11 @@
       "manufacturerPage": "https://audison.com/product/apk-165/",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-165_2022_10_05_JPG-72.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 165 2-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 165 2-way component speaker kit",
+      "modelNumber": "69051050",
+      "manufacturerModelNumber": "69051050",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0171",
@@ -2089,7 +2228,11 @@
       "manufacturerPage": "https://audison.com/product/apk-165p/",
       "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165P.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 165P 2-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 165P 2-way component speaker kit",
+      "modelNumber": "69051055",
+      "manufacturerModelNumber": "69051055",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0172",
@@ -2105,7 +2248,11 @@
       "manufacturerPage": "https://audison.com/product/apk-165-2-ohm/",
       "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165-2-ohm.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 165 Ohm2 2-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 165 Ohm2 2-way component speaker kit",
+      "modelNumber": "69051060",
+      "manufacturerModelNumber": "69051060",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0173",
@@ -2121,7 +2268,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-k4e/",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4E_emo.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW K4E BMW 4-inch 2-way component speaker kit"
+      "manufacturerProductName": "Audison APBMW K4E BMW 4-inch 2-way component speaker kit",
+      "modelNumber": "69051070",
+      "manufacturerModelNumber": "69051070",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0174",
@@ -2137,7 +2288,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-k4m/",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4M.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW K4M BMW 4-inch 2-way component speaker kit"
+      "manufacturerProductName": "Audison APBMW K4M BMW 4-inch 2-way component speaker kit",
+      "modelNumber": "69051075",
+      "manufacturerModelNumber": "69051075",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0175",
@@ -2153,7 +2308,11 @@
       "manufacturerPage": "https://audison.com/product/apk-690/",
       "imageUrl": "https://static.audison.com/media/2026/06/Audison_APK-690.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 690 6x9-inch 2-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 690 6x9-inch 2-way component speaker kit",
+      "modelNumber": "69051090",
+      "manufacturerModelNumber": "69051090",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0176",
@@ -2169,7 +2328,11 @@
       "manufacturerPage": "https://audison.com/product/apk-163/",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-163_SISTEMA_prova-01-2.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison Prima APK 163 3-way component speaker kit"
+      "manufacturerProductName": "Audison Prima APK 163 3-way component speaker kit",
+      "modelNumber": "69052020",
+      "manufacturerModelNumber": "69052020",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0177",
@@ -2185,7 +2348,11 @@
       "manufacturerPage": "https://audison.com/product/av-x6-5/",
       "imageUrl": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison AV X6.5 6.5-inch coaxial speaker"
+      "manufacturerProductName": "Audison AV X6.5 6.5-inch coaxial speaker",
+      "modelNumber": "69070020",
+      "manufacturerModelNumber": "69070020",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0178",
@@ -2212,7 +2379,11 @@
       "manufacturerPage": "https://audison.com/product/apx-4/",
       "imageUrl": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APX 4 4-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APX 4 4-inch coaxial 2-way speakers",
+      "modelNumber": "69070030",
+      "manufacturerModelNumber": "69070030",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0180",
@@ -2228,7 +2399,11 @@
       "manufacturerPage": "https://audison.com/product/apx-5/",
       "imageUrl": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APX 5 5-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APX 5 5-inch coaxial 2-way speakers",
+      "modelNumber": "69070040",
+      "manufacturerModelNumber": "69070040",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0181",
@@ -2244,7 +2419,11 @@
       "manufacturerPage": "https://audison.com/product/apx-6-5/",
       "imageUrl": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APX 6.5 6.5-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APX 6.5 6.5-inch coaxial 2-way speakers",
+      "modelNumber": "69070050",
+      "manufacturerModelNumber": "69070050",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0182",
@@ -2260,7 +2439,11 @@
       "manufacturerPage": "https://audison.com/product/apx-690/",
       "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APX 690 6x9-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APX 690 6x9-inch coaxial 2-way speakers",
+      "modelNumber": "69070060",
+      "manufacturerModelNumber": "69070060",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0183",
@@ -2276,7 +2459,11 @@
       "manufacturerPage": "https://audison.com/product/apx-570/",
       "imageUrl": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APX 570 5x7-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APX 570 5x7-inch coaxial 2-way speakers",
+      "modelNumber": "69070070",
+      "manufacturerModelNumber": "69070070",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0184",
@@ -2292,7 +2479,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-x4e/",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW X4E BMW 4-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APBMW X4E BMW 4-inch coaxial 2-way speakers",
+      "modelNumber": "69070080",
+      "manufacturerModelNumber": "69070080",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0185",
@@ -2308,7 +2499,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-x4m/",
       "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW X4M BMW 4-inch coaxial 2-way speakers"
+      "manufacturerProductName": "Audison APBMW X4M BMW 4-inch coaxial 2-way speakers",
+      "modelNumber": "69070085",
+      "manufacturerModelNumber": "69070085",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0186",
@@ -2390,7 +2585,11 @@
       "manufacturerPage": "https://audison.com/product/apbmw-a4e/",
       "imageUrl": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Audison APBMW A4E BMW speaker installation accessory kit"
+      "manufacturerProductName": "Audison APBMW A4E BMW speaker installation accessory kit",
+      "modelNumber": "69082001",
+      "manufacturerModelNumber": "69082001",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0193",
@@ -3165,7 +3364,11 @@
       "manufacturerPage": "https://www.focal.com/products/hilov3",
       "imageUrl": "https://dam.focal-naim.com/m/3b701e6a6657201d/original/HiloV3_Av_Cable-jpg.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Focal HILO V3 high-to-low level signal converter"
+      "manufacturerProductName": "Focal HILO V3 high-to-low level signal converter",
+      "modelNumber": "HILO V3",
+      "manufacturerModelNumber": "HILO V3",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0263",
@@ -3181,7 +3384,11 @@
       "manufacturerPage": "https://www.focal.com/products/p-20-fe",
       "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
       "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
-      "manufacturerProductName": "Focal P 20 FE 8-inch Flax subwoofer"
+      "manufacturerProductName": "Focal P 20 FE 8-inch Flax subwoofer",
+      "modelNumber": "KIT SUB P20FE",
+      "manufacturerModelNumber": "KIT SUB P20FE",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-0264",
@@ -16560,7 +16767,11 @@
       "manufacturerPage": "https://www.jvc.com/in/car-entertainment/speakers/cs-dr162/",
       "imageUrl": "https://jasc.jvc.com//files/image/1628/1/1280x1024-10/223928_18_CS-DR162_W.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "JVC CS-DR162 6.5-inch 2-way coaxial speakers"
+      "manufacturerProductName": "JVC CS-DR162 6.5-inch 2-way coaxial speakers",
+      "modelNumber": "CS-DR162",
+      "manufacturerModelNumber": "CS-DR162",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1479",
@@ -16689,8 +16900,11 @@
       "imageStatus": "EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY",
       "manufacturerProductName": "JVC KW-M590BT 6.8-inch multimedia receiver",
       "imageUrl": "https://images.crutchfieldonline.com/ImageHandler/trim/869/652/products/2024/22/105/g105KWM590B-o_other0.jpg",
-      "imageCrop": true,
-      "imagePosition": "center 40%"
+      "imageCrop": false,
+      "imagePosition": "center 40%",
+      "modelNumber": "KW-M590BT",
+      "manufacturerModelNumber": "KW-M590BT",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-1490",
@@ -16750,7 +16964,11 @@
       "manufacturerPage": "https://www.kenwood.eu/car/navigation_multimedia/multimedia/DMX5023DABS",
       "imageUrl": "https://www.kenwoodstore.it/cdn/shop/files/DMX5023_AA_Front_2.png?v=1724938798&width=1024",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kenwood DMX5023DABS 6.8-inch DAB+ multimedia receiver"
+      "manufacturerProductName": "Kenwood DMX5023DABS 6.8-inch DAB+ multimedia receiver",
+      "modelNumber": "DMX5023DABS",
+      "manufacturerModelNumber": "DMX5023DABS",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1495",
@@ -16810,7 +17028,11 @@
       "manufacturerPage": "https://www.kicker.com/comp-10-4-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c104/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker 43C104 10-inch Comp 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 43C104 10-inch Comp 4-ohm subwoofer",
+      "modelNumber": "43C104",
+      "manufacturerModelNumber": "43C104",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1500",
@@ -16826,7 +17048,11 @@
       "manufacturerPage": "https://www.kicker.com/comp-12-4-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c124/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_page_image_link_review_only",
-      "manufacturerProductName": "Kicker 43C124 12-inch Comp 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 43C124 12-inch Comp 4-ohm subwoofer",
+      "modelNumber": "43C124",
+      "manufacturerModelNumber": "43C124",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1501",
@@ -16842,7 +17068,11 @@
       "manufacturerPage": "https://www.kicker.com/43C84",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c84/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_page_image_link_review_only",
-      "manufacturerProductName": "Kicker 43C84 8-inch Comp 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 43C84 8-inch Comp 4-ohm subwoofer",
+      "modelNumber": "43C84",
+      "manufacturerModelNumber": "43C84",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1502",
@@ -16968,7 +17198,11 @@
       "manufacturerPage": "https://shop.kicker.com/solo-baric-l7s-12-2-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/solobaricl7s/solo_baric_l7s_12_2_ohm_subwoofer/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker 44L7S122 12-inch Solo-Baric L7S 2-ohm subwoofer"
+      "manufacturerProductName": "Kicker 44L7S122 12-inch Solo-Baric L7S 2-ohm subwoofer",
+      "modelNumber": "44L7S122",
+      "manufacturerModelNumber": "44L7S122",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1513",
@@ -17380,7 +17614,11 @@
       "manufacturerPage": "https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa12001/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_page_image_link_review_only",
-      "manufacturerProductName": "Kicker CXA1200.1 1200-watt mono Class-D amplifier"
+      "manufacturerProductName": "Kicker CXA1200.1 1200-watt mono Class-D amplifier",
+      "modelNumber": "46CXA12001",
+      "manufacturerModelNumber": "46CXA12001",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1550",
@@ -17407,7 +17645,11 @@
       "manufacturerPage": "https://www.kicker.com/CXA3604-4x90-Watt-4-Channel-Full-Range-Amp",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa3604/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker CXA360.4 4-channel full-range amplifier"
+      "manufacturerProductName": "Kicker CXA360.4 4-channel full-range amplifier",
+      "modelNumber": "46CXA3604",
+      "manufacturerModelNumber": "46CXA3604",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1552",
@@ -17423,7 +17665,11 @@
       "manufacturerPage": "https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa4001/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker CXA400.1 mono Class-D amplifier"
+      "manufacturerProductName": "Kicker CXA400.1 mono Class-D amplifier",
+      "modelNumber": "46CXA4001",
+      "manufacturerModelNumber": "46CXA4001",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1553",
@@ -17439,7 +17685,11 @@
       "manufacturerPage": "https://www.kicker.com/CXA6605-4x90-Watt-4-Channel-Full-Range-Amp-with-300-watt-Class-D-Sub-Channel",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa6605/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker CXA660.5 5-channel amplifier"
+      "manufacturerProductName": "Kicker CXA660.5 5-channel amplifier",
+      "modelNumber": "46CXA6605",
+      "manufacturerModelNumber": "46CXA6605",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1554",
@@ -17906,7 +18156,11 @@
       "manufacturerPage": "https://www.kicker.com/comp-r-10-4-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr104/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_page_image_link_review_only",
-      "manufacturerProductName": "Kicker 48CWR104 10-inch CompR 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 48CWR104 10-inch CompR 4-ohm subwoofer",
+      "modelNumber": "48CWR104",
+      "manufacturerModelNumber": "48CWR104",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1596",
@@ -17922,7 +18176,11 @@
       "manufacturerPage": "https://shop.kicker.com/comp-r-12-4-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr124/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker 48CWR124 12-inch CompR 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 48CWR124 12-inch CompR 4-ohm subwoofer",
+      "modelNumber": "48CWR124",
+      "manufacturerModelNumber": "48CWR124",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1597",
@@ -17938,7 +18196,11 @@
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-2-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt102/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker 48CWRT102 10-inch CompRT 2-ohm subwoofer"
+      "manufacturerProductName": "Kicker 48CWRT102 10-inch CompRT 2-ohm subwoofer",
+      "modelNumber": "48CWRT102",
+      "manufacturerModelNumber": "48CWRT102",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1598",
@@ -17954,7 +18216,11 @@
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-4-ohm-subwoofer",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt104/images/480x360-front.jpg",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Kicker 48CWRT104 10-inch CompRT 4-ohm subwoofer"
+      "manufacturerProductName": "Kicker 48CWRT104 10-inch CompRT 4-ohm subwoofer",
+      "modelNumber": "48CWRT104",
+      "manufacturerModelNumber": "48CWRT104",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-1599",
@@ -18934,7 +19200,19 @@
       "component": "Speakers",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "modelNumber": "KW16400",
+      "manufacturerModelNumber": "KW16400",
+      "modelVariant": "Sold per metre",
+      "manufacturerProductName": "Kicker KW16400 16AWG K-Series Speaker Wire (sold per metre)",
+      "description": "Kicker K-Series 16AWG speaker wire, available by the metre and cut from the KW16400 400ft spool. The square Frost Blue conductor identifies positive and the rounded Frost Clear conductor identifies negative. Both PVC-insulated conductors are silver-tinned and oxygen-free for signal transfer and sonic accuracy.",
+      "manufacturerListingPage": "https://shop.kicker.com/speaker-wire",
+      "imageUrl": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/kw16400p/m/pictures/kw16400_tvu4.png?height=1026&width=1026",
+      "imageStatus": "owner_authorized_exact_supplier_image_verified_review_only",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "descriptionStatus": "SUPPLIER_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "modelVerificationStatus": "MANUFACTURER_REFERENCE_AND_OWNER_AUTHORIZED_SUPPLIER_IMAGE_REVIEWED_GW_SKU_PENDING"
     },
     {
       "id": "pw-1688",
@@ -23466,7 +23744,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "ON115-3LX",
+      "manufacturerModelNumber": "ON115-3LX",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-9-inch-for-isuzu-rba-rbb/",
+      "manufacturerProductName": "OneNav 9inch for Isuzu RBA / RBB",
+      "description": "Nine-inch OneNav Evolution multimedia receiver for Isuzu RBA / RBB fitments. Manufacturer lists wireless and wired OneConnect smartphone integration, Bluetooth 5.4, FM/AM RDS radio, high-speed USB charging and USB media input, five 4 V RCA outputs, 4 × 45 W speaker output, a digital sound processor with 12-band equaliser, optional front/rear camera support and a three-year warranty.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2100",
@@ -23646,9 +23936,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm/",
       "description": "Designed for Toyota. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
-      "manufacturerProductName": "OneNav Classic 9inch for Toyota 280mm W/O Canbus"
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota 280mm W/O Canbus",
+      "modelNumber": "OA009-1",
+      "manufacturerModelNumber": "OA009-1",
+      "imageUrl": "",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2116",
@@ -23659,7 +23955,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA009-2",
+      "manufacturerModelNumber": "OA009-2",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm-2/",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota 280mm",
+      "description": "OneNav Classic 9-inch media receiver for Toyota 280mm fitments. Features a 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs. CAN-bus support is not promised until confirmed for this exact SKU.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2117",
@@ -23674,12 +23982,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-fj-cruiser-black-2007/",
       "description": "Designed for Toyota FJ Cruiser 2007+. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
-      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_845f23df_300x.jpg?v=1697005736",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 9inch for Toyota FJ Cruiser Black (2007+)"
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
+      "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-FJ-Cruiser-600x600.webp?v=1739954757&width=533",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota FJ Cruiser Black (2007+)",
+      "modelNumber": "OA011-1",
+      "manufacturerModelNumber": "OA011-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2118",
@@ -23690,7 +24001,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA012-1",
+      "manufacturerModelNumber": "OA012-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-101inch-for-rav4-2019",
+      "manufacturerProductName": "OneNav Classic 10.1inch for Rav4 (2019+)",
+      "description": "Designed for Toyota RAV4 (2019+) with a 9-inch 1024 × 600 touchscreen in a 10.1-inch vehicle-specific frame. Features wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2119",
@@ -23705,12 +24028,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-hilux-fortuner-2011-2015/",
       "description": "Designed for Toyota Hilux/Fortuner 2011–2015. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
       "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 9inch for Hilux/Fortuner (2011-2015)"
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9 inch for Hilux/Fortuner (2011-2015)",
+      "modelNumber": "OA013-1",
+      "manufacturerModelNumber": "OA013-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2120",
@@ -23725,12 +24051,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-prado-2002-2009/",
       "description": "Designed for Toyota Prado 2002–2009. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
       "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 9inch for Prado (2002-2009)"
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9inch for Prado (2002-2009)",
+      "modelNumber": "OA014-1",
+      "manufacturerModelNumber": "OA014-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2121",
@@ -23745,12 +24074,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-land-cruiser-pick-up-2012/",
       "description": "Designed for Toyota Land Cruiser Pick Up 2012+. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
-      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.49_3e3a5b48_300x.jpg?v=1697005955",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 9inch for Land Cruiser Pick Up (2012+)"
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageUrl": "",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9 inch for Land Cruiser Pick Up (2012+)",
+      "modelNumber": "OA015-1",
+      "manufacturerModelNumber": "OA015-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2122",
@@ -23761,7 +24093,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA016-1",
+      "manufacturerModelNumber": "OA016-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-101inch-for-corrola-2019",
+      "manufacturerProductName": "OneNav Classic 10.1inch for Corrola (2019+)",
+      "description": "Designed for Toyota Corolla (2019+) with a 9-inch 1024 × 600 touchscreen in a 10.1-inch vehicle-specific frame. Features wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2123",
@@ -23772,7 +24116,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA016-2",
+      "manufacturerModelNumber": "OA016-2",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9-inch-for-corrola-cross-2021-10-1-inch-frame/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Corrola Cross (2021+) (10.1 inch frame)",
+      "description": "Designed for Toyota Corolla Cross (2021+). Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2124",
@@ -23783,7 +24139,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA017-1",
+      "manufacturerModelNumber": "OA017-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9-inch-for-fortuner-2016-2019-10-1-inch-frame/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Fortuner (2016-2019) (10.1 inch frame)",
+      "description": "Designed for Toyota Fortuner (2016–2019). Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2125",
@@ -23794,7 +24162,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA017-2",
+      "manufacturerModelNumber": "OA017-2",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9-inch-for-toyota-fortuner-2019-10-1-inch-frame/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Toyota Fortuner (2019+) (10.1 inch frame)",
+      "description": "Designed for Toyota Fortuner (2019+) with CAN bus. Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2126",
@@ -23809,12 +24189,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9-inch-for-hilux-2015-2018-10-1-inch-frame/",
       "description": "Designed for Toyota Hilux 2015–2018. Features a 9-inch 1024 × 600 touchscreen in a vehicle-specific 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
       "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-600x600_b92365e2-1f53-4a63-9a1e-965185d9fe9a.webp?v=1739876042&width=533",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 10.1inch for Hilux (2015-2018)"
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9 inch for Hilux (2015-2018) (10.1 inch frame)",
+      "modelNumber": "OA018-1",
+      "manufacturerModelNumber": "OA018-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2127",
@@ -23825,7 +24208,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA018-2",
+      "manufacturerModelNumber": "OA018-2",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-hilux-2019/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Hilux (2019+) (10.1 inch frame)",
+      "description": "Designed for Toyota Hilux (2019+). Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2128",
@@ -23836,7 +24231,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA110-1",
+      "manufacturerModelNumber": "OA110-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-toyota-quantum-2019",
+      "manufacturerProductName": "OneNav Classic 9inch for Toyota Quantum (2019+)",
+      "description": "Designed for Toyota Quantum (2019+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2129",
@@ -23847,7 +24254,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA115-1",
+      "manufacturerModelNumber": "OA115-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-isuzu-2012/",
+      "manufacturerProductName": "OneNav Classic 9inch for Isuzu (2012+)",
+      "description": "Designed for Isuzu vehicles from 2012+. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2130",
@@ -23880,7 +24299,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA192-1",
+      "manufacturerModelNumber": "OA192-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-kia-sportage-2019",
+      "manufacturerProductName": "OneNav Classic 9inch for Kia Sportage (2019+)",
+      "description": "Designed for Kia Sportage (2019+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2133",
@@ -23891,7 +24322,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA194-1",
+      "manufacturerModelNumber": "OA194-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-kia-picanto-2018",
+      "manufacturerProductName": "OneNav Classic 9inch for Kia Picanto (2018+)",
+      "description": "Designed for Kia Picanto (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2134",
@@ -23902,7 +24345,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA195-1",
+      "manufacturerModelNumber": "OA195-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-kia-rio-2016/",
+      "manufacturerProductName": "OneNav Classic 9inch for Kia Rio 2016",
+      "description": "Designed for Kia Rio (2016). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2135",
@@ -23913,7 +24368,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA196-1",
+      "manufacturerModelNumber": "OA196-1",
+      "manufacturerPage": "https://onenav.co.za/product-category/onenav-classic/",
+      "manufacturerProductName": "OneNav Classic 9inch for Hyundai Venue 2019+ (10.1 Inch)",
+      "description": "Designed for Hyundai Venue (2019+) with a 9-inch 1024 × 600 touchscreen in a 10.1-inch vehicle-specific frame. Features wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2136",
@@ -23924,7 +24391,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA197-1",
+      "manufacturerModelNumber": "OA197-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-for-hyundai-accent-2010-2014/",
+      "manufacturerProductName": "OneNav Classic 9inch for Hyundai Accent (2010-2014)",
+      "description": "Designed for Hyundai Accent (2010–2014). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2137",
@@ -23935,7 +24414,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA198-1",
+      "manufacturerModelNumber": "OA198-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-i-20-2019/",
+      "manufacturerProductName": "OneNav Classic 9inch for i-20 (2019+)",
+      "description": "Designed for Hyundai i20 (2019+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2138",
@@ -23946,7 +24437,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA198-2",
+      "manufacturerModelNumber": "OA198-2",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-hyundai-i-20-2014-2019/",
+      "manufacturerProductName": "OneNav Classic 9inch Hyundai I-20 (2014-2019)",
+      "description": "Designed for Hyundai i20 (2014–2019). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2139",
@@ -23957,7 +24460,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA199-1",
+      "manufacturerModelNumber": "OA199-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-tucson-2018/",
+      "manufacturerProductName": "OneNav Classic 9inch for Tucson (2018+)",
+      "description": "Designed for Hyundai Tucson (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2140",
@@ -23968,7 +24483,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA261-1",
+      "manufacturerModelNumber": "OA261-1",
+      "manufacturerPage": "https://onenav.co.za/product-category/onenav-classic/",
+      "manufacturerProductName": "OneNav Classic 9inch for Everest/Ranger/Mazda BT-50 (2006-10)",
+      "description": "Designed for Ford Everest, Ford Ranger and Mazda BT-50 (2006–2010). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2141",
@@ -23979,7 +24506,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA263-1",
+      "manufacturerModelNumber": "OA263-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-ford-xl-ranger-2015-2020-9-inch",
+      "manufacturerProductName": "OneNav Classic Ford XL Ranger 2015-2020 (9 Inch)",
+      "description": "Designed for Ford XL Ranger (2015–2020). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2142",
@@ -23990,7 +24529,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA266-1",
+      "manufacturerModelNumber": "OA266-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-9inch-for-ford-transit-tourneo-2017-with-no-display/",
+      "manufacturerProductName": "OneNav 9inch for Ford Transit/Tourneo 2017 with no Display",
+      "description": "Designed for Ford Transit/Tourneo (2017+) vehicles without the factory display. This OneNav 9-inch media receiver features a 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2143",
@@ -24005,12 +24556,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-h1-2015-2018/",
       "description": "Designed for Hyundai H1 2015–2018. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_IMAGE_AVAILABLE_OWNER_PREVIEW_CANDIDATE",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
       "imageUrl": "https://autotec-vts.co.za/gallery/00/00/11/00001192_00000355.png",
-      "imageCrop": true,
-      "imagePosition": "center 40%",
-      "manufacturerProductName": "OneNav Classic 9inch for H1 (2015-2018)"
+      "imageCrop": false,
+      "imagePosition": "center",
+      "manufacturerProductName": "OneNav Classic 9inch for H1 (2015-2018)",
+      "modelNumber": "OA312-1",
+      "manufacturerModelNumber": "OA312-1",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2144",
@@ -24025,9 +24579,15 @@
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-nissan-np-200-9-inch/",
       "description": "Designed for Nissan NP200. Features a 9-inch 1024 × 600 touchscreen in a vehicle-specific 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
-      "descriptionStatus": "OFFICIAL_ONENAV_CLASSIC_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
-      "manufacturerProductName": "OneNav Classic 10.1inch for Nissan NP 200 (9 Inch)"
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "manufacturerProductName": "OneNav Classic 9 inch for Nissan NP 200",
+      "modelNumber": "OA411-1",
+      "manufacturerModelNumber": "OA411-1",
+      "imageUrl": "",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2145",
@@ -24038,7 +24598,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA416-1",
+      "manufacturerModelNumber": "OA416-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-nissan-terra-2022/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Nissan Terra (2022+) (10.1 inch frame)",
+      "description": "Designed for Nissan Terra (2022+). Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2146",
@@ -24061,7 +24633,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA425-1",
+      "manufacturerModelNumber": "OA425-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-mitsubishi-eclipse-cross-2018-2020-9-inch/",
+      "manufacturerProductName": "OneNav Classic Mitsubishi Eclipse Cross 2018-2020 (9 Inch)",
+      "description": "Designed for Mitsubishi Eclipse Cross (2018–2020). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2148",
@@ -24072,7 +24656,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA426-1",
+      "manufacturerModelNumber": "OA426-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-mitsubishi-pajero/",
+      "manufacturerProductName": "OneNav Classic 9inch for Mitsubishi Pajero",
+      "description": "Vehicle-specific OneNav Classic 9-inch media receiver for Mitsubishi Pajero. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2149",
@@ -24083,7 +24679,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA427-1",
+      "manufacturerModelNumber": "OA427-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-mitsubishi-triton-2017/",
+      "manufacturerProductName": "OneNav Classic 9inch for Mitsubishi Triton (2017+)",
+      "description": "Designed for Mitsubishi Triton (2017+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2150",
@@ -24094,7 +24702,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA428-1",
+      "manufacturerModelNumber": "OA428-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-mitsubishi-pajero-sport-2015/",
+      "manufacturerProductName": "OneNav Classic 9inch for Mitsubishi Pajero Sport 2015+",
+      "description": "Designed for Mitsubishi Pajero Sport (2015+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2151",
@@ -24105,7 +24725,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA429-1",
+      "manufacturerModelNumber": "OA429-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-mitsubishi-200m/",
+      "manufacturerProductName": "OneNav Classic 9inch for Mitsubishi 200m",
+      "description": "Vehicle-specific OneNav Classic 9-inch media receiver for the Mitsubishi 200m listing. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2152",
@@ -24116,7 +24748,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA509-1",
+      "manufacturerModelNumber": "OA509-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-gwm-steed-5e/",
+      "manufacturerProductName": "OneNav Classic 9 inch for GWM Steed 5E (10.1 inch frame)",
+      "description": "Designed for GWM Steed 5E. Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2153",
@@ -24138,7 +24782,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA711-1",
+      "manufacturerModelNumber": "OA711-1",
+      "manufacturerPage": "https://onenav.co.za/product-category/onenav-classic/",
+      "manufacturerProductName": "OneNav Classic 9inch for Ertiga (2018+)",
+      "description": "Designed for Suzuki Ertiga (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2155",
@@ -24149,7 +24805,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA712-1",
+      "manufacturerModelNumber": "OA712-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-ignis-2018",
+      "manufacturerProductName": "OneNav Classic 9inch for Ignis (2018+)",
+      "description": "Designed for Suzuki Ignis (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2156",
@@ -24160,7 +24828,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA713-1",
+      "manufacturerModelNumber": "OA713-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-swift-2018/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Swift (2018+) (10.1 inch frame)",
+      "description": "Designed for Suzuki Swift (2018+). Features a 9-inch 1024 × 600 touchscreen in a 10.1-inch frame, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2157",
@@ -24171,7 +24851,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA714-1",
+      "manufacturerModelNumber": "OA714-1",
+      "manufacturerPage": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-vitara-2018",
+      "manufacturerProductName": "OneNav Classic 9inch for Vitara (2018+)",
+      "description": "Designed for Suzuki Vitara (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2158",
@@ -24182,7 +24874,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA715-1",
+      "manufacturerModelNumber": "OA715-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-jimny-2018/",
+      "manufacturerProductName": "OneNav Classic 9inch for Jimny (2018+)",
+      "description": "Designed for Suzuki Jimny (2018+). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_74ac7330_300x.jpg?v=1697005654",
+      "imageStatus": "OWNER_PREVIEW_CANDIDATE_ONLY",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2159",
@@ -24193,7 +24897,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA716-1",
+      "manufacturerModelNumber": "OA716-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-10-1inch-for-suzuki-baleno-toyota-starlet-9-inch/",
+      "manufacturerProductName": "OneNav Classic 9 inch for Suzuki Baleno & Toyota Starlet",
+      "description": "Designed for Suzuki Baleno and Toyota Starlet. Features a 9-inch 1024 × 600 touchscreen in the 10.1-inch fitment format, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2160",
@@ -24204,7 +24920,19 @@
       "component": "Head Units & Media Players",
       "indicativePrice": null,
       "hasStock": null,
-      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY"
+      "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
+      "brandDisplayName": "OneNav",
+      "modelNumber": "OA717-1",
+      "manufacturerModelNumber": "OA717-1",
+      "manufacturerPage": "https://onenav.co.za/product/onenav-classic-9inch-for-suzuki-brezza-toyota-urban-cruiser-2021/",
+      "manufacturerProductName": "OneNav Classic 9inch for Suzuki Brezza & Toyota Urban Cruiser 2021",
+      "description": "Designed for Suzuki Brezza and Toyota Urban Cruiser (2021). Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageUrl": "",
+      "imageStatus": "IMAGE_REJECTED_WRONG_VARIANT",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2161",
@@ -24691,10 +25419,16 @@
       "priceBasis": "PRICE_ON_REQUEST_OWNER_POLICY",
       "brandDisplayName": "OneNav",
       "manufacturerPage": "https://onenav.co.za/product/onenav-9-inch-for-isuzu-rba-rbb/",
-      "descriptionStatus": "OFFICIAL_ONENAV_EVOLUTION_SPECIFICATION_VERIFIED",
-      "imageStatus": "EXACT_MODEL_PAGE_VERIFIED_IMAGE_NOT_AVAILABLE",
+      "descriptionStatus": "OFFICIAL_ONENAV_PRODUCT_DESCRIPTION_VERIFIED_REVIEW_ONLY",
+      "imageStatus": "EXACT_MODEL_IMAGE_PENDING",
       "manufacturerProductName": "OneNav 9inch for Isuzu RBA / RBB",
-      "description": "Vehicle-specific 9-inch OneNav Evolution multimedia receiver for Isuzu RBA/RBB. Manufacturer specifications: wireless and wired OneConnect, Bluetooth 5.4, FM/AM RDS radio tuner, high-speed USB charging, five 4V RCA outputs, USB media input, 4 × 45W speaker output, digital sound processor, 12-band equaliser, optional front and rear cameras, and a three-year warranty."
+      "description": "Nine-inch OneNav Evolution multimedia receiver for Isuzu RBA / RBB fitments. Manufacturer lists wireless and wired OneConnect smartphone integration, Bluetooth 5.4, FM/AM RDS radio, high-speed USB charging and USB media input, five 4 V RCA outputs, 4 × 45 W speaker output, a digital sound processor with 12-band equaliser, optional front/rear camera support and a three-year warranty.",
+      "modelNumber": "ON115-3LX",
+      "manufacturerModelNumber": "ON115-3LX",
+      "imageUrl": "",
+      "imageCrop": false,
+      "imagePosition": "center",
+      "modelVerificationStatus": "OFFICIAL_ONENAV_MODEL_PAGE_VERIFIED_REVIEW_ONLY"
     },
     {
       "id": "pw-2205",
@@ -27406,7 +28140,11 @@
       "manufacturerPage": "https://pioneercarentertainment.com/products/dmh-ap6650bt/",
       "imageUrl": "https://www.pioneersouthafrica.co.za/cdn/shop/files/DMH-AP6650BT_2_700x_8e7b05bf-1886-41b7-a4c5-2631b50f0ac2.webp?v=1741857962&width=1946",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "manufacturerProductName": "Pioneer DMH-AP6650BT 9-inch touchscreen multimedia receiver"
+      "manufacturerProductName": "Pioneer DMH-AP6650BT 9-inch touchscreen multimedia receiver",
+      "modelNumber": "DMH-AP6650BT",
+      "manufacturerModelNumber": "DMH-AP6650BT",
+      "modelVerificationStatus": "OFFICIAL_MANUFACTURER_MODEL_PAGE_VERIFIED_REVIEW_ONLY",
+      "imageCrop": false
     },
     {
       "id": "pw-2451",
@@ -36960,11 +37698,20 @@
   },
   "productImageEnrichment": {
     "sourceAudit": "official-model-image-audit.csv",
-    "descriptionsEnriched": 9,
+    "descriptionsEnriched": 43,
     "exactImageCandidatesApplied": 68,
-    "exactModelPagesReviewed": 77,
+    "exactModelPagesReviewed": 113,
     "status": "OWNER_PREVIEW_ONLY_PENDING_HOSTED_IMAGE_QA_AND_OWNER_REVIEW",
-    "note": "Internal supplier identifiers are retained only in the review register and are not rendered in customer-facing cards.",
-    "manufacturerDescriptionsVerified": 77
+    "note": "Reconciled 43 of 45 OneNav official model pages to 44 primary rows (one exact duplicate source row); two OneNav model codes remain on hold because the same source title maps to two primary rows and the exact variant-to-row assignment is not proven. All 43 integrated descriptions are official-page verified; six OneNav image candidates are review-only and the other 39 images remain pending/rejected. Linked 68 additional manufacturer-model records to primary by exact manufacturer page and added the Kicker KW16400 per-metre wire record with its owner-authorised exact supplier image; its Get Wired SKU remains unassigned. Current Car Audio preview has 113 description rows, 75 image assets and 113 model-number rows (112 unique model numbers). No supplier SKU, Get Wired SKU, numeric supplier price or stock is exposed.",
+    "manufacturerDescriptionsVerified": 113,
+    "oneNavImageCandidatesApplied": 6,
+    "totalPreviewImageAssets": 75,
+    "manufacturerImagesVerified": 60,
+    "oneNavImageCandidatesReviewOnly": 6,
+    "manufacturerDescriptionsIntegrated": 111,
+    "manufacturerDescriptionRowsIntegrated": 112,
+    "oneNavModelPagesIntegrated": 43,
+    "oneNavModelPagesOnHold": 2,
+    "oneNavPrimaryRowsIntegrated": 44
   }
 }

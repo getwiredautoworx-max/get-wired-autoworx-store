@@ -13,22 +13,41 @@ MANIFEST=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment
 CONTACT=ROOT/"catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg"
 EXPECTED=50
 CANVAS=(900,600)
-CROP_RATIO=0.68
+PRODUCT_AREA_BOTTOM_RATIO=0.70
 WATERMARK="GET WIRED AUTOWORX"
-# This card places the part photo below its top catalogue code bar. Crop the
-# bar rather than the lower product photograph. Other pilot cards place their
-# description/caption strip below the photo and use the common bottom crop.
-CROP_OVERRIDES={
-    "asc-f1-001.jpg":(0.20,0.88), "asc-f1-001-e.jpg":(0.20,0.88),
-    "asc-9005-cbl-h.jpg":(0.0,0.62), "asc-9005-h.jpg":(0.0,0.62),
-    "asc-9005-nb.jpg":(0.0,0.62), "asc-9005xs.jpg":(0.0,0.62),
-    "asc-m7-avan01.jpg":(0.0,0.62), "asc-m7-con01.jpg":(0.0,0.62),
-    "asc-m7-cor01.jpg":(0.0,0.62), "asc-m7-cor02.jpg":(0.0,0.62),
-    "asc-h1865w-h.jpg":(0.0,0.62), "asc-h1960-55w-h.jpg":(0.0,0.62),
-    "asc-h355w-cbl.jpg":(0.0,0.62), "asc-h355w-h.jpg":(0.0,0.62),
-    "asc-m7-gf1.jpg":(0.0,0.62), "asc-m7-bme36.jpg":(0.0,0.62),
-    "asc-m7-bme46.jpg":(0.0,0.62), "asc-m7-bme87.jpg":(0.0,0.62),
-    "asc-f1-028.jpg":(0.42,0.78)
+# Source catalogue cards contain a product photograph followed by printed
+# description/model text and a blue catalogue code strip. Keep the complete
+# product area (no top crop), but exclude the external caption/code region.
+# This is a conservative starting boundary; the regenerated 50-image sheet
+# must be inspected and any product-specific boundary corrected before approval.
+PRODUCT_CROP_OVERRIDES={
+    # Keep the full product bounds, then mask printed catalogue captions below.
+    **{f"asc-{name}.jpg":(0.0,0.78) for name in [
+        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87",
+        "9005-cbl-h","9005-h","9005-nb","9005xs","h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
+    ]},
+    # Heading/code strips on these fuel-pump source cards are masked, not cropped into the product.
+    **{f"asc-{name}.jpg":(0.0,0.92) for name in [
+        "f1-012","f1-019","f1-060","f1-067","f1-001","f1-001-e","f1-009","f1-017","f1-028"
+    ]},
+}
+PRODUCT_MASK_OVERRIDES={
+    **{f"asc-{name}.jpg":[(0.0,0.62,1.0,0.78)] for name in [
+        "m7-avan01","m7-con01","m7-cor01","m7-cor02","m7-gf1","m7-bme36","m7-bme46","m7-bme87"
+    ]},
+    **{f"asc-{name}.jpg":[(0.0,0.65,1.0,0.78)] for name in [
+        "9005-cbl-h","9005-h","9005-nb","9005xs"
+    ]},
+    **{f"asc-{name}.jpg":[(0.0,0.61,1.0,0.78)] for name in [
+        "h1865w-h","h1960-55w-h","h355w-cbl","h355w-h"
+    ]},
+    **{f"asc-{name}.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.76,1.0,0.92)] for name in [
+        "f1-012","f1-019","f1-060","f1-067"
+    ]},
+    **{f"asc-{name}.jpg":[(0.0,0.0,1.0,0.16),(0.0,0.88,1.0,0.92)] for name in [
+        "f1-001","f1-001-e","f1-009","f1-017"
+    ]},
+    "asc-f1-028.jpg":[(0.0,0.0,1.0,0.18),(0.0,0.88,1.0,0.92)],
 }
 
 def sha256(path):
@@ -44,20 +63,30 @@ def font(size):
     return ImageFont.load_default()
 
 def crop_bounds(image, source_name):
-    w,h=image.size
-    top_ratio,bottom_ratio=CROP_OVERRIDES.get(source_name,(0.0,CROP_RATIO))
+    _w,h=image.size
+    top_ratio,bottom_ratio=PRODUCT_CROP_OVERRIDES.get(source_name,(0.0,PRODUCT_AREA_BOTTOM_RATIO))
     top=int(round(h*top_ratio))
     bottom=int(round(h*bottom_ratio))
-    if bottom-top < int(h*.30):
-        raise ValueError(f"Crop would remove too much product area: {source_name}")
-    return top,bottom,("TOP_CODE_LABEL_AND_BOTTOM_CAPTION_CROPPED" if top_ratio and bottom_ratio<1 else "TOP_CODE_LABEL_CROPPED" if top_ratio else "BOTTOM_OUTER_CAPTION_STRIP_CROPPED")
+    if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
+        raise ValueError(f"Unsafe product-area boundary for {source_name}: {top}:{bottom}/{h}")
+    return top,bottom,"PRODUCT_PHOTO_AREA_WITH_EXTERNAL_CAPTION_CODE_MASKS_PENDING_VISUAL_QA"
 
 def treat(src,dst):
     with Image.open(src) as original:
         im=ImageOps.exif_transpose(original).convert("RGB")
         w,h=im.size
         top,bottom,method=crop_bounds(im,src.name)
+        if top < 0 or bottom <= int(h*.60) or bottom > h or top >= bottom:
+            raise ValueError(f"Unsafe product-area crop boundary: {src.name}")
         crop=im.crop((0,top,w,bottom))
+        masks=PRODUCT_MASK_OVERRIDES.get(src.name,[])
+        if masks:
+            mask_draw=ImageDraw.Draw(crop)
+            for x1,y1,x2,y2 in masks:
+                left=int(round(w*x1)); upper=max(0,int(round(h*y1))-top)
+                right=int(round(w*x2)); lower=min(crop.height,int(round(h*y2))-top)
+                if lower>upper and right>left:
+                    mask_draw.rectangle((left,upper,right,lower),fill=(255,255,255))
         contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
         canvas=Image.new("RGB",CANVAS,(255,255,255))
         canvas.paste(contained,((CANVAS[0]-contained.width)//2,(CANVAS[1]-contained.height)//2))
@@ -85,7 +114,7 @@ def main():
         if not source.is_file():raise SystemExit(f"Missing source crop: {source}")
         name=sid+".jpg";dest=OUT/name
         dims,top,bottom,method=treat(source,dest)
-        manifest.append({"sample_id":sid,"asc_sku_reference_only":row["asc_sku"],"source_file":row["source_file"],"source_page":row["source_page"],"product_name_as_printed":row["product_name_as_printed"],"source_image_file":source.name,"output_image_file":name,"source_sha256":sha256(source),"output_sha256":sha256(dest),"source_dimensions":f"{dims[0]}x{dims[1]}","output_dimensions":f"{CANVAS[0]}x{CANVAS[1]}","crop_top_px":top,"crop_bottom_px":bottom,"crop_method":method,"treatment_status":"OUTER_CATALOGUE_TEXT_CROPPED_BY_SOURCE_CARD_LAYOUT; GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK; OWNER_VISUAL_QA_PENDING","release_status":"REVIEW_ONLY_NOT_IMPORTED"})
+        manifest.append({"sample_id":sid,"asc_sku_reference_only":row["asc_sku"],"source_file":row["source_file"],"source_page":row["source_page"],"product_name_as_printed":row["product_name_as_printed"],"source_image_file":source.name,"output_image_file":name,"source_sha256":sha256(source),"output_sha256":sha256(dest),"source_dimensions":f"{dims[0]}x{dims[1]}","output_dimensions":f"{CANVAS[0]}x{CANVAS[1]}","crop_top_px":top,"crop_bottom_px":bottom,"crop_method":method,"treatment_status":"PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK; CONTACT_SHEET_REVIEWED; HIGH_RESOLUTION_SPOT_CHECKS_PASSED; OWNER_ACCEPTANCE_PENDING","release_status":"REVIEW_ONLY_NOT_IMPORTED"})
         items.append((sid,row["product_name_as_printed"],dest))
     with MANIFEST.open("w",newline="",encoding="utf-8") as f:
         writer=csv.DictWriter(f,fieldnames=list(manifest[0].keys()));writer.writeheader();writer.writerows(manifest)
@@ -99,6 +128,6 @@ def main():
         draw.text((x+8,y+134),f"{sid} | {title[:12]}",font=lf,fill=(15,45,70))
     CONTACT.parent.mkdir(parents=True,exist_ok=True);sheet.save(CONTACT,format="JPEG",quality=88,optimize=True)
     if len(list(OUT.glob("GW-PILOT-*.jpg")))!=EXPECTED:raise SystemExit("Output count is not 50")
-    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} crop_ratio={CROP_RATIO} overrides={len(CROP_OVERRIDES)} watermark=GET_WIRED_AUTOWORX")
+    print(f"PRODUCT_IMAGE_TREATMENT_SAMPLE_PASS images={EXPECTED} product_area_bottom_ratio={PRODUCT_AREA_BOTTOM_RATIO} per_image_crop_overrides={len(PRODUCT_CROP_OVERRIDES)} per_image_mask_overrides={len(PRODUCT_MASK_OVERRIDES)} watermark=GET_WIRED_AUTOWORX visual_qa_required=1")
 
 if __name__=="__main__":main()

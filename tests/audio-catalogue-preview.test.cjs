@@ -5,6 +5,18 @@ const secondary=JSON.parse(fs.readFileSync("assets/audio-catalogue-secondary-pre
 const models=JSON.parse(fs.readFileSync("assets/audio-model-verification-preview.json","utf8"));
 assert.equal(primary.records.length,3317);
 assert.equal(secondary.records.length,66);
+assert.equal(secondary.powerSpecificationReconciliation.heldRecords.length,3);
+assert.deepEqual(secondary.powerSpecificationReconciliation.resolvedSubwooferRecords,["ac-021","ac-025"]);
+assert.ok(secondary.records.filter(r=>r.id==="ac-032"||r.id==="ac-041"||r.id==="ac-044").every(r=>r.publicationStatus.startsWith("HOLD_") && !r.imageUrl));
+for(const r of secondary.records)assert.equal(r.priceOnRequestText,"Price On Request");
+assert.equal(models.recordCount,models.records.length);
+for(const r of models.records){
+ assert.ok(r.brand && r.brand.trim(),`manufacturer brand missing for ${r.modelNumber||r.name}`);
+ assert.ok((r.gwSku && r.gwSku.trim()) || (r.gwSkuStatus && r.gwSkuStatus.trim()),`GW SKU state missing for ${r.modelNumber||r.name}`);
+}
+const heldImage=secondary.records.find(r=>r.modelNumber==="XS-W104ES");
+assert.equal(heldImage.imageStatus,"IMAGE_RENDERING_FAILED_HOLD");
+assert.equal(heldImage.imageUrl,"","failed image must not be served in customer preview");
 assert.equal(primary.pricingRule.customerDisplay,"Price On Request");
 assert.match(primary.pricingNote,/Price On Request/);
 for(const data of [primary,secondary]){

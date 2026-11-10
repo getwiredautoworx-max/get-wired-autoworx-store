@@ -241,3 +241,183 @@ This owner clarification supersedes the earlier blanket private-data-boundary st
 
 ## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
 The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
+
+
+## LIVE EXECUTION STATUS — 2026-11-09 06:34 SAST
+
+### Consolidated storefront candidate — PR #190
+- Current PR head: `54bf3d49b6e8de25586abf0bb5df1d516eba9112`; base: `8a1119e44b6586934e32265e0bd7729263f6ea95`; OPEN / DRAFT. No merge, deployment or live write.
+- Latest exact-head checks (run set at 2026-11-09 06:28 SAST): Button-Only Storefront Smoke PASS; Public SKU Exposure Audit PASS; Preview Approved Catalogue Gate PASS; Delivery Quote Security PASS; Customer Authentication Security PASS; Axxess package preparation PASS (package-only, no upload).
+- Failed: Cloudflare Pages Public Package QA, Catalogue & Supplier Routing Review QA, Storefront Smoke Test, Owner Preview Mobile/Desktop Browser QA.
+- Root cause from exact build log: `tests/three-category-storefront-structure.test.cjs:121` fails the assertion for storefront root `Audio, Entertainment & Music`. This is a mismatch between the test's expected root and the current three-root storefront contract; it is not a Cloudflare infrastructure outage and not a supplier-name exposure finding. Correct the test/markup contract without restoring a fourth top-level category.
+- Storefront policy test fails on the same root assertion. Browser QA starts its local server but times out waiting for obsolete selector `#categories .catWrap`; update browser assertions to the actual owner-preview markup and then rerun exact-head mobile/desktop tests.
+- No current hosted staging deployment for this exact SHA has been verified. No preview is ready.
+
+### ASC six-catalogue — PR #183
+- Current PR head: `327d9a271196efe2144e93d81109b93cca83cbdd`; OPEN; not mergeable. Master and staging registers remain 978 rows, unique IDs, matching row sets, correct category mapping, no invented price/stock, all review-only / DO NOT IMPORT.
+- Current branch workflow file now invokes `python3 tests/test_asc_reload_validation.py`; this is the intended deterministic replacement for the missing optional test files. No workflow run is recorded against the current PR head yet, so this fix is **not yet QA-verified**.
+- Editorial status in QA report: 50 titles in pilot; 928 titles still OCR candidates requiring proofing; technical specifications/dimensions pending for all 978; pricing and physical stock remain unknown; 952 photo cards exist and 26 products have no source photo.
+- The 50-record image pilot register exists, but its image paths are still marked reference-only/not copied to staging. First contact-sheet review found catalogue caption text remains. No completed/accepted 50-image treatment set is verified yet. Next step is to create/collect all 50 correct source crops, remove text outside product image, overlay Get Wired AutoWorx watermark over ASC watermark, then compare each output to its source card and inspect a contact sheet. Do not use invented images for the 26 no-photo records.
+- ASC customer-facing price label remains exactly: `Price On Request due to Limited Stock and Availability`.
+
+### Electro-city ignition pilot — PR #185
+- Current PR head: `b00778af1c0ae7561b6e697a32f953b67d993bbf`; OPEN / UNMERGED.
+- Exact-head Supplier Catalogue Review Data QA and Public SKU Exposure Audit both PASS (run set 42562409988 / 42562410040).
+- IG-T003 / GWA-EC-000012 discrepancy is resolved for customer-facing scope: exclude the unsupported Fiat/Peugeot/Renault catalogue caption; retain only corroborated Toyota applications as corroborated, not confirmed. Do not publish a model/year fitment without VIN/engine verification. The 29-row package remains review-only / DO NOT IMPORT pending owner acceptance.
+
+### ETA and remaining critical path
+- **Initial verified staging preview target: 10 November 2026**, conditional on correcting PR #190's root-category contract and browser selector, passing all exact-head static and mobile/desktop checks, and obtaining permission for any Cloudflare credit use needed for the hosted staging build. This is a target, not a guarantee; no deployed preview SHA currently exists.
+- **Full ASC product-level editorial completion is a separate, longer task**: 928 titles still require proofing, 978 technical-spec/dimension rows remain pending, and the 50-image treatment pilot is not yet accepted. Do not represent the initial staging-preview target as full catalogue completion.
+- Electro-city fitment discrepancy no longer blocks the pilot; remaining gate is owner acceptance and the evidence-tier restrictions above.
+- Production remains HOLD. No Axxess upload, DNS change, live database/catalogue/price/stock write, payment activation or production deployment.
+## 2026-11-09 owner-reported preview defects — repair branch update
+
+- Owner reports the consolidated store preview is unpopulated and the 50 ASC sample product images are clipped at the bottom by approximately one quarter.
+- Root causes confirmed: owner-preview homepage skipped live category refresh but still fetched active products only from Supabase, while committed category snapshot reports zero direct active products for the three root categories. Local catalogue review data (34 Auto Electrical pilot products and 66 Audio review products) was not connected to the owner-preview renderer. No Car Care product dataset was found in the inspected assets; do not invent products.
+- Image root causes confirmed: image processor retained only 68% of source height by default and had per-image bottom crops; Auto Electrical pilot page used a fixed 3:2 overflow-hidden window for portrait source photos. Both source processing and CSS display have been corrected on repair branch `fix/owner-preview-population-and-full-height-images-2026-11-09` to preserve full image height.
+- Owner-preview homepage now loads the 34 Auto Electrical and 66 Audio records from committed read-only review datasets, marks the page as review-only, displays Price On Request and unconfirmed availability, hides numeric supplier SKU data, and avoids the live Supabase product query in owner-preview mode. These remain preview-only and are not imports or live stock.
+- Auto Electrical category page now links to its 34-product review pilot. Car Audio already routes to the Audio preview catalogue. Car Care remains visibly unpopulated until a valid catalogue dataset is completed; do not add invented products.
+- **Not yet complete:** regenerate all 50 image output assets and manifest from original source images using the corrected processor; inspect outputs/contact sheet for full lower product edges; run automated checks; deploy same-SHA Pages staging preview; inspect mobile/desktop; then ask owner to recheck. Current hosted preview is unchanged until those steps succeed.
+- No production deployment, live Supabase write, import, Axxess upload, DNS change or paid spend was performed or authorised.
+
+
+## 2026-11-09 live check refresh — PR #190
+- The 06:34 SAST status above is historical and superseded by the current GitHub evidence. PR #190 is currently OPEN / DRAFT at head `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40`, based on `8a1119e44b6586934e32265e0bd7729263f6ea95`.
+- On that exact head, Cloudflare Pages completed **successfully**; GitHub Cloudflare Pages Public Package QA, public package, storefront smoke, responsive review and mobile/desktop browser QA all completed successfully. The separate Cloudflare Workers Builds integration check failed; do not misreport that as a Pages build failure.
+- PR #190 remains a draft candidate, not an owner-accepted release. Its preview does not substitute for verification of the newer PR #192 head or owner phone acceptance.
+
+## 2026-11-09 audio category reconciliation — PR #192
+- Single working candidate: [PR #192](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/192), branch `fix/owner-preview-population-and-full-height-images-2026-11-09`, still DRAFT / UNMERGED. Current main commit `f947d33d6a102129307f4e74833798525974c4c3` is merged into this candidate branch. PR #192 remains stacked on PR #190's candidate base; the public package QA workflow is being extended to run on that base so this draft can be tested without retargeting or merging to production. No production merge or deployment.
+- Planetworld primary preview contains 3,317 source records. The Car Audio division has 702 records: **113 description rows, 75 image assets and 113 model-number rows (112 unique model numbers)**. Of the 75 images, 60 are official manufacturer images marked verified; the rest are owner-preview/review-only candidates or non-manufacturer sources. All audio product images now render with full-image `contain` fit; no bottom cropping.
+- OneNav: 45 official model pages were audited. **43 unique models** are integrated into 44 primary rows (one exact duplicate source row is deduplicated by the preview). Two codes, `OA115-2` and `OA115-3`, remain held because the same source title maps to two primary rows and the exact variant-to-row assignment is not proven. Six exact-model/fitment image candidates are owner-preview-only; 39 of the 45 models still have no approved image. Rejected `OA015-1` imagery was removed; the `OA715-1` candidate was added. OneNav now has its own brand grouping/wordmark; the remaining unclassified `One` family is clearly labelled separately.
+- A further 68 manufacturer-model records were linked to the primary audio catalogue by exact manufacturer page. The Kicker `KW16400` speaker-wire item is linked to its per-metre product row with an owner-authorised exact supplier image; its Get Wired SKU remains unassigned and is not exposed in the public preview. All 69 internal model-verification records now point to their primary preview record.
+- Audio Connections secondary preview contains 66 records, 66 descriptions, 62 images and generic **Price On Request** for every record. Three model identity/specification holds remain (`ac-032`, `ac-041`, `ac-044`); a separate failed image remains held for `XS-W104ES`. Resolved output records: `ac-021`, `ac-025`, `ac-038`; the higher verified manufacturer output is used where the exact model and impedance basis are confirmed. No supplier numeric price or stock is displayed.
+- The 3,317-row Planetworld dataset is **not fully reconciled**: the other 2,615 non-Car-Audio rows currently have no product descriptions or images; within Car Audio, 589 rows still lack descriptions and 627 lack images. A further 245 `One`-family source records remain to be classified/reconciled. The 47 harness/trim records and 28 marine-audio records also require product-level image/description verification. Do not claim the audio category is complete.
+- The preview regression suite now checks the OneNav integration, model links, Audio Connections holds, Price On Request policy and full-image presentation. `audio-catalogue-preview.test.cjs` has been added to the public package build test list. The exact PR #192 head `c94d7b38bf955d2feb5104745f74654210c64ac1` failed the Cloudflare Pages check. Static review identified four deterministic stale test expectations that still required the old `p.brand===brand` filters after the audio pages were changed to verified display-brand routing. Those assertions are corrected in the next fix commit, and the QA workflow is being configured to run on PR #192's stacked base branch. Do not present the preview until the corrected exact-head package QA and Pages checks pass.
+- The separate ASC image defect is not closed: crop code and preview CSS are corrected, but the 50 original sample image outputs/manifest still need regeneration and visual inspection. No corrected ASC sample output has been deployed.
+- No production deployment, live Supabase write, catalogue import, Axxess upload, DNS/payment change, numeric price/stock update or unapproved paid spend was performed. Production remains **HOLD**.
+
+
+## 2026-11-09 PR #192 staging build diagnosis and correction
+- Exact head `c94d7b38bf955d2feb5104745f74654210c64ac1`: repository audit passed; Cloudflare Pages failed; Cloudflare Workers Builds failed separately. The Pages failure is not treated as a successful preview.
+- The audio navigation now correctly groups/filters products by `displayBrandName` so OneNav is distinct from the unverified One family. Four legacy string assertions in `tests/three-category-storefront-structure.test.cjs` still expected `p.brand===brand` in the product page, brand image selection and direct component route. These expectations contradicted the updated page code and would fail the pre-package regression test. Corrected the assertions to match the new customer-facing brand routing.
+- Updated `.github/workflows/cloudflare-public-pages-build-qa.yml` to run for PRs based on `integration/storefront-current-main-2026-11-09` as well as `main`, and to watch the audio pages, regression tests and OneNav audit file. The workflow builds both standard and isolated non-production preview packages; it does not deploy to production.
+- The next single staging attempt will provide the exact test failure/success evidence. If Pages still fails, inspect that run and the GitHub QA logs before any further build attempt. Production remains HOLD.
+
+
+---
+
+## OWNER EXECUTION RESET — 2026-11-09 (supersedes conflicting older sections)
+
+### Latest owner authority
+- The owner's authoritative clarification in `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` §10 explicitly keeps the repository public and authorises catalogue processing in the existing repository/workflows. A private repository, private runner or private-processing boundary is **not** a prerequisite. The older security-boundary block and any task status that blocks Audio Connections / Planetworld on that basis are superseded. Protect actual credentials/secrets and continue to suppress supplier names/internal SKUs from customer-facing pages.
+- The latest owner instruction in §11 is that **all supplier products display Price On Request** until reliable supplier price/stock synchronisation is approved. Do not display stale RRP or wholesale values as current customer prices.
+- Production HOLD, no live data writes, no Axxess uploads, no DNS/payment changes, no production deployment and no paid-credit spend remain in force without separate explicit approval.
+
+### Current verified repository observations
+- Repository default branch is `main`; repository visibility is public.
+- PR #192 is OPEN and its head is `f86a329771bce03052a8b188904449cc9ba6ed11` at the time of this checkpoint. Its image processor now sets `CROP_RATIO=1.0` and all configured bottom bounds to 1.0, preserving the full remaining source image height. It also uses `ImageOps.contain` inside a 900x600 white canvas, rather than cropping to a fixed aspect ratio.
+- **The image processor correction is not the same as regenerated deliverables.** The committed manifest still describes the old output treatment as `BOTTOM_OUTER_CAPTION_STRIP_CROPPED`, with sample source dimensions 181x209 and crop_bottom_px values 130/142. This is evidence the 50 outputs and manifest are stale relative to the corrected processor. The workflow `.github/workflows/product-image-treatment-sample.yml` is manual (`workflow_dispatch`) and commits regenerated images, manifest and contact sheet to its checked-out branch. Regeneration and visual inspection remain outstanding.
+- `assets/category-tree.json` contains 29 category records and exactly three root categories, but every record reports `direct_active_products: 0`. The preview must therefore render from the committed review-only local datasets, not rely on active/live Supabase rows.
+- The category tree is not yet aligned to the owner's detailed catalogue taxonomy: Auto Electrical currently has a combined `Sensors & Switches` node rather than separate Automotive Sensors and Automotive Switches; the required ASC Fuel Pumps node is not present; audio Accessories has combined `Trims & Harnesses` rather than separate Trims and Harnesses; the Car Mats node is under the correct Car Care & Accessories root. Do not fabricate category UUIDs or mutate live Supabase. Audit route slugs/parent IDs and candidate preview mapping, then make a safe candidate-only repair using valid category identifiers or a self-contained preview taxonomy.
+- The 50-image source script is `scripts/process-product-image-pilot.py`; source assets are under `assets/catalogue-source-crops/`; output images are under `assets/get-wired-product-pilot/`; manifest and contact sheet are under `catalogue-review/asc-catalogue-extraction/`.
+
+### Reprioritised completion sequence
+1. **Repair all three department category routes and assignments.** Validate the visible customer path and the review-only data behind each route. Auto Electrical: separate Sensors, Switches, Globes and Fuel Pumps; Car Audio & Video: Planetworld and Audio Connections together, Accessories with Aerials / Trims / Harnesses; Car Care & Accessories: Car Mats and only verified catalogue-backed records. No category route may dead-end or show an empty state merely because active/live Supabase products are zero.
+2. **Regenerate the 50 ASC image sample.** Run the existing manual image-treatment workflow on the candidate branch. Confirm 50 outputs, manifest checksums, full source-height preservation (bottom bound equals source height), no clipped product bottoms, appropriate watermark placement and a new contact sheet. Visually inspect all 50 before declaring complete.
+3. **Continue Audio / Home Entertainment product reconciliation.** This is authorised and must not be blocked by a private-runner requirement. Reconcile exact product/model/variant, correct image, description, Audio Connections wattage and brand → product-type → product routes. Preserve Planetworld and Audio Connections together by product; keep all customer prices Price On Request; hide supplier names and internal SKUs.
+4. **Complete ASC six-catalogue product-level verification**, preserving source filename/page, exact product identity, image match, category, technical details and exceptions. ASC Buyers Guides remain excluded.
+5. **Verify Electro-city 29-record ignition looms/modules pilot**, retaining all fitment exceptions and internal SKU suppression.
+6. **Consolidate into one candidate based on current main / owner-preferred visual baseline.** Do not wholesale-merge divergent historical PRs.
+7. **Run exact-head tests and one same-SHA staging preview**, followed by mobile-first and desktop browser verification. Do not call preview ready until actual hosted routes and images are verified on the deployed SHA.
+
+### Automation truth
+- The existing 15-minute controller is a monitor/checkpoint process, not a product-enrichment worker. The four-hour ASC job is extraction-only, not editorial verification or storefront population. The daily monitor is read-only. These schedules do not yet constitute a complete 24/7 catalogue workforce.
+- The task queue has been reprioritised on this PR branch: category assignment repair first; 50-image regeneration second; Audio and OneNav reconciliation next; ASC and Electro-city review thereafter; consolidated QA last. Newly added tasks are bounded and review-only. Automation remains limited to configured workflows; no claim of continuous autonomous execution is permitted until worker runs and recovery are demonstrated.
+- Checkpoint commit for task-queue reprioritisation: `e6053e0b478e1f1b788345440dedea2f50c2c871` on `fix/owner-preview-population-and-full-height-images-2026-11-09`.
+
+### This checkpoint does not claim completion
+- No images were regenerated or visually approved in this session.
+- No category mapping was yet changed; only the exact defects and required mapping work were recorded.
+- No audio product records were edited in this session.
+- No PR was merged; no deployment, live data write, Axxess upload or paid service was used.
+
+
+### Additional candidate data audit — 2026-11-09
+- `assets/auto-electrical-owner-preview.json` contains 34 review-only records: 9 Automotive Sensors, 8 Automotive Switches, 8 Automotive Globes and 9 Fuel Pumps. This is useful evidence that the pilot data exists, but it is not the full six-catalogue population and it is not live product data.
+- `assets/audio-catalogue-primary-preview.json` contains 3,317 source-snapshot records (47 source workbooks / 94 sheets / 35 component groups). The separate Audio Connections / car-audio review snapshot contains 66 records from 68 source rows; 2 are explicitly excluded (one sold out, one exact accessory model/image unverified). Some audio records have image exceptions and must remain held; do not mark all audio fully reconciled.
+- The 66-record audio review dataset has brand, model and component fields but does not expose an explicit `categoryPath` on each record. Category routing therefore has to be derived and tested against the approved component taxonomy; do not infer that the data is correctly assigned just because the records exist.
+- The customer preview's source category tree has zero direct active products for all 29 categories. Local preview records must therefore be deliberately joined to the approved local category tree. The current Auto Electrical pilot is the only clearly quantified populated category set; Car Care remains without verified preview product rows.
+- Current candidate workflow run `42599322442` (head `ad8375ca7a28c26e4a1a06310d8dcba25bd65fe3`) failed in step **Build and verify standard customer-only Pages directory**. The companion Public SKU Exposure Audit passed on the same SHA. The package failure is release-blocking; exact log text is not available through the connected GitHub read interface. Do not retry blindly: inspect the failed step output, repair its actual cause, and rerun exact-head package QA.
+
+
+### Progress checkpoint — 2026-11-09, later session
+- 50 ASC sample outputs were regenerated by GitHub Actions run `42599504443` (success), commit `24b9e68d321121ef290bf224b19207381db0e5df`. Processing log: `images=50 full_source_height=100_percent bottom_crop=0`. The contact sheet was inspected: all 50 outputs retain the full source-card height and no product bottoms appear clipped. However, some source-card captions and blue catalogue code strips remain embedded in the source crops. This is not yet the final product-photo treatment; those external labels still need separating from the product image without cutting product content. Owner acceptance remains pending.
+- Auto Electrical preview now presents four distinct verified catalogue subcategory routes: Automotive Sensors (9), Automotive Switches (8), Automotive Globes (8), Fuel Pumps (9). The former combined Sensors & Switches button is removed from that preview root. Each new button deep-links to the corresponding filter on the 34-product review-only page. This is a preview-only overlay; no live category IDs or database records have been created.
+- Audio Connections preview now filters out unverified products. Of 66 source rows, 61 have exact model/image matches and qualify for the review-only preview. Excluded: ac-006 (image rendering failed), ac-032 (model variant confirmation), ac-041 (model/specification review), ac-044 (model/rating-basis review), ac-058 (low-resolution image). Continue resolving these exceptions; do not display them as verified products.
+- The public Pages build now sanitizes supplier names and internal procurement fields from the emitted preview JSON, while preserving internal source provenance in the repository. A dedicated output-package regression test was added. The supplier exposure audit passed on the latest checked candidate before the most recent page edits.
+- Current Cloudflare Pages package QA is still being rerun after test and route changes. Earlier failures exposed brittle assertions and a supplier-identity metadata leak; those were addressed with semantic route assertions and an output-package sanitizer. Do not claim QA pass until the latest run finishes green.
+- The latest candidate branch remains `fix/owner-preview-population-and-full-height-images-2026-11-09`, PR #192. No merge, production deployment, live data write, Axxess upload or paid-credit action occurred.
+
+
+### Department population and audio hold update — 2026-11-09
+- The 50-record ASC sample splits into 8 Aerials, 34 Auto Electrical and 8 Car Mats. A new `preview-asc-sample.html` route now renders the 8 Aerials and 8 Car Mats as clearly labelled review-only sample records. The Aerials route is under Car Audio & Video → Accessories → Aerials; Car Mats routes under Car Care & Accessories → Car Mats. These are sample-only populations, not full catalogue completion.
+- Auto Electrical has separate preview routes for Sensors (9), Switches (8), Globes (8) and Fuel Pumps (9), each filtering the 34-record review-only pilot. The old combined Sensors & Switches item is hidden from the preview root. Remaining non-pilot categories remain pending verified source records.
+- Audio Connections secondary preview has been restricted across landing, brand and product pages to records with `PREVIEW_ONLY_NOT_LIVE`, `OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH` and a usable image URL. This yields 61 preview-eligible records. The following five remain held from the customer preview: ac-006 (image failed), ac-032 (variant identity), ac-041 (model/spec table), ac-044 (model and rating basis), ac-058 (low-resolution image).
+- The 3,317-record Planetworld snapshot still includes 236 source rows requiring manual review. This remains an outstanding product classification/enrichment task; do not mark Audio complete.
+- The public-preview sanitizer and test are integrated into the Pages build. It removes supplier identities and internal procurement keys from emitted JSON while retaining the repository's authorised source records. Exact-head Pages QA is running again after the new routes, filters and test repairs.
+- Image sample outputs have full source height and no bottom crop; contact sheet shows no product bottoms clipped. Caption/code-strip cleanup is still outstanding and owner acceptance is not granted.
+
+
+### Image crop refinement and workflow recovery — 2026-11-09
+- The first full-height image regeneration proved the product bottoms were no longer clipped, but it also exposed that the 181×209 ASC source files are catalogue cards rather than isolated product photos: descriptions and blue code strips remained inside the outputs. Those first outputs are intermediate and not owner-approved.
+- The image processor has now been refined to retain the full product area while removing the external caption/code region: no top crop by default, a conservative product-area bottom boundary, and per-image overrides for carpet sets, globes and fuel-pump cards with headings. The next contact sheet must be inspected to confirm no product component is clipped and no source caption/code remains. Do not equate card-height preservation with product-photo correctness.
+- A previous image-workflow run generated outputs but its Git push was rejected because a separate candidate commit landed during processing. The workflow now rebases the generated-image commit onto the latest candidate before pushing, to avoid losing work to a normal concurrent code commit. No blind force-push is permitted.
+- The exact-head package QA has also had repeated failures caused by regression assertions that did not match valid owner-preview route changes. Assertions are being corrected to test actual behaviour; they must not be disabled or weakened to bypass real defects.
+
+
+---
+
+## OWNER CONTINUATION CHECKPOINT — 2026-11-09 (latest evidence)
+
+### ASC 50-image sample
+- The 50 outputs have been regenerated from the source crops. The processor now preserves product-area bounds (no bottom crop of product content), masks external catalogue caption/code strips on the specific affected source cards, and overlays the Get Wired AutoWorx watermark over the ASC watermark.
+- The contact sheet was reviewed at full sheet resolution; high-resolution spot checks were performed on representative bulb, fuel-pump and accessory images. The previously clipped fuel-pump bases and printed captions are corrected in the latest sample.
+- The 50-row manifest and contact sheet are present. Current manifest status is being changed to `CONTACT_SHEET_REVIEWED; HIGH_RESOLUTION_SPOT_CHECKS_PASSED; OWNER_ACCEPTANCE_PENDING` by the latest image workflow run. The sample is **not** production-imported and owner acceptance is still pending.
+- Review contact sheet: `catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg`.
+
+### Audio: verified-only product display and current enrichment
+- The owner-preview now filters Planetworld product cards to records with both a product image URL and description, and an accepted exact-model image status. Records with rejected wrong-variant images, image candidates, page-link-only candidates, or missing descriptions are withheld from product cards.
+- The build applies `assets/audio-product-enrichment-overrides.json` to the preview copy before public-data sanitisation. The override file itself is not copied into the public package. Every override keeps `indicativePrice=null`, `hasStock=null`, and `Price On Request`; supplier names and supplier item codes are not displayed.
+- Nine model-specific review-only overrides now cover:
+  1. OneNav Classic 9-inch Toyota Prado 2002–2009 (OA014-1 source match; retailer image visually checked)
+  2. Audison bit DMI (official manufacturer product page/image)
+  3. Audison B-CON (official manufacturer product page/image)
+  4. ARCAM AVR21 (official manufacturer product page/image)
+  5. ARCAM AVR11 (official manufacturer product page/image)
+  6. Adeo Plano 135-inch Vision Acoustic
+  7. Adeo Plano 120-inch Reference White 2
+  8. Adeo Plano 135-inch Reference White 2
+  9. Adeo Prestige 180-inch Vision Acoustic
+- The exact image/description evidence is sourced from the model-specific product pages, including Audison `https://audison.com/product/bit-dmi/` and `https://audison.com/product/b-con`, ARCAM `https://www.arcam.co.uk/product,hda,av-receivers,avr21.htm`, `https://www.arcam.co.uk/product,hda,av-receivers,avr11.htm`, and exact Adeo product listings. These remain review-only owner-preview entries.
+- The latest read-only audit (run 42607717703 on SHA `1e97ee09496d4dbcc20531e269a043b49de6f28a`) reported 3,321 Planetworld preview-copy rows after overrides, 72 exact image+description verified, 3,240 missing image fields and 3,202 missing descriptions.
+- By division in that audit: Car Audio 702 source rows / 66 exact image+description verified; Home CI 323 rows / 6 verified; Home Retail 142 / 0; Installed AV 435 / 0; Musical Instruments 1,719 / 0.
+- By collection: Car Audio & Video 627 rows / 66 verified; Home Entertainment 465 / 6 verified; Band & Live Sound 792 / 0; Musical Instruments 850 / 0; Installed AV 435 / 0; DJ 15 / 0; Harnesses & Trims 47 / 0; Marine Audio 28 / 0; Studio Equipment 62 / 0.
+- Audio Connections review data remains 66 records, 61 exact model/image matches eligible for owner preview, and five held: `ac-006`, `ac-032`, `ac-041`, `ac-044`, `ac-058`.
+- The 47 Planetworld Harnesses & Trims rows are now separated in preview navigation into 24 Harnesses and 23 Trims. None currently has a verified product image/description, so both subcategory routes show an explicit reconciliation-pending message rather than misleading product cards.
+- Kicker brand-logo display size has been increased. OneNav wordmark and Amplified brand-art mappings remain. Audio brand-first then product-type navigation is preserved.
+
+### Package QA and release boundary
+- Cloudflare Pages standard customer-only package and isolated owner-preview package both passed the package QA and supplier/SKU exposure audit on SHA `1e97ee09496d4dbcc20531e269a043b49de6f28a` (workflow run 42607717703; public SKU audit 42607717716).
+- The latest image manifest-status update is running separately; rerun exact-head package QA after the image workflow's bot commit so the checks match the final branch SHA.
+- This is package QA, **not** a hosted staging-preview verification. The hosted preview, mobile-first and desktop browser acceptance checks remain outstanding. Do not spend Cloudflare credits or deploy unless separately approved.
+- Production HOLD remains. No merge, live Supabase write, Axxess upload, DNS/payment change or production deployment was performed.
+- The existing 15-minute controller monitors task/workflow state; the four-hour ASC worker extracts catalogue source data only. Neither performs continuous Audio product enrichment. Audio enrichment remains bounded, model-assisted review batches; do not claim a complete autonomous 24/7 workforce until a worker actually performs and checkpoints that work.
+
+### Next execution order
+1. Continue Audio model-by-model enrichment, prioritising the 636 Car Audio source rows not yet exact-image/description verified and the 459 Home Entertainment source rows not yet verified; then Home Retail, Installed AV, Band & Live Sound, DJ and Musical Instruments.
+2. Add exact image/description evidence only where the model/variant is confirmed. Keep wrong-variant, collection-only and image-pending rows out of product cards.
+3. Complete the full ASC six-catalogue product verification beyond the 50-image sample.
+4. Complete remaining category assignments and verified Car Care / Auto Electrical catalogue population.
+5. Complete Electro-city pilot evidence review.
+6. Run exact-head package QA after the latest image workflow commit, then obtain a same-SHA hosted staging preview and mobile/desktop owner acceptance before any readiness claim.

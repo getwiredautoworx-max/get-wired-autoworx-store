@@ -1,11 +1,13 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
-    "latest verified execution checkpoint on the coordinated storefront branch"
+    "latest verified execution checkpoint on the coordinated storefront branch",
+    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (owner clarification: public repo authorised; all products Price On Request)",
+    "2026-11-09 owner instruction: all three departments and their subcategories must render populated/assigned where verified"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -24,12 +26,15 @@
     "unverified_price_or_stock": "do not invent; use approved Price On Request handling",
     "retry_policy": "one bounded retry for deterministic QA/extraction infrastructure failures; no blind retries of data writes or deploys",
     "concurrency": "one active worker per workstream; no overlapping edits to the same output",
-    "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run"
+    "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run",
+    "public_repository_catalogue_processing": "authorised by owner; no private repository/private runner prerequisite; protect actual credentials/secrets and do not expose supplier names/internal SKUs in customer views",
+    "customer_price_display": "Price On Request for all supplier products until reliable supplier price/stock synchronisation is approved",
+    "preview_population": "review-only local preview data must render without requiring active/live Supabase product rows; no invented products or category assignments"
   },
   "tasks": [
     {
       "id": "jules-handover-and-pr-reconciliation",
-      "priority": 1,
+      "priority": 9,
       "status": "in_progress",
       "execution_mode": "scheduled-monitor",
       "automatic": true,
@@ -48,7 +53,7 @@
     },
     {
       "id": "asc-six-catalogue-source-extraction",
-      "priority": 2,
+      "priority": 5,
       "status": "ready",
       "execution_mode": "scheduled-deterministic",
       "automatic": true,
@@ -70,9 +75,9 @@
     },
     {
       "id": "audio-planetworld-source-extraction",
-      "priority": 3,
-      "status": "awaiting-private-processing-boundary",
-      "execution_mode": "private-runner-required",
+      "priority": 1,
+      "status": "in_progress",
+      "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
         "suppliers/Audio Connections/",
@@ -84,11 +89,11 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "Do not process confidential supplier pricing/workbooks on the public GitHub runner. Move this worker to an owner-controlled private repository or private execution environment before scheduling."
+      "next_action": "The source snapshot has 3,317 Planetworld rows. After the current owner-preview enrichment overlay, the read-only audit sees 3,321 rows, 72 exact image+description verified, 3,240 missing image fields and 3,202 missing descriptions. Continue exact official-model/product-image/description batches; do not treat titles alone as finished products. All prices stay Price On Request and supplier/internal SKU fields stay hidden."
     },
     {
       "id": "electrocity-ignition-pilot",
-      "priority": 4,
+      "priority": 6,
       "status": "review_required",
       "execution_mode": "scheduled-qa",
       "automatic": true,
@@ -105,7 +110,7 @@
     },
     {
       "id": "audio-video-content-enrichment",
-      "priority": 5,
+      "priority": 1,
       "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
@@ -122,11 +127,11 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Continue bounded product batches; do not fabricate missing details or images."
+      "next_action": "Continue exact-model enrichment in bounded batches. Current owner-preview audit: 66 Planetworld Car Audio records and 6 Home CI/Home Entertainment records pass exact image+description verification (72 total); 61 Audio Connections records pass, 5 are held. The 47 Harnesses & Trims source rows are now separated into 24 Harnesses and 23 Trims, but all 47 still lack verified images/descriptions and remain withheld. Only verified image+description products render; all others remain in source/review data. Prioritise remaining Car Audio, Home CI and Home Retail before Band & Live Sound, DJ, Installed AV and Musical Instruments."
     },
     {
       "id": "onenav-model-image-reconciliation",
-      "priority": 6,
+      "priority": 4,
       "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
@@ -140,7 +145,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "Continue OneNav exact-model audit; never substitute a similar series or vehicle-fitment image."
+      "next_action": "OA014-1 OneNav Classic 9-inch Toyota Prado 2002–2009 now has an exact owner-authorised retailer image and verified description in the review-only preview; continue remaining OneNav model-by-model, and never substitute a similar series or vehicle-fitment image."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -159,12 +164,12 @@
         "Populated product pages use verified catalogue data",
         "No obsolete eight-root navigation"
       ],
-      "next_action": "Reconcile a single current-main-based candidate; do not merge divergent PRs wholesale."
+      "next_action": "Integrate verified category navigation and exact-image/description-only product cards into one current-main-based candidate. Current review-only product pilots: Auto Electrical 34, Audio 72 Planetworld + 61 Audio Connections, ASC Aerials 8, Car Mats 8. Other source rows remain withheld until verified; no supplier names/internal SKUs shown."
     },
     {
       "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "blocked_on_candidate",
+      "status": "in_progress",
       "execution_mode": "scheduled-qa",
       "automatic": true,
       "source": [
@@ -177,7 +182,51 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Run QA when a current candidate is available; production remains on hold."
+      "next_action": "Cloudflare public-package QA and supplier/SKU exposure audit passed on exact SHA 1e97ee09496d4dbcc20531e269a043b49de6f28a. Image workflow is updating the sample manifest status; rerun exact-head package QA after its bot commit. Hosted staging preview and mobile/desktop owner acceptance remain outstanding; no production deployment."
+    },
+    {
+      "id": "three-department-category-assignment-repair",
+      "priority": 2,
+      "status": "in_progress",
+      "execution_mode": "bounded-code-and-data-audit",
+      "automatic": false,
+      "source": [
+        "assets/category-tree.json",
+        "assets/store-category-hierarchy.json",
+        "assets/auto-electrical-owner-preview.json",
+        "audio preview JSON files",
+        "Car Care catalogue source files",
+        "owner directives"
+      ],
+      "success_criteria": [
+        "All three approved homepage departments render working subcategory routes and visible review-only catalogue records where verified",
+        "Auto Electrical has separate ASC subcategories: Aerials excluded from this root; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps distinct; map only verified catalogue items",
+        "Car Audio / Home Entertainment includes Car Audio & Video, Home Entertainment, Audio Connections and Planetworld together; Accessories contains ASC Aerials, Trims and Harnesses",
+        "Car Mats are assigned under Car Care & Accessories; no unverified/invented Car Care products",
+        "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
+        "Customer display hides supplier names/internal SKUs and uses Price On Request"
+      ],
+      "next_action": "Preview now has separate Automotive Sensors (9), Automotive Switches (8), Globes (8), Fuel Pumps (9), ASC Aerials (8), and Car Mats (8) routes. Car Audio Accessories now displays separate Trims and Harnesses; source rows are split 23/24 and held pending exact product images/descriptions. Finish exact-head route tests; other non-pilot Auto Electrical and Car Care subcategories remain source-pending."
+    },
+    {
+      "id": "asc-50-image-regeneration-and-visual-qa",
+      "priority": 3,
+      "status": "review_required",
+      "execution_mode": "workflow-dispatch-and-visual-review",
+      "automatic": false,
+      "source": [
+        "scripts/process-product-image-pilot.py",
+        "assets/catalogue-source-crops/",
+        "assets/get-wired-product-pilot/",
+        "catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-manifest.csv"
+      ],
+      "success_criteria": [
+        "Regenerate all 50 outputs from original source images using current full-height-preserving processor",
+        "Manifest confirms crop_bottom_px equals original source height for every item; any top crop is explicitly justified by catalogue-card layout and never removes product content",
+        "All 50 output images and contact sheet exist, with checksums and 50 unique sample IDs",
+        "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
+      ],
+      "next_action": "All 50 sample outputs have been regenerated with product-area bounds preserved, external catalogue captions/code strips masked, and Get Wired watermark applied over the ASC watermark. The 50-row manifest and contact sheet exist; contact sheet review and high-resolution spot checks passed. Owner acceptance remains pending; do not import into production."
     }
   ]
 }

@@ -1,0 +1,33 @@
+name: Supplier Catalogue Review Data QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "catalogue-review/asc-catalogue-extraction/**"
+      - "staging/asc-staged-catalogue-products-do-not-import.csv"
+      - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/**"
+      - "tests/test_asc_reload_validation.py"
+      - "tests/electrocity-ignition-fitment-exception.test.cjs"
+      - ".github/workflows/supplier-catalogue-review-qa.yml"
+permissions:
+  contents: read
+jobs:
+  review-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate ASC 978-row review dataset when present
+        if: hashFiles('tests/test_asc_reload_validation.py') != ''
+        run: python3 tests/test_asc_reload_validation.py
+      - name: Validate Electrocity ignition pilot fitment quarantine when present
+        if: hashFiles('tests/electrocity-ignition-fitment-exception.test.cjs') != ''
+        run: node tests/electrocity-ignition-fitment-exception.test.cjs

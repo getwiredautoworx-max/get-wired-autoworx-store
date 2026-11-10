@@ -1,8 +1,19 @@
 name: Product Image Treatment Sample
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - fix/owner-preview-population-and-full-height-images-2026-11-09
+    paths:
+      - "scripts/process-product-image-pilot.py"
+      - "catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv"
+      - "assets/catalogue-source-crops/**"
+      - ".github/workflows/product-image-treatment-sample.yml"
 permissions:
   contents: write
+concurrency:
+  group: asc-50-image-treatment-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   treatment:
     runs-on: ubuntu-24.04
@@ -29,4 +40,7 @@ jobs:
           git add catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg
           if git diff --cached --quiet; then echo "No image-treatment output changes."; exit 0; fi
           git commit -m "chore(images): regenerate owner-reviewed 50-product treatment sample"
-          git push
+          # Human/code commits can land while the image job is processing. Rebase
+          # the generated-image commit onto the latest candidate before pushing.
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
