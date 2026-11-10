@@ -198,7 +198,7 @@ assert.ok(!planetPage.includes('Supplier stock snapshot') && !planetPage.include
 assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.equal(planet.records.length,3317);
-assert.equal(audio.records.length,66);
+assert.equal(audio.records.length,72);
 assert.equal(audio.powerSpecificationReconciliation.heldRecords.length,3,"only three unresolved Audio Connections model identity/specification holds may remain");
 assert.deepEqual(audio.powerSpecificationReconciliation.resolvedSubwooferRecords,["ac-021","ac-025"]);
 assert.ok(audio.powerSpecificationReconciliation.resolvedAmplifierRecords.includes("ac-038"),"SSA-HORNET-7600.4 must use the higher official impedance-specific output");
