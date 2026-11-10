@@ -108,14 +108,14 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 1), ("audio-catalogue-secondary-preview.json", 72)]:
+for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
     if len(records) < expected_minimum:
         raise SystemExit(f"Review catalogue incomplete in public package: {filename} records={len(records)}")
     serialised = json.dumps(review_data, ensure_ascii=False)
-    if re.search(r"Planetworld|Audio\\s+Connections", serialised, re.I):
+    if re.search(r"Planetworld|Audio\s+Connections", serialised, re.I):
         raise SystemExit(f"Supplier identity leaked into public review data: {filename}")
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
