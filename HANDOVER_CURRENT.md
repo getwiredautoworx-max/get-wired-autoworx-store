@@ -505,3 +505,21 @@ This section supersedes the immediately preceding statements that the six Alpine
 - Latest observed main push QA at commit `41b55e88459d1715e2e1b78d3ffd774101211aeb`: public SKU exposure audit PASS; catalogue image audit PASS; Store Production QA FAIL at the canonical production-domain reachability step; Public URL HTTP Verification FAIL at public homepage/policy route checks. Store source validation itself passed before the domain check failed.
 - This session has no GitHub Actions workflow-dispatch operation and no Cloudflare deployment API operation. No production deployment, DNS change, Axxess action, or Cloudflare production publish was performed.
 - Immediate unresolved dependency: obtain a successful isolated Pages preview workflow run from the existing approved workflow, then verify its hosted URL and customer routes. Separately, the canonical `www.getwiredauto.co.za` domain is still suspended/unreachable; do not misrepresent the staging preview as fixing that domain.
+
+
+---
+
+## ISOLATED CUSTOMER-VIEW STAGING PREVIEW DEPLOYED — 2026-11-10
+
+This section supersedes the immediately preceding statement that no isolated Pages preview workflow run or hosted preview exists.
+
+- Corrected the trigger branch: it had been created before the preview workflow was present, so GitHub ignored its earlier push events. Reset the trigger branch to current main (preserving the single canonical storefront on main), then recreated the trigger file. The isolated workflow started successfully.
+- First actual run exposed stale tests expecting 66 Audio records after the six Alpine records had raised the review dataset to 72. Updated both assertions: `tests/three-category-storefront-structure.test.cjs` and `tests/audio-catalogue-preview.test.cjs`. Main commits: `a496065b7f373fba312eb2e5488c470bacd47fa5` and `29cca98af655800dc4a3b988388c572629bb9637`.
+- Successful isolated staging workflow run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42875734006 (conclusion: success). It checked out current main, ran the public-only Pages builder with preview routes enabled, and deployed only to Cloudflare Pages branch `approved-storefront-preview`.
+- Build output verified: three root categories; 34 Auto Electrical and 72 Audio review records; 50 ASC sample + 34 Auto Electrical use the required ASC POR wording; generic pricing is POR; numeric prices and stock are suppressed; supplier names/SKUs are sanitized; preview routes included; supplier source PDFs and ASC catalogue data excluded; public package contains 4,211 files and 4,101 WebP images; storefront regression checks passed.
+- Hosted staging URLs returned by Wrangler after successful deployment:
+  - Customer-view owner preview: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev/owner-preview.html
+  - Staging branch root: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev/
+  - Immutable deployment: https://383d2b5d.get-wired-autoworx-store.pages.dev
+- This is a non-production review preview, not a production release. Canonical `www.getwiredauto.co.za` suspension remains a separate issue. Car Care catalogue population, full product enrichment, exact Alpine images, ASC 50-image owner acceptance, and mobile/desktop visual acceptance remain outstanding. Do not call the full store complete.
+- No Axxess upload, DNS change, production deployment, payment activation, or live stock/price write was performed.
