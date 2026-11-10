@@ -493,3 +493,15 @@ This section supersedes the immediately preceding statements that the six Alpine
 2. Obtain an authorised, no-credit staging Pages build/preview route and verify the unified store on mobile and desktop. The current production workflow must not be triggered as a substitute.
 3. Verify exact images and full product descriptions for all six Alpine models; keep POR and no promotion claims until supplier pricing/stock evidence is reconciled.
 4. Continue Auto Electrical, Audio and Car Care catalogue reconciliation in this same main project. Do not create another storefront or branch-based customer version.
+
+
+---
+
+## DEPLOYMENT ATTEMPT AND CURRENT BLOCKER — 2026-11-10
+
+- Added a strict public-build gate in `scripts/build-cloudflare-pages-public.py` requiring at least 34 Auto Electrical and 72 Audio review records, supplier-name sanitization, null numeric price, and unconfirmed stock. Latest build-script commits: `5690df3c16d301ca1e66cc6ec6da3b7d0d8463fd` and correction `17eb52d5c92f6bf30c64502991706337c48604f8`.
+- Attempted to trigger the existing isolated preview workflow by updating `.preview-deploy-trigger` on `approved-storefront-preview-trigger`; commit `bc7cc9edbdd3e7dfc9236faff89defb562825a13`. GitHub Actions did not create a corresponding run, and the isolated preview hostname has not been verified. Do not claim a deployment.
+- The existing `publish-approved-storefront-preview.yml` is configured to build current `main` with `GW_INCLUDE_PREVIEW_ROUTES=1` and deploy only to Pages branch `approved-storefront-preview`. The production workflow remains separate.
+- Latest observed main push QA at commit `41b55e88459d1715e2e1b78d3ffd774101211aeb`: public SKU exposure audit PASS; catalogue image audit PASS; Store Production QA FAIL at the canonical production-domain reachability step; Public URL HTTP Verification FAIL at public homepage/policy route checks. Store source validation itself passed before the domain check failed.
+- This session has no GitHub Actions workflow-dispatch operation and no Cloudflare deployment API operation. No production deployment, DNS change, Axxess action, or Cloudflare production publish was performed.
+- Immediate unresolved dependency: obtain a successful isolated Pages preview workflow run from the existing approved workflow, then verify its hosted URL and customer routes. Separately, the canonical `www.getwiredauto.co.za` domain is still suspended/unreachable; do not misrepresent the staging preview as fixing that domain.
