@@ -1,0 +1,108 @@
+{
+  "documentType": "supplier-catalogue-review",
+  "supplier": "Planet World",
+  "manufacturer": "Alpine",
+  "createdDate": "2026-11-10",
+  "status": "DO NOT IMPORT",
+  "purpose": "Owner-authorised upload of six Alpine product records for catalogue review. This file is source/review data only and is not connected to live storefront data.",
+  "pricingNotice": "The numeric sellingPrice values below are owner-supplied inputs, not independently verified current supplier RRPs. The current storefront price-display instruction remains Price On Request pending reliable direct supplier price and stock updates. Do not display these source prices to customers or use them for live pricing without separate verification and approval.",
+  "promotionNotice": "promoActive is retained as supplied by the owner. No promotional price or promotion dates were supplied; promotion configuration is incomplete and must not be published as a customer offer until validated.",
+  "records": [
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine UTE-73BT Digital Media Receiver",
+      "sku": "UTE-73BT",
+      "category": "Head Units (Radios)",
+      "supplier": "Planet World",
+      "sellingPrice": 2399,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "Digital media receiver.",
+      "specifications": [],
+      "reviewStatus": "review_required"
+    },
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine ILX-W650 7-inch Mechless Multimedia Receiver",
+      "sku": "ILX-W650",
+      "category": "Head Units (Radios)",
+      "supplier": "Planet World",
+      "sellingPrice": 6699,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "7-inch mechless multimedia receiver.",
+      "specifications": [],
+      "reviewStatus": "review_required"
+    },
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine S-S65 S-Series 6.5-inch 2-Way Coaxial Speakers",
+      "sku": "S-S65",
+      "category": "Speakers",
+      "supplier": "Planet World",
+      "sellingPrice": 1799,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "S-Series 6.5-inch 2-way coaxial speakers.",
+      "specifications": [
+        "80W RMS",
+        "240W peak"
+      ],
+      "reviewStatus": "review_required"
+    },
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine R-S69.2 R-Series 6x9-inch 2-Way Coaxial Speakers",
+      "sku": "R-S69.2",
+      "category": "Speakers",
+      "supplier": "Planet World",
+      "sellingPrice": 3349,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "R-Series 6x9-inch 2-way coaxial speakers.",
+      "specifications": [
+        "100W RMS",
+        "300W peak"
+      ],
+      "reviewStatus": "review_required"
+    },
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine S-A60M S-Series Mono Amplifier",
+      "sku": "S-A60M",
+      "category": "Amplifiers",
+      "supplier": "Planet World",
+      "sellingPrice": 4399,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "S-Series mono amplifier.",
+      "specifications": [
+        "600W RMS x 1 at 2 ohms",
+        "330W RMS x 1 at 4 ohms"
+      ],
+      "reviewStatus": "review_required"
+    },
+    {
+      "manufacturer": "Alpine",
+      "name": "Alpine R-A60F R-Series 4-Channel Amplifier",
+      "sku": "R-A60F",
+      "category": "Amplifiers",
+      "supplier": "Planet World",
+      "sellingPrice": 6599,
+      "currency": "ZAR",
+      "promoActive": true,
+      "quoteOnly": false,
+      "description": "R-Series 4-channel amplifier.",
+      "specifications": [
+        "100W RMS x 4 at 4 ohms",
+        "150W RMS x 4 at 2 ohms"
+      ],
+      "reviewStatus": "review_required"
+    }
+  ]
+}
