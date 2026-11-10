@@ -47,6 +47,14 @@ PREVIEW_ASSET_FILES = [
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
 PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
+# Sanitised, review-only local catalogue records power the owner-facing
+# customer-view route (?ownerPreview=1) without requiring live Supabase rows.
+# They are never treated as live stock or verified supplier prices.
+PUBLIC_REVIEW_DATA_FILES = [
+    "auto-electrical-owner-preview.json",
+    "audio-catalogue-secondary-preview.json",
+]
+
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
@@ -91,6 +99,12 @@ if include_preview:
         shutil.copytree(source_dir, OUT / "assets" / name)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "apply-audio-preview-overrides.py"), str(OUT / "assets")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
+for name in PUBLIC_REVIEW_DATA_FILES:
+    copy_file(f"assets/{name}")
+# Strip supplier names and internal procurement fields before publishing the
+# explicitly review-only customer-view data assets.
+subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
+
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
