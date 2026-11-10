@@ -472,3 +472,24 @@ This section is the current authority and supersedes earlier statements in this 
 - ASC product-level verification beyond the pilot and the full 50-image treatment acceptance remain outstanding. The image sample is not owner-accepted yet.
 - Audio product enrichment remains incomplete; only exact verified model/image/description combinations may be presented as product-ready.
 - No Axxess upload, DNS change, live Supabase/catalogue/price/stock write, or payment activation was part of this merge.
+
+
+---
+
+## CONSOLIDATED MAIN CUSTOMER-VIEW REPAIR — 2026-11-10
+
+This section supersedes the immediately preceding statements that the six Alpine records remain only on a separate branch, and records the current implementation state.
+
+- Main now includes six Alpine product identities and owner-supplied technical specifications in `assets/audio-catalogue-secondary-preview.json`. The audio review dataset now contains 72 records (previously 66).
+- The six Alpine records retain `Price On Request`, null price and stock, and review-only publication status. Their exact product images have not yet been verified; do not present them as image-complete or promotion-ready. Owner-supplied price inputs and incomplete promotion flags are not customer pricing or offers.
+- Main's Pages allowlist build now packages the sanitised Auto Electrical and Audio review JSON files alongside the unified storefront assets. The sanitizer removes supplier identities and procurement fields before the files enter the public output. The normal live storefront still uses its normal customer mode; the local review dataset is only selected by the explicit `?ownerPreview=1` query.
+- `store.html` now forwards that query to its embedded `index-new.html` storefront, so the owner can inspect the same unified storefront shell rather than a separate store implementation.
+- Relevant main commits: `3e330ef32bff53d3910f896b897ce882f2ca64b7` (review data packaging), `03e8d0e9eafdcde5c243be7c98159fe5153229ff` (initial wrapper change), `095b1f916b6ba7e9b602ab9371f1c3e7bbbc3d89` (corrected wrapper query forwarding), and `41b55e88459d1715e2e1b78d3ffd774101211aeb` (six Alpine records integrated).
+- These code changes have NOT yet been run through a fresh hosted Pages build or deployed. The manual workflow is a production deployment workflow, not a staging-only workflow. No dispatch action is available through the connected GitHub tools, and no Cloudflare deployment credential is available to this session. Do not bypass the production hold by enabling automatic deployment or using another host.
+- Axxess remains intentionally suspended by the owner. No attempt to restore it, upload to it, or alter DNS was made.
+
+### Remaining verification and work
+1. Run the public Pages builder and the exact-head tests, including a review-data safety assertion for the two review JSON files included on main. The existing broad preview sanitization test expects the full preview-only asset set and must not be run against the deliberately reduced main package unchanged.
+2. Obtain an authorised, no-credit staging Pages build/preview route and verify the unified store on mobile and desktop. The current production workflow must not be triggered as a substitute.
+3. Verify exact images and full product descriptions for all six Alpine models; keep POR and no promotion claims until supplier pricing/stock evidence is reconciled.
+4. Continue Auto Electrical, Audio and Car Care catalogue reconciliation in this same main project. Do not create another storefront or branch-based customer version.
