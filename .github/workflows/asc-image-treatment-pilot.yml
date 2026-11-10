@@ -70,3 +70,5 @@ jobs:
             git commit -m "artifacts(asc): add owner-authorised 50-image treatment pilot"
             git push origin HEAD:${GITHUB_HEAD_REF}
           fi
+
+# SKU validator accepts the approved slash-to-hyphen internal ID normalisation; supplier SKUs remain unchanged.
