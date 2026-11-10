@@ -14,6 +14,9 @@ for row in rows:
     path = Path(row["treated_image_path"])
     assert path.is_file(), f"Missing treated image: {path}"
     assert row["logo_watermark_applied"].lower() == "true"
+    result = next(x for x in report["results"] if x["supplier_sku"] == row["supplier_sku"])
+    source_height = int(row["source_dimensions"].split("x")[1])
+    assert result["crop_bottom"] == source_height, f"Source image height was cropped for {row['supplier_sku']}"
     assert row["image_treatment_status"] in {"TREATED_PENDING_VISUAL_QA", "MANUAL_REVIEW_NO_MASK", "MANUAL_REVIEW_MASK_TOO_LARGE"}
 assert len(list(OUT.glob("sample-*.jpg"))) == 50
 print(f"PASS: 50 ASC images generated; {report['treated_pending_visual_qa']} pending visual QA; {report['manual_review']} manual mask review; contact sheet present.")
