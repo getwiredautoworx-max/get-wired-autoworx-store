@@ -537,3 +537,28 @@ This section supersedes the immediately preceding statement that no isolated Pag
 - PR #193 exact head: `d078254451f668fbdf8ac8f33377a863594f8514`. GitHub customer-source audit, public-package QA and isolated Cloudflare Pages preview checks were still running at checkpoint time; no pass is claimed until their final conclusions are read.
 - No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
 - Next action: complete exact-model image matching for the six Alpine products, then continue the outstanding Planetworld/Audio Connections batches and category reconciliation on the same canonical storefront project.
+
+
+---
+
+## ALPINE IMAGE ENRICHMENT + ASC 50-IMAGE PILOT REPAIR — 2026-11-10
+
+### Alpine six-product review records
+- PR #193 now includes complete descriptions, exact-model manufacturer references, and visually matched product images for UTE-73BT, iLX-W650, S-S65, R-S69.2, S-A60M and R-A60F.
+- Model generation is preserved: older S-A60M and R-A60F are not substituted with S2-A60M or R2-A60F. The iLX-W650 model casing is corrected.
+- All six remain `Price On Request`, null numeric price/stock, and `PREVIEW_ONLY_NOT_LIVE`. Images are explicitly `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`; they are not sale-ready.
+- PR #193 exact head `70c64721920b3500bb95b7836e9f4d2d63fde1f8`. Customer-source audit and public-package QA passed; Cloudflare Pages preview check passed. PR remains draft and unmerged.
+
+### ASC 50-image pilot repair
+- Diagnosed and fixed the false SKU validation failure: the approved internal GW SKU normalises supplier SKU slashes to hyphens (e.g. MA596/2 → GW-ASC-MA596-2); original supplier SKUs remain unchanged.
+- Replaced the one-size 72% crop with the repository's per-source product-area boundaries and caption/header/SKU masks: 25 images use the standard 72% boundary, 16 longer products use 78%, and 9 fuel-pump cards use 92% with external header/code masks.
+- Corrected the contact-sheet layout and added tests for each image's expected crop boundary and masks. Added a fetch/rebase before the workflow's generated-artifact push to prevent the earlier non-fast-forward rejection.
+- Successful latest image-pilot run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42880199458. The run processed all 50 images, passed the catalogue and image-output validators, uploaded the review artifact, and committed the review-only output to the temporary pilot branch.
+- Review result: 39 images are `TREATED_PENDING_VISUAL_QA`; 11 remain `MANUAL_REVIEW`. This is not owner acceptance. Watermark removal and product integrity still require visual QA; no sample is approved for production or catalogue import.
+- Artifact: https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/actions/artifacts/13794181046. PR #191 remains a temporary, draft, non-mergeable execution harness; do not merge it.
+- No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
+
+### Next
+1. Visually inspect all 50 source-specific outputs, focusing on the 11 manual-review records and any residual ASC watermark visible over product surfaces.
+2. Only after image QA, obtain owner acceptance of the sample before scaling the ASC treatment to the full catalogue.
+3. Continue Planetworld/Audio Connections enrichment and category reconciliation in the canonical storefront; keep all review data out of live sale until approved.
