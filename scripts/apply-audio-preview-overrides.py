@@ -28,7 +28,7 @@ for override in overrides:
             return bool(match)
         found = [candidate for candidate in base.get("records", []) if matches(candidate)]
         if len(found) > 1:
-            raise SystemExit(f"AUDIO_OVERRIDE_FAIL expected at most one exact match, found {len(found)} for {match}")
+            details = [{k: candidate.get(k) for k in ("id", "title", "modelNumber", "brand", "division", "collection", "component", "imageStatus")} for candidate in found]\n            raise SystemExit(f"AUDIO_OVERRIDE_FAIL expected at most one exact match for {match}; candidates=" + json.dumps(details, ensure_ascii=False))
         if not found and override.get("appendIfMissing"):
             row = {"id": record_id}
             base.setdefault("records", []).append(row)
