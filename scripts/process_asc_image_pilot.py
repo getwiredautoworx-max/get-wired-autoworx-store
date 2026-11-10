@@ -77,7 +77,8 @@ def main():
         with Image.open(source_path) as im:
             original = im.convert("RGB")
         width, height = original.size
-        crop_bottom = max(1, min(height, round(height * 0.72)))
+                # Source assets are already product-area crops. Preserve their full height; do not remove a fixed 28% from every product.
+        crop_bottom = height
         crop = original.crop((0, 0, width, crop_bottom))
         cleaned, mask, ratio = remove_pale_blue_watermark(np.array(crop))
         mask_pixels = int(np.count_nonzero(mask))
