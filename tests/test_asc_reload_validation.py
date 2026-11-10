@@ -52,7 +52,8 @@ def main():
         require(bool(sku), "Blank supplier SKU")
         require(sku not in master_by_sku, f"Duplicate supplier SKU: {sku}")
         require(row["supplier"] == "ASC", f"Unexpected supplier on {sku}")
-        require(row["proposed_gw_sku"] == f"GW-ASC-{sku}", f"Proposed GW SKU mismatch: {sku}")
+        expected_gw_sku = f"GW-ASC-{sku.replace(chr(47), chr(45))}"
+        require(row["proposed_gw_sku"] == expected_gw_sku, f"Proposed GW SKU mismatch: {sku}; expected {expected_gw_sku}")
         require(row["source_page"].isdigit(), f"Missing/invalid source page: {sku}")
         require(row["product_name_as_printed"].strip(), f"Missing source title: {sku}")
         require(row["source_verification_status"].strip(), f"Missing source verification status: {sku}")
