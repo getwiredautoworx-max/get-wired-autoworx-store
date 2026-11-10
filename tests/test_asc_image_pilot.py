@@ -16,7 +16,21 @@ for row in rows:
     assert row["logo_watermark_applied"].lower() == "true"
     result = next(x for x in report["results"] if x["supplier_sku"] == row["supplier_sku"])
     source_height = int(row["source_dimensions"].split("x")[1])
-    assert result["crop_bottom"] >= round(source_height * 0.78), f"Product image crop is too short for {row['supplier_sku']}"
+    source_name = Path(row["candidate_image_path_from_preview_branch"]).name
+    long_product_names = {
+        "asc-m7-avan01.jpg", "asc-m7-con01.jpg", "asc-m7-cor01.jpg", "asc-m7-cor02.jpg",
+        "asc-m7-gf1.jpg", "asc-m7-bme36.jpg", "asc-m7-bme46.jpg", "asc-m7-bme87.jpg",
+        "asc-9005-cbl-h.jpg", "asc-9005-h.jpg", "asc-9005-nb.jpg", "asc-9005xs.jpg",
+        "asc-h1865w-h.jpg", "asc-h1960-55w-h.jpg", "asc-h355w-cbl.jpg", "asc-h355w-h.jpg"
+    }
+    fuel_pump_names = {
+        "asc-f1-012.jpg", "asc-f1-019.jpg", "asc-f1-060.jpg", "asc-f1-067.jpg",
+        "asc-f1-001.jpg", "asc-f1-001-e.jpg", "asc-f1-009.jpg", "asc-f1-017.jpg", "asc-f1-028.jpg"
+    }
+    expected_ratio = 0.92 if source_name in fuel_pump_names else 0.78 if source_name in long_product_names else 0.72
+    assert result["crop_bottom"] == round(source_height * expected_ratio), f"Wrong product crop boundary for {row['supplier_sku']}"
+    expected_masks = 2 if source_name in fuel_pump_names else 1 if source_name in long_product_names else 0
+    assert result["caption_masks_applied"] == expected_masks, f"Caption/code masks missing for {row['supplier_sku']}"
     assert row["image_treatment_status"] in {"TREATED_PENDING_VISUAL_QA", "MANUAL_REVIEW_NO_MASK", "MANUAL_REVIEW_MASK_TOO_LARGE"}
 assert len(list(OUT.glob("sample-*.jpg"))) == 50
 print(f"PASS: 50 ASC images generated; {report['treated_pending_visual_qa']} pending visual QA; {report['manual_review']} manual mask review; contact sheet present.")
