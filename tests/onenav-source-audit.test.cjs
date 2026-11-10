@@ -327,6 +327,28 @@ assert.equal(licensePlateCamera.image_status, 'OFFICIAL_IMAGE_CANDIDATE_RIGHTS_R
 assert.match(licensePlateCamera.review_note, /CL433RVDVR_web-600x600\.jpg/);
 assert.match(licensePlateCamera.review_note, /600x600/);
 
+const on016Path = 'catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json';
+const on016 = JSON.parse(fs.readFileSync(on016Path, 'utf8'));
+assert.equal(on016.review_status, 'DO NOT IMPORT');
+assert.equal(on016.manufacturer_model_code, 'ON016-2LX');
+assert.equal(on016.screen_size.status, 'CONFLICT_UNRESOLVED');
+assert.equal(on016.pricing.customer_display, 'Price On Request');
+assert.equal(on016.pricing.numeric_price, null);
+assert.equal(on016.stock.status, 'UNCONFIRMED');
+assert.equal(on016.proposed_gw_sku, null);
+assert.equal(on016.image.status, 'IMAGE_PENDING');
+assert.equal(on016.image.url, null);
+assert.equal(on016.image.approved, false);
+assert.equal(on016.image.candidates.length, 1);
+assert.equal(on016.image.candidates[0].status, 'NOT_APPROVED');
+assert.equal(on016.image.candidates[0].rights_status, 'UNVERIFIED');
+assert.match(on016.image.candidates[0].url, /imgi_12_Toyota-COROLLA-CROSS-ON016-2LX\\.webp$/);
+assert.equal(on016.independent_reseller_cross_checks.length, 2);
+assert.ok(on016.independent_reseller_cross_checks.every(row => row.status === 'THIRD_PARTY_CROSSCHECK_ONLY'));
+assert.match(on016.independent_reseller_cross_checks[0].page_url, /on016-2lx/);
+assert.match(on016.independent_reseller_cross_checks[1].page_url, /on016-2lx/);
+assert.match(on016.screen_size.cross_check_summary, /remains unresolved/i);
+
 const officialExactSkus = coverage
   .filter(row => row.manufacturer_match_status.startsWith('OFFICIAL_MANUFACTURER_SITE_EXACT_SKU_AND_TITLE')
     || row.manufacturer_match_status.startsWith('OFFICIAL_ONENAV_PRODUCT_PAGE_EXACT_SKU_AND_TITLE')
