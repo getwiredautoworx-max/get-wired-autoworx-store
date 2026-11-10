@@ -523,3 +523,17 @@ This section supersedes the immediately preceding statement that no isolated Pag
   - Immutable deployment: https://383d2b5d.get-wired-autoworx-store.pages.dev
 - This is a non-production review preview, not a production release. Canonical `www.getwiredauto.co.za` suspension remains a separate issue. Car Care catalogue population, full product enrichment, exact Alpine images, ASC 50-image owner acceptance, and mobile/desktop visual acceptance remain outstanding. Do not call the full store complete.
 - No Axxess upload, DNS change, production deployment, payment activation, or live stock/price write was performed.
+
+
+---
+
+## ALPINE SIX-RECORD MANUFACTURER ENRICHMENT — 2026-11-10
+
+- Created review-only PR #193 from `work/alpine-official-spec-enrichment-2026-11-10`; it updates only `assets/audio-catalogue-secondary-preview.json`.
+- Added official manufacturer product/manual references and expanded technical descriptions for UTE-73BT, iLX-W650, S-S65, R-S69.2, S-A60M and R-A60F. Corrected the iLX-W650 model casing.
+- Cross-checked the S-A60M and R-A60F against the previous-generation manuals; did not substitute S2-A60M or R2-A60F. Kept every Alpine record at Price On Request, null numeric price/stock, and PREVIEW_ONLY_NOT_LIVE.
+- Exact model images remain unresolved for all six: `imageUrl` and `imageSourceUrl` remain null and `imageStatus` remains `EXACT_MODEL_IMAGE_REQUIRED`. These records are not image-complete or sale-ready.
+- Local structural verification passed: valid JSON, 72 total audio review records, exactly six Alpine records, all six POR/review-only, all six image-pending.
+- PR #193 exact head: `d078254451f668fbdf8ac8f33377a863594f8514`. GitHub customer-source audit, public-package QA and isolated Cloudflare Pages preview checks were still running at checkpoint time; no pass is claimed until their final conclusions are read.
+- No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
+- Next action: complete exact-model image matching for the six Alpine products, then continue the outstanding Planetworld/Audio Connections batches and category reconciliation on the same canonical storefront project.
