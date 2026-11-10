@@ -9,6 +9,40 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+# The catalogue source cards have different product-photo boundaries. Preserve
+# long product bodies and mask only the external caption/header/code strips.
+DEFAULT_PRODUCT_CROP_RATIO = 0.72
+PRODUCT_CROP_OVERRIDES = {
+    **{f"asc-{name}.jpg": 0.78 for name in [
+        "m7-avan01", "m7-con01", "m7-cor01", "m7-cor02", "m7-gf1",
+        "m7-bme36", "m7-bme46", "m7-bme87", "9005-cbl-h", "9005-h",
+        "9005-nb", "9005xs", "h1865w-h", "h1960-55w-h", "h355w-cbl", "h355w-h"
+    ]},
+    **{f"asc-{name}.jpg": 0.92 for name in [
+        "f1-012", "f1-019", "f1-060", "f1-067", "f1-001", "f1-001-e",
+        "f1-009", "f1-017", "f1-028"
+    ]},
+}
+PRODUCT_MASK_OVERRIDES = {
+    **{f"asc-{name}.jpg": [(0.0, 0.62, 1.0, 0.78)] for name in [
+        "m7-avan01", "m7-con01", "m7-cor01", "m7-cor02",
+        "m7-gf1", "m7-bme36", "m7-bme46", "m7-bme87"
+    ]},
+    **{f"asc-{name}.jpg": [(0.0, 0.65, 1.0, 0.78)] for name in [
+        "9005-cbl-h", "9005-h", "9005-nb", "9005xs"
+    ]},
+    **{f"asc-{name}.jpg": [(0.0, 0.61, 1.0, 0.78)] for name in [
+        "h1865w-h", "h1960-55w-h", "h355w-cbl", "h355w-h"
+    ]},
+    **{f"asc-{name}.jpg": [(0.0, 0.0, 1.0, 0.16), (0.0, 0.76, 1.0, 0.92)] for name in [
+        "f1-012", "f1-019", "f1-060", "f1-067"
+    ]},
+    **{f"asc-{name}.jpg": [(0.0, 0.0, 1.0, 0.16), (0.0, 0.88, 1.0, 0.92)] for name in [
+        "f1-001", "f1-001-e", "f1-009", "f1-017"
+    ]},
+    "asc-f1-028.jpg": [(0.0, 0.0, 1.0, 0.18), (0.0, 0.88, 1.0, 0.92)],
+}
+
 def read_csv(path):
     with path.open(newline="", encoding="utf-8-sig") as f:
         return list(csv.DictReader(f))
@@ -77,10 +111,20 @@ def main():
         with Image.open(source_path) as im:
             original = im.convert("RGB")
         width, height = original.size
-                # Keep the full product body while excluding the caption/SKU band below the product image.
-        # The old 72% cut clipped the lower edge of long items (for example F1-028); 78% preserves it.
-        crop_bottom = max(1, min(height, round(height * 0.78)))
+        source_name = source_rel.name
+        crop_ratio = PRODUCT_CROP_OVERRIDES.get(source_name, DEFAULT_PRODUCT_CROP_RATIO)
+        crop_bottom = max(1, min(height, round(height * crop_ratio)))
         crop = original.crop((0, 0, width, crop_bottom))
+        caption_masks = PRODUCT_MASK_OVERRIDES.get(source_name, [])
+        if caption_masks:
+            draw = ImageDraw.Draw(crop)
+            for x1, y1, x2, y2 in caption_masks:
+                left = max(0, min(width, round(width * x1)))
+                upper = max(0, min(crop_bottom, round(height * y1)))
+                right = max(0, min(width, round(width * x2)))
+                lower = max(0, min(crop_bottom, round(height * y2)))
+                if right > left and lower > upper:
+                    draw.rectangle((left, upper, right, lower), fill=(255, 255, 255))
         cleaned, mask, ratio = remove_pale_blue_watermark(np.array(crop))
         mask_pixels = int(np.count_nonzero(mask))
         if ratio == 0:
@@ -110,11 +154,13 @@ def main():
             "sample": index, "supplier_sku": row["supplier_sku"],
             "title": row["product_name_as_printed"], "source": source_rel.as_posix(),
             "output": output_path.as_posix(), "source_dimensions": f"{width}x{height}",
-            "crop_bottom": crop_bottom, "watermark_mask_pixels": mask_pixels,
+            "crop_bottom": crop_bottom, "crop_ratio": round(crop_bottom / height, 4),
+            "caption_masks_applied": len(caption_masks), "watermark_mask_pixels": mask_pixels,
             "watermark_mask_ratio": round(ratio, 5), "logo_watermark_applied": True,
             "status": status
         })
-        thumb = canvas.resize((220, round(canvas.height * 220 / canvas.width)), Image.Resampling.LANCZOS)
+        thumb = canvas.copy()
+        thumb.thumbnail((210, 180), Image.Resampling.LANCZOS)
         contact_cells.append((index, row["supplier_sku"], thumb))
 
     write_csv(args.pilot, rows)
@@ -127,7 +173,7 @@ def main():
         font = ImageFont.load_default()
     for i, (number, sku, thumb) in enumerate(contact_cells):
         x, y = (i % cols) * cell_w, (i // cols) * cell_h
-        sheet.paste(thumb, (x, y + 18))
+        sheet.paste(thumb, (x + (cell_w - thumb.width) // 2, y + 18))
         draw.text((x + 5, y + 3), f"{number:02d}  {sku}", fill=(20, 35, 50), font=font)
     sheet.save(args.output / "contact-sheet.jpg", "JPEG", quality=90, optimize=True)
     manual = sum(1 for r in results if r["status"].startswith("MANUAL_REVIEW"))
@@ -135,7 +181,7 @@ def main():
         "sample_count": len(results),
         "treated_pending_visual_qa": sum(1 for r in results if r["status"] == "TREATED_PENDING_VISUAL_QA"),
         "manual_review": manual,
-        "treatment": "caption/footer crop; pale-blue watermark inpainting where detected; Get Wired AutoWorx logo watermark in separate footer strip",
+        "treatment": "per-image product crop boundaries; external caption/header/SKU masking; pale-blue watermark inpainting where detected; Get Wired AutoWorx logo watermark in separate footer strip",
         "results": results
     }
     (args.output / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
