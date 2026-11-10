@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Exact-head owner preview deployment refresh: 2026-11-04 supplier QA -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f3f7fb">
+<title>Get Wired AutoWorx | Owner Preview</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;background:#f3f7fb;color:#173650}
+.preview-banner{height:auto;min-height:48px;padding:10px 14px;background:#08223a;color:#fff;border-bottom:3px solid #08a5ff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:800;letter-spacing:.02em}
+.preview-banner strong{color:#7ed2ff}.preview-banner small{font-weight:500;color:#d7e8f5;margin-left:8px}
+#store{display:block;width:100%;height:calc(100% - 48px);border:0;background:#02060d}
+@media(max-width:600px){.preview-banner{font-size:11px;padding:9px 8px;display:block}.preview-banner small{display:block;margin:3px 0 0}#store{height:calc(100% - 58px)}}
+</style>
+</head>
+<body>
+<div class="preview-banner"><strong>OWNER PREVIEW — NON-PRODUCTION</strong><small>Checkout, order submission and Supabase write actions are blocked. Catalogue and navigation review only.</small></div>
+<iframe id="store" src="index-new.html?ownerPreview=1&previewBuild=20261105-photo-category-buttons" title="Get Wired AutoWorx owner preview"></iframe>
+<script>
+(function(){
+ const frame=document.getElementById('store');
+ function lockCheckout(){
+  try{
+   const doc=frame.contentDocument;
+   if(!doc||doc.documentElement.dataset.gwPreviewLocked==='1')return;
+   doc.documentElement.dataset.gwPreviewLocked='1';
+   const style=doc.createElement('style');
+   style.textContent='a[href*="checkout"],.checkoutNow,#checkout,.checkout-fab{display:none!important}';
+   doc.head.appendChild(style);
+   const win=frame.contentWindow;
+   if(win&&!win.__GW_PREVIEW_WRITE_BLOCKED){
+    const originalFetch=win.fetch.bind(win);
+    win.fetch=function(input,init){
+     const method=String((init&&init.method)||'GET').toUpperCase();
+     const url=typeof input==='string'?input:(input&&input.url)||'';
+     if(['POST','PUT','PATCH','DELETE'].includes(method)&&/supabase\.co/i.test(url))return Promise.reject(new Error('Supabase writes are disabled in this owner preview.'));
+     return originalFetch(input,init);
+    };
+    win.__GW_PREVIEW_WRITE_BLOCKED=true;
+   }
+   doc.addEventListener('click',function(event){
+    const target=event.target&&event.target.closest?event.target.closest('a,button,[role="button"]'):null;
+    if(!target)return;
+    const label=((target.innerText||target.getAttribute('aria-label')||'')+' '+(target.getAttribute('href')||'')).toLowerCase();
+    if(/checkout|place order|pay now|submit order|payment|send request|submit request|request this part/.test(label)){
+     event.preventDefault();event.stopPropagation();event.stopImmediatePropagation();
+     window.alert('Checkout is disabled in this non-production owner preview.');
+    }
+   },true);
+   doc.addEventListener('submit',function(event){
+    const form=event.target;
+    const action=((form.getAttribute('action')||'')+' '+(form.id||'')+' '+(form.getAttribute('name')||'')).toLowerCase();
+    if(/checkout|order|payment/.test(action)){
+     event.preventDefault();event.stopPropagation();event.stopImmediatePropagation();
+     window.alert('Order submission is disabled in this non-production owner preview.');
+    }
+   },true);
+  }catch(error){/* A cross-origin frame is not modified; preview remains clearly marked. */}
+ }
+ frame.addEventListener('load',lockCheckout);
+ lockCheckout();
+})();
+</script>
+</body>
+</html>

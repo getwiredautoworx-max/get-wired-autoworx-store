@@ -1,7 +1,7 @@
 /* Product detail window enhancement. Loaded by the storefront to expose the existing Supabase product data without changing the database. */
 (function(){
   function esc(v){return String(v??'').replace(/[&<>\"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[x]))}
-  function money(v){return v==null?'Price on request':new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(v))}
+  function money(){return 'Price On Request'}
   function text(v){if(!v)return 'Not specified.';if(Array.isArray(v))return v.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(', ');if(typeof v==='object')return Object.entries(v).map(([k,x])=>k+': '+(typeof x==='object'?JSON.stringify(x):x)).join(' • ');return String(v)}
   function openProduct(p){
     let m=document.getElementById('gwProductModal');

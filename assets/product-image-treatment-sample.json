@@ -1,0 +1,960 @@
+{
+  "schemaVersion": 1,
+  "title": "Get Wired AutoWorx — Product Image Treatment Sample",
+  "status": "OWNER_REVIEW_ONLY_NOT_PUBLISHED",
+  "notice": "50-product image-treatment sample. Full source height is preserved and no bottom crop is applied. Some source-card captions/code strips still require separation from product photos; owner acceptance remains pending. Product prices and availability are unconfirmed. No purchase actions or live catalogue changes are enabled.",
+  "priceDisplay": "Price On Request due to Limited Stock and Availability",
+  "availabilityDisplay": "Availability to confirm",
+  "records": [
+    {
+      "id": "GW-PILOT-001",
+      "title": "AERIAL OPEL/MERC.W124/HONDA BALLADE",
+      "description": "AERIAL OPEL/MERC.W124/HONDA BALLADE",
+      "fitment": "Opel / Mercedes W124 / Honda Ballade",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-001.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-002",
+      "title": "AERIAL NISSAN EARLY 1 TONNER",
+      "description": "AERIAL NISSAN EARLY 1 TONNER",
+      "fitment": "Nissan Early 1 Tonner",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-002.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-003",
+      "title": "AERIAL MAZDA 323/BANTAM/RUSTLER",
+      "description": "AERIAL MAZDA 323/BANTAM/RUSTLER",
+      "fitment": "Mazda 323 / Bantam / Rustler",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-003.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-004",
+      "title": "AERIAL ROOF MOUNT NISSAN SENTRA",
+      "description": "AERIAL ROOF MOUNT NISSAN SENTRA",
+      "fitment": "Nissan Sentra",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-004.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-005",
+      "title": "CAMSHAFT POSITION SENSOR GOLF-JETTA IV-BEETLE 2",
+      "description": "CAMSHAFT POSITION SENSOR GOLF-JETTA IV-BEETLE 2",
+      "fitment": "Golf / Jetta IV / Beetle 2",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-005.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-006",
+      "title": "CRANKSHAFT POSITION SENSOR GOLF-JETTA IV",
+      "description": "CRANKSHAFT POSITION SENSOR GOLF-JETTA IV",
+      "fitment": "Golf / Jetta IV",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-006.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-007",
+      "title": "CRANKSHAFT POSITION SENSOR OPEL CORSA (B-C) ASTRA (F)",
+      "description": "CRANKSHAFT POSITION SENSOR OPEL CORSA (B-C) ASTRA (F)",
+      "fitment": "Opel Corsa (B-C) / Astra (F)",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-007.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-008",
+      "title": "CRANKSHAFT POSITION SENSOR GOLF JETTA 4 1.6 1.8 2.0",
+      "description": "CRANKSHAFT POSITION SENSOR GOLF JETTA 4 1.6 1.8 2.0",
+      "fitment": "Golf / Jetta 4 1.6 / 1.8 / 2.0",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-008.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-009",
+      "title": "CAMSHAFT POSITION SENSOR GOLF-JETTA-TIGUAN-TOUAREG-TOURAN",
+      "description": "CAMSHAFT POSITION SENSOR GOLF-JETTA-TIGUAN-TOUAREG-TOURAN",
+      "fitment": "Golf / Jetta / Tiguan / Touareg / Touran",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-009.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-010",
+      "title": "IGNITION SWITCH E90/92 86-96",
+      "description": "IGNITION SWITCH E90/92 86-96",
+      "fitment": "E90/92 86–96",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-010.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-011",
+      "title": "IGNITION LOOM SWITCH TOYOTA COR.RWD/VENT/S",
+      "description": "IGNITION LOOM SWITCH TOYOTA COR.RWD/VENT/S",
+      "fitment": "Toyota Cor. RWD / Vent / S",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-011.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-012",
+      "title": "IGNITION SWITCH MAZDA B1600",
+      "description": "IGNITION SWITCH MAZDA B1600",
+      "fitment": "Mazda B1600",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-012.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-013",
+      "title": "IGNITION SWITCH ISUZU KB20",
+      "description": "IGNITION SWITCH ISUZU KB20",
+      "fitment": "Isuzu KB20",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-013.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-014",
+      "title": "HALOGEN BULB 60W 12V COOL BLUE",
+      "description": "HALOGEN BULB 60W 12V COOL BLUE",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-014.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-015",
+      "title": "GLOBE 60W 12V HB3",
+      "description": "GLOBE 60W 12V HB3",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-015.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-016",
+      "title": "12V 60W QUARTZ GLOBE 30% BRIGHTER",
+      "description": "12V 60W QUARTZ GLOBE 30% BRIGHTER",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-016.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-017",
+      "title": "GLOBE HALOGEN 65W 12V E1",
+      "description": "GLOBE HALOGEN 65W 12V E1",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-017.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-018",
+      "title": "CARPET SET AVANZA BLACK 4PCS",
+      "description": "CARPET SET AVANZA BLACK 4PCS",
+      "fitment": "Toyota Avanza",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-018.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-019",
+      "title": "CARPET SET TAZZ BLACK 4PCS ALL MODELS",
+      "description": "CARPET SET TAZZ BLACK 4PCS ALL MODELS",
+      "fitment": "Toyota Tazz — all models",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-019.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-020",
+      "title": "CARPET SET COROLLA BLACK 4PCS QUEST/PROFESSIONAL 2012 ON",
+      "description": "CARPET SET COROLLA BLACK 4PCS QUEST/PROFESSIONAL 2012 ON",
+      "fitment": "Toyota Corolla Quest / Professional 2012 onward",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-020.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-021",
+      "title": "CARPET SET COROLLA BLACK 4PCS 2022-",
+      "description": "CARPET SET COROLLA BLACK 4PCS 2022-",
+      "fitment": "Toyota Corolla 2022 onward",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-021.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-022",
+      "title": "FUEL PUMP ELECTRIC BMW",
+      "description": "FUEL PUMP ELECTRIC BMW",
+      "fitment": "BMW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-022.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-023",
+      "title": "FUEL PUMP ELECTRIC BMW.PEUGEOT.VW",
+      "description": "FUEL PUMP ELECTRIC BMW.PEUGEOT.VW",
+      "fitment": "BMW / Peugeot / VW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-023.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-024",
+      "title": "FUEL PUMP ELECTRIC BMW.VW",
+      "description": "FUEL PUMP ELECTRIC BMW.VW",
+      "fitment": "BMW / VW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-024.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-025",
+      "title": "FUEL PUMP ELECTRIC BMW",
+      "description": "FUEL PUMP ELECTRIC BMW",
+      "fitment": "BMW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-025.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-026",
+      "title": "AERIAL ALUMINIUM SHORT",
+      "description": "AERIAL ALUMINIUM SHORT",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-026.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-027",
+      "title": "AERIAL ALUMINIUM LONG",
+      "description": "AERIAL ALUMINIUM LONG",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-027.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-028",
+      "title": "AERIAL RUBBER BLACK",
+      "description": "AERIAL RUBBER BLACK",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-028.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-029",
+      "title": "AERIAL RUBBER BLUE",
+      "description": "AERIAL RUBBER BLUE",
+      "fitment": "Not specified in source catalogue",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Audio / Home Entertainment",
+        "Accessories",
+        "Aerials"
+      ],
+      "category": "Car Audio / Home Entertainment",
+      "subcategory": "Aerials",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-029.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-030",
+      "title": "AIR MASS SENSOR (4 PIN) AUDI-BEETLE-GOLF-JETTA 1.8-2.0",
+      "description": "AIR MASS SENSOR (4 PIN) AUDI-BEETLE-GOLF-JETTA 1.8-2.0",
+      "fitment": "Audi / Beetle / Golf / Jetta 1.8–2.0",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-030.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-031",
+      "title": "AIR MASS SENSOR GOLF IV 1.6 (4PIN-4 HOLE)",
+      "description": "AIR MASS SENSOR GOLF IV 1.6 (4PIN-4 HOLE)",
+      "fitment": "Golf IV 1.6 (4-pin / 4-hole)",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-031.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-032",
+      "title": "AIR FLOW SENSOR QUANTUM/D4D",
+      "description": "AIR FLOW SENSOR QUANTUM/D4D",
+      "fitment": "Quantum / D4D",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-032.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-033",
+      "title": "AIR FLOW SENSOR CHEV CAPTIVA 2.2D",
+      "description": "AIR FLOW SENSOR CHEV CAPTIVA 2.2D",
+      "fitment": "Chevrolet Captiva 2.2D",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Sensors",
+        "Automotive Sensors"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Sensors",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-033.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-034",
+      "title": "IGNITION SWITCH FORD RANGER/BT-50 98-08",
+      "description": "IGNITION SWITCH FORD RANGER/BT-50 98-08",
+      "fitment": "Ford Ranger / BT-50 98–08",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-034.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-035",
+      "title": "IGNITION SWITCH HONDA ACCORD CIVIC 96-",
+      "description": "IGNITION SWITCH HONDA ACCORD CIVIC 96-",
+      "fitment": "Honda Accord / Civic 96–",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-035.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-036",
+      "title": "IGNITION SWITCH ISUZU TFR SERIES 97-",
+      "description": "IGNITION SWITCH ISUZU TFR SERIES 97-",
+      "fitment": "Isuzu TFR Series 97–",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-036.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-037",
+      "title": "IGNITION SWITCH NISSAN NP300/TIIDA",
+      "description": "IGNITION SWITCH NISSAN NP300/TIIDA",
+      "fitment": "Nissan NP300 / Tiida",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Switches",
+        "Automotive Switches"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Switches",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-037.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-038",
+      "title": "H18 65W 12V H/GLOBE HIDIAO MARKED H7 WITH BASE DIFFERENCE",
+      "description": "H18 65W 12V H/GLOBE HIDIAO MARKED H7 WITH BASE DIFFERENCE",
+      "fitment": "H18 / H7 base variant",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-038.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-039",
+      "title": "H19 60/55W 12V H/GLOBE HIDIAO MARKED H4P43T WITH BASE DIFFERENCE",
+      "description": "H19 60/55W 12V H/GLOBE HIDIAO MARKED H4P43T WITH BASE DIFFERENCE",
+      "fitment": "H19 / H4P43T base variant",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-039.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-040",
+      "title": "H3 55W 12V COOL BLUE GLOBE",
+      "description": "H3 55W 12V COOL BLUE GLOBE",
+      "fitment": "H3 55W 12V",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-040.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-041",
+      "title": "HALOGEN BULB H3 55W 12V HIDIAO",
+      "description": "HALOGEN BULB H3 55W 12V HIDIAO",
+      "fitment": "H3 55W 12V",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Automotive Globes",
+        "Automotive Globes"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Automotive Globes",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-041.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-042",
+      "title": "CARPET SET GOLF 1 BLACK 4PCS",
+      "description": "CARPET SET GOLF 1 BLACK 4PCS",
+      "fitment": "Volkswagen Golf 1",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-042.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-043",
+      "title": "CARPET SET BMW E36 BLACK 4PCS",
+      "description": "CARPET SET BMW E36 BLACK 4PCS",
+      "fitment": "BMW E36",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-043.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-044",
+      "title": "CARPET SET BMW E46 BLACK 4PCS",
+      "description": "CARPET SET BMW E46 BLACK 4PCS",
+      "fitment": "BMW E46",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-044.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-045",
+      "title": "CARPET SET BMW E87 BLACK 4PCS",
+      "description": "CARPET SET BMW E87 BLACK 4PCS",
+      "fitment": "BMW E87",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Car Care & Accessories",
+        "Car Mats",
+        "Car Mats"
+      ],
+      "category": "Car Care & Accessories",
+      "subcategory": "Car Mats",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-045.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-046",
+      "title": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU",
+      "description": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU",
+      "fitment": "Ford / Mazda / Honda / Isuzu",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-046.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-047",
+      "title": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU NO SPARE PLUG INCLUDED/ECONOMIC PUMPS",
+      "description": "FUEL PUMP ELECTRIC FORD.MAZDA.HONDA.ISUZU NO SPARE PLUG INCLUDED/ECONOMIC PUMPS",
+      "fitment": "Ford / Mazda / Honda / Isuzu",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-047.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-048",
+      "title": "FUEL PUMP ELECTRIC FORD.VW",
+      "description": "FUEL PUMP ELECTRIC FORD.VW",
+      "fitment": "Ford / VW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-048.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-049",
+      "title": "FUEL PUMP ELECTRIC FORD.BMW",
+      "description": "FUEL PUMP ELECTRIC FORD.BMW",
+      "fitment": "Ford / BMW",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-049.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    },
+    {
+      "id": "GW-PILOT-050",
+      "title": "FUEL PUMP MAZDA.FORD LDV",
+      "description": "FUEL PUMP MAZDA.FORD LDV",
+      "fitment": "Mazda / Ford LDV",
+      "technicalSpecs": "Not specified in source catalogue",
+      "categoryPath": [
+        "Auto Electrical Spares",
+        "Fuel Pumps",
+        "Fuel Pumps"
+      ],
+      "category": "Auto Electrical Spares",
+      "subcategory": "Fuel Pumps",
+      "image": "assets/get-wired-product-pilot/GW-PILOT-050.jpg",
+      "priceDisplay": "Price On Request due to Limited Stock and Availability",
+      "availabilityDisplay": "Availability to confirm",
+      "imageStatus": "OWNER_AUTHORIZED_TREATMENT_SAMPLE; PRODUCT_PHOTO_AREA_TREATED; EXTERNAL_CAPTION_AND_CODE_MASKS_APPLIED; CONTACT_SHEET_REVIEWED; OWNER_ACCEPTANCE_PENDING",
+      "reviewStatus": "REVIEW_ONLY_NOT_IMPORTED"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Get Wired AutoWorx — Product Image Treatment Sample</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#17344b;background:#f3f6f8}*{box-sizing:border-box}body{margin:0}
+header{background:#0b3554;color:#fff;padding:22px max(18px,calc((100vw - 1240px)/2))}header a{color:#fff}
+main{max-width:1240px;margin:auto;padding:22px 18px 50px}h1{margin:0 0 8px;font-size:clamp(24px,4vw,34px)}.lead{max-width:900px;line-height:1.5;color:#dce8f1}
+.notice{background:#fff;border:1px solid #d6e0e8;border-radius:12px;padding:14px 16px;margin:18px 0;line-height:1.5}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.stat{background:#fff;border:1px solid #d6e0e8;border-radius:10px;padding:10px 14px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.product-card{background:#fff;border:1px solid #d6e0e8;border-radius:12px;overflow:hidden;min-width:0}
+.photo{background:#fff;min-height:240px;display:flex;align-items:center;justify-content:center;padding:8px}.photo img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+.details{padding:12px 14px 16px}.category{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#536d80;font-weight:700}
+h2{font-size:16px;line-height:1.3;margin:6px 0 8px}.detail{font-size:13px;line-height:1.45;color:#3e5668;margin:5px 0}
+.price{font-weight:800;color:#0b3554;margin-top:10px}.status{font-size:12px;color:#6a7c89;margin-top:5px}
+footer{max-width:1240px;margin:auto;padding:0 18px 30px;color:#5e7180;font-size:12px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{padding:5px}.details{padding:9px}.product-card h2{font-size:14px}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}.photo{aspect-ratio:3/2}.product-card h2{font-size:16px}}
+</style></head>
+<body><header><h1>Product Image Treatment Sample</h1><p class="lead">Get Wired AutoWorx — owner review of 50 product images with the Get Wired watermark treatment. This is a review-only sample, not a live catalogue or purchasing page.</p></header>
+<main><div class="notice" id="notice">Loading review sample…</div><div class="stats"><div class="stat"><strong id="count">—</strong> product images</div><div class="stat"><strong>Price On Request</strong></div><div class="stat"><strong>Availability to confirm</strong></div></div><div id="productGrid" class="grid" aria-live="polite"></div></main>
+<footer>Review only. Product data and images are not imported or published to the live catalogue. No prices, stock quantities or fitment beyond source evidence are invented. <a href="preview-auto-electrical.html">Open Auto Electrical product review</a>.</footer>
+<script>
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function load(){const n=document.getElementById("notice");try{const r=await fetch("assets/product-image-treatment-sample.json",{cache:"no-store"});if(!r.ok)throw Error("Sample data unavailable");const d=await r.json(),rows=Array.isArray(d.records)?d.records:[];document.getElementById("count").textContent=rows.length;n.textContent=d.notice||"Owner review only; not published.";document.getElementById("productGrid").innerHTML=rows.map(p=>'<article class="product-card"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(p.title)+'"></div><div class="details"><div class="category">'+esc((p.categoryPath||[]).join(" / "))+'</div><h2>'+esc(p.title)+'</h2><p class="detail"><strong>Fitment:</strong> '+esc(p.fitment)+'</p><p class="detail"><strong>Specifications:</strong> '+esc(p.technicalSpecs)+'</p><p class="price">'+esc(p.priceDisplay)+'</p><p class="status">'+esc(p.availabilityDisplay)+'</p></div></article>').join("");}catch(e){n.textContent="Unable to load the image-treatment sample: "+e.message;}}
+load();
+</script></body></html>

@@ -1,0 +1,336 @@
+{
+  "records": [
+    {
+      "id": "pw-2120",
+      "title": "OneNav Classic 9-inch Multimedia System for Toyota Prado (2002–2009)",
+      "brand": "OneNav",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Head Units & Media Players",
+      "description": "Designed for Toyota Prado 2002–2009. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "imageUrl": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact OneNav Classic Toyota Prado 2002–2009 fitment image visually inspected; high-resolution retailer artwork matches the model/vehicle fascia. Owner-preview only; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null,
+      "modelNumber": null,
+      "appendIfMissing": true
+    },
+    {
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit DMI"
+      },
+      "title": "Audison bit DMI Digital MOST Interface",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit DMI",
+      "description": "A high-quality digital interface that connects a vehicle's original MOST digital audio source to compatible Audison signal processors, preserving the factory audio functions while providing clean digital signal transfer. Features a MOST optical input, S/PDIF optical stereo PCM output (16-bit, 44.1 or 48 kHz depending on the system), USB/mini-B 2.0 configuration, programmable MOST-system integration, automatic MOST-triggered power switching with remote output, and retention of OEM volume, balance, tone, hands-free, navigation and parking-sensor signals.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit DMI product page and manufacturer image verified; review-only owner preview. No supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null,
+      "id": "preview-audison-bit-dmi",
+      "appendIfMissing": true
+    },
+    {
+      "id": "preview-audison-bcon",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "B-CON - HI-RES BLUETOOTH RECEIVER"
+      },
+      "appendIfMissing": true,
+      "title": "Audison B-CON Hi-Res Bluetooth Receiver",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Bluetooth Streaming Receivers",
+      "modelNumber": "B-CON",
+      "description": "Bluetooth 5.0 + EDR receiver with Hi-Res Audio Wireless certification. Supports LDAC streaming up to 96 kHz / 24-bit on compatible Android devices, plus AAC and SBC codecs. Provides RCA analogue outputs and optical S/PDIF input/output (up to 24-bit / 192 kHz), hands-free call management and Absolute Volume. Technical data: 6–24 VDC supply, 70 mA idle current, 2 VRMS analogue output, 100 dBA signal-to-noise ratio and 0.003% THD at 1 kHz / 1 VRMS.",
+      "imageUrl": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison B-CON official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-arcam-avr21",
+      "match": {
+        "brand": "ARCAM",
+        "title_contains": "AVR21"
+      },
+      "appendIfMissing": true,
+      "title": "ARCAM AVR21 HDMI 2.1 AV Receiver",
+      "brand": "ARCAM",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "AV Receivers & Home Cinema",
+      "modelNumber": "AVR21",
+      "description": "High-power 7-channel Class AB home cinema receiver with native 16-channel Dolby Atmos, DTS:X and Auro-3D decoding. Includes Dirac Live room correction and dual ESS 9026PRO audiophile DACs. Connectivity includes 7 HDMI inputs and 3 HDMI outputs (including Zone 2), HDMI 2.1 with HDCP 2.3, eARC, 8K/60 and 4K/120 support, Dolby Vision, HDR10+, HDR10 and HLG. Streaming and control include Apple AirPlay 2, Google Chromecast, Bluetooth aptX HD, Spotify Connect, TIDAL Connect, Roon Ready, Wi-Fi, Ethernet, RS232 and IR. Ready for optional Dirac Live Bass Control.",
+      "imageUrl": "https://www.arcam.co.uk/ugc-1/productalternate/204/32_main.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact ARCAM AVR21 official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-adeo-plano-135-vision-acoustic",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "135\\\" - 3000 - PLANO - 1.78-VISION ACOUSTIC"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Plano 135-inch Vision Acoustic Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Plano 135-inch Vision Acoustic",
+      "description": "135-inch fixed-frame home-cinema projection screen in 16:9 format. The Vision Acoustic surface is acoustically transparent, allowing the front left, centre and right speakers to be positioned behind the screen. The Plano aluminium frame uses elastic tensioning to maintain a flat projection surface and a concealed wall-mount bracket system. Approximate viewing area: 2,981 mm wide × 1,677 mm high.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Adeo_Planar_Projector_Screen.png?v=1781091757&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Plano 135-inch Vision Acoustic product listing and listing image verified against the 135-inch, 16:9, Vision Acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-adeo-plano-120-reference-white-2",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "120\\\" - 2.657 - PLANO - 1.78-REFERENCE WHITE 2"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Plano 120-inch Reference White 2 Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Plano 120-inch Reference White 2",
+      "description": "120-inch fixed-frame home-cinema projection screen in 16:9 format. The Reference White 2 surface is designed for a conventional front-projection installation and is not acoustically transparent, so front speakers should be placed beside or below the screen rather than behind it. The Plano aluminium frame and elastic tensioning system keep the projection surface flat. Approximate viewing area: 2,657 mm wide × 1,494 mm high; wall-mounted installation.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Adeo_Plano_Screen-1000x1000_53aeaebb-ca25-4995-870b-b2e2e03e1d57.webp?v=1781091175&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Plano 120-inch Reference White 2 product listing and listing image verified against the 120-inch, 16:9, non-acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-adeo-plano-135-reference-white-2",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "135\\\" - 3000 - PLANO - 1.78-REFERENCE WHITE 2"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Plano 135-inch Reference White 2 Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Plano 135-inch Reference White 2",
+      "description": "135-inch fixed-frame home-cinema projection screen in 16:9 format. The Reference White 2 surface is designed for conventional front projection and is not acoustically transparent, so front speakers should be positioned beside or below the screen rather than behind it. The Plano aluminium frame and elastic tensioning system maintain a flat projection surface. Approximate viewing area: 2,981 mm wide × 1,677 mm high; wall-mounted installation.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Adeo_Plano_Screen-1000x1000_53aeaebb-ca25-4995-870b-b2e2e03e1d57.webp?v=1781091175&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Plano 135-inch Reference White 2 listing and product image verified against the 135-inch, 16:9, non-acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-adeo-prestige-180-vision-acoustic",
+      "match": {
+        "brand": "Adeo Screens",
+        "title_contains": "180 INCHES PRESTIGE - VISION ACOUSTIC"
+      },
+      "appendIfMissing": true,
+      "title": "Adeo Prestige 180-inch Vision Acoustic Fixed-Frame Projection Screen",
+      "brand": "Adeo Screens",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "Projection Screens",
+      "modelNumber": "Prestige 180-inch Vision Acoustic",
+      "description": "180-inch fixed-frame home-cinema projection screen in 16:9 format, with an acoustically transparent Vision Acoustic surface for front speakers positioned behind the screen. Approximate viewing area: 4,000 mm wide × 2,247 mm high. The Prestige range uses an ultra-slim black aluminium frame (10 × 6 mm), a spring-tensioned fabric system and wall-mounted installation.",
+      "imageUrl": "https://shop.smartspaces.co.za/cdn/shop/files/Prestige_e77bdad4-113f-476f-a5d6-51f82783a7b6_2.webp?v=1781093561&width=1800",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Exact ADEO Prestige 180-inch Vision Acoustic listing and product image verified against the 180-inch, 16:9, acoustic-transparent specification; owner-preview only. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-arcam-avr11",
+      "match": {
+        "brand": "ARCAM",
+        "title_contains": "AVR11"
+      },
+      "appendIfMissing": true,
+      "title": "ARCAM AVR11 HDMI 2.1 Class AB AV Receiver",
+      "brand": "ARCAM",
+      "division": "Home CI",
+      "collection": "Home Entertainment",
+      "component": "AV Receivers & Home Cinema",
+      "modelNumber": "AVR11",
+      "description": "High-performance 7-channel Class AB home-cinema receiver with Dolby Atmos, DTS:X and Auro-3D 7.1.4 decoding. Includes dual ESS 9026PRO DACs and Dirac Live room correction. Provides 7 HDMI 2.1 inputs and 2 HDMI outputs with eARC, HDCP 2.3, 8K/60 and 4K/120 support, plus Dolby Vision, HDR10+, HDR10 and HLG. Streaming includes Apple AirPlay 2, Google Chromecast, Bluetooth aptX HD, Spotify Connect, TIDAL Connect, MQA and Roon Ready. Wi-Fi, Ethernet, RS232 and IR control are included.",
+      "imageUrl": "https://www.arcam.co.uk/ugc-1/productalternate/203/33_main.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact ARCAM AVR11 official product page and front-panel manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-one-hd-virtuoso",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit One HD Virtuoso"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit One HD Virtuoso 13-Channel High-Resolution DSP",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit One HD Virtuoso",
+      "description": "High-resolution digital signal processor with 12 high-level inputs, six low-level inputs, two optical S/PDIF inputs and up to 13 processed output channels. Uses 24-bit / 96 kHz floating-point processing, with 10-band parametric equalisation per channel, crossover and time-alignment controls, and support for complex OEM and aftermarket audio systems. Optical inputs accept up to 24-bit / 192 kHz; maximum pre-out level is 4 V.",
+      "imageUrl": "https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit One HD Virtuoso manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-ten",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - bit Ten - SIGNAL INTERFACE PROCESSOR"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit Ten 5-Channel Digital Signal Processor",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Signal Processing & Crossovers",
+      "modelNumber": "bit Ten",
+      "description": "Compact digital signal processor with four high-level inputs, four low-level inputs and five processed outputs for front, rear and subwoofer channels. Uses 24-bit / 48 kHz fixed-point processing, with crossover filters, time alignment and 31-band graphic equalisation. Specifications include 4 V maximum pre-out level, 96 dBA signal-to-noise ratio and 11–15 VDC operating supply.",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison_bitTen.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit Ten manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-bit-tune",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "bit Tune"
+      },
+      "appendIfMissing": true,
+      "title": "Audison bit Tune DSP Calibration and Measurement Tool",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "DSP Tuning & Calibration Tools",
+      "modelNumber": "bit Tune",
+      "description": "Automatic calibration and electro-acoustic analysis tool for Audison bit processors. Assists with time alignment, equalisation and level setup, and helps diagnose common installation issues such as channel inversion, phase errors and missing signal or cabling. Designed to speed up system verification while leaving final tuning decisions to the installer.",
+      "imageUrl": "https://static.audison.com/media/2023/02/Audison_bitTune.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison bit Tune manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-ap4d",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AP4 D"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Prima AP4 D 4-Channel Class D Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AP4 D",
+      "description": "Four-channel, fully bridgeable Class D amplifier designed to extend Audison AP 4.9 bit and AP 5.9 bit systems. Rated output at 14.4 V and 1% THD: 4 × 70 W at 4 Ω or 4 × 130 W at 2 Ω; bridged output is 2 × 260 W at 4 Ω. The manufacturer also lists 4 × 180 W at 2 Ω at 10% THD. Features high- and low-level inputs, 10 Hz–30 kHz bandwidth, 100 dBA signal-to-noise ratio and 7.5–15 VDC operating supply.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Prima AP4 D manufacturer product page and image verified; rated and maximum power figures retain their stated THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m12-14-bit",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M12.14 bit"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M12.14 bit 12-Channel DSP Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M12.14 bit",
+      "description": "Twelve-channel fully bridgeable Class D DSP amplifier with native 24-bit / 96 kHz processing and High-Resolution Audio certification. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 12 × 60 W at 4 Ω or 12 × 90 W at 2 Ω; bridged output is 6 × 180 W at 4 Ω. Total rated RMS power is 1,080 W. Includes optical S/PDIF input, eight high-level and eight low-level inputs, two pre-outs, adjustable crossovers and time alignment.",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M12.14 bit manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m8-14-bit",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M8.14 bit"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M8.14 bit 8-Channel DSP Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M8.14 bit",
+      "description": "Eight-channel fully bridgeable Class D DSP amplifier with native 24-bit / 96 kHz processing and High-Resolution Audio certification. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 8 × 90 W at 4 Ω or 8 × 140 W at 2 Ω; bridged output is 4 × 280 W at 4 Ω. Total rated RMS power is 1,120 W. Includes optical S/PDIF input, eight high-level and eight low-level inputs, six processed pre-outs, adjustable crossovers and time alignment.",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M8.14 bit manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-af-m4d",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "AF M4D"
+      },
+      "appendIfMissing": true,
+      "title": "Audison Forza AF M4D 4-Channel Class D Amplifier",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Amplifiers",
+      "modelNumber": "AF M4D",
+      "description": "Four-channel, fully bridgeable Class D companion amplifier designed to add power channels to Audison AF bit DSP amplifiers or systems controlled by a standalone bit processor. Continuous RMS output at 14.4 VDC and 1% THD, all channels driven: 4 × 160 W at 4 Ω or 4 × 260 W at 2 Ω; bridged output is 2 × 520 W at 4 Ω. Total rated RMS power is 1,040 W. Uses a straight-wire architecture without onboard crossover filtering, so it is intended to work with an external processor.",
+      "imageUrl": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact Audison Forza AF M4D manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: Product Image Treatment Sample
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/owner-preview-population-and-full-height-images-2026-11-09
+    paths:
+      - "scripts/process-product-image-pilot.py"
+      - "catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv"
+      - "assets/catalogue-source-crops/**"
+      - ".github/workflows/product-image-treatment-sample.yml"
+permissions:
+  contents: write
+concurrency:
+  group: asc-50-image-treatment-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  treatment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image-processing dependency
+        run: python -m pip install --disable-pip-version-check Pillow==11.0.0
+      - name: Process the 50 owner-authorised sample crops
+        run: python scripts/process-product-image-pilot.py
+      - name: Commit treated images and review evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/get-wired-product-pilot
+          git add catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-manifest.csv
+          git add catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg
+          if git diff --cached --quiet; then echo "No image-treatment output changes."; exit 0; fi
+          git commit -m "chore(images): regenerate owner-reviewed 50-product treatment sample"
+          # Human/code commits can land while the image job is processing. Rebase
+          # the generated-image commit onto the latest candidate before pushing.
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

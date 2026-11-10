@@ -1,0 +1,5 @@
+Owner-preview validation request for the current integration branch.
+
+This file is a non-product, non-customer-facing trigger for the existing pull_request workflow. It does not authorize publication, catalogue imports, stock or price changes, checkout activation, or production deployment.
+
+Owner continuation request: rerun the exact-head non-production preview after this handover checkpoint. No publication or production permission is granted.

@@ -4,8 +4,8 @@
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "name": "Audio, Entertainment & Music",
-      "slug": "car-audio-home-entertainment-lifestyle",
+      "name": "Car Audio / Home Entertainment",
+      "slug": "audio-entertainment-music",
       "parent_id": null,
       "active": true,
       "direct_active_products": 0,
@@ -13,7 +13,7 @@
     },
     {
       "id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "name": "Auto Electrical Parts & Spares",
+      "name": "Auto Electrical Spares",
       "slug": "auto-electrical-parts-spares",
       "parent_id": null,
       "active": true,
@@ -31,7 +31,7 @@
     },
     {
       "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
-      "name": "Car Audio",
+      "name": "Car Audio & Video",
       "slug": "car-audio",
       "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
       "active": true,
@@ -166,12 +166,12 @@
     },
     {
       "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
-      "name": "Harnesses, Trims & Fitment",
-      "slug": "car-audio-harnesses-trims",
-      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "name": "Trims & Harnesses",
+      "slug": "trims-harnesses",
+      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
       "active": true,
       "direct_active_products": 0,
-      "sort_order": 5
+      "sort_order": 2
     },
     {
       "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
@@ -244,6 +244,24 @@
       "active": true,
       "direct_active_products": 0,
       "sort_order": 4
+    },
+    {
+      "id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "name": "Accessories",
+      "slug": "car-audio-accessories",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 5
+    },
+    {
+      "id": "b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90",
+      "name": "Aerials",
+      "slug": "aerials",
+      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 1
     }
   ]
 }

@@ -29,11 +29,11 @@ function install(frame){
   const search=d.getElementById('searchInput');if(search){
     const wrap=search.parentElement;wrap.style.position='relative';
     if(!d.getElementById('gwSearchTools')){
-      const tools=d.createElement('div');tools.id='gwSearchTools';tools.innerHTML='<button data-mode="all" class="active">All</button><button data-mode="in">In Stock</button><button data-mode="clear">Clear</button>';
+      const tools=d.createElement('div');tools.id='gwSearchTools';tools.innerHTML='<button data-mode="all" class="active">All products</button><button data-mode="clear">Clear</button>';
       const results=d.createElement('div');results.id='gwSearchResults';wrap.appendChild(results);wrap.parentElement.appendChild(tools);
       let mode='all';
       function data(){return Array.from(d.querySelectorAll('.product')).map(card=>({card,text:(card.textContent||'').toLowerCase()}));}
-      function filter(){const q=search.value.trim().toLocaleLowerCase('en-ZA');const terms=q.split(/\s+/).filter(Boolean);const rows=data();let shown=0;rows.forEach(x=>{const match=!terms.length||terms.every(term=>x.text.includes(term));const stock=!mode||mode==='all'||(mode==='in'&&!/out of stock|sold out|unavailable/.test(x.text));x.card.style.display=match&&stock?'':'none';if(match&&stock)shown++});
+      function filter(){const q=search.value.trim().toLocaleLowerCase('en-ZA');const terms=q.split(/\s+/).filter(Boolean);const rows=data();let shown=0;rows.forEach(x=>{const match=!terms.length||terms.every(term=>x.text.includes(term));const stock=true;x.card.style.display=match&&stock?'':'none';if(match&&stock)shown++});
         if(!q){results.classList.remove('open');return}
         const hits=rows.filter(x=>terms.every(term=>x.text.includes(term))).slice(0,12);results.innerHTML=hits.length?hits.map(x=>`<div class="gwResult">${x.card.querySelector('h3')?.outerHTML||'<b>Product</b>'}<small>${(x.card.querySelector('.sku')?.textContent||'').trim()}</small></div>`).join(''):'<div class="gwNoResults">No matching product found. Try the SKU, part number or product name.</div>';
         results.classList.add('open');
@@ -52,9 +52,7 @@ function install(frame){
     const sku=(card.querySelector('.sku')?.textContent||'').replace(/^\s*(SKU|Part Number)\s*[:#-]?\s*/i,'').trim();
     const name=card.querySelector('h3')?.textContent?.trim()||'product';
     const stock=d.createElement('div');stock.className='gwStock';
-    if(/out of stock|sold out|unavailable/i.test(txt))stock.classList.add('out'),stock.textContent='OUT OF STOCK';
-    else if(/low stock/i.test(txt))stock.classList.add('low'),stock.textContent='LOW STOCK';
-    else stock.textContent='CHECK STOCK';
+    stock.classList.add('confirm');stock.textContent='AVAILABILITY TO CONFIRM';
     card.appendChild(stock);
     // Vehicle compatibility prompt is added only for vehicle-specific products by the dedicated fitment flow.
     
@@ -98,14 +96,14 @@ function install(frame){
         }
         total+=best;
       }
-      return total+(p.stock_quantity>0?2:0);
+      return total;
     };
     const esc=v=>String(v??'').replace(/[&<>"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]));
     const render=()=>{
       const q=search.value.trim(); if(!q){box.classList.remove('open');return;}
       const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const hits=all.map(p=>({p,s:score(p,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,15).map(x=>x.p);
-      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+esc(p.name)+'</b><small>SKU: '+esc(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
+      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+esc(p.name)+'</b><small>SKU: '+esc(p.public_sku||'')+(' · Price On Request · Availability to confirm')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
       box._gwFullHits=hits;box.classList.add('open');
     };
     search.addEventListener('input',render);
