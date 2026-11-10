@@ -3,6 +3,7 @@
 from pathlib import Path
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -104,6 +105,22 @@ for name in PUBLIC_REVIEW_DATA_FILES:
 # Strip supplier names and internal procurement fields before publishing the
 # explicitly review-only customer-view data assets.
 subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
+
+# Fail the build if the owner review data is missing, exposes supplier identity,
+# or accidentally carries a price/stock value into the customer-view package.
+for filename, expected_minimum in [("auto-electrical-owner-preview.json", 1), ("audio-catalogue-secondary-preview.json", 72)]:
+    review_path = OUT / "assets" / filename
+    review_data = json.loads(review_path.read_text(encoding="utf-8"))
+    records = review_data.get("records", review_data.get("products", []))
+    if len(records) < expected_minimum:
+        raise SystemExit(f"Review catalogue incomplete in public package: {filename} records={len(records)}")
+    serialised = json.dumps(review_data, ensure_ascii=False)
+    if re.search(r"Planetworld|Audio\\s+Connections", serialised, re.I):
+        raise SystemExit(f"Supplier identity leaked into public review data: {filename}")
+    for record in records:
+        if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
+            raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
+print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 price=POR stock=unconfirmed")
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
