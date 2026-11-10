@@ -421,3 +421,31 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 4. Complete remaining category assignments and verified Car Care / Auto Electrical catalogue population.
 5. Complete Electro-city pilot evidence review.
 6. Run exact-head package QA after the latest image workflow commit, then obtain a same-SHA hosted staging preview and mobile/desktop owner acceptance before any readiness claim.
+
+
+---
+
+## CONSOLIDATED STOREFRONT INTEGRATION — 2026-11-10 17:56 SAST
+
+### Integration action completed
+- PR #192 (owner-preview catalogue population and full-height image display repair) was successfully merged into the single integration branch used by PR #190.
+- Merge commit: `ea441629cadd2cfe52a4766bd2f3817244bbfd8b`.
+- The combined integration branch is `integration/storefront-current-main-2026-11-09`; latest exact head: `a4751c824feeab2f24795fd5e18969a1d77008ae`.
+- PR #190 remains OPEN / DRAFT against `main`; it has not been merged to main and no production deployment was triggered.
+
+### Exact-head verification on a4751c824feeab2f24795fd5e18969a1d77008ae
+- PASS: Cloudflare Pages standard customer package build and isolated non-production preview package QA.
+- PASS: Owner Preview Mobile and Desktop Browser QA.
+- PASS: Catalogue & Supplier Routing Review QA, including responsive review, Auto Electrical review-only data, customer-only package build, audio pricing/source mapping/product enrichment, and Auto Electrical mobile/desktop checks.
+- PASS: Storefront smoke, button-only smoke, Supplier Catalogue Review Data QA, Public SKU Exposure Audit, Preview Approved Catalogue Gate, Customer Authentication Security, Delivery Quote Security and Axxess package preparation (package only; no upload).
+- The separate 24x7 Public-Safe Catalogue Worker PR validation failed before extraction because the validator still enforces the obsolete rule `Planetworld processing must remain disabled on the public runner`. This conflicts with the owner's 2026-11-09 clarification authorising catalogue processing in the existing public repository. No extraction ran and no catalogue data changed in that worker run. This worker failure is separate from the storefront QA results.
+
+### Current preview scope and outstanding truth
+- The non-production owner preview now reads local committed review-only data rather than relying on active Supabase products: 34 Auto Electrical records and 66 Audio records. Car Care must not be populated with invented records; its verified catalogue population remains outstanding.
+- The Auto Electrical product image layout now uses natural image height rather than a fixed 3:2 crop window. The image processor also uses per-source product-area boundaries and masks for the 50-image sample. The sample remains review-only; its notice still records some source-card caption/code-strip separation as outstanding, and owner acceptance remains pending. Do not call the 50-image sample fully accepted.
+- The six Alpine product review records remain on the separate owner branch `owner/alpine-planetworld-six-products-2026-11-10`; they have not yet been integrated into the customer-facing preview data.
+- The latest exact-head package and browser QA do not establish a hosted staging deployment for SHA `a4751c824feeab2f24795fd5e18969a1d77008ae`. The previously recorded Pages URL is for the older SHA `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40` and must not be represented as the current combined preview.
+
+### Next required action
+- Keep all work in this one integration branch. Integrate the six Alpine records and continue the outstanding category/product/image reconciliation here; obtain a same-SHA hosted staging preview and inspect it as a customer.
+- Before merging PR #190 into `main`, verify the Cloudflare Pages production-branch trigger. Existing production HOLD remains in force; merging to `main` must not be treated as staging-only if it automatically publishes the live site. No Axxess upload, DNS change, live Supabase/catalogue/price/stock write, payment activation or production deployment occurred.
