@@ -562,3 +562,85 @@ This section supersedes the immediately preceding statement that no isolated Pag
 1. Visually inspect all 50 source-specific outputs, focusing on the 11 manual-review records and any residual ASC watermark visible over product surfaces.
 2. Only after image QA, obtain owner acceptance of the sample before scaling the ASC treatment to the full catalogue.
 3. Continue Planetworld/Audio Connections enrichment and category reconciliation in the canonical storefront; keep all review data out of live sale until approved.
+
+
+---
+
+## AUDIO CATALOGUE RECONCILIATION CHECKPOINT — 2026-11-10
+
+**Checkpoint purpose:** Resume audio catalogue/store reconciliation from the verified state below. This section records repository evidence only; it is not a claim that the full audio catalogue or storefront is finished.
+
+### 1. Verified main-branch state
+
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`
+- Branch inspected: `main`
+- `assets/audio-catalogue-secondary-preview.json` blob SHA: `ec03802b454eb3b5232ddff08daf33c7959da6de`
+- `index-new.html` blob SHA: `6cab1c2e81e72b2a66a4650257ae692ebd75aa49`
+- `tests/audio-catalogue-preview.test.cjs` blob SHA observed during this reconciliation: `cd82bb05116e7072c6d28480761ab3c27d753c53`
+- The main-branch owner-preview loader in `index-new.html` fetches `assets/audio-catalogue-secondary-preview.json` and maps its records into review-only storefront product objects. It does not write to live Supabase product data.
+- Audio category mapping in the loader routes the records into existing Car Audio & Video child categories (subwoofers, amplifiers, speakers, head units/media players, cameras/monitors, signal processing/crossovers, or the parent fallback). All 72 current records were checked against the category tree; none mapped to a missing category ID.
+- This confirms the review-data integration path on main. It does not prove that every record is customer-visible on a hosted preview, that all brand/product navigation is complete, or that a deployment is serving this exact SHA.
+
+### 2. Secondary audio dataset reconciliation
+
+Current file metadata:
+- Status: `OWNER_REVIEW_PREVIEW_ONLY`
+- Source rows: 68
+- Preview records: 72
+- Records: 72 total, comprising the existing 68-record set plus six Alpine enrichment records as currently represented in the file. Do not infer a one-to-one source-row count from preview-record count.
+
+Alpine additions verified in the main-branch file:
+- `UTE-73BT`
+- `iLX-W650`
+- `S-S65`
+- `R-S69.2`
+- `S-A60M`
+- `R-A60F`
+
+All six Alpine records have a description, manufacturer reference, and an exact-model image marked `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`. They remain review-only, not live/imported products.
+
+Customer data safeguards checked across the 72 records:
+- Customer price display remains `Price On Request`.
+- Numeric indicative prices and stock are suppressed (`null`).
+- Internal supplier SKU fields are not exposed in the records.
+- Supplier names must not appear in customer-visible catalogue metadata.
+- Do not promote any record to live/imported or claim stock availability from this preview data.
+
+### 3. Outstanding audio exceptions — resume here
+
+- `ac-006` / Sony `XS-W104ES`: description and manufacturer reference exist, but image rendering failed; `IMAGE_RENDERING_FAILED_HOLD`, no image URL. Keep the image withheld until an exact-model image is successfully verified.
+- `ac-032` / Starsound `SSA-ATOM-13500`: `HOLD_MODEL_VARIANT_CONFIRMATION`; image withheld.
+- `ac-041` / Starsound `SSA-M5-80.600`: `HOLD_MODEL_AND_SPECIFICATION_REVIEW`; manufacturer reference and image remain unresolved; image withheld.
+- `ac-044` / Starsound `SSS-6501PRO`: `HOLD_MODEL_AND_SPECIFICATION_REVIEW`; manufacturer reference and image remain unresolved; image withheld.
+- `ac-058` / BlackSpider `BULLET LYNX`: image is present but marked `OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES`. It is not an exact-image pass; improve/verify resolution without substituting another model.
+
+The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must remain quarantined from customer preview. Do not relax the existing regression assertions to make them pass.
+
+### 4. Planetworld and wider audio work still outstanding
+
+- The separate primary Planetworld source dataset contains 3,317 records per the existing audio task-queue checkpoint. It is not the same as the 72-record secondary review dataset.
+- The current `index-new.html` owner-preview loader inspected here fetches the secondary 72-record dataset; do not claim that all 3,317 Planetworld records are loaded into the consolidated preview.
+- Continue exact-model product identity, manufacturer description, image, specification, and product-type/category verification in bounded batches. Preserve source provenance and review status.
+- Prioritise remaining Car Audio, Home CI/Home Entertainment and Home Retail enrichment before lower-priority Band & Live Sound, DJ, Installed AV and Musical Instruments, as already specified in the audio task queue.
+- Continue the required navigation sequence: department → visual subcategory → brand/manufacturer page → product-type page → products. Keep the customer presentation grouped by product/category, not by supplier. Customer-facing supplier names and internal supplier SKUs remain hidden.
+- Maintain the current generic `Price On Request` rule; no catalogue RRP/dealer price is to be presented as a current retail price. Never infer stock.
+
+### 5. Immediate next execution sequence
+
+1. Re-read this handover and `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` before editing.
+2. Re-fetch current `main` and audio task-queue state; check for newer audio commits/branches before touching files. Do not overwrite a newer worker checkpoint.
+3. Fix or replace the `XS-W104ES` image only with an exact-model image; resolve the three held Starsound model/specification records from authoritative model evidence; improve the low-resolution `BULLET LYNX` image.
+4. Run `tests/audio-catalogue-preview.test.cjs` and all relevant audio/category/customer-metadata checks against the exact candidate SHA. Do not report tests passed unless they were actually executed and their results captured.
+5. Continue bounded Planetworld enrichment and update the durable task queue/checkpoint with exact record IDs, evidence, counts, exceptions and output SHA.
+6. Verify the brand → product-type → product routes in the consolidated owner preview on mobile and desktop, then verify the hosted preview deployment SHA matches the tested candidate SHA.
+7. Keep all work review-only. No production deployment, live Supabase write, price/stock update, Axxess upload, DNS/payment change or paid hosting/automation spend without separate explicit owner approval.
+
+### 6. Work not performed in this checkpoint
+
+- No audio data, storefront code, category tree or task-queue file was changed in this checkpoint.
+- No tests were executed in this checkpoint; existing test source was inspected only.
+- No branch was merged and no PR was merged or closed.
+- No hosted preview URL or deployment SHA was independently verified in this checkpoint.
+- No production or live data operation was performed.
+
+**Resume point:** Continue from section 3 exceptions and section 5 execution sequence. The six Alpine records are present in the main-branch secondary review dataset and wired into the owner-preview loader; the remaining audio reconciliation and exact-head/hosted-preview verification are still outstanding.
