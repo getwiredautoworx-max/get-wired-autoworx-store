@@ -48,7 +48,7 @@ def audit(name, path):
                     return True
                 matches = [row for row in rows if match_row(row)]
             if len(matches) > 1:
-                raise SystemExit(f"AUDIO_AUDIT_FAIL expected at most one exact override match, found {len(matches)}")
+                details = [{k: row.get(k) for k in ("id", "title", "modelNumber", "brand", "division", "collection", "component", "imageStatus")} for row in matches]\n                raise SystemExit("AUDIO_AUDIT_FAIL expected at most one exact override match; candidates=" + json.dumps(details, ensure_ascii=False))
             if not matches and override.get("appendIfMissing"):
                 matches = [{"id": override.get("id")}]
                 rows.append(matches[0])
