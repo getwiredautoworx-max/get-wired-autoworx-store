@@ -4,7 +4,7 @@ const primary=JSON.parse(fs.readFileSync("assets/audio-catalogue-primary-preview
 const secondary=JSON.parse(fs.readFileSync("assets/audio-catalogue-secondary-preview.json","utf8"));
 const models=JSON.parse(fs.readFileSync("assets/audio-model-verification-preview.json","utf8"));
 assert.equal(primary.records.length,3317);
-assert.equal(secondary.records.length,66);
+assert.equal(secondary.records.length,72);
 assert.equal(secondary.powerSpecificationReconciliation.heldRecords.length,3);
 assert.deepEqual(secondary.powerSpecificationReconciliation.resolvedSubwooferRecords,["ac-021","ac-025"]);
 assert.ok(secondary.records.filter(r=>r.id==="ac-032"||r.id==="ac-041"||r.id==="ac-044").every(r=>r.publicationStatus.startsWith("HOLD_") && !r.imageUrl));
@@ -37,4 +37,4 @@ for(const file of ["preview-audio.html","preview-audio-products.html","preview-a
  const html=fs.readFileSync(file,"utf8");
  assert.doesNotMatch(html,/assets\/(?:planetworld|audio-connections)[^"' ]*\.json/i);
 }
-console.log("PASS: 3,317 + 66 audio review records; generic Price On Request; no numeric prices, stock or visible supplier names.");
+console.log("PASS: 3,317 + 72 audio review records; generic Price On Request; no numeric prices, stock or visible supplier names.");
