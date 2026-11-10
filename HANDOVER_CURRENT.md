@@ -270,3 +270,13 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - **Full ASC product-level editorial completion is a separate, longer task**: 928 titles still require proofing, 978 technical-spec/dimension rows remain pending, and the 50-image treatment pilot is not yet accepted. Do not represent the initial staging-preview target as full catalogue completion.
 - Electro-city fitment discrepancy no longer blocks the pilot; remaining gate is owner acceptance and the evidence-tier restrictions above.
 - Production remains HOLD. No Axxess upload, DNS change, live database/catalogue/price/stock write, payment activation or production deployment.
+
+
+## 2026-11-10 — Owner-authorised Alpine / Planet World six-product upload
+- Owner explicitly authorised publishing the six Alpine product records, including Planet World supplier attribution and owner-supplied price values, to the existing public repository. No new repository was created.
+- Added `catalogue-review/planetworld/alpine-six-products-review.json` on branch `owner/alpine-planetworld-six-products-2026-11-10`.
+- Commit: `1cbcc5a080fdd028af6351b608e1cfe5dd39b320`.
+- Read-back verification: JSON parses; exactly six records; six unique SKUs (UTE-73BT, ILX-W650, S-S65, R-S69.2, S-A60M, R-A60F); supplier and prices retained; every record marked `review_required`; file-level status `DO NOT IMPORT`.
+- Important controls: price values are owner-supplied inputs and are not independently verified current Planet World RRPs. The current customer-facing price instruction remains Price On Request pending reliable direct supplier price/stock updates. `promoActive=true` is retained as supplied, but no promo prices or date windows were provided; do not publish promotional offers until verified.
+- No live catalogue data, production branch, production deployment, or customer-facing price was changed. This is an isolated review-data commit only.
+- Next action: independently verify supplier pricing/specifications and complete promotion details before any customer-facing integration. Keep this candidate off main until the normal review/approval gates are met.
