@@ -449,3 +449,26 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 ### Next required action
 - Keep all work in this one integration branch. Integrate the six Alpine records and continue the outstanding category/product/image reconciliation here; obtain a same-SHA hosted staging preview and inspect it as a customer.
 - Before merging PR #190 into `main`, verify the Cloudflare Pages production-branch trigger. Existing production HOLD remains in force; merging to `main` must not be treated as staging-only if it automatically publishes the live site. No Axxess upload, DNS change, live Supabase/catalogue/price/stock write, payment activation or production deployment occurred.
+
+
+---
+
+## OWNER-AUTHORISED MAIN MERGE — 2026-11-10 20:05 SAST
+
+This section is the current authority and supersedes earlier statements in this file that PR #190 was unmerged, draft, or that the main merge was prohibited.
+
+- Owner explicitly authorised merging PR #190 into `main` on 2026-11-10.
+- PR #190, “Unified Get Wired AutoWorx storefront integration”, was successfully merged and is CLOSED / MERGED.
+- Merge commit on `main`: `9f33042485ae45199827269358cdde0ac18a1c0f`.
+- PR #192 catalogue-population and full-height image repairs had already been merged into the integration branch (merge commit `ea441629cadd2cfe52a4766bd2f3817244bbfd8b`) and are included in the main merge.
+- The integration commit's exact-head checks included passing Cloudflare Pages package QA, owner-preview mobile/desktop browser QA, catalogue/routing QA, product-data QA, public SKU exposure audit, storefront smoke tests, authentication security, delivery quote security, and Axxess package preparation (package only; no upload).
+- One independent 24x7 Public-Safe Catalogue Worker workflow failed because its validator still enforces the superseded restriction that Planetworld processing remain disabled on the public runner. This did not invalidate the storefront package/browser checks; no extraction or data mutation occurred in that failed worker run.
+- GitHub confirms the PR merge. A workflow-run query against the merge commit returned no runs, so a new hosted Cloudflare Pages deployment and live customer-site response have NOT yet been independently verified. Do not claim the live website is updated until the Pages deployment and customer route are checked.
+
+### Outstanding work remains
+- Verify the hosted customer-facing homepage after the main merge; check the Cloudflare Pages deployment for the merge commit and inspect the real customer route on mobile and desktop.
+- The current owner-preview dataset includes 34 Auto Electrical and 66 Audio review records. Car Care catalogue population is not complete.
+- Six Alpine product records remain review-only on `owner/alpine-planetworld-six-products-2026-11-10`; they are not yet integrated into customer product data. Preserve POR display and do not claim promotions until supplier commercial details are verified.
+- ASC product-level verification beyond the pilot and the full 50-image treatment acceptance remain outstanding. The image sample is not owner-accepted yet.
+- Audio product enrichment remains incomplete; only exact verified model/image/description combinations may be presented as product-ready.
+- No Axxess upload, DNS change, live Supabase/catalogue/price/stock write, or payment activation was part of this merge.
