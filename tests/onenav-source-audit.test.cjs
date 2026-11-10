@@ -342,7 +342,7 @@ assert.equal(on016.image.approved, false);
 assert.equal(on016.image.candidates.length, 1);
 assert.equal(on016.image.candidates[0].status, 'NOT_APPROVED');
 assert.equal(on016.image.candidates[0].rights_status, 'UNVERIFIED');
-assert.match(on016.image.candidates[0].url, /imgi_12_Toyota-COROLLA-CROSS-ON016-2LX\\.webp$/);
+assert.ok(on016.image.candidates[0].url.endsWith('imgi_12_Toyota-COROLLA-CROSS-ON016-2LX.webp'));
 assert.equal(on016.independent_reseller_cross_checks.length, 2);
 assert.ok(on016.independent_reseller_cross_checks.every(row => row.status === 'THIRD_PARTY_CROSSCHECK_ONLY'));
 assert.match(on016.independent_reseller_cross_checks[0].page_url, /on016-2lx/);
