@@ -315,3 +315,37 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - Existing OneNav review branch `work/audio-one-nav-enrichment-2026-11-09` is at `8b9b55291b6467b53b71e3a16dbf80dcc63d949f`, 39 ahead / 3 behind current main, and has no PR. Continue the existing bounded private-review enrichment on this branch only; create no new branch/PR and do not alter the coordinated candidate PR #190. This task branch is not the integration candidate.
 - ASC work remains separate; no ASC files or workflows are changed in this audio task.
 - No merge, rebase, deployment, Cloudflare credit use, live Supabase/catalogue/price/stock write, Axxess, DNS, payment, checkout or production action is authorised or performed.
+
+
+## 2026-11-10 09:56–10:12 SAST — ONENAV ON016-2LX CROSS-CHECK / IMAGE-GATE INCREMENT
+
+### Evidence reconciled
+- Rechecked the official OneNav product page for exact code `ON016-2LX`: it explicitly shows the SKU and Toyota Corolla Cross A11 (2021+) application. The title says 10.1-inch, while both Additional Information and Specifications say 10-inch. The manufacturer discrepancy remains unresolved; the customer title/description continue to omit screen diagonal.
+- Added a Rivonia Car Sound exact-code product-page cross-check. The page lists `ON016-2LX` for Corolla Cross A11 (2021+) and links an image named `imgi_12_Toyota-COROLLA-CROSS-ON016-2LX.webp`. The image was visually inspected: it depicts a OneNav multimedia head unit, but does not show a vehicle-specific fascia or unique model marking. The page association does not establish the exact supplied variant, and image reuse rights are unverified. It is recorded as a **NOT_APPROVED** candidate only; `image.url` remains null, `IMAGE_PENDING`, and no customer page may display it.
+- Added a second NXT Level Tech exact-code/title/fitment cross-check. Its search-indexed result supports the code and vehicle application, but no independent technical specification or usable image was verified; automated page retrieval returned HTTP 403. It does not resolve the screen-size conflict.
+- No reseller prices or stock statements were used. Owner policy remains `Price On Request`, availability unconfirmed, no proposed GW SKU, and `DO NOT IMPORT`.
+
+### Files changed and commits
+1. `catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json` — structured independent cross-checks, image candidate and rights gate: `bb26553230e7ee8513f0aeaae2500453acb51edc`.
+2. `catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv` — updated ON016-2LX coverage note while retaining `NO_EXACT_IMAGE_APPROVED` and `DO NOT IMPORT`: `101c843894f7e239541612942ac197e1adefda82`.
+3. `catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv` — updated exact-code evidence note while retaining `IMAGE_PENDING`: `7badc923f86ef01142b23e6205cab169fe12e8b8`.
+4. `tests/onenav-source-audit.test.cjs` — deterministic ON016-2LX assertions for exact code, unresolved screen conflict, secondary-only reseller evidence, no numeric price/stock, no proposed GW SKU, unapproved candidate image and DO NOT IMPORT: `4d1859da02f8976a161c909b18641ca49cff3b74`; URL assertion correction: `bcd8421f18aba78c120921f964c0fbe717a4181f`.
+5. This handover update records the checkpoint; task-start reconciliation was committed as `fe79883c7e6a807cd051c079a1982d77cf5f57ae`.
+
+### Validation and counts for this increment
+- GitHub read-back checks: **10/10 PASS** across the JSON record, both CSV rows, product-page fail-closed guard and test assertions.
+- Updated Node test source V8 compilation: **PASS**.
+- Actual `node tests/onenav-source-audit.test.cjs`: **NOT EXECUTED** in this environment (repository clone/network unavailable); do not claim the full Node suite passed.
+- No GitHub Actions or hosted browser run triggered.
+- This product record: 1 exact manufacturer SKU/fitment identity verified; 2 reseller cross-checks (secondary only); 1 image candidate (not approved); 0 approved images; 1 unresolved screen-size conflict; 0 proposed GW SKUs; 1 review-only / DO NOT IMPORT record.
+
+### Live integration and release boundary recheck
+- Audio task branch head before this handover commit: `bcd8421f18aba78c120921f964c0fbe717a4181f`; compare to current main `f947d33d6a102129307f4e74833798525974c4c3`: 45 ahead / 3 behind, merge base `8a1119e44b6586934e32265e0bd7729263f6ea95`. No PR exists for this task branch; it remains a bounded review branch, not an integration candidate.
+- PR #190 remains OPEN / DRAFT / UNMERGED at `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40`, 24 ahead / 3 behind main. Its Cloudflare Pages bot comment reports Pages deployment success for the exact SHA at `https://47bec62f.get-wired-autoworx-store.pages.dev`; this does not establish owner-preview readiness because the known owner-reported population/image defects remain and owner acceptance is absent.
+- A separate Cloudflare Workers Builds bot comment reports repeated failed builds on the `production` Worker service, including exact SHA `e6ddad2` / build `e8f78315-9ec8-412a-996f-f5ed00e2cf18`. Dashboard log access failed; do not push to #190, dispatch a build, or consume Cloudflare credits until the owner reviews the production-service integration.
+- PR #192 remains OPEN / DRAFT, based on PR #190, with current head `44e94b076ce8db204406da2ffb3b02b2edaf9149`; its Public SKU Exposure Audit and Pages QA workflow runs conclude `action_required` with no jobs returned. They are not passes. Do not extend this repair PR.
+- PR #178 remains OPEN / DRAFT / UNMERGED and 1,001 ahead / 44 behind main; do not use it.
+- No ASC work, live data, price/stock, Supabase, merge, deployment, Axxess, DNS, payment, checkout or production changes were made. No manual Cloudflare/Netlify credit use.
+
+### Next action
+- Continue OneNav only. Seek manufacturer clarification for the 10-inch versus 10.1-inch wording and an official or approved supplier-catalogue image for exact `ON016-2LX`; retain the reseller image as unapproved. Do not move to another brand until the remaining OneNav identity/image exceptions are resolved. Keep PR #190 untouched and production HOLD.
