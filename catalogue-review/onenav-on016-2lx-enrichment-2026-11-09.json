@@ -49,7 +49,8 @@
     "product_title_claim": "10.1-inch",
     "manufacturer_specification_claim": "10-inch",
     "status": "CONFLICT_UNRESOLVED",
-    "customer_copy_rule": "Omit screen diagonal until manufacturer clarification."
+    "customer_copy_rule": "Omit screen diagonal until manufacturer clarification.",
+    "cross_check_summary": "Manufacturer page title says 10.1-inch while its Additional Information and Specifications say 10-inch. Rivonia Car Sound repeats the same 10.1-inch title and 10INCH specification; NXT Level Tech lists the exact code/title/fitment but no independently verified screen specification. The conflict remains unresolved; omit screen diagonal from customer copy."
   },
   "customer_content": {
     "customer_brand": "OneNav",
@@ -64,13 +65,25 @@
     "url": null,
     "status": "IMAGE_PENDING",
     "approved": false,
-    "manufacturer_image_search": "No exact ON016-2LX image was retrievable/visually verified from the official page in this pass.",
+    "manufacturer_image_search": "The official OneNav page did not expose a retrievable image in the accessible page text. Rivonia Car Sound links an image from its exact ON016-2LX product page; it was visually inspected as a OneNav touchscreen head unit, but no variant-specific fascia/model marking is visible and image rights are unverified. Retain only as an unapproved research candidate.",
     "rejected_candidates": [
       {
         "model": "ON1609-A111",
         "description": "Universal 9-inch OneNav head unit image",
         "source_url": "https://content.storefront7.co.za/stores/za.co.storefront7.planetworld/products/on1609-a111/pictures/onenav-2-din-universal-9-inch_egv4.png?format=png",
         "status": "REJECTED_WRONG_MODEL_AND_FITMENT"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://www.rivoniacarsound.co.za/wp-content/uploads/2025/08/imgi_12_Toyota-COROLLA-CROSS-ON016-2LX.webp",
+        "source_page": "https://www.rivoniacarsound.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021-on016-2lx/",
+        "source_type": "THIRD_PARTY_RESELLER_PRODUCT_PAGE_IMAGE",
+        "page_model_code": "ON016-2LX",
+        "visual_observation": "OneNav multimedia head unit front view with touchscreen interface; no vehicle-specific fascia or unique model marking visible.",
+        "status": "NOT_APPROVED",
+        "rights_status": "UNVERIFIED",
+        "reason": "Not an official manufacturer or approved supplier-catalogue asset; exact variant-specific image match and reuse rights are not established."
       }
     ]
   },
@@ -84,5 +97,33 @@
     "stock_status": null,
     "status": "UNCONFIRMED"
   },
-  "next_action": "Obtain manufacturer clarification on 10-inch versus 10.1-inch screen wording and an exact ON016-2LX product image; do not use the universal ON1609-A111 image."
+  "next_action": "Obtain manufacturer clarification on the 10-inch versus 10.1-inch wording and an official/approved supplier-catalogue image for exact ON016-2LX. Keep the Rivonia image as an unapproved candidate only; do not display it or the rejected universal ON1609-A111 image.",
+  "independent_reseller_cross_checks": [
+    {
+      "source_name": "Rivonia Car Sound",
+      "page_url": "https://www.rivoniacarsound.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021-on016-2lx/",
+      "exact_model_code_visible": true,
+      "listed_title": "OneNav 10.1inch for Corrola Cross A11 (2021+) – ON016-2LX",
+      "fitment": "Toyota Corolla Cross A11 (2021+)",
+      "status": "THIRD_PARTY_CROSSCHECK_ONLY",
+      "technical_spec_observation": "The page repeats the 10INCH screen specification while its title says 10.1inch; it does not independently resolve the manufacturer discrepancy.",
+      "image_candidate_url": "https://www.rivoniacarsound.co.za/wp-content/uploads/2025/08/imgi_12_Toyota-COROLLA-CROSS-ON016-2LX.webp",
+      "image_candidate_status": "NOT_APPROVED",
+      "image_rights_status": "UNVERIFIED",
+      "note": "The image is visibly a OneNav multimedia head unit and is attached to this exact-SKU reseller page, but it does not show a vehicle-specific fascia or a model marking on the image itself. Page association alone does not prove the exact supplied variant or image rights. Do not use in customer-facing preview."
+    },
+    {
+      "source_name": "NXT Level Tech",
+      "page_url": "https://nxtleveltech.co.za/product/onenav-101inch-for-corrola-cross-a11-2021",
+      "exact_model_code_visible": true,
+      "listed_title": "OneNav 10.1inch for Corrola Cross A11 (2021+)",
+      "fitment": "Toyota Corolla Cross A11 (2021+)",
+      "status": "THIRD_PARTY_CROSSCHECK_ONLY",
+      "technical_spec_observation": "Search-indexed listing identifies exact code ON016-2LX and fitment but provides no independently verified technical specifications in the accessible result; the product page returned HTTP 403 to automated retrieval.",
+      "image_candidate_url": null,
+      "image_candidate_status": "NOT_VERIFIED",
+      "image_rights_status": "NOT_ASSESSED",
+      "note": "Supports exact code/title/fitment only. Do not infer screen diagonal, specifications or image identity from the listing."
+    }
+  ]
 }
