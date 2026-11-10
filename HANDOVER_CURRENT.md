@@ -523,3 +523,42 @@ This section supersedes the immediately preceding statement that no isolated Pag
   - Immutable deployment: https://383d2b5d.get-wired-autoworx-store.pages.dev
 - This is a non-production review preview, not a production release. Canonical `www.getwiredauto.co.za` suspension remains a separate issue. Car Care catalogue population, full product enrichment, exact Alpine images, ASC 50-image owner acceptance, and mobile/desktop visual acceptance remain outstanding. Do not call the full store complete.
 - No Axxess upload, DNS change, production deployment, payment activation, or live stock/price write was performed.
+
+
+---
+
+## ALPINE SIX-RECORD MANUFACTURER ENRICHMENT — 2026-11-10
+
+- Created review-only PR #193 from `work/alpine-official-spec-enrichment-2026-11-10`; it updates only `assets/audio-catalogue-secondary-preview.json`.
+- Added official manufacturer product/manual references and expanded technical descriptions for UTE-73BT, iLX-W650, S-S65, R-S69.2, S-A60M and R-A60F. Corrected the iLX-W650 model casing.
+- Cross-checked the S-A60M and R-A60F against the previous-generation manuals; did not substitute S2-A60M or R2-A60F. Kept every Alpine record at Price On Request, null numeric price/stock, and PREVIEW_ONLY_NOT_LIVE.
+- Exact model images remain unresolved for all six: `imageUrl` and `imageSourceUrl` remain null and `imageStatus` remains `EXACT_MODEL_IMAGE_REQUIRED`. These records are not image-complete or sale-ready.
+- Local structural verification passed: valid JSON, 72 total audio review records, exactly six Alpine records, all six POR/review-only, all six image-pending.
+- PR #193 exact head: `d078254451f668fbdf8ac8f33377a863594f8514`. GitHub customer-source audit, public-package QA and isolated Cloudflare Pages preview checks were still running at checkpoint time; no pass is claimed until their final conclusions are read.
+- No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
+- Next action: complete exact-model image matching for the six Alpine products, then continue the outstanding Planetworld/Audio Connections batches and category reconciliation on the same canonical storefront project.
+
+
+---
+
+## ALPINE IMAGE ENRICHMENT + ASC 50-IMAGE PILOT REPAIR — 2026-11-10
+
+### Alpine six-product review records
+- PR #193 now includes complete descriptions, exact-model manufacturer references, and visually matched product images for UTE-73BT, iLX-W650, S-S65, R-S69.2, S-A60M and R-A60F.
+- Model generation is preserved: older S-A60M and R-A60F are not substituted with S2-A60M or R2-A60F. The iLX-W650 model casing is corrected.
+- All six remain `Price On Request`, null numeric price/stock, and `PREVIEW_ONLY_NOT_LIVE`. Images are explicitly `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`; they are not sale-ready.
+- PR #193 exact head `70c64721920b3500bb95b7836e9f4d2d63fde1f8`. Customer-source audit and public-package QA passed; Cloudflare Pages preview check passed. PR remains draft and unmerged.
+
+### ASC 50-image pilot repair
+- Diagnosed and fixed the false SKU validation failure: the approved internal GW SKU normalises supplier SKU slashes to hyphens (e.g. MA596/2 → GW-ASC-MA596-2); original supplier SKUs remain unchanged.
+- Replaced the one-size 72% crop with the repository's per-source product-area boundaries and caption/header/SKU masks: 25 images use the standard 72% boundary, 16 longer products use 78%, and 9 fuel-pump cards use 92% with external header/code masks.
+- Corrected the contact-sheet layout and added tests for each image's expected crop boundary and masks. Added a fetch/rebase before the workflow's generated-artifact push to prevent the earlier non-fast-forward rejection.
+- Successful latest image-pilot run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/42880199458. The run processed all 50 images, passed the catalogue and image-output validators, uploaded the review artifact, and committed the review-only output to the temporary pilot branch.
+- Review result: 39 images are `TREATED_PENDING_VISUAL_QA`; 11 remain `MANUAL_REVIEW`. This is not owner acceptance. Watermark removal and product integrity still require visual QA; no sample is approved for production or catalogue import.
+- Artifact: https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/actions/artifacts/13794181046. PR #191 remains a temporary, draft, non-mergeable execution harness; do not merge it.
+- No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
+
+### Next
+1. Visually inspect all 50 source-specific outputs, focusing on the 11 manual-review records and any residual ASC watermark visible over product surfaces.
+2. Only after image QA, obtain owner acceptance of the sample before scaling the ASC treatment to the full catalogue.
+3. Continue Planetworld/Audio Connections enrichment and category reconciliation in the canonical storefront; keep all review data out of live sale until approved.
