@@ -1,4 +1,4 @@
-APPROVED CUSTOMER-VIEW STAGING PREVIEW REQUEST — retry after test-count reconciliation 2026-11-10
+APPROVED CUSTOMER-VIEW STAGING PREVIEW REQUEST — retry after both 72-record assertions reconciled 2026-11-10
 
 Build the current main branch at dispatch time using GW_INCLUDE_PREVIEW_ROUTES=1.
 Publish only to the non-production Cloudflare Pages branch approved-storefront-preview.
