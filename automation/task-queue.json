@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
@@ -145,7 +145,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "OA014-1 OneNav Classic 9-inch Toyota Prado 2002–2009 now has an exact owner-authorised retailer image and verified description in the review-only preview; continue remaining OneNav model-by-model, and never substitute a similar series or vehicle-fitment image."
+      "next_action": "ON016-2LX is now reconciled to the official OneNav Evolution page and exact Toyota Corolla Cross A11 (2021+) fitment. The official page title says 10.1-inch while Additional Information/Specifications say 10-inch; customer copy omits the diagonal. The reseller image remains NOT_APPROVED (exact variant and rights unresolved), the universal ON1609-A111 image is rejected, and the record stays Price On Request / stock unconfirmed / DO NOT IMPORT. Next resolve OA009-1 Classic Toyota 280mm W/O CANBUS exact image without using ON009-2A11 Pro/CANBUS artwork, then continue OneNav model-by-model."
     },
     {
       "id": "storefront-three-category-consolidation",
