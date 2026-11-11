@@ -664,3 +664,57 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - Verification status: GitHub returned no PR workflow runs and no commit status checks for the exact head at checkpoint time. The deterministic tests are committed but not yet executed in GitHub Actions; do not claim CI passed. PR #194 is open and not merged.
 - Remaining store gaps: the 16 ASC rows are sample-only, not full catalogues; Auto Electrical descriptions/specifications remain incomplete across the 34 preview rows; the 727 additional ASC records remain outside the current preview; Audio remains a 72-record review dataset, not the 3,317-record Planetworld catalogue; Car Care beyond the 8 Car Mats samples is not populated; exact-head hosted preview and mobile/desktop verification remain outstanding.
 - Release boundary unchanged: production HOLD; no Axxess upload, DNS/payment change, live Supabase/catalogue/price/stock write, production deployment or paid hosting action.
+
+
+---
+
+## COORDINATION AND RECOVERY MONITOR — 2026-11-11 08:14 SAST
+
+### Authoritative refs read
+- Owner directives read from `main`: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, blob `7335e2c4ef60a7e4305fb42424b3342500b93700`.
+- Canonical `HANDOVER_CURRENT.md` read from `main`, blob `2ebb3f85d1c32bcdd87712204dfefcbcc13c9b52`. Its header still says 2026-11-08 19:44 SAST; its latest substantive audio checkpoint is 2026-11-10. This section records newer verified GitHub state on this existing PR branch; it does not alter `main`.
+- Current `main` head: `daf2d08f46306ee7ac666c61d57bdaff65676f07`.
+
+### Live pull-request reconciliation
+- PR #190 is **closed and merged**, 2026-11-10 18:05:15Z. Head `334ef788428ccf0521b84d7b28b6f2dc7ab79fd1`; merge commit `9f33042485ae45199827269358cdde0ac18a1c0f`. It is no longer an open candidate.
+- PR #193 is **closed and merged**, 2026-11-10 19:21:55Z. Head `591974c1139118f7ba67b4691b00b0c752c28083`; merge commit `f267f76f87b631644cc298d2e311db7b93b73e68`. The six Alpine review records are therefore on main.
+- PR #178 remains OPEN / DRAFT / UNMERGED at `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`; comparison with current main is 1,001 ahead / 277 behind. Do not merge, rebase or revive it.
+- PR #183 remains OPEN / non-draft / unmerged at `327d9a271196efe2144e93d81109b93cca83cbdd`; 33 ahead / 251 behind current main. No exact-head QA run was found. All 978 ASC rows remain review-only / DO NOT IMPORT.
+- PR #185 remains OPEN / non-draft / unmerged at `e695f3dcb056e15d80f5b9a2f9375d10995905cc`; 13 ahead / 251 behind current main. Historical exact-head supplier QA runs `42564090749` and `42564090784` passed, but the branch is stale and the 29-row Electrocity pilot remains DO NOT IMPORT pending owner review.
+- PR #194 is an externally created, current-main-based selective preview repair; this monitor did not create its branch or PR. It adds the existing 8 Aerials and 8 Car Mats review-only rows to the unified owner preview. Base is `main` at `daf2d08f46306ee7ac666c61d57bdaff65676f07`. After the test-only correction below, its verified code head was `b5b6bcacbdb57cc9c9771e8f98784a221b84bc94`, 5 commits ahead / 0 behind. PR remains OPEN / non-draft / unmerged. Do not merge or deploy it without owner approval.
+
+### PR #194 browser-QA recovery — test-only change
+- Previous head `40b4497bb6cd7f64ba856f044bd0d05798040f6c` failed browser run `42967950489` because `tests/owner-preview-browser-qa.cjs` still expected 66 secondary audio rows, while the current review dataset contains 72 after the six Alpine records were merged.
+- Updated only that test file to assert 72 and explain the six Alpine additions. Test-only commit: `b5b6bcacbdb57cc9c9771e8f98784a221b84bc94`. No product data, supplier source, prices, stock, live data or product images were edited by this monitor.
+- Exact-head PR checks passed on `b5b6bcac`:
+  - `42972101142` — Cloudflare Pages Public Package QA: PASS; preview package 4,211 files / 4,101 WebP images; supplier source PDFs and private review/source directories excluded.
+  - `42972101351` — Catalogue & Supplier Routing QA: PASS.
+  - `42972101145` — Owner Preview Mobile and Desktop Browser QA: PASS at 390px and 1280px. Assertions confirmed three roots, no page errors, no horizontal overflow, checkout blocked, no live writes, Sony/Component Speakers route, 3,317 primary + 72 secondary audio rows, and POR/no numeric price or stock leakage.
+  - `42972101250` — Public SKU Exposure Audit: PASS.
+  - `42972101204` — Storefront Smoke Test: PASS.
+  - `42972101138` — Button-Only Storefront Smoke Test: PASS.
+  - `42972101203` — Axxess package preparation: PASS; package artifact only, **no Axxess upload**.
+- The browser workflow uses a local static preview server. No hosted Pages deployment, exact-SHA deployment marker, hosted asset audit or hosted-browser check was run for `b5b6bcac`. PR #194 is **not preview-ready** and no preview URL is approved for sharing.
+
+### Audio worker and scheduled extractor
+- The separate enabled ChatGPT task `Advance Get Wired audio and video catalogue` remains the sole audio catalogue editing worker. Last recorded run: 2026-11-10 08:02:05Z; next scheduled slot shown as 2026-11-11 09:00 SAST. This monitor made no audio product-enrichment edits.
+- GitHub scheduled run `42934364273` (`Audio Official Model Candidate Extractor`) succeeded on source SHA `34e320998cec49ab2b6d5e2eb790a623e4290d71`, but processed 0, found 0 candidates and reported 0 remaining exact pages. It did not create product/image candidates. The resulting manifest-only commit is `daf2d08f46306ee7ac666c61d57bdaff65676f07`; `items` remains empty.
+
+### ASC worker and controller blockers
+- ASC scheduled worker run `42908870111` failed at queue validation before extraction. Exact error: `QUEUE_VALIDATION_ERROR: Audio Connections / Planetworld processing must remain disabled on the public runner`.
+- This validator is stale and contradicts the owner-authorised public-repository rule: `automation/task-queue.json` says public catalogue processing is authorised and the audio task mode is `model-assisted-review-required`, while `scripts/validate_automation_queue.py` still requires `private-runner-required`. No OCR/extraction ran in `42908870111`. Do not report this as a supplier-data or source-file blocker.
+- Background Task Controller scheduled runs `42890237370` (2026-11-10 19:56:15Z) and `42932272543` (2026-11-11 00:33:25Z) succeeded. No later `schedule` event was present through 2026-11-11 06:14Z, despite the workflow's 15-minute cron. Later `workflow_run`-triggered successes do not prove scheduled cadence. Reliability remains unverified.
+
+### Live release gate and release boundary
+- Scheduled Live Release Gates run `42970297463` failed on current main `daf2d08`. On `www.getwiredauto.co.za`, `/` and `/index.html` returned 200; `/store.html`, `/category.html`, `/checkout-v2.html`, `/terms-and-conditions.html`, `/returns-refunds.html`, and `/assets/category-tree.json` returned 404. Payment readiness also failed: PayFast/PayJustNow integration is not confirmed; direct EFT is the only configured checkout method.
+- No production repair, deployment, Axxess upload, DNS change, live database/catalogue/price/stock write or payment change was performed. Production remains HOLD. No Cloudflare/Netlify release credits were spent.
+
+### Next actions
+1. Keep PR #194 unmerged and un-deployed; its local exact-head checks now pass, but hosted preview acceptance gates remain unverified.
+2. Keep PR #178, #183 and #185 out of the current integration path; do not wholesale merge stale branches.
+3. Align the ASC worker's validator with the current owner-authorised public-repository policy before the next extraction run; preserve all no-live-write and DO NOT IMPORT gates.
+4. Monitor actual scheduled controller events separately from workflow_run events; do not claim cadence reliability until several consecutive scheduled successes are observed.
+5. Allow the separate audio editing worker to continue its OneNav-first work; do not duplicate its enrichment edits.
+6. Keep production HOLD and do not spend release credits or publish products without separate owner approval.
+
+**Checkpoint note:** The product/test code head verified for PR #194 was `b5b6bcacbdb57cc9c9771e8f98784a221b84bc94`. This handover-only update is a separate documentation commit on the same existing PR branch; verify the post-update head after saving.
