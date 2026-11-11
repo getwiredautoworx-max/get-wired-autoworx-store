@@ -644,3 +644,16 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - No production or live data operation was performed.
 
 **Resume point:** Continue from section 3 exceptions and section 5 execution sequence. The six Alpine records are present in the main-branch secondary review dataset and wired into the owner-preview loader; the remaining audio reconciliation and exact-head/hosted-preview verification are still outstanding.
+
+
+## AUDIO WORKSTREAM TASK START — 2026-11-11 09:20 SAST
+
+- Read the binding owner directive from `main` first (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`), then read current `HANDOVER_CURRENT.md` from `main` (blob `2ebb3f85d1c32bcdd87712204dfefcbcc13c9b52`) before acting.
+- Live main at task start: `daf2d08f46306ee7ac666c61d57bdaff65676f07`.
+- The prior audio branch `work/audio-one-nav-enrichment-2026-11-09` is stale/diverged: 22 ahead / 212 behind main, merge base `e6ddad26488710d3ce54efae50ab3ed9b7f6ab40`. Do not merge/rebase it wholesale.
+- PR #178 is stale/divergent (1,001 ahead / 277 behind main at current compare) and is not an integration candidate. PR #190 is no longer open; its consolidated storefront work is represented on current main. PR #194 is the current ASC Aerials/Car Mats preview-population workstream; do not modify its branch or ASC files. PR #193's Alpine records are already represented in main's 69-row model-verification dataset; do not duplicate them.
+- Created this clean audio-only review branch directly from current main: `work/audio-one-nav-current-main-2026-11-11`. It is the only active branch for this audio continuation; no competing audio branch/PR will be created.
+- Current main OneNav audit: 45 model rows; 39 details-verified/image-pending, 4 owner-preview candidates, 2 image-rejected. The 23-row unmatched head-unit register already contains ON016-2LX but incorrectly states a confirmed 10-inch size and does not preserve the manufacturer title/specification conflict. The 19-row uncovered-card register also has stale ON016-2LX status/note. The prior branch contains a structured review record with the exact unresolved conflict and correct fail-closed image/pricing state; selectively port only that still-valid review evidence, not the stale storefront page edits or wholesale CSV/test files.
+- Main audio data: 3,317 Planetworld primary rows (connector content endpoint returned an empty body for this large file; count is corroborated by the existing test and task queue), 72 secondary review rows, and 69 model-verification records. All supplier products remain Price On Request; numeric prices/stock are suppressed. The secondary data's three Starsound held variants remain quarantined; do not relax those holds.
+- Release boundary: review-only / DO NOT IMPORT. No live data, price/stock/active flag, payment, DNS, Axxess, hosting, production or paid preview action.
+- Next: reconcile ON016-2LX in the two existing review registers, add the structured review record and exact regression assertions, then run bounded static/data checks. Continue OneNav only.
