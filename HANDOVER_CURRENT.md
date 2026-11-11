@@ -644,3 +644,23 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - No production or live data operation was performed.
 
 **Resume point:** Continue from section 3 exceptions and section 5 execution sequence. The six Alpine records are present in the main-branch secondary review dataset and wired into the owner-preview loader; the remaining audio reconciliation and exact-head/hosted-preview verification are still outstanding.
+
+
+---
+
+## CONSOLIDATION REPAIR CHECKPOINT — 2026-11-11
+
+- Re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and this current handover before editing.
+- Canonical baseline: `main` at `daf2d08f46306ee7ac666c61d57bdaff65676f07`.
+- Created clean current-main-based working branch `integration/consolidation-repair-2026-11-11`.
+- Refreshed comparison showed PR #189's operating-system branch is 52 commits ahead and 244 behind current main (diverged). It is not a safe merge candidate. Its own evidence also reports a public supplier-specific route still serving HTTP 200 and a Cloudflare Workers Builds check tied to a production Worker. Do not wholesale merge it.
+- Refreshed main controller source already contains an inline schema-v2 fallback for missing legacy `description`; the duplicate controller PRs must not be re-applied without a current failing reproduction.
+- PR #191's own instructions said close the temporary image-pilot harness after the run. It was closed on 2026-11-11. Its 50-image outputs remain review-only: 39 pending visual QA, 11 manual review; no owner acceptance implied.
+- Main owner-preview loader was confirmed to fetch only 34 Auto Electrical and 72 Audio review records. It did not load the already-packaged ASC sample JSON. The sample dataset contains 8 Aerials and 8 Car Mats records explicitly marked `REVIEW_ONLY_NOT_IMPORTED` (plus 34 Auto Electrical sample records that would duplicate existing preview products).
+- Selective preview repair added on the clean branch: load only the 8 Aerials and 8 Car Mats sample rows, map them to the approved Aerials and Car Mats category IDs, preserve null price/stock and review-only status, and add regression assertions for counts/status/category mapping.
+- Exact changes: `index-new.html`, `tests/three-category-storefront-structure.test.cjs`, and this checkpoint. No supplier source documents, internal supplier SKUs, live data or production configuration were changed.
+- Pull request #194: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/194
+- PR #194 head: `7e8bdf7008020e5ac31b83e36b3e405022f65f92`; base: `main` at `daf2d08f46306ee7ac666c61d57bdaff65676f07`; comparison is 3 commits ahead / 0 behind, with only the two code/test files and this checkpoint changed.
+- Verification status: GitHub returned no PR workflow runs and no commit status checks for the exact head at checkpoint time. The deterministic tests are committed but not yet executed in GitHub Actions; do not claim CI passed. PR #194 is open and not merged.
+- Remaining store gaps: the 16 ASC rows are sample-only, not full catalogues; Auto Electrical descriptions/specifications remain incomplete across the 34 preview rows; the 727 additional ASC records remain outside the current preview; Audio remains a 72-record review dataset, not the 3,317-record Planetworld catalogue; Car Care beyond the 8 Car Mats samples is not populated; exact-head hosted preview and mobile/desktop verification remain outstanding.
+- Release boundary unchanged: production HOLD; no Axxess upload, DNS/payment change, live Supabase/catalogue/price/stock write, production deployment or paid hosting action.
