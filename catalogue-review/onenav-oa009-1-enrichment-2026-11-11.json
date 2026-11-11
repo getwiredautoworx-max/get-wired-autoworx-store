@@ -1,0 +1,120 @@
+{
+  "record_id": "OA009-1",
+  "review_status": "DO NOT IMPORT",
+  "manufacturer": "OneNav",
+  "manufacturer_model_code": "OA009-1",
+  "product_family": "OneNav Classic",
+  "source_record": {
+    "workbook": "one-price-list-2026-10-25.xlsx",
+    "sheet": "Products",
+    "row": 34,
+    "source_audit_record": "pw-2115",
+    "source_title_exact": "OneNav Classic 9inch for Toyota 280mm W/O Canbus",
+    "supplier_sku_private": "OA009-1",
+    "source_record_status": "SOURCE_ROW_LINKED"
+  },
+  "category_path": [
+    "Audio, Entertainment & Music",
+    "Car Audio & Video",
+    "OneNav",
+    "Head Units & Media Players"
+  ],
+  "vehicle_fitment": {
+    "manufacturer": "Toyota",
+    "dashboard_opening": "280 mm",
+    "model_year_application": "NOT_SPECIFIED_BY_MANUFACTURER",
+    "status": "MANUFACTURER_PAGE_CONFIRMS_TOYOTA_280MM_ONLY"
+  },
+  "variant": {
+    "family": "Classic",
+    "canbus": "W/O CANBUS",
+    "source_status": "SOURCE_TITLE_CONFIRMED",
+    "manufacturer_status": "NOT_EXPLICITLY_STATED_ON_EXACT_PRODUCT_PAGE",
+    "cross_check_status": "THIRD_PARTY_EXACT_CODE_LISTING",
+    "note": "The approved source row title says W/O CANBUS. NXT Level Tech independently lists exact code OA009-1 with the same W/O CANBUS title. The exact OneNav page visibly identifies OA009-1 and Classic but does not explicitly state the CANBUS variant. Do not merge with OA009-2, ON009-2A or ON009-2A11."
+  },
+  "manufacturer_evidence": {
+    "url": "https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm/",
+    "exact_sku_visible": true,
+    "family": "Classic",
+    "status": "VERIFIED_EXACT_SKU_AND_CORE_SPECIFICATIONS",
+    "specifications": [
+      "9-inch touchscreen",
+      "1024 × 600 resolution",
+      "Wired Apple CarPlay and Android Auto",
+      "Built-in DSP with multi-band equaliser",
+      "Steering-wheel-control ready",
+      "Bluetooth with external microphone",
+      "4 channels × 40 W maximum speaker output",
+      "4.1-channel front, rear and subwoofer line outputs",
+      "2 RCA AV inputs",
+      "2 video outputs",
+      "Front and rear camera inputs"
+    ],
+    "exclusions": [
+      "Do not claim wireless CarPlay or wireless Android Auto",
+      "Do not claim Wi-Fi, GPS, offline maps or three USB inputs",
+      "Do not claim 4 × 40 W RMS; manufacturer says maximum output",
+      "Do not transfer Pro Series CANBUS features or specifications"
+    ]
+  },
+  "customer_content": {
+    "customer_brand": "OneNav",
+    "customer_title": "OneNav Classic 9-inch Multimedia Receiver for Toyota 280mm",
+    "customer_description": "A 9-inch touchscreen multimedia receiver for Toyota 280 mm dashboard openings, with 1024 × 600 resolution. It supports wired Apple CarPlay and Android Auto, Bluetooth with an external microphone, and built-in digital sound processing with a multi-band equaliser. The unit is steering-wheel-control ready and provides 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line outputs, two RCA AV inputs, two video outputs, and front and rear camera inputs.",
+    "description_status": "MANUFACTURER_VERIFIED_PARAPHRASED",
+    "unverified_claims_omitted": [
+      "vehicle model/year fitment",
+      "wireless phone projection",
+      "Wi-Fi",
+      "GPS/offline navigation",
+      "USB port count",
+      "RMS output rating"
+    ]
+  },
+  "product_type": "Head Units & Media Players",
+  "proposed_gw_sku": null,
+  "gw_sku_status": "NOT_ASSIGNED_NO_APPROVED_ALLOCATION_EVIDENCE",
+  "image": {
+    "url": null,
+    "status": "IMAGE_PENDING",
+    "approved": false,
+    "manufacturer_page_image_observation": "The exact OneNav product page has a product image associated with the OA009-1 page, but the image asset could not be retrieved and visually inspected in this run. Do not assign a guessed URL or use the page association alone as an image approval.",
+    "candidates": [
+      {
+        "image_url": null,
+        "source_page": "https://nxtleveltech.co.za/product/onenav-classic-9inch-for-toyota-280mm-wo-canbus",
+        "status": "PAGE_ASSOCIATION_ONLY_NOT_VISUALLY_VERIFIED",
+        "rights_status": "NOT_ASSESSED",
+        "reason": "The page identifies exact code OA009-1 and the W/O CANBUS title, but automated page retrieval returned HTTP 403; the image itself was not inspected."
+      }
+    ],
+    "rejected_candidates": [
+      {
+        "model": "ON009-2A11",
+        "description": "OneNav Pro Series Toyota 280mm with CANBUS",
+        "source_url": "https://onenav.co.za/wp-content/uploads/2024/06/ON009-2A11-Toyota-280mm-with-Canbus.png",
+        "status": "REJECTED_WRONG_SERIES_AND_CANBUS_VARIANT"
+      },
+      {
+        "model": "OA1409-CPAA",
+        "description": "OneNav Classic image associated with a Toyota Land Cruiser Pick Up (2012+) listing",
+        "source_url": "https://go4lo.co.za/cdn/shop/files/Toyota-Land-Cruiser-600x600.webp?v=1739958755",
+        "status": "REJECTED_WRONG_MODEL_AND_FITMENT",
+        "visual_observation": "The image itself visibly carries code OA1409-CPAA; the source page identifies a Land Cruiser Pick Up fitment, not the OA009-1 Toyota 280mm unit."
+      }
+    ]
+  },
+  "pricing": {
+    "customer_display": "Price On Request",
+    "numeric_price": null,
+    "status": "SUPPRESSED_BY_OWNER_POLICY"
+  },
+  "stock": {
+    "customer_display": "Availability to be confirmed",
+    "stock_status": null,
+    "status": "UNCONFIRMED"
+  },
+  "import_status": "DO NOT IMPORT",
+  "next_action": "Retrieve and visually verify the exact OA009-1 product image from the manufacturer page or approved source catalogue. Keep both wrong-variant/model images rejected. Do not assign a GW SKU or promote the product until the exact image and image-use authority are verified."
+}
