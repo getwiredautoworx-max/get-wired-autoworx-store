@@ -718,3 +718,21 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 6. Keep production HOLD and do not spend release credits or publish products without separate owner approval.
 
 **Checkpoint note:** The product/test code head verified for PR #194 was `b5b6bcacbdb57cc9c9771e8f98784a221b84bc94`. This handover-only update is a separate documentation commit on the same existing PR branch; verify the post-update head after saving.
+
+
+---
+
+## AUDIO WORKER BRANCH RECONCILIATION — 2026-11-11 08:16 SAST
+
+- Separate enabled audio editing task remains the sole audio product-enrichment worker. Its saved prompt still identifies PR #190 as the active clean-main candidate, but live GitHub confirms PR #190 was merged on 2026-11-10. The saved task prompt is therefore stale on the integration-candidate reference; this monitor did not modify the automation or perform audio product edits.
+- Its existing work branch is `work/audio-one-nav-enrichment-2026-11-09`, exact head `8a3a7f7357886c96520a8a4ebd73ff0789849e0b` (last commit 2026-11-10 08:01:39Z: “Handover: record OneNav ON016-2LX cross-checks and image approval gate”).
+- Compared with current `main` `daf2d08f46306ee7ac666c61d57bdaff65676f07`, the audio branch is **22 ahead / 212 behind**, diverged, and has no PR. No PR-triggered workflow runs were returned for exact head `8a3a7f7`. Do not merge/rebase it wholesale or treat its test source as executed.
+- Its eight-file difference from main comprises:
+  - OneNav ON016-2LX review record and its source evidence;
+  - updates to the 45-row OneNav official-model audit and 23-row head-unit/uncovered-card registers;
+  - OneNav brand/product preview page adjustments;
+  - audio catalogue and OneNav source-audit regression test changes;
+  - branch handover additions.
+- ON016-2LX evidence: exact manufacturer code and Toyota Corolla Cross A11 (2021+) fitment are confirmed. Manufacturer page conflicts on 10.1-inch title versus 10-inch specification; customer copy omits screen diagonal. One reseller image is retained only as an unapproved candidate (rights and exact variant image match unverified); 0 approved images, no GW SKU, Price On Request, availability unconfirmed, DO NOT IMPORT.
+- Branch handover records 45 OneNav audit rows: 39 details-verified/image-pending, 4 preview-candidate-only, 2 rejected-image records. It also records 23 unmatched head-unit rows, including OA418-1 as unverified and ON015-3 as an identity conflict. The latest branch handover says 22 connector-side checks passed and V8 syntax compilation passed, but the actual Node regression commands were **not executed** and no hosted preview was verified.
+- Next audio worker session must reconcile this existing work against the new current main and continue OneNav first without duplicating already merged Alpine work. Any integration path must preserve the owner’s single-candidate/no-competing-branch direction; this monitoring task does not create a branch or PR.
