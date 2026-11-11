@@ -657,3 +657,41 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - Main audio data: 3,317 Planetworld primary rows (connector content endpoint returned an empty body for this large file; count is corroborated by the existing test and task queue), 72 secondary review rows, and 69 model-verification records. All supplier products remain Price On Request; numeric prices/stock are suppressed. The secondary data's three Starsound held variants remain quarantined; do not relax those holds.
 - Release boundary: review-only / DO NOT IMPORT. No live data, price/stock/active flag, payment, DNS, Axxess, hosting, production or paid preview action.
 - Next: reconcile ON016-2LX in the two existing review registers, add the structured review record and exact regression assertions, then run bounded static/data checks. Continue OneNav only.
+
+
+## ONENAV ON016-2LX RECONCILIATION — 2026-11-11 09:20 SAST
+
+### Work completed on the clean current-main audio branch
+- Working branch: `work/audio-one-nav-current-main-2026-11-11`, created directly from main `daf2d08f46306ee7ac666c61d57bdaff65676f07`.
+- The prior `work/audio-one-nav-enrichment-2026-11-09` branch remains stale/diverged (22 ahead / 212 behind); it was not merged/rebased. Only the still-valid ON016-2LX review record and its specific evidence-row corrections were selectively ported. Stale preview-page changes and old full-file test/CSV versions were not ported.
+- Updated `catalogue-review/onenav-23-unmatched-headunit-evidence-2026-11-06.csv`: ON016-2LX is now `VERIFIED_OFFICIAL_PRODUCT_PAGE`, with exact SKU and Toyota Corolla Cross A11 (2021+) fitment evidence; the manufacturer title's 10.1-inch claim versus 10-inch Additional Information/Specifications conflict is explicit. Customer description omits the diagonal. Image remains `IMAGE_PENDING`; no image URL is assigned.
+- Updated `catalogue-review/onenav-uncovered-storefront-card-reconciliation-2026-11-06.csv` row `pw-2187`: exact official product-page identity is recorded, screen-size conflict is explicit, image status remains `NO_EXACT_IMAGE_APPROVED`, and import status remains `DO NOT IMPORT`.
+- Added `catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json` as the structured field-level review record. It retains the manufacturer SKU/family/fitment/specifications, source workbook/sheet/row traceability, paraphrased customer title/description, unresolved screen-size conflict, no proposed GW SKU, Price On Request, null numeric price/stock, and image hold.
+- Extended `tests/onenav-source-audit.test.cjs` with assertions for the ON016-2LX identity, unresolved 10/10.1-inch conflict, omission of screen size from customer copy, blank image URL, no GW SKU, POR/null price, unconfirmed stock, unapproved third-party image and explicit rejection of the wrong universal ON1609-A111 image.
+- Updated `automation/task-queue.json` to record ON016-2LX's verified identity/fitment and its remaining screen-size/image holds; next item is OA009-1 Classic Toyota 280mm W/O CANBUS.
+
+### Evidence and disposition
+- Official manufacturer page: https://onenav.co.za/product/onenav-10-1inch-for-corrola-cross-a11-2021/
+- The manufacturer page visibly identifies ON016-2LX and Toyota Corolla Cross A11 (2021+), and lists OneConnect, wireless CarPlay/Android Auto, Bluetooth 5.4, FM/AM RDS, USB media/charging, 5 × 4 V RCA outputs, 4 × 45 W speaker output, DSP/12-band EQ, optional front/rear camera inputs and a three-year warranty. The title says 10.1-inch while Additional Information and Specifications say 10-inch; no diagonal is used in customer copy.
+- Rivonia Car Sound and NXT Level Tech provide exact-code/title/fitment cross-checks only. The Rivonia image candidate was visually inspected but does not prove exact fascia/variant and rights are unverified. It remains NOT_APPROVED. The universal ON1609-A111 image is rejected as wrong model/fitment.
+- OneNav review counts for this increment: 1 exact manufacturer SKU/fitment identity verified; 1 screen-size conflict unresolved; 1 image candidate not approved; 0 approved images; 1 wrong-model image explicitly rejected; 0 GW SKU assigned; price state Price On Request; stock unconfirmed; 1 record DO NOT IMPORT.
+- The 23-row unmatched-head-unit register remains 23 rows with 23 unique codes. The uncovered storefront-card register remains 18 preview rows; the ON016-2LX source row remains DO NOT IMPORT. The 45-row OneNav official-model audit was not rewritten.
+
+### Commits and validation
+- Task-start handover: `ae77f248b287ee6c3dd2106010131dc64856160a`.
+- ON016 head-unit evidence row: `8f6a45355adc3c78c1a6f40103e4b55c70a25123`.
+- ON016 uncovered-card reconciliation row: `9a5b722c173cf337e30ccb12b55f0a5b2dd75fcb`.
+- Structured ON016 review JSON: `725db8b25e2459a2f3d06812694978b78c19051d`.
+- ON016 regression assertions: `c8b7a2c186d895f29ecea7ffe81477c580f07392`.
+- Queue checkpoint: `59e8f5af54a8811e29a504e0b139564702ea67cd`.
+- Connector-side deterministic review audit: 18/18 assertions PASS (row counts/uniqueness, exact manufacturer identity/fitment, unresolved size conflict, customer copy omission, image pending/rejection, DO NOT IMPORT, POR/null price, null stock, no proposed GW SKU, secondary 72-row pricing/stock safeguards and 69-row model-verification dataset unchanged).
+- Changed Node test source passed V8 syntax compilation. The actual `node tests/onenav-source-audit.test.cjs` command was **not executed**: the local runtime could not resolve github.com to obtain a repository checkout; no GitHub Actions workflow was triggered. Do not claim the full Node regression passed.
+- No exact-head deployment, hosted preview or browser verification was attempted. No release credits were used.
+
+### Current integration and release boundary
+- PR #190 is merged into current main; main already contains the consolidated three-category storefront and 69 model-verification records. PR #194 is the separate ASC Aerials/Car Mats preview-population workstream and was not modified. PR #178 remains stale/divergent and was not edited, rebased, closed or merged.
+- This clean audio branch is the sole current OneNav work branch. No new PR was opened in this increment to avoid a duplicate candidate while the legacy PR #178 remains open; retain this branch for the coordinated audio review candidate. Do not modify PR #194 or ASC files.
+- No live catalogue/Supabase writes, price/stock/active-flag changes, supplier activation, merge, deployment, Axxess upload, DNS, payment/banking or production action. All records remain review-only / DO NOT IMPORT. Production remains HOLD.
+
+### Next action
+- Continue OneNav only. Resolve OA009-1 Classic Toyota 280mm W/O CANBUS exact image from an official/approved source; explicitly reject the ON009-2A11 Pro/CANBUS image and any other similar variant. Then proceed model-by-model through the remaining Classic/Evolution head units and associated camera/fitment evidence. Do not advance to another brand until OneNav is complete.
