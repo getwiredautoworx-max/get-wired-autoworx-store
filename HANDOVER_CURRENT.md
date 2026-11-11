@@ -695,3 +695,42 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 
 ### Next action
 - Continue OneNav only. Resolve OA009-1 Classic Toyota 280mm W/O CANBUS exact image from an official/approved source; explicitly reject the ON009-2A11 Pro/CANBUS image and any other similar variant. Then proceed model-by-model through the remaining Classic/Evolution head units and associated camera/fitment evidence. Do not advance to another brand until OneNav is complete.
+
+
+## AUDIO WORKSTREAM INCREMENT — 2026-11-11 09:39 SAST — ONENAV OA009-1
+
+### Repository and integration reconciliation
+- Re-read the binding owner directive from main first (blob 7335e2c4ef60a7e4305fb42424b3342500b93700), then the latest main handover (blob 2ebb3f85d1c32bcdd87712204dfefcbcc13c9b52) before acting.
+- Current main head at task start: daf2d08f46306ee7ac666c61d57bdaff65676f07.
+- PR #190 is CLOSED / MERGED; merge commit 9f33042485ae45199827269358cdde0ac18a1c0f is part of current main. It is no longer an open integration candidate.
+- PR #178 remains OPEN / DRAFT / UNMERGED and stale/divergent: current comparison is 1,001 commits ahead / 277 behind main, with merge base 3fe8ba6722b94c42044f15c5463f0d29d98c8421. It was not edited, rebased, merged or used as a base.
+- PR #194 is the separate ASC Aerials/Car Mats workstream on integration/consolidation-repair-2026-11-11; it was not edited. PR #193 is already merged; its Alpine data is already on main.
+- Continued only on the existing clean audio review branch work/audio-one-nav-current-main-2026-11-11, created from current main. At this checkpoint it is 12 commits ahead / 0 behind main, with no PR attached. No competing audio branch or PR was created.
+- Main scheduled workflow observations: Background Task Controller run 42977790079 completed SUCCESS on main SHA daf2d08f46306ee7ac666c61d57bdaff65676f07. Separate Public-Safe Catalogue Worker run 42974056666 failed at Validate current owner-directed task queue before ASC extraction (extraction step skipped); this is the ASC worker path, not an audio product validation result. The current audio branch head has no associated PR workflow runs/status checks. No workflow was dispatched.
+
+### OneNav OA009-1 product-group increment
+- Linked the exact source row: one-price-list-2026-10-25.xlsx, sheet Products, row 34; source audit record pw-2115. Source title is OneNav Classic 9inch for Toyota 280mm W/O Canbus.
+- Official OneNav page https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm/ visibly identifies SKU OA009-1 and confirms Classic family, Toyota 280 mm, 9-inch / 1024 × 600 display, wired Apple CarPlay/Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum (not RMS), 4.1-channel front/rear/subwoofer line outputs, two RCA AV inputs, two video outputs and front/rear camera inputs.
+- The source row says W/O CANBUS and NXT Level Tech has an exact-code OA009-1 W/O CANBUS cross-check. The exact OneNav product page does not explicitly state CANBUS; this field remains source-confirmed / reseller-cross-checked, not manufacturer-verified. Do not merge it with OA009-2, ON009-2A or ON009-2A11.
+- Customer copy is paraphrased and omits unsupported wireless projection, Wi-Fi, GPS, offline navigation, USB-count and RMS claims. The product is assigned to Audio, Entertainment & Music → Car Audio & Video → OneNav → Head Units & Media Players.
+- Image remains IMAGE_PENDING. The exact manufacturer page image was not retrievable as a file. The NXT Level Tech exact-code page returned HTTP 403 before its image could be visually inspected. Two surfaced images were explicitly rejected: the official ON009-2A11 Pro/CANBUS image, and a Go4Lo Land Cruiser image that visibly carries code OA1409-CPAA. No image URL was assigned or approved.
+- No GW SKU proposed. Customer price is Price On Request; numeric price is null; stock is unconfirmed/null; import state is DO NOT IMPORT.
+
+### Changed files and commits
+1. Added catalogue-review/onenav-oa009-1-enrichment-2026-11-11.json — commit 875a811d4cd95e8f5dd812a62f7f087b2f45c9ad.
+2. Updated catalogue-review/planetworld-one-official-model-audit.csv with the OA1409-CPAA image rejection and NXT image-access limitation — commit a68e6d3cb8a59243b3ea5a47209d4e28575d4400.
+3. Updated tests/onenav-source-audit.test.cjs with OA009-1 source-row, exact manufacturer identity/specification, variant-separation, unsupported-feature, rejected-image, POR/null-stock and DO NOT IMPORT assertions — commit 777daf921dff1e2c8b9a7fbc874d43b26dc28ad0.
+4. Updated automation/task-queue.json to record OA009-1's manufacturer verification and image blocker — commit f29a76da5011352f3ee34be5ca378cf3bede4096.
+5. This handover update records the current checkpoint.
+
+### Validation and limits
+- Connector-side deterministic review checks: 13/13 PASS (JSON validity, source row 34, manufacturer SKU/page, CANBUS qualification, supported description claims, fail-closed image state, both wrong-image rejections, POR/null price/null stock, DO NOT IMPORT, 45-row audit retained, OA1409-CPAA rejection read-back, test-source syntax compilation, and queue checkpoint).
+- new Function(testSource) V8 syntax compilation: PASS. This is syntax-only, not execution of the Node test suite.
+- node tests/onenav-source-audit.test.cjs: NOT EXECUTED. The branch has no associated Actions run, and no local repository checkout/runtime was available to execute the full suite. Do not claim the full regression test passed.
+- No hosted preview, deployment, mobile/desktop browser check, or paid workflow was attempted. No Cloudflare/Netlify credits used.
+
+### Remaining exceptions and next action
+- OA009-1 exact image is still missing from the review package; retrieve it from the exact manufacturer page or approved source catalogue and visually verify the asset before approval. The NXT page image remains inaccessible/uninspected; do not bypass the 403 with an unrelated image.
+- CANBUS absence is not explicitly stated on the manufacturer page; keep its evidence status qualified as above.
+- Continue OneNav only, model-by-model. Do not mark OneNav complete or move to another brand. Next work: obtain exact OA009-1 image evidence; then continue the next unresolved OneNav Classic/Evolution model without relaxing image/variant rules.
+- All records remain private review-only / DO NOT IMPORT. No ASC files/workflow branch, live Supabase/catalogue/price/stock/active flags, merge, deployment, Axxess, DNS, checkout/payment, banking or production state was changed. Production remains HOLD.
