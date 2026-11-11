@@ -186,6 +186,9 @@ assert.equal(on016Review.screen_size.status, 'CONFLICT_UNRESOLVED');
 assert.equal(on016Review.customer_content.description_status, 'MANUFACTURER_VERIFIED_WITH_CONFLICTING_SCREEN_SIZE_OMITTED');
 assert.doesNotMatch(on016Review.customer_content.customer_title, /10\.1-inch|10-inch/i);
 assert.doesNotMatch(on016Review.customer_content.customer_description, /10\.1-inch|10-inch/i);
+const on016CustomerText = JSON.stringify(on016Review.customer_content);
+assert.doesNotMatch(on016CustomerText, /ON016-2LX|Rivonia Car Sound|NXT Level Tech|one-price-list-2026-10-25\\.xlsx|supplier_sku_private/i,
+  'customer-facing ON016 content must not expose internal supplier SKU, supplier names or source workbook metadata');
 assert.equal(on016Review.proposed_gw_sku, null);
 assert.equal(on016Review.pricing.customer_display, 'Price On Request');
 assert.equal(on016Review.pricing.numeric_price, null);
