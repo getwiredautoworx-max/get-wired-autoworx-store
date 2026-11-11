@@ -145,7 +145,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "ON016-2LX is now reconciled to the official OneNav Evolution page and exact Toyota Corolla Cross A11 (2021+) fitment. The official page title says 10.1-inch while Additional Information/Specifications say 10-inch; customer copy omits the diagonal. The reseller image remains NOT_APPROVED (exact variant and rights unresolved), the universal ON1609-A111 image is rejected, and the record stays Price On Request / stock unconfirmed / DO NOT IMPORT. Next resolve OA009-1 Classic Toyota 280mm W/O CANBUS exact image without using ON009-2A11 Pro/CANBUS artwork, then continue OneNav model-by-model."
+      "next_action": "OA009-1 now has an exact manufacturer SKU/product page and verified Classic 9-inch/1024×600 feature set, with the source row linked (one-price-list-2026-10-25.xlsx, Products row 34). W/O CANBUS is source-title confirmed and independently cross-checked, but not explicitly stated on the exact manufacturer page. Exact product image remains IMAGE_PENDING: the official page asset was not retrievable, the NXT exact-code page returned HTTP 403 before image inspection, and two different images (ON009-2A11 Pro/CANBUS and OA1409-CPAA Land Cruiser) are rejected. Continue OneNav only; next work is to retrieve/visually verify the exact OA009-1 image from the manufacturer or approved catalogue, then proceed through the remaining OneNav Classic/Evolution model rows. Keep Price On Request, null price/stock, no proposed GW SKU, and DO NOT IMPORT."
     },
     {
       "id": "storefront-three-category-consolidation",
