@@ -166,6 +166,38 @@ const isuzuAlias = byHeadunitCode.get('ISA-ON115-3LX');
 assert.equal(isuzuAlias.model_identity_status, 'OFFICIAL_PAGE_FOR_BASE_CODE_ONLY');
 assert.equal(isuzuAlias.image_status, 'IMAGE_PENDING');
 assert.match(isuzuAlias.review_note, /Alias\/duplicate confirmation required/);
+const on016Headunit = byHeadunitCode.get('ON016-2LX');
+assert.ok(on016Headunit, 'exact ON016-2LX head-unit source row must remain present');
+assert.equal(on016Headunit.model_identity_status, 'VERIFIED_OFFICIAL_PRODUCT_PAGE');
+assert.equal(on016Headunit.image_status, 'IMAGE_PENDING');
+assert.match(on016Headunit.model_evidence_status, /title says 10\.1-inch.*Specifications say 10-inch/i);
+assert.doesNotMatch(on016Headunit.customer_description, /10\.1-inch|10-inch/i,
+  'customer description must omit the unresolved screen diagonal');
+assert.equal(on016Headunit.image_url_candidate, '');
+assert.equal(on016Headunit.image_source_page, '');
+
+const on016ReviewPath = 'catalogue-review/onenav-on016-2lx-enrichment-2026-11-09.json';
+const on016Review = JSON.parse(fs.readFileSync(on016ReviewPath, 'utf8'));
+assert.equal(on016Review.review_status, 'DO NOT IMPORT');
+assert.equal(on016Review.manufacturer_model_code, 'ON016-2LX');
+assert.equal(on016Review.vehicle_fitment.status, 'MANUFACTURER_PAGE_CONFIRMED');
+assert.equal(on016Review.manufacturer_evidence.status, 'VERIFIED_EXACT_SKU_AND_FITMENT');
+assert.equal(on016Review.screen_size.status, 'CONFLICT_UNRESOLVED');
+assert.equal(on016Review.customer_content.description_status, 'MANUFACTURER_VERIFIED_WITH_CONFLICTING_SCREEN_SIZE_OMITTED');
+assert.doesNotMatch(on016Review.customer_content.customer_title, /10\.1-inch|10-inch/i);
+assert.doesNotMatch(on016Review.customer_content.customer_description, /10\.1-inch|10-inch/i);
+assert.equal(on016Review.proposed_gw_sku, null);
+assert.equal(on016Review.pricing.customer_display, 'Price On Request');
+assert.equal(on016Review.pricing.numeric_price, null);
+assert.equal(on016Review.stock.status, 'UNCONFIRMED');
+assert.equal(on016Review.stock.stock_status, null);
+assert.equal(on016Review.image.status, 'IMAGE_PENDING');
+assert.equal(on016Review.image.approved, false);
+assert.equal(on016Review.image.url, null);
+assert.equal(on016Review.image.candidates.length, 1);
+assert.equal(on016Review.image.candidates[0].status, 'NOT_APPROVED');
+assert.equal(on016Review.image.candidates[0].rights_status, 'UNVERIFIED');
+assert.equal(on016Review.image.rejected_candidates[0].status, 'REJECTED_WRONG_MODEL_AND_FITMENT');
 const magniteEvolution = byHeadunitCode.get('ON418-1LX');
 const eclipseCrossEvolution = byHeadunitCode.get('ON425-1LX');
 for (const row of [magniteEvolution, eclipseCrossEvolution]) {
