@@ -69,6 +69,36 @@ assert.equal(toyota280Classic.image_url_candidate, '',
 assert.match(toyota280Classic.image_match_notes, /ON009-2A11-Toyota-280mm-with-Canbus\.png/);
 assert.match(toyota280Classic.image_match_notes, /different Pro Series CANBUS variant.*not this Classic W\/O CANBUS SKU/i);
 assert.match(toyota280Classic.official_manufacturer_product_page, /onenav-classic-9inch-for-toyota-280mm/);
+assert.match(toyota280Classic.image_match_notes, /OA1409-CPAA/);
+assert.match(toyota280Classic.image_match_notes, /HTTP 403/i);
+const oa009Review = JSON.parse(fs.readFileSync('catalogue-review/onenav-oa009-1-enrichment-2026-11-11.json', 'utf8'));
+assert.equal(oa009Review.review_status, 'DO NOT IMPORT');
+assert.equal(oa009Review.source_record.sheet, 'Products');
+assert.equal(oa009Review.source_record.row, 34);
+assert.equal(oa009Review.manufacturer_model_code, 'OA009-1');
+assert.equal(oa009Review.manufacturer_evidence.exact_sku_visible, true);
+assert.equal(oa009Review.manufacturer_evidence.status, 'VERIFIED_EXACT_SKU_AND_CORE_SPECIFICATIONS');
+assert.equal(oa009Review.variant.canbus, 'W/O CANBUS');
+assert.equal(oa009Review.variant.manufacturer_status, 'NOT_EXPLICITLY_STATED_ON_EXACT_PRODUCT_PAGE');
+assert.match(oa009Review.customer_content.customer_description, /1024 × 600/);
+assert.match(oa009Review.customer_content.customer_description, /4 × 40 W maximum/);
+assert.match(oa009Review.customer_content.customer_description, /wired Apple CarPlay and Android Auto/);
+assert.doesNotMatch(oa009Review.customer_content.customer_description, /wireless|Wi-Fi|GPS|offline maps|RMS/i,
+  'Do not transfer unsupported wireless/navigation features or convert maximum output to RMS');
+assert.equal(oa009Review.proposed_gw_sku, null);
+assert.equal(oa009Review.image.url, null);
+assert.equal(oa009Review.image.approved, false);
+assert.equal(oa009Review.image.status, 'IMAGE_PENDING');
+assert.ok(oa009Review.image.rejected_candidates.some(x => x.model === 'ON009-2A11'
+  && x.status === 'REJECTED_WRONG_SERIES_AND_CANBUS_VARIANT'));
+assert.ok(oa009Review.image.rejected_candidates.some(x => x.model === 'OA1409-CPAA'
+  && x.status === 'REJECTED_WRONG_MODEL_AND_FITMENT'));
+assert.equal(oa009Review.pricing.customer_display, 'Price On Request');
+assert.equal(oa009Review.pricing.numeric_price, null);
+assert.equal(oa009Review.stock.stock_status, null);
+assert.equal(oa009Review.import_status, 'DO NOT IMPORT');
+assert.doesNotMatch(JSON.stringify(oa009Review.customer_content), /Planetworld|one-price-list|OA009-1/i,
+  'Supplier/source identifiers must not leak into customer-facing content');
 const fortunerClassic = bySku.get('OA017-1');
 assert.equal(fortunerClassic.enrichment_status, 'DETAILS_VERIFIED_IMAGE_PENDING');
 assert.equal(fortunerClassic.image_url_candidate, '',
