@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Planetworld candidate-only image work: 12 Kicker products now have exact manufacturer page + visually checked primary image candidates; 2 Audison candidates added (bit DMI SKU 66750650 and B-CON SKU 66750800). Consolidated manifest: catalogue-review/planetworld-exact-image-source-candidates-2026-11-12.csv (14 rows total). All rows remain NOT_APPROVED / DO_NOT_IMPORT; no image assets or storefront data changed. Continue remaining Audison exact-model candidates from the 41 manufacturer-verified rows, then next brands. Audio Connections remains 62/66 eligible with four holds; separate Alpine six remain review-only."
+      "next_action": "Planetworld exact-image candidate manifest now contains 18 rows: 12 Kicker and 6 Audison. Newly verified Audison exact-model page/image pairs: bit One HD Virtuoso (66751501), bit Ten (66752000), bit Tune (66753000), and AP4 D (66755030), in addition to bit DMI and B-CON. All remain NOT_APPROVED / DO_NOT_IMPORT; continue remaining Audison rows, then next brands. Audio Connections remains 62/66 eligible with four held records; separate Alpine six remain review-only."
     },
     {
       "id": "onenav-model-image-reconciliation",
