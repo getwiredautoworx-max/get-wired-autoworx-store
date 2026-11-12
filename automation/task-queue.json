@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Continue exact-model enrichment in bounded batches. Current owner-preview audit: 66 Planetworld Car Audio records and 6 Home CI/Home Entertainment records pass exact image+description verification (72 total); 61 Audio Connections records pass, 5 are held. The 47 Harnesses & Trims source rows are now separated into 24 Harnesses and 23 Trims, but all 47 still lack verified images/descriptions and remain withheld. Only verified image+description products render; all others remain in source/review data. Prioritise remaining Car Audio, Home CI and Home Retail before Band & Live Sound, DJ, Installed AV and Musical Instruments."
+      "next_action": "Continue OneNav model-by-model before moving to another brand. OA014-1 description/specifications are manufacturer-verified but its retailer-hosted image is withheld pending rights/source proof; OA009-1 still lacks an approved exact image. Keep all uncertain products DO NOT IMPORT, use only approved supplier/manufacturer catalogue assets, and keep all prices Price On Request with null numeric price/stock."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -145,7 +145,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "OA009-1 now has an exact manufacturer SKU/product page and verified Classic 9-inch/1024×600 feature set, with the source row linked (one-price-list-2026-10-25.xlsx, Products row 34). W/O CANBUS is source-title confirmed and independently cross-checked, but not explicitly stated on the exact manufacturer page. Exact product image remains IMAGE_PENDING: the official page asset was not retrievable, the NXT exact-code page returned HTTP 403 before image inspection, and two different images (ON009-2A11 Pro/CANBUS and OA1409-CPAA Land Cruiser) are rejected. Continue OneNav only; next work is to retrieve/visually verify the exact OA009-1 image from the manufacturer or approved catalogue, then proceed through the remaining OneNav Classic/Evolution model rows. Keep Price On Request, null price/stock, no proposed GW SKU, and DO NOT IMPORT."
+      "next_action": "OA014-1 OneNav Classic Toyota Prado 2002–2009 now has exact manufacturer SKU/fitment/specification evidence and a visually matched OA014-1 image candidate, but the image is third-party retailer-hosted with undocumented source provenance/reuse permission; it has been withheld from the owner-preview package and remains IMAGE_RIGHTS_REVIEW_PENDING. OA009-1 remains image-pending. Continue OneNav only, resolving OA009-1 exact image and remaining OneNav identity/image exceptions; do not advance to another brand."
     },
     {
       "id": "storefront-three-category-consolidation",
