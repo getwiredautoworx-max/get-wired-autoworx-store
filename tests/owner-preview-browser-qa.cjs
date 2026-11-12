@@ -83,7 +83,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
         };
       });
       assert.equal(dataAudit.planetRows, 3317);
-      assert.equal(dataAudit.audioRows, 66);
+      assert.equal(dataAudit.audioRows, 72, 'secondary Audio Connections preview contains 72 reconciled review records');
       assert.equal(dataAudit.planetPriceLeaks, 0, 'Planetworld preview JSON must not retain numeric price or stock claims');
       assert.equal(dataAudit.audioPriceLeaks, 0, 'Audio Connections preview JSON must not retain numeric price or stock claims');
       assert.deepEqual(dataAudit.audioPriceLabels, ['Price On Request']);
