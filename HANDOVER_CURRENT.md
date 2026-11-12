@@ -1,5 +1,15 @@
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
+## GEMINI FIRST MAIN-BRANCH RUN — 2026-11-12
+
+- The merged workflow did trigger automatically on the merge push. GitHub Actions run: [43273522558](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43273522558), event `push`, workflow `Gemini CLI — Safe Storefront Worker`, head SHA `7664d1a8b034e170613bbfc1eb74137ec72f7533`.
+- Checkout succeeded and pinned Gemini CLI `0.68.0` installed successfully.
+- The credential resolver found the existing repository secret named `GEMINI_API_KEY`; Google Generative Language API rejected it with HTTP 400 `API_KEY_INVALID` (“API key not valid”). The other supported credential slots were empty in this run. The key value was not printed, copied or changed.
+- Gemini did not execute a model task; validation and publisher jobs were skipped. No Gemini-generated PR exists from this run.
+- This proves the workflow trigger and runner are operational, but not that the API credential is valid. Do not rerun and waste API attempts until the owner replaces/corrects the repository secret with a valid Google AI Studio Gemini API key, or confirms the intended valid key is stored under a different supported name. Never ask the owner to paste the key into chat.
+- No production deployment, supplier-data processing, catalogue import or live-system change occurred.
+
+
 ## GEMINI ACTIVATION MERGE — 2026-11-12
 
 - PR #200 merged successfully to `main` as `7664d1a8b034e170613bbfc1eb74137ec72f7533`.
@@ -25,7 +35,7 @@
 - Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
 
 
-**Updated:** 2026-11-12 20:15 SAST  
+**Updated:** 2026-11-12 20:20 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
 
