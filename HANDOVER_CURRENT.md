@@ -1017,3 +1017,15 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - The separate six Alpine records remain under `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`; they are not silently counted as Audio Connections and are not included by the current secondary AC-only image-status filter. Keep their image/promotion approval separate; do not change their status to force inclusion.
 - The current loader predicate was verified by reading `preview-audio.html`, `preview-audio-brand.html` and `preview-audio-products.html`; all use the same secondary-record exact-status/publication/image gate.
 - GitHub workflow-run lookup for the latest queue checkpoint SHA returned no workflow runs. A local clone/test run was attempted but this runtime could not resolve github.com, so no local browser/test result is claimed. The record-level count and source-image visual check are verified; exact-head CI/hosted browser verification remains outstanding.
+
+## PLANETWORLD KICKER EXACT IMAGE CANDIDATE BATCH 1 — 2026-11-12 19:31 SAST
+
+- Began the next bounded Planetworld manufacturer-image evidence batch using the existing 81-row `MANUFACTURER_VERIFIED_CONTENT_2026-10-30.csv`. Audit result: 81 rows; all 81 have `image_approval=NOT_APPROVED`. Therefore none of these images may be treated as approved for customer publication or copied into the storefront product data.
+- Opened three exact Kicker manufacturer pages and visually inspected the first product image on each page:
+  - 43C104 — official page identifies 10-inch Comp 4 Ohm SVC model 43C104; image URL https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c104/images/480x360-front.jpg
+  - 43C124 — official page identifies 12-inch Comp 4 Ohm SVC model 43C124; image URL https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c124/images/480x360-front.jpg
+  - 43C84 — official page identifies 8-inch Comp 4 Ohm SVC model 43C84; image URL https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c84/images/480x360-front.jpg
+- Created `catalogue-review/kicker-image-source-candidates-2026-11-12.csv` and recorded the three exact-model page/image pairs. All three are explicitly `NOT_APPROVED` and `DO_NOT_IMPORT`; no customer preview data or product images were changed.
+- Manufacturer pages provide identity/specification corroboration (43C104 and 43C124: 150 W RMS recommended amplifier power, 300 W peak, 4 ohm; 43C84: 50–100 W RMS recommended amplifier power, 200 W peak, 4 ohm). Existing staged descriptions can be cross-checked against these exact pages.
+- Next: continue the same bounded Kicker exact-model batch for the remaining nine products in the 12-row verified-content set, recording image candidates only where exact model page and image are visually matched. Do not upgrade approval status without explicit rights/asset approval. Then reconcile evidence into the broader Planetworld review register.
+- No live product data, customer-facing image, price, stock, supplier data publication, deployment or production resource was changed.
