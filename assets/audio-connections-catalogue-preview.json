@@ -145,9 +145,9 @@
       "priceOnRequestText": "Price On Request",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY",
-      "imageSourceNote": "Exact Sony XS-W104ES product image visually verified from Gentec's product page. The product page title identifies XS-W104ES and the image shows the Sony Mobile ES subwoofer. This image resolves the previous broken candidate URL. Record remains PREVIEW_ONLY_NOT_LIVE; no publication or price/stock change.",
-      "imageNote": "Exact-model product image visually verified; remains review-only pending the normal owner preview/release gates.",
+      "imageStatus": "OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH",
+      "imageSourceNote": "Exact Sony XS-W104ES product image visually verified from Gentec's product page. The product page title identifies XS-W104ES and the image shows the Sony Mobile ES subwoofer. This image replaces the previously broken candidate URL. Storefront's approved exact-model image-status convention is retained so the review-only preview filter can render the record. Publication remains PREVIEW_ONLY_NOT_LIVE; no live publication or price/stock change.",
+      "imageNote": "Exact-model product image visually verified; rendered in the owner review-only preview under the existing approved image-status convention.",
       "imageSourceUrl": "https://www.gentec-intl.com/products/xsw104es"
     },
     {
