@@ -790,3 +790,5 @@ The next action is to review PR #195's current diff and exact workflow configura
 - PR #196 remains OPEN, DRAFT, mergeable=true, but merge_state=unstable because the Workers build check fails. It has not been merged. The user has not separately approved merging PR #196.
 - Hosted preview was deployed at the exact candidate SHA. Automated browser QA passed on local owner-preview at mobile and desktop viewports; direct browser inspection of the hosted URL was not available in this session. Owner mobile verification remains outstanding.
 - Gemini auth fix remains unverified: this branch has not executed the worker against the existing credential. Do not report Gemini as operational until a successful Gemini model run and publisher result are recorded.
+
+- Exact-head preview rebuild: added a no-op HTML comment to `index-new.html` in the same commit as this handover entry so Cloudflare Pages and all relevant QA gates run against one final candidate SHA. No storefront behavior was changed by the marker; results are pending.
