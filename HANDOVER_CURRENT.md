@@ -744,3 +744,40 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - Open PRs #183/#185/#194 and controller/operating-rule PRs were inspected only for separation; ASC and Electro-city workstreams are not being modified. Main's current audio queue and OneNav audit files were read.
 - Active OneNav resume point is OA009-1 image-pending. Next bounded group selected: OA014-1 Toyota Prado Classic. The official manufacturer page confirms exact SKU/fitment/specifications; a third-party retailer-hosted artwork visibly prints OA014-1 and matches the Prado fascia, but its source-asset provenance/reuse permission is not documented. This run will preserve it as a visual match candidate and remove the unsupported "owner-authorized" assertion from the review-only override; it will not approve or import the image.
 - No tests, workflow dispatches, preview deployments, production actions, live Supabase writes, price/stock updates, or ASC work have been performed at task start.
+
+
+## 2026-11-12 10:11 SAST — ONENAV OA014-1 IMAGE-RIGHTS HOLD / ENRICHMENT INCREMENT
+
+### Product-group result
+- Processed one OneNav Classic product: source code `OA014-1`, Toyota Prado (2002–2009), source row `catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx / Products / row 39`, primary review record `pw-2120`.
+- Official OneNav page `https://onenav.co.za/product/onenav-classic-9inch-for-prado-2002-2009/` visibly identifies exact SKU OA014-1 and confirms Classic family, Toyota Prado 2002–2009, 9-inch 1024 × 600, wired Apple CarPlay/Android Auto, DSP/multi-band EQ, steering-wheel-control readiness, Bluetooth with external microphone, 4 × 40 W maximum (not RMS), 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs and front/rear camera inputs.
+- Added paraphrased customer description with only those manufacturer-supported facts. Product type remains Head Units & Media Players under Audio, Entertainment & Music → Car Audio & Video → OneNav.
+- Exact visual candidate: `https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542`, source listing `https://the4x4store.co.za/products/onenav-classic-series-toyota-prado-2002-2009-oa014-1`. The artwork visibly prints OA014-1 and Prado 2002–2009 and matches the listing's Classic fitment. However, it is hosted by a third-party retailer; the listing says it is a buy-in product but does not document the image's original source provenance or reuse rights. It is therefore an exact visual match candidate, **not an approved asset**.
+- To fail closed, changed the review-only audio override for `pw-2120` to `imageUrl: null`, `imageStatus: IMAGE_RIGHTS_REVIEW_PENDING`, and an explicit rights/provenance note. The image is now withheld from owner-preview product cards until an approved supplier/manufacturer catalogue asset or documented permission is obtained. No image URL is exposed in customer preview data.
+- Customer title/description contain no supplier name or internal source code. Customer price remains `Price On Request`; numeric price and stock remain null; no GW SKU assigned; import status remains `DO NOT IMPORT`.
+
+### Changed files and exact commits
+1. `catalogue-review/planetworld-one-official-model-audit.csv` — OA014-1 image status and notes now explicitly record third-party hosting and undocumented reuse rights; final row wording commit `a3f595beab20332c94f61eeb7d0890f5face09ad` (initial row update `ced4047f76476b101568a6752e549cd9ba256a0a`).
+2. `catalogue-review/onenav-oa014-1-enrichment-2026-11-12.json` — new 1-product structured review record; commit `dc9ff50139546b30578fd7e4cbd045a9cf231e22`.
+3. `assets/audio-product-enrichment-overrides.json` — withheld the unapproved retailer-hosted image from owner-preview cards; commit `b991e9c94d151915de02928dd96c9fafdb5c038d`.
+4. `tests/onenav-source-audit.test.cjs` — added exact identity, source row, description, rights-pending, no-image, POR/null-price/null-stock and DO NOT IMPORT assertions; final wording commit `aee50e8bac322b8bef3c47faeeae4c36a5b8d432` (earlier test commits `15b78d6688982f934637c63fa4ce2a5f4d7a3912` and `0186feaf68a57cefb306d220c9f08f7b77231385`).
+5. `tests/public-preview-data-sanitization.test.cjs` — now asserts the OneNav Prado image is null/withheld while its manufacturer-verified description remains; commit `0fdf0bdbcfcf8f72691f53a38fffe1de25b57d9f`.
+6. `automation/task-queue.json` — records OA014-1 rights hold, OA009-1 exact-image blocker and OneNav-only continuation; commit `c9ab197e77c92eaf83c64c9e9ff35a39998ac099`.
+7. `HANDOVER_CURRENT.md` — task-start reconciliation commit `130eb8d8e1cb76ed06d5f8667e4de720f3a2e24c`; this entry is the current final checkpoint.
+
+### Validation actually performed
+- 13 connector-side deterministic read-back assertions: **13/13 PASS**. Covered 45 unique OneNav audit rows; exact OA014-1 manufacturer page; exact image candidate and rights note; structured DO NOT IMPORT status; manufacturer-verified paraphrased description; image withheld from preview; POR and null numeric price/stock; override image suppression; task-queue resume state.
+- V8 syntax compilation via `new Function(source)`: PASS for `tests/onenav-source-audit.test.cjs` and `tests/public-preview-data-sanitization.test.cjs`. This is syntax-only, not execution of either Node test.
+- Full Node tests `node tests/onenav-source-audit.test.cjs` and `node tests/public-preview-data-sanitization.test.cjs`: **NOT EXECUTED** in this environment. No hosted Actions run was dispatched; no deployment or preview was attempted.
+
+### Branch / PR / release state
+- Working branch remains `work/audio-one-nav-current-main-2026-11-11`; latest verified branch head before this handover update: `aee50e8bac322b8bef3c47faeeae4c36a5b8d432`.
+- Current `main` head at task start: `d51c9a064694915631bc1d0058f3184436d10baa`. Branch compare: 23 commits ahead / 4 behind, merge base `daf2d08f46306ee7ac666c61d57bdaff65676f07`. The four main-only commits affect three empty Audison candidate-manifest checkpoints and one generated category snapshot; none overlaps the OneNav review/test files. Do not merge/rebase this branch blindly.
+- PR #190 is already merged to main per the current main handover. PR #178 remains open but stale/divergent (1001 ahead / 281 behind) and was not edited. No new PR was opened because the branch is a review workstream, and PR/Pages/Workers build-credit implications remain unresolved; do not trigger those checks without owner approval.
+- No workflow dispatch, Cloudflare/Netlify credit use, deployment, live Supabase/catalogue/price/stock/active-flag write, Axxess, DNS, checkout/payment, banking, production or ASC work occurred.
+
+### Counts and resume point
+- OneNav official-model audit: 45 rows / 45 unique source SKU references.
+- OA014-1: 1 manufacturer identity and description verified; 1 exact visual image candidate; 0 approved images for this item because reuse rights/provenance are unverified; 1 image withheld from preview; 1 DO NOT IMPORT; no GW SKU; POR; null price/stock.
+- OA009-1 remains image-pending; CANBUS absence is not explicitly stated on its exact manufacturer page. Do not use the rejected ON009-2A11 Pro/CANBUS or OA1409-CPAA Land Cruiser images.
+- Continue OneNav only. Next: obtain an approved exact OA009-1 image from the manufacturer/approved supplier catalogue, then continue the remaining OneNav head-unit, camera/accessory and fitment-kit exceptions. Do not move to another brand until OneNav enrichment is resolved. Keep all candidate records review-only / DO NOT IMPORT.
