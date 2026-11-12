@@ -960,3 +960,18 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - No live import, Supabase write, price/stock/active-flag change, Axxess upload, DNS/payment change, deployment, paid hosting spend or production action occurred.
 
 **Next action:** verify PR #199 exact-head checks; repair any deterministic failures on this same integration branch. If green, merge the review-only package to current main under the owner's existing consolidation approval. Continue the remaining ASC editorial/image work separately; do not confuse this review-data milestone with completed catalogue listings.
+
+
+---
+
+## ASC REVIEW PACKAGE MERGE — 2026-11-12 18:48 SAST
+
+- Resumed from the previous checkpoint and verified PR #199 against its exact recorded head `b663fc3af800ac28f13511ac1b2a1e97757f31d4`.
+- Exact-head GitHub Actions evidence: `Catalogue & Supplier Routing Review — QA` run `43253339275` SUCCESS; `Supplier Catalogue Review Data QA` run `43253339224` SUCCESS. Combined commit status returned no additional status contexts. These two targeted review-data workflows passed; this is not a full storefront/browser/hosted-preview test.
+- Compared PR head with the then-current main `f49d85380849d1de9917f5bff89fb8e96a80af35`: PR had seven commits ahead and one behind, with the single main-only commit being the handover checkpoint; its seven changed files were all new review-only ASC evidence/test files.
+- Selectively merged PR #199 to `main` using expected head SHA protection. GitHub confirmed merged successfully. Merge commit: `123e41e83a8710fe427a1a4e1facdf34480b3130`.
+- Integrated files: ASC image-verification exceptions, six-catalogue QA report, source-verification status, 50-product pilot review register, 978-row master SKU review register, 978-row DO NOT IMPORT staging crosswalk, and deterministic ASC validator test.
+- This is a review-data integration milestone only. The package retains 928 OCR-draft titles, 936 fitment fields pending, all 978 technical specification fields pending, 26 products without source photos, and outstanding image treatment/owner visual acceptance. All records remain review-only; no sale-ready status or live import.
+- This merge supersedes the earlier instruction above to wait for PR #199 checks/merge. PR #199 is now merged; do not merge stale PR #183 wholesale.
+- Next execution: continue ASC editorial/image QA and review the existing audio review datasets for exact-model/image/description completeness. Preserve the unresolved Sony, Starsound and BlackSpider exceptions. Continue approved catalogue-only scope and keep all customer-facing supplier identities/internal supplier SKUs hidden.
+- Production remains HOLD. No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, or paid hosting action occurred.
