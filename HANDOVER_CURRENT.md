@@ -1,5 +1,13 @@
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
+## GEMINI ACTIVATION MERGE — 2026-11-12
+
+- PR #200 merged successfully to `main` as `7664d1a8b034e170613bbfc1eb74137ec72f7533`.
+- Confirmed current-main workflow SHA `9167057db386462c3c2bd811d398479830fc9ded`; it contains the push trigger and all three active audio page paths in the sparse checkout and both allowlists.
+- The merged diff contains only the Gemini workflow, `GEMINI.md`, and this handover. No production, deployment, catalogue, supplier-data or live-system changes were made.
+- A successful Gemini model execution and generated draft PR are not yet verified. Workflow activation is configured; do not conflate configuration with a successful run.
+
+
 ## STOREFRONT + GEMINI RECONCILIATION — 2026-11-12
 
 ### Verified current-main audio state
@@ -13,11 +21,11 @@
 ### Branch reconciliation evidence
 - PR #168, #176 and #178 are not safe wholesale merge candidates: their heads are substantially behind current `main`, their mergeability is false, and their diffs contain large amounts of supplier-derived data and/or historical workflow/handover material. Selectively port only independently verified public-safe code after review; do not merge these branches wholesale.
 - PR #195 already merged earlier as commit `513ac2a1907fe858b4ad362d44c12c29fedf4b97`; it is not awaiting merge.
-- PR #200 is a clean-main Gemini worker refinement. Its first draft had duplicate publisher-job YAML and omitted the active audio landing/brand pages from its sparse checkout. Correct the workflow and validate it before merge.
+- PR #200 was corrected and merged on 2026-11-12 as `7664d1a8b034e170613bbfc1eb74137ec72f7533`. The merged workflow has one publisher job, preserves the push-on-workflow-change trigger, and includes the active audio landing, brand and product-type pages in both sparse checkouts and exact allowlists.
 - Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
 
 
-**Updated:** 2026-11-08 19:44 SAST  
+**Updated:** 2026-11-12 20:15 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
 
@@ -1101,14 +1109,14 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 ## GEMINI WORKER CLEAN-MAIN RECONCILIATION — 2026-11-12
 
 - Reviewed the existing Gemini CLI worker draft PR #195 and its implementation. It was not operational: it had no successful model run, and its branch compared 8 commits ahead / 61 behind current main. Its earlier file allowlist did not match the current storefront entry points.
-- Created a clean-main replacement candidate, PR #200: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/200
-- Candidate branch: `integration/gemini-worker-clean-main-2026-11-12`; latest candidate SHA at checkpoint: `c5eae7a5e68cfe4516574a23a4e193029bc061fd`; base main SHA: `6f615c58d515e49605a3b9375d6f886be91c0ef9`. GitHub comparison: 5 commits ahead, 0 behind; only the Gemini workflow and `GEMINI.md` differ from main.
-- Updated the worker's sparse checkout, Gemini instructions and both patch allowlists to the current customer-facing code files: `index-new.html`, `category.html`, and `preview-audio-products.html`. Supplier/catalogue files and the Planetworld/Audio Connections review datasets are not exposed to Gemini.
+- Created and merged PR #200 from a clean-main base: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/200. Merge commit: `7664d1a8b034e170613bbfc1eb74137ec72f7533`.
+- The merged change touched only `.github/workflows/gemini-safe-storefront-worker.yml`, `GEMINI.md`, and this handover. GitHub confirmed a successful squash merge.
+- Updated the worker's sparse checkout, Gemini instructions and both patch allowlists to include `index-new.html`, `category.html`, `preview-audio.html`, `preview-audio-brand.html`, and `preview-audio-products.html` plus existing generic storefront routes. Supplier/catalogue files and Planetworld/Audio Connections review datasets remain excluded from Gemini.
 - Preserved the existing credential resolver, which checks the configured Actions secret/variable names (`GEMINI_API_KEY`, `GOOGLE_API_KEY`, `GOOGLE_GENAI_API_KEY`) and safely validates a candidate against Google's Generative Language API without printing credential values. This addresses the owner's clarification that the key is already present in repository Secrets/Variables; the actual key value is never read back or disclosed in handover.
-- Worker execution remains manual-dispatch-only to avoid unsolicited API usage. Gemini receives read-only GitHub permissions and can edit only the three allowlisted existing files. A separate publisher job validates the patch and may open a draft PR; it cannot merge or deploy.
-- Current evidence: workflow and instructions read back from GitHub; candidate branch is clean-main-based. No PR checks or Gemini model execution are yet recorded for PR #200 because it is a manual-dispatch workflow and is not on main. Do not describe Gemini as operational until the workflow is approved/merged, dispatched, the model call succeeds, and a generated draft PR is verified.
+- The merged workflow preserves the push-on-workflow-file-change activation trigger and manual dispatch. Gemini receives read-only GitHub permissions and can edit only the three allowlisted existing files. A separate publisher job validates the patch and may open a draft PR; it cannot merge or deploy.
+- Current evidence: merged workflow and instructions read back from GitHub; push trigger and audio file allowlists verified. A successful Gemini model run and generated draft PR have not yet been independently verified. Do not describe Gemini as operational until the run and output are observed.
 - No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
-- Next: review PR #200's exact workflow diff; after explicit owner approval to activate it, merge this non-production worker, dispatch one bounded current-storefront task, verify the Gemini run and generated draft PR, then integrate only independently tested work into the single consolidated storefront candidate.
+- Next: verify the workflow run triggered by the merge; if no run appears, use the GitHub Actions UI to dispatch one bounded current-storefront task, then verify the Gemini model call and generated draft PR before integrating tested work.
 
 
 ## GEMINI MERGE-STATE CORRECTION — 2026-11-12
@@ -1116,5 +1124,5 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - GitHub's authoritative PR metadata confirms PR #195 was already merged before this continuation: merge commit `513ac2a1907fe858b4ad362d44c12c29fedf4b97`, merged at 2026-11-12 14:42:34 UTC. This session did not merge PR #195; an earlier continuation note that described it as still open/unmerged was stale.
 - The merged workflow is present on `main` and is manually dispatchable. It already resolves credentials from both Actions Secrets and Variables using the recognised Gemini/Google key names, validates a candidate key without logging its value, and only then invokes Gemini CLI.
 - The current main workflow has not yet produced a verified successful Gemini model run or a generated draft PR in the evidence retrieved during this session. The connected GitHub actions do not expose a workflow-dispatch operation, so no manual run was triggered here. Do not claim Gemini is operational until a successful run and resulting publisher-created draft PR are observed.
-- PR #200 is a clean-main refinement of the already-merged worker, not a prerequisite for first activation. It narrows the worker's actual checkout and patch allowlist to `index-new.html`, `category.html`, and `preview-audio-products.html`, and records this continuation in the handover. Current comparison: 6 commits ahead / 0 behind main; latest handover commit `1ffa9f41b046faff8640b79da4e41b93e9e7ca25`.
+- PR #200 has now been merged as `7664d1a8b034e170613bbfc1eb74137ec72f7533`; it repairs the workflow structure, preserves push activation and includes all three active audio navigation pages in the checkout and allowlists.
 - PR #195's old branch was 8 commits ahead / 61 behind main; no new changes from that stale branch were merged during this session. PR #200 is the only active refinement candidate for the Gemini worker.
