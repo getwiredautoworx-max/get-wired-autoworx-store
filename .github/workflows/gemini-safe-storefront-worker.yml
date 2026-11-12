@@ -73,13 +73,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          KEY="$(python3 - <<'PY'
-          import json, os, sys
+          RESULT="$(python3 - <<'PY'
+          import json, os, sys, urllib.error, urllib.parse, urllib.request
           names = (
               "RAW_GEMINI_SECRET", "RAW_GEMINI_VARIABLE",
               "RAW_GOOGLE_SECRET", "RAW_GOOGLE_VARIABLE",
               "RAW_GOOGLE_GENAI_SECRET", "RAW_GOOGLE_GENAI_VARIABLE",
           )
+          fields = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key")
           for name in names:
               raw = os.environ.get(name, "").strip()
               if not raw:
@@ -88,7 +89,7 @@ jobs:
               try:
                   parsed = json.loads(raw)
                   if isinstance(parsed, dict):
-                      for field in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key"):
+                      for field in fields:
                           if isinstance(parsed.get(field), str) and parsed[field].strip():
                               value = parsed[field].strip()
                               break
@@ -97,16 +98,31 @@ jobs:
               except (ValueError, TypeError):
                   pass
               value = "".join(value.split())
-              if len(value) >= 20:
-                  print(value, end="")
-                  sys.exit(0)
+              if len(value) < 20:
+                  continue
+              url = "https://generativelanguage.googleapis.com/v1beta/models?key=" + urllib.parse.quote(value, safe="")
+              request = urllib.request.Request(url, headers={"Accept": "application/json"})
+              try:
+                  with urllib.request.urlopen(request, timeout=15) as response:
+                      if response.status == 200:
+                          print(name + "\n" + value, end="")
+                          sys.exit(0)
+              except urllib.error.HTTPError as error:
+                  if error.code in (400, 401, 403):
+                      continue
+                  sys.exit(2)
+              except (urllib.error.URLError, TimeoutError):
+                  sys.exit(2)
           sys.exit(1)
           PY
           )" || {
-            echo "::error::No usable API-key value was found in the existing GEMINI_API_KEY / GOOGLE_API_KEY / GOOGLE_GENAI_API_KEY secret or variable entries. Values were not printed."
+            echo "::error::No valid Google Generative Language API key was accepted from the existing Gemini/Google Actions secret or variable entries. Credential values were not printed."
             exit 1
           }
-          unset RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
+          SOURCE="${RESULT%%$'\n'*}"
+          KEY="${RESULT#*$'\n'}"
+          echo "Google API credential validated from existing entry: $SOURCE"
+          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
           export GEMINI_API_KEY="$KEY"
           unset KEY
           mkdir -p .gemini
