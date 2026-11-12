@@ -53,6 +53,7 @@ jobs:
       - name: Run Gemini CLI with read-only GitHub access
         uses: google-github-actions/run-gemini-cli@387c8ddb7a72078825da941758b811b9153c71e8
         env:
+          GEMINI_CLI_TRUST_WORKSPACE: "true"
           GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
