@@ -990,3 +990,15 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - This was a read-only audit plus manufacturer-source verification. No product data, image URL, supplier record, price, stock, live catalogue, Supabase or storefront content was changed.
 - Next action: resolve Sony XS-W104ES image URL from its official product page and verify the image visually; keep the three Starsound records held pending source confirmation; improve BlackSpider image quality only with an exact-model source. Continue the separate Planetworld 3,317-row and Audio Connections 66-row reconciliation without inventing product matches.
 - Production remains HOLD; no deployment, Axxess upload, paid hosting spend or live data mutation occurred.
+
+---
+
+## SONY XS-W104ES IMAGE VERIFIED — 2026-11-12 19:08 SAST
+
+- Continued the audio enrichment workstream and resolved the first outstanding image exception using the exact model-specific Gentec product page.
+- Opened and inspected the product page https://www.gentec-intl.com/products/xsw104es. The page title identifies "Sony XS-W104ES | 10 in (25 cm) Mobile ES MRC Honeycomb Subwoofer"; its primary product image was opened and visually checked. Exact image URL: https://www.gentec-intl.com/cdn/shop/files/XSW104ES_1.jpg?v=1696556764&width=2000
+- Updated record ac-006 / Sony XS-W104ES in both `assets/audio-catalogue-secondary-preview.json` and `assets/audio-connections-catalogue-preview.json` with the verified image URL and source evidence. Both files now use `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`.
+- Preserved `PREVIEW_ONLY_NOT_LIVE`, null price, null stock, and Price On Request. No customer sale/publication approval was inferred. No other product records changed.
+- Updated image exception count in the canonical secondary preview: now 3 records have no image URL (the three Starsound model/spec holds); BlackSpider BULLET LYNX still has an image URL but remains flagged low-resolution.
+- Next: audit the actual storefront loader and exact-head test coverage for both audio preview files; then continue the remaining Planetworld/Audio Connections enrichment in bounded, evidence-backed batches. Starsound exceptions remain held; BlackSpider image quality remains unresolved.
+- No deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
