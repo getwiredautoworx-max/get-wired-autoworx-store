@@ -877,3 +877,14 @@ Do not call the exact-head gate fully green until the two remaining QA runs conc
 - Exact-head CI and browser QA are pending. The candidate is not merged or preview-accepted. Do not claim ASC Aerials/Car Mats are visible in the hosted preview until the same-SHA build and browser checks pass.
 - PR #194 remains open as a stale/diverged source branch; close it only after this selective replacement PR passes and is reconciled.
 - Production HOLD remains unchanged.
+
+
+## CONSOLIDATION CORRECTION — 2026-11-12
+
+This entry supersedes stale historical status lines above where they describe PR #196 as draft/unmerged:
+- PR #196 was marked ready after exact-head verification and squash-merged into `main` at `15b6b8de35765c0d2ad8167f35b054c0788cdf77`.
+- Its final head was `45615633956e71079388567649f5e21eb770cf3b`; all seven PR workflow checks passed on that exact head: storefront smoke, button-only smoke, mobile/desktop browser QA, catalogue/supplier routing QA, Cloudflare Pages public package QA, Axxess package preparation (no upload), and public SKU exposure audit.
+- The merged change is part of the one canonical `main` project. It did not activate Gemini successfully: Google's API returned `API_KEY_INVALID` for the configured credential; no model task was completed. The Gemini worker must remain described as installed but not operational until a successful model run and publisher PR are evidenced.
+- PR #194 was not merged because its source branch diverged (7 ahead / 16 behind). Its safe ASC preview change was selectively ported to the clean current-main branch `integration/asc-preview-population-2026-11-12`.
+- PR #197 contains only the ASC preview loader, five regression assertions and this handover. It is pending exact-head CI/browser QA; the 8 Aerials + 8 Car Mats source records remain explicitly review-only and are not live catalogue imports.
+- Canonical main remains production HOLD. No production deploy, Axxess upload, live Supabase/catalogue/price/stock change, DNS/payment change or paid hosting spend was performed.
