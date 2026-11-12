@@ -3,6 +3,15 @@
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
+      "id": "b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90",
+      "name": "Aerials",
+      "slug": "aerials",
+      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 0
+    },
+    {
       "id": "07bc149c-4ab3-41bd-bab3-01415cb8a24c",
       "name": "Alternators & Starters",
       "slug": "alternators-starters",
@@ -70,6 +79,15 @@
       "name": "Home Entertainment",
       "slug": "home-entertainment",
       "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 10
+    },
+    {
+      "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
+      "name": "Trims & Harnesses",
+      "slug": "car-audio-harnesses-trims",
+      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
       "active": true,
       "direct_active_products": 0,
       "sort_order": 10
@@ -165,9 +183,9 @@
       "sort_order": 50
     },
     {
-      "id": "1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca",
-      "name": "Amplifiers",
-      "slug": "car-audio-amplifiers",
+      "id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "name": "Accessories",
+      "slug": "car-audio-accessories",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
       "direct_active_products": 0,
@@ -183,9 +201,9 @@
       "sort_order": 1000
     },
     {
-      "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
-      "name": "Cameras & Monitors",
-      "slug": "car-audio-cameras-monitors",
+      "id": "1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca",
+      "name": "Amplifiers",
+      "slug": "car-audio-amplifiers",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
       "direct_active_products": 0,
@@ -201,9 +219,9 @@
       "sort_order": 1001
     },
     {
-      "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
-      "name": "Harnesses, Trims & Fitment",
-      "slug": "car-audio-harnesses-trims",
+      "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
+      "name": "Cameras & Monitors",
+      "slug": "car-audio-cameras-monitors",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
       "direct_active_products": 0,
