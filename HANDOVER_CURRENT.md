@@ -1161,3 +1161,30 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - The current main workflow has not yet produced a verified successful Gemini model run or a generated draft PR in the evidence retrieved during this session. The connected GitHub actions do not expose a workflow-dispatch operation, so no manual run was triggered here. Do not claim Gemini is operational until a successful run and resulting publisher-created draft PR are observed.
 - PR #200 has now been merged as `7664d1a8b034e170613bbfc1eb74137ec72f7533`; it repairs the workflow structure, preserves push activation and includes all three active audio navigation pages in the checkout and allowlists.
 - PR #195's old branch was 8 commits ahead / 61 behind main; no new changes from that stale branch were merged during this session. PR #200 is the only active refinement candidate for the Gemini worker.
+
+ 
+## PUBLIC REPOSITORY / STOREFRONT CANDIDATE RECONCILIATION — 2026-11-12
+ 
+### Verified repository baseline
+- Current `main` commit at audit start: `294781d9348d3a791d170575235f59749cac6106`.
+- Recursive Git tree: 5,486 tracked files; 100+ branches exist (first two pages alone returned 200 names; branch search pagination remains available).
+- Main currently tracks 69 files under `suppliers/`, including 61 catalogue/source data files with PDF, spreadsheet or CSV extensions; it also tracks 116 files under `catalogue-review/`, `catalogue-source/` or `catalogue-audits/`.
+- Confirmed public-main examples include six ASC catalogue PDFs, Audio Connections dealer price-list PDFs, Planetworld supplier price-list spreadsheets, Electrocity source PDFs and supplier-derived review/crosswalk files. These files are committed to the public repository's current main tree, not merely present on unmerged branches.
+- Git history confirms supplier source material has been committed previously. For example, the Planetworld Alpine price-list workbook entered history in commit `c36dac5863e3cef7e6f67681e0aa05aad09c0749` (2026-10-30); ASC catalogue PDFs also have earlier upload commits. Removing a file from the latest tree alone would not remove historical Git objects, existing clones, forks or caches.
+ 
+### Customer build boundary — verified positive control
+- Read `scripts/build-cloudflare-pages-public.py` from current main. It explicitly excludes `suppliers/`, `catalogue-review/`, `catalogue-source/`, `catalogue-audits/`, staging and Supabase paths from the customer-only Pages package.
+- The build script reports `PAGES_PUBLIC_EXCLUDES_PASS` and `source_pdfs=0`; the allowlist is therefore a useful customer-package boundary. It does **not** make the source files private on public GitHub.
+ 
+### Competing storefront candidates — no blind merge
+- PR #168: 123 changed files; head `9f01966dbefc98321c5b9a3c76f31cdc8de15755`; 613 commits ahead / 457 behind current main; includes supplier review/crosswalk data as well as storefront code. Diverged and unsuitable for whole-PR merge.
+- PR #176: 50 changed files; head `74cb587a39d19230fbdda6f08f038c4b5cbc3d2b`; 249 ahead / 364 behind current main; its changed-file set is customer-facing preview/code assets rather than raw supplier-source folders, but it remains heavily diverged and is not merge-ready.
+- PR #178: 147 changed files; head `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`; 1,001 ahead / 351 behind current main; includes extensive supplier-derived review/audit files alongside storefront code. Diverged and unsuitable for whole-PR merge.
+- PR #183 is a review-only ASC six-catalogue register containing extensive catalogue-derived extraction and verification records. PR #185 is an Electrocity research pilot containing raw extraction, source-page evidence and SKU-related work. Neither is a customer-storefront merge candidate.
+- These comparisons are measured against the current main SHA above; candidate PRs are not aligned to the current base and cannot be safely merged wholesale.
+ 
+### Decision and safety state
+- No PR was merged, no branch was deleted, no supplier file was removed, no history rewrite/force-push was performed, and no production or live-data change occurred during this audit.
+- Existing owner directives on main say catalogue work may be performed in the public repository while excluding supplier files from customer publication. The newer owner concern about not merging supplier-derived files into the public storefront is recorded as a stricter integration boundary: only customer-safe storefront code and explicitly approved customer display assets may be integrated into the canonical storefront candidate.
+- Do not create a second repository or treat it as a prerequisite without the owner's explicit approval; do not assume "continue" grants that separate infrastructure decision.
+- Next safe step: continue branch/PR inventory and historical exposure classification, then prepare one narrow current-main integration candidate by selectively extracting only safe storefront code from the best tested candidate. Keep raw source and review material out of that candidate. Public Git-history remediation is a separate, potentially disruptive action requiring an owner decision after the exposure inventory is complete.
