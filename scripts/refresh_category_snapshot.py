@@ -44,17 +44,53 @@ def main():
     categories = fetch_all("categories?select=id,name,slug,parent_id,active&order=name.asc")
     products = fetch_all("products?select=category_id&active=eq.true&order=id.asc")
     counts = Counter(p.get("category_id") for p in products if p.get("category_id"))
-    snapshot_categories = [
-        {
+
+    # Customer-facing root labels are owner-approved display names. Keep the
+    # underlying Supabase IDs/slugs and product assignments unchanged.
+    display_names = {
+        "1a13bc42-4f54-44f6-9658-36d141b77f4b": "Car Audio / Home Entertainment",
+        "ba263c9f-d038-48bd-bca0-944f3ebdc5e9": "Auto Electrical Spares",
+    }
+    ordered_names = {
+        None: [
+            "Car Audio / Home Entertainment",
+            "Auto Electrical Spares",
+            "Car Care & Accessories",
+        ],
+        "ba263c9f-d038-48bd-bca0-944f3ebdc5e9": [
+            "Alternators & Starters", "Batteries & Charging",
+            "Fuses, Relays & Wiring", "Globes & Vehicle Lighting",
+            "Sensors & Switches",
+        ],
+        "f98e7589-20a0-4825-9707-2680d29e5cb6": [
+            "Car Care", "Car Mats", "Seat Covers & Interior Accessories",
+            "Exterior Accessories",
+        ],
+        "1a13bc42-4f54-44f6-9658-36d141b77f4b": [
+            "Car Audio", "Home Entertainment", "Band Equipment",
+            "DJ Equipment", "Instruments", "Lifestyle",
+        ],
+    }
+    sibling_names = {}
+    for c in categories:
+        parent = c.get("parent_id")
+        sibling_names.setdefault(parent, []).append(display_names.get(c["id"], c["name"]))
+    for names in sibling_names.values():
+        names.sort()
+    snapshot_categories = []
+    for c in categories:
+        label = display_names.get(c["id"], c["name"])
+        siblings = ordered_names.get(c.get("parent_id"), [])
+        sort_order = siblings.index(label) * 10 if label in siblings else 1000 + sibling_names[c.get("parent_id")].index(label)
+        snapshot_categories.append({
             "id": c["id"],
-            "name": c["name"],
+            "name": label,
             "slug": c["slug"],
             "parent_id": c.get("parent_id"),
             "active": bool(c.get("active")),
+            "sort_order": sort_order,
             "direct_active_products": int(counts.get(c["id"], 0)),
-        }
-        for c in categories
-    ]
+        })
     current = {}
     try:
         current = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
