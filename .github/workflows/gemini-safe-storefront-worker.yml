@@ -65,7 +65,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '\r\n' | grep -oE 'AIza[A-Za-z0-9_-]{20,}' | head -n 1 || true)"
+          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '[:space:]' | grep -oE 'AIza[A-Za-z0-9_-]{20,}' | head -n 1 || true)"
           unset RAW_GEMINI_API_KEY
           if [ -z "$KEY" ]; then
             echo "::error::No Google API-key token could be extracted from GEMINI_API_KEY. The secret value was not printed."
