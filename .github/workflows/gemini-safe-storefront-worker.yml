@@ -163,7 +163,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ALLOWED='^(index-new\.html|category\.html|index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
+          ALLOWED='^(index-new\\.html|category\\.html|preview-audio-products\\.html)
           UNTRACKED="$(git ls-files --others --exclude-standard)"
           if [ -n "$UNTRACKED" ]; then
             echo "Blocked untracked/new files:"
@@ -234,6 +234,102 @@ jobs:
           git switch -c "$BRANCH"
           git apply --index /tmp/gemini-patch/gemini-storefront.patch
           ALLOWED='^(index-new\.html|category\.html|index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
+          CHANGED="$(git diff --cached --name-only | sort -u)"
+          test -n "$CHANGED"
+          while IFS= read -r file; do
+            [[ "$file" =~ $ALLOWED ]] || { echo "Blocked path outside allowlist: $file"; exit 1; }
+          done <<< "$CHANGED"
+          git diff --cached --check
+          git commit -m "feat(storefront): Gemini-assisted bounded code task"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --draft \
+            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \
+            --body "Gemini CLI completed a bounded storefront-code task. Only allowlisted existing storefront files were available to the agent. The agent job had read-only GitHub permissions; a separate publisher job validated the patch and created this draft PR. Human review and exact-head QA are required. No merge, deployment, catalogue import, supplier-data processing, or production change was performed."
+
+          UNTRACKED="$(git ls-files --others --exclude-standard)"
+          if [ -n "$UNTRACKED" ]; then
+            echo "Blocked untracked/new files:"
+            printf '%s\n' "$UNTRACKED"
+            exit 1
+          fi
+          CHANGED="$(git diff --name-only | sort -u)"
+          if [ -z "$CHANGED" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Gemini made no changes."
+            exit 0
+          fi
+          while IFS= read -r file; do
+            [[ "$file" =~ $ALLOWED ]] || { echo "Blocked path outside allowlist: $file"; exit 1; }
+          done <<< "$CHANGED"
+          git diff --check
+          if printf '%s\n' "$CHANGED" | grep -qx 'product-details.js'; then
+            node --check product-details.js
+          fi
+          git diff --binary > /tmp/gemini-storefront.patch
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Upload validated patch for isolated publishing
+        if: steps.validate.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-storefront-patch
+          path: /tmp/gemini-storefront.patch
+          if-no-files-found: error
+          retention-days: 3
+
+  publish-review-pr:
+    needs: gemini
+    if: needs.gemini.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout approved storefront code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            index-new.html
+            category.html
+            preview-audio-products.html
+
+      - name: Download validated patch
+        uses: actions/download-artifact@v4
+        with:
+          name: gemini-storefront-patch
+          path: /tmp/gemini-patch
+
+      - name: Apply patch, validate paths, and open draft PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "gemini-cli-worker[bot]"
+          git config user.email "gemini-cli-worker[bot]@users.noreply.github.com"
+          BRANCH="gemini/storefront-${GITHUB_RUN_ID}"
+          git switch -c "$BRANCH"
+          git apply --index /tmp/gemini-patch/gemini-storefront.patch
+          ALLOWED='^(index-new\\.html|category\\.html|preview-audio-products\\.html)
+          CHANGED="$(git diff --cached --name-only | sort -u)"
+          test -n "$CHANGED"
+          while IFS= read -r file; do
+            [[ "$file" =~ $ALLOWED ]] || { echo "Blocked path outside allowlist: $file"; exit 1; }
+          done <<< "$CHANGED"
+          git diff --cached --check
+          git commit -m "feat(storefront): Gemini-assisted bounded code task"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --draft \
+            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \
+            --body "Gemini CLI completed a bounded storefront-code task. Only allowlisted existing storefront files were available to the agent. The agent job had read-only GitHub permissions; a separate publisher job validated the patch and created this draft PR. Human review and exact-head QA are required. No merge, deployment, catalogue import, supplier-data processing, or production change was performed."
+
           CHANGED="$(git diff --cached --name-only | sort -u)"
           test -n "$CHANGED"
           while IFS= read -r file; do
