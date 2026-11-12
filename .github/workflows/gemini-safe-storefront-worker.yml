@@ -1,6 +1,12 @@
 name: Gemini CLI — Safe Storefront Worker
 
 on:
+  # One-time activation: merging this workflow onto main triggers its first bounded run.
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/gemini-safe-storefront-worker.yml
   workflow_dispatch:
     inputs:
       task:
@@ -47,7 +53,7 @@ jobs:
       - name: Run Gemini CLI with read-only GitHub access
         uses: google-github-actions/run-gemini-cli@387c8ddb7a72078825da941758b811b9153c71e8
         env:
-          GEMINI_TASK: ${{ inputs.task }}
+          GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           settings: |
@@ -81,7 +87,7 @@ jobs:
           UNTRACKED="$(git ls-files --others --exclude-standard)"
           if [ -n "$UNTRACKED" ]; then
             echo "Blocked untracked/new files:"
-            printf '%s\n' "$UNTRACKED"
+            printf '%s\\n' "$UNTRACKED"
             exit 1
           fi
           CHANGED="$(git diff --name-only | sort -u)"
@@ -94,7 +100,7 @@ jobs:
             [[ "$file" =~ $ALLOWED ]] || { echo "Blocked path outside allowlist: $file"; exit 1; }
           done <<< "$CHANGED"
           git diff --check
-          if printf '%s\n' "$CHANGED" | grep -qx 'product-details.js'; then
+          if printf '%s\\n' "$CHANGED" | grep -qx 'product-details.js'; then
             node --check product-details.js
           fi
           git diff --binary > /tmp/gemini-storefront.patch
@@ -163,6 +169,6 @@ jobs:
           git commit -m "feat(storefront): Gemini-assisted bounded code task"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --draft \
-            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \
+          gh pr create --base main --head "$BRANCH" --draft \\
+            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \\
             --body "Gemini CLI completed a bounded storefront-code task. Only allowlisted existing storefront files were available to the agent. The agent job had read-only GitHub permissions; a separate publisher job validated the patch and created this draft PR. Human review and exact-head QA are required. No merge, deployment, catalogue import, supplier-data processing, or production change was performed."
