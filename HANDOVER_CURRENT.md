@@ -42,9 +42,9 @@
 ### Verified current-main audio state
 - The active audio page is `preview-audio.html`; its navigation links to the separate brand and product-type pages.
 - The page currently loads `assets/audio-catalogue-primary-preview.json` and `assets/audio-catalogue-secondary-preview.json`.
-- On current `main`, the primary preview JSON is a **0-byte placeholder**. The Planetworld catalogue preview JSON is also a **0-byte placeholder**, and the active audio page does not load a Planetworld catalogue dataset. Planetworld customer-facing catalogue integration is therefore not complete on current `main`.
+- The GitHub directory API reports `assets/audio-catalogue-primary-preview.json` is 1,258,496 bytes and `assets/planetworld-catalogue-preview.json` is 1,206,488 bytes. The file-content connector returns empty content for these oversized blobs; that is a retrieval limitation, **not evidence that the files are empty**. The active audio page fetches the primary and secondary audio preview files, but does not directly reference the explicitly named Planetworld JSON. The primary dataset's exact contents and the relationship to the Planetworld preview still require size-aware verification.
 - The secondary review preview contains 72 records, including the existing Audio Connections-derived preview set; 62 records have owner-authorised exact-model image matches. The customer UI does not need to display the supplier name.
-- Do not mistake the existing Audio Connections-derived secondary preview for completed Planetworld integration. Keep all records review-only and follow the Price On Request rule.
+- The secondary review preview contains Audio Connections-derived records; it is not by itself proof of Planetworld integration. Keep all preview records review-only and follow the Price On Request rule.
 - The current public repository's confidential-data boundary remains unresolved. Do not copy, process or publish additional supplier-derived Planetworld/Audio Connections data from stale PR branches. Complete the private-data boundary before further supplier-data enrichment.
 
 ### Branch reconciliation evidence
