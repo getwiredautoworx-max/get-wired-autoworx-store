@@ -214,15 +214,7 @@ jobs:
           sparse-checkout: |
             index-new.html
             category.html
-            index.html
-            store.html
-            products.html
-            product.html
-            product-details.js
-            preview-store.html
-            preview-category.html
-            preview-products.html
-            preview-product.html
+            preview-audio-products.html
 
       - name: Download validated patch
         uses: actions/download-artifact@v4
