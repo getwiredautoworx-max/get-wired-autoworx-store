@@ -12,6 +12,7 @@ Read and obey `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` before acting. The wo
 ## Prohibited scope
 - Never inspect, retrieve, process, summarise, transform, or derive information from supplier catalogues, price lists, source PDFs, spreadsheets, CSVs, internal supplier SKUs, stock/cost data, or supplier-derived datasets.
 - Do not access `suppliers/`, `staging/`, `supabase/`, catalogue exports, workflow artifacts, secrets, external accounts, or omitted repository paths.
+- Gemini's enabled tools are limited to file reading, searching, and editing. Shell execution, arbitrary commands, network access, and GitHub API tools are not enabled.
 - Do not read or disclose `GEMINI_API_KEY`, `GITHUB_TOKEN`, or any credential.
 - Do not modify database schemas/data, catalogue records, prices, stock, active flags, payment settings, DNS, hosting configuration, deployment workflows, Axxess files, or production.
 - Do not deploy, merge, push, commit, or claim owner acceptance.
