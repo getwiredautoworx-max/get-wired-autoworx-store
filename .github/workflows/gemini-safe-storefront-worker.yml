@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - fix/gemini-key-source-and-validation-2026-11-12
     paths:
       - .github/workflows/gemini-safe-storefront-worker.yml
   workflow_dispatch:
@@ -23,7 +22,7 @@ concurrency:
 
 jobs:
   gemini:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix/gemini-key-source-and-validation-2026-11-12'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -34,7 +33,7 @@ jobs:
       - name: Checkout only approved public storefront code and owner rules
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: main
           fetch-depth: 1
           persist-credentials: false
           sparse-checkout-cone-mode: false
@@ -68,17 +67,14 @@ jobs:
           RAW_GOOGLE_VARIABLE: ${{ vars.GOOGLE_API_KEY }}
           RAW_GOOGLE_GENAI_SECRET: ${{ secrets.GOOGLE_GENAI_API_KEY }}
           RAW_GOOGLE_GENAI_VARIABLE: ${{ vars.GOOGLE_GENAI_API_KEY }}
-          ALL_SECRETS_JSON: ${{ toJSON(secrets) }}
-          ALL_VARS_JSON: ${{ toJSON(vars) }}
           GEMINI_CLI_TRUST_WORKSPACE: "true"
           GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         shell: bash
         run: |
           set -euo pipefail
           RESULT="$(python3 - <<'PY'
-          import json, os, re, sys, urllib.error, urllib.parse, urllib.request
-          candidates = []
-          fixed = (
+          import json, os, sys, urllib.error, urllib.parse, urllib.request
+          names = (
               ("secret:GEMINI_API_KEY", "RAW_GEMINI_SECRET"),
               ("variable:GEMINI_API_KEY", "RAW_GEMINI_VARIABLE"),
               ("secret:GOOGLE_API_KEY", "RAW_GOOGLE_SECRET"),
@@ -86,26 +82,12 @@ jobs:
               ("secret:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_SECRET"),
               ("variable:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_VARIABLE"),
           )
-          for label, env_name in fixed:
-              value = os.environ.get(env_name, "").strip()
-              if value:
-                  candidates.append((label, value))
-          for env_name, prefix in (("ALL_SECRETS_JSON", "secret:"), ("ALL_VARS_JSON", "variable:")):
-              try:
-                  entries = json.loads(os.environ.get(env_name, "{}"))
-              except (ValueError, TypeError):
-                  entries = {}
-              if isinstance(entries, dict):
-                  for name, value in entries.items():
-                      if re.search(r"(GEMINI|GOOGLE|GENAI)", str(name), re.I) and isinstance(value, str) and value.strip():
-                          candidates.append((prefix + str(name), value.strip()))
-          seen = set()
-          found = []
           fields = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key")
-          for label, raw in candidates:
-              if label in seen:
+          found = []
+          for label, env_name in names:
+              raw = os.environ.get(env_name, "").strip()
+              if not raw:
                   continue
-              seen.add(label)
               found.append(label)
               value = raw
               try:
@@ -136,19 +118,19 @@ jobs:
               except (urllib.error.URLError, TimeoutError):
                   sys.exit(2)
           if found:
-              print("Credential entry names found but Google rejected all candidates: " + ", ".join(found), file=sys.stderr)
+              print("Google rejected existing credential entries: " + ", ".join(found), file=sys.stderr)
           else:
-              print("No Gemini/Google-named credential entries were exposed to this workflow run.", file=sys.stderr)
+              print("No configured Gemini/Google credential was exposed to this workflow run.", file=sys.stderr)
           sys.exit(1)
           PY
           )" || {
-            echo "::error::No valid Google Generative Language API key was accepted from the existing Actions credentials. Credential values were not printed."
+            echo "::error::No valid Google Generative Language API key was accepted from the existing named Actions credential entries. Credential values were not printed."
             exit 1
           }
           SOURCE="${RESULT%%$'\n'*}"
           KEY="${RESULT#*$'\n'}"
           echo "Google API credential validated from existing entry: $SOURCE"
-          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE ALL_SECRETS_JSON ALL_VARS_JSON
+          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
           export GEMINI_API_KEY="$KEY"
           unset KEY
           mkdir -p .gemini
