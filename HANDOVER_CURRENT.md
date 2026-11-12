@@ -837,3 +837,19 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Gemini execution is still unverified. PR #196's candidate key resolver checks existing common secret/variable names and JSON wrappers without logging values, but its length-only fallback is not proof of a valid Google API key. Do not treat the integration as operational until the model actually executes and a generated review PR is inspected.
 
 **Next:** allow exact-head checks to complete on `0a2f0ba865e05fa97f9ce2cb427a95ac2825b0cc`; inspect any failure and correct it on this same PR. Only after exact-head checks pass should the owner review the draft. Do not merge PR #196 or deploy without explicit approval.
+
+
+## EXACT-HEAD QA STATUS — 2026-11-12 17:18 SAST
+
+Current PR #196 head: `d415029aec455d623d31748da70983b64e12d6fe`.
+
+Observed workflow results for this exact SHA:
+- PASS: Button-Only Storefront Smoke Test — run 43244805687.
+- PASS: Public SKU Exposure Audit — run 43244805731.
+- PASS: Storefront Smoke Test — run 43244805530.
+- PASS: Cloudflare Pages Public Package QA — run 43244805488.
+- IN PROGRESS at last check: Catalogue & Supplier Routing Review QA — run 43244805625.
+- IN PROGRESS at last check: Owner Preview Mobile and Desktop Browser QA — run 43244805574.
+- IN PROGRESS at last check: Prepare Axxess upload package — run 43244805830. This is package preparation only; no Axxess upload was performed or authorised.
+
+Do not call the exact-head gate fully green until the two remaining QA runs conclude successfully. No deployment/production action is implied by package preparation. PR #196 remains draft/unmerged; Gemini model execution remains unverified.
