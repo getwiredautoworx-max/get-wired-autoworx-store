@@ -1,0 +1,109 @@
+{
+  "record_id": "OA014-1",
+  "review_status": "DO NOT IMPORT",
+  "manufacturer": "OneNav",
+  "manufacturer_model_code": "OA014-1",
+  "product_family": "OneNav Classic",
+  "source_record": {
+    "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+    "workbook": "one-price-list-2026-10-25.xlsx",
+    "sheet": "Products",
+    "row": 39,
+    "source_audit_record": "pw-2120",
+    "source_title_exact": "OneNav Classic 9inch for Prado  (2002-2009)",
+    "supplier_sku_private": "OA014-1",
+    "source_record_status": "SOURCE_ROW_LINKED"
+  },
+  "category_path": [
+    "Audio, Entertainment & Music",
+    "Car Audio & Video",
+    "OneNav",
+    "Head Units & Media Players"
+  ],
+  "vehicle_fitment": {
+    "manufacturer": "Toyota",
+    "model": "Prado",
+    "model_year_application": "2002–2009",
+    "status": "MANUFACTURER_PRODUCT_PAGE_CONFIRMED"
+  },
+  "variant": {
+    "family": "Classic",
+    "model_code": "OA014-1",
+    "status": "MANUFACTURER_EXACT_SKU_CONFIRMED",
+    "note": "The exact manufacturer page identifies OA014-1 and the Classic Prado 2002–2009 product. Do not substitute Evolution ON014-1LX or later Prado generations."
+  },
+  "manufacturer_evidence": {
+    "url": "https://onenav.co.za/product/onenav-classic-9inch-for-prado-2002-2009/",
+    "exact_sku_visible": true,
+    "status": "VERIFIED_EXACT_SKU_FITMENT_AND_CORE_SPECIFICATIONS",
+    "specifications": [
+      "9-inch touchscreen",
+      "1024 × 600 resolution",
+      "Wired Apple CarPlay and Android Auto",
+      "Built-in DSP with multi-band equaliser",
+      "Steering-wheel-control ready",
+      "Bluetooth with external microphone",
+      "4 channels × 40 W maximum speaker output",
+      "4.1-channel front, rear and subwoofer line outputs",
+      "2 RCA AV inputs",
+      "2 video outputs",
+      "Front and rear camera inputs"
+    ],
+    "exclusions": [
+      "Do not claim wireless CarPlay or wireless Android Auto",
+      "Do not claim Bluetooth 5.4",
+      "Do not claim 4 × 40 W RMS; manufacturer states maximum output",
+      "Do not transfer Evolution ON014-1LX specifications"
+    ]
+  },
+  "customer_content": {
+    "customer_brand": "OneNav",
+    "customer_title": "OneNav Classic 9-inch Multimedia Receiver for Toyota Prado (2002–2009)",
+    "customer_description": "A vehicle-specific 9-inch multimedia receiver for Toyota Prado models from 2002 to 2009, with a 1024 × 600 display. It supports wired Apple CarPlay and Android Auto, Bluetooth with an external microphone, and built-in digital sound processing with a multi-band equaliser. The unit is steering-wheel-control ready and provides 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line outputs, two RCA AV inputs, two video outputs, and front and rear camera inputs.",
+    "description_status": "MANUFACTURER_VERIFIED_PARAPHRASED",
+    "unsupported_claims_omitted": [
+      "wireless phone projection",
+      "Bluetooth 5.4",
+      "GPS/offline navigation",
+      "Wi-Fi",
+      "USB port count",
+      "RMS output rating"
+    ]
+  },
+  "product_type": "Head Units & Media Players",
+  "proposed_gw_sku": null,
+  "gw_sku_status": "NOT_ASSIGNED_NO_APPROVED_ALLOCATION_EVIDENCE",
+  "image": {
+    "url": null,
+    "status": "IMAGE_RIGHTS_REVIEW_PENDING",
+    "approved": false,
+    "candidate": {
+      "image_url": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
+      "source_page": "https://the4x4store.co.za/products/onenav-classic-series-toyota-prado-2002-2009-oa014-1",
+      "source_type": "THIRD_PARTY_RETAILER_HOSTED_PRODUCT_ARTWORK",
+      "status": "EXACT_MODEL_IMAGE_MATCH_RIGHTS_UNVERIFIED",
+      "visual_match": "The high-resolution artwork visibly prints OA014-1 and Prado (2002–2009); the product listing title identifies OneNav Classic Series Toyota Prado (2002–2009) OA014-1. The product fascia in the artwork matches the listed vehicle fitment.",
+      "rights_status": "NOT_DOCUMENTED",
+      "note": "The retailer page describes the unit as a buy-in product from Planet World, but does not establish the original asset source or grant reuse permission. Do not expose this image in the owner preview or customer product pages until source provenance or permission is confirmed."
+    },
+    "rejected_or_withheld": [
+      {
+        "source_url": "https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542",
+        "status": "WITHHELD_FROM_PREVIEW_PENDING_IMAGE_RIGHTS",
+        "reason": "Exact visual identity is supported, but third-party retailer hosting does not establish supplier-catalogue provenance or image reuse rights."
+      }
+    ]
+  },
+  "pricing": {
+    "customer_display": "Price On Request",
+    "numeric_price": null,
+    "status": "SUPPRESSED_BY_OWNER_POLICY"
+  },
+  "stock": {
+    "customer_display": "Availability to be confirmed",
+    "stock_status": null,
+    "status": "UNCONFIRMED"
+  },
+  "import_status": "DO NOT IMPORT",
+  "next_action": "Obtain the exact OA014-1 image from an approved supplier/manufacturer catalogue or obtain documented permission for this retailer-hosted asset. Until then keep image.url null and the product out of preview cards."
+}
