@@ -40,6 +40,8 @@ jobs:
           sparse-checkout: |
             GEMINI.md
             AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md
+            index-new.html
+            category.html
             index.html
             store.html
             products.html
@@ -59,18 +61,76 @@ jobs:
       - name: Run Gemini CLI with normalized API key and read-only tools
         id: gemini
         env:
-          RAW_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RAW_GEMINI_SECRET: ${{ secrets.GEMINI_API_KEY }}
+          RAW_GEMINI_VARIABLE: ${{ vars.GEMINI_API_KEY }}
+          RAW_GOOGLE_SECRET: ${{ secrets.GOOGLE_API_KEY }}
+          RAW_GOOGLE_VARIABLE: ${{ vars.GOOGLE_API_KEY }}
+          RAW_GOOGLE_GENAI_SECRET: ${{ secrets.GOOGLE_GENAI_API_KEY }}
+          RAW_GOOGLE_GENAI_VARIABLE: ${{ vars.GOOGLE_GENAI_API_KEY }}
           GEMINI_CLI_TRUST_WORKSPACE: "true"
           GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         shell: bash
         run: |
           set -euo pipefail
-          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '[:space:]' | grep -oE 'AIza[A-Za-z0-9_-]{20,}' | head -n 1 || true)"
-          unset RAW_GEMINI_API_KEY
-          if [ -z "$KEY" ]; then
-            echo "::error::No Google API-key token could be extracted from GEMINI_API_KEY. The secret value was not printed."
+          RESULT="$(python3 - <<'PY'
+          import json, os, sys, urllib.error, urllib.parse, urllib.request
+          names = (
+              ("secret:GEMINI_API_KEY", "RAW_GEMINI_SECRET"),
+              ("variable:GEMINI_API_KEY", "RAW_GEMINI_VARIABLE"),
+              ("secret:GOOGLE_API_KEY", "RAW_GOOGLE_SECRET"),
+              ("variable:GOOGLE_API_KEY", "RAW_GOOGLE_VARIABLE"),
+              ("secret:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_SECRET"),
+              ("variable:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_VARIABLE"),
+          )
+          fields = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key")
+          found = []
+          for label, env_name in names:
+              raw = os.environ.get(env_name, "").strip()
+              if not raw:
+                  continue
+              found.append(label)
+              value = raw
+              try:
+                  parsed = json.loads(raw)
+                  if isinstance(parsed, dict):
+                      for field in fields:
+                          if isinstance(parsed.get(field), str) and parsed[field].strip():
+                              value = parsed[field].strip()
+                              break
+                  elif isinstance(parsed, str):
+                      value = parsed.strip()
+              except (ValueError, TypeError):
+                  pass
+              value = "".join(value.split())
+              if len(value) < 20:
+                  continue
+              url = "https://generativelanguage.googleapis.com/v1beta/models?key=" + urllib.parse.quote(value, safe="")
+              request = urllib.request.Request(url, headers={"Accept": "application/json"})
+              try:
+                  with urllib.request.urlopen(request, timeout=15) as response:
+                      if response.status == 200:
+                          print(label + "\n" + value, end="")
+                          sys.exit(0)
+              except urllib.error.HTTPError as error:
+                  if error.code in (400, 401, 403):
+                      continue
+                  sys.exit(2)
+              except (urllib.error.URLError, TimeoutError):
+                  sys.exit(2)
+          if found:
+              print("Google rejected existing credential entries: " + ", ".join(found), file=sys.stderr)
+          else:
+              print("No configured Gemini/Google credential was exposed to this workflow run.", file=sys.stderr)
+          sys.exit(1)
+          PY
+          )" || {
+            echo "::error::No valid Google Generative Language API key was accepted from the existing named Actions credential entries. Credential values were not printed."
             exit 1
-          fi
+          }
+          SOURCE="${RESULT%%$'\n'*}"
+          KEY="${RESULT#*$'\n'}"
+          echo "Google API credential validated from existing entry: $SOURCE"
+          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
           export GEMINI_API_KEY="$KEY"
           unset KEY
           mkdir -p .gemini
@@ -108,7 +168,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ALLOWED='^(index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
+          ALLOWED='^(index-new\.html|category\.html|index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
           UNTRACKED="$(git ls-files --others --exclude-standard)"
           if [ -n "$UNTRACKED" ]; then
             echo "Blocked untracked/new files:"
@@ -184,7 +244,7 @@ jobs:
           BRANCH="gemini/storefront-${GITHUB_RUN_ID}"
           git switch -c "$BRANCH"
           git apply --index /tmp/gemini-patch/gemini-storefront.patch
-          ALLOWED='^(index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
+          ALLOWED='^(index-new\.html|category\.html|index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
           CHANGED="$(git diff --cached --name-only | sort -u)"
           test -n "$CHANGED"
           while IFS= read -r file; do
