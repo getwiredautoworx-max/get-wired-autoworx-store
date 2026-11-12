@@ -975,3 +975,18 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - This merge supersedes the earlier instruction above to wait for PR #199 checks/merge. PR #199 is now merged; do not merge stale PR #183 wholesale.
 - Next execution: continue ASC editorial/image QA and review the existing audio review datasets for exact-model/image/description completeness. Preserve the unresolved Sony, Starsound and BlackSpider exceptions. Continue approved catalogue-only scope and keep all customer-facing supplier identities/internal supplier SKUs hidden.
 - Production remains HOLD. No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, or paid hosting action occurred.
+
+
+---
+
+## AUDIO PREVIEW DATA AUDIT — 2026-11-12 18:55 SAST
+
+- Following the ASC merge, resumed the next queued audio/video enrichment workstream on canonical `main`. Re-read the owner directives and inspected the current secondary audio preview dataset and task queue.
+- Independently parsed `assets/audio-catalogue-secondary-preview.json`: declared source rows 68; declared/actual preview rows 72; 72 unique record IDs; no duplicate brand+model identities; no missing model/title; no missing descriptions.
+- Image/status audit: 4 records have no image URL. Sony XS-W104ES (ac-006) has a confirmed exact Sony Africa product page and specifications, but the preview record remains image-held pending capture/verification of a usable exact-model image URL. Sony official source confirms 10-inch, single voice coil, 4-ohm, 1,800 W peak / 450 W RMS; retain the record's review-only state until the image is verified. Official source: https://www.sony-africa.com/en/electronics/mobile-es-series/xs-w104es
+- Three Starsound records remain correctly quarantined: SSA-ATOM-13500 (ac-032) requires confirmation whether source model omitting `.1` is the manufacturer's SSA-Atom-13500.1; SSA-M5-80.6 (ac-041) requires exact model mapping and resolution of conflicting RMS tables; SSS-6501PRO (ac-044) requires confirmation against SSS-M6501Pro and whether the disputed 250 W RMS is per driver or pair. Do not infer these mappings/specifications.
+- Other image caveats: BlackSpider BULLET LYNX (ac-058) has a low-resolution image only; retain its explicit low-resolution status and do not treat it as image-complete. Sony XS-W104ES is the only currently identified Sony image failure; three Starsound rows are held for model/variant confirmation.
+- The preview has three records with explicit non-live hold publication statuses (ac-032, ac-041, ac-044). These must remain excluded from customer display. The dataset's top-level OWNER_REVIEW_PREVIEW_ONLY label does not override per-record hold statuses.
+- This was a read-only audit plus manufacturer-source verification. No product data, image URL, supplier record, price, stock, live catalogue, Supabase or storefront content was changed.
+- Next action: resolve Sony XS-W104ES image URL from its official product page and verify the image visually; keep the three Starsound records held pending source confirmation; improve BlackSpider image quality only with an exact-model source. Continue the separate Planetworld 3,317-row and Audio Connections 66-row reconciliation without inventing product matches.
+- Production remains HOLD; no deployment, Axxess upload, paid hosting spend or live data mutation occurred.
