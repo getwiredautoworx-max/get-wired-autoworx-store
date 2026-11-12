@@ -1,5 +1,22 @@
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
+## STOREFRONT + GEMINI RECONCILIATION — 2026-11-12
+
+### Verified current-main audio state
+- The active audio page is `preview-audio.html`; its navigation links to the separate brand and product-type pages.
+- The page currently loads `assets/audio-catalogue-primary-preview.json` and `assets/audio-catalogue-secondary-preview.json`.
+- On current `main`, the primary preview JSON is a **0-byte placeholder**. The Planetworld catalogue preview JSON is also a **0-byte placeholder**, and the active audio page does not load a Planetworld catalogue dataset. Planetworld customer-facing catalogue integration is therefore not complete on current `main`.
+- The secondary review preview contains 72 records, including the existing Audio Connections-derived preview set; 62 records have owner-authorised exact-model image matches. The customer UI does not need to display the supplier name.
+- Do not mistake the existing Audio Connections-derived secondary preview for completed Planetworld integration. Keep all records review-only and follow the Price On Request rule.
+- The current public repository's confidential-data boundary remains unresolved. Do not copy, process or publish additional supplier-derived Planetworld/Audio Connections data from stale PR branches. Complete the private-data boundary before further supplier-data enrichment.
+
+### Branch reconciliation evidence
+- PR #168, #176 and #178 are not safe wholesale merge candidates: their heads are substantially behind current `main`, their mergeability is false, and their diffs contain large amounts of supplier-derived data and/or historical workflow/handover material. Selectively port only independently verified public-safe code after review; do not merge these branches wholesale.
+- PR #195 already merged earlier as commit `513ac2a1907fe858b4ad362d44c12c29fedf4b97`; it is not awaiting merge.
+- PR #200 is a clean-main Gemini worker refinement. Its first draft had duplicate publisher-job YAML and omitted the active audio landing/brand pages from its sparse checkout. Correct the workflow and validate it before merge.
+- Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
+
+
 **Updated:** 2026-11-08 19:44 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
