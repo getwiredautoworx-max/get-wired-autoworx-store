@@ -1077,3 +1077,18 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated `automation/task-queue.json` with the 22-row count and the technical wording exception. Queue update commit: 444ef3cc0ff9dd32b8fd4e8df37ef526426917d6.
 - Gemini remains integrated but not operational: recent successful GitHub Actions controller runs do not represent Gemini model execution; last recorded Gemini API result remains HTTP 400 `API_KEY_INVALID`. No successful model output or generated review PR is verified.
 - Production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change or paid hosting action occurred.
+
+
+---
+
+## GEMINI WORKER CLEAN-MAIN RECONCILIATION — 2026-11-12
+
+- Reviewed the existing Gemini CLI worker draft PR #195 and its implementation. It was not operational: it had no successful model run, and its branch compared 8 commits ahead / 61 behind current main. Its earlier file allowlist did not match the current storefront entry points.
+- Created a clean-main replacement candidate, PR #200: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/200
+- Candidate branch: `integration/gemini-worker-clean-main-2026-11-12`; latest candidate SHA at checkpoint: `c5eae7a5e68cfe4516574a23a4e193029bc061fd`; base main SHA: `6f615c58d515e49605a3b9375d6f886be91c0ef9`. GitHub comparison: 5 commits ahead, 0 behind; only the Gemini workflow and `GEMINI.md` differ from main.
+- Updated the worker's sparse checkout, Gemini instructions and both patch allowlists to the current customer-facing code files: `index-new.html`, `category.html`, and `preview-audio-products.html`. Supplier/catalogue files and the Planetworld/Audio Connections review datasets are not exposed to Gemini.
+- Preserved the existing credential resolver, which checks the configured Actions secret/variable names (`GEMINI_API_KEY`, `GOOGLE_API_KEY`, `GOOGLE_GENAI_API_KEY`) and safely validates a candidate against Google's Generative Language API without printing credential values. This addresses the owner's clarification that the key is already present in repository Secrets/Variables; the actual key value is never read back or disclosed in handover.
+- Worker execution remains manual-dispatch-only to avoid unsolicited API usage. Gemini receives read-only GitHub permissions and can edit only the three allowlisted existing files. A separate publisher job validates the patch and may open a draft PR; it cannot merge or deploy.
+- Current evidence: workflow and instructions read back from GitHub; candidate branch is clean-main-based. No PR checks or Gemini model execution are yet recorded for PR #200 because it is a manual-dispatch workflow and is not on main. Do not describe Gemini as operational until the workflow is approved/merged, dispatched, the model call succeeds, and a generated draft PR is verified.
+- No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
+- Next: review PR #200's exact workflow diff; after explicit owner approval to activate it, merge this non-production worker, dispatch one bounded current-storefront task, verify the Gemini run and generated draft PR, then integrate only independently tested work into the single consolidated storefront candidate.
