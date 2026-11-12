@@ -1063,3 +1063,17 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated `automation/task-queue.json` with the 18-row manifest count and next action. Queue update commit: 55fdbb3ce0bac0118f70cadd44f3b0dfe6f10330.
 - Gemini distinction: the current mainline GitHub Actions controller has recent successful runs, but these are controller/QA automation—not Gemini model calls. The latest recorded Gemini API diagnostic remains HTTP 400 `API_KEY_INVALID`; no successful model execution or Gemini-generated review PR is verified. Keep Gemini marked integrated but not operational until a valid existing `GEMINI_API_KEY` secret is set and a successful model run plus publisher-created review PR are observed.
 - No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
+
+
+## PLANETWORLD AUDISON EXACT IMAGE CANDIDATE BATCH 3 — 2026-11-12
+
+- Opened four additional official Audison Forza product pages and visually inspected each page's primary product image. Added exact model/page/image evidence for:
+  - SKU 66755100 / AF M12.14 bit — https://audison.com/product/af-m12-14-bit/ — https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png
+  - SKU 66755105 / AF M8.14 bit — https://audison.com/product/af-m8-14-bit/ — https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png
+  - SKU 66755107 / AF C8.14 bit — https://audison.com/product/af-c8-14-bit/ — https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png
+  - SKU 66755110 / AF M5.11 bit — https://audison.com/product/af-m5-11-bit/ — https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png
+- Consolidated candidate manifest now contains 22 rows: 12 Kicker and 10 Audison. All remain `NOT_APPROVED` / `DO_NOT_IMPORT`; no image assets were copied or published.
+- Technical-description reconciliation flag: the official Forza pages distinguish amplified output channels from DSP processing channels. AF M12.14 bit is 12 amplified / 14 DSP; AF M8.14 bit and AF C8.14 bit are 8 amplified / 14 DSP; AF M5.11 bit is 5 amplified / 11 DSP. Existing staged wording that calls these simply “12-channel DSP amplifier”, “8-channel DSP amplifier” or “5-channel DSP amplifier” should be made precise before any customer-facing release. Manufacturer power ratings are specified as continuous RMS at 14.4 VDC, 1% THD, all channels driven; preserve that context when summarising.
+- Updated `automation/task-queue.json` with the 22-row count and the technical wording exception. Queue update commit: 444ef3cc0ff9dd32b8fd4e8df37ef526426917d6.
+- Gemini remains integrated but not operational: recent successful GitHub Actions controller runs do not represent Gemini model execution; last recorded Gemini API result remains HTTP 400 `API_KEY_INVALID`. No successful model output or generated review PR is verified.
+- Production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change or paid hosting action occurred.
