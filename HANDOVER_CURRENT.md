@@ -853,3 +853,12 @@ Observed workflow results for this exact SHA:
 - IN PROGRESS at last check: Prepare Axxess upload package — run 43244805830. This is package preparation only; no Axxess upload was performed or authorised.
 
 Do not call the exact-head gate fully green until the two remaining QA runs conclude successfully. No deployment/production action is implied by package preparation. PR #196 remains draft/unmerged; Gemini model execution remains unverified.
+
+
+## GEMINI CREDENTIAL EXECUTION DIAGNOSTIC — 2026-11-12
+- Ran the bounded Gemini worker from the trusted repair branch to test authentication without merging PR #196. Run `43245371972` reached Google's Generative Language API and was rejected with HTTP 400 `API_KEY_INVALID` (`API key not valid`). This proves the value selected from the available credential entry was not accepted by Google; no model task or patch was produced.
+- A subsequent branch run `43245520885` found no non-empty values in the six explicitly referenced Gemini/Google secret/variable slots. A temporary attempt to enumerate the entire `secrets`/`vars` contexts was blocked with GitHub `action_required`; that approach was removed. The worker was restored to main-only execution so credentials are not exposed to PR-branch workflow code.
+- Current worker credential validation tests each explicitly named existing secret/variable against Google's `v1beta/models` endpoint before passing it to Gemini CLI. It never logs credential values. This validation will execute on `main` after the candidate is owner-approved and merged.
+- Current candidate branch head before this handover append: `9db2e38190c6f766ca6f5c1d401dbe6281a78249`. The category/navigation repairs and customer-only package/browser/responsive QA passed on exact candidate `4fa43e76e114dd94680e6f2d51415dcdaf3886fa`; Cloudflare Pages deployed exact preview `https://8859e282.get-wired-autoworx-store.pages.dev`. Cloudflare Workers build integration remained in progress under build `e4107c5c-5a56-41f0-8605-7681dd742a95` at last check.
+- PR #196 remains draft and unmerged. No credential was read back or changed; no supplier import, live Supabase write, Axxess upload, production deployment or paid spend occurred.
+- Resume: the existing credential must be a valid Google Generative Language API key. Do not ask for a duplicate secret or for the owner to paste the value into chat. After the owner updates the existing credential and approves PR #196 for merge, run the main-branch worker and verify that Gemini completes a task and the publisher creates a review PR.
