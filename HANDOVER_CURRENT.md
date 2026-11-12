@@ -946,3 +946,17 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 5. Run exact-current-main QA and obtain a hosted preview tied to the same SHA. Production remains HOLD.
 
 **Checkpoint result:** Active supplier PRs have been measured against current main and correctly identified as stale/diverged review-only branches. No unsafe wholesale merge was performed. The next useful integration is a selective, tested ASC review-data transplant, not another storefront branch.
+
+
+## ASC REVIEW PACKAGE INTEGRATION MILESTONE — 2026-11-12 (current session)
+
+- Independently parsed and reconciled the ASC six-catalogue package from stale PR #183 before integration. Results: 978 master rows, 978 staging rows, 50 pilot rows; 978 unique master supplier SKUs; 978 unique staging SKUs; exact master/staging SKU-set match; source totals 78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats and 129 Fuel Pumps.
+- Independently checked that all master records remain `REVIEW_ONLY_NOT_IMPORTED`; all staged rows use the exact ASC Price On Request wording, blank numeric price, unconfirmed stock and explicit DO NOT IMPORT gate. The 50-row pilot cross-matches the master; 42 fitments are transcribed and zero technical specification rows are transcribed.
+- Found and corrected a deterministic validator defect: seven legitimate supplier SKUs contain `/` and their proposed GW identifiers normalize the slash to a hyphen (e.g. `MA596/2` → `GW-ASC-MA596-2`). The test now asserts the documented normalization rather than falsely failing those records.
+- Created a current-main-based selective integration branch `integration/asc-978-review-only-2026-11-12` and opened PR **#199**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/199
+- PR #199 adds only the review register, matching DO NOT IMPORT staging crosswalk, 50-row pilot register, source/image/QA reports and corrected deterministic test. It does not merge the stale PR #183 branch or its obsolete Buyers Guide artifacts.
+- PR #199 is open and not merged. Exact-head GitHub Actions results were not yet returned at this checkpoint; do not claim CI passed or merge until the exact PR head is tested. Current PR head: `b663fc3af800ac28f13511ac1b2a1e97757f31d4`; base at PR creation: `ef92b898a9e39dd276c2100badf6c812f889069f`.
+- Data-quality limitations are retained explicitly: 928 OCR-draft titles, 936 fitment fields pending, 978 technical specification fields pending, 26 source no-photo products, remaining image-treatment QA and owner visual acceptance. No product is promoted to sale-ready or live.
+- No live import, Supabase write, price/stock/active-flag change, Axxess upload, DNS/payment change, deployment, paid hosting spend or production action occurred.
+
+**Next action:** verify PR #199 exact-head checks; repair any deterministic failures on this same integration branch. If green, merge the review-only package to current main under the owner's existing consolidation approval. Continue the remaining ASC editorial/image work separately; do not confuse this review-data milestone with completed catalogue listings.
