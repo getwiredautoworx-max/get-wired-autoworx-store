@@ -87,7 +87,7 @@ jobs:
           UNTRACKED="$(git ls-files --others --exclude-standard)"
           if [ -n "$UNTRACKED" ]; then
             echo "Blocked untracked/new files:"
-            printf '%s\\n' "$UNTRACKED"
+            printf '%s\n' "$UNTRACKED"
             exit 1
           fi
           CHANGED="$(git diff --name-only | sort -u)"
@@ -100,7 +100,7 @@ jobs:
             [[ "$file" =~ $ALLOWED ]] || { echo "Blocked path outside allowlist: $file"; exit 1; }
           done <<< "$CHANGED"
           git diff --check
-          if printf '%s\\n' "$CHANGED" | grep -qx 'product-details.js'; then
+          if printf '%s\n' "$CHANGED" | grep -qx 'product-details.js'; then
             node --check product-details.js
           fi
           git diff --binary > /tmp/gemini-storefront.patch
@@ -169,6 +169,6 @@ jobs:
           git commit -m "feat(storefront): Gemini-assisted bounded code task"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" --draft \\
-            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \\
+          gh pr create --base main --head "$BRANCH" --draft \
+            --title "Gemini storefront task: ${GITHUB_RUN_ID}" \
             --body "Gemini CLI completed a bounded storefront-code task. Only allowlisted existing storefront files were available to the agent. The agent job had read-only GitHub permissions; a separate publisher job validated the patch and created this draft PR. Human review and exact-head QA are required. No merge, deployment, catalogue import, supplier-data processing, or production change was performed."
