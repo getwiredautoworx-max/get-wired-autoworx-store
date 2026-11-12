@@ -1038,3 +1038,13 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - All 12 candidate rows remain `image_permission_status=NOT_APPROVED` and `publication_status=DO_NOT_IMPORT`. These are verified source candidates, not permission to copy, publish, or render the images. No Kicker image was added to the storefront preview.
 - The current Kicker manufacturer content subset now has exact manufacturer page/description evidence and an exact image candidate source recorded for all 12 rows; actual binary asset capture, permission/approval and owner preview remain open.
 - Next: start the Audison exact-image candidate batch from the 41 Audison rows in the same manufacturer-verified content file, beginning with bit DMI and B-CON. Preserve candidate-only state until asset approval.
+
+## PLANETWORLD AUDISON IMAGE CANDIDATE BATCH STARTED — 2026-11-12 19:50 SAST
+
+- Continued after completing the 12-model Kicker candidate batch. Opened the official Audison bit DMI and B-CON product pages and visually inspected each primary image.
+- Added two further candidate rows to the consolidated manifest `catalogue-review/planetworld-exact-image-source-candidates-2026-11-12.csv`:
+  - Planetworld SKU 66750650 / Audison bit DMI — https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png
+  - Planetworld SKU 66750800 / Audison B-CON — https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1.png
+- Renamed the initial Kicker-only manifest to the broader Planetworld exact-image candidate manifest because it now contains both Kicker and Audison rows. The consolidated file currently contains 14 candidate rows: 12 Kicker and 2 Audison.
+- All 14 rows remain `NOT_APPROVED` / `DO_NOT_IMPORT`; no binary image assets were downloaded, copied into the storefront, or published. Existing 81-row manufacturer-verified content register remains unchanged.
+- Next: continue Audison exact-model image candidates, then proceed through other manufacturer-verified rows. Do not treat a page gallery as image-use permission or change image approval status without asset/rights approval.
