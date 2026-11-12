@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - fix/gemini-key-source-and-validation-2026-11-12
     paths:
       - .github/workflows/gemini-safe-storefront-worker.yml
   workflow_dispatch:
@@ -22,7 +23,7 @@ concurrency:
 
 jobs:
   gemini:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix/gemini-key-source-and-validation-2026-11-12'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -33,7 +34,7 @@ jobs:
       - name: Checkout only approved public storefront code and owner rules
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref }}
           fetch-depth: 1
           persist-credentials: false
           sparse-checkout-cone-mode: false
