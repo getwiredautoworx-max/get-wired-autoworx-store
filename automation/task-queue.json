@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Sony XS-W104ES exact image is verified from Gentec and now uses the storefront's existing OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH status in both secondary and Audio Connections preview JSONs; this status is required by the current preview filter. Publication remains PREVIEW_ONLY_NOT_LIVE, price/stock null. Next verify exact-head GitHub checks and audit secondary-record status filters. Three Starsound no-image records remain held for model/spec confirmation; BlackSpider BULLET LYNX remains low-resolution. Continue Planetworld and Audio Connections exact-model enrichment without inferred matches."
+      "next_action": "2026-11-12 recount: canonical secondary preview contains 66 Audio Connections records (ac-001..ac-066) plus 6 separate Alpine review records. Audio Connections now has 62/66 eligible under the actual preview predicate; four remain held: ac-032, ac-041, ac-044 (model/spec confirmation), ac-058 (low-res image). Sony ac-006 is now included. Six Alpine records remain separate and use EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY; do not force them into the AC filter. GitHub Actions lookup on latest checkpoint found no workflow runs; local clone failed because github.com DNS was unavailable, so no CI/browser pass is claimed. Continue next exact-model Planetworld enrichment batch and maintain source evidence and review-only state."
     },
     {
       "id": "onenav-model-image-reconciliation",
