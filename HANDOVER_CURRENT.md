@@ -1029,3 +1029,12 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Manufacturer pages provide identity/specification corroboration (43C104 and 43C124: 150 W RMS recommended amplifier power, 300 W peak, 4 ohm; 43C84: 50–100 W RMS recommended amplifier power, 200 W peak, 4 ohm). Existing staged descriptions can be cross-checked against these exact pages.
 - Next: continue the same bounded Kicker exact-model batch for the remaining nine products in the 12-row verified-content set, recording image candidates only where exact model page and image are visually matched. Do not upgrade approval status without explicit rights/asset approval. Then reconcile evidence into the broader Planetworld review register.
 - No live product data, customer-facing image, price, stock, supplier data publication, deployment or production resource was changed.
+
+## PLANETWORLD KICKER IMAGE CANDIDATE BATCH 1 COMPLETE — 2026-11-12 19:42 SAST
+
+- Completed the bounded image-source pass for all 12 Kicker products in the current 81-row manufacturer-verified content set.
+- Added 12 exact-model official Kicker product-page / primary-image pairs to `catalogue-review/kicker-image-source-candidates-2026-11-12.csv`: 43C104, 43C124, 43C84, 44L7S122, 46CXA12001 → CXA1200.1, 46CXA3604 → CXA360.4, 46CXA4001 → CXA400.1, 46CXA6605 → CXA660.5, 48CWR104, 48CWR124, 48CWRT102 and 48CWRT104.
+- Each product page's model identity and corresponding front/primary image were visually checked. Supplier SKU to manufacturer model punctuation differences are recorded where applicable.
+- All 12 candidate rows remain `image_permission_status=NOT_APPROVED` and `publication_status=DO_NOT_IMPORT`. These are verified source candidates, not permission to copy, publish, or render the images. No Kicker image was added to the storefront preview.
+- The current Kicker manufacturer content subset now has exact manufacturer page/description evidence and an exact image candidate source recorded for all 12 rows; actual binary asset capture, permission/approval and owner preview remain open.
+- Next: start the Audison exact-image candidate batch from the 41 Audison rows in the same manufacturer-verified content file, beginning with bit DMI and B-CON. Preserve candidate-only state until asset approval.
