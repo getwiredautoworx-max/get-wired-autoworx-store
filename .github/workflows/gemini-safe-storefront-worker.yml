@@ -68,23 +68,45 @@ jobs:
           RAW_GOOGLE_VARIABLE: ${{ vars.GOOGLE_API_KEY }}
           RAW_GOOGLE_GENAI_SECRET: ${{ secrets.GOOGLE_GENAI_API_KEY }}
           RAW_GOOGLE_GENAI_VARIABLE: ${{ vars.GOOGLE_GENAI_API_KEY }}
+          ALL_SECRETS_JSON: ${{ toJSON(secrets) }}
+          ALL_VARS_JSON: ${{ toJSON(vars) }}
           GEMINI_CLI_TRUST_WORKSPACE: "true"
           GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         shell: bash
         run: |
           set -euo pipefail
           RESULT="$(python3 - <<'PY'
-          import json, os, sys, urllib.error, urllib.parse, urllib.request
-          names = (
-              "RAW_GEMINI_SECRET", "RAW_GEMINI_VARIABLE",
-              "RAW_GOOGLE_SECRET", "RAW_GOOGLE_VARIABLE",
-              "RAW_GOOGLE_GENAI_SECRET", "RAW_GOOGLE_GENAI_VARIABLE",
+          import json, os, re, sys, urllib.error, urllib.parse, urllib.request
+          candidates = []
+          fixed = (
+              ("secret:GEMINI_API_KEY", "RAW_GEMINI_SECRET"),
+              ("variable:GEMINI_API_KEY", "RAW_GEMINI_VARIABLE"),
+              ("secret:GOOGLE_API_KEY", "RAW_GOOGLE_SECRET"),
+              ("variable:GOOGLE_API_KEY", "RAW_GOOGLE_VARIABLE"),
+              ("secret:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_SECRET"),
+              ("variable:GOOGLE_GENAI_API_KEY", "RAW_GOOGLE_GENAI_VARIABLE"),
           )
+          for label, env_name in fixed:
+              value = os.environ.get(env_name, "").strip()
+              if value:
+                  candidates.append((label, value))
+          for env_name, prefix in (("ALL_SECRETS_JSON", "secret:"), ("ALL_VARS_JSON", "variable:")):
+              try:
+                  entries = json.loads(os.environ.get(env_name, "{}"))
+              except (ValueError, TypeError):
+                  entries = {}
+              if isinstance(entries, dict):
+                  for name, value in entries.items():
+                      if re.search(r"(GEMINI|GOOGLE|GENAI)", str(name), re.I) and isinstance(value, str) and value.strip():
+                          candidates.append((prefix + str(name), value.strip()))
+          seen = set()
+          found = []
           fields = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key")
-          for name in names:
-              raw = os.environ.get(name, "").strip()
-              if not raw:
+          for label, raw in candidates:
+              if label in seen:
                   continue
+              seen.add(label)
+              found.append(label)
               value = raw
               try:
                   parsed = json.loads(raw)
@@ -105,7 +127,7 @@ jobs:
               try:
                   with urllib.request.urlopen(request, timeout=15) as response:
                       if response.status == 200:
-                          print(name + "\n" + value, end="")
+                          print(label + "\n" + value, end="")
                           sys.exit(0)
               except urllib.error.HTTPError as error:
                   if error.code in (400, 401, 403):
@@ -113,16 +135,20 @@ jobs:
                   sys.exit(2)
               except (urllib.error.URLError, TimeoutError):
                   sys.exit(2)
+          if found:
+              print("Credential entry names found but Google rejected all candidates: " + ", ".join(found), file=sys.stderr)
+          else:
+              print("No Gemini/Google-named credential entries were exposed to this workflow run.", file=sys.stderr)
           sys.exit(1)
           PY
           )" || {
-            echo "::error::No valid Google Generative Language API key was accepted from the existing Gemini/Google Actions secret or variable entries. Credential values were not printed."
+            echo "::error::No valid Google Generative Language API key was accepted from the existing Actions credentials. Credential values were not printed."
             exit 1
           }
           SOURCE="${RESULT%%$'\n'*}"
           KEY="${RESULT#*$'\n'}"
           echo "Google API credential validated from existing entry: $SOURCE"
-          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
+          unset RESULT SOURCE RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE ALL_SECRETS_JSON ALL_VARS_JSON
           export GEMINI_API_KEY="$KEY"
           unset KEY
           mkdir -p .gemini
