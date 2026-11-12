@@ -825,3 +825,15 @@ The next action is to review PR #195's current diff and exact workflow configura
 5. Update this handover after each material verified milestone. No production deployment, live Supabase write, Axxess upload, DNS/payment change, or paid hosting spend.
 
 **Checkpoint result:** PR #196 automated storefront/package/browser checks are green at the recorded head. Gemini execution, PR #194 integration, hosted-preview verification, catalogue completion, image acceptance and production release remain unverified/outstanding.
+
+
+## GEMINI WORKER SCOPE CORRECTION — 2026-11-12 17:14 SAST
+
+- Continued PR #196 on its existing branch; no competing branch or second storefront was created.
+- Updated `.github/workflows/gemini-safe-storefront-worker.yml` and `GEMINI.md` so the bounded worker's sparse checkout, both patch-validation allowlists, publisher checkout, and written operating scope include the canonical public storefront pages `index-new.html` and `category.html`. Existing approved public-facing files remain in the allowlist. Supplier/catalogue files, credentials, database, deployment and production paths remain excluded.
+- Latest branch head after these edits: `0a2f0ba865e05fa97f9ce2cb427a95ac2825b0cc`. PR #196 remains open, draft and unmerged.
+- The previous tested PR head `16b80dc4b812879fabfa940d8cd5fdf5424364c3` had successful static/category safety, catalogue audit, public package, mobile/desktop browser QA, responsive/supplier/ASC checks, storefront mode/package checks, and a Cloudflare Pages branch preview at https://e165844c.get-wired-autoworx-store.pages.dev. That preview and those checks belong to the previous SHA, not the current head.
+- No PR-triggered workflow runs were returned for the latest head at the time of this checkpoint. Exact-head verification must rerun after the allowlist/scope edits. The separate Cloudflare Workers integration failure remains reported for build ID `e39e5bf7-b7a9-43ff-80c7-7c9676fa93d4`; do not conflate it with the successful Pages preview.
+- Gemini execution is still unverified. PR #196's candidate key resolver checks existing common secret/variable names and JSON wrappers without logging values, but its length-only fallback is not proof of a valid Google API key. Do not treat the integration as operational until the model actually executes and a generated review PR is inspected.
+
+**Next:** allow exact-head checks to complete on `0a2f0ba865e05fa97f9ce2cb427a95ac2825b0cc`; inspect any failure and correct it on this same PR. Only after exact-head checks pass should the owner review the draft. Do not merge PR #196 or deploy without explicit approval.
