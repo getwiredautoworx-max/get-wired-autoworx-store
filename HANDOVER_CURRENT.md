@@ -42,10 +42,16 @@
 ### Verified current-main audio state
 - The active audio page is `preview-audio.html`; its navigation links to the separate brand and product-type pages.
 - The page currently loads `assets/audio-catalogue-primary-preview.json` and `assets/audio-catalogue-secondary-preview.json`.
-- The GitHub directory API reports `assets/audio-catalogue-primary-preview.json` is 1,258,496 bytes and `assets/planetworld-catalogue-preview.json` is 1,206,488 bytes. The file-content connector returns empty content for these oversized blobs; that is a retrieval limitation, **not evidence that the files are empty**. The active audio page fetches the primary and secondary audio preview files, but does not directly reference the explicitly named Planetworld JSON. The primary dataset's exact contents and the relationship to the Planetworld preview still require size-aware verification.
-- The secondary review preview contains 72 records, including the existing Audio Connections-derived preview set; 62 records have owner-authorised exact-model image matches. The customer UI does not need to display the supplier name.
-- The secondary review preview contains Audio Connections-derived records; it is not by itself proof of Planetworld integration. Keep all preview records review-only and follow the Price On Request rule.
+- Repository tests and `scripts/audit-audio-preview.py` identify `assets/audio-catalogue-primary-preview.json` as the Planetworld snapshot with **3,317 records**. `assets/audio-catalogue-secondary-preview.json` is the Audio Connections review snapshot with **72 records**. The active audio landing, brand and product-type pages load these two files. The separate `assets/planetworld-catalogue-preview.json` is 1,206,488 bytes but is not directly referenced by the active audio routes. Earlier 0-byte conclusions were wrong: the connector returns empty content for oversized blobs; repository tests provide the verified counts.
+- The Audio Connections review snapshot has 72 records; 62 have owner-authorised exact-model image matches. Three records are held for unresolved power/image exceptions. Both datasets suppress numeric supplier prices and stock, use Price On Request, and the automated test asserts that supplier names and internal supplier SKUs are absent from customer-visible metadata.
 - The current public repository's confidential-data boundary remains unresolved. Do not copy, process or publish additional supplier-derived Planetworld/Audio Connections data from stale PR branches. Complete the private-data boundary before further supplier-data enrichment.
+
+
+### Other department preview coverage
+- Auto Electrical has a **34-record** owner preview: 9 Sensors, 8 Switches, 8 Globes and 9 Fuel Pumps; 30 fitments have source verification. Product descriptions and technical specifications remain pending, and the preview reports another 727 records outstanding. This is not the full six-catalogue integration.
+- The image-treatment review sample contains 8 Aerials and 8 Car Mats; these are review-only image samples, not complete product catalogues. Aerials route under Car Audio → Accessories; Car Mats route under Car Care & Accessories.
+- Car Care still has no verified, populated customer product dataset beyond the Car Mats review sample. The third department's subcategory tree exists, but it is not a completed catalogue.
+- Supabase `public.products` remains empty. Static review previews are not live product rows; do not conflate the two.
 
 ### Branch reconciliation evidence
 - PR #168, #176 and #178 are not safe wholesale merge candidates: their heads are substantially behind current `main`, their mergeability is false, and their diffs contain large amounts of supplier-derived data and/or historical workflow/handover material. Selectively port only independently verified public-safe code after review; do not merge these branches wholesale.
@@ -54,7 +60,7 @@
 - Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
 
 
-**Updated:** 2026-11-12 20:40 SAST  
+**Updated:** 2026-11-12 20:50 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
 
