@@ -905,3 +905,44 @@ Do not call the exact-head gate fully green until the two remaining QA runs conc
 - Open PR inventory still contains numerous stale/diverged historical branches, including #189, #188, #187, #185, #184, #183, #181, #178, #177, #176, #175, #174, #173, #170, #168 and older. They must be assessed individually against current main and current owner directives; do not wholesale merge or bulk-delete them. PR #189 and #178 are known highly diverged; #183/#185 contain review-only supplier evidence and must not be merged blindly. No branch cleanup is claimed by this checkpoint.
 - Remaining storefront completion blockers: complete ASC six-catalogue population and 50-image visual QA/owner acceptance; full 3,317-record Planetworld reconciliation and Audio Connections model/image/specification verification (the current 72-row secondary audio set is review-only); complete Car Care catalogue population beyond the eight Car Mats samples; exact-current-main hosted preview verification; and resolution of the public-repository confidential-source exposure documented above.
 - Production remains HOLD. No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, or paid hosting action was performed.
+
+
+
+## LIVE EXECUTION CHECKPOINT — 2026-11-12 17:52 SAST
+
+### Task start and canonical state
+- Resumed work from the owner's instruction to continue current store tasks.
+- Re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and this current handover from `main` before acting.
+- Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical branch: `main`.
+- Latest observed main commit at task start: `aac2fd165a89e5e1371fada4fffb66472fdee586` (handover update, 2026-11-12 15:27:33Z).
+- Current work is confined to repository reconciliation and review-only evidence. No production, Axxess, DNS, payment, live Supabase or catalogue/price/stock mutation was performed.
+
+### Live PR reconciliation — 17:52 SAST
+Compared active PR heads against the observed current `main` SHA; do not merge these branches wholesale:
+- PR #183 ASC six-catalogue reload: open, head `327d9a271196efe2144e93d81109b93cca83cbdd`, **33 commits ahead / 275 behind**, merge base `3e64d08a0c7c1ce124bdb1fb6db6c26905ec0717`. It contains a 978-row review-only register and staging CSV, but its own QA report states 928 titles are OCR drafts, 936 fitment fields and all 978 technical specification fields remain pending, 26 image exceptions exist, and image treatment/owner review remains incomplete. Its report explicitly says DO NOT IMPORT / DO NOT MERGE / DO NOT PUBLISH. Preserve as evidence; do not wholesale merge. Any future selective transplant must first reconcile the files to the current schema and rerun the supplied deterministic test on an isolated current-main candidate.
+- PR #185 Electrocity ignition pilot: open, head `e695f3dcb056e15d80f5b9a2f9375d10995905cc`, **13 commits ahead / 275 behind**, same merge base `3e64d08a0c7c1ce124bdb1fb6db6c26905ec0717`. It contains 29 review-only rows and 29 page-evidence crops. QA reports 3 OEM-confirmed and 26 corroborated, but records remain DO NOT IMPORT pending owner acceptance; supplier SKU remains internal. Keep isolated; do not wholesale merge or expose supplier SKUs.
+- PR #189 operating-system reconciliation: open draft, head `fae470d06180162530c39575462993923dd92f52`, **52 commits ahead / 268 behind**, merge base `5e748e09343f7879c66124778d42ee202caf1e00`. It changes storefront files, workflows, operating rules and the task queue; its own evidence records a supplier-specific Planetworld preview route and supplier data already present on main, plus a failing image-origin audit and a Cloudflare Workers integration check pointing at production. Do not merge wholesale. Extract only individually verified, non-conflicting fixes if still needed.
+- PR #187 and #188 are older controller fixes based on `f51ee4bd547d733605e3197bfef73381d96633ae`; do not retain duplicate controller work. Recheck exact file-level overlap before deciding whether any remaining change is missing from main.
+- PR #178 remains 965+ commits divergent historically and is not a safe wholesale merge candidate. Its older hosted preview evidence is not proof of the current main SHA.
+
+### Confirmed reusable catalogue evidence
+- PR #183's six approved ASC catalogues total 978 source-card rows: Aerials 78, Sensors 106, Switches 368, Globes 158, Car Mats 139, Fuel Pumps 129. Its deterministic validator enforces uniqueness, approved category mappings, exact ASC Price On Request wording, blank numeric prices, unconfirmed stock, and review-only gates. This is a valuable review dataset, not a completed retail catalogue.
+- PR #185's 29-row Electrocity ignition pilot is a useful isolated audit package. Its fitment classifications and evidence must remain review-only and must not be represented as confirmed product fitment beyond the source-evidence levels recorded in its QA report.
+
+### Supersession correction — public repository policy
+- Older §3 text in this handover describing a private repository/private execution environment as a prerequisite is superseded by owner clarification in `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` §10 (2026-11-09): the public repository is authorised for catalogue extraction/review and no private-repository prerequisite may block authorised work. Do not repeat the stale private-boundary blocker as a reason to pause catalogue processing.
+- Continue protecting actual credentials/secrets and keep supplier names/internal supplier SKUs out of customer-facing content. The public repository allowance does not authorise publishing secrets or exposing internal supplier fields in storefront pages.
+
+### Gemini status — last verified result
+- Mainline worker and isolated publisher are integrated; workflow allowlists include `index-new.html` and `category.html`.
+- Last verified trusted-branch API check (run `43247398659`, recorded 17:28 SAST) found the existing `GEMINI_API_KEY` secret exposed to the workflow but rejected by Google's Generative Language API with HTTP 400 `API key not valid`. The value was not logged. No model execution or generated review PR was produced.
+- Do not report Gemini operational until a successful model execution and a publisher-created draft PR are observed. Re-test only after the existing GitHub Actions secret value is corrected; never request or print the key in chat.
+
+### Next execution order
+1. Continue selective current-main integration of review-only catalogue evidence; start with the ASC 978-row register and staging package only after a clean current-main branch is created and its deterministic validator passes. Do not merge the stale PR branch.
+2. Reconcile the 50-image ASC treatment manifest/contact sheet against the latest owner-authorised output and complete visual QA; keep owner acceptance separate.
+3. Continue Audio Connections / Planetworld exact-model image+description verification in the existing review dataset; retain the unresolved Sony, Starsound and BlackSpider exceptions.
+4. Build the missing Car Care catalogue review layer from approved catalogue sources only; do not invent products.
+5. Run exact-current-main QA and obtain a hosted preview tied to the same SHA. Production remains HOLD.
+
+**Checkpoint result:** Active supplier PRs have been measured against current main and correctly identified as stale/diverged review-only branches. No unsafe wholesale merge was performed. The next useful integration is a selective, tested ASC review-data transplant, not another storefront branch.
