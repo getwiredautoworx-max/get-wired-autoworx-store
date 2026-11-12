@@ -1,15 +1,24 @@
 {
-  "generated_at": "2026-11-11T10:49:07Z",
+  "generated_at": "2026-11-12T15:19:36Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
+    {
+      "id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "name": "Accessories",
+      "slug": "car-audio-accessories",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "sort_order": 1000,
+      "direct_active_products": 0
+    },
     {
       "id": "b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90",
       "name": "Aerials",
       "slug": "aerials",
       "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 0
+      "sort_order": 0,
+      "direct_active_products": 0
     },
     {
       "id": "07bc149c-4ab3-41bd-bab3-01415cb8a24c",
@@ -17,188 +26,8 @@
       "slug": "alternators-starters",
       "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 0
-    },
-    {
-      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "name": "Car Audio / Home Entertainment",
-      "slug": "car-audio-home-entertainment-lifestyle",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 0
-    },
-    {
-      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
-      "name": "Car Audio & Video",
-      "slug": "car-audio",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 0
-    },
-    {
-      "id": "75d265b0-4e9c-4492-b54f-0db7c8202756",
-      "name": "Car Care",
-      "slug": "car-care",
-      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 0
-    },
-    {
-      "id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "name": "Auto Electrical Spares",
-      "slug": "auto-electrical-parts-spares",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 10
-    },
-    {
-      "id": "8f2e0f4e-6787-4fbf-b99b-4bea3a1dba10",
-      "name": "Batteries & Charging",
-      "slug": "batteries-charging",
-      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 10
-    },
-    {
-      "id": "c35d15c1-d665-413f-b528-878b6a655d5d",
-      "name": "Car Mats",
-      "slug": "car-mats",
-      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 10
-    },
-    {
-      "id": "07b76301-da5c-4810-a19f-d8b6e2ae2f06",
-      "name": "Home Entertainment",
-      "slug": "home-entertainment",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 10
-    },
-    {
-      "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
-      "name": "Trims & Harnesses",
-      "slug": "car-audio-harnesses-trims",
-      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 10
-    },
-    {
-      "id": "862605ef-5223-4525-aad6-ee17c2c6f9e7",
-      "name": "Band Equipment",
-      "slug": "band-equipment",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 20
-    },
-    {
-      "id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
-      "name": "Car Care & Accessories",
-      "slug": "car-care-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 20
-    },
-    {
-      "id": "2a3c2f37-19de-472c-8fe9-d6c61ee4fd16",
-      "name": "Fuses, Relays & Wiring",
-      "slug": "fuses-relays-wiring",
-      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 20
-    },
-    {
-      "id": "b4332bab-a908-4c27-9fe4-68965617620e",
-      "name": "Seat Covers & Interior Accessories",
-      "slug": "seat-covers-interior",
-      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 20
-    },
-    {
-      "id": "83ea8ae6-a464-40a2-a503-272792f70be8",
-      "name": "DJ Equipment",
-      "slug": "dj-equipment",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 30
-    },
-    {
-      "id": "9bbc3d8e-5c54-4a36-839d-7658a681ac31",
-      "name": "Exterior Accessories",
-      "slug": "exterior-accessories",
-      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 30
-    },
-    {
-      "id": "89595653-97d4-4b18-ba69-117547d32ed0",
-      "name": "Globes & Vehicle Lighting",
-      "slug": "globes-vehicle-lighting",
-      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 30
-    },
-    {
-      "id": "76aee522-bf0e-4e7e-809c-e5c31afd3f6b",
-      "name": "Instruments",
-      "slug": "instruments",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 40
-    },
-    {
-      "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
-      "name": "Sensors & Switches",
-      "slug": "sensors-switches",
-      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 40
-    },
-    {
-      "id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "name": "Lifestyle",
-      "slug": "lifestyle",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 50
-    },
-    {
-      "id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
-      "name": "Accessories",
-      "slug": "car-audio-accessories",
-      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1000
-    },
-    {
-      "id": "a8593e12-53fb-4514-ad19-d9e9a19b6953",
-      "name": "Pool Cleaners",
-      "slug": "pool-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1000
+      "sort_order": 0,
+      "direct_active_products": 0
     },
     {
       "id": "1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca",
@@ -206,17 +35,35 @@
       "slug": "car-audio-amplifiers",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1001
+      "sort_order": 1001,
+      "direct_active_products": 0
     },
     {
-      "id": "b6d72815-c634-424c-9520-abed7cbdee1a",
-      "name": "Vacuum Cleaners",
-      "slug": "vacuum-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "name": "Auto Electrical Spares",
+      "slug": "auto-electrical-parts-spares",
+      "parent_id": null,
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1001
+      "sort_order": 10,
+      "direct_active_products": 0
+    },
+    {
+      "id": "862605ef-5223-4525-aad6-ee17c2c6f9e7",
+      "name": "Band Equipment",
+      "slug": "band-equipment",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 20,
+      "direct_active_products": 0
+    },
+    {
+      "id": "8f2e0f4e-6787-4fbf-b99b-4bea3a1dba10",
+      "name": "Batteries & Charging",
+      "slug": "batteries-charging",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 10,
+      "direct_active_products": 0
     },
     {
       "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
@@ -224,8 +71,89 @@
       "slug": "car-audio-cameras-monitors",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1002
+      "sort_order": 1002,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "name": "Car Audio & Video",
+      "slug": "car-audio",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 0,
+      "direct_active_products": 0
+    },
+    {
+      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "name": "Car Audio / Home Entertainment",
+      "slug": "car-audio-home-entertainment-lifestyle",
+      "parent_id": null,
+      "active": true,
+      "sort_order": 0,
+      "direct_active_products": 0
+    },
+    {
+      "id": "75d265b0-4e9c-4492-b54f-0db7c8202756",
+      "name": "Car Care",
+      "slug": "car-care",
+      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "active": true,
+      "sort_order": 0,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "name": "Car Care & Accessories",
+      "slug": "car-care-accessories",
+      "parent_id": null,
+      "active": true,
+      "sort_order": 20,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c35d15c1-d665-413f-b528-878b6a655d5d",
+      "name": "Car Mats",
+      "slug": "car-mats",
+      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "active": true,
+      "sort_order": 10,
+      "direct_active_products": 0
+    },
+    {
+      "id": "83ea8ae6-a464-40a2-a503-272792f70be8",
+      "name": "DJ Equipment",
+      "slug": "dj-equipment",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 30,
+      "direct_active_products": 0
+    },
+    {
+      "id": "9bbc3d8e-5c54-4a36-839d-7658a681ac31",
+      "name": "Exterior Accessories",
+      "slug": "exterior-accessories",
+      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "active": true,
+      "sort_order": 30,
+      "direct_active_products": 0
+    },
+    {
+      "id": "2a3c2f37-19de-472c-8fe9-d6c61ee4fd16",
+      "name": "Fuses, Relays & Wiring",
+      "slug": "fuses-relays-wiring",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 20,
+      "direct_active_products": 0
+    },
+    {
+      "id": "89595653-97d4-4b18-ba69-117547d32ed0",
+      "name": "Globes & Vehicle Lighting",
+      "slug": "globes-vehicle-lighting",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 30,
+      "direct_active_products": 0
     },
     {
       "id": "7dfa871f-ae4d-4be0-87f2-8685d50ae6bb",
@@ -233,8 +161,62 @@
       "slug": "car-audio-head-units-media",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1003
+      "sort_order": 1003,
+      "direct_active_products": 0
+    },
+    {
+      "id": "07b76301-da5c-4810-a19f-d8b6e2ae2f06",
+      "name": "Home Entertainment",
+      "slug": "home-entertainment",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 10,
+      "direct_active_products": 0
+    },
+    {
+      "id": "76aee522-bf0e-4e7e-809c-e5c31afd3f6b",
+      "name": "Instruments",
+      "slug": "instruments",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 40,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "name": "Lifestyle",
+      "slug": "lifestyle",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "active": true,
+      "sort_order": 50,
+      "direct_active_products": 0
+    },
+    {
+      "id": "a8593e12-53fb-4514-ad19-d9e9a19b6953",
+      "name": "Pool Cleaners",
+      "slug": "pool-cleaners",
+      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "active": true,
+      "sort_order": 1000,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b4332bab-a908-4c27-9fe4-68965617620e",
+      "name": "Seat Covers & Interior Accessories",
+      "slug": "seat-covers-interior",
+      "parent_id": "f98e7589-20a0-4825-9707-2680d29e5cb6",
+      "active": true,
+      "sort_order": 20,
+      "direct_active_products": 0
+    },
+    {
+      "id": "9f85f25f-800d-4ae4-854d-0213d83b86fa",
+      "name": "Sensors & Switches",
+      "slug": "sensors-switches",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 40,
+      "direct_active_products": 0
     },
     {
       "id": "3fb18314-b5c5-4edf-8db2-00a29e18d027",
@@ -242,8 +224,8 @@
       "slug": "car-audio-signal-processing",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1004
+      "sort_order": 1004,
+      "direct_active_products": 0
     },
     {
       "id": "934a47fc-14b2-4d08-a3ea-9c5254076a5a",
@@ -251,8 +233,8 @@
       "slug": "car-audio-speakers-components",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1005
+      "sort_order": 1005,
+      "direct_active_products": 0
     },
     {
       "id": "4eebc099-4821-4bb9-82ac-8181192f5e00",
@@ -260,8 +242,26 @@
       "slug": "car-audio-subwoofers",
       "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
       "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1006
+      "sort_order": 1006,
+      "direct_active_products": 0
+    },
+    {
+      "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
+      "name": "Trims & Harnesses",
+      "slug": "car-audio-harnesses-trims",
+      "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
+      "active": true,
+      "sort_order": 10,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b6d72815-c634-424c-9520-abed7cbdee1a",
+      "name": "Vacuum Cleaners",
+      "slug": "vacuum-cleaners",
+      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "active": true,
+      "sort_order": 1001,
+      "direct_active_products": 0
     }
   ]
 }
