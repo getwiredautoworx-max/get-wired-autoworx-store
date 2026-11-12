@@ -40,6 +40,10 @@ jobs:
           sparse-checkout: |
             GEMINI.md
             AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md
+            index-new.html
+            category.html
+            index-new.html
+            category.html
             index.html
             store.html
             products.html
