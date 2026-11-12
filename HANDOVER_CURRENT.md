@@ -769,3 +769,15 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Gemini credential fix is still only a candidate; no successful Gemini model execution is yet verified. Production remains HOLD.
 
 - Follow-up regression findings: the next static test required the customer-facing child label `Car Audio & Video`, so the snapshot generator and cached tree now use that approved label while preserving the category ID/slug. Browser QA then exposed a stale assertion expecting 66 Audio Connections records although the current review dataset and public package gate contain 72; updated the QA assertion to 72. These are test/data-alignment repairs, not changes to product records or live data.
+
+
+## VERIFIED CANDIDATE MILESTONE — 2026-11-12
+- Candidate commit: `e154c415360fca0efd8a69e1c47c2ca0bf18cb82`.
+- GitHub static-policy regression: PASS (`43243627392`).
+- Public customer-only package build and policy checks: PASS (`43243625266`).
+- Owner-preview browser QA at mobile and desktop viewports: PASS (`43243625118`). The previous 66-row expectation was stale; current secondary review dataset contains 72 records and the test now asserts 72.
+- Cloudflare Pages branch preview: DEPLOY SUCCESS, exact candidate SHA `e154c415360fca0efd8a69e1c47c2ca0bf18cb82`; immutable preview `https://b4b196f1.get-wired-autoworx-store.pages.dev`; branch preview `https://fix-gemini-key-source-and-va.get-wired-autoworx-store.pages.dev`.
+- Cloudflare Workers build check remains FAIL (`6b8239c8-5b65-4406-8de0-8094ca349393`); its failure details are not exposed by the connected GitHub check payload. This must be investigated separately; do not claim all deployment checks passed.
+- Combined verified status on this SHA: Cloudflare Pages=success, Workers Builds: get-wired-autoworx-store=failure, static-policy=success, browser-qa=success, audit=success, public-package=success.
+- Gemini authentication workflow repair is still unverified against the actual stored credential; no Gemini task run has yet succeeded.
+- PR #196 remains a draft and unmerged. No production release, live Supabase write, supplier catalogue import, Axxess upload, DNS/payment change or paid hosting action occurred.
