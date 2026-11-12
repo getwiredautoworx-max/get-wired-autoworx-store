@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Planetworld exact-image candidate manifest now contains 18 rows: 12 Kicker and 6 Audison. Newly verified Audison exact-model page/image pairs: bit One HD Virtuoso (66751501), bit Ten (66752000), bit Tune (66753000), and AP4 D (66755030), in addition to bit DMI and B-CON. All remain NOT_APPROVED / DO_NOT_IMPORT; continue remaining Audison rows, then next brands. Audio Connections remains 62/66 eligible with four held records; separate Alpine six remain review-only."
+      "next_action": "Planetworld exact-image candidate manifest now contains 22 rows: 12 Kicker and 10 Audison. Audison image candidates verified for bit DMI, B-CON, bit One HD Virtuoso, bit Ten, bit Tune, AP4 D, AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit. All remain NOT_APPROVED / DO_NOT_IMPORT. Four Forza amplifier descriptions need technical wording reconciliation: manufacturer distinguishes amplified output channels from total DSP channels (AF M12.14: 12 amp / 14 DSP; AF M8.14 and AF C8.14: 8 amp / 14 DSP; AF M5.11: 5 amp / 11 DSP). Continue remaining Audison records, then next brands. Audio Connections remains 62/66 eligible with four held records; Alpine six remain separate review-only."
     },
     {
       "id": "onenav-model-image-reconciliation",
