@@ -721,3 +721,13 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Production hold remains in force. The workflow activation itself is merged; it is not evidence that the storefront is complete or production-ready.
 
 **Resume point:** Verify run 43240120246 to completion, inspect Gemini's report and any generated draft PR, then reconcile only validated changes into the single canonical storefront. Correct this handover again with the actual outcome.
+
+
+## GEMINI WORKER RETRY DIAGNOSTICS — 2026-11-12 14:44 UTC
+
+- The first trust fix allowed Gemini CLI to start, but the second run failed at API authentication before any model work. The runner log showed an invalid HTTP header value while adding the Gemini API key. The secret was redacted in logs; do not expose or request its contents in chat.
+- Likely cause: whitespace/newline characters in the stored secret value. The owner has already confirmed the repository secret exists. The workflow now strips whitespace from the secret in memory, validates the normalized value without printing it, and passes only that normalized key to Gemini CLI.
+- Replaced the composite action's direct raw-secret input with a pinned direct CLI invocation (@google/gemini-cli@0.68.0) so normalization occurs before the key becomes an HTTP header. Shell access remains disabled in Gemini's tool allowlist; only file read/search/edit tools are configured. The runner trust environment flag is also set.
+- The bounded task text is now passed directly into Gemini's prompt as data, not merely mentioned by variable name.
+- Corrective workflow commits: 0d3b21a3b3259e0f1af374e427a84bf3d7c35605 and 77b97106f22695f9562ba5d79e00bf3592b3bde8.
+- Latest run queued at handover update: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43240506024 . This run has not yet been verified successful. Do not claim Gemini has completed a task until its execution and publisher job succeed and a draft PR is visible.
