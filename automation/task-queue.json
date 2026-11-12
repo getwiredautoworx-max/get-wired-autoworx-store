@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-09",
+  "updated": "2026-11-12",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Continue exact-model enrichment in bounded batches. Current owner-preview audit: 66 Planetworld Car Audio records and 6 Home CI/Home Entertainment records pass exact image+description verification (72 total); 61 Audio Connections records pass, 5 are held. The 47 Harnesses & Trims source rows are now separated into 24 Harnesses and 23 Trims, but all 47 still lack verified images/descriptions and remain withheld. Only verified image+description products render; all others remain in source/review data. Prioritise remaining Car Audio, Home CI and Home Retail before Band & Live Sound, DJ, Installed AV and Musical Instruments."
+      "next_action": "Fresh 2026-11-12 audit of assets/audio-catalogue-secondary-preview.json: 72 actual preview rows, 72 unique IDs, no duplicate brand+model identities, no missing model/title or descriptions; 4 rows have no image URL. Sony XS-W104ES (ac-006) is exact-model/spec verified on Sony Africa but still image-held pending a verified usable image URL. Starsound SSA-ATOM-13500 (ac-032), SSA-M5-80.6 (ac-041), and SSS-6501PRO (ac-044) remain held for exact model/variant and/or conflicting power-rating confirmation; do not infer. BlackSpider BULLET LYNX (ac-058) has only a low-resolution exact-model image. Preserve all per-record holds and preview-only state. Next: verify Sony's official product image URL and visual match; keep Starsound holds until source confirmation; improve BlackSpider image only from exact-model evidence. Continue Planetworld 3,317-row and Audio Connections 66-row work separately; no live imports."
     },
     {
       "id": "onenav-model-image-reconciliation",
