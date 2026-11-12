@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Audio Connections: 62/66 records now satisfy preview gate; four holds remain (ac-032/ac-041/ac-044 model/spec confirmation, ac-058 low-res). Separate Alpine six remain outside AC filter. Planetworld next batch: audited 81 manufacturer-verified content rows, all image_approval NOT_APPROVED. Created catalogue-review/kicker-image-source-candidates-2026-11-12.csv with three exact Kicker page/image matches (43C104, 43C124, 43C84), visually checked but NOT_APPROVED/DO_NOT_IMPORT. Continue remaining nine exact Kicker models in the same candidate-only register; never add these images to customer preview or change approval without rights/asset approval."
+      "next_action": "Audio Connections: 62/66 eligible; four held. Planetworld Kicker batch 1 complete: all 12 Kicker rows in MANUFACTURER_VERIFIED_CONTENT now have exact official product-page and visually checked primary-image candidates recorded in catalogue-review/kicker-image-source-candidates-2026-11-12.csv. All 12 remain NOT_APPROVED / DO_NOT_IMPORT; no storefront image was changed. Next start Audison exact-image candidate batch from its 41 manufacturer-verified records, first bit DMI and B-CON. Continue only with exact product-page/image matches; no image publication without permission/approval."
     },
     {
       "id": "onenav-model-image-reconciliation",
