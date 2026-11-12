@@ -75,7 +75,7 @@ const pradoClassic = bySku.get('OA014-1');
 assert.equal(pradoClassic.enrichment_status, 'OWNER_PREVIEW_CANDIDATE_ONLY');
 assert.equal(pradoClassic.image_url_candidate, 'https://the4x4store.co.za/cdn/shop/files/WhatsAppImage2023-10-11at08.12.48_923d2720_5000x.jpg?v=1697005542');
 assert.match(pradoClassic.official_manufacturer_product_page, /onenav-classic-9inch-for-prado-2002-2009/);
-assert.match(pradoClassic.image_match_notes, /OA014-1.*Prado.*rights.*not documented/i);
+assert.match(pradoClassic.image_match_notes, /OA014-1.*Prado.*provenance and reuse permission are not documented/i);
 assert.doesNotMatch(pradoClassic.image_match_notes, /owner-authorised/i);
 const oa014Review = JSON.parse(fs.readFileSync('catalogue-review/onenav-oa014-1-enrichment-2026-11-12.json', 'utf8'));
 assert.equal(oa014Review.review_status, 'DO NOT IMPORT');
