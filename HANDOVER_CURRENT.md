@@ -792,3 +792,36 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Gemini auth fix remains unverified: this branch has not executed the worker against the existing credential. Do not report Gemini as operational until a successful Gemini model run and publisher result are recorded.
 
 - Exact-head preview rebuild: added a no-op HTML comment to `index-new.html` in the same commit as this handover entry so Cloudflare Pages and all relevant QA gates run against one final candidate SHA. No storefront behavior was changed by the marker; results are pending.
+
+
+## EXECUTION CHECKPOINT — 2026-11-12 17:10 SAST
+
+### Verified repository state
+- Canonical repository: https://github.com/getwiredautoworx-max/get-wired-autoworx-store (public; default branch `main`).
+- Owner directives were re-read from `main`: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`. The three-department structure, catalogue-first scope, no ASC Buyers Guides, Price On Request policy, review-only catalogue status, and production HOLD remain binding.
+- Current candidate: PR #196, `fix/gemini-key-source-and-validation-2026-11-12`, head `3659a21266dfc845c721fa644c985c6aa0af2dc7`, open/draft/unmerged. It updates the Gemini key-source resolver, category snapshot/navigation, and owner-preview browser assertions.
+- Exact-head checks observed successful for this SHA: Cloudflare Pages Public Package QA run 43244192647; Storefront Smoke Test run 43244192686; Public SKU Exposure Audit run 43244192691; Owner Preview Mobile and Desktop Browser QA run 43244192668. All four runs concluded `success`.
+- This is exact-head automated CI evidence only. It is not hosted-preview verification, owner acceptance, or production readiness.
+
+### Gemini status — do not overstate
+- Gemini worker integration PR #195 was merged earlier, but the workflow on `main` still uses strict extraction of an `AIza...` token from `secrets.GEMINI_API_KEY`; the latest recorded attempts failed before model execution because no matching token was extracted.
+- PR #196 proposes a broader resolver that checks existing Gemini/Google secret and variable names and common JSON wrappers without printing values. It accepts any normalized candidate of at least 20 characters; this is not proof that the value is a valid Gemini API key.
+- PR #196 is not merged. No successful Gemini model execution, generated worker PR, or autonomous task completion is verified. The existing key must not be requested in chat or exposed in logs.
+- The Gemini workflow currently checks out a legacy allowlist (`index.html`, `store.html`, etc.) rather than the canonical `index-new.html` / `category.html` paths used by the current category preview. Before relying on Gemini for actual storefront repairs, align its sparse checkout and publisher allowlist with the approved canonical public storefront files, while keeping supplier/catalogue files, secrets, database, deployment and production strictly excluded.
+
+### Store consolidation and catalogue status
+- PR #190's unified storefront integration and PR #192's owner-preview population/image-layout repair are already merged; do not recreate those branches or duplicate their work.
+- PR #194 remains open and unmerged. It adds eight ASC Aerials and eight Car Mats review-only records to the unified preview; exact-head checks and mergeability must be rechecked before integration.
+- Audio secondary review dataset: 72 records; wider Planetworld primary dataset: 3,317 records. These are distinct datasets. Do not claim the full 3,317-record dataset is loaded into the consolidated preview.
+- Audio exceptions remain: Sony XS-W104ES image rendering failure; Starsound SSA-ATOM-13500 model variant hold; SSA-M5-80.600 and SSS-6501PRO model/specification holds; BlackSpider BULLET LYNX low-resolution image. Keep unresolved items quarantined.
+- ASC 50-image pilot remains review-only: 39 treated outputs pending visual QA and 11 manual-review items. No owner visual acceptance or production import is recorded.
+- Car Care full catalogue population and broader catalogue verification remain outstanding. Do not invent product records.
+
+### Next execution sequence
+1. Resolve the Gemini workflow mismatch: validate the existing key source safely, retain strict Google API key validation (do not accept arbitrary 20-character strings), and align sparse checkout plus patch allowlists with the actual canonical storefront files. Keep the agent read-only and publisher isolated.
+2. Obtain a successful Gemini model run and inspect its generated report/PR before claiming the integration operational. Do not merge PR #196 without the required owner approval.
+3. Recheck PR #194's current exact-head checks and branch relationship to `main`; integrate only after its review-only sample and tests are validated. No live import.
+4. Continue the single canonical storefront's remaining category population, audio exact-model exceptions, Car Care catalogue workflow, and 50-image visual QA in bounded review-only batches.
+5. Update this handover after each material verified milestone. No production deployment, live Supabase write, Axxess upload, DNS/payment change, or paid hosting spend.
+
+**Checkpoint result:** PR #196 automated storefront/package/browser checks are green at the recorded head. Gemini execution, PR #194 integration, hosted-preview verification, catalogue completion, image acceptance and production release remain unverified/outstanding.
