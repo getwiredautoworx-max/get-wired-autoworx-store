@@ -107,12 +107,12 @@ jobs:
                   pass
               value = value.strip().strip("\\\"'")
               value = re.sub(
-                  r"^(?:export\\s+)?(?:GEMINI_API_KEY|GOOGLE_API_KEY|GOOGLE_GENAI_API_KEY|GOOGLE_AI_STUDIO_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)\\s*=\\s*",
+                  r"^(?:export\s+)?(?:GEMINI_API_KEY|GOOGLE_API_KEY|GOOGLE_GENAI_API_KEY|GOOGLE_AI_STUDIO_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)\s*=\s*",
                   "",
                   value,
                   flags=re.IGNORECASE,
               ).strip().strip("\\\"'")
-              value = re.sub(r"^(?:Bearer|Basic)\\s+", "", value, flags=re.IGNORECASE).strip()
+              value = re.sub(r"^(?:Bearer|Basic)\s+", "", value, flags=re.IGNORECASE).strip()
               # Recover a bare Google API key if the secret was pasted with an env-var label or wrapper.
               match = re.search(r"AIza[0-9A-Za-z_-]{20,}", value)
               if match:
