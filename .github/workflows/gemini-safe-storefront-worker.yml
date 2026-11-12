@@ -59,18 +59,51 @@ jobs:
       - name: Run Gemini CLI with normalized API key and read-only tools
         id: gemini
         env:
-          RAW_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RAW_GEMINI_SECRET: ${{ secrets.GEMINI_API_KEY }}
+          RAW_GEMINI_VARIABLE: ${{ vars.GEMINI_API_KEY }}
+          RAW_GOOGLE_SECRET: ${{ secrets.GOOGLE_API_KEY }}
+          RAW_GOOGLE_VARIABLE: ${{ vars.GOOGLE_API_KEY }}
+          RAW_GOOGLE_GENAI_SECRET: ${{ secrets.GOOGLE_GENAI_API_KEY }}
+          RAW_GOOGLE_GENAI_VARIABLE: ${{ vars.GOOGLE_GENAI_API_KEY }}
           GEMINI_CLI_TRUST_WORKSPACE: "true"
           GEMINI_TASK: ${{ inputs.task || 'Audit the three approved storefront departments and repair the most important broken customer-facing category/subcategory navigation or mobile-layout issue that can be safely corrected using only the checked-out files. Preserve existing product data and business rules; do not invent products, prices, stock, compatibility, or imagery. Make one coherent, testable improvement and report any remaining blockers.' }}
         shell: bash
         run: |
           set -euo pipefail
-          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '[:space:]' | grep -oE 'AIza[A-Za-z0-9_-]{20,}' | head -n 1 || true)"
-          unset RAW_GEMINI_API_KEY
-          if [ -z "$KEY" ]; then
-            echo "::error::No Google API-key token could be extracted from GEMINI_API_KEY. The secret value was not printed."
+          KEY="$(python3 - <<'PY'
+          import json, os, sys
+          names = (
+              "RAW_GEMINI_SECRET", "RAW_GEMINI_VARIABLE",
+              "RAW_GOOGLE_SECRET", "RAW_GOOGLE_VARIABLE",
+              "RAW_GOOGLE_GENAI_SECRET", "RAW_GOOGLE_GENAI_VARIABLE",
+          )
+          for name in names:
+              raw = os.environ.get(name, "").strip()
+              if not raw:
+                  continue
+              value = raw
+              try:
+                  parsed = json.loads(raw)
+                  if isinstance(parsed, dict):
+                      for field in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key"):
+                          if isinstance(parsed.get(field), str) and parsed[field].strip():
+                              value = parsed[field].strip()
+                              break
+                  elif isinstance(parsed, str):
+                      value = parsed.strip()
+              except (ValueError, TypeError):
+                  pass
+              value = "".join(value.split())
+              if len(value) >= 20:
+                  print(value, end="")
+                  sys.exit(0)
+          sys.exit(1)
+          PY
+          )" || {
+            echo "::error::No usable API-key value was found in the existing GEMINI_API_KEY / GOOGLE_API_KEY / GOOGLE_GENAI_API_KEY secret or variable entries. Values were not printed."
             exit 1
-          fi
+          }
+          unset RAW_GEMINI_SECRET RAW_GEMINI_VARIABLE RAW_GOOGLE_SECRET RAW_GOOGLE_VARIABLE RAW_GOOGLE_GENAI_SECRET RAW_GOOGLE_GENAI_VARIABLE
           export GEMINI_API_KEY="$KEY"
           unset KEY
           mkdir -p .gemini
