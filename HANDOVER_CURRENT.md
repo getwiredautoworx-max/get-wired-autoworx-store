@@ -706,3 +706,18 @@ The next action is to review PR #195's current diff and exact workflow configura
 - No storefront code, catalogue data, production environment or live data was changed.
 
 **Resume point:** Review PR #195. Treat Gemini as prepared-but-inactive until it is owner-approved, merged, supplied with the repository secret and successfully run with recorded evidence.
+
+
+## GEMINI WORKER ACTIVATION UPDATE — 2026-11-12 14:43 UTC (supersedes the earlier inactive/manual-only checkpoint above)
+
+- Owner explicitly approved merging PR #195 with notice that the merge could trigger the main-branch Cloudflare integration.
+- PR #195 was marked ready and squash-merged to `main`. Merge commit: `513ac2a1907fe858b4ad362d44c12c29fedf4b97`.
+- Workflow was corrected to include a `push` trigger for its workflow file on `main`, in addition to manual dispatch. This makes the first bounded run automatic on activation.
+- The repository already has `GEMINI_API_KEY`, as confirmed by the owner. Do not ask the owner to add it again.
+- First automatic run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43240006353 . Gemini CLI installed and received the configured API key, but exited before doing work because Gemini CLI refused the untrusted GitHub runner workspace.
+- Corrective commit on `main`: `50183cb2dda64a889a8ae30ed02e8dfd362c3442`. Added `GEMINI_CLI_TRUST_WORKSPACE: "true"` to the Gemini action environment.
+- Retry is automatically executing from that commit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43240120246 . At handover update time, the Gemini execution step is in progress; no completed code change or draft PR may yet be claimed.
+- Scope remains restricted to allowlisted public storefront HTML/JS. Gemini has no supplier catalogue, confidential source, database, hosting, deployment, or production scope. Any output is reviewed through a draft PR; no automatic merge/deploy is enabled for Gemini's changes.
+- Production hold remains in force. The workflow activation itself is merged; it is not evidence that the storefront is complete or production-ready.
+
+**Resume point:** Verify run 43240120246 to completion, inspect Gemini's report and any generated draft PR, then reconcile only validated changes into the single canonical storefront. Correct this handover again with the actual outcome.
