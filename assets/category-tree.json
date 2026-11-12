@@ -21,19 +21,19 @@
       "sort_order": 0
     },
     {
-      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
-      "name": "Car Audio",
-      "slug": "car-audio",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "name": "Car Audio / Home Entertainment",
+      "slug": "car-audio-home-entertainment-lifestyle",
+      "parent_id": null,
       "active": true,
       "direct_active_products": 0,
       "sort_order": 0
     },
     {
-      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "name": "Car Audio / Home Entertainment",
-      "slug": "car-audio-home-entertainment-lifestyle",
-      "parent_id": null,
+      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "name": "Car Audio & Video",
+      "slug": "car-audio",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
       "active": true,
       "direct_active_products": 0,
       "sort_order": 0
