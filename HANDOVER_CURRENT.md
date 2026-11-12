@@ -740,3 +740,12 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Current worker workflow commit: 306193d485eae3a24710ba012ffa703e2aafe38f. It normalizes whitespace and extracts the key in memory; no key content is logged. A successful Gemini task and review PR remain unverified.
 - After correcting the existing secret, re-run the workflow from GitHub Actions (workflow: Gemini CLI — Safe Storefront Worker) or push a workflow-file correction to main. Verify the Gemini job and publisher job both succeed before claiming operational work.
 - Production remains HOLD. No catalogue, supplier, database, Axxess, or production data was accessed or changed by the worker attempts.
+
+## GEMINI AUTHENTICATION REPAIR ATTEMPT — 2026-11-12
+
+- Task-start: inspected the authoritative owner directives, current handover, current worker workflow and failed run 43240831248 before making changes.
+- Confirmed from the failed job log: checkout and Gemini CLI installation succeeded; execution stopped solely at the workflow's custom `AIza...` token extraction check. No Gemini model request was made. The workflow was incorrectly assuming one exact key format and one GitHub storage location.
+- Created branch `fix/gemini-key-source-and-validation-2026-11-12` from main commit `d84fe0e96a2f85499dc0d7516f92b95ce52806fc`.
+- Updated `.github/workflows/gemini-safe-storefront-worker.yml` to check the existing `GEMINI_API_KEY` and `GOOGLE_API_KEY` / `GOOGLE_GENAI_API_KEY` entries in both Actions Secrets and Variables. It accepts a raw key or a JSON-wrapped key under common key field names, strips whitespace in memory, does not print values, and leaves final credential validation to Gemini CLI rather than rejecting keys solely because they do not match an `AIza` prefix.
+- This is a candidate fix only. It has not run against the account's actual stored credential and is not yet merged. No secret was read, exposed, created, or modified. No production, catalogue, supplier, database or hosting data was touched.
+- Next: validate the workflow YAML/shell syntax, open a review PR, and only after it is merged verify a fresh run reaches Gemini model execution. Do not claim Gemini is operational until that run and the review publisher both complete successfully.
