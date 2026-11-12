@@ -734,3 +734,13 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - CANBUS absence is not explicitly stated on the manufacturer page; keep its evidence status qualified as above.
 - Continue OneNav only, model-by-model. Do not mark OneNav complete or move to another brand. Next work: obtain exact OA009-1 image evidence; then continue the next unresolved OneNav Classic/Evolution model without relaxing image/variant rules.
 - All records remain private review-only / DO NOT IMPORT. No ASC files/workflow branch, live Supabase/catalogue/price/stock/active flags, merge, deployment, Axxess, DNS, checkout/payment, banking or production state was changed. Production remains HOLD.
+
+
+## 2026-11-12 09:53 SAST — TASK START / LIVE STATE RECONCILIATION
+
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from `main` first (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`), then read `HANDOVER_CURRENT.md` from `main` (blob `2ebb3f85d1c32bcdd87712204dfefcbcc13c9b52`) and this branch's current handover before editing.
+- Current `main` head verified by compare: `d51c9a064694915631bc1d0058f3184436d10baa`. PR #190 is no longer open (main handover records its authorised merge); PR #178 remains open but its branch is stale/divergent (1001 ahead / 281 behind current main) and will not be edited, merged or used as the working base.
+- Existing audio task branch `work/audio-one-nav-current-main-2026-11-11` is at `b152dc3c7e742ff8c0888d4d21f2b19ab58b9047`; compare to current main is 13 ahead / 4 behind, merge base `daf2d08f46306ee7ac666c61d57bdaff65676f07`. The four main-only commits touch only the scheduled Audison candidate manifest (three empty checkpoints) and the generated category snapshot; none overlaps the OneNav review/test files. Continue on this existing OneNav branch; do not create another branch or PR in this run.
+- Open PRs #183/#185/#194 and controller/operating-rule PRs were inspected only for separation; ASC and Electro-city workstreams are not being modified. Main's current audio queue and OneNav audit files were read.
+- Active OneNav resume point is OA009-1 image-pending. Next bounded group selected: OA014-1 Toyota Prado Classic. The official manufacturer page confirms exact SKU/fitment/specifications; a third-party retailer-hosted artwork visibly prints OA014-1 and matches the Prado fascia, but its source-asset provenance/reuse permission is not documented. This run will preserve it as a visual match candidate and remove the unsupported "owner-authorized" assertion from the review-only override; it will not approve or import the image.
+- No tests, workflow dispatches, preview deployments, production actions, live Supabase writes, price/stock updates, or ASC work have been performed at task start.
