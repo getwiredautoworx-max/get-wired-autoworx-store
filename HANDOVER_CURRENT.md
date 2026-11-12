@@ -1,5 +1,15 @@
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
+## READ-ONLY CATALOGUE DATABASE AUDIT — 2026-11-12
+
+- Supabase project `Store` was inspected read-only; no SQL writes, migrations, imports, or production data changes were made.
+- `public.products` contains **0 rows** and **0 active products**. The generated category-tree snapshot reports all 29 listed categories with zero direct active products. The storefront therefore has no live product catalogue in Supabase.
+- `gw_private.catalogue_product_staging` contains **770 records**; all 770 are `REVIEW_ONLY`. There are no records in another publication state. 739 have a category assignment.
+- Model identity status: 702 records still require exact manufacturer-page/model verification; 53 are supplier-label-only with model identity pending; 14 have model descriptions cross-checked against exact official model pages; 1 is based on PDF description only.
+- Image status: 702 remain unverified; 53 have no individual source image and require exact manufacturer images; 8 are low-resolution reference images only; 5 reuse a generic amplifier image across multiple models; 2 reuse one image across impedance variants. None of these unresolved image states qualifies for customer display under the exact-model image rule.
+- All 770 staged rows remain review-only. Do not import or activate them to make category counts appear populated. Next safe work is exact model/image verification inside the private data boundary, then independent QA and owner approval before any live import.
+
+
 ## GEMINI FIRST MAIN-BRANCH RUN — 2026-11-12
 
 - The merged workflow did trigger automatically on the merge push. GitHub Actions run: [43273522558](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43273522558), event `push`, workflow `Gemini CLI — Safe Storefront Worker`, head SHA `7664d1a8b034e170613bbfc1eb74137ec72f7533`.
@@ -35,7 +45,7 @@
 - Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
 
 
-**Updated:** 2026-11-12 20:20 SAST  
+**Updated:** 2026-11-12 20:30 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
 
