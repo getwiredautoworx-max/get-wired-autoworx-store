@@ -84,6 +84,7 @@ jobs:
           )
           fields = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY", "api_key", "apiKey", "key")
           found = []
+          rejections = []
           for label, env_name in names:
               raw = os.environ.get(env_name, "").strip()
               if not raw:
@@ -113,12 +114,20 @@ jobs:
                           sys.exit(0)
               except urllib.error.HTTPError as error:
                   if error.code in (400, 401, 403):
+                      try:
+                          payload = json.loads(error.read().decode("utf-8", "replace"))
+                          message = str(payload.get("error", {}).get("message", "No diagnostic message returned"))
+                      except (ValueError, TypeError, AttributeError):
+                          message = "No diagnostic message returned"
+                      message = message.replace(value, "[redacted]")[:240]
+                      rejections.append(f"{label} HTTP {error.code}: {message}")
                       continue
                   sys.exit(2)
               except (urllib.error.URLError, TimeoutError):
                   sys.exit(2)
           if found:
-              print("Google rejected existing credential entries: " + ", ".join(found), file=sys.stderr)
+              detail = "; ".join(rejections) if rejections else ", ".join(found)
+              print("Google rejected existing credential entries: " + detail, file=sys.stderr)
           else:
               print("No configured Gemini/Google credential was exposed to this workflow run.", file=sys.stderr)
           sys.exit(1)
