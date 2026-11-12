@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-12 follow-through: Sony XS-W104ES (ac-006) exact-model product image is now visually verified from Gentec's product page and committed in both secondary and Audio Connections preview JSONs; status EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY, publication remains PREVIEW_ONLY_NOT_LIVE, price/stock null. Three no-image records remain Starsound holds ac-032/ac-041/ac-044 pending supplier/model/spec confirmation. BlackSpider BULLET LYNX image remains low-resolution. Next audit loader/test coverage and continue exact-model enrichment for Planetworld 3,317-row and Audio Connections 66-row datasets. Do not infer or publish unresolved matches."
+      "next_action": "Sony XS-W104ES exact image is verified from Gentec and now uses the storefront's existing OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH status in both secondary and Audio Connections preview JSONs; this status is required by the current preview filter. Publication remains PREVIEW_ONLY_NOT_LIVE, price/stock null. Next verify exact-head GitHub checks and audit secondary-record status filters. Three Starsound no-image records remain held for model/spec confirmation; BlackSpider BULLET LYNX remains low-resolution. Continue Planetworld and Audio Connections exact-model enrichment without inferred matches."
     },
     {
       "id": "onenav-model-image-reconciliation",
