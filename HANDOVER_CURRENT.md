@@ -644,3 +644,65 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 - No production or live data operation was performed.
 
 **Resume point:** Continue from section 3 exceptions and section 5 execution sequence. The six Alpine records are present in the main-branch secondary review dataset and wired into the owner-preview loader; the remaining audio reconciliation and exact-head/hosted-preview verification are still outstanding.
+
+---
+
+## GEMINI CLI AUTONOMOUS WORKER — HANDOVER CHECKPOINT — 2026-11-12
+
+**Purpose:** Continue from the prepared Gemini CLI integration without confusing implementation, activation, execution, or verified completion. This checkpoint records the repository state and exact activation boundary.
+
+### 1. Integration PR state
+
+- Draft PR #195: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/195
+- Title: `[Draft] Add bounded Gemini CLI storefront worker`
+- Base: `main`
+- Head branch: `integration/gemini-cli-worker-2026-11-12`
+- Last verified head SHA: `058b3d41f2a6e5d4870f191320e76d948137ec97`
+- Last observed PR state: OPEN, DRAFT, UNMERGED; GitHub reported mergeable=true.
+- Files added: `.github/workflows/gemini-safe-storefront-worker.yml` and `GEMINI.md`.
+- The workflow is manual-dispatch only and is restricted to the `main` ref. It checks out a small allowlist of public-safe storefront code and owner instruction files.
+- Gemini is invoked through Google's `google-github-actions/run-gemini-cli`, pinned to verified action commit `387c8ddb7a72078825da941758b811b9153c71e8`.
+- Gemini's configured core tools are limited to file reading/searching and file editing. Shell/command execution is not enabled. Environment-variable redaction is enabled, and the Gemini agent is not explicitly given a GitHub write token.
+- A separate publisher job validates the changed-file allowlist and patch before creating an isolated branch and draft PR. It does not merge or deploy.
+- The agent scope excludes supplier catalogue/source material, confidential data, Supabase, pricing/stock, Axxess, hosting/deployment and production operations.
+
+### 2. What this does and does not establish
+
+- **Implemented in PR:** workflow and project instructions have been authored on the PR branch.
+- **Not merged:** PR #195 remains a draft and is not part of `main`.
+- **Not activated:** no `GEMINI_API_KEY` repository secret has been confirmed or configured by this session.
+- **Not workflow-tested:** no Gemini workflow run has been dispatched or completed. Do not claim the worker is active, autonomous, continuously running, or proven reliable.
+- The normal Gemini chat application is not itself a GitHub repository worker. This integration uses Gemini CLI running inside GitHub Actions.
+- The connected GitHub tools available in this session do not expose repository-secret management or workflow dispatch. Do not claim either action was completed.
+
+### 3. Activation sequence — owner action required
+
+1. Review PR #195 and its exact current diff/checks.
+2. Owner approval is required before merging this new integration PR. Do not infer merge approval from earlier general instructions to consolidate storefront branches.
+3. After the PR is merged, add the Google AI Studio API key as a GitHub Actions repository secret named `GEMINI_API_KEY`. Never paste the key into ChatGPT, a PR, an issue, workflow logs or a repository file.
+4. Manually dispatch **Gemini Safe Storefront Worker** from the GitHub Actions tab, selecting `main`, and provide one narrow, testable storefront-code task.
+5. Inspect the generated draft PR, changed-file allowlist, exact-head tests and security audit. Gemini's own output is not independent approval.
+6. Keep all generated work review-only. Do not merge its output or deploy without the normal owner approval and release gates.
+7. After the first run, record the run URL/ID, starting SHA, task prompt, resulting PR/branch, changed files, test evidence, exceptions and ending SHA here.
+
+### 4. Immediate next action
+
+The next action is to review PR #195's current diff and exact workflow configuration, then obtain the owner's explicit decision to merge it. If approved and merged, configure the secret through GitHub's repository Settings → Secrets and variables → Actions, then manually run a small non-destructive test task. Do not wait for a scheduled or always-on worker: this workflow is manual-dispatch only.
+
+### 5. Safety and release boundaries retained
+
+- No production merge/deployment, Axxess upload, DNS change, live Supabase write, live catalogue/price/stock/active-flag change, payment activation or paid hosting/automation spend is authorised by this integration checkpoint.
+- Do not expand the worker's checkout allowlist to supplier files or confidential derivatives. The repository's supplier-data confidentiality/public-exposure concern recorded earlier in this handover remains unresolved and must be respected.
+- The Gemini workflow must not be represented as a replacement for the existing task queue/controller or as a 24/7 persistent process.
+- The canonical storefront remains the one consolidated project on `main`; Gemini changes must be selectively reviewed and reconciled into that project, not used to create a competing storefront.
+- Existing production HOLD, exact-head test, same-SHA staging-preview, owner-acceptance and separate release-approval requirements remain in force.
+
+### 6. Work performed for this checkpoint
+
+- Updated this handover to record PR #195, its security boundaries, unverified state and precise activation steps.
+- No PR was merged or closed.
+- No GitHub secret was created or changed.
+- No workflow was dispatched and no Gemini task was executed.
+- No storefront code, catalogue data, production environment or live data was changed.
+
+**Resume point:** Review PR #195. Treat Gemini as prepared-but-inactive until it is owner-approved, merged, supplied with the repository secret and successfully run with recorded evidence.
