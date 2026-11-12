@@ -1002,3 +1002,10 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated image exception count in the canonical secondary preview: now 3 records have no image URL (the three Starsound model/spec holds); BlackSpider BULLET LYNX still has an image URL but remains flagged low-resolution.
 - Next: audit the actual storefront loader and exact-head test coverage for both audio preview files; then continue the remaining Planetworld/Audio Connections enrichment in bounded, evidence-backed batches. Starsound exceptions remain held; BlackSpider image quality remains unresolved.
 - No deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
+
+## AUDIO PREVIEW FILTER COMPATIBILITY FIX — 2026-11-12 19:18 SAST
+
+- Follow-up code audit found that `preview-audio.html`, `preview-audio-brand.html` and `preview-audio-products.html` only include secondary Audio Connections records when `publicationStatus === PREVIEW_ONLY_NOT_LIVE`, `imageStatus === OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH`, and `imageUrl` is present.
+- The first Sony image update used a new status label and therefore would have remained excluded despite the verified image. Corrected both `assets/audio-catalogue-secondary-preview.json` and `assets/audio-connections-catalogue-preview.json` to use the existing approved status convention `OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH`, with the Gentec exact-model evidence and review-only note retained.
+- Sony XS-W104ES now satisfies the preview data filter while retaining `PREVIEW_ONLY_NOT_LIVE`, null price, null stock and Price On Request. This is a review preview record only, not a live sale listing.
+- No HTML code was changed; the filter was preserved rather than weakened. Next verify the exact resulting commit via the normal GitHub checks and ensure no other secondary records are incorrectly excluded by status mismatch.
