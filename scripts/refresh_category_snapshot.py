@@ -71,6 +71,7 @@ def main():
         "1a13bc42-4f54-44f6-9658-36d141b77f4b": "Car Audio / Home Entertainment",
         "ba263c9f-d038-48bd-bca0-944f3ebdc5e9": "Auto Electrical Spares",
         "13b36e2a-a5c7-471e-83ef-3ad180e66d3d": "Trims & Harnesses",
+        "e3d19d20-fb46-426c-9f64-221d863add0b": "Car Audio & Video",
     }
     ordered_names = {
         None: [
@@ -88,7 +89,7 @@ def main():
             "Exterior Accessories",
         ],
         "1a13bc42-4f54-44f6-9658-36d141b77f4b": [
-            "Car Audio", "Home Entertainment", "Band Equipment",
+            "Car Audio & Video", "Home Entertainment", "Band Equipment",
             "DJ Equipment", "Instruments", "Lifestyle",
         ],
         "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11": [
