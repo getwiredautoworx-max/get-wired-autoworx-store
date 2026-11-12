@@ -65,10 +65,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '[:space:]')"
+          KEY="$(printf '%s' "$RAW_GEMINI_API_KEY" | tr -d '\r\n' | grep -oE 'AIza[A-Za-z0-9_-]{20,}' | head -n 1 || true)"
           unset RAW_GEMINI_API_KEY
-          if [ -z "$KEY" ] || [[ ! "$KEY" =~ ^[A-Za-z0-9_-]+$ ]]; then
-            echo "::error::GEMINI_API_KEY is empty or contains characters that cannot form a Google API-key header. The value was not printed."
+          if [ -z "$KEY" ]; then
+            echo "::error::No Google API-key token could be extracted from GEMINI_API_KEY. The secret value was not printed."
             exit 1
           fi
           export GEMINI_API_KEY="$KEY"
