@@ -731,3 +731,12 @@ The next action is to review PR #195's current diff and exact workflow configura
 - The bounded task text is now passed directly into Gemini's prompt as data, not merely mentioned by variable name.
 - Corrective workflow commits: 0d3b21a3b3259e0f1af374e427a84bf3d7c35605 and 77b97106f22695f9562ba5d79e00bf3592b3bde8.
 - Latest run queued at handover update: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43240506024 . This run has not yet been verified successful. Do not claim Gemini has completed a task until its execution and publisher job succeed and a draft PR is visible.
+
+## GEMINI AUTHENTICATION BLOCKER — 2026-11-12 14:48 UTC
+
+- The whitespace-normalization retry (run 43240831248) still failed before Gemini model execution. The workflow safely extracted no token matching the standard Google AI API key format (AIza-prefixed); it did not print or disclose the secret.
+- The workflow has now been merged and is active on main, but Gemini has NOT successfully executed a task. Current hard blocker is the content/format of the existing GEMINI_API_KEY repository secret: GitHub supplies a non-empty masked value, but after whitespace normalization it contains no recognizable Google API key token. Do not ask the owner to add a duplicate secret or paste the key into chat.
+- Required owner-side correction, if the secret truly contains the AI Studio key: edit the existing repository Actions secret named GEMINI_API_KEY and set its value to the raw, single-line Google AI Studio API key (normally starts with AIza), without a variable assignment, JSON wrapper, quotation marks, or explanatory text. Do not expose the value in chat. If it is already a raw key, verify the secret was saved under the exact repository secret name used by this workflow.
+- Current worker workflow commit: 306193d485eae3a24710ba012ffa703e2aafe38f. It normalizes whitespace and extracts the key in memory; no key content is logged. A successful Gemini task and review PR remain unverified.
+- After correcting the existing secret, re-run the workflow from GitHub Actions (workflow: Gemini CLI — Safe Storefront Worker) or push a workflow-file correction to main. Verify the Gemini job and publisher job both succeed before claiming operational work.
+- Production remains HOLD. No catalogue, supplier, database, Axxess, or production data was accessed or changed by the worker attempts.
