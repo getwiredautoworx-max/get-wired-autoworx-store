@@ -1048,3 +1048,18 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Renamed the initial Kicker-only manifest to the broader Planetworld exact-image candidate manifest because it now contains both Kicker and Audison rows. The consolidated file currently contains 14 candidate rows: 12 Kicker and 2 Audison.
 - All 14 rows remain `NOT_APPROVED` / `DO_NOT_IMPORT`; no binary image assets were downloaded, copied into the storefront, or published. Existing 81-row manufacturer-verified content register remains unchanged.
 - Next: continue Audison exact-model image candidates, then proceed through other manufacturer-verified rows. Do not treat a page gallery as image-use permission or change image approval status without asset/rights approval.
+
+
+## PLANETWORLD AUDISON EXACT IMAGE CANDIDATE BATCH 2 — 2026-11-12
+
+- Continued from the existing 41-row Audison manufacturer-verified subset. Opened the official Audison product pages and clicked/opened the primary image for four further exact models; visually inspected the returned images against their product markings/content.
+- Added four rows to `catalogue-review/planetworld-exact-image-source-candidates-2026-11-12.csv`:
+  - SKU 66751501 / bit One HD Virtuoso — https://audison.com/product/bit-one-hd-virtuoso/ — https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg
+  - SKU 66752000 / bit Ten — https://audison.com/product/bit-ten/ — https://static.audison.com/media/2022/10/Audison_bitTen.jpg
+  - SKU 66753000 / bit Tune — https://audison.com/product/bit-tune/ — https://static.audison.com/media/2023/02/Audison_bitTune.jpg
+  - SKU 66755030 / AP4 D — https://audison.com/product/ap4-d/ — https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png
+- The consolidated candidate manifest now contains 18 rows: 12 Kicker and 6 Audison. The Audison source pages independently confirm the product identities and relevant technical descriptions; for example, bit One HD Virtuoso is 12-input / 13-output, 24-bit/96 kHz processing; bit Ten is 4-input / 5-output, 24-bit/48 kHz; AP4 D is 4-channel Class-D, 4 × 130 W RMS at 2 ohms (official page also documents bridged operation).
+- All 18 image candidates remain `NOT_APPROVED` / `DO_NOT_IMPORT`. No image binaries were copied to the storefront, no customer-facing product image was published, and no product/price/stock/live data was changed.
+- Updated `automation/task-queue.json` with the 18-row manifest count and next action. Queue update commit: 55fdbb3ce0bac0118f70cadd44f3b0dfe6f10330.
+- Gemini distinction: the current mainline GitHub Actions controller has recent successful runs, but these are controller/QA automation—not Gemini model calls. The latest recorded Gemini API diagnostic remains HTTP 400 `API_KEY_INVALID`; no successful model execution or Gemini-generated review PR is verified. Keep Gemini marked integrated but not operational until a valid existing `GEMINI_API_KEY` secret is set and a successful model run plus publisher-created review PR are observed.
+- No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting action occurred. Production remains HOLD.
