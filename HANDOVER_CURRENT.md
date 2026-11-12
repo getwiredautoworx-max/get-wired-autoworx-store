@@ -862,3 +862,29 @@ Do not call the exact-head gate fully green until the two remaining QA runs conc
 - Current candidate branch head before this handover append: `9db2e38190c6f766ca6f5c1d401dbe6281a78249`. The category/navigation repairs and customer-only package/browser/responsive QA passed on exact candidate `4fa43e76e114dd94680e6f2d51415dcdaf3886fa`; Cloudflare Pages deployed exact preview `https://8859e282.get-wired-autoworx-store.pages.dev`. Cloudflare Workers build integration remained in progress under build `e4107c5c-5a56-41f0-8605-7681dd742a95` at last check.
 - PR #196 remains draft and unmerged. No credential was read back or changed; no supplier import, live Supabase write, Axxess upload, production deployment or paid spend occurred.
 - Resume: the existing credential must be a valid Google Generative Language API key. Do not ask for a duplicate secret or for the owner to paste the value into chat. After the owner updates the existing credential and approves PR #196 for merge, run the main-branch worker and verify that Gemini completes a task and the publisher creates a review PR.
+
+
+---
+
+## ASC REVIEW-PREVIEW RECONCILIATION — 2026-11-12
+
+- Canonical baseline after validated PR #196 merge: `main` includes merge commit `15b6b8de35765c0d2ad8167f35b054c0788cdf77`.
+- PR #194 was not merged wholesale: its branch had diverged from main (7 commits ahead / 16 behind after the PR #196 merge). Its useful ASC preview change was isolated and ported onto a fresh branch from the current main.
+- Verified source sample on current main: exactly 8 Aerials and 8 Car Mats records are marked `REVIEW_ONLY_NOT_IMPORTED`; the approved category IDs exist in `assets/category-tree.json` and map Aerials beneath Accessories and Car Mats beneath Car Care.
+- Ported only the owner-preview loader change to load those 16 review-only rows with null prices, zero displayed stock and an explicit review-only notice. No supplier identifiers, live product records, Supabase writes or production data were changed.
+- Added five deterministic assertions covering the 8+8 sample counts, approved category IDs, and review-only filtering.
+- New clean branch: `integration/asc-preview-population-2026-11-12`; latest commit at checkpoint: `6c1439b6db001b5b47a6fcd09a987a2701b3eb85`.
+- Exact-head CI and browser QA are pending. The candidate is not merged or preview-accepted. Do not claim ASC Aerials/Car Mats are visible in the hosted preview until the same-SHA build and browser checks pass.
+- PR #194 remains open as a stale/diverged source branch; close it only after this selective replacement PR passes and is reconciled.
+- Production HOLD remains unchanged.
+
+
+## CONSOLIDATION CORRECTION — 2026-11-12
+
+This entry supersedes stale historical status lines above where they describe PR #196 as draft/unmerged:
+- PR #196 was marked ready after exact-head verification and squash-merged into `main` at `15b6b8de35765c0d2ad8167f35b054c0788cdf77`.
+- Its final head was `45615633956e71079388567649f5e21eb770cf3b`; all seven PR workflow checks passed on that exact head: storefront smoke, button-only smoke, mobile/desktop browser QA, catalogue/supplier routing QA, Cloudflare Pages public package QA, Axxess package preparation (no upload), and public SKU exposure audit.
+- The merged change is part of the one canonical `main` project. It did not activate Gemini successfully: Google's API returned `API_KEY_INVALID` for the configured credential; no model task was completed. The Gemini worker must remain described as installed but not operational until a successful model run and publisher PR are evidenced.
+- PR #194 was not merged because its source branch diverged (7 ahead / 16 behind). Its safe ASC preview change was selectively ported to the clean current-main branch `integration/asc-preview-population-2026-11-12`.
+- PR #197 contains only the ASC preview loader, five regression assertions and this handover. It is pending exact-head CI/browser QA; the 8 Aerials + 8 Car Mats source records remain explicitly review-only and are not live catalogue imports.
+- Canonical main remains production HOLD. No production deploy, Axxess upload, live Supabase/catalogue/price/stock change, DNS/payment change or paid hosting spend was performed.
