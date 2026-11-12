@@ -163,7 +163,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ALLOWED='^(index-new\\.html|category\\.html|preview-audio-products\\.html)
+          ALLOWED='^(index-new\.html|category\.html|preview-audio-products\.html)$'
           UNTRACKED="$(git ls-files --others --exclude-standard)"
           if [ -n "$UNTRACKED" ]; then
             echo "Blocked untracked/new files:"
@@ -233,7 +233,7 @@ jobs:
           BRANCH="gemini/storefront-${GITHUB_RUN_ID}"
           git switch -c "$BRANCH"
           git apply --index /tmp/gemini-patch/gemini-storefront.patch
-          ALLOWED='^(index-new\.html|category\.html|index\.html|store\.html|products\.html|product\.html|product-details\.js|preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html)$'
+          ALLOWED='^(index-new\.html|category\.html|preview-audio-products\.html)$'
           CHANGED="$(git diff --cached --name-only | sort -u)"
           test -n "$CHANGED"
           while IFS= read -r file; do
@@ -316,7 +316,7 @@ jobs:
           BRANCH="gemini/storefront-${GITHUB_RUN_ID}"
           git switch -c "$BRANCH"
           git apply --index /tmp/gemini-patch/gemini-storefront.patch
-          ALLOWED='^(index-new\\.html|category\\.html|preview-audio-products\\.html)
+          ALLOWED='^(index-new\.html|category\.html|preview-audio-products\.html)$'
           CHANGED="$(git diff --cached --name-only | sort -u)"
           test -n "$CHANGED"
           while IFS= read -r file; do
