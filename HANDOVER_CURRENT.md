@@ -781,3 +781,12 @@ The next action is to review PR #195's current diff and exact workflow configura
 - Combined verified status on this SHA: Cloudflare Pages=success, Workers Builds: get-wired-autoworx-store=failure, static-policy=success, browser-qa=success, audit=success, public-package=success.
 - Gemini authentication workflow repair is still unverified against the actual stored credential; no Gemini task run has yet succeeded.
 - PR #196 remains a draft and unmerged. No production release, live Supabase write, supplier catalogue import, Axxess upload, DNS/payment change or paid hosting action occurred.
+
+
+## EXACT-HEAD VERIFICATION UPDATE — 2026-11-12
+- Final candidate head for this checkpoint: `1c1fffe8b8ef3afe8510fca06ee803840697324b`.
+- On this exact SHA: static-policy PASS (`43243929206`); audit PASS (`43243928814`); public-package PASS (`43243928678`); browser-qa PASS (`43243928715`); Cloudflare Pages branch preview DEPLOY SUCCESS (`aa8e2a4a.get-wired-autoworx-store.pages.dev`).
+- Cloudflare Workers Builds check remains FAIL for build `e1a08fc7-eb3d-4462-9d0f-b580dd95a0ea`; GitHub's check payload provides no failure log. It appears as a separate Workers build integration alongside the successful Pages deployment. Do not change Wrangler/Workers project configuration without diagnosing the dashboard build failure.
+- PR #196 remains OPEN, DRAFT, mergeable=true, but merge_state=unstable because the Workers build check fails. It has not been merged. The user has not separately approved merging PR #196.
+- Hosted preview was deployed at the exact candidate SHA. Automated browser QA passed on local owner-preview at mobile and desktop viewports; direct browser inspection of the hosted URL was not available in this session. Owner mobile verification remains outstanding.
+- Gemini auth fix remains unverified: this branch has not executed the worker against the existing credential. Do not report Gemini as operational until a successful Gemini model run and publisher result are recorded.
