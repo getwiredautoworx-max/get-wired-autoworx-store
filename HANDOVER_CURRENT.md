@@ -1,5 +1,14 @@
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
+## GEMINI CREDENTIAL RETEST — 2026-11-12
+
+- PR #201 merged as `a304b1e75de93d8f81a25b47de5498ba2dfd317d`. It added common wrapper/prefix normalisation and moved the API key to the `x-goog-api-key` request header.
+- Second automatic run: [43274119946](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43274119946), event `push`, head SHA `a304b1e75de93d8f81a25b47de5498ba2dfd317d`.
+- Checkout and Gemini CLI installation succeeded. The same existing repository secret `GEMINI_API_KEY` was found and Google again returned HTTP 400 `API_KEY_INVALID`. Prefix normalisation did not resolve it. No model call ran; no Gemini patch or draft PR was produced.
+- Conclusion: the secret's underlying key is invalid, revoked, wrong project/key type, or not authorised for the Gemini Developer API. This is no longer a workflow parser/trigger issue. The owner must replace the GitHub repository secret `GEMINI_API_KEY` with a valid Google AI Studio Gemini API key and ensure the Generative Language API is enabled. Never paste the key into ChatGPT.
+- Do not trigger another run until the secret is corrected. This avoids repeated failed API calls.
+
+
 ## READ-ONLY CATALOGUE DATABASE AUDIT — 2026-11-12
 
 - Supabase project `Store` was inspected read-only; no SQL writes, migrations, imports, or production data changes were made.
@@ -45,7 +54,7 @@
 - Gemini has not yet been confirmed as successfully executed. Do not report it as active until a real workflow run and its result are verified.
 
 
-**Updated:** 2026-11-12 20:30 SAST  
+**Updated:** 2026-11-12 20:40 SAST  
 **Authority:** `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, the owner's newest direct instructions, and verified repository/workflow evidence.  
 **Purpose:** This is the concise current operating handover. Older execution logs previously accumulated in this file remain recoverable from Git history at the commit immediately before this update (`f51ee4bd547d733605e3197bfef73381d96633ae`). Historical entries are not current instructions unless reaffirmed below or by the owner.
 
