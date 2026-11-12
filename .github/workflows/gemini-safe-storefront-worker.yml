@@ -217,6 +217,8 @@ jobs:
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |
+            index-new.html
+            category.html
             index.html
             store.html
             products.html
