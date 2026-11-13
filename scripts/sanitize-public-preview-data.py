@@ -14,21 +14,23 @@ FILES = [
     "product-image-treatment-sample.json",
 ]
 FORBIDDEN_KEYS = re.compile(
-    r"^(supplier(name|sku|modelnumber)?|dealer(cost|price)|wholesaleprice|internal(sku|id)|gwsku)$",
+    r"^(supplier(name|sku|modelnumber)?|dealer(cost|price)|wholesaleprice|internal(sku|id)|sourceskureferenceinternal|gwsku)$",
     re.I,
 )
 SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections", re.I)
 
-def clean(value):
+def clean(value, strip_audio_model_numbers=False):
     if isinstance(value, dict):
         result = {}
         for key, child in value.items():
             if FORBIDDEN_KEYS.match(str(key)):
                 continue
-            result[key] = clean(child)
+            if strip_audio_model_numbers and str(key).lower() in {"modelnumber", "manufacturermodelnumber"}:
+                continue
+            result[key] = clean(child, strip_audio_model_numbers)
         return result
     if isinstance(value, list):
-        return [clean(item) for item in value]
+        return [clean(item, strip_audio_model_numbers) for item in value]
     if isinstance(value, str):
         return SUPPLIER_NAMES.sub("supplier", value)
     return value
@@ -38,5 +40,6 @@ for filename in FILES:
     if not path.is_file():
         continue
     data = json.loads(path.read_text(encoding="utf-8"))
-    path.write_text(json.dumps(clean(data), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    strip_audio_model_numbers = filename.startswith("audio-")
+    path.write_text(json.dumps(clean(data, strip_audio_model_numbers), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"PUBLIC_PREVIEW_DATA_SANITIZED {filename}")

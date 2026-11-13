@@ -89,7 +89,7 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "The source snapshot has 3,317 Planetworld rows. After the current owner-preview enrichment overlay, the read-only audit sees 3,321 rows, 72 exact image+description verified, 3,240 missing image fields and 3,202 missing descriptions. Continue exact official-model/product-image/description batches; do not treat titles alone as finished products. All prices stay Price On Request and supplier/internal SKU fields stay hidden."
+      "next_action": "The source snapshot has 3,317 Planetworld rows. The scheduled Audison candidate extractor was a no-op because it read obsolete CSV headers; the current branch maps the live audit register schema, excludes the 10 Audison URLs already recorded in the exact-image candidate CSV, skips source-title/model disagreements and downloads images only after exact model text is found. Continue bounded batches of five exact Audison pages; all downloaded files remain candidate-only / NOT_APPROVED / DO_NOT_IMPORT. After Audison is complete, continue other approved manufacturer groups. All customer prices remain Price On Request and stock unconfirmed."
     },
     {
       "id": "electrocity-ignition-pilot",
@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Planetworld exact-image candidate manifest now contains 22 rows: 12 Kicker and 10 Audison. Audison image candidates verified for bit DMI, B-CON, bit One HD Virtuoso, bit Ten, bit Tune, AP4 D, AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit. All remain NOT_APPROVED / DO_NOT_IMPORT. Four Forza amplifier descriptions need technical wording reconciliation: manufacturer distinguishes amplified output channels from total DSP channels (AF M12.14: 12 amp / 14 DSP; AF M8.14 and AF C8.14: 8 amp / 14 DSP; AF M5.11: 5 amp / 11 DSP). Continue remaining Audison records, then next brands. Audio Connections remains 62/66 eligible with four held records; Alpine six remain separate review-only."
+      "next_action": "Audison Forza amplifier group reconciled for AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit: manufacturer pages distinguish amplified channels from total DSP-controlled outputs (12/14, 8/14, 8/14 and 5/11 respectively). Exact product titles/descriptions are staged by primary record ID; image candidates remain review-only / NOT_APPROVED, all imports DO_NOT_IMPORT, price display Price On Request and stock unconfirmed. Customer preview suppresses raw model-number fields and uses the curated product title rather than the supplier-reference modelNumber field. Continue the remaining Audison models, then next brands; do not move on until Audison's unresolved exact-image/source-catalogue exceptions are reviewed."
     },
     {
       "id": "onenav-model-image-reconciliation",

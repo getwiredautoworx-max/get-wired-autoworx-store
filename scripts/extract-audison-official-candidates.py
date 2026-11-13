@@ -14,10 +14,10 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 from io import BytesIO
-from PIL import Image, ImageDraw, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "catalogue-review/planetworld-audison-official-model-audit.csv"
+CANDIDATE_CSV = ROOT / "catalogue-review/planetworld-exact-image-source-candidates-2026-11-12.csv"
 OUT = ROOT / "catalogue-review/audio-official-model-candidates"
 IMAGES = OUT / "images"
 MANIFEST = OUT / "manifest.json"
@@ -64,6 +64,88 @@ class PageParser(HTMLParser):
 
 def clean_text(value):
     return re.sub(r"\s+", " ", html.unescape(str(value or ""))).strip()
+
+
+def extract_source_title_model(source_title):
+    match = re.match(r"^Audison\\s*-\\s*([^-]+?)\\s*-", clean_text(source_title), re.I)
+    return clean_text(match.group(1)) if match else ""
+
+def normalize_audit_row(row):
+    source_title = clean_text(row.get("source_title") or row.get("source_description"))
+    source_model = clean_text(row.get("source_model") or row.get("source_model_in_description"))
+    title_model = extract_source_title_model(source_title)
+    if not source_model:
+        source_model = title_model
+    normalize_model = lambda value: re.sub(r"[^a-z0-9]+", "", clean_text(value).casefold())
+    if source_model and title_model:
+        model_title_status = "MATCH" if normalize_model(source_model) == normalize_model(title_model) else "SOURCE_MODEL_TITLE_DISAGREEMENT"
+    else:
+        model_title_status = "TITLE_MODEL_PARSED" if title_model else "SOURCE_MODEL_NOT_AVAILABLE"
+    return {
+        "match_status": clean_text(row.get("match_status") or row.get("manufacturer_match_status")),
+        "official_product_page_url": clean_text(row.get("official_product_page_url") or row.get("official_manufacturer_reference")),
+        "source_title": source_title,
+        "source_model": source_model,
+        "source_title_model": title_model,
+        "source_model_title_status": model_title_status,
+        "source_component": clean_text(row.get("source_component")),
+        "source_sku": clean_text(row.get("source_sku") or row.get("supplier_sku_reference_only")),
+        "image_url_candidate": clean_text(row.get("image_url_candidate")),
+    }
+
+def normalize_url(value):
+    parsed = urlparse(clean_text(value))
+    if not parsed.scheme or not parsed.netloc:
+        return ""
+    return f"{parsed.scheme.lower()}://{parsed.netloc.lower()}{parsed.path.rstrip('/')}"
+
+def is_exact_individual_product_page(row):
+    status = clean_text(row.get("match_status")).casefold()
+    return status in {"official_exact_product_page", "exact official individual product page found"}
+
+def load_candidate_urls(path=CANDIDATE_CSV):
+    urls = set()
+    if not path.exists():
+        return urls
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            brand = clean_text(row.get("brand")).casefold()
+            url = normalize_url(row.get("official_product_page") or row.get("official_product_page_url"))
+            if url and (not brand or brand == "audison"):
+                urls.add(url)
+    return urls
+
+def select_pending_rows(rows, existing, candidate_urls, override_tokens, limit):
+    grouped = {}
+    for raw in rows:
+        row = normalize_audit_row(raw)
+        if not is_exact_individual_product_page(row):
+            continue
+        url = normalize_url(row["official_product_page_url"])
+        if not url or url in candidate_urls:
+            continue
+        if row["source_model_title_status"] == "SOURCE_MODEL_TITLE_DISAGREEMENT":
+            continue
+        prior = existing.get(url)
+        if prior and prior.get("status") != "FETCH_FAILED_RETRY":
+            continue
+        if prior and int(prior.get("attempts", 0)) >= 3:
+            continue
+        host = (urlparse(url).hostname or "").lower()
+        if host not in ALLOWED_PAGE_HOSTS:
+            continue
+        title = row["source_title"].casefold()
+        if any(token and token in title for token in override_tokens):
+            continue
+        grouped.setdefault(url, []).append(row)
+    pending = []
+    for url, candidates in grouped.items():
+        identities = {(x["source_model"].casefold(), x["source_title"].casefold()) for x in candidates}
+        if len(identities) > 1:
+            continue
+        pending.append(candidates[0])
+    pending.sort(key=lambda x: x["official_product_page_url"])
+    return pending[:max(1, limit)], len(pending)
 
 def slug(value):
     value = re.sub(r"[^a-zA-Z0-9]+", "-", str(value or "")).strip("-").lower()
@@ -129,6 +211,7 @@ def model_match(source_model, source_title, page_title, h1, description):
     return "MODEL_MATCH_NOT_PROVEN"
 
 def download_image(url, candidate_id):
+    from PIL import Image
     if not url: return {"status": "NO_IMAGE_URL"}
     host = (urlparse(url).hostname or "").lower()
     if host not in ALLOWED_IMAGE_HOSTS:
@@ -159,6 +242,7 @@ def download_image(url, candidate_id):
     }
 
 def make_contact_sheet(items):
+    from PIL import Image, ImageDraw, ImageOps
     candidates = [x for x in items if x.get("local_image_path") and (ROOT / x["local_image_path"]).exists()]
     if not candidates: return
     cell_w, cell_h, label_h = 320, 230, 48
@@ -178,80 +262,88 @@ def make_contact_sheet(items):
     OUT.mkdir(parents=True, exist_ok=True)
     sheet.save(OUT / "contact-sheet.jpg", "JPEG", quality=90, optimize=True)
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=5)
     args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = read_manifest()
-    existing = {x.get("official_product_page_url"): x for x in manifest.get("items", [])}
+    existing = {normalize_url(x.get("official_product_page_url")): x for x in manifest.get("items", [])}
+    candidate_urls = load_candidate_urls()
     overrides_path = ROOT / "assets/audio-product-enrichment-overrides.json"
     override_tokens = []
     if overrides_path.exists():
         for item in json.loads(overrides_path.read_text(encoding="utf-8")).get("records", []):
             token = (item.get("match") or {}).get("title_contains")
-            if token: override_tokens.append(str(token).casefold())
-    with AUDIT.open(newline="", encoding="utf-8-sig") as f:
-        rows = list(csv.DictReader(f))
-    pending = []
-    for row in rows:
-        if row.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE": continue
-        url = clean_text(row.get("official_product_page_url"))
-        if not url: continue
-        prior = existing.get(url)
-        if prior and prior.get("status") != "FETCH_FAILED_RETRY": continue
-        if prior and int(prior.get("attempts", 0)) >= 3: continue
-        host = (urlparse(url).hostname or "").lower()
-        if host not in ALLOWED_PAGE_HOSTS: continue
-        title = clean_text(row.get("source_title"))
-        if any(token and token in title.casefold() for token in override_tokens): continue
-        pending.append(row)
-    batch = pending[:max(1, args.limit)]
+            if token:
+                override_tokens.append(str(token).casefold())
+    with AUDIT.open(newline="", encoding="utf-8-sig") as handle:
+        rows = list(csv.DictReader(handle))
+    batch, total_pending = select_pending_rows(rows, existing, candidate_urls, override_tokens, args.limit)
+    if not batch:
+        print("AUDISON_OFFICIAL_CANDIDATE_BATCH")
+        print(json.dumps({"processed": 0, "remaining": 0, "total_candidates": len(manifest.get("items", [])), "status": "NO_UNREVIEWED_EXACT_PAGES", "manifest_unchanged": True}, indent=2))
+        return
     new_items = []
     for row in batch:
-        url = clean_text(row.get("official_product_page_url"))
-        source_model = clean_text(row.get("source_model"))
-        source_title = clean_text(row.get("source_title"))
+        url = row["official_product_page_url"]
+        source_model = row["source_model"]
+        source_title = row["source_title"]
         candidate_id = slug(source_model or source_title)
         item = {
             "candidate_id": candidate_id,
-            "brand": clean_text(row.get("brand")),
+            "brand": "Audison",
             "source_model": source_model,
             "source_title": source_title,
-            "source_component": clean_text(row.get("source_component")),
-            "source_sku_reference_internal": clean_text(row.get("source_sku")),
+            "source_title_model": row["source_title_model"],
+            "source_model_title_status": row["source_model_title_status"],
+            "source_component": row["source_component"],
+            "source_sku_reference_internal": row["source_sku"],
             "official_product_page_url": url,
             "extracted_at": datetime.now(timezone.utc).isoformat(),
             "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
+            "image_approval_status": "NOT_APPROVED",
+            "import_status": "DO_NOT_IMPORT",
         }
         try:
             page = get_page(url)
             item.update(page)
             item["model_match_status"] = model_match(source_model, source_title, page["page_title"], page["h1"], page["meta_description"])
-            candidate_image = page["image_url"] or clean_text(row.get("image_url_candidate"))
-            item["image_url"] = candidate_image
-            item.update(download_image(candidate_image, candidate_id))
-            item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
+            item["page_image_url_candidate"] = page["image_url"]
+            if item["model_match_status"] == "EXACT_MODEL_TEXT_FOUND":
+                candidate_image = page["image_url"] or row["image_url_candidate"]
+                item["image_url"] = candidate_image
+                item.update(download_image(candidate_image, candidate_id))
+                item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
+            else:
+                item["image_url"] = ""
+                item["image_status"] = "IMAGE_NOT_DOWNLOADED_MODEL_MATCH_UNPROVEN"
+                item["status"] = "MANUAL_MODEL_REVIEW_REQUIRED"
         except Exception as exc:
-            previous = existing.get(url, {})
+            previous = existing.get(normalize_url(url), {})
             attempts = int(previous.get("attempts", 0)) + 1
             item["attempts"] = attempts
             item["status"] = "FETCH_FAILED_RETRY" if attempts < 3 else "MANUAL_FETCH_REQUIRED"
             item["error"] = str(exc)[:500]
         new_items.append(item)
         time.sleep(1.0)
-    manifest.setdefault("items", []).extend(new_items)
+    manifest_items = manifest.setdefault("items", [])
+    for item in new_items:
+        url_key = normalize_url(item.get("official_product_page_url"))
+        manifest_items[:] = [old for old in manifest_items if normalize_url(old.get("official_product_page_url")) != url_key]
+        manifest_items.append(item)
     manifest.setdefault("runs", []).append({
         "run_at": datetime.now(timezone.utc).isoformat(),
         "candidate_count": len(new_items),
-        "remaining_exact_pages": max(0, len(pending) - len(batch)),
+        "remaining_exact_pages": max(0, total_pending - len(batch)),
         "review_only": True,
     })
     manifest["updated_at"] = datetime.now(timezone.utc).isoformat()
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
     make_contact_sheet(manifest["items"])
     print("AUDISON_OFFICIAL_CANDIDATE_BATCH")
-    print(json.dumps({"processed": len(new_items), "remaining": max(0, len(pending)-len(batch)), "total_candidates": len(manifest["items"]), "review_only": True}, indent=2))
+    print(json.dumps({"processed": len(new_items), "remaining": max(0, total_pending-len(batch)), "total_candidates": len(manifest["items"]), "review_only": True}, indent=2))
 
 if __name__ == "__main__":
     main()
