@@ -24,7 +24,7 @@ const bitDmi = primary.records.find(record => record.brand === 'Audison' && reco
 assert.ok(bitDmi, 'verified Audison bit DMI preview record must be present');
 assert.equal(bitDmi.imageStatus, 'official_manufacturer_image_verified_review_only');
 assert.ok(bitDmi.imageUrl && bitDmi.description, 'Audison bit DMI must have exact official image and manufacturer description');
-assert.equal(bitDmi.modelNumber, 'bit DMI', 'customer model label must not expose the supplier item code');
+assert.equal(bitDmi.modelNumber, undefined, 'raw model-number field must not appear in customer audio exports');
 assert.equal(bitDmi.indicativePrice, null);
 assert.equal(bitDmi.hasStock, null);
 const bcon = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison B-CON Hi-Res Bluetooth Receiver');
