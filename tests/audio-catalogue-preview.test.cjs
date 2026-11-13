@@ -36,7 +36,7 @@ const customerVisibleMetadata=raw.replace(/https?:\/\/[^/"'<>]+/gi,"[image-asset
 assert.doesNotMatch(customerVisibleMetadata,/Planetworld|Audio Connections/i,"supplier names must not appear in customer-visible catalogue metadata");
 for(const file of ["preview-audio.html","preview-audio-products.html","preview-audio-brand.html"]){
  const html=fs.readFileSync(file,"utf8");
- assert.doesNotMatch(html,/assetstitle\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name/(?:planetworld|audio-connections)[^"' ]*title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name.json/i);
+ assert.doesNotMatch(html,/assets\/(?:planetworld|audio-connections)[^"' ]*\.json/i);
 }
 
 const forzas = [
