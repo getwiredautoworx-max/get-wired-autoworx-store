@@ -67,7 +67,7 @@ def clean_text(value):
 
 
 def extract_source_title_model(source_title):
-    match = re.match(r"^Audison\\s*-\\s*([^-]+?)\\s*-", clean_text(source_title), re.I)
+    match = re.match(r"^Audison\s*-\s*([^-]+?)\s*-", clean_text(source_title), re.I)
     return clean_text(match.group(1)) if match else ""
 
 def normalize_audit_row(row):
@@ -340,7 +340,7 @@ def main():
         "review_only": True,
     })
     manifest["updated_at"] = datetime.now(timezone.utc).isoformat()
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     make_contact_sheet(manifest["items"])
     print("AUDISON_OFFICIAL_CANDIDATE_BATCH")
     print(json.dumps({"processed": len(new_items), "remaining": max(0, total_pending-len(batch)), "total_candidates": len(manifest["items"]), "review_only": True}, indent=2))
