@@ -49,6 +49,8 @@ class AudisonCandidateExtractorTests(unittest.TestCase):
         with MODULE.AUDIT.open(newline="", encoding="utf-8-sig") as handle:
             rows = list(csv.DictReader(handle))
         candidate_urls = MODULE.load_candidate_urls()
+        self.assertGreaterEqual(len(candidate_urls), 10)
+        self.assertIn(MODULE.normalize_url("https://audison.com/product/af-m12-14-bit/"), candidate_urls)
         pending, total = MODULE.select_pending_rows(rows, {}, candidate_urls, [], 100)
         self.assertEqual(total, len(pending))
         self.assertTrue(pending)

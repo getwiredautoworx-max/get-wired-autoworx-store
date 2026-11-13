@@ -32,11 +32,11 @@ const raw=JSON.stringify([primary,secondary,models]);
 // Image hosts may retain the original supplier domain because the owner has
 // authorised those exact catalogue/manufacturer images. The host is not a
 // customer-facing supplier label; audit visible metadata separately.
-const customerVisibleMetadata=raw.replace(/https?:\/\/[^\s"'<>]+/gi,"[image-asset-url]");
+const customerVisibleMetadata=raw.replace(/https?:title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name/title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name/[^title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.names"'<>]+/gi,"[image-asset-url]");
 assert.doesNotMatch(customerVisibleMetadata,/Planetworld|Audio Connections/i,"supplier names must not appear in customer-visible catalogue metadata");
 for(const file of ["preview-audio.html","preview-audio-products.html","preview-audio-brand.html"]){
  const html=fs.readFileSync(file,"utf8");
- assert.doesNotMatch(html,/assets\/(?:planetworld|audio-connections)[^"' ]*\.json/i);
+ assert.doesNotMatch(html,/assetstitle\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name/(?:planetworld|audio-connections)[^"' ]*title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name.json/i);
 }
 
 const forzas = [
@@ -80,7 +80,7 @@ for (const expected of forzas) {
  assert.match(override.description,new RegExp(expected.dsp+" output channels"));
 }
 const audioProductPage=fs.readFileSync("preview-audio-products.html","utf8");
-assert.match(audioProductPage,/title\.textContent=p\.title\|\|p\.manufacturerProductName\|\|p\.name\|\|'Product'/);
-assert.doesNotMatch(audioProductPage,/title\.textContent=p\.modelNumber/);
+assert.match(audioProductPage,/title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.nametitle\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|title\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name|'Product'/);
+assert.doesNotMatch(audioProductPage,/titletitle\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name.textContent=ptitle\\.textContent=p\\.manufacturerProductName\\|\\|p\\.title\\|\\|p\\.name.modelNumber/);
 
 console.log("PASS: 3,317 + 72 audio records; Forza channel topology; exact-ID overrides; generic Price On Request; no raw model-number display.");
