@@ -127,7 +127,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Audison Forza amplifier group reconciled for AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit: manufacturer pages distinguish amplified channels from total DSP-controlled outputs (12/14, 8/14, 8/14 and 5/11 respectively). Exact product titles/descriptions are staged by primary record ID; image candidates remain review-only / NOT_APPROVED, all imports DO_NOT_IMPORT, price display Price On Request and stock unconfirmed. Customer preview suppresses raw model-number fields and uses the curated product title rather than the supplier-reference modelNumber field. Continue the remaining Audison models, then next brands; do not move on until Audison's unresolved exact-image/source-catalogue exceptions are reviewed."
+      "next_action": "Audison Forza amplifier group reconciled for AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit. Manufacturer pages confirm amplified/DSP output topology of 12/14, 8/14, 8/14 and 5/11, with 2/6/6/6 pre-outs. Four exact-ID product overrides and descriptions are staged; images remain NOT_APPROVED / review-only, imports DO_NOT_IMPORT, price display Price On Request, numeric price null and stock unconfirmed. The product page now prefers manufacturerProductName over any source model-number field. The extractor's live-schema simulation finds 26 unique exact Audison pages still pending after excluding 10 already registered URLs and one source-title/model mismatch; next is AF C4.10 bit. Continue Audison only until remaining exact identities/images and catalogue-source exceptions are resolved."
     },
     {
       "id": "onenav-model-image-reconciliation",

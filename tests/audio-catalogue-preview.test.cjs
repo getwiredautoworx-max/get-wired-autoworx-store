@@ -76,7 +76,8 @@ for (const expected of forzas) {
  assert.equal(override.indicativePrice,null);
  assert.equal(override.hasStock,null);
  assert.equal(override.imageStatus,"official_manufacturer_image_verified_review_only");
- assert.match(override.description,new RegExp(expected.amplified+" amplified channels"));
+ const ampWord=({5:"Five",8:"Eight",12:"Twelve"})[expected.amplified];
+ assert.ok(override.description.includes(ampWord+" amplified channels"));
  assert.match(override.description,new RegExp(expected.dsp+" output channels"));
 }
 const audioProductPage=fs.readFileSync("preview-audio-products.html","utf8");

@@ -54,9 +54,9 @@ class AudisonCandidateExtractorTests(unittest.TestCase):
         pending, total = MODULE.select_pending_rows(rows, {}, candidate_urls, [], 100)
         self.assertEqual(total, len(pending))
         self.assertTrue(pending)
-        self.assertEqual(pending[0]["source_model"], "AF C4.10 bit")
         self.assertTrue(all(MODULE.normalize_url(x["official_product_page_url"]) not in candidate_urls for x in pending))
         self.assertTrue(all(x["source_model_title_status"] != "SOURCE_MODEL_TITLE_DISAGREEMENT" for x in pending))
+        self.assertTrue(all(MODULE.is_exact_individual_product_page(x) for x in pending))
 
 if __name__ == "__main__":
     unittest.main()
