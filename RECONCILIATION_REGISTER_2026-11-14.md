@@ -4,8 +4,8 @@
 - Repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Canonical branch: `main`
 - Main SHA at inventory start: `06ab71bdcdf6ff3fc8ae999f59764d11c6a64d9b`
-- Branches: **270** (all pages retrieved)
-- Open PRs: **44**
+- Branches: **271** (all pages retrieved after PR #202 branch creation)
+- Open PRs: **45** (includes draft PR #202)
 - Closed PRs inventoried: **151** (latest 100 plus older date-scoped records; same head may appear in multiple PRs)
 
 ## Open PR disposition
@@ -57,7 +57,8 @@
 | #3 | `apk-sales-intelligence-v03` | 15 | `main` | SEPARATE SALES APK: not part of storefront integration |
 
 ## Branch-to-PR mapping
-- Distinct branch heads mapped: **187** ({"OPEN":44,"MERGED":56,"CLOSED_UNMERGED":87}).
+- PR #202 is the sole new active integration candidate: four Audison Forza preview records, exact manufacturer images/specs, source-data sanitisation and test corrections. Draft PR; all five non-production checks passed on head `b25da1a864bdff7a28b05027e5609e2886d46699`; no deployment.
+- Distinct branch heads mapped: **188** ({"OPEN":45,"MERGED":56,"CLOSED_UNMERGED":87}).
 - Branches with no PR-head match in the enumerated set: **82**. These are unassociated, not automatically safe to delete; inspect commit history before cleanup.
 
 | Branch | Mapping | PR |
@@ -230,7 +231,7 @@
 | `integration/asc-preview-population-2026-11-12` | CLOSED_UNMERGED | #197 |
 | `integration/asc-preview-population-mainline-2026-11-12` | CLOSED_UNMERGED | #198 |
 | `integration/asc-source-taxonomy-review-2026-11-02` | OPEN | #151 |
-| `integration/audio-video-enrichment-current-main-2026-11-13` | UNASSOCIATED | — |
+| `integration/audio-video-enrichment-current-main-2026-11-13` | UNASSOCIATED — safe subset selectively ported to PR #202; do not merge wholesale | #202 (source only) |
 | `integration/catalogue-supplier-routing-current-main-2026-10-30` | MERGED | #115 |
 | `integration/clean-main-asc-audio-2026-11-01` | OPEN | #149 |
 | `integration/clean-main-planetworld-partsearch-2026-10-31` | UNASSOCIATED | — |
@@ -332,6 +333,7 @@
 | `work/audio-one-nav-current-main-2026-11-11` | UNASSOCIATED | — |
 | `work/audio-one-nav-enrichment-2026-11-09` | UNASSOCIATED | — |
 | `work/hertz-catalogue-audit-2026-10-25` | UNASSOCIATED | — |
+| `integration/audio-forza-preview-reconciliation-2026-11-14` | OPEN | #202 |
 
 ## Consolidation rules
 - `main` is the only source of truth; branches/PRs are evidence containers, not separate projects.
@@ -340,8 +342,8 @@
 - Production hold remains: no production deploy, Axxess upload, live catalogue/price/stock writes, DNS/payment changes or paid hosting spend.
 
 ## Next execution order
-1. Audit the 82 unassociated branches by commit date and file overlap; classify them as merged-equivalent, abandoned candidate, backup, or active unsubmitted work. Do not delete without approval.
-2. Audit the narrow 13-Nov audio enrichment branch (8 ahead / 7 behind) against current main; keep only safe exact-model changes and preserve review-only controls.
+1. Finish classifying the 82 branches without an open/closed PR-head match, separating backups, trigger branches, review-only evidence and active unsubmitted work. Do not delete without approval.
+2. PR #202 now contains the safe selective recovery from the narrow 13-Nov audio branch; all required non-production checks passed. Await owner merge approval; do not merge the source branch wholesale.
 3. Fix remaining current-main preview blockers and run exact-head non-production QA.
 
 
