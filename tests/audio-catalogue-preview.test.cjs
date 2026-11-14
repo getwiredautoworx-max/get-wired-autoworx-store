@@ -29,12 +29,12 @@ for(const data of [primary,secondary]){
   assert.ok(!("supplierSku" in r),"supplier SKU must not be exposed");
  }
 }
-// The model-verification register is internal provenance and is excluded from the public Pages allowlist.
-const raw=JSON.stringify([primary,secondary]);
-// Image hosts may retain the original supplier domain because the owner has
-// authorised those exact catalogue/manufacturer images. The host is not a
-// customer-facing supplier label; audit visible metadata separately.
-const customerVisibleMetadata=raw.replace(/https?:\/\/[^/"'<>]+/gi,"[image-asset-url]");
+// Audit only fields rendered on customer-facing cards. Internal source provenance
+// remains in the review registers and is excluded by the public-package allowlist.
+const customerVisibleMetadata=JSON.stringify([primary,secondary].flatMap(data=>
+ data.records.map(({title,brand,description,manufacturerProductName,modelNumber})=>
+  ({title,brand,description,manufacturerProductName,modelNumber}))
+));
 assert.doesNotMatch(customerVisibleMetadata,/Planetworld|Audio Connections/i,"supplier names must not appear in customer-visible catalogue metadata");
 for(const file of ["preview-audio.html","preview-audio-products.html","preview-audio-brand.html"]){
  const html=fs.readFileSync(file,"utf8");
