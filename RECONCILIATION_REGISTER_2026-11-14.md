@@ -541,3 +541,10 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - The public package builder excludes supplier/review areas and public SKU audit passed on the prior exact code-tree. That is a customer-package safeguard, not repository confidentiality. The PR description itself confirms supplier-source files are retained in the public repository.
 - Therefore #204 is NOT cleared for merge yet. Before merge, remove supplier-confidential source/evidence files from the public repository or obtain explicit owner confirmation that each identified file is authorised for public repository publication. Keep public storefront package free of supplier names/internal SKUs regardless.
 - Do not move files into a private repository or delete historical sources without explicit owner approval. Production remains HOLD.
+
+
+## PR #204 PUBLIC-REPOSITORY BOUNDARY — OWNER DIRECTIVE RESOLUTION — 2026-11-14
+- Earlier note `PR #204 CONTENT BOUNDARY REVIEW — INITIAL FINDING` classified supplier-source/review files in the public repository as a merge blocker unless each file received separate publication approval.
+- Re-read the binding owner directive on canonical `main`: section 10 (2026-11-09) explicitly says keep the main GitHub repository public; use the existing public repository and approved workflows for catalogue processing; do not require or create a private repository/runner as a prerequisite. This owner clarification supersedes the earlier blanket private-data-boundary concern. Accordingly, the mere presence of supplier catalogue source/review files in the public repository is NOT a blocker to PR #204.
+- Retain the independent controls: no credentials/tokens/personal data/genuine secrets; supplier names and internal supplier SKUs must not appear in customer-facing content; public package builder must exclude supplier/catalogue-review source folders; all records remain REVIEW ONLY / DO NOT IMPORT; no live data changes or production release.
+- No source files were deleted, moved or made private. This is a policy reconciliation, not a publication or release action.
