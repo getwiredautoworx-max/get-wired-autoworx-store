@@ -16,8 +16,9 @@ for(const r of models.records){
  assert.ok((r.gwSku && r.gwSku.trim()) || (r.gwSkuStatus && r.gwSkuStatus.trim()),`GW SKU state missing for ${r.modelNumber||r.name}`);
 }
 const heldImage=secondary.records.find(r=>r.modelNumber==="XS-W104ES");
-assert.equal(heldImage.imageStatus,"IMAGE_RENDERING_FAILED_HOLD");
-assert.equal(heldImage.imageUrl,"","failed image must not be served in customer preview");
+assert.equal(heldImage.imageStatus,"OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH");
+assert.ok(heldImage.imageUrl,"verified exact-model Sony image must render in the owner preview");
+assert.equal(heldImage.publicationStatus,"PREVIEW_ONLY_NOT_LIVE");
 assert.equal(primary.pricingRule.customerDisplay,"Price On Request");
 assert.match(primary.pricingNote,/Price On Request/);
 for(const data of [primary,secondary]){
