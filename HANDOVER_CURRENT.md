@@ -1277,50 +1277,13 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - No production deployment, Axxess upload, live data write, DNS/payment change, branch deletion or merge occurred. PR #202 is still draft; explicit owner approval is required before merge.
 
 
-## OWNER-APPROVED STORE CONSOLIDATION MERGES — 2026-11-14 10:25 SAST
-
-- Owner's newest instruction: prioritise merging store work until there is one project to continue from. To preserve the production hold, created one non-production working branch `integration/store-consolidated-2026-11-14` from `main` at `e5791fbf1308916a4a2041a4307ac1943604617f`. `main` remains the baseline; this is the sole active consolidation branch.
-- **Merged PR #203** (selective Audison Forza enrichment) into the consolidation branch using squash commit `83ac18b209194e8d033ecd31bac5b114d1d5eeb5`. Exact head was `b25da1a864bdff7a28b05027e5609e2886d46699`; nine changed files. Includes four manufacturer-verified Forza models, full model names, exact image/description data, customer-safe sanitisation and tests. All four remain `DO_NOT_IMPORT`, price `Price On Request`, stock unconfirmed.
-- **Closed duplicate PR #202** after its same exact changes were merged through #203. No application-code merge was made to `main`.
-- **Merged PR #185** (owner-verified Electrocity ignition modules/looms pilot) into the same consolidation branch using squash commit `9b18697e40427e0dd7cde29810af6c69762cdeeb`. 39 files: 29 review-only records (26 ignition modules, 3 looms), two approved source-document manifests, 29 page-evidence crops, fitment exception controls, owner verification and QA. Source PDFs were verified by blob/hash; unapproved converters and ignition-coils sources excluded. Disposition remains REVIEW ONLY / DO NOT IMPORT; no prices/stock; 3 confirmed + 26 corroborated fitment confidence only, with the IG-T003 unsupported Fiat/Peugeot/Renault caption excluded. No live import or customer publication.
-- Exact checks previously recorded for #203 head: public-package, static-policy/storefront smoke, responsive/catalogue routing, public SKU audit, browser QA and Cloudflare Pages preview succeeded; separate Cloudflare Workers Builds check failed. For #185 head: review-data and audit jobs plus Cloudflare Pages preview succeeded; separate Workers Builds check failed. Workers failure remains a separate preview/build integration blocker; it did not prevent the two merges into the non-production integration branch. No production deployment was triggered by these merge actions.
-- Current integration branch head after the two merges: `9b18697e40427e0dd7cde29810af6c69762cdeeb`; task queue was updated on this branch at `5fb494ac1d55f1209ab066f135c3d2b73fe70bc7` to record the single active consolidation branch and the merged PRs. Main was last observed at `48141e71ec2b9c5a6ee79c36b93de2040e99968d`; main has since advanced with documentation/queue-only commits and is three commits ahead of the consolidation branch. Sync those documentation-only updates before any final consolidation PR.
-- Next merge tranche: evaluate ASC catalogue-only candidates without importing any Buyers Guide data; then compare controller-repair candidates against current main to avoid duplicate fixes. Do not merge stale full-storefront reconstructions (#168/#176/#178) wholesale. Keep `main` production baseline and all release prohibitions intact.
-- No production deploy, Axxess upload, live catalogue/price/stock write, Supabase mutation, DNS/payment change, branch deletion, history rewrite or paid hosting spend was performed.
-
-
-## LIVE RECONCILIATION & PREVIEW REPAIR CHECKPOINT — 2026-11-14 12:45 SAST
-
-### Canonical and integration branch state
-- Canonical `main` was checked at `48141e71ec2b9c5a6ee79c36b93de2040e99968d`.
-- Sole non-production consolidation branch: `integration/store-consolidated-2026-11-14`, head `9b18697e40427e0dd7cde29810af6c69762cdeeb`.
-- Branch comparison: integration branch is 4 commits ahead and 3 commits behind `main`; the 3 main-only commits are documentation/queue/handover updates. Sync them before preparing any final consolidation PR. No merge to `main` was made.
-- PR #203 merged Audison Forza enrichment into the integration branch; PR #185 merged the 29-row Electrocity review pilot into that same branch. PR #202 was closed as a duplicate after #203 absorbed its exact changes.
-- PR #199 (ASC 978-row review-only package) is already merged to `main` (merge commit `123e41e83a8710fe427a1a4e1facdf34480b3130`). It contributes the review CSVs and QA files, not a complete customer-facing catalogue integration.
-- PR #183 remains open and GitHub reports it non-mergeable. PRs #165, #177 and #149 are older draft UI candidates and are not safe wholesale merge candidates. No buyer's-guide material is to be restored.
-
-### Verified review-only populations and remaining gaps
-- ASC master/staged registers contain 978 products across six approved catalogue families: Aerials 78, Sensors 106, Switches 368, Globes 158, Car Mats 139, Fuel Pumps 129. All staged rows remain DO NOT IMPORT. The editorial matrix still records only 50 pilot titles manually verified, 42 printed fitments verified, 936 fitments pending, 978 technical-specification/dimension fields pending, no verified price/stock, and 952 photo cards requiring controlled image treatment (26 source cards explicitly have no photo).
-- Main contains a separate 34-record Auto Electrical owner-preview dataset: Sensors 9, Switches 8, Globes 8, Fuel Pumps 9. It is review-only; descriptions and technical specifications remain pending.
-- Main contains an eight-record Aerials sample and an eight-record Car Mats sample in the 50-record ASC sample split. These are preview samples, not complete category imports.
-- Electrocity: 29 records (26 modules, 3 looms); 3 fitments confirmed, 25 corroborated, 1 unverified/quarantined (IG-T003). No price/stock; all DO NOT IMPORT.
-- Audison Forza: four exact manufacturer-verified models are included in the integration branch; all DO NOT IMPORT and customer price remains Price On Request.
-- The category snapshot has zero direct active products in all categories, so the owner preview must explicitly load local review-only data and must not depend on live Supabase product rows.
-
-### Preview and QA evidence
-- PR #199 Cloudflare Pages preview deployment succeeded for commit `b663fc3af800ac28f13511ac1b2a1e97757f31d4`: `https://0df3bfea.get-wired-autoworx-store.pages.dev` (branch alias `https://integration-asc-978-review-o.get-wired-autoworx-store.pages.dev`). The associated workflow evidence includes Supplier Catalogue Review Data QA run `43253339224` and Catalogue & Supplier Routing Review QA run `43253339275`, both SUCCESS. This is not a combined Electrocity + Forza integration preview and no live browser acceptance was independently established here.
-- PR #202 Pages preview succeeded for Forza commit `b25da1a864bdff7a28b05027e5609e2886d46699`, but the separate Cloudflare Workers Builds integration failed against a production Worker build. PR #202 is closed; do not treat its old preview URL as the current combined integration preview.
-- The combined integration branch has no verified hosted preview URL yet. The web inspection could not fetch the historical Pages URLs, so do not claim current hosted rendering from those links.
-- GitHub source/tests confirm preview route wiring exists for Auto Electrical (34), Aerials (8), and Car Mats (8), but the next required work is exact-branch end-to-end verification that all local preview records render and every department/subcategory route has nonzero expected counts. Do not confuse route/test presence with hosted browser acceptance.
-
-### Single active task
-- Reconciliation is complete. The only active task is now `three-department-category-assignment-repair`: produce one combined, populated, non-production owner preview from the consolidation branch; test desktop/mobile, all three roots, category/subcategory routes, image loading, customer-safe fields, and Price On Request.
-- Keep every supplier record review-only / DO NOT IMPORT. No Supabase writes, production deployment, Axxess upload, DNS/payment changes, paid Cloudflare credit use, branch deletion, history rewrite, or merge to `main` is authorised.
-
-
-### ASC 50-image pilot status discrepancy — 2026-11-14
-- The main-branch `assets/product-image-treatment-sample.json` still carries an old notice saying some captions/code strips require separation, while the 50-row `product-image-treatment-pilot-manifest.csv` records caption/code masking, Get Wired watermark overlay, contact-sheet review and high-resolution spot checks as completed for each sample. Both retain `OWNER_ACCEPTANCE_PENDING` / `REVIEW_ONLY_NOT_IMPORTED`.
-- Treat treatment execution as reported complete in the manifest, but keep owner acceptance pending and do not promote images to production until the stale JSON notice is reconciled against the actual image outputs. No image files or release status were changed in this checkpoint.
+## FINAL RECONCILIATION STATE — 2026-11-14
+- Current canonical main SHA before this handover update: `13e32c909d70570f7acf3fa532ca22967f6eb44e`.
+- Inventory: 271 branches; 46 open PRs; 151 closed PR records inventoried; 189 PR-mapped branch heads; 81 branches without a PR-head match (excluding main). All 81 are classified in the reconciliation register; no branch was deleted or merged.
+- PR #28 is the old documentation/schema pack, 30 ahead / 1,910 behind; retain as reference only. PR #202 is the sole active code-integration candidate.
+- PR #202 exact head `b25da1a864bdff7a28b05027e5609e2886d46699` passed all five required non-production checks. It remains draft and mergeable; awaiting explicit owner merge approval.
+- Reconciliation is complete. After PR #202 receives owner approval and is merged, the next single workstream is verified OneNav product enrichment. No parallel workstreams.
+- Production remains HOLD. No production deployment, Axxess upload, live data write, DNS/payment change, paid hosting spend, branch deletion or merge was performed.
 
 
 ## SINGLE INTEGRATION BRANCH RECONCILIATION — 2026-11-14 17:22 SAST
@@ -1336,10 +1299,3 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated `automation/task-queue.json` to remove the stale PR #202 active-candidate reference and record the actual single integration branch, head, divergence and next action. Queue update commit: 6c3c53b23eb61aa14854019a913cf0f6fc23832f.
 - Next single task: reconcile the four main-only commits into `integration/store-consolidated-2026-11-14` without losing its existing changes; then run exact-head checks and independently assess PR #173. No parallel assignments.
 - No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion, history rewrite or paid hosting spend occurred.
-
-
-## DRAFT CONSOLIDATION PR — 2026-11-14 17:35 SAST
-- Opened draft PR #204: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/204 from `integration/store-consolidated-2026-11-14` to `main`. This is the single review vehicle; it is not merged.
-- Exact PR head at opening: `4d3a026c3b7f7c0035ad1fbff760b7e431025ed5`. GitHub reports 12 commits, 51 changed files, 1,005 additions, 53 deletions, and `mergeable=false`. Comparison reports 12 commits ahead / 6 behind main. Combined commit status and PR-triggered workflow listing returned no checks for this head, so QA is NOT established.
-- The changed-file list includes the Audison Forza preview/sanitisation/test work and the Electrocity 29-record ignition review pilot with page evidence. No ASC Buyers Guide content was introduced. Supplier source material remains review-only; customer display rules remain Price On Request, supplier names/internal SKUs hidden.
-- Immediate blocker: resolve PR #204 mergeability and six-commit base divergence, then run exact-head non-production QA. Do not merge, deploy, upload to Axxess, write live data, or spend hosting credits.

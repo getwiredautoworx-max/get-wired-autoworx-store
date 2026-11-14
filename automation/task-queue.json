@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Resolve why draft PR #204 is currently reported mergeable=false and reconcile the six main-only commits without dropping the integrated Audison Forza/Electrocity review work. Then run exact-head non-production checks and verify the consolidated preview. Keep PR draft; no production release."
+      "next_action": "The 81 unassociated branches are classified. The single integration branch now contains PR #203 (four verified Audison Forza preview models) and PR #185 (29-product Electrocity ignition review pilot). PR #202 is closed unmerged and is not the active candidate. Candidate head 3ea4cf9ff88d1e979f024341790068b3e421f863 is 7 ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b. Next: reconcile the four main-only commits into this same candidate without losing its integrated work, then independently validate and assess PR #173 (978-row ASC review-only extraction). No parallel workstreams, no blind merge, and no production release."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -267,9 +267,9 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "b171c0bbcd83a775985ba37d4df84e717b7c9a8b",
-    "active_candidate_pr": 204,
+    "active_candidate_pr": null,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "4d3a026c3b7f7c0035ad1fbff760b7e431025ed5",
-    "active_candidate_status": "Draft PR #204 opened against main. GitHub reports mergeable=false; candidate is 12 commits ahead / 6 behind main, 51 changed files. No exact-head workflow runs or combined status checks are currently returned. Do not merge. Next resolve base divergence/mergeability and run non-production checks."
+    "active_candidate_head": "3ea4cf9ff88d1e979f024341790068b3e421f863",
+    "active_candidate_status": "Single non-production integration branch; PR #203 merged into it as 83ac18b209194e8d033ecd31bac5b114d1d5eeb5 and PR #185 merged into it. PR #202 is closed unmerged. Branch is 7 commits ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b; not merge-ready. Reconcile main-only commits and validate before further integration."
   }
 }

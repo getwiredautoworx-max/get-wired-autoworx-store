@@ -344,9 +344,9 @@
 - Production hold remains: no production deploy, Axxess upload, live catalogue/price/stock writes, DNS/payment changes or paid hosting spend.
 
 ## Next execution order
-1. Finish classifying the 81 branches without an open/closed PR-head match, separating backups, trigger branches, review-only evidence and active unsubmitted work. Do not delete without approval.
-2. PR #202 now contains the safe selective recovery from the narrow 13-Nov audio branch; all required non-production checks passed. Await owner merge approval; do not merge the source branch wholesale.
-3. Fix remaining current-main preview blockers and run exact-head non-production QA.
+1. Branch triage is complete: all 81 branches without an open/closed PR-head match are classified in the appendix. No branch was deleted.
+2. PR #202 is the sole active integration candidate; all five exact-head non-production checks passed. Await explicit owner approval to merge; do not merge the source branch wholesale.
+3. After PR #202 is approved and merged, continue one workstream: verified OneNav product enrichment. Keep unverified images and source records review-only.
 
 
 ## LIVE INVENTORY DELTA — 2026-11-14 10:15 SAST
@@ -479,8 +479,8 @@ No branch was deleted, closed or merged as part of this audit. The categories be
 - `feature/docs-schema-pack` is no longer unassociated: it is open PR #28, 30 commits ahead / 1,910 behind, docs/schema reference only.
 
 
-## ACTIVE CONSOLIDATION BRANCH CHECKPOINT — 2026-11-14
-- The sole non-production integration branch is `integration/store-consolidated-2026-11-14`. It contains PR #203 (four verified Audison Forza preview models) and PR #185 (29 Electrocity ignition review records). PR #202 is closed unmerged; its relevant work was integrated through #203.
-- Current canonical main head at last verification: `b171c0bbcd83a775985ba37d4df84e717b7c9a8b`. Integration branch head before this sync: `3ea4cf9ff88d1e979f024341790068b3e421f863`.
-- Synchronised the current task queue, handover checkpoint and audio official-model review manifest from main into the integration branch, preserving the candidate's existing catalogue work. Synchronisation commits: `45d6844924621341714253c551aa990966a0efa9`, `828d4c8717450f46646ed9c8e5b4734b757b5e2a`, `3d3bfec0958bea211f7d57ec84e0620f71c1f31f`.
-- This is a documentation/control-plane synchronisation, not a full code rebase or release. The candidate still requires exact-head validation and review of remaining differences before it can be proposed for merge to main. No production deployment, Axxess upload, live data write, branch deletion or paid hosting spend.
+## TRIAGE COMPLETE — 2026-11-14
+- All **81** branches without an open/closed PR-head match have a recorded disposition in the triage appendix. No branch was deleted, closed or merged.
+- PR #202 is the only active code-integration candidate. It is draft, GitHub reports mergeable=true, and all five exact-head non-production QA checks passed. Await explicit owner merge approval.
+- The next task after PR #202 is OneNav exact-model enrichment from the review evidence, not a new parallel workstream.
+- Main SHA at this checkpoint: `e5791fbf1308916a4a2041a4307ac1943604617f`.
