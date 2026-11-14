@@ -1319,3 +1319,12 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Still running at checkpoint: Catalogue & Supplier Routing Review — QA (responsive-review job, Chromium installation underway) and Owner Preview Mobile and Desktop Browser QA (browser-qa job, Chromium/Playwright installation underway). Do not claim these passed until completed.
 - A 24x7 Public-Safe Catalogue Worker workflow run was pending with no jobs returned; inspect its configured triggers and execution scope before allowing it to become a second active workstream.
 - PR #204 remains draft and unmerged. No production deployment, Axxess upload, live data changes or paid hosting spend.
+
+
+## ASC REVIEW WORKSTREAM CONSOLIDATED — 2026-11-14
+- Selectively integrated the ASC work from PR #173 into the single integration branch at `050876850a79f8c02c4dde156c2caaef9b6e9869`: six review-only register/evidence files and two extraction scripts. The old PR's standalone handover and workflow changes were intentionally excluded to avoid reintroducing stale instructions/parallel QA configuration.
+- Closed PR #173 as superseded by PR #204; its branch remains as historical evidence. All further ASC work is to continue through the single consolidation PR.
+- Scope remains the six ASC catalogues only; no Buyers Guides. Counts recorded by the ASC review docs: 978 product cards (78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats, 129 Fuel Pumps); 50 manually reviewed pilot descriptions; 42 printed fitments verified; 928 remaining descriptions are OCR drafts; 63 OCR false-positive tokens quarantined. The 978-row full extraction output is not represented as a finished customer catalogue; records remain REVIEW ONLY / DO NOT IMPORT.
+- Source-card images remain raw catalogue crops/watermarked and require the approved image-treatment and exact-product visual QA before customer publication. Owner-authorised image use does not mean image treatment or product verification is complete. ASC exact price wording remains `Price On Request due to Limited Stock and Availability`; no numeric prices or stock values exist.
+- Current PR #204 head at time of consolidation: `050876850a79f8c02c4dde156c2caaef9b6e9869`; comparison with main: 21 commits ahead / 0 behind; GitHub reports mergeable=true. Exact-head QA must be checked again after these ASC files were added.
+- No live import, Supabase write, Axxess upload, production deployment or paid hosting spend.
