@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-12",
+  "updated": "2026-11-14",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
-    "latest verified execution checkpoint on the coordinated storefront branch",
-    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (owner clarification: public repo authorised; all products Price On Request)",
-    "2026-11-09 owner instruction: all three departments and their subcategories must render populated/assigned where verified"
+    "latest verified execution checkpoint on canonical main",
+    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (public repository processing authorised; all products Price On Request)",
+    "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -33,9 +33,30 @@
   },
   "tasks": [
     {
+      "id": "single-project-reconciliation",
+      "priority": 10,
+      "status": "in_progress",
+      "execution_mode": "read-only-reconciliation",
+      "automatic": false,
+      "source": [
+        "canonical main",
+        "all 270 repository branches",
+        "all open pull requests",
+        "latest owner directives and handover"
+      ],
+      "success_criteria": [
+        "Canonical main SHA and current owner instructions are verified",
+        "Every open pull request is classified as safe selective recovery, duplicate, stale, review-only, or blocked",
+        "Every branch is mapped to an open PR, merged PR, or unassociated stale work",
+        "Task queue and handover contain one ordered execution plan with one active workstream",
+        "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
+      ],
+      "next_action": "Complete the remaining open-PR classification and identify only the smallest safe code changes needed on canonical main; then resume the single highest-priority storefront blocker."
+    },
+    {
       "id": "jules-handover-and-pr-reconciliation",
       "priority": 9,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "scheduled-monitor",
       "automatic": true,
       "source": [
@@ -54,7 +75,7 @@
     {
       "id": "asc-six-catalogue-source-extraction",
       "priority": 5,
-      "status": "ready",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "scheduled-deterministic",
       "automatic": true,
       "source": [
@@ -76,7 +97,7 @@
     {
       "id": "audio-planetworld-source-extraction",
       "priority": 1,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -94,7 +115,7 @@
     {
       "id": "electrocity-ignition-pilot",
       "priority": 6,
-      "status": "review_required",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "scheduled-qa",
       "automatic": true,
       "source": [
@@ -111,7 +132,7 @@
     {
       "id": "audio-video-content-enrichment",
       "priority": 1,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -132,7 +153,7 @@
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -150,7 +171,7 @@
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
@@ -169,7 +190,7 @@
     {
       "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "scheduled-qa",
       "automatic": true,
       "source": [
@@ -187,7 +208,7 @@
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "in_progress",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -211,7 +232,7 @@
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
       "priority": 3,
-      "status": "review_required",
+      "status": "paused_pending_reconciliation",
       "execution_mode": "workflow-dispatch-and-visual-review",
       "automatic": false,
       "source": [
@@ -228,5 +249,22 @@
       ],
       "next_action": "All 50 sample outputs have been regenerated with product-area bounds preserved, external catalogue captions/code strips masked, and Get Wired watermark applied over the ASC watermark. The 50-row manifest and contact sheet exist; contact sheet review and high-resolution spot checks passed. Owner acceptance remains pending; do not import into production."
     }
-  ]
+  ],
+  "coordination": {
+    "mode": "single-project-single-active-workstream",
+    "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
+    "canonical_branch": "main",
+    "canonical_head": "4cc34cd97f8673735538f76ff225d644c8db7db7",
+    "active_task_id": "single-project-reconciliation",
+    "active_workers": 1,
+    "parallel_workstreams": "paused until reconciliation is complete",
+    "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
+    "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
+    "contributor_protocol": {
+      "chatgpt": "coordinate, inspect evidence, reconcile queue and handover, perform bounded changes and verify",
+      "gemini": "disabled until Google accepts the existing API key; then one allowlisted task at a time, output only as draft PR",
+      "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
+    },
+    "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval"
+  }
 }
