@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Create one draft consolidation PR from this branch to main for GitHub conflict and CI visibility. Review exact changed-file list for customer exposure and prohibited imports, run required non-production checks on the exact PR head, and keep it draft until owner acceptance. No production deploy or live data writes."
+      "next_action": "Resolve why draft PR #204 is currently reported mergeable=false and reconcile the six main-only commits without dropping the integrated Audison Forza/Electrocity review work. Then run exact-head non-production checks and verify the consolidated preview. Keep PR draft; no production release."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -267,9 +267,9 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "b171c0bbcd83a775985ba37d4df84e717b7c9a8b",
-    "active_candidate_pr": null,
+    "active_candidate_pr": 204,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "34b9d5010b2a22b5180fe84cff335c1b9dfa46b9",
-    "active_candidate_status": "Single consolidation candidate now contains the Audison Forza and Electrocity review pilots. Main's current task queue, handover checkpoint, audio manifest and reconciliation checkpoint have been synchronised into the candidate. Candidate is 11 commits ahead / 6 behind main with catalogue/code changes; draft review PR required, exact-head CI and conflict review pending. No merge or production release."
+    "active_candidate_head": "4d3a026c3b7f7c0035ad1fbff760b7e431025ed5",
+    "active_candidate_status": "Draft PR #204 opened against main. GitHub reports mergeable=false; candidate is 12 commits ahead / 6 behind main, 51 changed files. No exact-head workflow runs or combined status checks are currently returned. Do not merge. Next resolve base divergence/mergeability and run non-production checks."
   }
 }
