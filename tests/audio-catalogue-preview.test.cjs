@@ -29,7 +29,8 @@ for(const data of [primary,secondary]){
   assert.ok(!("supplierSku" in r),"supplier SKU must not be exposed");
  }
 }
-const raw=JSON.stringify([primary,secondary,models]);
+// The model-verification register is internal provenance and is excluded from the public Pages allowlist.
+const raw=JSON.stringify([primary,secondary]);
 // Image hosts may retain the original supplier domain because the owner has
 // authorised those exact catalogue/manufacturer images. The host is not a
 // customer-facing supplier label; audit visible metadata separately.
