@@ -36,7 +36,7 @@
     {
       "id": "single-project-reconciliation",
       "priority": 10,
-      "status": "in_progress",
+      "status": "completed",
       "execution_mode": "read-only-reconciliation",
       "automatic": false,
       "source": [
@@ -52,7 +52,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Continue selective merging into integration/store-consolidated-2026-11-14 only. Next audit the ASC catalogue-only review candidate(s), excluding any Buyers Guide material and keeping all rows DO NOT IMPORT; then assess controller repair candidates for duplication against current main. Keep PR #168/#176/#178 and other stale storefront reconstructions out of the integration branch unless a narrowly scoped, independently tested improvement can be recovered. Sync the branch with main's documentation-only updates before any final consolidation PR."
+      "next_action": "Reconciliation checkpoint completed 2026-11-14. Continue only the single active task three-department-category-assignment-repair on this integration branch."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -209,7 +209,7 @@
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "paused_pending_reconciliation",
+      "status": "in_progress",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -228,7 +228,7 @@
         "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
         "Customer display hides supplier names/internal SKUs and uses Price On Request"
       ],
-      "next_action": "Preview now has separate Automotive Sensors (9), Automotive Switches (8), Globes (8), Fuel Pumps (9), ASC Aerials (8), and Car Mats (8) routes. Car Audio Accessories now displays separate Trims and Harnesses; source rows are split 23/24 and held pending exact product images/descriptions. Finish exact-head route tests; other non-pilot Auto Electrical and Car Care subcategories remain source-pending."
+      "next_action": "Build and verify one combined non-production owner preview from integration/store-consolidated-2026-11-14. Verify the three approved root departments, each mapped subcategory route, and local review-only products without requiring live Supabase rows: Auto Electrical 34 pilot products (Sensors 9, Switches 8, Globes 8, Fuel Pumps 9); ASC Aerials 8; Car Mats 8; Audio Connections 61 eligible; Planetworld only exact verified/approved preview records; Audison Forza 4; Electrocity ignition modules/looms 29 (review-only, IG-T003 quarantined). Confirm zero-result routes, image loads, customer-safe fields and Price On Request. PR #199 is already merged to main but only added 978-row ASC review CSVs, not the full UI preview. PR #183 remains open/non-mergeable; do not merge wholesale. Sync main's three documentation-only commits (main SHA 48141e71ec2b9c5a6ee79c36b93de2040e99968d) before any final consolidation PR. Do not trigger Workers production builds, spend Cloudflare credits, import data, change Supabase, or deploy production."
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
@@ -256,7 +256,7 @@
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
     "canonical_head": "main",
-    "active_task_id": "single-project-reconciliation",
+    "active_task_id": "three-department-category-assignment-repair",
     "active_workers": 1,
     "parallel_workstreams": "paused until reconciliation is complete",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
@@ -271,7 +271,7 @@
     "active_candidate_pr": null,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
     "active_candidate_head": "9b18697e40427e0dd7cde29810af6c69762cdeeb",
-    "active_candidate_status": "Single non-production integration branch established. PR #203 merged verified Audison Forza enrichment (4 models); PR #185 merged owner-verified Electrocity ignition review package (29 rows). PR #202 closed as duplicate after its exact changes were merged through #203. Continue selective PR recovery into this one branch; main remains untouched by application-code merges and production remains HOLD.",
+    "active_candidate_status": "Single non-production integration branch contains PR #203 (four verified Audison Forza models) and PR #185 (29-row Electrocity review pilot). PR #199's 978-row ASC review package is already on main and therefore included from the integration branch's base; it is not a customer catalogue import. PR #202 is closed as a duplicate of #203. PR #183 remains open/non-mergeable; older ASC UI branches are stale. The active task is to verify one combined three-department owner preview; no combined hosted preview is currently verified. Production remains HOLD.",
     "merged_prs": [
       203,
       185
@@ -279,6 +279,9 @@
     "closed_duplicate_prs": [
       202
     ],
-    "integration_branch_created_from": "main at e5791fbf1308916a4a2041a4307ac1943604617f"
+    "integration_branch_created_from": "main at e5791fbf1308916a4a2041a4307ac1943604617f",
+    "mainline_review_data_prs": [
+      199
+    ]
   }
 }
