@@ -51,7 +51,13 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Live compare confirms integration/store-consolidated-2026-11-14 is 29 commits ahead / 0 behind main df823638d0a9f06dce939bee1b636307058f1583. Current branch head is 25e85eea483d4c220c2c83e0ca874470e76241b5 after the task-start handover commit. PR #204 remains the sole storefront/catalogue consolidation candidate. All seven workflows on immediately prior documentation-only head 921d6862818d330580a61c447efa8103054ff5f1 completed SUCCESS (runs 43611593741, 43611593780, 43611593791, 43611593867, 43611593779, 43611593768, 43611593745); these are not exact-head checks of 25e85ee. Continue by classifying each of the 21 distinct open non-#204 PRs/branches and reviewing the complete #204 diff/security boundary. Do not merge, close PRs, deploy, write live data or spend paid credits."
+      "next_action": "Complete PR #204 repository-content boundary decision and source/diff security review. The open-PR inventory classification is recorded, but no non-#204 PR has been merged/closed. Resolve confidential supplier source handling without deleting/moving files or creating a private repo absent explicit owner approval. Then run all seven required workflows on the final exact PR head and prepare owner acceptance preview.",
+      "completed_this_session": [
+        "Read owner directives, current handover and task queue before work.",
+        "Classified all 21 open PRs other than #204 by title and changed-file inventory; recorded individual disposition and overlap clusters in RECONCILIATION_REGISTER_2026-11-14.md.",
+        "Identified PR #49 as containing excluded ASC Buyers Guide PDFs; PR #32 enforces obsolete eight-category structure; PR #72 is legacy storefront; PR #67 introduces owner admin/live data capability; duplicate clusters #81/#184/#82, #143/#154, #48/#49/#51, #31/#53, #150/#164.",
+        "Recorded that #204 exposes supplier-source/review artefacts in the public Git repository even though public package builder excludes those folders; merge is not cleared by package-level QA."
+      ]
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -270,6 +276,6 @@
     "active_candidate_pr": 204,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
     "active_candidate_head": "25e85eea483d4c220c2c83e0ca874470e76241b5",
-    "active_candidate_status": "Sole draft consolidation candidate PR #204; branch head 25e85eea483d4c220c2c83e0ca874470e76241b5, 29 commits ahead / 0 behind main df823638d0a9f06dce939bee1b636307058f1583. Seven workflows passed on prior documentation-only head 921d6862818d330580a61c447efa8103054ff5f1; exact-head rerun/check still required. PR remains draft/unmerged. Final diff/security review and classification of 21 other open PRs remain; production HOLD."
+    "active_candidate_status": "PR #204 remains the sole draft storefront/catalogue consolidation candidate, 31 commits ahead / 0 behind main. All 21 other open PRs have been classified in RECONCILIATION_REGISTER_2026-11-14.md; no wholesale merges/closures authorised. Merge gate still blocked by public repository containing supplier-source/review artefacts; package exclusion does not solve repository visibility. Exact-head CI on final current head still required. Production HOLD."
   }
 }
