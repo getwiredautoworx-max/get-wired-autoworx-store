@@ -1195,3 +1195,11 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Compared PR #176's current branch content with `main`. Its homepage/category branch still labels the top-level audio root `Audio, Entertainment & Music`, while current main uses the owner's newer `Car Audio / Home Entertainment` wording. PR #176 is therefore not a suitable whole-page replacement for current main, in addition to its 249-ahead / 364-behind divergence.
 - Current main already contains the three-root storefront shell and dedicated audio landing/brand/product-type pages. The remaining integration decision is not “pick an old PR and merge it”; it is to retain current main as the code baseline and selectively recover only individually proven improvements that are absent from main.
 - Next audit tranche: enumerate the remaining branch pages and all open/closed PR states, identify genuinely unique customer-facing changes not already present on main, and check their exact-head tests before any extraction. Keep all source PDFs, workbooks, internal SKU/crosswalks and raw review registers out of any storefront integration PR.
+
+
+## COORDINATED RECONCILIATION TASK START — 2026-11-14
+- Owner instruction: stop fragmented parallel work; align all contributors on one canonical project and one coordinated execution queue.
+- Authority re-read at task start: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and `HANDOVER_CURRENT.md` on the repository default branch.
+- Canonical baseline for this audit: repository default branch remains the only integration baseline pending fresh SHA verification; no candidate PR or branch is presumed authoritative.
+- Work in progress: inventory all branch pages and open/closed PRs, then map each live candidate to the canonical baseline and classify safe recovery, stale/duplicate, review-only, or blocked.
+- Safety: no merges, branch deletions, force-pushes, production deploys, supplier-data publication, or live-data writes performed or authorised by this task-start entry.
