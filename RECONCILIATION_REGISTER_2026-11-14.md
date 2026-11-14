@@ -343,3 +343,16 @@
 1. Audit the 82 unassociated branches by commit date and file overlap; classify them as merged-equivalent, abandoned candidate, backup, or active unsubmitted work. Do not delete without approval.
 2. Audit the narrow 13-Nov audio enrichment branch (8 ahead / 7 behind) against current main; keep only safe exact-model changes and preserve review-only controls.
 3. Fix remaining current-main preview blockers and run exact-head non-production QA.
+
+
+## LIVE INVENTORY DELTA — 2026-11-14 10:15 SAST
+
+- Latest repository commit observed: `d7ab539e0ad95b3cb1122577f26edf4bb6c47a1a` on `main`.
+- Live branch pagination is now **271** (100 + 100 + 71), versus 270 in the original snapshot.
+- Live open-PR search is now **46**, versus 44 in the original snapshot. The missing records are #202 (new clean-main Audison Forza preview candidate) and #28 (legacy docs/schema PR). #28's `feature/docs-schema-pack` branch is 30 ahead / 1,905 behind main and is stale; do not merge.
+- #202 branch `integration/audio-forza-preview-reconciliation-2026-11-14` is 22 ahead / 0 behind main, with nine changed files limited to preview enrichment, sanitisation/build logic, reconciliation evidence and tests. Keep draft; exact-head QA and later owner review required.
+- The previous 187 mapped branch heads remain recorded. Current raw unmatched list is 84; #202 is now mapped to its new branch. The legacy #28 branch association and remaining unassociated set require commit-level confirmation; use **82** as the working unassociated audit count, not a deletion list.
+- Current-main route audit: `preview-planetworld.html` is a redirect to unified audio; current tests assert the redirect. Cloudflare Pages QA explicitly excludes that legacy route and supplier-source/review folders from both standard and non-production package outputs. This does not remove public GitHub history, and live customer-domain delivery was not independently fetched in this session.
+- Cloudflare Pages production workflow is manual-dispatch only. Cloudflare Workers Builds remains an unresolved external integration; no configuration change or deployment was made.
+- Main commit status lookup returned no status records; latest known Live Release Gates failure remains run `43565351484`. No current exact-main hosted QA success is established.
+- No merge, branch deletion, history rewrite, deployment, Axxess upload, live data write, DNS/payment change or paid hosting spend occurred.
