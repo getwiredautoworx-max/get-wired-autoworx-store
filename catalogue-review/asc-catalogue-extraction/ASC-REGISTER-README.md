@@ -1,32 +1,36 @@
 # ASC Product and Image Review Register
 
-Review-only working data for the six retained ASC product catalogues. Buyer’s guides are excluded.
+Review-only working data for the six retained ASC product catalogues. ASC Buyers Guides are excluded.
 
-## Source inventory
-- Aerials: 7 pages, 78 product cards, 6 sections
-- Automotive Sensors: 9 pages, 106 product cards, 11 sections
-- Automotive Switches: 22 pages, 368 product cards, 16 sections
-- Automotive Globes: 11 pages, 158 product cards, 10 sections
-- Car Mats: 11 pages, 144 product cards, 14 sections
-- Fuel Pumps: 12 pages, 129 product cards, 18 sections
-- Total: 72 pages, 983 product cards, 75 sections.
+## Corrected source inventory
+- Aerials: 78 product cards
+- Automotive Sensors: 106 product cards
+- Automotive Switches: 368 product cards
+- Automotive Globes: 158 product cards
+- Car Mats: 139 product cards
+- Fuel Pumps: 129 product cards
+- **Total: 978 physical product cards across 72 PDF pages and 75 sections.**
+
+The earlier preliminary count of 983 included five Car Mats entries inferred from a section heading (13 stated) but not present as physical product cards (8). Those five are not product records and are excluded from the corrected 978-row register.
 
 ## Review data
-- `asc-product-image-sku-register-review-only.csv`: 50 manually reviewed pilot products, preserving ASC supplier codes, original descriptions, fitment text, source page and pilot image paths.
-- `asc-ocr-candidates-quarantined-review-only.csv` and `asc-ocr-candidate-dispositions-review-only.csv`: 63 OCR candidate tokens checked against the source pages and classified as false positives; none is a product supplier SKU.
-- `asc-manual-sku-corrections-review-only.csv`: 112 manually transcribed/corrected supplier-code labels, including 11 corrections discovered in the full 983-label visual audit.
-- `ASC-SOURCE-VERIFICATION-STATUS.md`: source counts, code audit and release restrictions.
-- The automated extraction workflow creates a 983-row register, 983 individual source-card crops, page contact sheets, an extraction summary, and a searchable static owner-review preview as a workflow artifact.
+- `asc-product-image-sku-register-review-only.csv`: 50 manually reviewed pilot products, preserving exact ASC supplier codes, source page, printed description and fitment where present.
+- 42 pilot fitment entries were manually verified; 8 pilot cards have no fitment printed.
+- `asc-ocr-candidates-quarantined-review-only.csv` and `asc-ocr-candidate-dispositions-review-only.csv`: 63 OCR candidate tokens visually checked and classified as false positives, not supplier SKUs.
+- `asc-manual-sku-corrections-review-only.csv`: manually transcribed/corrected supplier-code labels. Preserve exact source codes; never infer a SKU from caption or fitment text.
+- `ASC-SOURCE-VERIFICATION-STATUS.md`: authoritative corrected counts, field status and release restrictions.
+- The extraction workflow generates the 978-row source-card register, source-page contact sheets, individual card/image crops and a searchable owner-review HTML artifact.
 
 ## SKU rules
 - Preserve the exact ASC supplier code in its own field.
-- Provisional internal IDs use `GW-ASC-` plus a normalized supplier code. Never replace the supplier code.
-- Check for duplicate supplier codes and duplicate normalized internal IDs before release.
-- OCR agreement is not by itself proof of a correct code; all source labels were visually audited and 11 OCR errors corrected.
+- Provisional internal IDs use `GW-ASC-` plus a normalized supplier code and remain review-only.
+- Check duplicate supplier codes and duplicate normalized internal IDs before any approval.
+- OCR agreement is not by itself proof of a correct code; retain source-page evidence and manual correction provenance.
 
 ## Product data and release restrictions
-- OCR product descriptions and derived fitment/specification candidates remain review-only until editorial/source-card verification.
-- Vehicle fitment and technical specifications/dimensions must be transcribed exactly where printed; do not infer missing values.
-- Source-card crops are reference images, not clean standalone product photographs. Watermarks remain and production-use rights are not cleared.
-- Prices and stock were not supplied. ASC items should show **Price On Request** in the review preview; do not invent price or stock values.
-- No live import, Supabase write, price/stock change, production deployment or merge is authorized by these files.
+- Only the six retained ASC catalogues are in scope; no Buyers Guide extraction, OCR, reconciliation or integration.
+- Product descriptions beyond the 50 manually reviewed pilot records remain OCR drafts requiring editorial verification.
+- Fitment, technical specifications and dimensions remain pending unless explicitly transcribed and verified from the source card. Never infer missing values.
+- Source-card crops retain catalogue watermarks and are not clean standalone product photographs. The owner has authorised reseller product-image use/editing, but each customer-facing image still requires the approved image-treatment and exact-product verification process.
+- Prices and stock were not supplied. ASC customer-facing wording is **Price On Request due to Limited Stock and Availability**.
+- All records are **REVIEW ONLY — DO NOT IMPORT**. No live import, Supabase write, price/stock change, production deployment or Axxess upload is authorised by this package.
