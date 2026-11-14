@@ -1608,152 +1608,327 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Outcome: IN PROGRESS. Next: retrieve current main SHA and inspect the latest workflow attempts/jobs, then append exact run/job/commit evidence and any safe retry result.
 
 
-ASC PRODUCT REGISTER — WORK IN PROGRESS
-- Owner instruction: continue the six-catalogue ASC reload through product verification, supplier-code preservation, Get Wired SKU mapping, image matching, review preview, desktop/Android QA, and merge preparation. No merge or production action without owner approval.
-- Current main at task start: `a232db744db7ba9b7cf4bd1cd7f8983853a4d2db`.
-- Created isolated working branch `work/asc-product-register-2026-11-04` from that exact current-main SHA. No production branch or live data was changed.
-- Added `catalogue-review/asc-catalogue-extraction/asc-product-image-sku-register-review-only.csv` (commit `464a3235209051ee979537c40e9f71fc3daea4f4`). It carries forward 50 staged pilot rows, 50 corresponding image-review entries, all six source filenames, source pages, original ASC codes, original printed descriptions and fitment text. It proposes provisional internal IDs in the `GW-ASC-` namespace while preserving ASC codes separately.
-- Register explicitly marks all prices and stock as not supplied, all rows review-only/not live, and image rights as not cleared. Technical-spec/dimension field remains blank for all 50 because the staged source register contains no transcribed technical specs; no dimensions have been guessed.
-- Added all 63 OCR tokens as quarantined rows with no Get Wired SKU assignment; each requires visual verification against the exact original PDF page before conversion to a product record.
-- Verified six source PDFs are represented in the source manifest: Aerials, Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats, Fuel Pumps. The six catalogue section counts are 6, 11, 16, 10, 14, 18 (75 total).
-- Outstanding blockers: visually inspect the 63 candidate tokens and complete catalogue extraction beyond the 50-row pilot; transcribe source dimensions/specs where printed; verify every image against the exact source card; add executable data validation and browser QA for the integrated preview. Existing historical ASC workflows are not evidence of successful current-head QA; no current hosted ASC preview was deployed.
-- Branch and register are review-only. No Supabase writes, catalogue imports, prices, stock, production deploy, DNS/payment changes, buyer's guides, or merges were performed.
-- Next action: continue exact-page visual review using original six PDFs and build the full product/image register. If source PDF page rendering is unavailable through repository connector, obtain page-renderable file access rather than treating OCR output as visual verification.
 
+## 2026-11-04 17:53 SAST — OWNER-APPROVED CONSOLIDATED STOREFRONT METHOD
 
-### 2026-11-04 ASC register follow-through
-- Corrected the register into a true standalone CSV (no Markdown preamble) and split the 63 OCR candidates into a separate quarantine CSV. Added `ASC-REGISTER-README.md` to explain scope and review rules.
-- Validation read-back on the working branch: product register parses as 50 data rows with 15 columns; all rows have an ASC supplier code, proposed GW internal ID and image path; 0 duplicate proposed GW IDs; every row has consistent column count. Quarantine file parses as 63 rows and all 63 remain `NOT_ASSIGNED`.
-- Latest branch commit after these changes: `c46885dac63676521536fc7db76c7fc0c26c38ba`.
-- Draft PR #173: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/173 (review-only; base main; no merge). Workflow `Catalogue & Supplier Routing Review — QA` run `41836399715` was in progress at last check; its responsive-review job had started checkout and had not yet reached test execution. This workflow is not a substitute for ASC source-page visual verification.
-- Important correction: the CSVs are preparation registers, not proof that all 50 product records are visually verified from the PDFs. Existing 50 pilot source-card review markers are preserved as supplied; independent re-review, technical specs/dimensions, and all remaining catalogue products are still outstanding.
+### Binding execution decision from the owner conversation
+The owner approved replacing the disconnected-PR / repeated-repair approach with one consolidated, populated storefront preview. This is the chosen build method going forward; do not restart the project, recreate separate repair branches, or spend time repeating completed category fixes.
 
+**Required delivery shape**
+1. One integrated release-candidate branch based on current `main`, with all storefront application changes in one candidate and one owner-preview URL.
+2. One consistent, brighter visual shell across the homepage, all eight root-category paths, subcategory pages, product/catalogue preview pages and supporting customer pages. Preserve the approved layout; improve legibility, contrast and the light background rather than redesigning the brand.
+3. All eight owner-approved roots must remain visible and navigable in the homepage category grid, in this order: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Keep 4x4 nested under Camping / Leisure / Outdoors.
+4. Finish the Audio department as a complete navigation experience: Car Audio, Home Entertainment, Band & Live Sound, DJ Equipment, Instruments and Lifestyle; brand selection; product-type/component groups; separate Aerials and Trims & Harnesses routes; readable mobile two-column subcategory layout; relevant artwork and verified brand assets. Supplier names must remain hidden from customers.
+5. Consolidate the current Planetworld and Audio Connections preview data into the same candidate, preserving RRP-based Planetworld pricing, exact owner wording for unpriced Planetworld items, and quote-only treatment for unverified Audio Connections price/SKU/spec/image records. Never turn retail comparison values into Get Wired selling prices.
+6. Bring in authorised ASC catalogue material as preview-only source-backed category content, preserving source catalogue section, supplier SKU, proposed GW SKU, exact description/fitment and source page. The six catalogues currently have 978 source-verified review-only rows; do not invent prices or stock. Keep image/price/availability uncertainty explicit and do not activate/import live records.
+7. Keep checkout, order submission and Supabase writes blocked in owner preview. Banking/payment acceptance is deferred until the owner adds banking details. Production remains HOLD.
+8. Run the regression suite, package QA and public SKU audit on the exact final branch SHA; deploy that exact SHA to isolated Cloudflare Pages; verify its build manifest and hosted desktop/mobile customer journeys (including category expansion, Audio navigation/brands/products, image loads, no JS errors, no horizontal overflow, no supplier disclosure, no checkout/write path). Then provide the one preview URL for owner acceptance.
+9. Do not merge or release until exact-head checks, hosted preview verification and owner acceptance are recorded. No Axxess upload, DNS, production deployment, payment activation, live price/stock/category writes or production Supabase mutations without separate explicit approval.
 
-### 2026-11-04 ASC source-page verification and 983-card extraction
-- Rendered and visually inspected all six retained ASC source PDFs from the repository. Source inventory: Aerials 7 pages/78 product lines; Automotive Sensors 9/106; Automotive Switches 22/368; Automotive Globes 11/158; Car Mats 11/144; Fuel Pumps 12/129. Total: 72 pages, 75 section headings, 983 printed product lines.
-- All 63 quarantined OCR candidates were checked against the original page images and classified as false positives (captions, fitment text, technical ratings/dimensions, bulb-base type, or section counts), not supplier SKUs. Dispositions are in `catalogue-review/asc-catalogue-extraction/asc-ocr-candidate-dispositions-review-only.csv`.
-- Source-page card-detection workflow run `41839498746` completed successfully. Artifact `asc-source-page-and-product-card-review`, ID `13327879670`, contains 20 page contact sheets, the 983-row OCR extraction CSV, and source manifest. All six catalogue card-label counts matched their printed cover totals.
-- Manually inspected and transcribed 101 supplier-code labels where OCR was blank or disagreed. The 101 corrections are recorded in `asc-manual-sku-corrections-review-only.csv`. The remaining 882 supplier codes had agreement between two OCR passes and remain marked for final spot-check, not manual verification.
-- Generated and validated a local 983-row review register at `/mnt/data/asc-product-card-extraction-review-only.csv`: 983 nonblank supplier codes; 0 duplicate supplier codes; 0 duplicate provisional `GW-ASC-` SKUs; 101 visually corrected codes; 882 dual-OCR matches; no blank description OCR. The file is review-only and is available as a chat download, not yet committed as a 983-row CSV in the repository.
-- Descriptions remain OCR-review-only. Vehicle fitment and dimensions/technical specs still need source-card verification/transcription; image watermark/rights remain unresolved. Supplier prices and stock were not provided. No product imports, Supabase writes, live price/stock changes, or production deployment occurred.
-- Added `scripts/asc_extract_product_cards_review.py`, the manual correction CSV, and `ASC-SOURCE-VERIFICATION-STATUS.md` to the isolated PR branch. The script/correction updates after the successful workflow artifact run have not yet been re-run on the latest branch head; the successful automated QA run is for commit `53b0b521c57ccf5fc84219ae473a1c042355872d9`, not the current branch head.
-- PR #173 remains draft and unmerged. Latest branch head is the current head of PR #173; re-check the PR head before any merge. No Cloudflare deployment or credits used.
-- Remaining release blockers: final spot-check of the 882 dual-OCR supplier codes; manual review of all 983 OCR descriptions and exact fitment/spec/dimension fields; individual product-image extraction/matching and rights clearance; rerun QA against the latest branch head; complete the storefront preview and owner approval before any merge or live import.
+### Current consolidated candidate checkpoint
+- PR #176, **Integrated populated storefront preview — clean main-based candidate**, is the active integration vehicle: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/176
+- Branch: `preview/integrated-storefront-2026-11-04`; current PR metadata head at 17:53 SAST: `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f`; base is current `main` SHA `8a0695a6d746b886be865ffa950a11011b054e2f`; compare is 59 commits ahead / 0 behind. PR is OPEN / DRAFT / UNMERGED / mergeable=true.
+- Static read-back confirms the current branch's `assets/category-tree.json` contains all eight approved active root categories and `index-new.html` has all eight root IDs and labels in `HOME_CATEGORY_IDS`. This is source-level confirmation only; the latest exact-head browser run is still required.
+- Current PR body and earlier preview report refer to only three roots with verified/populated supplier catalogue material. Do not confuse that limited populated data set with the required eight visible root categories. The eight-root static source is present, but customer-facing content completeness across all eight roots is not yet accepted.
+- Current PR #176 exact-head workflows associated with `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f` were QUEUED at the 17:53 check: Delivery Quote Security Tests run `41862070632`; Public SKU Exposure Audit `41862070522`; Prepare Axxess upload package (CI package only; no upload) `41862070572`; Button-Only Storefront Smoke Test `41862070645`; Customer Authentication Security Tests `41862070680`; Car Audio Accessories Route Browser QA `41862070627`; Cloudflare Pages Public Package QA `41862070510`; Preview Approved Catalogue Gate `41862070528`. Do not rerun queued jobs or treat them as passing.
+- Last previously recorded owner-preview deployment was at SHA `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html . That earlier preview passed hosted mobile/desktop and owner-preview checks, with 3,317 Planetworld rows and 66 Audio Connections rows. It is NOT an exact-head preview for the newer `6d84fdff` head. Wait for the current exact-head workflow/deployment evidence before presenting it as current.
+- The current PR changed-file list includes an obsolete `HANDOVER_CURRENT.md` in addition to the canonical handover. The single-current-handover rule remains in force; do not add further duplicate handover files.
 
+### Immediate execution order
+1. Let the queued exact-head workflows for `6d84fdff` finish; inspect failed jobs/logs and fix only reproducible defects. Do not rerun queued jobs or use a production/release workflow.
+2. Verify the homepage actually renders all eight root cards in hosted browser QA, not merely that the IDs exist in source. Correct stale test names/output that still report `roots=3` or conflict with the eight-root source.
+3. Complete the Audio browser journey at desktop and mobile: Audio root → department → brand → component/product type → populated products; preserve Aerials and Trims & Harnesses as separate routes. Ensure the approved bright visual shell is consistent across all customer-facing preview routes.
+4. Expand the integrated customer-facing preview beyond Audio/Planetworld/Audio Connections using the authorised ASC 978-row review set, while retaining explicit no-price/no-stock/quote-to-confirmation gates and image/source provenance. No production import.
+5. Deploy only the exact tested consolidated branch head to isolated Pages, update this handover with the resulting URL/run IDs and owner-preview status, and ask the owner only for visual/real-phone acceptance when the candidate is genuinely ready.
 
-### 2026-11-04 final supplier-code visual verification
-- Follow-up visual review covered all 882 supplier-code labels for which PSM6 and PSM7 OCR agreed. Ten high-resolution contact sheets were inspected against the original PDF page renders.
-- Combined with the 101 individually transcribed OCR exceptions, **all 983 supplier-code labels are now visually verified against the original six PDFs**.
-- The local 983-row review register `/mnt/data/asc-product-card-extraction-review-only.csv` has been updated accordingly: 983 verified supplier codes; 983 provisional unique `GW-ASC-` IDs; zero blank supplier codes; zero duplicate supplier codes; zero duplicate provisional IDs; 101 manual code corrections; 882 dual-OCR matches visually confirmed.
-- The 63 OCR candidate tokens remain separately resolved as false positives, not supplier SKUs.
-- This completes source-page supplier-code verification and product-card counting. It does **not** complete product-description/fitment/specification transcription: all descriptions remain OCR-review-only; vehicle fitment, technical dimensions/specifications, image matching/rights, prices and stock remain unresolved.
-- The automated extraction run `41839498746` succeeded at earlier commit `53b0b521c57ccf5fc84219f06efd38df48be1a63`. Later commits added the manual correction map, stricter label detector and updated status text; those final changes have not been re-run on the latest branch head. Do not claim current-head CI sign-off until a fresh run is available.
-- No product imports, Supabase writes, live price/stock changes, production deployment, merge, or Cloudflare credits used. PR #173 remains draft and unmerged.
-
-
-### 2026-11-04 owner review preview generated
-- Built a downloadable, responsive, searchable owner-review preview containing all 983 ASC source cards. Package: `GetWired_AutoWorx_ASC_983_Owner_Review_Preview.zip` (local chat artifact).
-- Includes 983 individual source-card crops cut from the 20 source-page contact sheets, plus an embedded-data `index.html` preview that can be opened directly on Windows/Android browser without a server. Search by supplier SKU, provisional Get Wired SKU, or OCR description; filter by catalogue; sort by ASC SKU.
-- Each card displays the original supplier SKU, provisional `GW-ASC-` ID, source page, OCR description draft, and `Price On Request`. Fitment/specification fields are explicitly marked pending rather than guessed. Source card crops visibly retain supplier watermark and are not cleared as production product images.
-- Preview ZIP validated: 983 records, 983 individual card images, HTML parsed successfully, embedded JavaScript passed `node --check`. This is a local owner-review preview package, not a hosted PR deployment.
-- The product-card extraction script now also generates high-resolution individual source-card crops and a searchable static preview as CI artifacts. The new script commits did not trigger a new Actions run through the available GitHub connector; latest successful CI artifact is still from the earlier workflow head. Do not claim latest-head QA passed.
-- Catalogue status remains review-only. Descriptions require editorial verification, fitment and technical data/dimensions require transcription, source images need isolated product-image extraction and supplier rights clearance, prices/stock are not supplied. No live import, Supabase write, merge, production deploy or Cloudflare credit usage.
-
-
-### 2026-11-04 correction after full 983-label visual audit
-- Re-audited the actual individual source-card crops in 20 audit sheets (50 labels per sheet), rather than relying on OCR agreement. This caught 11 supplier-code errors, proving the earlier dual-OCR agreement status alone was not sufficient.
-- Corrected the 11 printed codes: `MA522`, `MA570`, `IG-FR01`, `S2-007`, `S2-020R`, `S2-015`, `S2-017`, `S2-033-4`, `S2-035`, `M7-AVAN01`, `M7-MT02`. Updated the local 983-row register and branch manual correction map. Current duplicate checks: zero duplicate supplier codes and zero duplicate provisional GW-ASC identifiers.
-- Important correction to the previous milestone wording: do not treat dual OCR agreement by itself as visual verification. The 983-label audit has now been completed across all cards and the 11 discovered OCR errors corrected.
-- Rebuilt the downloadable owner preview after the code corrections. It contains 983 individual source-card crops, a searchable embedded-data HTML catalogue, category/subcategory candidates derived from catalogue headings, original ASC codes, provisional GW-ASC IDs, source page, OCR description draft, and ASC Price On Request label. HTML parser and JavaScript syntax checks pass.
-- Product descriptions still need editorial verification; fitment and technical specifications/dimensions remain pending transcription; card crops are not isolated clean product photos and supplier watermark/image rights remain unresolved. No prices or stock invented. No Supabase write, live import, merge, production deploy or Cloudflare credit use.
-- Latest PR #173 head needs checking before merge. The GitHub connector does not expose workflow dispatch; latest successful automated run still predates the latest individual-card/preview and correction-map commits. Do not represent latest-head QA as passed.
-
-
-### 2026-11-04 full pilot cross-check and owner preview enrichment
-- Cross-checked all 50 manually verified pilot supplier codes against the 983-row extraction. Three further OCR substitutions were corrected: `M7-CONO1` → `M7-CON01`, `M7-CORO1` → `M7-COR01`, `M7-CORO2` → `M7-COR02`. All 50 pilot supplier codes now match the full register exactly.
-- Total supplier-code corrections discovered and recorded: **14** (11 from the full visual label audit plus these 3 pilot cross-check corrections). Zero duplicate supplier codes and zero duplicate provisional `GW-ASC-` identifiers remain in the corrected local 983-row register.
-- Owner review preview package now contains 983 individual product-image-area crops and 983 full source-card crops. It includes the 50 manually verified pilot descriptions and fitment entries; 42 pilot cards have printed vehicle fitment manually verified and 8 have no vehicle fitment printed. The other 933 descriptions remain OCR drafts with unverified fitment/specification candidates. No technical dimensions/specifications are invented.
-- The preview is a downloadable offline HTML catalogue with search/filter/sort, category/catalogue labels, provisional Get Wired SKU, original ASC SKU, `Price On Request`, fitment/specification review status, product-image-area crop, and expandable full source-card reference. HTML and JS syntax checks pass; all 983 image references resolve in the ZIP.
-- The preview package is an owner review artifact, not a hosted deployment. Source card crops retain watermarks; supplier clean-image rights remain uncleared. No live imports, Supabase writes, production deployment, merge, or Cloudflare credits used.
-- PR #173 has been rebased onto latest main (main SHA `8a0695a6d746b886be865ffa950a11011b054e2f` at rebase); it is ahead 1 commit / behind 0 at the rebase point and GitHub reports mergeable true. The current branch head has advanced since then; re-check before merge.
-- Automated QA run `41846649074` checks the script with pilot integration and image-area crops. Responsive checks passed (Chromium install, supplier routing tests, Edge Function type-check and responsive browser checks); the ASC extraction step was still running at handover update. A subsequent workflow run will be required after this handover/status update to provide exact latest-head sign-off.
-
-
-### 2026-11-04 latest PR-head QA and release gate update
-- Verified PR #173 latest head at check time: `7a4a6739aed51bc47184f5b4374efb7df7ffef55`, base `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`; PR is open, draft, unmerged, and GitHub reports mergeable=true / mergeable_state=unstable.
-- Latest-head GitHub Actions run `41847579403` completed successfully on that exact SHA. Both `responsive-review` and `asc-source-page-review` jobs passed. Chromium installation, supplier-routing unit/static tests, supplier quote Edge Function type-check, responsive browser checks, rendering/extraction of all six retained catalogues, and contact-sheet artifact upload all completed successfully.
-- Latest-head artifact `13331749468` (`asc-source-page-and-product-card-review`, 62,273,803 bytes) was downloaded and inspected. It contains the 983-row extraction CSV, 983 individual product-card crops, product-image crops, 20 page contact sheets, and searchable `index.html`. Extraction summary reports 6 PDFs / 72 pages / 75 section headings / 983 product lines; all six catalogue cover totals match. The 983 supplier-code labels are visually verified, including 115 manual corrections and 868 visually checked dual-OCR matches; no unresolved or duplicate supplier codes and no duplicate normalized provisional internal SKUs.
-- Important scope distinction: the latest CI extraction CSV still marks all 983 descriptions as `OCR_REVIEW_REQUIRED`; the local owner preview separately includes the 50-row manually reviewed pilot. Of the full 983, 50 pilot descriptions are editorially verified, 42 pilot fitment entries are manually verified, and 8 pilot cards have no fitment printed. The remaining 933 descriptions still need editorial verification. Fitment and technical specifications/dimensions for those 933 remain unverified/not transcribed. Do not mark this content complete.
-- Image status remains `SOURCE_IMAGE_WATERMARK_PRESENT_RIGHTS_NOT_CLEARED` for all 983 records. Product-image-area crops are extracted, but they are not supplier-approved clean standalone images; image matching and rights clearance remain release blockers. Price and stock remain `NOT_SUPPLIED`; display `Price On Request` for ASC only. No invented price, stock, fitment or dimension values.
-- QA is now green on the exact current PR head listed above. Any subsequent branch commit (including this handover update) will trigger a new head and must be rechecked before final PR sign-off.
-- Still not complete: editorial review of 933 descriptions; transcription/verification of their fitment and technical data; clean image matching and rights clearance; full storefront preview and desktop/Android owner acceptance. This PR is preparation/review-only, not a completed store reload.
-- No Supabase writes, live catalogue import, merge, production deployment, Cloudflare credit use or Axxess upload. Keep PR #173 draft and unmerged until the remaining review and acceptance gates are genuinely cleared and owner approves.
+**Status at this checkpoint:** the consolidated candidate exists and is the active path; eight approved roots are present in source; Planetworld and Audio Connections preview datasets are included. Full eight-category populated customer preview, exact-head verification for `6d84fdff`, ASC customer-preview integration and owner phone acceptance are still outstanding. Do not claim full-store readiness or merge. Production remains HOLD.
 
 
 
-## 2026-11-04 GROK DESKTOP-AGENT TAKEOVER — AUTHORITATIVE CONTINUATION BRIEF
+## 2026-11-04 — OWNER TRANSFER TO GROK (MOBILE AGENT) — AUTHORITATIVE LATEST CHECKPOINT
 
-**Purpose:** Transfer the remaining work from ChatGPT to Grok operating as the owner's desktop agent. Grok must read this entire master handover before changing anything. This section supplements (and does not replace) the protected owner instructions and prior evidence above.
+The owner has instructed that Grok take over as the mobile agent. This section is the latest transfer note; read the full handover above for history, protected instructions, source rules and release boundaries. Do not restart completed extraction or repeat old audits.
 
-### Working location and exact starting point
-- Repository: `getwiredautoworx-max/get-wired-autoworx-store`
-- Active review branch: `work/asc-product-register-2026-11-04`
-- Active draft PR: #173 — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/173
-- PR must remain **OPEN / DRAFT / UNMERGED**.
-- Latest known code head after cropper correction: `c6804cdea50ed08a6ff2eaf3553a078b1ee4f0df`. Grok must fetch the live PR head and branch status before editing; do not assume this SHA is still current.
-- Master handover file: this file, `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. Preserve the owner-instructions block verbatim. Append dated evidence; do not create competing handover files.
-- Latest workflow run checked: `41861561302`. `responsive-review` completed SUCCESS. In `asc-source-page-review`, all listed steps including full six-catalogue rendering/extraction and contact-sheet artifact upload show completed SUCCESS, but GitHub still reported the job status as `in_progress` with null conclusion at last poll. **Do not call the whole run green until GitHub reports the job and run conclusion as success.** Re-poll and record final status. This run is for the corrected cropper head `c6804c...`.
+### Owner's immediate expectations
+- The owner is dissatisfied with the lack of a finished consolidated storefront and explicitly says the work has remained at square one. Do not respond with another apology, plan-only message, status loop or promise. Inspect the repository, make concrete changes, run available checks, and report exact evidence.
+- Deliver one consolidated, populated customer-facing staging preview. Homepage and complete Audio experience are the immediate visual/navigation priority, followed by all remaining approved categories. Do not create disconnected repair branches or another handover file.
+- The owner expects the agent to work directly from a mobile workflow where possible. Keep changes lightweight and compatible with the owner's older Android WebView/phone and Windows 7 PC: avoid modern CSS/JS features without fallbacks, keep tap targets clear, test narrow mobile widths, and do not rely on desktop-only interactions.
+- Owner asked for Grok to take over as mobile agent. This is a handoff instruction, not permission to merge, deploy production, alter DNS, upload to Axxess, activate payments, or write live data.
 
-### Fixed ASC reload scope — do not broaden it
-The owner has explicitly instructed that this is a store reload using **only the six retained ASC product catalogues**. All ASC buyer's guides are to be disregarded and permanently excluded from the reload. Do not reintroduce buyer's guides or use their data as a source.
-1. Aerials — 7 pages, 78 product cards
-2. Automotive Sensors — 9 pages, 106 product cards
-3. Automotive Switches — 22 pages, 368 product cards
-4. Automotive Globes — 11 pages, 158 product cards
-5. Car Mats — 11 pages, 144 product cards
-6. Fuel Pumps — 12 pages, 129 product cards
-Total: **6 PDFs, 72 pages, 75 section headings, 983 printed product cards**.
-Use the source manifest and catalogue files already in the repository. Confirm no buyer's guides are staged for this reload. Do not delete source material destructively unless the exact buyer-guide files and the owner-authorized deletion scope are unambiguous; verify the resulting Git tree and record the paths removed/retained.
+### Latest verified repository facts (2026-11-04, current conversation)
+- Sole canonical handover remains this file: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. Do not recreate `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, or additional checkpoint handovers.
+- Active integration PR #176: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/176
+- Branch: `preview/integrated-storefront-2026-11-04`
+- Latest metadata read in this handoff: PR head `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f`; base main `8a0695a6d746b886be865ffa950a11011b054e2f`. PR is OPEN / DRAFT / UNMERGED; GitHub reports mergeable=false. Re-fetch current refs before acting; do not assume these SHAs remain current.
+- PR body records that the last previously verified hosted preview is at `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`, URL https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html. That deployment is older than the current PR head and is NOT exact-head proof for `6d84fdff`. Do not describe it as the current candidate.
+- The PR body also contains duplicated historical three-root preview claims. It is stale relative to the owner's required eight-root store and must be reconciled, not copied forward as a current readiness statement.
+- Eight approved root IDs/labels are present in source `assets/category-tree.json` and `index-new.html` (static inspection only). Source presence does not prove browser rendering, navigation, populated product content, or readiness.
+- Eight workflows associated with the current head were reported QUEUED at the 17:53 SAST checkpoint: Delivery Quote Security Tests `41862070632`; Public SKU Exposure Audit `41862070522`; Prepare Axxess upload package `41862070572` (CI package only); Button-Only Storefront Smoke Test `41862070645`; Customer Authentication Security Tests `41862070680`; Car Audio Accessories Route Browser QA `41862070627`; Cloudflare Pages Public Package QA `41862070510`; Preview Approved Catalogue Gate `41862070528`. Re-fetch statuses. Queued is not passed; do not rerun queued jobs.
+- A patch inspection of PR #176 exposed a material test contradiction in `tests/three-category-storefront-structure.test.cjs`: it correctly asserts the eight approved roots, but later still asserts Audio children such as Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle are children of the first root (Auto Electrical Spares). Those departments belong under the Audio root. The test filename/output still says three-category / roots=3, and the PR body retains three-root scope claims. This is a concrete integration defect to resolve by inspecting actual intended tree and render code; do not merely weaken assertions or change expected strings to force green.
+- The previous attempt to fetch branch files by the branch ref returned GitHub 404 through the file-content endpoint. PR patch retrieval did work. Confirm branch/ref access or use PR patch / other repository tooling before assuming a file is absent.
 
-### Data rules and known verified work
-- Supplier-code labels: 983/983 visually audited against the original catalogue cards. Fourteen OCR corrections are recorded in the manual correction map; the full register must use the corrected supplier codes.
-- Internal SKU namespace: `GW-ASC-` plus normalized supplier code. Preserve original ASC supplier code in its own field. Do not merge supplier namespaces (ASC, CAELEX, Electro-city).
-- Pilot: 50 records; 50 descriptions editorially verified; 42 printed fitment entries verified; 8 pilot cards have no fitment printed.
-- Remaining 933 descriptions are **not editorially verified**. OCR is a draft only.
-- Fitment, technical specifications and dimensions for those 933 remain unverified/not transcribed. Read directly from each source card; preserve exact wording and units. If absent or illegible, mark not printed/unclear and do not infer.
-- Price and stock are not supplied. For ASC records only, show **Price On Request**. This does not apply globally to other suppliers. Do not invent a price, stock quantity, availability, compatibility or warranty.
-- Source card/product image crops retain ASC watermark. They are review references, not approved clean standalone product photography. Supplier image-use rights are not cleared. Do not strip watermarks, publish crops as customer-facing assets, or claim image rights. Seek documented supplier permission/official image assets.
-- The previous cropper produced overlapping card crops. The correction in `c6804c...` uses SKU-label centres/grid cell boundaries and handles single-row/single-column layouts. Verify the latest extraction artifact visually before trusting any crop.
+### Correct target information architecture
+Eight homepage roots, in this exact order:
+1. Auto Electrical Spares
+2. Vehicle Security
+3. Car Audio & Entertainment
+4. Automotive Accessories
+5. Marine Spares & Accessories
+6. Tools, Hardware & Consumables
+7. Camping, Leisure & Outdoors
+8. Trailer & Canopy
 
-### Grok's assigned work — continue to completion, not just report a plan
-1. **Establish state:** fetch current PR #173 metadata/head, branch commit, workflow run 41861561302 final result, artifact list and repository tree. Confirm exact six source PDFs and buyer-guide exclusion.
-2. **Validate extraction:** download the newest artifact from the latest-head successful run. Check 983 rows, six source PDFs, page/card totals, 983 supplier codes, zero duplicate supplier codes, zero duplicate proposed GW SKUs, correct source-page references and one isolated crop per product. Open a broad sample across all six catalogues, including single-row/single-column pages and dense multi-column pages. If any crop overlaps, is missing, or is mismatched, fix the script and rerun QA.
-3. **Complete product content:** manually inspect all 933 remaining source cards. Editorially transcribe descriptions without embellishment; capture vehicle fitment and technical specifications/dimensions exactly as printed, including units and qualifiers. Keep separate fields and provenance (source PDF, page, section, supplier SKU). Use explicit statuses for verified, not printed, illegible, and needs supplier confirmation. Do not use OCR agreement as a substitute for visual verification. Batch the work into traceable review files and validate every row for completeness/duplicates.
-4. **Image resolution:** identify the exact product image region for each record and match only when the source card clearly supports the match. Keep watermarked catalogue crops as source references only. Obtain official clean images or documented written supplier permission before any customer-facing image promotion. Mark unresolved records clearly; never fabricate matches or remove watermarks.
-5. **Build the owner preview:** produce a usable searchable responsive preview for all 983 records, showing original ASC SKU, provisional GW SKU, catalogue/section, verified description, verified fitment/specs, source page and clear review/rights state. Display `Price On Request` for ASC. Do not imply unverified records are final. Include source-card reference access and a concise review-status summary. Ensure it works on desktop and Android-sized viewports.
-6. **QA and acceptance:** run exact-head tests after the last code/data change; inspect CI artifacts; test desktop and mobile layouts, navigation, search/filter, image/crop integrity, console/network errors, horizontal overflow, and keyboard/accessibility basics. Record exact SHA, workflow/run IDs, artifact IDs and observed results. A local preview is not a hosted preview. A hosted preview is not owner acceptance. Do not use deployment credits or publish to production to create a preview.
-7. **Handover and reporting:** update this master handover with actual results after each meaningful milestone. Read back the updated file. Keep a single canonical handover. Report only completed evidence or a specific external dependency that truly requires the owner.
+4x4 Outdoor stays nested under Camping / Leisure / Outdoors. Do not put Audio department children under Auto Electrical Spares. Audio department experience must include Car Audio, Home Entertainment, Band & Live Sound, DJ Equipment, Instruments and Lifestyle; brand and component/product-type drill-down; separate Aerials and Trims & Harnesses routes. Preserve approved bright storefront shell across homepage/category/product/support pages and prioritize mobile readability/tapability.
 
-### Desktop-agent operating instructions
-- Work directly in the repository on the isolated review branch. Use the desktop browser/terminal/editor as needed; inspect actual source PDFs and generated crops at readable zoom.
-- Do not assume ChatGPT's local `/mnt/data` files are available on Grok's machine. Download required source files/artifacts from the repository/workflow and verify their hashes and contents.
-- Keep work organized into batches with stable row IDs and source references so another agent can resume without repeating reviews.
-- Do not overwrite the 50 reviewed pilot entries with OCR drafts. Preserve the manual correction map and quarantine/disposition history.
-- Do not spend time repeating completed supplier-code verification unless a later correction or extraction mismatch requires it.
-- Do not create speculative product descriptions, fitment mappings, dimensions, price, stock or images. Never silently convert unknown to blank/verified.
-- If a required supplier confirmation, image permission, credential, owner decision, or physical-device action is unavailable, isolate that exact dependency and continue all independent work.
-- Never expose or copy secrets into source code, logs, handover files, screenshots or Grok prompts. Use existing authorized account sessions; do not ask the owner to paste passwords or API keys into chat.
-- Keep changes review-only. No merge, Supabase write/migration, live import, product/category/price/stock/active-flag change, payment activation, DNS change, Axxess upload, Cloudflare/Netlify deployment, release workflow, or credit-consuming action without explicit owner approval.
-- Do not close PR #173 or mark it ready for review. Do not merge it.
+### Catalogue work already recorded — do not redo
+- Planetworld: 3,317 rows in the integrated preview data; RRP-based price policy, not dealer cost. 37 zero-RRP rows must use the owner's exact current wording: "Price on Request due to Limited Stock and Availability." Do not publish supplier identity or supplier SKU/cost.
+- Audio Connections: 66-row preview subset from 68 source rows; 13 validated Sony price-list rows may retain numeric supplier-RRP-derived preview prices as owner-approved policy; unverified cost-derived/retail-only comparables remain quote-only. No supplier identity disclosure; do not overstate image/spec verification.
+- ASC: six catalogues extracted into 20 review-only CSV batches, 978 source-verified rows, 978 unique ASC supplier SKUs and proposed GW-ASC SKUs, zero duplicates/SKU-format/category mapping mismatches, 56 flagged notes. No prices, stock, import or activation. Preserve catalogue section, source page, exact description/fitment and source provenance. Do not redo extraction; integrate as preview-only content after validating source files and current branch state. No Buyers Guides have been added.
+- Electro-city: source catalogues have no pricing; may use approved imagery only; never expose Electro-city SKU numbers.
+- Supplier names must remain hidden from customer-facing UI.
 
-### Definition of done for this takeover
-The ASC review/reload preparation is complete only when:
-- all 983 products have visually verified supplier codes and unique provisional GW SKUs;
-- all 983 descriptions are editorially verified or explicitly marked not printed/illegible with evidence;
-- fitment/specification/dimension fields are visually verified or explicitly marked not printed/illegible, with no guessed values;
-- all 983 image matches are either supported by an exact source reference and cleared image rights, or explicitly unresolved and excluded from customer-facing use;
-- the searchable preview and exact-head automated/browser QA pass on desktop and mobile;
-- all evidence, limitations, source paths, hashes, run IDs and artifact IDs are recorded in this master handover.
-External supplier permission and the owner's physical Android acceptance must be recorded separately; do not claim these have happened unless evidenced.
+### Execution sequence for Grok
+1. Read this entire handover and inspect PR #176/current main before editing. Confirm exact branch head, changed files, latest CI state and whether PR head is still current. No branch sprawl.
+2. Fix the contradictory category-tree/test architecture at source level: all eight roots visible in homepage; Audio departments correctly nested under Car Audio & Entertainment; 4x4 nested correctly; category page and homepage use the same approved tree; remove stale three-root assumptions only after validating actual navigation behavior.
+3. Complete homepage + Audio customer journey as one integrated experience, using existing catalogue assets and design. Check actual data binding/filtering, brand buttons/logos, component groups, image paths, no supplier disclosure, no blank/placeholder product cards, and mobile tap targets. Avoid inventing data or marking uncertain products verified.
+4. Extend the same shell and navigable category structure to the other seven roots using existing source catalogues. Where verified product data is not available, show honest category/subcategory content and an explicit empty/quote state rather than fabricated products.
+5. Run local regression tests and browser checks at narrow mobile (at least 360/390 px) and desktop. Fix underlying defects, not just tests. Check console errors, category drill-down, Audio department→brand→component→product paths, image loading, horizontal overflow, accessibility/tap targets, supplier privacy, and preview checkout/write blocks.
+6. Only after exact-head checks pass, use the owner-authorized isolated Cloudflare Pages staging workflow, verify deployed SHA/build marker and hosted mobile/desktop journeys. Keep production untouched. Obtain owner acceptance of the single preview before merge.
+7. Update this same handover with exact commit SHA, test/run IDs and status, deployment URL/deployed SHA, remaining blockers and next action. Read back the handover after update.
 
-**Current handoff status:** extraction/cropper correction is under latest CI verification; editorial review, fitment/specification transcription, clean image matching/rights, and complete owner preview/desktop+Android acceptance remain unfinished. This is a handoff of the remaining tasks, not a declaration of completion.
+### Release and safety boundary — unchanged
+Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, PayFast/other payment activation, bank credential change, live price/stock/category/active-flag changes, production Supabase writes/migrations, supplier imports/publication, destructive cleanup or credit-consuming production/release retry without separate explicit owner approval. Owner previously authorized Cloudflare Pages staging preview builds only. Keep checkout/order submission and Supabase writes blocked in owner preview. Banking/payment testing is deferred until the owner supplies banking details. Do not ask again for permissions already granted for non-production staging work.
+
+### Handoff truth statement
+At transfer time, there is no verified exact-head eight-category consolidated preview ready for owner acceptance. PR #176 is not merged and not ready to merge. The prior three-root hosted preview is historical evidence only. The concrete regression-test contradiction described above remains to be fixed and verified. Do not claim the store is complete, ready to merge, or production-ready until the stated evidence exists.
+
+
+## 2026-11-04 — EXECUTION ACCOUNTABILITY UPDATE
+
+### Owner's explicit correction to how work must be carried out
+The owner challenged the repeated pattern of status notifications and promises without carrying fixes through to verified outcomes. This is now an operational rule for every continuation session:
+
+- **Do not restart or re-audit completed work by default.** Read this canonical handover, verify the current repository state, then continue from the exact latest commit and outstanding blocker.
+- **Prefer executed changes over progress narration.** Do not send plan-only updates, repeat apologies, or ask the owner to prompt each next task. Continue through diagnosis, source fix, regression test, and verification wherever the connected tools allow.
+- **Report only material outcomes or a genuine owner decision/blocker.** State what was actually changed, exact commit/run/deployment evidence, pass/fail, and what remains. A commit is not a passing test; source inspection is not browser verification; a historical preview is not proof for a newer SHA.
+- **Keep one consolidated candidate.** Work on the existing integration vehicle, PR #176, unless repository evidence demonstrates it cannot safely continue. Do not create another repair branch or another handover file just to record progress.
+- **Fix underlying application defects, not tests alone.** Tests must reflect the approved eight-root architecture and correct parent-child relationships. Never weaken assertions or rename a test to make a failing implementation appear green.
+- **Update this same master handover after meaningful work**, including failures, exact current refs, run IDs, preview URL/deployed SHA, and the next concrete action. Read back the edited handover to confirm the update persisted. Never recreate the removed `AI_HANDOVER_PERMANENT.md` or `HANDOVER_CURRENT.md`.
+- **Do not claim readiness prematurely.** The consolidated preview can be called ready for owner review only after exact-head checks pass and the exact tested SHA is verified on the hosted staging preview across mobile and desktop. Merge and production release still require owner acceptance and separate approval as defined above.
+
+### Exact latest work evidence from this conversation
+- Active candidate: PR #176, branch `preview/integrated-storefront-2026-11-04`.
+- A small test correction was committed to the PR branch at `3be5c4eea139c280690dd38015cfa9d9766e8820`: `tests/three-category-storefront-structure.test.cjs` now checks Car Audio & Entertainment children against the Audio root rather than the first root, and its output label says eight roots. GitHub read-back confirmed the file update.
+- This is **test-file maintenance only**, not proof that the actual category tree or storefront is correct. No passing exact-head workflow run or combined commit status was available for this SHA at the time of this handover update. PR #176 remained OPEN / DRAFT / UNMERGED and reported `mergeable=false` at the last check; re-fetch live metadata before acting.
+- The previous exact-head workflow snapshot for `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f` included failures in **Cloudflare Pages Public Package QA** and **Car Audio Accessories Route Browser QA**. These are older-head evidence, not verified results for `3be5c4ee`. Inspect their job steps/logs and the current workflow definitions to identify the real failure causes. Do not rerun queued jobs blindly, do not use production/release workflows, and do not spend deployment credits on unapproved retries.
+- The older preview URL `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html` remains historical only; it was deployed from SHA `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`, not the latest candidate SHA.
+- No merge, production deployment, Axxess upload, DNS/payment change, live data write, or production Supabase mutation was performed by this test correction. Production remains HOLD.
+
+### Required next execution (continue, do not restart)
+1. Re-fetch PR #176 metadata, current branch head, workflow statuses and the two failed workflow job logs. Inspect workflow YAML and the actual storefront/tree code at the current branch ref.
+2. Correct any real source/package/browser defects found. Verify all eight roots render in the required order and Audio departments are children of Car Audio & Entertainment; check 4x4 nesting, product navigation, mobile layout, image paths and supplier privacy. Keep the regression test honest.
+3. Run available local/CI checks against the exact resulting SHA. If a required run cannot be initiated through connected tooling, record the precise limitation and the owner-only action needed; do not imply that a run passed or is running.
+4. Use only the approved isolated Cloudflare Pages staging route after exact-head checks are successful; verify deployed SHA/build marker and real hosted mobile/desktop behavior. Do not treat a build/package job alone as hosted browser acceptance.
+5. Append the resulting evidence to this same file and read it back. Keep checkout/order submission and live writes blocked in the owner preview. Do not merge or release without the owner's acceptance and explicit approval.
+
+
+## 2026-11-04 — FAILED WORKFLOW ROOT CAUSE RETRIEVED
+- Re-fetched PR #176 after the handover update: current head `3be5c4eea139c280690dd38015cfa9d9766e8820`, base SHA still recorded as `8a0695a6d746b886be865ffa950a11011b054e2f`; OPEN / DRAFT / UNMERGED, GitHub reports `mergeable=false`.
+- Latest exact-head workflow query for `3be5c4ee` returned **no PR-triggered workflow runs and no combined commit statuses**. This means the test correction is not yet verified by CI.
+- Retrieved logs for prior-head failing jobs:
+  - Cloudflare Pages Public Package QA run `41862070510`, job `126686280805`, failed at the package-builder's pre-package regression test. Actual assertion: `Car Audio & Video must be under combined root` at `tests/three-category-storefront-structure.test.cjs:77`. The later package-exclusion/build checks were skipped.
+  - Car Audio Accessories Route Browser QA run `41862070627`, job `126686281462`, failed at its first regression-test step with the same assertion. Playwright/Chromium and hosted/local browser steps were skipped.
+- This confirms both failures shared the same stale parent-category assertion; it does **not** establish that the corrected test now passes or that the rendered storefront is correct. Next action remains: verify actual category-tree root ordering and parent IDs, run the corrected test on exact SHA `3be5c4ee`, then inspect/fix any next failure. Only after local/CI success should isolated staging deployment and hosted mobile/desktop verification proceed.
+- Branch/source retrieval limitation: GitHub file-content reads by branch name returned 404 for several PR-only files, while PR patch retrieval and run logs worked. Use the PR patch, commit/ref-aware tooling, or exact commit contents; do not infer that a 404 means the file is absent.
+- No deployment, merge, live data write, payment change, or production action was performed during this diagnostic.
+
+
+## 2026-11-04 — CONTINUATION OPERATING MANUAL (OWNER-TAUGHT METHOD)
+
+This section preserves not only project status but the working method the owner has repeatedly had to teach. It is intended to prevent each new chat/session from behaving like a fresh start. It supplements the protected owner instructions; it does not replace them.
+
+### A. Session bootstrap — mandatory before touching code
+1. Read this entire canonical handover, including the latest dated entries and safety boundaries. Do not rely on a short summary or an older section when a later section supersedes it.
+2. Fetch live PR #176 metadata, its exact head/base SHAs, changed-file list/patch, current main SHA, and latest workflow/check state. The SHAs in this file are checkpoints, not assumptions about today's live refs.
+3. Identify the single active candidate and its actual blocker. Continue that candidate; do not create a parallel branch, duplicate fix, or new handover.
+4. Separate facts into: verified current, historical only, unverified, failed, and owner action required. Never promote historical evidence into current status.
+5. Carry forward completed catalogue extraction/reconciliation and approved design decisions. Re-open source files only when a concrete integration or validation question requires it.
+
+### B. Execution loop — work through, do not narrate
+For each real defect or remaining task, use this loop and continue to the next item without waiting for another owner prompt:
+1. Inspect the relevant source, data, test, workflow and actual failure output.
+2. Reproduce the issue or establish a precise failing condition.
+3. Fix the underlying implementation at source. Do not merely edit expected values, skip assertions, weaken tests, or make a green badge the goal.
+4. Add/update a focused regression test that would fail before the fix and pass after it.
+5. Run the narrow test, then the relevant full regression/package/browser checks against the exact resulting commit.
+6. Inspect every failure and skipped step; a workflow with skipped browser checks is not browser acceptance.
+7. Continue fixing subsequent defects while tools/permissions allow. Do not stop after a commit, a test-file edit, a successful static inspection, or a progress update.
+8. After meaningful verified work, append the evidence to this file and read back the updated file. Then continue the next task in the same active session.
+
+### C. Evidence and reporting discipline
+- A code commit proves only that code was committed.
+- Static source inspection proves only what the source contains; it does not prove rendered browser behavior.
+- A regression test passing does not prove hosted deployment or owner phone acceptance.
+- A package build does not prove the hosted URL serves that package.
+- A hosted preview is current only when its deployed commit/build marker exactly matches the tested candidate SHA.
+- Record exact SHA, test command or workflow/run/job IDs, result, skipped steps, preview URL, deployed SHA/build marker, viewport/device coverage and any owner acceptance.
+- If a capability is genuinely unavailable, identify the exact unavailable action/tool/permission and the smallest owner action needed. Do not disguise inability as progress, and do not ask the owner to repeat an approval already granted.
+- Send no routine "I will now..." or "next I plan..." notifications. The owner wants the work executed, not narrated. Report material outcomes, a real blocker, or a decision only.
+- Never claim complete, ready for preview, ready to merge, or production-ready without the evidence threshold defined in the release gates.
+
+### D. Technical workflow lessons learned
+- GitHub PR branch file reads may fail when addressed by branch name even though exact commit SHA reads or PR patch retrieval work. A branch-ref 404 is not evidence that a file is absent. Retry with exact SHA or use PR patch/tree tooling.
+- Re-fetch PR metadata after any update; do not assume head/base, mergeability or checks remain unchanged.
+- A missing workflow run or empty combined status is NOT a pass. Establish why no run triggered and use an available safe trigger only if it is within authorization.
+- Do not blindly rerun queued jobs. Do not rerun production/release/deployment workflows. Avoid credit-consuming retries without the relevant explicit approval.
+- Old failing workflow logs are diagnostic evidence for their recorded SHA only. A later code correction still needs a new exact-head run.
+- The previous root assertion failure showed why the source tree must be checked before changing a test: the approved Audio departments belong to Car Audio & Entertainment, the third root, not Auto Electrical Spares, the first root. Keep the test name/output and documentation consistent with the eight-root architecture.
+- Use the existing PR #176 as the single integration path unless live repository evidence proves it is irrecoverably stale or unsafe. If that occurs, explain the evidence before creating any replacement.
+- The repository's canonical handover is this file only. Never recreate the removed AI_HANDOVER_PERMANENT.md, HANDOVER_CURRENT.md, or extra checkpoint documents.
+
+### E. Owner's product and release decisions to preserve
+- The deliverable is one consolidated, populated, customer-facing staging preview, not disconnected demo pages, repair branches or reports.
+- Homepage and complete Audio journey are the immediate priority: all eight roots in order; Audio departments under the Audio root; department → brand → component/product type → products; distinct Aerials and Trims & Harnesses routes; consistent bright shell; real, correctly matched imagery; readable product codes and mobile tap targets.
+- Then integrate the other approved categories using verified source data. Empty/unverified categories must show honest empty/quote states, never fabricated products.
+- Supplier names, supplier costs and prohibited supplier SKUs must not leak into public UI. Preserve source provenance internally. Price-on-request wording and existing supplier-specific pricing rules remain as recorded above.
+- Keep preview checkout, order submission and live writes safely blocked until the owner is ready to provide banking details and authorize appropriate testing.
+- Owner authorized isolated Cloudflare Pages staging preview builds. This does not authorize production deployment, merge, Axxess upload, DNS changes, live Supabase writes, stock/price/category changes or payment activation.
+- Owner acceptance is a separate gate after the exact tested candidate is deployed and verified on real mobile and desktop. Never infer acceptance.
+
+### F. Handover update template — append one concise entry per meaningful checkpoint
+Use this structure, with only evidence-backed values:
+- Date/time (SAST):
+- Active PR/branch:
+- Exact head SHA / base SHA:
+- Work actually changed:
+- Tests/workflow run IDs and exact outcomes:
+- Failures and skipped checks:
+- Staging URL and deployed SHA (or explicitly NOT DEPLOYED):
+- Mobile/desktop verification:
+- Owner acceptance:
+- Production/release boundary respected:
+- Next concrete action (one item, not a speculative plan):
+
+### G. Immediate continuation pointer at time of writing
+Start from the latest checkpoint above: PR #176, branch `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live state before acting. The corrected regression assertion has not yet been proven by an exact-head workflow run. Continue by executing that test/CI path and inspecting/fixing the actual storefront and package defects; do not stop at this handover update. Production remains HOLD.
+
+
+## 2026-11-04 — OWNER-APPROVED STORE BUILD PLAN — AUTHORITATIVE METHOD
+
+**This is the actual store construction plan the owner accepted earlier on 4 November. It is distinct from the session-continuation method above. It must be treated as the fixed build method unless the owner explicitly changes it.** The previous handover update failed to preserve this plan; that omission is acknowledged and corrected here.
+
+### 1. The deliverable
+Build **one consolidated Get Wired AutoWorx online store** with:
+- One approved, consistent, bright customer-facing storefront design and shared page shell.
+- One homepage with the eight approved root categories in the approved order.
+- One coherent category/subcategory/brand/product navigation system, including the complete Car Audio & Entertainment experience.
+- One reconciled product catalogue assembled from the approved supplier source material, with accurate product identities, descriptions, images, Get Wired SKUs, pricing rules and availability states.
+- One customer-facing staging preview representing the actual integrated store, not a collection of disconnected demonstrations, supplier pages or repair branches.
+- A single controlled path from customer product discovery/request through supplier availability confirmation, quotation, customer acceptance and payment. Supplier identities, supplier costs and private supplier SKUs remain internal.
+
+### 2. Fixed technical architecture
+Keep and complete the existing project stack; do not start a replacement application or introduce unnecessary services:
+- **GitHub repository** is the version-controlled source of truth for storefront code, approved catalogue assets/data, tests, build scripts and handover.
+- **Existing storefront implementation** remains the customer UI. Build the shared homepage/category/product/support shell once and reuse it across routes; do not create separate visual systems for individual catalogue sources.
+- **Supabase** remains the structured catalogue/application data layer where the existing application uses it. Keep supplier identifiers, supplier costs, source provenance and reconciliation metadata private/internal. No production writes or schema changes without separate explicit approval.
+- **Cloudflare Pages** serves the customer-facing static storefront and the isolated staging preview. Use the existing Pages integration and public-package allowlist; exclude supplier source folders, private review files, internal supplier SKUs/costs and non-public working data from the public package.
+- **GitHub Actions** performs repeatable regression, security, package and browser checks. Tests must validate the approved information architecture and customer-visible behavior; a green static test alone is not deployment acceptance.
+- Do not introduce a new hosting provider, database, framework, parallel repository, or paid service as a shortcut. Keep the current stack and minimize deployment/build-credit use.
+
+### 3. One reconciled catalogue — not separate supplier storefronts
+Normalize the approved supplier source data into one internal product model and one customer-facing catalogue. Each candidate product must retain internal provenance sufficient to trace it back to supplier file/catalogue, page or sheet, source category, source SKU/model, image source and price/availability evidence.
+
+The unified product record must distinguish, as applicable:
+- Customer-facing Get Wired SKU and product identity/model;
+- Customer-facing name, accurate description, compatibility/fitment and category path;
+- approved customer image and its exact product/variant match;
+- current verified retail price or explicit quote/price-on-request state;
+- availability/stock-confirmation state and evidence date;
+- private supplier/source reference, dealer cost and reconciliation status (never exposed publicly).
+
+Supplier integration rules:
+- **Planetworld:** use the owner's RRP-based pricing policy, not dealer cost as retail price; preserve the exact approved price-on-request wording for zero-RRP/limited-availability items. Hide Planetworld identity and internal supplier SKUs/costs.
+- **Audio Connections:** use the owner-confirmed dealer relationship; reconcile exact model to Get Wired SKU, exact image, accurate description, VAT basis, price evidence and availability. Only the already approved verified pricing subset may show numeric preview prices; unresolved comparables remain quote-only.
+- **ASC:** integrate the already extracted 978 source-verified review rows and 20 review batches as preview-only catalogue content, retaining source headings/subcategories, exact source page/description/fitment and provenance. Do not repeat extraction. No live stock, price, import or activation is implied.
+- **Electro-city:** catalogue imagery may be used only within the owner's stated permission; no Electro-city supplier SKU or pricing is published.
+- **Caelex:** compare compatible supplier offers internally and select the better customer offer/margin only after accurate compatibility, landed cost, delivery and source evidence are reconciled. Never expose supplier identity.
+- Never invent missing prices, stock, compatibility, descriptions, product images or authorization. Unverified items remain quote-only, inactive or clearly marked unavailable for purchase until evidence is complete.
+
+### 4. Storefront construction sequence — fixed order
+**Phase 1 — Establish the single storefront shell and homepage**
+- Use the approved bright design consistently on homepage, category, subcategory, brand, product and support/policy routes.
+- Render the eight approved root categories in this exact order: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- Make every root tile/button tappable, legible and visually meaningful on mobile. Keep product codes and descriptions high contrast; descriptions must not obscure product images.
+- Keep 4x4 Outdoor nested under Camping, Leisure & Outdoors.
+- Remove supplier names/source catalogues from all customer-facing navigation and labels.
+
+**Phase 2 — Finish the full Audio experience before broadening**
+- Car Audio & Entertainment must contain Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle.
+- Build the complete drill-down: Audio root → department → brand (with the correct brand logo) → component/product type → populated products.
+- Group car-audio products by useful component types (speakers, amplifiers, radios/head units and other verified product groups); retain the appropriate Home Theatre, Studio, Marine and band/instrument groupings in their correct departments.
+- Keep Aerials and Trims & Harnesses as separate, correctly nested routes under the relevant Car Audio accessories structure.
+- Integrate the existing Planetworld and Audio Connections product data into this same Audio navigation and shell. Do not show empty placeholder cards or supplier-facing catalogue pages.
+
+**Phase 3 — Populate the other seven roots**
+- Reuse the same shared shell and category/navigation components.
+- Integrate the approved, verified products and imagery into their correct categories/subcategories, preserving source provenance and SKU uniqueness.
+- Use the existing ASC review dataset and the other approved supplier catalogue data; do not redo completed extraction/audits.
+- Where the source evidence is incomplete, render a truthful category/subcategory or quote state rather than fabricated product content.
+- Check all eight categories and their subcategories for correct parentage, navigation, product filtering and image-to-product matching.
+
+**Phase 4 — Complete the customer purchase/request journey safely**
+- Customer discovers/searches/selects a product or uses the source-a-part/request flow for an unlisted item.
+- For supplier-dependent or uncertain stock, Get Wired confirms supplier availability and current price before making a firm offer.
+- Calculate the customer offer using the approved retail/margin/delivery rules; generate a quotation where required.
+- Customer accepts the quote, then proceeds through the approved payment path.
+- Login is required before checkout; display the Terms modal before purchase as already specified.
+- Keep returns address private and provide it only in writing when a return is required. Pickup is appointment-only, no walk-ins and no COD; pickup follows payment and notification.
+- Until the owner supplies banking details and authorizes payment testing, keep checkout/order submission and all live writes blocked in staging. Do not activate PayFast or other payment methods without explicit approval.
+
+**Phase 5 — Verify one integrated candidate**
+- Run source/data integrity checks, Node regression tests, package/privacy/security checks and browser tests against the exact candidate commit.
+- Test all eight roots and full Audio navigation, category/product filtering, real images, no supplier disclosure, no broken routes, no console errors, no horizontal overflow, readable contrast and touch targets.
+- Test mobile-first at narrow widths including 360px and 390px, plus desktop. Account for the owner's Android phone and older Windows 7 PC/browser limitations; avoid unsupported modern features or provide fallbacks.
+- Build and deploy only the exact tested commit to the already authorized isolated Cloudflare Pages staging preview. Verify the deployed commit/build marker matches the tested SHA and exercise the hosted preview on desktop and mobile.
+- Keep preview noindex/private as designed and keep all purchase/live-write functions safely blocked pending owner authorization.
+- Present one consolidated preview for owner review. Owner acceptance is required before merge. Production remains a separate approval gate.
+
+### 5. What "done" means
+The build is not complete because code exists, a branch is merged, a package builds, or a historical preview loads. The owner-reviewable store is complete only when the single staging preview contains the approved shared storefront, all eight navigable categories, the full populated Audio journey, and the integrated approved catalogue content; exact-head automated checks pass; the exact tested SHA is deployed; and hosted desktop/mobile checks pass. Owner acceptance is then recorded separately. Production launch is never implied.
+
+### 6. Schedule correction and owner's priority
+- An earlier estimate of **3–5 focused working days** for a fully populated owner-reviewable store was rejected by the owner as too slow. It is not an accepted delivery commitment and must not be repeated as though approved.
+- The owner's immediate instruction on 4 November was to bring the **homepage/storefront and complete Audio categories up to standard within the next hour**, then continue directly with the remaining categories and integration. Treat this as the urgent execution target; do not reinterpret it as permission to cut quality, fabricate catalogue data, skip checks or claim completion without evidence.
+- Work should be parallelized only where it genuinely reduces elapsed time without creating competing branches or inconsistent catalogue sources. Reuse completed supplier extraction, assets, shared components and tests; fix the consolidated candidate rather than rebuilding completed work.
+
+### 7. Current implementation pointer
+At the time this plan is appended, the recorded active integration candidate is PR #176 on `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live PR/head/main/checks before continuing. The last known exact-head workflow result was empty; no exact-head passing test or current hosted preview was proven. This is an execution checkpoint, not a claim that Phases 1–5 are complete. Continue the build on the existing candidate and update this same handover with evidence.
+
+
+## 2026-11-05 17:23 SAST — CONTINUATION TASK START
+- Resumed from the current repository state, not historical PR assumptions. Read the README pointer, the canonical owner continuation handover, and the binding owner reset at `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`.
+- Current authoritative storefront direction: three root categories; one coordinated preview candidate; catalogue-first workflow; ASC catalogues only (no ASC Buyers Guides); no live/production changes without explicit approval.
+- Current candidate discovered: PR #178, draft/open/unmerged, branch `integration/owner-preview-single-task-2026-11-05`, current head `a9b85c4fbc6c53854af0a553d1b71c836a8e14e0`. The latest previously successful exact-head preview run was #42051190890 on `86b58cbb4197fd37a72a62aa09426ed62ef2d2a5`; current head is later and requires exact-head verification before the preview can be described as verified for that head.
+- Task scope: continue remaining storefront/catalogue image and description corrections, preserve RRP−2% treatment where applicable, verify the current preview and update this handover with evidence. No PR merge, production deployment, Axxess/DNS/payment action, live data write, price/stock/active-flag change or supplier activation is authorised.
+- Status: IN PROGRESS. No code, product data, prices, stock, deployment or production state changed by this task-start entry.
+
+
+## 2026-11-05 17:23–17:45 SAST — CATALOGUE IMAGE CORRECTIONS / EXACT-HEAD QA PENDING
+- Active workstream remains PR #178, draft/unmerged, branch `integration/owner-preview-single-task-2026-11-05`. Current branch head after the preview request commit: `8b4ac76a65c2ce45d49cb548d08897f117b3e1cc` (source/data/test commit immediately before request: `964315dd788db591989f314cc026cea33557c3fc`).
+- Added exact-model product image candidates to the public preview dataset for Alpine R2-W12D4 and JVC KW-M590BT, and improved the Alpine description with manufacturer specifications. These images are explicitly tagged review-only (distributor/retailer hosted), not production-approved.
+- Added four additional OneNav Classic exact-fitment images: OA011-1 FJ Cruiser, OA013-1 Hilux/Fortuner 2011–2015, OA018-1 Hilux 2015–2018, and OA312-1 Hyundai H1 2015–2018. Improved OA014-1 to the inspected 5000px source and set the OneNav product-image crop position to center 40%; retained the exact OA015-1 image. Product image sources were visually checked where retrieval succeeded; hosted browser naturalWidth/alt verification is still required.
+- Updated `assets/planetworld-catalogue-preview.json`, `assets/planetworld-verified-models-preview.json`, `catalogue-review/PLANETWORLD_PRODUCT_IMAGE_AUDIT_2026-11-05.csv`, and `tests/audio-catalogue-preview.test.cjs`. Reviewed Planetworld preview image URLs now total 74; three exact-model page records remain without approved image candidates. Six OneNav Classic image candidates are tagged owner-preview-only. The wider 3,317-row catalogue still contains many rows without exact product images; do not claim full-catalogue image completion.
+- Exact preview workflow was requested by updating `.preview-deploy-request`; request commit is `8b4ac76a65c2ce45d49cb548d08897f117b3e1cc`. The configured workflow deploys only to the dedicated non-production Cloudflare Pages `owner-preview` branch and runs Node regression suites, public SKU/privacy audit, hosted image checks, and 390px/1365px browser QA.
+- Verification status at this note: GitHub's available commit-workflow lookup returns no push-triggered run details, and combined status for `8b4ac76...` is empty. Therefore **no exact-head test pass, deployed-SHA marker, hosted image-load pass, or refreshed preview URL is yet verified**. Do not send the prior `3c93a97f...` preview as current; it predates these changes.
+- No PR merge, production deploy, Axxess/DNS action, live price/stock/Supabase change, checkout/payment activation, or supplier activation was performed.
+- Next: obtain the exact push-triggered workflow result for `8b4ac76...`; fix any failing Node/data assertions or image endpoints; only then publish the exact current preview URL and update the PR/handover with the run ID and evidence.
+
+
+## 2026-11-05 17:45 SAST — DATA QA RECONCILIATION CHECKPOINT
+- Latest PR #178 branch head: `ad827243cabaa19a13eca2ad33f9f9a7dfe3f9b3` (draft/unmerged). Latest exact preview request commit is this same head; request file records source head `5afc896626f3d0dfe3098cae11c43f69971c421a` immediately before the request-only commit.
+- Reconciled OneNav manufacturer names for all nine reviewed records and completed the Isuzu RBA/RBB OneNav Evolution description from the official ON115-3LX page. Eight OneNav Classic descriptions remain marked as verified; the ninth is correctly identified as Evolution rather than Classic.
+- Completed the BlackSpider Lynx BS-46 description from the manufacturer product specification: pair supplied, 550W RMS, 2,500W max, 4Ω, 95dB and 2kHz–20kHz. Its current exact-model photo remains a 105px thumbnail and is explicitly flagged for a full-resolution replacement; do not call its photo resolved.
+- Manual data QA now passes for: all 3,317 Planetworld source rows; exact RRP-incl-VAT × 0.98 pricing with 3,298 priced / 19 quote-only rows; pricing audit statuses 19 quote-only / 19 below-cost review / 3,279 cost-floor pass; 74 Planetworld image URLs / 3 exact-model pages still missing / 3,240 with no exact-model match; 68 unique verified model image records; 66/66 Audio Connections image records and descriptions; 77 manufacturer-named Planetworld records with descriptions; six OneNav owner-preview image candidates; no supplier SKU/dealer-cost fields exposed in public catalogue data; and 140 combined image candidates across verified models, Audio Connections and OneNav.
+- Updated public Planetworld catalogue JSON, internal verified-model crosswalk, Audio Connections catalogue JSON, OneNav/product image audits, pricing audit alignment, and regression assertions. The exact product-photo candidate status remains preview-only; no production release or live price/stock update.
+- Hosted exact-head regression/browser status is still NOT VERIFIED: connected GitHub status lookup returns no check runs/statuses for `ad827243...`; the stable owner-preview URL is not accessible through the available page fetch, and no deployed-SHA marker or 390px/1365px browser QA evidence is available. The previous `3c93a97f...` deployment remains superseded. Do not claim preview readiness or send it as current.
+- Next: obtain the push-triggered owner-preview workflow result for `ad827243...`; verify deployed SHA, all 74 Planetworld images and 66 Audio Connections images load, confirm 390px and 1365px layouts, and then send the verified current preview URL. Continue resolving OA009-1, OA411-1, ON115-3LX and the BlackSpider Lynx high-resolution image source; broader 3,317-row Planetworld image matching remains outstanding.
