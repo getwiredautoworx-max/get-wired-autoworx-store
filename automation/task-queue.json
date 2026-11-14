@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "The 81 unassociated branches are classified. The single integration branch now contains PR #203 (four verified Audison Forza preview models) and PR #185 (29-product Electrocity ignition review pilot). PR #202 is closed unmerged and is not the active candidate. Candidate head 3ea4cf9ff88d1e979f024341790068b3e421f863 is 7 ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b. Next: reconcile the four main-only commits into this same candidate without losing its integrated work, then independently validate and assess PR #173 (978-row ASC review-only extraction). No parallel workstreams, no blind merge, and no production release."
+      "next_action": "Confirm GitHub has recalculated PR #204 mergeability after main ancestry was restored. Merge the latest PR-specific handover/task-queue checkpoint into this branch without overwriting main's owner directives. Then inspect the 51-file consolidated diff for source/public exposure and execute all available non-production tests; keep draft until verified."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -267,9 +267,9 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "b171c0bbcd83a775985ba37d4df84e717b7c9a8b",
-    "active_candidate_pr": null,
+    "active_candidate_pr": 204,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "3ea4cf9ff88d1e979f024341790068b3e421f863",
-    "active_candidate_status": "Single non-production integration branch; PR #203 merged into it as 83ac18b209194e8d033ecd31bac5b114d1d5eeb5 and PR #185 merged into it. PR #202 is closed unmerged. Branch is 7 commits ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b; not merge-ready. Reconcile main-only commits and validate before further integration."
+    "active_candidate_head": "9d52679694981c73f28a08ad2b19603f9fa218b6",
+    "active_candidate_status": "Draft PR #204 now has main as an ancestor. Candidate is 15 commits ahead / 0 behind main. Main-only tree changes were reconciled with a two-parent merge commit 9d52679694981c73f28a08ad2b19603f9fa218b6; 47 candidate-only files were overlaid on main's tree, while four overlapping paths retained main's versions pending owner checkpoint merge. PR remains draft and GitHub still reports mergeable=false (re-evaluation pending). Exact-head QA not yet run."
   }
 }
