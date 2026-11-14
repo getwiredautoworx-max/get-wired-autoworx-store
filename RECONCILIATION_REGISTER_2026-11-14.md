@@ -477,3 +477,10 @@ No branch was deleted, closed or merged as part of this audit. The categories be
 - `approved-storefront-preview-trigger` is retained because it is a workflow trigger; backup branches are preserved.
 - `audit/buyer-guide-extraction` is prohibited by the owner’s ASC Buyers Guide exclusion.
 - `feature/docs-schema-pack` is no longer unassociated: it is open PR #28, 30 commits ahead / 1,910 behind, docs/schema reference only.
+
+
+## ACTIVE CONSOLIDATION BRANCH CHECKPOINT — 2026-11-14
+- The sole non-production integration branch is `integration/store-consolidated-2026-11-14`. It contains PR #203 (four verified Audison Forza preview models) and PR #185 (29 Electrocity ignition review records). PR #202 is closed unmerged; its relevant work was integrated through #203.
+- Current canonical main head at last verification: `b171c0bbcd83a775985ba37d4df84e717b7c9a8b`. Integration branch head before this sync: `3ea4cf9ff88d1e979f024341790068b3e421f863`.
+- Synchronised the current task queue, handover checkpoint and audio official-model review manifest from main into the integration branch, preserving the candidate's existing catalogue work. Synchronisation commits: `45d6844924621341714253c551aa990966a0efa9`, `828d4c8717450f46646ed9c8e5b4734b757b5e2a`, `3d3bfec0958bea211f7d57ec84e0620f71c1f31f`.
+- This is a documentation/control-plane synchronisation, not a full code rebase or release. The candidate still requires exact-head validation and review of remaining differences before it can be proposed for merge to main. No production deployment, Axxess upload, live data write, branch deletion or paid hosting spend.
