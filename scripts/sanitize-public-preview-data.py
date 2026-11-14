@@ -30,6 +30,11 @@ def clean(value):
     if isinstance(value, list):
         return [clean(item) for item in value]
     if isinstance(value, str):
+        # Preserve exact image URLs; replacing supplier tokens inside a URL
+        # breaks the authorised image asset. Customer-visible labels are
+        # checked separately with URLs excluded from the text scan.
+        if re.match(r"^https?://", value, re.I):
+            return value
         return SUPPLIER_NAMES.sub("supplier", value)
     return value
 
