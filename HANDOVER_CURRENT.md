@@ -147,8 +147,7 @@ Task states: `blocked`, `ready`, `claimed`, `in_progress`, `validation_failed`, 
 - A successful workflow is not evidence of persistent, around-the-clock execution. GitHub Actions is scheduled/event-driven, not a permanently running process. Prove cadence, missed-run detection, checkpoint durability, lease expiry, watchdog recovery and bounded retry before advertising 24/7 reliability.
 
 ### Automation implementation order
-1. Reconcile PR #187/#188 into one controller fix; fix queue rendering against the actual schema and add regression tests for missing optional fields.
-2. Correct retention rules and preserve rollback/evidence artifacts.
+1. Reconcile PR #187/#188 into one controller fix; fix queue rendering against the actual schema and add regression tests for missing optional fields.2. Correct retention rules and preserve rollback/evidence artifacts.
 3. Reconcile the task-queue schema and validator; add explicit task state, lease/heartbeat, checkpoint, retry count, last error, output references and timestamps without breaking existing tasks.
 4. Make checkpoint state durable and recoverable; ensure event-driven and scheduled reconciliation are idempotent.
 5. Align the operating contract with actual workflow triggers and default-branch state.
@@ -298,7 +297,6 @@ The owner has clarified the business model and corrected the previous blanket co
 
 This owner clarification supersedes the earlier blanket private-data-boundary statements in this handover and any automation prompts. Those statements must not be used to stop authorised catalogue work.
 
-
 ## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
 The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
 
@@ -447,8 +445,7 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - Review contact sheet: `catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-contact-sheet.jpg`.
 
 ### Audio: verified-only product display and current enrichment
-- The owner-preview now filters Planetworld product cards to records with both a product image URL and description, and an accepted exact-model image status. Records with rejected wrong-variant images, image candidates, page-link-only candidates, or missing descriptions are withheld from product cards.
-- The build applies `assets/audio-product-enrichment-overrides.json` to the preview copy before public-data sanitisation. The override file itself is not copied into the public package. Every override keeps `indicativePrice=null`, `hasStock=null`, and `Price On Request`; supplier names and supplier item codes are not displayed.
+- The owner-preview now filters Planetworld product cards to records with both a product image URL and description, and an accepted exact-model image status. Records with rejected wrong-variant images, image candidates, page-link-only candidates, or missing descriptions are withheld from product cards.- The build applies `assets/audio-product-enrichment-overrides.json` to the preview copy before public-data sanitisation. The override file itself is not copied into the public package. Every override keeps `indicativePrice=null`, `hasStock=null`, and `Price On Request`; supplier names and supplier item codes are not displayed.
 - Nine model-specific review-only overrides now cover:
   1. OneNav Classic 9-inch Toyota Prado 2002–2009 (OA014-1 source match; retailer image visually checked)
   2. Audison bit DMI (official manufacturer product page/image)
@@ -597,7 +594,6 @@ This section supersedes the immediately preceding statement that no isolated Pag
 - PR #193 exact head: `d078254451f668fbdf8ac8f33377a863594f8514`. GitHub customer-source audit, public-package QA and isolated Cloudflare Pages preview checks were still running at checkpoint time; no pass is claimed until their final conclusions are read.
 - No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
 - Next action: complete exact-model image matching for the six Alpine products, then continue the outstanding Planetworld/Audio Connections batches and category reconciliation on the same canonical storefront project.
-
 
 ---
 
@@ -748,7 +744,6 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 ### 4. Immediate next action
 
 The next action is to review PR #195's current diff and exact workflow configuration, then obtain the owner's explicit decision to merge it. If approved and merged, configure the secret through GitHub's repository Settings → Secrets and variables → Actions, then manually run a small non-destructive test task. Do not wait for a scheduled or always-on worker: this workflow is manual-dispatch only.
-
 ### 5. Safety and release boundaries retained
 
 - No production merge/deployment, Axxess upload, DNS change, live Supabase write, live catalogue/price/stock/active-flag change, payment activation or paid hosting/automation spend is authorised by this integration checkpoint.
@@ -898,7 +893,6 @@ The next action is to review PR #195's current diff and exact workflow configura
 
 **Next:** allow exact-head checks to complete on `0a2f0ba865e05fa97f9ce2cb427a95ac2825b0cc`; inspect any failure and correct it on this same PR. Only after exact-head checks pass should the owner review the draft. Do not merge PR #196 or deploy without explicit approval.
 
-
 ## EXACT-HEAD QA STATUS — 2026-11-12 17:18 SAST
 
 Current PR #196 head: `d415029aec455d623d31748da70983b64e12d6fe`.
@@ -1047,8 +1041,7 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Three Starsound records remain correctly quarantined: SSA-ATOM-13500 (ac-032) requires confirmation whether source model omitting `.1` is the manufacturer's SSA-Atom-13500.1; SSA-M5-80.6 (ac-041) requires exact model mapping and resolution of conflicting RMS tables; SSS-6501PRO (ac-044) requires confirmation against SSS-M6501Pro and whether the disputed 250 W RMS is per driver or pair. Do not infer these mappings/specifications.
 - Other image caveats: BlackSpider BULLET LYNX (ac-058) has a low-resolution image only; retain its explicit low-resolution status and do not treat it as image-complete. Sony XS-W104ES is the only currently identified Sony image failure; three Starsound rows are held for model/variant confirmation.
 - The preview has three records with explicit non-live hold publication statuses (ac-032, ac-041, ac-044). These must remain excluded from customer display. The dataset's top-level OWNER_REVIEW_PREVIEW_ONLY label does not override per-record hold statuses.
-- This was a read-only audit plus manufacturer-source verification. No product data, image URL, supplier record, price, stock, live catalogue, Supabase or storefront content was changed.
-- Next action: resolve Sony XS-W104ES image URL from its official product page and verify the image visually; keep the three Starsound records held pending source confirmation; improve BlackSpider image quality only with an exact-model source. Continue the separate Planetworld 3,317-row and Audio Connections 66-row reconciliation without inventing product matches.
+- This was a read-only audit plus manufacturer-source verification. No product data, image URL, supplier record, price, stock, live catalogue, Supabase or storefront content was changed.- Next action: resolve Sony XS-W104ES image URL from its official product page and verify the image visually; keep the three Starsound records held pending source confirmation; improve BlackSpider image quality only with an exact-model source. Continue the separate Planetworld 3,317-row and Audio Connections 66-row reconciliation without inventing product matches.
 - Production remains HOLD; no deployment, Axxess upload, paid hosting spend or live data mutation occurred.
 
 ---
@@ -1197,8 +1190,7 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Next audit tranche: enumerate the remaining branch pages and all open/closed PR states, identify genuinely unique customer-facing changes not already present on main, and check their exact-head tests before any extraction. Keep all source PDFs, workbooks, internal SKU/crosswalks and raw review registers out of any storefront integration PR.
 
 
-## COORDINATED RECONCILIATION TASK START — 2026-11-14
-- Owner instruction: stop fragmented parallel work; align all contributors on one canonical project and one coordinated execution queue.
+## COORDINATED RECONCILIATION TASK START — 2026-11-14- Owner instruction: stop fragmented parallel work; align all contributors on one canonical project and one coordinated execution queue.
 - Authority re-read at task start: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and `HANDOVER_CURRENT.md` on the repository default branch.
 - Canonical baseline for this audit: repository default branch remains the only integration baseline pending fresh SHA verification; no candidate PR or branch is presumed authoritative.
 - Work in progress: inventory all branch pages and open/closed PRs, then map each live candidate to the canonical baseline and classify safe recovery, stale/duplicate, review-only, or blocked.
@@ -1347,5 +1339,13 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - The Public-Safe Catalogue Worker run `43611150678` completed its bounded ASC extraction step successfully; checkpoint-branch preparation and output commit were skipped, so it produced no separate branch/commit and did not create another active candidate.
 - Consolidated work in the candidate: selective Audison Forza preview records, 29 Electrocity ignition pilot records (review-only), and six-catalogue ASC review evidence/extraction tools. ASC counts remain 978 product cards (78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats, 129 Fuel Pumps); only 50 descriptions manually reviewed, 42 printed fitments verified, 928 OCR drafts, 63 false-positive OCR tokens quarantined. No ASC Buyers Guides. All unverified records remain REVIEW ONLY / DO NOT IMPORT.
 - Public package QA and public SKU exposure audit passed for the exact head. Supplier-source/review areas are not customer package output. Customer prices remain Price On Request; supplier names/internal SKUs remain hidden from customer-facing content. This package-level result does not authorise publication/import or resolve any separate repository-visibility decision.
-- Final merge gate remains a human security/diff review and owner acceptance. No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting spend was performed.
-- Next single action: complete the final PR #204 diff/security review against the latest owner instructions, resolve any repository-content boundary issue without creating another storefront candidate, then present the single consolidated preview for owner acceptance. Do not resume paused catalogue enrichment workstreams in parallel.
+- Final merge gate remains a human security/diff review and owner acceptance. No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting spend was performed.- Next single action: complete the final PR #204 diff/security review against the latest owner instructions, resolve any repository-content boundary issue without creating another storefront candidate, then present the single consolidated preview for owner acceptance. Do not resume paused catalogue enrichment workstreams in parallel.
+
+## TASK START — SINGLE-PROJECT RECONCILIATION RESUMED — 2026-11-14 18:xx SAST
+- Mandatory start-of-task read completed: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from canonical `main`; `HANDOVER_CURRENT.md` and `automation/task-queue.json` from `integration/store-consolidated-2026-11-14`.
+- Active task remains `single-project-reconciliation`; no new branch or parallel workstream created.
+- Verified queue drift: queue still records the prior 962af16/738a9a2 checkpoint, while the branch head recorded in the previous chat checkpoint is 921d6862818d330580a61c447efa8103054ff5f1. Re-verify live branch/PR head and exact-head workflows before relying on either checkpoint.
+- Open-PR inventory returned 22 open PRs. #204 is the sole storefront/catalogue consolidation candidate. Distinct open PRs requiring classification include #184, #49, #164, #155, #154, #152, #150, #143, #137, #72, #81, #67, #82, #65, #48, #51, #53, #31, #32, #28 and #3. Do not merge or close any of these as part of inventory alone; several are independent owner/admin/security/catalogue proposals and need scope/status review.
+- Gemini handover records the existing `GEMINI_API_KEY` was rejected by Google with HTTP 400 `API_KEY_INVALID` on run 43274119946. Gemini model execution is therefore not active; do not rerun until credential issue is corrected. Do not tell the owner Gemini is collaborating when no model call succeeded.
+- Task objective: reconcile every open PR and associated branch against canonical main and #204, identify safe selective recovery vs independent/obsolete/blocked work, review #204 diff and supplier-data exposure, update one task queue and this handover with exact evidence. Keep all release boundaries in force.
+- Status at start: READ/INVENTORY IN PROGRESS. No merge, PR closure, deployment, Axxess upload, live Supabase write, DNS/payment change or paid hosting spend performed.
