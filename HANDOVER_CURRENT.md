@@ -1307,3 +1307,15 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Verified compare after update: integration branch is **15 commits ahead / 0 behind main**; 47 candidate code/catalogue/test files remain in the diff. PR #204 follows the branch head automatically. GitHub's PR snapshot still reports `mergeable=false` immediately after ancestry restoration; allow status recalculation and recheck before taking further action. Do not force merge.
 - Candidate content remains non-production: Audison preview work and 29 Electrocity ignition pilot records; no ASC Buyers Guides. Customer-facing supplier names/internal SKUs remain hidden; all supplier product prices remain Price On Request; product records remain review-only / DO NOT IMPORT.
 - Exact-head CI has not yet been established. No tests, preview checks or production release are claimed as passed. Next: recheck PR mergeability, reconcile owner checkpoint notes into the branch without replacing main's current directives, inspect public-data exposure, and run all available non-production checks.
+
+
+## EXACT-HEAD CONSOLIDATION QA — 2026-11-14
+- PR #204 head verified as `e64deda583ca1d3ebda771654d7088adc3b8f3d5`; PR remains open/draft and GitHub now reports `mergeable=true`. Branch comparison: **18 commits ahead / 0 behind** `main`.
+- Exact-head GitHub Actions completed successfully:
+  - Cloudflare Pages Public Package QA: PASS — standard customer-only package build, preview package build, preview-route inclusion and supplier-safe exclusions.
+  - Public SKU Exposure Audit: PASS.
+  - Supplier Catalogue Review Data QA: PASS — ASC 978-row review dataset validation and Electrocity ignition pilot fitment quarantine.
+  - Storefront Smoke Test: PASS — three-category structure and Price On Request/availability policy.
+- Still running at checkpoint: Catalogue & Supplier Routing Review — QA (responsive-review job, Chromium installation underway) and Owner Preview Mobile and Desktop Browser QA (browser-qa job, Chromium/Playwright installation underway). Do not claim these passed until completed.
+- A 24x7 Public-Safe Catalogue Worker workflow run was pending with no jobs returned; inspect its configured triggers and execution scope before allowing it to become a second active workstream.
+- PR #204 remains draft and unmerged. No production deployment, Axxess upload, live data changes or paid hosting spend.
