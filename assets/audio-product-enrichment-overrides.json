@@ -274,7 +274,7 @@
       "match": {
         "id": "pw-0119"
       },
-      "appendIfMissing": false,
+      "appendIfMissing": true,
       "title": "Audison Forza AF M12.14 bit 12-Channel Amplifier with 14-Channel DSP",
       "manufacturerProductName": "Audison Forza AF M12.14 bit 12-Channel Amplifier with 14-Channel DSP",
       "brand": "Audison",
@@ -297,7 +297,7 @@
       "match": {
         "id": "pw-0120"
       },
-      "appendIfMissing": false,
+      "appendIfMissing": true,
       "title": "Audison Forza AF M8.14 bit 8-Channel Amplifier with 14-Channel DSP",
       "manufacturerProductName": "Audison Forza AF M8.14 bit 8-Channel Amplifier with 14-Channel DSP",
       "brand": "Audison",
@@ -341,7 +341,7 @@
       "match": {
         "id": "pw-0121"
       },
-      "appendIfMissing": false,
+      "appendIfMissing": true,
       "title": "Audison Forza AF C8.14 bit 8-Channel Amplifier with 14-Channel DSP",
       "manufacturerProductName": "Audison Forza AF C8.14 bit 8-Channel Amplifier with 14-Channel DSP",
       "brand": "Audison",
@@ -364,7 +364,7 @@
       "match": {
         "id": "pw-0122"
       },
-      "appendIfMissing": false,
+      "appendIfMissing": true,
       "title": "Audison Forza AF M5.11 bit 5-Channel Amplifier with 11-Channel DSP",
       "manufacturerProductName": "Audison Forza AF M5.11 bit 5-Channel Amplifier with 11-Channel DSP",
       "brand": "Audison",
