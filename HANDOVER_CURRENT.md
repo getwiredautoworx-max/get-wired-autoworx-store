@@ -1316,3 +1316,8 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 ### Single active task
 - Reconciliation is complete. The only active task is now `three-department-category-assignment-repair`: produce one combined, populated, non-production owner preview from the consolidation branch; test desktop/mobile, all three roots, category/subcategory routes, image loading, customer-safe fields, and Price On Request.
 - Keep every supplier record review-only / DO NOT IMPORT. No Supabase writes, production deployment, Axxess upload, DNS/payment changes, paid Cloudflare credit use, branch deletion, history rewrite, or merge to `main` is authorised.
+
+
+### ASC 50-image pilot status discrepancy — 2026-11-14
+- The main-branch `assets/product-image-treatment-sample.json` still carries an old notice saying some captions/code strips require separation, while the 50-row `product-image-treatment-pilot-manifest.csv` records caption/code masking, Get Wired watermark overlay, contact-sheet review and high-resolution spot checks as completed for each sample. Both retain `OWNER_ACCEPTANCE_PENDING` / `REVIEW_ONLY_NOT_IMPORTED`.
+- Treat treatment execution as reported complete in the manifest, but keep owner acceptance pending and do not promote images to production until the stale JSON notice is reconciled against the actual image outputs. No image files or release status were changed in this checkpoint.
