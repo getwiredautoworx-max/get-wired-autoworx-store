@@ -4,13 +4,15 @@
 - Repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Canonical branch: `main`
 - Main SHA at inventory start: `06ab71bdcdf6ff3fc8ae999f59764d11c6a64d9b`
-- Branches: **271** (all pages retrieved after PR #202 branch creation)
-- Open PRs: **45** (includes draft PR #202)
+- Branches: **271** (all pages retrieved)
+- Open PRs: **46** (GitHub search; includes draft PR #202 and older docs PR #28)
 - Closed PRs inventoried: **151** (latest 100 plus older date-scoped records; same head may appear in multiple PRs)
 
 ## Open PR disposition
 | PR | Head | Commits | Base | Disposition |
 |---:|---|---:|---|---|
+| #202 | `integration/audio-forza-preview-reconciliation-2026-11-14` | 22 | `main` | CLEAN SELECTIVE AUDIO INTEGRATION — four exact Audison Forza models; all five non-production QA checks passed on head `b25da1a`; draft, merge approval pending |
+| #28 | `feature/docs-schema-pack` | 30 | `main` | DOCS/SCHEMA REFERENCE ONLY — 30 ahead / 1,910 behind; 22 files, not current storefront code; no wholesale merge |
 | #189 | `reconcile/store-operating-system-2026-11-08` | 52 | `main` | BLOCKED: 52 commits, 329 behind, non-mergeable; no wholesale merge |
 | #188 | `fix/background-controller-queue-v2-2026-11-08` | 1 | `main` | REDUNDANT: current main controller already handles schema-v2 success_criteria |
 | #187 | `fix/controller-queue-schema-compat-2026-11-08` | 6 | `main` | STALE: 6 commits, 330 behind; optional QA guards only if still missing |
@@ -58,8 +60,8 @@
 
 ## Branch-to-PR mapping
 - PR #202 is the sole new active integration candidate: four Audison Forza preview records, exact manufacturer images/specs, source-data sanitisation and test corrections. Draft PR; all five non-production checks passed on head `b25da1a864bdff7a28b05027e5609e2886d46699`; no deployment.
-- Distinct branch heads mapped: **188** ({"OPEN":45,"MERGED":56,"CLOSED_UNMERGED":87}).
-- Branches with no PR-head match in the enumerated set: **82**. These are unassociated, not automatically safe to delete; inspect commit history before cleanup.
+- Distinct branch heads mapped: **189** ({"OPEN":46,"MERGED":56,"CLOSED_UNMERGED":87}).
+- Branches with no PR-head match in the enumerated set: **81**. These are unassociated, not automatically safe to delete; inspect commit history before cleanup.
 
 | Branch | Mapping | PR |
 |---|---|---:|
@@ -342,7 +344,7 @@
 - Production hold remains: no production deploy, Axxess upload, live catalogue/price/stock writes, DNS/payment changes or paid hosting spend.
 
 ## Next execution order
-1. Finish classifying the 82 branches without an open/closed PR-head match, separating backups, trigger branches, review-only evidence and active unsubmitted work. Do not delete without approval.
+1. Finish classifying the 81 branches without an open/closed PR-head match, separating backups, trigger branches, review-only evidence and active unsubmitted work. Do not delete without approval.
 2. PR #202 now contains the safe selective recovery from the narrow 13-Nov audio branch; all required non-production checks passed. Await owner merge approval; do not merge the source branch wholesale.
 3. Fix remaining current-main preview blockers and run exact-head non-production QA.
 
@@ -358,3 +360,10 @@
 - Cloudflare Pages production workflow is manual-dispatch only. Cloudflare Workers Builds remains an unresolved external integration; no configuration change or deployment was made.
 - Main commit status lookup returned no status records; latest known Live Release Gates failure remains run `43565351484`. No current exact-main hosted QA success is established.
 - No merge, branch deletion, history rewrite, deployment, Axxess upload, live data write, DNS/payment change or paid hosting spend occurred.
+
+
+## CURRENT INVENTORY CORRECTION — 2026-11-14
+- Current main at the start of this correction: `0fe6905347a961888f0944d1a962b2e883a49541`.
+- GitHub Search returns **46 open PRs**. The recent-PR listing returns 45 because it omits older PR #28; #28 was separately confirmed open. It is 30 commits ahead / 1,910 behind main and is a documentation/schema pack only.
+- Current totals: **271 branches**, **46 open PRs**, **151 closed PR records inventoried**, **189 branch heads mapped to PRs**, and **81 branches without an open/closed PR-head match** (main is excluded from the 81 count).
+- #202 remains the sole active code-integration candidate. Its branch is based on main SHA `d7ab539e0ad95b3cb1122577f26edf4bb6c47a1a`; current main has advanced only through coordination/handover documentation commits. GitHub REST reports mergeable=true; no code conflicts reported. Keep it draft pending owner approval.
