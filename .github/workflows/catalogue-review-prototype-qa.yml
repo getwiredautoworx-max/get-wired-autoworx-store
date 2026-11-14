@@ -2,9 +2,33 @@ name: Catalogue & Supplier Routing Review — QA
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, integration/store-consolidated-2026-11-14]
     paths:
       - "catalogue-review/**"
+      - "preview-auto-electrical.html"
+      - "assets/auto-electrical-owner-preview.json"
+      - "assets/asc-auto-electrical-pilot/**"
+      - "scripts/build-cloudflare-pages-public.py"
+      - "tests/auto-electrical-review-population.test.cjs"
+      - "tests/auto-electrical-owner-preview.test.cjs"
+      - "tests/auto-electrical-owner-preview.spec.cjs"
+      - "tests/pricing-display-policy.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/three-category-storefront-structure.test.cjs"
+      - "scripts/apply_planetworld_rrp_minus_2.py"
+      - "scripts/enrich_planetworld_verified_models.py"
+      - "assets/planetworld-verified-models-preview.json"
+      - "assets/planetworld-catalogue-preview.json"
+      - "assets/audio-connections-catalogue-preview.json"
+      - "preview-audio.html"
+      - "preview-audio-products.html"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "preview-product.html"
+      - "preview-products.html"
+      - "product-details.js"
+      - "assets/progressive-store-enhancements.js"
       - "scripts/catalogue-review-prototype.spec.js"
       - "scripts/asc_render_source_review.py"
       - "scripts/asc_extract_product_cards_review.py"
@@ -20,11 +44,41 @@ on:
   push:
     branches:
       - integration/catalogue-supplier-routing-current-main-2026-10-30
+      - integration/owner-preview-single-task-2026-11-05
+      - integration/store-consolidated-2026-11-14
     paths:
+      - "catalogue-review/**"
+      - "preview-auto-electrical.html"
+      - "assets/auto-electrical-owner-preview.json"
+      - "assets/asc-auto-electrical-pilot/**"
+      - "scripts/build-cloudflare-pages-public.py"
+      - "tests/auto-electrical-review-population.test.cjs"
+      - "tests/auto-electrical-owner-preview.test.cjs"
+      - "tests/auto-electrical-owner-preview.spec.cjs"
+      - "tests/pricing-display-policy.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/three-category-storefront-structure.test.cjs"
+      - "scripts/apply_planetworld_rrp_minus_2.py"
+      - "scripts/enrich_planetworld_verified_models.py"
+      - "assets/planetworld-verified-models-preview.json"
+      - "assets/planetworld-catalogue-preview.json"
+      - "assets/audio-connections-catalogue-preview.json"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "preview-product.html"
+      - "preview-products.html"
+      - "preview-audio.html"
+      - "preview-audio-products.html"
+      - "product-details.js"
+      - "assets/progressive-store-enhancements.js"
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
       - "catalogue-review/kicker-manufacturer-product-review.json"
       - "scripts/catalogue-review-prototype.spec.js"
+      - "scripts/asc_render_source_review.py"
+      - "scripts/asc_extract_product_cards_review.py"
+      - "suppliers/ASC/*.pdf"
       - "supabase/functions/supplier-quote/index.ts"
       - "supabase/functions/_shared/supplier-routing.mjs"
       - "scripts/supplier-routing.test.mjs"
@@ -69,6 +123,26 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           node scripts/catalogue-review-prototype.spec.js
+      - name: Run ASC Auto Electrical review-only data checks
+        if: hashFiles('tests/auto-electrical-review-population.test.cjs') != '' && hashFiles('tests/auto-electrical-owner-preview.test.cjs') != ''
+        run: |
+          node tests/auto-electrical-review-population.test.cjs
+          node tests/auto-electrical-owner-preview.test.cjs
+      - name: Build customer-only preview package without deployment
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+          CF_PAGES_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: python3 scripts/build-cloudflare-pages-public.py
+      - name: Verify audio catalogue pricing, source mappings and product enrichment
+        if: hashFiles('tests/audio-catalogue-preview.test.cjs') != ''
+        run: node tests/audio-catalogue-preview.test.cjs
+      - name: Verify Auto Electrical owner preview at mobile and desktop widths
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory pages-public >/tmp/auto-electrical-preview-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          node tests/auto-electrical-owner-preview.spec.cjs
 
   asc-source-page-review:
     runs-on: ubuntu-24.04
@@ -77,7 +151,7 @@ jobs:
       - name: Checkout exact PR source
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
