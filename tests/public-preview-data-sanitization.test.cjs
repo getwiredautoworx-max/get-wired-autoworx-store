@@ -12,6 +12,25 @@ const files = [
 ];
 const primaryPath = path.join(root, 'audio-catalogue-primary-preview.json');
 const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf8'));
+
+const forzaPreview = [
+  ["AF M12.14 bit", "Audison Forza AF M12.14 bit 12-Channel Amplifier with 14-Channel DSP"],
+  ["AF M8.14 bit", "Audison Forza AF M8.14 bit 8-Channel Amplifier with 14-Channel DSP"],
+  ["AF C8.14 bit", "Audison Forza AF C8.14 bit 8-Channel Amplifier with 14-Channel DSP"],
+  ["AF M5.11 bit", "Audison Forza AF M5.11 bit 5-Channel Amplifier with 11-Channel DSP"]
+];
+for (const [model, title] of forzaPreview) {
+  const row = primary.records.find(r => r.modelNumber === model && r.manufacturerProductName === title);
+  assert.ok(row, "exact Forza preview card missing: " + model);
+  assert.ok(row.imageUrl && row.description, "Forza preview card needs exact image and description: " + model);
+  assert.equal(row.priceOnRequestText, "Price On Request");
+  assert.equal(row.indicativePrice, null);
+  assert.equal(row.hasStock, null);
+  assert.equal(row.imageApprovalStatus, "OWNER_AUTHORISED_FOR_OWNER_PREVIEW");
+  assert.equal(row.importStatus, "DO_NOT_IMPORT");
+  assert.equal(row.supplierSku, undefined);
+}
+
 const oneNavPrado = primary.records.find(record => record.id === 'pw-2120');
 assert.ok(oneNavPrado, 'verified OneNav Prado preview record must be present');
 assert.equal(oneNavPrado.brand, 'OneNav');
