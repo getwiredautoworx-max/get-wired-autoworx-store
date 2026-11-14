@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Complete the remaining open-PR classification and identify only the smallest safe code changes needed on canonical main; then resume the single highest-priority storefront blocker."
+      "next_action": "Complete classification of the 82 branches without an open/closed PR head match. Keep PR #202 as the sole active integration candidate; do not merge until explicit owner approval. Then resume one prioritised storefront workstream."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -254,7 +254,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "4cc34cd97f8673735538f76ff225d644c8db7db7",
+    "canonical_head": "main",
     "active_task_id": "single-project-reconciliation",
     "active_workers": 1,
     "parallel_workstreams": "paused until reconciliation is complete",
@@ -265,6 +265,11 @@
       "gemini": "disabled until Google accepts the existing API key; then one allowlisted task at a time, output only as draft PR",
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
-    "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval"
+    "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
+    "last_verified_main_sha": "d7ab539e0ad95b3cb1122577f26edf4bb6c47a1a",
+    "active_candidate_pr": 202,
+    "active_candidate_branch": "integration/audio-forza-preview-reconciliation-2026-11-14",
+    "active_candidate_head": "b25da1a864bdff7a28b05027e5609e2886d46699",
+    "active_candidate_status": "draft; all required non-production QA checks passed; awaiting explicit owner merge approval"
   }
 }
