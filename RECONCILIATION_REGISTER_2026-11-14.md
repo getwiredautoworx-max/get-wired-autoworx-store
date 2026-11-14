@@ -367,3 +367,113 @@
 - GitHub Search returns **46 open PRs**. The recent-PR listing returns 45 because it omits older PR #28; #28 was separately confirmed open. It is 30 commits ahead / 1,910 behind main and is a documentation/schema pack only.
 - Current totals: **271 branches**, **46 open PRs**, **151 closed PR records inventoried**, **189 branch heads mapped to PRs**, and **81 branches without an open/closed PR-head match** (main is excluded from the 81 count).
 - #202 remains the sole active code-integration candidate. Its branch is based on main SHA `d7ab539e0ad95b3cb1122577f26edf4bb6c47a1a`; current main has advanced only through coordination/handover documentation commits. GitHub REST reports mergeable=true; no code conflicts reported. Keep it draft pending owner approval.
+
+## Unassociated branch triage — all 81 branches accounted for
+No branch was deleted, closed or merged as part of this audit. The categories below are dispositions, not permission to delete.
+
+### KEEP OR PRESERVE (6)
+- `approved-storefront-baseline-2026-10-20`
+- `approved-storefront-preview-trigger`
+- `backup/store-before-banner-category-images-2026-10-20`
+- `backup/store-before-banner-copy-font-2026-10-20`
+- `backup-2026-09-15-before-image-cleanup`
+- `backup-2026-09-15-before-product-details`
+
+### SEPARATE APP (2)
+- `apk-sales-intelligence`
+- `order-management`
+
+### REVIEW ONLY OR PROHIBITED (22)
+- `asc-image-treatment-pilot-2026-11-09`
+- `audit/buyer-guide-extraction`
+- `audit/planetworld-current-main-2026-10-26`
+- `audit/planetworld-current-main-2026-10-29`
+- `audit/price-quote-continuation-2026-10-23`
+- `catalog-import-2026-09-16`
+- `catalogue/audio-connections-car-audio-preview-2026-10-30`
+- `catalogue/complete-remaining-2026-10-30`
+- `catalogue/ingest-review-2026-10-30`
+- `continuation/planetworld-supplier-folders-2026-10-26`
+- `docs/electrocity-jules-workflow-pilot-2026-11-07`
+- `integration/audio-video-enrichment-current-main-2026-11-13`
+- `integration/latest-consolidated-review-2026-10-30`
+- `integration/planetworld-audio-catalogues-2026-11-03`
+- `integration/three-supplier-catalogue-rebuild-2026-11-03`
+- `owner/alpine-planetworld-six-products-2026-11-10`
+- `planetworld/nonzero-items-review-2026-10-26`
+- `staging/asc-50-product-sku-proposal-2026-11-04`
+- `work/asc-pilot-runner-base-2026-11-09`
+- `work/audio-one-nav-current-main-2026-11-11`
+- `work/audio-one-nav-enrichment-2026-11-09`
+- `work/hertz-catalogue-audit-2026-10-25`
+
+### NO NEW CHANGE OR ALREADY SATISFIED (3)
+- `automation/catalogue-extraction-checkpoints`
+- `fix/document-workers-build-vs-pages`
+- `fix/server-enforced-customer-login-2026-10-29`
+
+### OLD TASK QA HANDOVER (23)
+- `docs/continuation-handover-20261026`
+- `docs/continuation-results-2026-10-23`
+- `docs/monitor-handover-2026-10-17-checkpoint`
+- `docs/monitor-handover-2026-10-17-monitor`
+- `docs/monitor-run-2026-10-17-1553`
+- `handover/checkpoint-2026-10-15-1538`
+- `handover/pr72-monitor-2026-10-23`
+- `monitor/2026-10-18-task-start-1513`
+- `monitoring/checkpoint-2026-10-14-1443-sast`
+- `monitoring/2026-10-15-0727-sast`
+- `monitoring/2026-10-15-store-checkpoint`
+- `qa/category-root-fix-2026-10-14`
+- `qa/live-category-navigation-isolated-2026-10-20`
+- `run10-handover-2026-10-20`
+- `task/asc-aerials-accessories-2026-11-05`
+- `task/2026-10-23-priority-continuation`
+- `task/2026-10-24-reconciliation-continuation`
+- `task/2026-10-24-reconciliation-run-2`
+- `task/2026-10-25-nonpayment-blockers`
+- `task/2026-10-25-reconciliation-run-3`
+- `task/2026-10-25-remove-payjustnow-readiness`
+- `task/2026-10-27-planetworld-monitor`
+- `test/pr68-isolated-playwright-2026-10-20`
+
+### STALE CODE OR REFERENCE (26)
+- `asc-auto-electrical-v2-2026-11-05`
+- `asc-auto-electrical-v2`
+- `design/reference-mobile-store-format`
+- `dev/checkout-delivery-hardening`
+- `feature/docs-schema-pack`
+- `feature/planetworld-parallel-store-2026-10-25`
+- `finaltest/category-live-preview-2026-10-20`
+- `fix/approved-bright-shell-category-product-ux-2026-11-01-v2`
+- `fix/live-category-tree-preserve-approved-layout-2026-10-20`
+- `fix/main-price-gate-checkout-final-2026-10-13`
+- `fix/mobile-category-overflow-validation-2026-10-13`
+- `fix/mobile-layout-2026-10-18`
+- `fix/part-search-no-ai-fallback-2026-10-26`
+- `fix/pr72-photo-relevance-qa-2026-10-23`
+- `fix/preview-catalogue-fail-closed-2026-11-02`
+- `fix/product-detail-api-key-2026-10-20`
+- `fix/storefront-product-cards-hide-supplier-identity-2026-10-30`
+- `image-fallback-fix`
+- `integration/asc-auto-electrical-clean-2026-11-05-v2`
+- `integration/clean-main-planetworld-partsearch-2026-10-31`
+- `integration/latest-consolidated-2026-10-30`
+- `ops/actions-artifact-cleanup-2026-10-28`
+- `release/formula-verified-checkout-2026-10-13`
+- `release/staging-secure-checkout-2026-10-26`
+- `staging/store-wide-price-on-request-2026-11-04`
+- `work/approved-storefront-continuation-2026-10-20`
+
+### Specific cross-checks
+- `task/asc-aerials-accessories-2026-11-05` is superseded: current main category tree already contains Aerials under Car Audio / Accessories.
+- `asc-image-treatment-pilot-2026-11-09` contains 50 treated sample images and a contact sheet; retain as review-only until the sample is accepted, never auto-import.
+- `owner/alpine-planetworld-six-products-2026-11-10` contains six Alpine records with unverified numeric source prices and incomplete product descriptions/specifications; keep Price On Request and DO NOT IMPORT.
+- `work/audio-one-nav-current-main-2026-11-11` contains useful OneNav source audits, but its override withholds an image that current main already carries under the owner's reseller-image authorisation; do not wholesale merge this stale branch.
+- `integration/audio-video-enrichment-current-main-2026-11-13` is a source branch only; its safe Forza subset was selectively ported to PR #202.
+- `fix/product-detail-api-key-2026-10-20` is not a security fix: the branch still uses the same public Supabase publishable key as main; it is 1 commit / 1,561 behind.
+- `fix/server-enforced-customer-login-2026-10-29` has zero commits ahead and is fully behind main.
+- `fix/document-workers-build-vs-pages` contains only a handover change, not a Pages/Workers code correction.
+- `approved-storefront-preview-trigger` is retained because it is a workflow trigger; backup branches are preserved.
+- `audit/buyer-guide-extraction` is prohibited by the owner’s ASC Buyers Guide exclusion.
+- `feature/docs-schema-pack` is no longer unassociated: it is open PR #28, 30 commits ahead / 1,910 behind, docs/schema reference only.
