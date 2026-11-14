@@ -1203,3 +1203,35 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Canonical baseline for this audit: repository default branch remains the only integration baseline pending fresh SHA verification; no candidate PR or branch is presumed authoritative.
 - Work in progress: inventory all branch pages and open/closed PRs, then map each live candidate to the canonical baseline and classify safe recovery, stale/duplicate, review-only, or blocked.
 - Safety: no merges, branch deletions, force-pushes, production deploys, supplier-data publication, or live-data writes performed or authorised by this task-start entry.
+
+
+## SINGLE-QUEUE COORDINATION RESET — 2026-11-14
+
+### Canonical project and repository inventory
+- Canonical project remains `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`; all other branches are evidence/candidates, not separate project authorities.
+- Fresh complete branch pagination returned **270 branch names** (100 + 100 + 70). This is a stale-work inventory, not 270 independent projects.
+- Open-PR inventory: repository search returned 45 matches; the owner-authored recent-PR listing returned 44 open PRs. Treat the 44 individually listed records as the current working list and reconcile the one-result discrepancy during the next audit pass.
+- Current storefront candidates #168, #176 and #178 are heavily diverged/stale and must not be merged wholesale. #178 has 1,001 commits and 147 changed files; #176 has 249 commits; #168 has 613 commits. They are reference material only.
+- PR #189 remains draft/open, 52 commits, 33 files, base/head divergence and GitHub reports mergeable=false. Its own report identifies a supplier-specific preview route still being served and a Cloudflare Workers build integration pointed at a production Worker. Do not merge this PR wholesale. Extract and fix verified individual issues only after exact-main tests and the production-trigger boundary are understood.
+- PR #183 is ASC review-only evidence (978 rows; substantial OCR, fitment, specification and image verification remains). PR #185 is a 29-product Electrocity pilot, review-only. Neither is a storefront-ready product import.
+- PRs #187/#188 are duplicate/old-base controller repair candidates; PR #189 claims to consolidate selected controller/queue fixes, but remains blocked and must not be merged wholesale.
+- Already integrated milestones include storefront integration PR #190, preview repair #192, Alpine evidence #193, ASC review package #199, Gemini workflow #200, Gemini key normalisation #201, plus selective ASC Aerials/Car Mats repairs recorded in the mainline handover. Closed/unmerged #194/#197/#198 are superseded duplicate candidates, not outstanding merge work.
+
+### Single active queue established
+- Updated `automation/task-queue.json` at commit `8a236be4a51a1aa0fa7b615ca264c72cbeac3122`.
+- Added canonical coordination contract: repository `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`, one active worker, one active task, no parallel workstreams until reconciliation completes. The active task is `single-project-reconciliation`; the ten prior workstreams are paused pending reconciliation rather than competing for execution.
+- ChatGPT is the coordinator; Gemini remains disabled until Google accepts the existing API key; Jules/other agents receive no new tasks until the queue is reconciled. When enabled, all agents must work on the same named task and return exact commit/PR evidence.
+- Corrected `scripts/validate_automation_queue.py` at commit `ce11461fc48c2f8c8f7223b374fde15970178c57`. The old validator contradicted owner directive §10 by requiring `private-runner-required` despite the owner-authorised public-repository processing rule. It now validates public processing authorisation, review-controlled non-automatic audio processing, one canonical `main` branch and exactly one active queue task.
+- Structural queue assertions were run after the update and passed: three roots, release prohibitions, public processing authority, unique task IDs, Audio task remains non-automatic, and exactly one in-progress task. This is not yet a full Python/CI test of the revised validator.
+
+### Exact workflow evidence after queue reset
+- Queue commit `8a236be4a51a1aa0fa7b615ca264c72cbeac3122` triggered Catalogue Image Audit run `43572715150` SUCCESS, Public SKU Exposure Audit run `43572715113` SUCCESS, and Background Task Controller push run `43572715131` SUCCESS. A subsequent workflow_run controller invocation `43572735222` was in progress at the time of this checkpoint. No deployment workflow was triggered by the observed queue-commit runs.
+- The latest scheduled Live Release Gates run before this queue reset was `43565351484`, on SHA `d38b7c9c1ca5c2012dd5199294e72ab0869333c8`: FAILURE at “Verify live HTTPS, routes and deployed version marker”; desktop/mobile browser and safe checkout tests were skipped. The payment readiness summary also failed because payment activation is not confirmed. This is a live-release blocker, not a production deployment.
+- The handover-only task-start commit `4cc34cd97f8673735538f76ff225d644c8db7db7` had zero Actions runs. No production deployment, Axxess upload, live database/catalogue/price/stock write, DNS/payment change or paid hosting spend was performed.
+
+### Next single execution sequence
+1. Finish classifying all open PRs and map branch heads to PRs/merged work/stale unassociated work; resolve the 44-vs-45 search discrepancy.
+2. Audit PR #189's public route and Cloudflare Worker integration claims against current `main`; do not merge the branch. Establish whether any actual supplier data remains reachable on the customer domain and identify the precise safe containment change.
+3. Resolve the live-source mismatch from run `43565351484` and establish one exact-main non-production verification path; do not run production deployment.
+4. Only after repository reconciliation is complete, resume one priority workstream: consolidated three-department customer preview and verified catalogue enrichment. Keep every unverified record review-only / DO NOT IMPORT.
+- Production remains HOLD. No merge, branch deletion, history rewrite, deployment, Axxess upload, live write, DNS/payment change or paid hosting spend was authorised or performed by this coordination reset.
