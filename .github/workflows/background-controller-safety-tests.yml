@@ -1,0 +1,30 @@
+name: Background Controller Safety Tests
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/background-task-controller.yml'
+      - 'scripts/background_task_controller.py'
+      - 'tests/test_background_controller_safety.py'
+      - '.github/workflows/background-controller-safety-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/background-task-controller.yml'
+      - 'scripts/background_task_controller.py'
+      - 'tests/test_background_controller_safety.py'
+      - '.github/workflows/background-controller-safety-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  safety-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify controller monitoring, retry scope and artifact safety
+        run: python tests/test_background_controller_safety.py
