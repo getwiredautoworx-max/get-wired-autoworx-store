@@ -148,8 +148,7 @@ Task states: `blocked`, `ready`, `claimed`, `in_progress`, `validation_failed`, 
 
 ### Automation implementation order
 1. Reconcile PR #187/#188 into one controller fix; fix queue rendering against the actual schema and add regression tests for missing optional fields.
-2. Correct retention rules and preserve rollback/evidence artifacts.
-3. Reconcile the task-queue schema and validator; add explicit task state, lease/heartbeat, checkpoint, retry count, last error, output references and timestamps without breaking existing tasks.
+2. Correct retention rules and preserve rollback/evidence artifacts.3. Reconcile the task-queue schema and validator; add explicit task state, lease/heartbeat, checkpoint, retry count, last error, output references and timestamps without breaking existing tasks.
 4. Make checkpoint state durable and recoverable; ensure event-driven and scheduled reconciliation are idempotent.
 5. Align the operating contract with actual workflow triggers and default-branch state.
 6. Prove normal completion, worker interruption, expired lease, duplicate dispatch, API outage, invalid queue, failed QA and recovery from checkpoint in test runs.
@@ -298,9 +297,7 @@ The owner has clarified the business model and corrected the previous blanket co
 
 This owner clarification supersedes the earlier blanket private-data-boundary statements in this handover and any automation prompts. Those statements must not be used to stop authorised catalogue work.
 
-
-## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
-The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
+## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
 
 
 ## LIVE EXECUTION STATUS — 2026-11-09 06:34 SAST
@@ -450,8 +447,7 @@ The owner's latest instruction supersedes older RRP display rules: all supplier 
 - The owner-preview now filters Planetworld product cards to records with both a product image URL and description, and an accepted exact-model image status. Records with rejected wrong-variant images, image candidates, page-link-only candidates, or missing descriptions are withheld from product cards.
 - The build applies `assets/audio-product-enrichment-overrides.json` to the preview copy before public-data sanitisation. The override file itself is not copied into the public package. Every override keeps `indicativePrice=null`, `hasStock=null`, and `Price On Request`; supplier names and supplier item codes are not displayed.
 - Nine model-specific review-only overrides now cover:
-  1. OneNav Classic 9-inch Toyota Prado 2002–2009 (OA014-1 source match; retailer image visually checked)
-  2. Audison bit DMI (official manufacturer product page/image)
+  1. OneNav Classic 9-inch Toyota Prado 2002–2009 (OA014-1 source match; retailer image visually checked)  2. Audison bit DMI (official manufacturer product page/image)
   3. Audison B-CON (official manufacturer product page/image)
   4. ARCAM AVR21 (official manufacturer product page/image)
   5. ARCAM AVR11 (official manufacturer product page/image)
@@ -598,11 +594,9 @@ This section supersedes the immediately preceding statement that no isolated Pag
 - No live Supabase writes, production deployment, Axxess upload, DNS change, price/stock activation or payment activation.
 - Next action: complete exact-model image matching for the six Alpine products, then continue the outstanding Planetworld/Audio Connections batches and category reconciliation on the same canonical storefront project.
 
-
 ---
 
 ## ALPINE IMAGE ENRICHMENT + ASC 50-IMAGE PILOT REPAIR — 2026-11-10
-
 ### Alpine six-product review records
 - PR #193 now includes complete descriptions, exact-model manufacturer references, and visually matched product images for UTE-73BT, iLX-W650, S-S65, R-S69.2, S-A60M and R-A60F.
 - Model generation is preserved: older S-A60M and R-A60F are not substituted with S2-A60M or R2-A60F. The iLX-W650 model casing is corrected.
@@ -748,12 +742,10 @@ The three held Audio Connections records (`ac-032`, `ac-041`, `ac-044`) must rem
 ### 4. Immediate next action
 
 The next action is to review PR #195's current diff and exact workflow configuration, then obtain the owner's explicit decision to merge it. If approved and merged, configure the secret through GitHub's repository Settings → Secrets and variables → Actions, then manually run a small non-destructive test task. Do not wait for a scheduled or always-on worker: this workflow is manual-dispatch only.
-
 ### 5. Safety and release boundaries retained
 
 - No production merge/deployment, Axxess upload, DNS change, live Supabase write, live catalogue/price/stock/active-flag change, payment activation or paid hosting/automation spend is authorised by this integration checkpoint.
-- Do not expand the worker's checkout allowlist to supplier files or confidential derivatives. The repository's supplier-data confidentiality/public-exposure concern recorded earlier in this handover remains unresolved and must be respected.
-- The Gemini workflow must not be represented as a replacement for the existing task queue/controller or as a 24/7 persistent process.
+- Do not expand the worker's checkout allowlist to supplier files or confidential derivatives. The repository's supplier-data confidentiality/public-exposure concern recorded earlier in this handover remains unresolved and must be respected.- The Gemini workflow must not be represented as a replacement for the existing task queue/controller or as a 24/7 persistent process.
 - The canonical storefront remains the one consolidated project on `main`; Gemini changes must be selectively reviewed and reconciled into that project, not used to create a competing storefront.
 - Existing production HOLD, exact-head test, same-SHA staging-preview, owner-acceptance and separate release-approval requirements remain in force.
 
@@ -898,13 +890,11 @@ The next action is to review PR #195's current diff and exact workflow configura
 
 **Next:** allow exact-head checks to complete on `0a2f0ba865e05fa97f9ce2cb427a95ac2825b0cc`; inspect any failure and correct it on this same PR. Only after exact-head checks pass should the owner review the draft. Do not merge PR #196 or deploy without explicit approval.
 
-
 ## EXACT-HEAD QA STATUS — 2026-11-12 17:18 SAST
 
 Current PR #196 head: `d415029aec455d623d31748da70983b64e12d6fe`.
 
-Observed workflow results for this exact SHA:
-- PASS: Button-Only Storefront Smoke Test — run 43244805687.
+Observed workflow results for this exact SHA:- PASS: Button-Only Storefront Smoke Test — run 43244805687.
 - PASS: Public SKU Exposure Audit — run 43244805731.
 - PASS: Storefront Smoke Test — run 43244805530.
 - PASS: Cloudflare Pages Public Package QA — run 43244805488.
@@ -1054,7 +1044,6 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 ---
 
 ## SONY XS-W104ES IMAGE VERIFIED — 2026-11-12 19:08 SAST
-
 - Continued the audio enrichment workstream and resolved the first outstanding image exception using the exact model-specific Gentec product page.
 - Opened and inspected the product page https://www.gentec-intl.com/products/xsw104es. The page title identifies "Sony XS-W104ES | 10 in (25 cm) Mobile ES MRC Honeycomb Subwoofer"; its primary product image was opened and visually checked. Exact image URL: https://www.gentec-intl.com/cdn/shop/files/XSW104ES_1.jpg?v=1696556764&width=2000
 - Updated record ac-006 / Sony XS-W104ES in both `assets/audio-catalogue-secondary-preview.json` and `assets/audio-connections-catalogue-preview.json` with the verified image URL and source evidence. Both files now use `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`.
@@ -1197,8 +1186,7 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Next audit tranche: enumerate the remaining branch pages and all open/closed PR states, identify genuinely unique customer-facing changes not already present on main, and check their exact-head tests before any extraction. Keep all source PDFs, workbooks, internal SKU/crosswalks and raw review registers out of any storefront integration PR.
 
 
-## COORDINATED RECONCILIATION TASK START — 2026-11-14
-- Owner instruction: stop fragmented parallel work; align all contributors on one canonical project and one coordinated execution queue.
+## COORDINATED RECONCILIATION TASK START — 2026-11-14- Owner instruction: stop fragmented parallel work; align all contributors on one canonical project and one coordinated execution queue.
 - Authority re-read at task start: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and `HANDOVER_CURRENT.md` on the repository default branch.
 - Canonical baseline for this audit: repository default branch remains the only integration baseline pending fresh SHA verification; no candidate PR or branch is presumed authoritative.
 - Work in progress: inventory all branch pages and open/closed PRs, then map each live candidate to the canonical baseline and classify safe recovery, stale/duplicate, review-only, or blocked.
@@ -1206,7 +1194,6 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 
 
 ## SINGLE-QUEUE COORDINATION RESET — 2026-11-14
-
 ### Canonical project and repository inventory
 - Canonical project remains `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`; all other branches are evidence/candidates, not separate project authorities.
 - Fresh complete branch pagination returned **270 branch names** (100 + 100 + 70). This is a stale-work inventory, not 270 independent projects.
@@ -1299,3 +1286,119 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated `automation/task-queue.json` to remove the stale PR #202 active-candidate reference and record the actual single integration branch, head, divergence and next action. Queue update commit: 6c3c53b23eb61aa14854019a913cf0f6fc23832f.
 - Next single task: reconcile the four main-only commits into `integration/store-consolidated-2026-11-14` without losing its existing changes; then run exact-head checks and independently assess PR #173. No parallel assignments.
 - No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion, history rewrite or paid hosting spend occurred.
+
+
+## RECONCILIATION EXECUTION — MAIN ANCESTRY RESTORED — 2026-11-14
+- The prior draft PR #204 was reported 6 commits behind `main`. I inspected Git trees against merge base `e5791fbf1308916a4a2041a4307ac1943604617f`: main had changes in four paths; three documentation/control files differed, while the audio official-model manifest had identical content on both sides.
+- Created a two-parent merge commit `9d52679694981c73f28a08ad2b19603f9fa218b6` with parents `b9a1d9808c4dc6ec22dda39ed62b241b2638dacc` (integration candidate) and `df823638d0a9f06dce939bee1b636307058f1583` (main). Its tree uses current main as base and overlays the 47 candidate-only changed files. The three overlapping documentation/control files retain main's version for now; the shared audio manifest is identical. Branch update used expected-head protection and succeeded.
+- Verified compare after update: integration branch is **15 commits ahead / 0 behind main**; 47 candidate code/catalogue/test files remain in the diff. PR #204 follows the branch head automatically. GitHub's PR snapshot still reports `mergeable=false` immediately after ancestry restoration; allow status recalculation and recheck before taking further action. Do not force merge.
+- Candidate content remains non-production: Audison preview work and 29 Electrocity ignition pilot records; no ASC Buyers Guides. Customer-facing supplier names/internal SKUs remain hidden; all supplier product prices remain Price On Request; product records remain review-only / DO NOT IMPORT.
+- Exact-head CI has not yet been established. No tests, preview checks or production release are claimed as passed. Next: recheck PR mergeability, reconcile owner checkpoint notes into the branch without replacing main's current directives, inspect public-data exposure, and run all available non-production checks.
+
+
+## EXACT-HEAD CONSOLIDATION QA — 2026-11-14
+- PR #204 head verified as `e64deda583ca1d3ebda771654d7088adc3b8f3d5`; PR remains open/draft and GitHub now reports `mergeable=true`. Branch comparison: **18 commits ahead / 0 behind** `main`.
+- Exact-head GitHub Actions completed successfully:
+  - Cloudflare Pages Public Package QA: PASS — standard customer-only package build, preview package build, preview-route inclusion and supplier-safe exclusions.
+  - Public SKU Exposure Audit: PASS.
+  - Supplier Catalogue Review Data QA: PASS — ASC 978-row review dataset validation and Electrocity ignition pilot fitment quarantine.
+  - Storefront Smoke Test: PASS — three-category structure and Price On Request/availability policy.
+- Still running at checkpoint: Catalogue & Supplier Routing Review — QA (responsive-review job, Chromium installation underway) and Owner Preview Mobile and Desktop Browser QA (browser-qa job, Chromium/Playwright installation underway). Do not claim these passed until completed.
+- A 24x7 Public-Safe Catalogue Worker workflow run was pending with no jobs returned; inspect its configured triggers and execution scope before allowing it to become a second active workstream.
+- PR #204 remains draft and unmerged. No production deployment, Axxess upload, live data changes or paid hosting spend.
+
+
+## ASC REVIEW WORKSTREAM CONSOLIDATED — 2026-11-14
+- Selectively integrated the ASC work from PR #173 into the single integration branch at `050876850a79f8c02c4dde156c2caaef9b6e9869`: six review-only register/evidence files and two extraction scripts. The old PR's standalone handover and workflow changes were intentionally excluded to avoid reintroducing stale instructions/parallel QA configuration.
+- Closed PR #173 as superseded by PR #204; its branch remains as historical evidence. All further ASC work is to continue through the single consolidation PR.
+- Scope remains the six ASC catalogues only; no Buyers Guides. Counts recorded by the ASC review docs: 978 product cards (78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats, 129 Fuel Pumps); 50 manually reviewed pilot descriptions; 42 printed fitments verified; 928 remaining descriptions are OCR drafts; 63 OCR false-positive tokens quarantined. The 978-row full extraction output is not represented as a finished customer catalogue; records remain REVIEW ONLY / DO NOT IMPORT.
+- Source-card images remain raw catalogue crops/watermarked and require the approved image-treatment and exact-product visual QA before customer publication. Owner-authorised image use does not mean image treatment or product verification is complete. ASC exact price wording remains `Price On Request due to Limited Stock and Availability`; no numeric prices or stock values exist.
+- Current PR #204 head at time of consolidation: `050876850a79f8c02c4dde156c2caaef9b6e9869`; comparison with main: 21 commits ahead / 0 behind; GitHub reports mergeable=true. Exact-head QA must be checked again after these ASC files were added.
+- No live import, Supabase write, Axxess upload, production deployment or paid hosting spend.
+
+
+## CONSOLIDATION QA COMPLETED — 2026-11-14
+- Exact code-tree validation completed successfully on consolidation commit `050876850a79f8c02c4dde156c2caaef9b6e9869`. Passed: Catalogue & Supplier Routing Review (unit/static, Edge Function type check, responsive checks, ASC review-only checks, customer-only build, audio pricing/source mapping, mobile/desktop Auto Electrical preview); Owner Preview Mobile/Desktop Browser QA; Supplier Catalogue Review Data QA; Public SKU Exposure Audit; Cloudflare Pages Public Package QA; Storefront Smoke Test.
+- Subsequent commits `58b4f709f74d79f168cc3eaab0dab271f873e095`, `e374e51c22d36732967711e1dd5859eadcc5205c`, `8b6c8772943337d1540c3b4fa50580ed3e955009` and the task-queue checkpoint commit update only task queue/handover/reconciliation documentation; no storefront, product, preview or test code changed after the passing code-tree run.
+- PR #204 remains the sole active storefront/catalogue consolidation PR, open/draft, mergeable=true; current branch comparison before this checkpoint was 24 commits ahead / 0 behind main. No merge performed.
+- Closed stale PRs #173 (ASC review extraction selectively carried into #204), #189 and #187 (old operating-system/controller proposals superseded for this cycle), and older parallel storefront/catalogue candidates #183, #181, #178, #177, #176, #175, #170, #168, #167, #165, #163, #162, #161, #158, #157, #156, #151 and #149. Their branches were retained; no branch deletion or blind merge was performed.
+- Remaining gate: review remaining open, distinct non-storefront PRs separately; final security/diff review of #204; owner acceptance before merge. Production remains HOLD.
+
+
+## SINGLE-CANDIDATE CONSOLIDATION CHECKPOINT — 2026-11-14 17:40 SAST
+
+- Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical baseline remains `main`. The only active integration candidate is branch `integration/store-consolidated-2026-11-14`, represented by draft PR #204.
+- Verified current PR #204 head before this handover update: `962af16f7ccfbd81a7c3597421a3c3da490e6bf1`. Compare against current `main` SHA `df823638d0a9f06dce939bee1b636307058f1583`: **26 commits ahead / 0 behind**. The PR contains 57 changed paths. The previous main-ancestry/divergence problem is resolved; do not create another competing storefront branch.
+- PR #204 is OPEN, DRAFT, and GitHub reports mergeable=true. It is not merged. Explicit owner acceptance remains required before any merge to `main`.
+- Exact-head GitHub Actions on `962af16f7ccfbd81a7c3597421a3c3da490e6bf1` completed SUCCESS for all seven observed workflows: Cloudflare Pages Public Package QA run `43611150689`; Supplier Catalogue Review Data QA `43611150728`; Storefront Smoke Test `43611150667`; Owner Preview Mobile and Desktop Browser QA `43611150642`; Catalogue & Supplier Routing Review QA `43611150640`; 24x7 Public-Safe Catalogue Worker `43611150678`; Public SKU Exposure Audit `43611150657`. Combined commit-status endpoint returned no status records; the seven workflow-run results above are the actual evidence.
+- The Public-Safe Catalogue Worker run `43611150678` completed its bounded ASC extraction step successfully; checkpoint-branch preparation and output commit were skipped, so it produced no separate branch/commit and did not create another active candidate.
+- Consolidated work in the candidate: selective Audison Forza preview records, 29 Electrocity ignition pilot records (review-only), and six-catalogue ASC review evidence/extraction tools. ASC counts remain 978 product cards (78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats, 129 Fuel Pumps); only 50 descriptions manually reviewed, 42 printed fitments verified, 928 OCR drafts, 63 false-positive OCR tokens quarantined. No ASC Buyers Guides. All unverified records remain REVIEW ONLY / DO NOT IMPORT.
+- Public package QA and public SKU exposure audit passed for the exact head. Supplier-source/review areas are not customer package output. Customer prices remain Price On Request; supplier names/internal SKUs remain hidden from customer-facing content. This package-level result does not authorise publication/import or resolve any separate repository-visibility decision.
+- Final merge gate remains a human security/diff review and owner acceptance. No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting spend was performed.
+- Next single action: complete the final PR #204 diff/security review against the latest owner instructions, resolve any repository-content boundary issue without creating another storefront candidate, then present the single consolidated preview for owner acceptance. Do not resume paused catalogue enrichment workstreams in parallel.
+
+## TASK START — SINGLE-PROJECT RECONCILIATION RESUMED — 2026-11-14 18:xx SAST
+- Mandatory start-of-task read completed: `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from canonical `main`; `HANDOVER_CURRENT.md` and `automation/task-queue.json` from `integration/store-consolidated-2026-11-14`.
+- Active task remains `single-project-reconciliation`; no new branch or parallel workstream created.
+- Verified queue drift: queue still records the prior 962af16/738a9a2 checkpoint, while the branch head recorded in the previous chat checkpoint is 921d6862818d330580a61c447efa8103054ff5f1. Re-verify live branch/PR head and exact-head workflows before relying on either checkpoint.
+- Open-PR inventory returned 22 open PRs. #204 is the sole storefront/catalogue consolidation candidate. Distinct open PRs requiring classification include #184, #49, #164, #155, #154, #152, #150, #143, #137, #72, #81, #67, #82, #65, #48, #51, #53, #31, #32, #28 and #3. Do not merge or close any of these as part of inventory alone; several are independent owner/admin/security/catalogue proposals and need scope/status review.
+- Gemini handover records the existing `GEMINI_API_KEY` was rejected by Google with HTTP 400 `API_KEY_INVALID` on run 43274119946. Gemini model execution is therefore not active; do not rerun until credential issue is corrected. Do not tell the owner Gemini is collaborating when no model call succeeded.
+- Task objective: reconcile every open PR and associated branch against canonical main and #204, identify safe selective recovery vs independent/obsolete/blocked work, review #204 diff and supplier-data exposure, update one task queue and this handover with exact evidence. Keep all release boundaries in force.- Status at start: READ/INVENTORY IN PROGRESS. No merge, PR closure, deployment, Axxess upload, live Supabase write, DNS/payment change or paid hosting spend performed.
+
+
+## RECONCILIATION CHECKPOINT — OPEN PR INVENTORY CLASSIFIED — 2026-11-14
+- Mandatory handover read and task-start checkpoint completed before work. This session classified all 21 open PRs other than #204 by live title and changed-file path inventory; per-PR dispositions and overlap clusters are in RECONCILIATION_REGISTER_2026-11-14.md.
+- Exclusions/strong conflicts: #49 includes ASC Buyers Guide PDFs (explicitly excluded); #32 imposes obsolete eight-category roots; #72 is legacy storefront; #28 carries historical eight-category documentation; #67 introduces stock/category admin and Supabase admin capability requiring separate explicit live-data/security approval; #3 is a separate sales APK.
+- Overlapping PR clusters: #81/#184/#82 owner app alternatives; #143/#154 background controller; #48/#49/#51 ASC cleanup; #31/#53 catalogue schema validation; #150/#164 repository cleanup. Independent security/privacy candidates #155 and #137; independent config/review-only candidates #152 and #65. No PR was merged or closed.
+- Critical #204 blocker: its changed-file inventory includes suppliers/Electrocity/** source/evidence and catalogue-review/** datasets in this public repository. The public build excludes these folders and package QA passed previously, but package exclusion does not protect files visible in the public Git repository. PR #204 is NOT cleared to merge until confidential-source publication is resolved. Do not delete/move files or create private repository absent owner approval.
+- Current compare after this session's register update: integration branch is 31 commits ahead / 0 behind main. Seven workflows passed on prior documentation-only head 921d6862818d330580a61c447efa8103054ff5f1; this is not an exact-head pass for the current branch. Re-run/check all seven on the final head after the handover/task-queue checkpoint.
+- Task status: all 21 open non-candidate PRs classified; final PR #204 source boundary/diff review, exact-head QA and owner preview remain outstanding. Production HOLD; no live writes, Axxess upload, production deploy or paid spend.
+
+
+## RECONCILIATION CHECKPOINT — OWNER PUBLIC-REPOSITORY DIRECTIVE APPLIED — 2026-11-14 17:58 SAST
+- Re-read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` from canonical `main` (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`). Section 10 (2026-11-09) explicitly directs that the main GitHub repository remain public and that approved catalogue extraction/review/storefront enrichment use the existing public repository/workflows; a private repository, private runner or separate environment is not a prerequisite. This supersedes the earlier PR #204 content-boundary note that treated supplier-source/review artefacts in the public repository as a blocker. Do not create a private repository or move/delete source files for this purpose.
+- The public-repository permission does not relax security or customer-output rules: no credentials, tokens, personal data or genuine secrets; no supplier names/internal SKUs in customer-facing content; all supplier product prices remain Price On Request; ASC uses exact wording `Price On Request due to Limited Stock and Availability`; all unverified catalogue rows remain REVIEW ONLY / DO NOT IMPORT.
+- Current main SHA: `df823638d0a9f06dce939bee1b636307058f1583`. Integration branch `integration/store-consolidated-2026-11-14` compares **33 commits ahead / 0 behind** main. Compared with task-start commit `25e85eea483d4c220c2c83e0ca874470e76241b5`, the branch has four subsequent commits affecting only `HANDOVER_CURRENT.md`, `RECONCILIATION_REGISTER_2026-11-14.md` and `automation/task-queue.json`; no storefront/catalogue code paths changed.
+- Seven required non-production workflows passed on task-start commit `25e85eea483d4c220c2c83e0ca874470e76241b5`: Public SKU Exposure Audit `43612550142`; Storefront Smoke Test `43612550166`; Supplier Catalogue Review Data QA `43612550148`; Cloudflare Pages Public Package QA `43612550096`; Owner Preview Mobile and Desktop Browser QA `43612550118`; Catalogue & Supplier Routing Review QA `43612550126`; 24x7 Public-Safe Catalogue Worker `43612550154`. These are not yet evidence for the later documentation-only branch head; verify all seven against the final head before claiming final exact-head QA.
+- Reconciliation result: PR #204 remains the sole consolidated storefront/catalogue candidate. The four-main-only-commit ancestry issue recorded earlier is resolved; current comparison is 0 behind. All 21 other open PRs have title/path-based dispositions in the register; no additional PR merge/closure is authorised by this checkpoint.
+- Next single action: verify all seven workflows on the final branch head after this checkpoint, then prepare the consolidated owner preview for acceptance. No merge, production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion, history rewrite or paid hosting spend occurred.
+
+
+## EXACT-HEAD QA FOLLOW-UP — 2026-11-14 17:58 SAST
+- After the queue/register/handover reconciliation commits, live compare reports `integration/store-consolidated-2026-11-14` is **36 commits ahead / 0 behind** `main` (main SHA `df823638d0a9f06dce939bee1b636307058f1583`). Final documentation checkpoint commit: `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`.
+- The commit-runs lookup for final checkpoint `e6ceb11869babcb24fd2b40fa99a8e69fa92d399` returned **no PR-triggered workflow runs**. Do not misrepresent the seven successes on earlier task-start SHA `25e85eea483d4c220c2c83e0ca874470e76241b5` as exact-head QA for `e6ceb118...`. Those seven run IDs remain valid evidence for the earlier SHA only.
+- The four commits after `25e85ee...` are documentation-only (handover, queue, register); no storefront/catalogue code paths changed. The later three commits recorded in this chat corrected the policy disposition and documentation. Exact-head QA status on the final branch head remains **NOT VERIFIED** until run records are independently associated with that SHA.
+- No deployment, merge, Axxess upload, live data write, DNS/payment change, branch deletion, history rewrite or paid hosting spend was performed.
+
+
+## CONTINUATION HANDOVER — VERIFIED QA RESULTS AND WORKER BLOCKER — 2026-11-14 18:10 SAST
+
+### Canonical work location and consolidation state
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`.
+- Active consolidation candidate: PR #204, branch `integration/store-consolidated-2026-11-14`.
+- Live compare at this checkpoint: **39 commits ahead / 0 behind** canonical `main`; canonical main SHA remains `df823638d0a9f06dce939bee1b636307058f1583`.
+- PR #204 is still draft and unmerged. It is the only active storefront/catalogue consolidation candidate. Do not merge without explicit owner approval.
+- Important correction to older notes: the 39-commit branch delta is NOT documentation-only. The live compare includes audio preview/enrichment data, ASC review-only registers and extraction scripts, Electrocity ignition-looms/modules review evidence and tests, public-package sanitization/build changes, and updated preview/test files. Review the actual PR diff; do not repeat the earlier claim that all post-baseline changes are handover/queue/register documentation only.
+- Owner directive §10 (2026-11-09) authorises catalogue processing in the existing public repository. Do not create a private repository/runner or move/delete supplier source files for that reason. Continue to protect credentials/secrets and keep supplier names/internal SKUs out of customer-facing output. Supplier catalogue rows remain REVIEW ONLY / DO NOT IMPORT; customer prices remain Price On Request; ASC wording remains exactly `Price On Request due to Limited Stock and Availability`.
+
+### Exact QA evidence — latest queried workflow set
+Workflow runs associated with checkpoint commit `dd1c948a33b8de944930a0d5a26ab01f9abda9ba`:
+- PASS — Public SKU Exposure Audit: run `43613337567`.
+- PASS — Cloudflare Pages Public Package QA: run `43613337547`.
+- PASS — Storefront Smoke Test: run `43613337553`.
+- PASS — Supplier Catalogue Review Data QA: run `43613337494`.
+- PASS — Owner Preview Mobile and Desktop Browser QA: run `43613337548`.
+- PASS — Catalogue & Supplier Routing Review QA: run `43613337723`.
+- FAIL — 24x7 Public-Safe Catalogue Worker: run `43613337623`, job `132503075635`.
+- Failure cause verified from job log: step `Validate current owner-directed task queue` ran `python scripts/validate_automation_queue.py` and failed with `QUEUE_VALIDATION_ERROR: obsolete category or Buyers Guide instruction found in task single-project-reconciliation`. The bounded ASC extraction step was skipped. This is a task-queue wording/validator blocker, not a failed product extraction or failed product QA result. Do not claim the worker passed or that ASC extraction advanced in this run.
+- Six of seven checks passed; one worker failed for the explicit queue-validation reason above. The six pass results are evidence for the queried checkpoint SHA only. Re-run the worker after correcting the queue, then check the latest PR-head run association before making exact-head claims.
+
+### Immediate next actions — keep one active workstream
+1. Correct only the `single-project-reconciliation` task text in `automation/task-queue.json`: remove the legacy category-layout / restricted catalogue-reference wording that the validator flags from its `completed_this_session` narrative. Preserve the underlying exclusion decisions in the reconciliation register using neutral wording. Do not weaken validation rules.
+2. Re-run `python scripts/validate_automation_queue.py` or the Public-Safe Catalogue Worker workflow. Confirm queue validation passes before any extraction runs. If it then runs extraction, review outputs as review-only and do not import them.
+3. Re-check PR #204's actual current head and the seven workflow statuses. Six previous passes do not erase the one worker failure; do not report all seven passed until the worker succeeds on the relevant head.
+4. Continue the final PR diff/security review and consolidated owner-preview verification. Only then present the single consolidated project for owner acceptance.
+
+### Release and change boundaries
+- No merge, production deployment, Axxess upload, live catalogue/price/stock/Supabase write, DNS/payment change, branch deletion/history rewrite or paid hosting spend was performed in this checkpoint.
+- Production remains HOLD. No other PR/branch is to be merged wholesale. Keep the single-project/single-active-workstream protocol. Gemini remains inactive until the existing Google API key is accepted; do not describe Gemini as collaborating without a successful model execution.

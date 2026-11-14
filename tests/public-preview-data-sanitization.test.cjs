@@ -12,6 +12,25 @@ const files = [
 ];
 const primaryPath = path.join(root, 'audio-catalogue-primary-preview.json');
 const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf8'));
+
+const forzaPreview = [
+  ["AF M12.14 bit", "Audison Forza AF M12.14 bit 12-Channel Amplifier with 14-Channel DSP"],
+  ["AF M8.14 bit", "Audison Forza AF M8.14 bit 8-Channel Amplifier with 14-Channel DSP"],
+  ["AF C8.14 bit", "Audison Forza AF C8.14 bit 8-Channel Amplifier with 14-Channel DSP"],
+  ["AF M5.11 bit", "Audison Forza AF M5.11 bit 5-Channel Amplifier with 11-Channel DSP"]
+];
+for (const [model, title] of forzaPreview) {
+  const row = primary.records.find(r => r.modelNumber === model && r.manufacturerProductName === title);
+  assert.ok(row, "exact Forza preview card missing: " + model);
+  assert.ok(row.imageUrl && row.description, "Forza preview card needs exact image and description: " + model);
+  assert.equal(row.priceOnRequestText, "Price On Request");
+  assert.equal(row.indicativePrice, null);
+  assert.equal(row.hasStock, null);
+  assert.equal(row.imageApprovalStatus, "OWNER_AUTHORISED_FOR_OWNER_PREVIEW");
+  assert.equal(row.importStatus, "DO_NOT_IMPORT");
+  assert.equal(row.supplierSku, undefined);
+}
+
 const oneNavPrado = primary.records.find(record => record.id === 'pw-2120');
 assert.ok(oneNavPrado, 'verified OneNav Prado preview record must be present');
 assert.equal(oneNavPrado.brand, 'OneNav');
@@ -76,14 +95,14 @@ assert.equal(ap4d.imageStatus, 'official_manufacturer_image_verified_review_only
 assert.ok(ap4d.imageUrl && ap4d.description && ap4d.description.includes('4 × 130 W at 2 Ω'));
 assert.equal(ap4d.indicativePrice, null);
 assert.equal(ap4d.hasStock, null);
-const afm1214 = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Forza AF M12.14 bit 12-Channel DSP Amplifier');
+const afm1214 = primary.records.find(record => record.brand === 'Audison' && record.modelNumber === 'AF M12.14 bit');
 assert.ok(afm1214, 'verified Audison AF M12.14 bit preview record must be present');
 assert.equal(afm1214.modelNumber, 'AF M12.14 bit');
 assert.equal(afm1214.imageStatus, 'official_manufacturer_image_verified_review_only');
 assert.ok(afm1214.imageUrl && afm1214.description && afm1214.description.includes('12 × 90 W at 2 Ω'));
 assert.equal(afm1214.indicativePrice, null);
 assert.equal(afm1214.hasStock, null);
-const afm814 = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison Forza AF M8.14 bit 8-Channel DSP Amplifier');
+const afm814 = primary.records.find(record => record.brand === 'Audison' && record.modelNumber === 'AF M8.14 bit');
 assert.ok(afm814, 'verified Audison AF M8.14 bit preview record must be present');
 assert.equal(afm814.modelNumber, 'AF M8.14 bit');
 assert.equal(afm814.imageStatus, 'official_manufacturer_image_verified_review_only');
@@ -143,8 +162,11 @@ for (const file of files) {
   if (!fs.existsSync(p)) continue;
   const data = JSON.parse(fs.readFileSync(p, 'utf8'));
   const raw = JSON.stringify(data);
-  assert.ok(!/Planetworld|Audio\s+Connections/i.test(raw), file+' must not expose supplier identities');
+  const visibleText = raw.replace(/https?:\/\/[^\s"'<>]+/gi, '[image-asset-url]');
+  assert.ok(!/Planetworld|Audio\s+Connections/i.test(visibleText), file+' must not expose supplier identities in customer-visible text');
   assert.ok(!/"(?:supplierName|supplierSku|supplierModelNumber|dealerCost|dealerPrice|wholesalePrice|internalSku|internalId|gwSku)"\s*:/i.test(raw), file+' must not expose internal supplier or procurement fields');
+  assert.ok(!/"(?:sourceSkuReferenceInternal|sourceSupplierWorkbook|sourceSupplierWorkbookSheet|sourceSupplierWorkbookRow|supplierSource)"\s*:/i.test(raw), file+' must not expose source workbook provenance or internal supplier references');
+  assert.ok(!/"(?:imageSourceNote|imageSourceUrl)"\s*:/i.test(raw), file+' must not expose internal image-source provenance');
   checked++;
 }
 assert.ok(checked >= 4, 'at least four public preview catalogue files must be sanitized');
