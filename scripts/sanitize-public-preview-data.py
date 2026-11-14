@@ -14,7 +14,7 @@ FILES = [
     "product-image-treatment-sample.json",
 ]
 FORBIDDEN_KEYS = re.compile(
-    r"^(supplier(name|sku|modelnumber)?|dealer(cost|price)|wholesaleprice|internal(sku|id)|gwsku)$",
+    r"^(supplier.*|sourceSku(?:ReferenceInternal)?|sourceSupplierWorkbook(?:Sheet|Row)?|dealer(?:Cost|Price)|wholesalePrice|internal(?:Sku|Id)|gwSku)$",
     re.I,
 )
 SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections", re.I)
