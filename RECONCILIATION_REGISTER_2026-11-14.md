@@ -548,3 +548,11 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - Re-read the binding owner directive on canonical `main`: section 10 (2026-11-09) explicitly says keep the main GitHub repository public; use the existing public repository and approved workflows for catalogue processing; do not require or create a private repository/runner as a prerequisite. This owner clarification supersedes the earlier blanket private-data-boundary concern. Accordingly, the mere presence of supplier catalogue source/review files in the public repository is NOT a blocker to PR #204.
 - Retain the independent controls: no credentials/tokens/personal data/genuine secrets; supplier names and internal supplier SKUs must not appear in customer-facing content; public package builder must exclude supplier/catalogue-review source folders; all records remain REVIEW ONLY / DO NOT IMPORT; no live data changes or production release.
 - No source files were deleted, moved or made private. This is a policy reconciliation, not a publication or release action.
+
+
+## FINAL BRANCH CHECKPOINT — 2026-11-14 17:58 SAST
+- Current `main`: `df823638d0a9f06dce939bee1b636307058f1583`.
+- Current consolidation branch: `integration/store-consolidated-2026-11-14`; final documentation checkpoint `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`; compare **36 ahead / 0 behind**.
+- Public-repository content boundary resolved under owner directive §10 (2026-11-09). Keep repository public; do not create a private repo/runner or move/delete supplier-source files for this reason. Preserve credential/secret protection and customer-output sanitisation.
+- Seven QA workflows passed on earlier task-start SHA `25e85eea483d4c220c2c83e0ca874470e76241b5` (runs 43612550142, 43612550166, 43612550148, 43612550096, 43612550118, 43612550126, 43612550154). No PR-triggered runs were returned for final documentation checkpoint SHA `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`; exact-head QA is NOT VERIFIED on that final SHA.
+- PR #204 remains draft and unmerged. No production/deployment/live-data action was taken.
