@@ -133,7 +133,7 @@
 | `feat/terms-gate-browse-account-required-checkout` | CLOSED_UNMERGED | #86 |
 | `feature/direct-eft-bank-instructions-whatsapp-order-handoff-2026-10-30` | CLOSED_UNMERGED | #121 |
 | `feature/direct-eft-bank-instructions-whatsapp-order-handoff-v2` | MERGED | #127 |
-| `feature/docs-schema-pack` | UNASSOCIATED | — |
+| `feature/docs-schema-pack` | OPEN | #28 |
 | `feature/free-catalogue-search-populated-preview-2026-10-30` | CLOSED_UNMERGED | #126 |
 | `feature/free-no-ai-part-search-preview-safe-2026-10-30` | CLOSED_UNMERGED | #131 |
 | `feature/nonproduction-populated-store-preview-deploy` | MERGED | #123 |
