@@ -484,3 +484,11 @@ No branch was deleted, closed or merged as part of this audit. The categories be
 - PR #202 is the only active code-integration candidate. It is draft, GitHub reports mergeable=true, and all five exact-head non-production QA checks passed. Await explicit owner merge approval.
 - The next task after PR #202 is OneNav exact-model enrichment from the review evidence, not a new parallel workstream.
 - Main SHA at this checkpoint: `e5791fbf1308916a4a2041a4307ac1943604617f`.
+
+
+## RECONCILIATION EXECUTION — MAIN ANCESTRY RESTORED — 2026-11-14
+- The prior draft PR #204 was reported 6 commits behind `main`. I inspected Git trees against merge base `e5791fbf1308916a4a2041a4307ac1943604617f`: main had changes in four paths; three documentation/control files differed, while the audio official-model manifest had identical content on both sides.
+- Created a two-parent merge commit `9d52679694981c73f28a08ad2b19603f9fa218b6` with parents `b9a1d9808c4dc6ec22dda39ed62b241b2638dacc` (integration candidate) and `df823638d0a9f06dce939bee1b636307058f1583` (main). Its tree uses current main as base and overlays the 47 candidate-only changed files. The three overlapping documentation/control files retain main's version for now; the shared audio manifest is identical. Branch update used expected-head protection and succeeded.
+- Verified compare after update: integration branch is **15 commits ahead / 0 behind main**; 47 candidate code/catalogue/test files remain in the diff. PR #204 follows the branch head automatically. GitHub's PR snapshot still reports `mergeable=false` immediately after ancestry restoration; allow status recalculation and recheck before taking further action. Do not force merge.
+- Candidate content remains non-production: Audison preview work and 29 Electrocity ignition pilot records; no ASC Buyers Guides. Customer-facing supplier names/internal SKUs remain hidden; all supplier product prices remain Price On Request; product records remain review-only / DO NOT IMPORT.
+- Exact-head CI has not yet been established. No tests, preview checks or production release are claimed as passed. Next: recheck PR mergeability, reconcile owner checkpoint notes into the branch without replacing main's current directives, inspect public-data exposure, and run all available non-production checks.
