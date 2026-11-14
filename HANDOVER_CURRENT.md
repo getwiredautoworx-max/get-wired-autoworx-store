@@ -1369,3 +1369,36 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - The commit-runs lookup for final checkpoint `e6ceb11869babcb24fd2b40fa99a8e69fa92d399` returned **no PR-triggered workflow runs**. Do not misrepresent the seven successes on earlier task-start SHA `25e85eea483d4c220c2c83e0ca874470e76241b5` as exact-head QA for `e6ceb118...`. Those seven run IDs remain valid evidence for the earlier SHA only.
 - The four commits after `25e85ee...` are documentation-only (handover, queue, register); no storefront/catalogue code paths changed. The later three commits recorded in this chat corrected the policy disposition and documentation. Exact-head QA status on the final branch head remains **NOT VERIFIED** until run records are independently associated with that SHA.
 - No deployment, merge, Axxess upload, live data write, DNS/payment change, branch deletion, history rewrite or paid hosting spend was performed.
+
+
+## CONTINUATION HANDOVER — VERIFIED QA RESULTS AND WORKER BLOCKER — 2026-11-14 18:10 SAST
+
+### Canonical work location and consolidation state
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`.
+- Active consolidation candidate: PR #204, branch `integration/store-consolidated-2026-11-14`.
+- Live compare at this checkpoint: **39 commits ahead / 0 behind** canonical `main`; canonical main SHA remains `df823638d0a9f06dce939bee1b636307058f1583`.
+- PR #204 is still draft and unmerged. It is the only active storefront/catalogue consolidation candidate. Do not merge without explicit owner approval.
+- Important correction to older notes: the 39-commit branch delta is NOT documentation-only. The live compare includes audio preview/enrichment data, ASC review-only registers and extraction scripts, Electrocity ignition-looms/modules review evidence and tests, public-package sanitization/build changes, and updated preview/test files. Review the actual PR diff; do not repeat the earlier claim that all post-baseline changes are handover/queue/register documentation only.
+- Owner directive §10 (2026-11-09) authorises catalogue processing in the existing public repository. Do not create a private repository/runner or move/delete supplier source files for that reason. Continue to protect credentials/secrets and keep supplier names/internal SKUs out of customer-facing output. Supplier catalogue rows remain REVIEW ONLY / DO NOT IMPORT; customer prices remain Price On Request; ASC wording remains exactly `Price On Request due to Limited Stock and Availability`.
+
+### Exact QA evidence — latest queried workflow set
+Workflow runs associated with checkpoint commit `dd1c948a33b8de944930a0d5a26ab01f9abda9ba`:
+- PASS — Public SKU Exposure Audit: run `43613337567`.
+- PASS — Cloudflare Pages Public Package QA: run `43613337547`.
+- PASS — Storefront Smoke Test: run `43613337553`.
+- PASS — Supplier Catalogue Review Data QA: run `43613337494`.
+- PASS — Owner Preview Mobile and Desktop Browser QA: run `43613337548`.
+- PASS — Catalogue & Supplier Routing Review QA: run `43613337723`.
+- FAIL — 24x7 Public-Safe Catalogue Worker: run `43613337623`, job `132503075635`.
+- Failure cause verified from job log: step `Validate current owner-directed task queue` ran `python scripts/validate_automation_queue.py` and failed with `QUEUE_VALIDATION_ERROR: obsolete category or Buyers Guide instruction found in task single-project-reconciliation`. The bounded ASC extraction step was skipped. This is a task-queue wording/validator blocker, not a failed product extraction or failed product QA result. Do not claim the worker passed or that ASC extraction advanced in this run.
+- Six of seven checks passed; one worker failed for the explicit queue-validation reason above. The six pass results are evidence for the queried checkpoint SHA only. Re-run the worker after correcting the queue, then check the latest PR-head run association before making exact-head claims.
+
+### Immediate next actions — keep one active workstream
+1. Correct only the `single-project-reconciliation` task text in `automation/task-queue.json`: remove the legacy category-layout / restricted catalogue-reference wording that the validator flags from its `completed_this_session` narrative. Preserve the underlying exclusion decisions in the reconciliation register using neutral wording. Do not weaken validation rules.
+2. Re-run `python scripts/validate_automation_queue.py` or the Public-Safe Catalogue Worker workflow. Confirm queue validation passes before any extraction runs. If it then runs extraction, review outputs as review-only and do not import them.
+3. Re-check PR #204's actual current head and the seven workflow statuses. Six previous passes do not erase the one worker failure; do not report all seven passed until the worker succeeds on the relevant head.
+4. Continue the final PR diff/security review and consolidated owner-preview verification. Only then present the single consolidated project for owner acceptance.
+
+### Release and change boundaries
+- No merge, production deployment, Axxess upload, live catalogue/price/stock/Supabase write, DNS/payment change, branch deletion/history rewrite or paid hosting spend was performed in this checkpoint.
+- Production remains HOLD. No other PR/branch is to be merged wholesale. Keep the single-project/single-active-workstream protocol. Gemini remains inactive until the existing Google API key is accepted; do not describe Gemini as collaborating without a successful model execution.
