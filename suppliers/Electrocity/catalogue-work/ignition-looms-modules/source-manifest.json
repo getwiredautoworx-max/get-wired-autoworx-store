@@ -1,0 +1,57 @@
+{
+  "manifest_version": "1.0.0",
+  "status": "REVIEW ONLY \u2014 DO NOT IMPORT",
+  "pilot_name": "Electrocity Ignition Looms & Modules Pilot",
+  "governing_documents": [
+    "suppliers/Electrocity/PILOT_SOURCE_OVERRIDE_2026-11-07.md",
+    "suppliers/Electrocity/JULES_CATALOGUE_WORKFLOW.md"
+  ],
+  "verification_timestamp_utc": "2026-11-07T09:00:00Z",
+  "source_files": [
+    {
+      "file_name": "(1)IGNITION MODULES.pdf",
+      "source_path": "suppliers/Electrocity/Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf",
+      "git_blob_sha": "5fdddd9bfeed32ac5c32263f724e8fd82db8583a",
+      "sha256": "bd02e1eddd128f36780b9d5dd20e882b3043393702d343524a9c828d63e3fadc",
+      "file_size_bytes": 342493,
+      "page_count": 5,
+      "product_type": "Ignition Modules",
+      "extracted_item_count": 26,
+      "verification_status": "VERIFIED_MATCH",
+      "extraction_rules": {
+        "above_image": "OEM Part Number",
+        "below_image": "Private Electrocity SKU",
+        "keep_private": [
+          "Electrocity SKU"
+        ],
+        "commercial_policy": "Leave cost, price, stock blank/unknown (no commercial terms in source)"
+      }
+    },
+    {
+      "file_name": "IGNITION LOOMS.pdf",
+      "source_path": "suppliers/Electrocity/Ignition Looms-Coils-Modules/IGNITION LOOMS.pdf",
+      "git_blob_sha": "0875d983b2b535a79b66c55e6d818bb1ffb7c098",
+      "sha256": "97787459711da62265f5374f5cdb203b8d1f86631dbe8b4422f7599709605051",
+      "file_size_bytes": 66694,
+      "page_count": 1,
+      "product_type": "Ignition Looms",
+      "extracted_item_count": 3,
+      "verification_status": "VERIFIED_MATCH",
+      "extraction_rules": {
+        "above_image": "OEM Part Number",
+        "below_image": "Private Electrocity SKU",
+        "keep_private": [
+          "Electrocity SKU"
+        ],
+        "commercial_policy": "Leave cost, price, stock blank/unknown (no commercial terms in source)"
+      }
+    }
+  ],
+  "total_sources": 2,
+  "total_items_extracted": 29,
+  "provisional_id_range": "GWA-EC-000003 to GWA-EC-000031",
+  "unapproved_sources_excluded": [
+    "suppliers/Electrocity/converters.pdf",
+    "suppliers/Electrocity/Ignition Looms-Coils-Modules/IGNITION COILS.pdf"
+  ]
+}
