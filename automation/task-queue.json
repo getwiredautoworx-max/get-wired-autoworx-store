@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Confirm GitHub has recalculated PR #204 mergeability after main ancestry was restored. Merge the latest PR-specific handover/task-queue checkpoint into this branch without overwriting main's owner directives. Then inspect the 51-file consolidated diff for source/public exposure and execute all available non-production tests; keep draft until verified."
+      "next_action": "Finish the two in-progress exact-head QA workflows: responsive catalogue review and mobile/desktop owner-preview browser QA. Inspect their completed step results. Keep PR #204 draft and do not merge; owner approval is required. After those pass, inspect remaining changed files and consolidate the 978-row ASC work only after review gates."
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -269,7 +269,7 @@
     "last_verified_main_sha": "b171c0bbcd83a775985ba37d4df84e717b7c9a8b",
     "active_candidate_pr": 204,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "9d52679694981c73f28a08ad2b19603f9fa218b6",
-    "active_candidate_status": "Draft PR #204 now has main as an ancestor. Candidate is 15 commits ahead / 0 behind main. Main-only tree changes were reconciled with a two-parent merge commit 9d52679694981c73f28a08ad2b19603f9fa218b6; 47 candidate-only files were overlaid on main's tree, while four overlapping paths retained main's versions pending owner checkpoint merge. PR remains draft and GitHub still reports mergeable=false (re-evaluation pending). Exact-head QA not yet run."
+    "active_candidate_head": "e64deda583ca1d3ebda771654d7088adc3b8f3d5",
+    "active_candidate_status": "PR #204 draft; main ancestry restored; 18 commits ahead / 0 behind; GitHub mergeable=true. Exact-head QA: Cloudflare public package build PASS; public SKU exposure audit PASS; supplier catalogue review data QA PASS (ASC 978-row review validation + Electrocity fitment quarantine); storefront smoke PASS (three-category structure + POR policy). Catalogue responsive review and mobile/desktop browser QA are still in progress. No merge or production deployment."
   }
 }
