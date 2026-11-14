@@ -117,8 +117,8 @@ for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), (
     serialised = json.dumps(review_data, ensure_ascii=False)
     # Exact authorised image URLs may retain their original hosting domain.
     # Supplier-name policy applies to visible labels/metadata, not image URLs.
-    customer_visible_text = re.sub(r"https?://\\S+", "[image-asset-url]", serialised, flags=re.I)
-    if re.search(r"Planetworld|Audio\\s+Connections", customer_visible_text, re.I):
+    customer_visible_text = re.sub(r"https?://\S+", "[image-asset-url]", serialised, flags=re.I)
+    if re.search(r"Planetworld|Audio\s+Connections", customer_visible_text, re.I):
         raise SystemExit(f"Supplier identity leaked into public review text: {filename}")
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
