@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     private ValueCallback<Uri[]> uploadCallback;
     private SharedPreferences prefs;
     private static final int FILE_PICKER = 4101;
+    private static final String STORE_PREVIEW_BASE = "https://e245f05c.get-wired-autoworx-store.pages.dev";
     private static final String CAELEX_HOME = "https://caelexinfolog.co.za/Caelex/";
     private static final String CAELEX_ITEM = "https://caelexinfolog.co.za/Caelex/item/J3RXQiEbID7SyEzYw3P63g%253D%253D%3FlistId%3D0&tabIndex%3D1?tabIndex=1";
 
@@ -41,6 +42,9 @@ public class MainActivity extends Activity {
 
             @Override public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                if (url != null && url.startsWith(STORE_PREVIEW_BASE)) {
+                    view.evaluateJavascript("(function(){if(document.getElementById('gwOwnerReturn'))return;var b=document.createElement('div');b.id='gwOwnerReturn';b.style='position:fixed;right:10px;bottom:10px;z-index:2147483647;background:#07111e;border:2px solid #087fe0;border-radius:10px;padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);font:14px Arial';b.innerHTML='<button id=\\\"gwOwnerReturnBtn\\\" style=\\\"background:#087fe0;color:#fff;border:0;border-radius:7px;padding:12px;font-weight:800\\\">RETURN TO OWNER APK</button>';document.body.appendChild(b);document.getElementById('gwOwnerReturnBtn').onclick=function(){if(window.AndroidBridge)AndroidBridge.returnToOwner();};})()", null);
+                }
                 if (url != null && url.startsWith(CAELEX_HOME)) {
                     view.evaluateJavascript("(function(){if(document.getElementById('gwOwnerBridge'))return;var b=document.createElement('div');b.id='gwOwnerBridge';b.style='position:fixed;right:10px;bottom:10px;z-index:2147483647;background:#07111e;border:2px solid #087fe0;border-radius:10px;padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);font:14px Arial';b.innerHTML='<button id=\"gwCap\" style=\"background:#087fe0;color:#fff;border:0;border-radius:7px;padding:10px;font-weight:800;margin-right:6px\">CAPTURE PAGE</button><button id=\"gwBack\" style=\"background:#12344c;color:#fff;border:0;border-radius:7px;padding:10px;font-weight:800\">OWNER APK</button>';document.body.appendChild(b);document.getElementById('gwCap').onclick=function(){if(window.AndroidBridge){AndroidBridge.captureCaelexPage();this.textContent='CAPTURED';}};document.getElementById('gwBack').onclick=function(){if(window.AndroidBridge)AndroidBridge.returnToOwner();};})()", null);
                 }
@@ -66,8 +70,8 @@ public class MainActivity extends Activity {
             if (target == null || !target.startsWith("https://caelexinfolog.co.za/Caelex/")) target = CAELEX_HOME;
             web.loadUrl(target);
         } else {
-            String target = "store".equals(screen) ? "file:///android_asset/store/store.html"
-                    : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html"
+            String target = "store".equals(screen) ? STORE_PREVIEW_BASE + "/store"
+                    : ("checkout".equals(screen) ? STORE_PREVIEW_BASE + "/checkout-v2.html"
                     : "file:///android_asset/admin_app.html");
             web.loadUrl(target);
         }
@@ -75,6 +79,14 @@ public class MainActivity extends Activity {
 
 
     private class SupplierBridge {
+        @JavascriptInterface public void openStorePreview() {
+            web.loadUrl(STORE_PREVIEW_BASE + "/store");
+        }
+
+        @JavascriptInterface public void openStoreAdmin() {
+            web.loadUrl(STORE_PREVIEW_BASE + "/admin.html");
+        }
+
         @JavascriptInterface public void openCaelex(String target) {
             String url = "home".equals(target) ? CAELEX_HOME : CAELEX_ITEM;
             if (!url.startsWith(CAELEX_HOME)) url = CAELEX_HOME;

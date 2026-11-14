@@ -27,13 +27,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
-      - name: Bundle storefront into Owner APK test assets
+      - name: Keep Owner APK lightweight
         shell: bash
         run: |
+          # The customer storefront is hosted separately; never package the full product-image catalogue in the owner app.
           rm -rf android-owner-app/app/src/main/assets/store
-          mkdir -p android-owner-app/app/src/main/assets/store
-          cp store.html index-new.html checkout-v2.html index.html admin.html category-navigation.js product-details.js android-owner-app/app/src/main/assets/store/
-          cp -R assets android-owner-app/app/src/main/assets/store/assets
+          test ! -d android-owner-app/app/src/main/assets/store
       - name: Build debug install-test APK
         working-directory: android-owner-app
         run: gradle :app:assembleDebug
