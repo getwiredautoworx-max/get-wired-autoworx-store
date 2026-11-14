@@ -1265,3 +1265,13 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - The package was built and verified locally in GitHub Actions only. No Cloudflare deployment, Axxess upload, live catalogue write, or production change occurred.
 - PR #202 remains DRAFT and mergeable. No merge was performed; explicit owner merge approval remains required. It is the only active integration candidate.
 - Updated the machine-readable task queue and reconciliation register. The task queue now resolves the canonical head via `main` and records PR #202 as the sole active candidate.
+
+
+## CURRENT RECONCILIATION CHECKPOINT — 2026-11-14
+- Current canonical main before this checkpoint: `0fe6905347a961888f0944d1a962b2e883a49541`.
+- Live inventory correction: **271 branches**, **46 open PRs**, **151 closed PR records inventoried**, **189 branch heads mapped**, and **81 branches without a PR-head match**. The recent-PR listing omits older open PR #28; separate lookup confirmed it is open, 30 commits ahead / 1,910 behind, documentation/schema only. Do not merge wholesale.
+- Unassociated branch dispositions are now recorded in `RECONCILIATION_REGISTER_2026-11-14.md`: backups preserved, trigger branch retained, separate apps isolated, old monitor/handover branches superseded, Buyers Guide extraction prohibited, ASC image and Alpine/OneNav source material review-only, stale storefront/supplier monoliths not merged.
+- Current category tree on main already contains ASC Aerials under Car Audio / Accessories; the old `task/asc-aerials-accessories-2026-11-05` branch is superseded.
+- The 50-image ASC pilot remains review-only and is not an import approval. Six Alpine rows remain review-only because owner-supplied numeric prices are unverified and descriptions/specifications are incomplete. OneNav's current-main branch is evidence only; its stale override removes an owner-authorised exact-model image already present in main.
+- PR #202 remains the sole active code-integration candidate. All five exact-head non-production checks passed on `b25da1a864bdff7a28b05027e5609e2886d46699`: Cloudflare Pages Public Package QA `43574602541`, Storefront Smoke Test `43574602374`, Catalogue & Supplier Routing Review QA `43574602354`, Public SKU Exposure Audit `43574602351`, and Owner Preview Mobile/Desktop Browser QA `43574602344`.
+- No production deployment, Axxess upload, live data write, DNS/payment change, branch deletion or merge occurred. PR #202 is still draft; explicit owner approval is required before merge.
