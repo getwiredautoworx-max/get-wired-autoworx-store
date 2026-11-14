@@ -1336,3 +1336,10 @@ Compared active PR heads against the observed current `main` SHA; do not merge t
 - Updated `automation/task-queue.json` to remove the stale PR #202 active-candidate reference and record the actual single integration branch, head, divergence and next action. Queue update commit: 6c3c53b23eb61aa14854019a913cf0f6fc23832f.
 - Next single task: reconcile the four main-only commits into `integration/store-consolidated-2026-11-14` without losing its existing changes; then run exact-head checks and independently assess PR #173. No parallel assignments.
 - No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion, history rewrite or paid hosting spend occurred.
+
+
+## DRAFT CONSOLIDATION PR — 2026-11-14 17:35 SAST
+- Opened draft PR #204: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/204 from `integration/store-consolidated-2026-11-14` to `main`. This is the single review vehicle; it is not merged.
+- Exact PR head at opening: `4d3a026c3b7f7c0035ad1fbff760b7e431025ed5`. GitHub reports 12 commits, 51 changed files, 1,005 additions, 53 deletions, and `mergeable=false`. Comparison reports 12 commits ahead / 6 behind main. Combined commit status and PR-triggered workflow listing returned no checks for this head, so QA is NOT established.
+- The changed-file list includes the Audison Forza preview/sanitisation/test work and the Electrocity 29-record ignition review pilot with page evidence. No ASC Buyers Guide content was introduced. Supplier source material remains review-only; customer display rules remain Price On Request, supplier names/internal SKUs hidden.
+- Immediate blocker: resolve PR #204 mergeability and six-commit base divergence, then run exact-head non-production QA. Do not merge, deploy, upload to Axxess, write live data, or spend hosting credits.
