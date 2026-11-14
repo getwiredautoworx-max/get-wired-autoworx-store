@@ -66,7 +66,7 @@ for (const expected of forzas) {
  assert.equal(record.hasStock,null);
  const override=overrides.records.find(o=>o.match&&o.match.id===expected.id);
  assert.ok(override,"exact primary record override missing: "+expected.model);
- assert.equal(override.appendIfMissing,false);
+ assert.equal(override.appendIfMissing,true);
  assert.equal(override.modelNumber,expected.model);
  assert.equal(override.title,expected.title);
  assert.equal(override.manufacturerProductName,expected.title);
