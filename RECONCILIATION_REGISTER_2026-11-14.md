@@ -344,9 +344,9 @@
 - Production hold remains: no production deploy, Axxess upload, live catalogue/price/stock writes, DNS/payment changes or paid hosting spend.
 
 ## Next execution order
-1. Finish classifying the 81 branches without an open/closed PR-head match, separating backups, trigger branches, review-only evidence and active unsubmitted work. Do not delete without approval.
-2. PR #202 now contains the safe selective recovery from the narrow 13-Nov audio branch; all required non-production checks passed. Await owner merge approval; do not merge the source branch wholesale.
-3. Fix remaining current-main preview blockers and run exact-head non-production QA.
+1. Branch triage is complete: all 81 branches without an open/closed PR-head match are classified in the appendix. No branch was deleted.
+2. PR #202 is the sole active integration candidate; all five exact-head non-production checks passed. Await explicit owner approval to merge; do not merge the source branch wholesale.
+3. After PR #202 is approved and merged, continue one workstream: verified OneNav product enrichment. Keep unverified images and source records review-only.
 
 
 ## LIVE INVENTORY DELTA — 2026-11-14 10:15 SAST
@@ -477,3 +477,10 @@ No branch was deleted, closed or merged as part of this audit. The categories be
 - `approved-storefront-preview-trigger` is retained because it is a workflow trigger; backup branches are preserved.
 - `audit/buyer-guide-extraction` is prohibited by the owner’s ASC Buyers Guide exclusion.
 - `feature/docs-schema-pack` is no longer unassociated: it is open PR #28, 30 commits ahead / 1,910 behind, docs/schema reference only.
+
+
+## TRIAGE COMPLETE — 2026-11-14
+- All **81** branches without an open/closed PR-head match have a recorded disposition in the triage appendix. No branch was deleted, closed or merged.
+- PR #202 is the only active code-integration candidate. It is draft, GitHub reports mergeable=true, and all five exact-head non-production QA checks passed. Await explicit owner merge approval.
+- The next task after PR #202 is OneNav exact-model enrichment from the review evidence, not a new parallel workstream.
+- Main SHA at this checkpoint: `e5791fbf1308916a4a2041a4307ac1943604617f`.
