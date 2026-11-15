@@ -1557,3 +1557,21 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Re-read authoritative owner directives and current handover. Previous Owner APK cluster is merged at `0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8`; #184 is closed as superseded.
 - Active remaining proposals: #67 (owner catalogue/category management) and #155 (part-image-search abuse controls). Scope: inspect complete patches and current-main context; port only safe repository-only code; keep privileged writes and Supabase deployment/migration application disabled pending approval; run exact-head tests; reconcile PR dispositions; update this handover after verified changes.
 - Task start recorded before implementation. No production deployment, Axxess upload, DNS/payment change, live Supabase write, or release-credit spend authorised.
+
+
+## STORE CONSOLIDATION — OPEN-PR INVENTORY CLOSED — 2026-11-15
+
+### Canonical mainline integrations and dispositions
+- Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical branch: `main`.
+- PR #206 merged as `0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8`. Exact-head candidate `b2cedbfb5bc8a16ff51d306d9a89f81273a027ea` passed APK build/emulator (run `43693408445`), Catalogue & Supplier Routing QA (`43693408439`) and Public SKU Exposure Audit (`43693408531`). PR #184 closed as superseded.
+- PR #67 closed without merge. Review found active product/category mutation and direct live-publishing functionality plus supplier quote/cost/availability, customer offer, payment confirmation, procurement authorization and fulfilment actions. No code from #67 was adopted, deployed or used for live writes. Any future catalogue manager must be separately designed with explicit fail-closed permissions and owner approval.
+- PR #207 selectively rebuilt from current `main` and merged as `0a8005e83a4251e1a0a380c0a9d782237335906a`. It repairs the `const identification` reassignment runtime defect; adds strict origin validation, bounded JSON/image parsing, HMAC-hashed trusted client IP rate limiting, a private schema/service-role RPC migration, sanitized provider failures, and isolated PostgreSQL permission/expiry/cleanup/concurrency tests. Customer image-search queries/results no longer select or expose product price or stock fields.
+- Exact-head PR #207 checks on `72ed82d7a424616124323d682040f21a7d8a8091`: Part Image Search Security Tests run `43694076115` SUCCESS; Delivery Quote Security Tests run `43694076196` SUCCESS; Owner APK build, checksum/artifact and Android API 35 emulator install/launch run `43694076125` SUCCESS.
+- PR #155 closed as superseded by #207; its stale branch was not merged.
+- Final open-PR search after these dispositions returned **zero open pull requests**. No competing open integration proposals remain.
+
+### Release boundary and remaining store work
+- The part-image-search migration is repository-only and was tested against disposable CI PostgreSQL. It has NOT been applied to Supabase; the Edge Function has NOT been deployed.
+- No production deployment, Axxess upload, DNS/payment change, live Supabase write, live catalogue/price/stock/active-flag change, or APK signing/distribution occurred. Production remains HOLD.
+- Repository/PR consolidation is complete. This does NOT mean catalogue enrichment, product identity/image/description verification, hosted preview acceptance, or production readiness is complete. Resume the single coordinated storefront-content and owner-preview queue from current `main`; do not reopen or recreate competing PRs.
+- Task queue and reconciliation register updated in the same documentation checkpoint.
