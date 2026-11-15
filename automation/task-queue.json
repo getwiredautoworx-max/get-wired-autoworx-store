@@ -309,7 +309,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "4c0943b205959ee3f0d9c8766dc000ef3aae0f14",
+    "canonical_head": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
     "active_task_id": "open-pr-reconciliation",
     "active_workers": 1,
     "parallel_workstreams": "paused; one open-PR reconciliation task only",
@@ -325,6 +325,6 @@
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
-    "active_candidate_status": "13 superseded/duplicate/conflicting PRs closed with audit comments. Eight retained as selective proposals; none is an active competing storefront. Canonical main remains the sole source of truth; no PR was merged and production remains HOLD."
+    "active_candidate_status": "Functional storefront/catalogue code baseline is 3e38e137afd7a5ec00395c3a51a2da0318a4da98; later main commits in this audit are documentation-only. Thirteen superseded/duplicate/conflicting PRs closed with audit comments. Eight retained as selective proposals; none is an active competing storefront. Canonical main is the only source of truth; production remains HOLD."
   }
 }
