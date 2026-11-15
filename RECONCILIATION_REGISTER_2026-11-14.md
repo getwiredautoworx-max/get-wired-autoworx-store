@@ -565,3 +565,10 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - Seven checks passed on PR head `295d42c4285cde570a547f2c0f7586cd7a7d1edc` before merge. These are not post-merge results; verify checks on merge SHA before declaring post-merge QA complete.
 - 19 other PRs remain open but are classified as separate proposals, duplicates, stale/legacy work or independent app/security/config tasks. They are not parallel active storefront/catalogue projects and are not authorised for wholesale merge/closure by this consolidation.
 - Repository remains public. All supplier-derived catalogue rows remain REVIEW ONLY / DO NOT IMPORT. No production deployment, Axxess upload, live data write, DNS/payment change, branch deletion, history rewrite or paid hosting spend.
+
+
+## POST-MERGE WORKFLOW CHECKPOINT — 2026-11-15
+- Functional merge SHA `3e38e137afd7a5ec00395c3a51a2da0318a4da98` passed Catalogue Image Audit, Public SKU Exposure Audit, Storefront Smoke Test, Background Task Controller, Owner Preview Mobile/Desktop Browser QA and Public URL HTTP Verification.
+- Store Production QA run `43689664917` failed only because the canonical production domain does not yet serve the merged storefront (`LIVE_BUTTON_ONLY_NOT_DEPLOYED`). This is expected under the owner-directed production HOLD. Do not deploy or weaken the check to clear it.
+- These results verify the merge commit; later commits in this checkpoint are documentation-only. Production and live data remain untouched.
+- PR #204 is merged. One canonical project now exists on `main`; remaining open PRs are separately classified proposals and are not active storefront/catalogue workstreams.
