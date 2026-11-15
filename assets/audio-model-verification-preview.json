@@ -821,9 +821,11 @@
       "manufacturerPage": "https://www.kicker.com/comp-12-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c124/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
       "primaryPreviewRecordId": "pw-1500",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageVerificationSource": "https://www.kicker.com/comp-12-4-ohm-subwoofer",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model family/size variant matches the product page. Review-only; not approved for import. Availability is not implied."
     },
     {
       "gwSku": "GW-34B8712E",
@@ -834,9 +836,11 @@
       "manufacturerPage": "https://www.kicker.com/43C84",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c84/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
       "primaryPreviewRecordId": "pw-1501",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageVerificationSource": "https://www.kicker.com/43C84",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model family/size variant matches the product page. Review-only; not approved for import. Availability is not implied."
     },
     {
       "gwSku": "GW-3A16656D",
@@ -860,9 +864,11 @@
       "manufacturerPage": "https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp",
       "component": "Amplifiers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa12001/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
       "primaryPreviewRecordId": "pw-1549",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageVerificationSource": "https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model family/size variant matches the product page. Review-only; not approved for import. Availability is not implied."
     },
     {
       "gwSku": "GW-31954ABD",
@@ -918,9 +924,11 @@
       "manufacturerPage": "https://www.kicker.com/comp-r-10-4-ohm-subwoofer",
       "component": "Subwoofers",
       "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr104/images/480x360-front.jpg",
-      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
       "primaryPreviewRecordId": "pw-1595",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageVerificationSource": "https://www.kicker.com/comp-r-10-4-ohm-subwoofer",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model family/size variant matches the product page. Review-only; not approved for import. Availability is not implied."
     },
     {
       "gwSku": "GW-9BFF6101",
