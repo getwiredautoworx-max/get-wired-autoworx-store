@@ -1510,3 +1510,12 @@ Canonical project remains `getwiredautoworx-max/get-wired-autoworx-store`, branc
 
 ### Verified open PR inventory
 Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR inventory now has 18 closed dispositions; PR #205 is the new selective integration PR and is merged.
+
+
+## OWNER APK RECONCILIATION — TASK START — 2026-11-15
+- Task ID: `owner-apk-184-067-reconciliation`; single active workstream, worker count 1.
+- Read owner directives and current handover before starting. Canonical target is `main`; source proposals are PR #184 (WebView bridge isolation/navigation controls and APK test artifact) and PR #67 (owner catalogue UI and source-only `veyron-admin` function/tests).
+- Scope: reconcile overlapping Android files into one fresh candidate based on current `main`; preserve restrictive WebView security; review admin function permissions and mutation gates. Repository-only changes and tests.
+- Explicit exclusions: no Supabase migration/function deployment, no live writes/publishing, no production deployment, no APK distribution or signing.
+- Acceptance: one candidate PR; security/navigation regression coverage; admin function auth/authorization and input validation reviewed; exact-head CI evidence; update task queue and this handover with commit/PR/run IDs.
+- Status: preflight complete; source diff inventory confirms both PRs touch `admin_app.html` and `MainActivity.java`. Next: compare exact source versions against current `main`, then port only reviewed code.
