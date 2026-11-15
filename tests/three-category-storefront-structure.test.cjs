@@ -23,6 +23,7 @@ assert.deepEqual(Object.values(ascTrailer.summary.subcategories).reduce((a,b)=>a
 assert.ok(ascTrailer.records.every(r=>r.price===null&&r.stock_quantity===0&&r.priceDisplay==='Price On Request Due to Stock Availability'&&r.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'),'ASC records must remain price-on-request, zero-stock and review-only');
 assert.ok(ascTrailer.records.every(r=>!('supplierSku' in r)&&!('Supplier_SKU' in r)),'ASC public preview must not expose supplier stock codes');
 assert.ok(tree.categories.some(c=>c.id==='a1000000-0000-4000-8000-000000000000'&&c.name==='ASC Trailer & Towing'&&c.parent_id===null),'ASC Trailer & Towing must be a separate root category');
+assert.ok(previewCategory.includes("if(current.parent_id==='a1000000-0000-4000-8000-000000000000'){location.replace('preview-asc-trailer-towing.html?subcategory='+encodeURIComponent(current.name));return}"), 'ASC child categories must open their review listings even when live product counts are zero');
 assert.ok(home.includes("'a1000000-0000-4000-8000-000000000000':'ASC Trailer & Towing'"),'ASC Trailer & Towing must appear as its own storefront root tile');
 assert.ok(ascTrailerPage.includes('OWNER PREVIEW — NON-PRODUCTION')&&ascTrailerPage.includes('PRODUCT IMAGE NOT INCLUDED IN SOURCE CSV'),'ASC preview must disclose non-production status and missing source images');
 assert.equal(imageSample.records.filter(p => p.subcategory === 'Aerials' && p.reviewStatus === 'REVIEW_ONLY_NOT_IMPORTED').length, 8, 'the ASC review sample must retain eight Aerials records');
