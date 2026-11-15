@@ -12,12 +12,19 @@ const previewAscSample = read('preview-asc-sample.html');
 const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
 const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
 const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
+const eligibleAudioRows = audio.records.filter(p =>
+  ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH', 'EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY'].includes(p.imageStatus) &&
+  Boolean(p.imageUrl) && Boolean(p.description) && p.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'
+);
+assert.equal(eligibleAudioRows.length, 68, 'only the 68 exact-image, described, review-only Audio Connections records may enter the owner preview');
+assert.equal(audio.records.length - eligibleAudioRows.length, 4, 'all four held/low-resolution Audio Connections exceptions must remain excluded');
 const autoElectrical = JSON.parse(read('assets/auto-electrical-owner-preview.json'));
 const imageSample = JSON.parse(read('assets/product-image-treatment-sample.json'));
 const ownerPreviewLoader = home.slice(home.indexOf('const previewProductData=async'), home.indexOf('const productTask=', home.indexOf('const previewProductData=async')));
 assert.equal(imageSample.records.filter(p => p.subcategory === 'Aerials' && p.reviewStatus === 'REVIEW_ONLY_NOT_IMPORTED').length, 8, 'the ASC review sample must retain eight Aerials records');
 assert.equal(imageSample.records.filter(p => p.subcategory === 'Car Mats' && p.reviewStatus === 'REVIEW_ONLY_NOT_IMPORTED').length, 8, 'the ASC review sample must retain eight Car Mats records');
 assert.ok(ownerPreviewLoader.includes("['Aerials','Car Mats'].includes(p.subcategory)"), 'the unified owner preview must load the Aerials and Car Mats sample records');
+assert.ok(ownerPreviewLoader.includes("const eligibleAudio=(audioData.records||[]).filter(p=>['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY'].includes(p.imageStatus)&&p.imageUrl&&p.description&&p.publicationStatus==='PREVIEW_ONLY_NOT_LIVE')"), 'the unified owner preview must exclude audio image holds, low-resolution images and incomplete records');
 assert.ok(ownerPreviewLoader.includes("'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'c35d15c1-d665-413f-b528-878b6a655d5d'"), 'ASC Aerials and Car Mats samples must map to their approved category IDs');
 assert.ok(ownerPreviewLoader.includes("p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'"), 'only explicitly review-only ASC sample records may enter the owner preview');
 const imageProcessor = read('scripts/process-product-image-pilot.py');
