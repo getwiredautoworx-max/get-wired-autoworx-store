@@ -1550,3 +1550,10 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Verified PR inventory must now be refreshed. Known remaining proposals: #67 (owner catalogue/category manager; unsafe mutation paths must be removed/disabled before adoption) and #155 (Part Image Search runtime defect/migration review). Do not wholesale merge either. Reconcile #67 next into a read-only, fail-closed candidate; then fix and test #155. Keep all Supabase functions/migrations repository-only pending explicit approval.
 - Production remains HOLD. No Axxess upload, production deployment, DNS/payment change, live Supabase write, live catalogue/price/stock change, or APK distribution was performed.
 - Next acceptance target: a single current-main-based, read-only owner catalogue management proposal with exact-head tests and security review; then re-audit all open PRs and close only genuinely superseded proposals. Keep the storefront itself on one coordinated mainline candidate.
+
+
+## STORE CONSOLIDATION — CONTINUATION START — 2026-11-15
+- Owner instruction: continue execution until the storefront repository is consolidated into one coordinated project. Canonical target remains `main`; production and live data remain untouched.
+- Re-read authoritative owner directives and current handover. Previous Owner APK cluster is merged at `0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8`; #184 is closed as superseded.
+- Active remaining proposals: #67 (owner catalogue/category management) and #155 (part-image-search abuse controls). Scope: inspect complete patches and current-main context; port only safe repository-only code; keep privileged writes and Supabase deployment/migration application disabled pending approval; run exact-head tests; reconcile PR dispositions; update this handover after verified changes.
+- Task start recorded before implementation. No production deployment, Axxess upload, DNS/payment change, live Supabase write, or release-credit spend authorised.
