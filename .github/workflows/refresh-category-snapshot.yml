@@ -28,6 +28,8 @@ jobs:
           python-version: '3.12'
       - name: Install snapshot refresh dependency
         run: python -m pip install --disable-pip-version-check requests
+      - name: Test category snapshot config resolution
+        run: python tests/test_refresh_category_snapshot_config.py
       - name: Refresh active category counts
         run: python scripts/refresh_category_snapshot.py
       - name: Commit changed snapshot only
