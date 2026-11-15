@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private static final int FILE_PICKER = 4101;
-    private static final String OWNER_ASSET_PREFIX = "file:///android_asset/";
     private static final String CAELEX_HOME = "https://caelexinfolog.co.za/Caelex/";
     private static final String CAELEX_ITEM = "https://caelexinfolog.co.za/Caelex/item/J3RXQiEbID7SyEzYw3P63g%253D%253D%3FlistId%3D0&tabIndex%3D1?tabIndex=1";
 
@@ -113,7 +112,14 @@ public class MainActivity extends Activity {
     }
 
     private boolean isOwnerAssetUrl(String url) {
-        return url != null && url.startsWith(OWNER_ASSET_PREFIX);
+        // Exact top-level allowlist: remote Caelex content must not navigate to
+        // an arbitrary bundled asset and regain the privileged Owner bridge.
+        return "file:///android_asset/admin_app.html".equals(url)
+            || "file:///android_asset/store/store.html".equals(url)
+            || "file:///android_asset/store/checkout-v2.html".equals(url)
+            || "file:///android_asset/store/admin.html".equals(url)
+            || "file:///android_asset/store/index.html".equals(url)
+            || "file:///android_asset/store/index-new.html".equals(url);
     }
 
     private boolean isCaelexUrl(String url) {
@@ -185,11 +191,11 @@ public class MainActivity extends Activity {
         activateOwnerBridge();
         String target;
         if ("store".equals(screen)) {
-            target = OWNER_ASSET_PREFIX + "store/store.html";
+            target = "file:///android_asset/store/store.html";
         } else if ("checkout".equals(screen)) {
-            target = OWNER_ASSET_PREFIX + "store/checkout-v2.html";
+            target = "file:///android_asset/store/checkout-v2.html";
         } else {
-            target = OWNER_ASSET_PREFIX + "admin_app.html";
+            target = "file:///android_asset/admin_app.html";
         }
         web.loadUrl(target);
     }
