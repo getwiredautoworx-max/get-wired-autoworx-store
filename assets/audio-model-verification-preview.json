@@ -12,7 +12,10 @@
       "component": "Cameras & Parking",
       "imageUrl": "https://www.alpine-asia.com/media/5baca7810efbd.png",
       "primaryPreviewRecordId": "pw-0017",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/SingleView/hce-c2100rd",
+      "imageVerificationNote": "Exact Alpine manufacturer product page confirms model; corresponding manufacturer-hosted image visually checked and matches the listed product. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-D8D34153",
@@ -24,7 +27,10 @@
       "component": "Speakers",
       "imageUrl": "https://www.alpine-asia.com/media/62d65d1bd9391.png",
       "primaryPreviewRecordId": "pw-0018",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/SingleView/hdz-653",
+      "imageVerificationNote": "Exact Alpine manufacturer product page confirms model; corresponding manufacturer-hosted image visually checked and matches the listed product. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-23B4075D",
@@ -46,11 +52,14 @@
       "name": "Alpine R-Series R2-A60F 4-channel power amplifier",
       "description": "Four-channel R-Series amplifier rated by Alpine at 4 × 150 W RMS at 2 ohms. Manufacturer describes Hi-Res Audio compliance up to 45 kHz, a reduced installation footprint and low-distortion feedback/correction circuitry. Alpine identifies the manufacturer model as R2-A60F.",
       "imageUrl": "https://finland.alpine-europe.com/fileadmin/products/R2-A60F/product-pic/R2-A60F_Alpine-R-Series-4-channel-Power-Amplifier.jpg",
-      "modelNumber": "R2-A60F.",
+      "modelNumber": "R2-A60F",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/r-series-amplifiers/r2-a60f",
       "component": "Amplifiers",
       "primaryPreviewRecordId": "pw-0035",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/r-series-amplifiers/r2-a60f",
+      "imageVerificationNote": "Exact Alpine manufacturer product page confirms model; corresponding manufacturer-hosted image visually checked and matches the listed product. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-44A846C9",
@@ -62,7 +71,10 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-r-speakers36/r2-w10d2",
       "component": "Subwoofers",
       "primaryPreviewRecordId": "pw-0042",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/SingleView/r2-w10d2",
+      "imageVerificationNote": "Exact Alpine manufacturer product page and model-specific image link confirmed. Full-resolution image URL could not be visually retrieved; retain as review-only and do not mark image verified yet."
     },
     {
       "gwSku": "GW-D44711C5",
@@ -89,7 +101,10 @@
       "component": "Amplifiers",
       "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg",
       "primaryPreviewRecordId": "pw-0053",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/s-series-amplifiers/s2-a55v",
+      "imageVerificationNote": "Exact Alpine manufacturer product page confirms model; corresponding manufacturer-hosted image visually checked and matches the listed product. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-DDF900C0",
@@ -101,7 +116,10 @@
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-s-speakers37/s2-s40c",
       "component": "Speakers",
       "primaryPreviewRecordId": "pw-0056",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_page_image_link_review_only",
+      "imageVerificationSource": "https://finland.alpine-europe.com/p/Products/type-s-speakers37/s2-s40c",
+      "imageVerificationNote": "Exact Alpine manufacturer product page and model-specific image link confirmed. Full-resolution image URL could not be visually retrieved; retain as review-only and do not mark image verified yet."
     },
     {
       "gwSku": "GW-3363298A",
