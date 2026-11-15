@@ -1519,3 +1519,14 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Explicit exclusions: no Supabase migration/function deployment, no live writes/publishing, no production deployment, no APK distribution or signing.
 - Acceptance: one candidate PR; security/navigation regression coverage; admin function auth/authorization and input validation reviewed; exact-head CI evidence; update task queue and this handover with commit/PR/run IDs.
 - Status: preflight complete; source diff inventory confirms both PRs touch `admin_app.html` and `MainActivity.java`. Next: compare exact source versions against current `main`, then port only reviewed code.
+
+
+## OWNER APK RECONCILIATION — CANDIDATE CHECKPOINT — 2026-11-15
+- Current-main task-start documentation commit: `eb59e7ee268cfd188450f4454ae7cd5b2349d44f`.
+- Selective candidate PR: [#206](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/206), branch `integration/owner-apk-secure-shell-2026-11-15`, head `16a26367f17346a0d70c0b08b0478748be75e184`.
+- Ported from #184: hardened `MainActivity.java` navigation allowlist (bundled assets + exact Caelex host/path), external routing for other HTTP(S)/mailto/tel URLs, separate Owner and Caelex JavaScript bridges, limited remote bridge to capture/return only, and owner page updated to use the Caelex in-page capture control.
+- Ported workflow changes: PR-triggered build, debug APK SHA-256, 7-day install-test artifact, Android API 35 emulator install/launch validation. This is a CI test artifact, not signed or distributed APK.
+- Exact-head GitHub Actions observed: APK build/emulator run `43693242050` queued; Catalogue & Supplier Routing QA `43693241943` queued; Public SKU Exposure Audit `43693241919` queued; push-triggered APK run `43693209219` in progress. Do not claim pass until completed.
+- #67 exclusion rationale: its admin HTML contains a direct `owner_publish_product` RPC publishing path and supplier quote/payment/procurement mutations, in addition to catalogue UI. These exceed the no-live-write boundary. #67's `veyron-admin` source has owner/admin authorization checks and input validation, but it includes service-role-backed product/category mutations and cost-bearing operational reads; do not deploy it or enable those writes. The UI/function require a fail-closed design and independent security review before adoption.
+- No Supabase writes, migration/function deployment, production deployment, APK signing/distribution, or live catalogue/price/stock changes occurred.
+- Next: wait for exact-head PR #206 CI; if green, merge the security shell and close #184 as superseded. Then reconcile #67 into a read-only/disabled-by-default catalogue manager candidate; proceed to #155 only after the Owner APK cluster is resolved.
