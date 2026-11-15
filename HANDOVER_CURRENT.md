@@ -1483,3 +1483,6 @@ Merge SHA tested by push-triggered workflows: `3e38e137afd7a5ec00395c3a51a2da031
 - `automation/task-queue.json` was updated in commit `301ba386178f6fad852e9e82fcb68976b8cc25dc`; it records `open-pr-reconciliation` as the sole active task and pauses owner-preview follow-up until this audit queue is reconciled.
 - `RECONCILIATION_REGISTER_2026-11-14.md` was updated in commit `2f8e5204c7d692780bf215e4510d534423a29507` with all 21 dispositions and next actions.
 - Main remains the only canonical project. All other work is queued, not active. Production remains HOLD. No deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting spend occurred.
+
+
+- Follow-up correction: task-queue commit `97bd163bf70383084e81ac10f19d0e7df0c8a63d` explicitly records the verified functional code baseline as `3e38e137afd7a5ec00395c3a51a2da0318a4da98`; subsequent commits in this audit are documentation-only. Latest main ref after this handover update is the resulting commit.
