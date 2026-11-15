@@ -648,3 +648,16 @@ PR #206 is the single active Owner APK candidate. No parallel Owner APK integrat
 - APK build/checksum/artifact/emulator workflow `43693408445`: in progress at last check; build, SHA-256 and artifact upload steps not yet confirmed complete on this latest head.
 - Catalogue & Supplier Routing QA run `43693408439`: in progress at last check.
 - PR #206 remains open and unmerged pending exact-head APK/emulator and catalogue QA results. No production or live-system action.
+
+
+## 2026-11-15 — Final open-PR reconciliation
+
+| PR | Final disposition | Evidence |
+|---|---|---|
+| #206 | Merged to canonical main | Merge commit `0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8`; exact-head APK/emulator `43693408445`, catalogue QA `43693408439`, public SKU audit `43693408531` all passed. #184 closed as superseded. |
+| #67 | Closed without merge | Unsafe active product/category mutation, live publish path, supplier quote/cost/availability, offer/payment/procurement/fulfilment actions. No code adopted or deployed. |
+| #207 | Merged to canonical main | Fresh current-main selective port. Merge commit `0a8005e83a4251e1a0a380c0a9d782237335906a`; exact-head security tests `43694076115`, quote-integrity `43694076196`, Owner APK/emulator `43694076125` all passed. #155 closed as superseded. |
+| #184 | Closed, superseded | Security shell integrated through #206. |
+| #155 | Closed, superseded | Security/runtime fixes integrated through #207; old branch not merged wholesale. |
+
+Final GitHub search on 2026-11-15 returned **zero open pull requests** for the canonical repository. One canonical project remains: `main`. The repository PR consolidation is complete; catalogue enrichment, exact-model/image/description QA, hosted staging preview and owner acceptance remain separate unfinished work. Part-image-search migration remains unapplied and Edge Function undeployed. Production remains HOLD; no live Supabase or customer-store data changed.
