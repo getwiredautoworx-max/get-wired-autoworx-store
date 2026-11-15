@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
@@ -35,8 +35,8 @@
     {
       "id": "single-project-reconciliation",
       "priority": 10,
-      "status": "in_progress",
-      "execution_mode": "read-only-reconciliation",
+      "status": "completed",
+      "execution_mode": "verified-integration",
       "automatic": false,
       "source": [
         "canonical main",
@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Correct the flagged wording in this task's completed_this_session notes so scripts/validate_automation_queue.py accepts the current task. The Public-Safe Catalogue Worker run 43613337623 failed at queue validation with QUEUE_VALIDATION_ERROR; extraction was skipped. Then rerun the worker, verify its result, and continue PR #204 diff/security review and owner-preview checks. Branch compare: 39 ahead / 0 behind main. Six other non-production checks passed on checkpoint dd1c948a33b8de944930a0d5a26ab01f9abda9ba. No merge without explicit owner approval.",
+      "next_action": "Consolidation PR #204 was merged by explicit owner instruction into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Verify all post-merge GitHub Actions checks on that merge SHA, reconcile queue/handover/register state, and then deliver one canonical non-production owner preview. Production remains HOLD.",
       "completed_this_session": [
         "Read owner directives, current handover and task queue before work.",
         "Classified all 21 open PRs other than #204 by title and changed-file inventory; recorded individual disposition and overlap clusters in RECONCILIATION_REGISTER_2026-11-14.md.",
@@ -60,13 +60,16 @@
         "Re-read authoritative directive §10–11 on canonical main: public repository use for catalogue processing is explicitly owner-authorised; private repo/runner is not a prerequisite. This supersedes the stale PR #204 content-boundary blocker.",
         "Verified the integration branch is 33 commits ahead / 0 behind current main; the four commits after task-start commit 25e85ee are documentation-only changes to handover, queue and reconciliation register.",
         "Verified all seven required non-production workflows completed SUCCESS on task-start commit 25e85ee (run IDs 43612550142, 43612550166, 43612550148, 43612550096, 43612550118, 43612550126, 43612550154). These must be rerun/verified on the final documentation checkpoint head.",
-        "Verified latest queried QA set on dd1c948a33b8de944930a0d5a26ab01f9abda9ba: six checks passed; Public-Safe Catalogue Worker run 43613337623 failed because queue validator flagged legacy wording in this task; bounded extraction was skipped. Job log and failure step are recorded in HANDOVER_CURRENT.md."
+        "Verified latest queried QA set on dd1c948a33b8de944930a0d5a26ab01f9abda9ba: six checks passed; Public-Safe Catalogue Worker run 43613337623 failed because queue validator flagged legacy wording in this task; bounded extraction was skipped. Job log and failure step are recorded in HANDOVER_CURRENT.md.",
+        "Owner explicitly instructed completion of consolidation; PR #204 was marked ready and merged into main as 3e38e137afd7a5ec00395c3a51a2da0318a4da98.",
+        "PR #204 exact head 295d42c4285cde570a547f2c0f7586cd7a7d1edc had seven successful pre-merge PR checks; post-merge checks remain to be verified.",
+        "The integration branch is now incorporated into canonical main; no separate active storefront/catalogue candidate remains."
       ]
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
       "priority": 9,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "scheduled-monitor",
       "automatic": true,
       "source": [
@@ -85,7 +88,7 @@
     {
       "id": "asc-six-catalogue-source-extraction",
       "priority": 5,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "scheduled-deterministic",
       "automatic": true,
       "source": [
@@ -163,7 +166,7 @@
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -181,7 +184,7 @@
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
@@ -200,7 +203,7 @@
     {
       "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "scheduled-qa",
       "automatic": true,
       "source": [
@@ -218,7 +221,7 @@
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -242,7 +245,7 @@
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
       "priority": 3,
-      "status": "paused_pending_reconciliation",
+      "status": "paused_pending_post_merge_verification",
       "execution_mode": "workflow-dispatch-and-visual-review",
       "automatic": false,
       "source": [
@@ -264,10 +267,10 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "main",
+    "canonical_head": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
     "active_task_id": "single-project-reconciliation",
     "active_workers": 1,
-    "parallel_workstreams": "paused until reconciliation is complete",
+    "parallel_workstreams": "paused until post-merge verification and one owner-preview checkpoint complete",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -277,9 +280,9 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "df823638d0a9f06dce939bee1b636307058f1583",
-    "active_candidate_pr": 204,
-    "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "dd1c948a33b8de944930a0d5a26ab01f9abda9ba",
-    "active_candidate_status": "PR #204 remains the sole draft storefront/catalogue consolidation candidate, unmerged. Branch compares 39 ahead / 0 behind main. On checkpoint dd1c948a33b8de944930a0d5a26ab01f9abda9ba, six non-production checks passed (runs 43613337567, 43613337547, 43613337553, 43613337494, 43613337548, 43613337723); Public-Safe Catalogue Worker run 43613337623 failed queue validation because task single-project-reconciliation contains legacy category/catalogue-reference wording; extraction was skipped. Immediate next action: neutralise the flagged wording in this task's completed_this_session notes, preserve exclusions in reconciliation register, then rerun worker. Do not claim all seven passed. Owner directive §10 authorises use of public repository; keep supplier names/internal SKUs hidden from customer output and all supplier records REVIEW ONLY / DO NOT IMPORT. No merge, production deploy, Axxess upload or live writes."
+    "active_candidate_pr": null,
+    "active_candidate_branch": null,
+    "active_candidate_head": null,
+    "active_candidate_status": "Consolidation PR #204 is merged into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. No separate active storefront/catalogue candidate remains. Next: verify post-merge workflows on merge SHA, reconcile queue/handover/register, then present one non-production owner preview. Production remains HOLD."
   }
 }
