@@ -73,7 +73,8 @@ const roots = tree.categories.filter(c => c.active && c.parent_id === null)
 assert.deepEqual(roots, [
   ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio / Home Entertainment'],
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Spares'],
-  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
+  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories'],
+  ['a1000000-0000-4000-8000-000000000000','ASC Trailer & Towing']
 ]);
 const autoElectricalNode = tree.categories.find(c => c.id === 'ba263c9f-d038-48bd-bca0-944f3ebdc5e9');
 const carCareNode = tree.categories.find(c => c.id === 'f98e7589-20a0-4825-9707-2680d29e5cb6');
