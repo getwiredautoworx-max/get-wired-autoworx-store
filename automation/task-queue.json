@@ -51,7 +51,7 @@
         "No stale branch is merged without current-main rebasing and exact-head checks",
         "One active workstream and one canonical main branch remain authoritative"
       ],
-      "next_action": "Selective consolidations on current main: PR #164 closed after repository cleanup; PR #152 closed after category-snapshot config fix and regression gate; PR #137 closed as superseded by the existing courier privacy protection; PR #154 closed after its safe controller changes were selectively ported and merged through PR #205 (merge commit f148ccc55efc91d3b46f83bb1b29109bdb6c2f05); PR #3 closed as a separate out-of-scope Sales Intelligence app. Of the original 21 proposals, 18 are now closed; only #184, #155 and #67 remain open. #155 is blocked by a const reassignment runtime defect and needs migration-schema/security validation. #184 and #67 overlap the same Owner APK files and must be reconciled into one current-main-based Owner app candidate, with live publishing/admin mutations disabled until explicit owner approval. Next: resolve the Owner APK overlap as one candidate, then repair/review #155. Do not wholesale merge stale branches."
+      "next_action": "Owner APK security shell selectively ported from #184 onto current main as PR #206, branch integration/owner-apk-secure-shell-2026-11-15, exact candidate SHA 16a26367f17346a0d70c0b08b0478748be75e184. PR-triggered validation is running (APK workflow 43693242050; catalogue routing QA 43693241943; public SKU audit 43693241919). #67 was not wholesale-ported: its admin page includes a direct owner_publish_product live-publishing path and supplier quote/payment/procurement mutations, outside the no-live-write boundary. Next: complete exact-head CI for #206; if green, merge security shell and close #184 as superseded. Then redesign #67 catalogue-management UI/function with explicit fail-closed mutation controls and tests before any adoption. #155 remains next after the Owner APK cluster. No live Supabase writes, function deployment, production deployment, APK signing/distribution."
     },
     {
       "id": "single-project-reconciliation",
@@ -315,7 +315,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
+    "canonical_head": "eb59e7ee268cfd188450f4454ae7cd5b2349d44f",
     "active_task_id": "open-pr-reconciliation",
     "active_workers": 1,
     "parallel_workstreams": "paused; one open-PR reconciliation task only",
@@ -328,9 +328,9 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
-    "active_candidate_pr": null,
-    "active_candidate_branch": null,
-    "active_candidate_head": null,
-    "active_candidate_status": "Current main includes selective repository cleanup, category snapshot configuration regression protection, existing courier collection-origin privacy safeguards, and the safe background controller protections merged via PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05. Only three proposals remain open: #184 and #67 overlap on Owner APK source and are queued for one unified current-main integration; #155 is blocked pending runtime fix and security/migration review. One active task, one canonical main. Production remains HOLD."
+    "active_candidate_pr": 206,
+    "active_candidate_branch": "integration/owner-apk-secure-shell-2026-11-15",
+    "active_candidate_head": "16a26367f17346a0d70c0b08b0478748be75e184",
+    "active_candidate_status": "PR #206 is the single current-main-based Owner APK security candidate. It selectively adopts #184's WebView navigation/bridge isolation and PR-triggered APK test artifact. PR #67 remains open but is not merged: its UI includes direct live product publishing and supplier quote/payment/procurement mutation controls, so these must be redesigned behind fail-closed controls before adoption. Exact-head CI pending. PR #155 remains blocked. Production and all live data mutations remain HOLD."
   }
 }
