@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Audison image exception resolved 2026-11-15: exact APX 690 (69070060 / pw-0182) official gallery image visually verified and review-only record updated; Audison image-verification status is now complete across all 41 Audison audit records. Continue next bounded exact-page batch and verify extractor output; all candidate data remains DO NOT IMPORT."
+      "next_action": "Kicker image batch advanced 2026-11-15: visually checked the official KICKER product-page images for 43C104, 46CXA3604, 46CXA4001 and 46CXA6605; synced exact manufacturer image URLs and review-only verification notes into the 69-record verification register. These four image matches are review-only, not import approval. Next: resolve the remaining four Kicker manufacturer-page-image-link-only records and audit Alpine's eight unspecified image statuses; preserve exact model/variant checks and DO NOT IMPORT."
     },
     {
       "id": "onenav-model-image-reconciliation",
