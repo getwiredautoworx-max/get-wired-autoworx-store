@@ -1423,3 +1423,24 @@ Workflow runs associated with checkpoint commit `dd1c948a33b8de944930a0d5a26ab01
 - The queue's previous `single-project-reconciliation` task and active-candidate fields must be reconciled to the merged state. One active follow-on task only: verify post-merge workflows and correct queue/handover/register consistency, then present one canonical non-production owner preview for review.
 - The latest PR inventory showed 19 other open PRs. They are not active storefront/catalogue workstreams. Their existing register dispositions remain: independent app/security/privacy/config proposals, duplicate/stale cleanup or schema proposals, legacy storefront/eight-root proposals, and separate sales APK. Do not wholesale-merge or close them merely to make the open-PR count zero; any future adoption must be selective and based on a new task.
 - Production remains HOLD. No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion/history rewrite or paid hosting spend was performed.
+
+
+## POST-MERGE WORKFLOW RESULTS — 2026-11-15
+Merge SHA tested by push-triggered workflows: `3e38e137afd7a5ec00395c3a51a2da0318a4da98`.
+
+| Workflow | Run | Result |
+|---|---:|---|
+| Catalogue Image Audit | 43689664950 | PASS |
+| Public SKU Exposure Audit | 43689664935 | PASS |
+| Storefront Smoke Test | 43689664923 | PASS |
+| Background Task Controller (push) | 43689664920 | PASS |
+| Owner Preview Mobile/Desktop Browser QA | 43689664907 | PASS |
+| Public URL HTTP Verification | 43689664894 | PASS |
+| Store Production QA | 43689664917 | FAIL — expected release-boundary mismatch |
+
+- Store Production QA failed at the step `Verify canonical production domain is reachable` because the live domain does not yet serve the merged three-department/button-only storefront (`LIVE_BUTTON_ONLY_NOT_DEPLOYED`). This is consistent with the explicit production HOLD. Do not deploy to make this check green; the production workflow is not authorisation to release.
+- Background Task Controller also completed successfully on the merge SHA (run 43689694542; push controller run 43689664920). Other controller invocations were cancelled as superseded; no need to retry successful work.
+- Public URL HTTP verification returned success for the current public homepage and policy pages. This does not mean the merged storefront was deployed to production.
+- These workflow runs are associated with the merge SHA. Subsequent commits in this session changed only handover, register and task-queue documentation; no application code or storefront payload was changed.
+- Canonical functional merge remains `3e38e137afd7a5ec00395c3a51a2da0318a4da98`. Documentation checkpoint commits: `b47b666c7e6b0bcc61a1a639929b7ef55a02fc36` (handover), `7383554fa3d8287c20738bc456e17db5439ee57a` (register), followed by the queue checkpoint to be recorded after its update.
+- Consolidation is complete at the repository/code-integration level. Owner preview acceptance and production release are separate gates and remain outstanding. Catalogue rows remain REVIEW ONLY / DO NOT IMPORT.
