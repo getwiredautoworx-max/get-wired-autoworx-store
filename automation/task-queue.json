@@ -330,7 +330,7 @@
     "last_verified_main_sha": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
     "active_candidate_pr": 206,
     "active_candidate_branch": "integration/owner-apk-secure-shell-2026-11-15",
-    "active_candidate_head": "16a26367f17346a0d70c0b08b0478748be75e184",
-    "active_candidate_status": "PR #206 is the single current-main-based Owner APK security candidate. It selectively adopts #184's WebView navigation/bridge isolation and PR-triggered APK test artifact. PR #67 remains open but is not merged: its UI includes direct live product publishing and supplier quote/payment/procurement mutation controls, so these must be redesigned behind fail-closed controls before adoption. Exact-head CI pending. PR #155 remains blocked. Production and all live data mutations remain HOLD."
+    "active_candidate_head": "b2cedbfb5bc8a16ff51d306d9a89f81273a027ea",
+    "active_candidate_status": "PR #206 current head b2cedbfb5bc8a16ff51d306d9a89f81273a027ea includes exact top-level local asset allowlisting (not broad file:///android_asset prefix) and scripts/test-owner-apk-webview-security.py, run before APK build. Static source inspection confirms all six required local paths, bridge replacement and no remote Caelex snapshot read/clear methods. Exact-head runs 43693408445 (APK build/emulator), 43693408439 (catalogue routing QA), and 43693408531 (public SKU audit) are in progress. #67 remains excluded pending fail-closed rewrite of live publishing/quote/payment/procurement paths."
   }
 }
