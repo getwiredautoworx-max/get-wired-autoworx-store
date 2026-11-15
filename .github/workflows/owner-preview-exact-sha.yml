@@ -130,7 +130,10 @@ jobs:
               if(JSON.stringify(subcategories)!==JSON.stringify(expected)) throw new Error('ASC root subcategories mismatch: '+JSON.stringify(subcategories));
               const trailer=page.locator('#grid > .card').filter({hasText:'Trailer'}).first();
               const trailerHref=await trailer.getAttribute('href');
-              if(!trailerHref||!trailerHref.includes('preview-asc-trailer-towing.html?subcategory=Trailer')) throw new Error('Trailer subcategory does not link to its filtered catalogue: '+trailerHref);
+              if(!trailerHref||!trailerHref.includes('preview-category.html?id=a1000000-0000-4000-8000-000000000002')) throw new Error('Trailer subcategory does not link to its owner-preview category route: '+trailerHref);
+              await trailer.click();
+              await page.waitForFunction(()=>/\\/preview-asc-trailer-towing(?:\\.html)?$/.test(location.pathname),{timeout:30000});
+              if(new URLSearchParams(location.search).get('subcategory')!=='Trailer') throw new Error('Trailer child route did not preserve its selected subcategory');
 
               // Verify all 165 records, subcategory filter, POR label and responsive layout.
               await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-asc-trailer-towing.html',{waitUntil:'domcontentloaded'});
