@@ -1582,3 +1582,11 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - New single workstream: post-merge verification and owner preview. Task is to audit the consolidated mainline storefront build/package and current staging preview, then run exact-main non-production checks and mobile/desktop preview validation where available.
 - Preserve the three approved homepage departments and all supplier/privacy/pricing rules. Review-only catalogue records remain DO NOT IMPORT. No production deploy, Axxess upload, DNS/payment change, live Supabase write, or release-credit spend.
 - Task-start recorded. Do not create a new integration branch unless a verified defect requires a focused fix; keep work on canonical mainline with one candidate only.
+
+
+## POST-CONSOLIDATION VERIFICATION — MAINLINE CHECKPOINT — 2026-11-15
+- After PR reconciliation, the canonical mainline received two repository-only QA workflow improvements: `store-preview-browser-qa.yml` now also watches changes to the non-deploying Cloudflare public-package QA workflow; `cloudflare-public-pages-build-qa.yml` now includes a push-to-main trigger for package-only standard/isolated-preview builds. Neither workflow deploys to Cloudflare or changes live data.
+- Latest mainline commit at this checkpoint: `1391af478ef31844d868360915f3cdd2485617d3` (the previous two commits are the corresponding workflow-only updates).
+- The connected GitHub workflow-run reader exposes PR-triggered runs only; it returned no push-run records for these workflow-only commits. Therefore no push-run success is claimed. PR #207 exact-head tests remain the latest verified green package/security and Android test set.
+- Owner-preview deployment remains manual-only by owner policy. No dispatch/deploy was attempted; no Cloudflare credits, production deployment, Axxess upload, live Supabase write or DNS/payment change occurred.
+- Repository consolidation remains complete (zero open PRs). The separate post-merge hosted-preview/mobile-desktop acceptance task remains in progress and must not be represented as completed or production-ready.
