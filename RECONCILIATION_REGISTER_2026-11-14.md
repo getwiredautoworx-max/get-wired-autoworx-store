@@ -556,3 +556,12 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - Public-repository content boundary resolved under owner directive §10 (2026-11-09). Keep repository public; do not create a private repo/runner or move/delete supplier-source files for this reason. Preserve credential/secret protection and customer-output sanitisation.
 - Seven QA workflows passed on earlier task-start SHA `25e85eea483d4c220c2c83e0ca874470e76241b5` (runs 43612550142, 43612550166, 43612550148, 43612550096, 43612550118, 43612550126, 43612550154). No PR-triggered runs were returned for final documentation checkpoint SHA `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`; exact-head QA is NOT VERIFIED on that final SHA.
 - PR #204 remains draft and unmerged. No production/deployment/live-data action was taken.
+
+
+## CONSOLIDATION MERGE — 2026-11-15
+- Owner instruction: "Complete consolidation." PR #204 was marked ready for review and merged to canonical `main` as `3e38e137afd7a5ec00395c3a51a2da0318a4da98`.
+- This integrates the single storefront/catalogue candidate into the canonical repository. The integration branch is no longer an independent active project.
+- The merge brings together the current three-department storefront foundation, selective Audison Forza preview work, the 29-record Electrocity ignition pilot, six ASC catalogue review-only registers/extraction tools, public-package safeguards and validation tests.
+- Seven checks passed on PR head `295d42c4285cde570a547f2c0f7586cd7a7d1edc` before merge. These are not post-merge results; verify checks on merge SHA before declaring post-merge QA complete.
+- 19 other PRs remain open but are classified as separate proposals, duplicates, stale/legacy work or independent app/security/config tasks. They are not parallel active storefront/catalogue projects and are not authorised for wholesale merge/closure by this consolidation.
+- Repository remains public. All supplier-derived catalogue rows remain REVIEW ONLY / DO NOT IMPORT. No production deployment, Axxess upload, live data write, DNS/payment change, branch deletion, history rewrite or paid hosting spend.
