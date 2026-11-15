@@ -178,6 +178,37 @@ def make_contact_sheet(items):
     OUT.mkdir(parents=True, exist_ok=True)
     sheet.save(OUT / "contact-sheet.jpg", "JPEG", quality=90, optimize=True)
 
+def normalize_audit_row(raw):
+    """Normalize current or legacy Audison audit rows; reject collection-only matches."""
+    if "manufacturer_match_status" in raw:
+        if clean_text(raw.get("manufacturer_match_status")) != "EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND":
+            return None
+        source_title = clean_text(raw.get("source_description"))
+        source_model = clean_text(raw.get("source_model_in_description"))
+        if not source_model:
+            parts = [clean_text(part) for part in source_title.split(" - ")]
+            if len(parts) >= 3 and parts[0].casefold() == "audison":
+                source_model = parts[1]
+        return {
+            "brand": "Audison", "source_model": source_model,
+            "source_title": source_title, "source_component": "",
+            "source_sku": clean_text(raw.get("supplier_sku_reference_only")),
+            "official_product_page_url": clean_text(raw.get("official_manufacturer_reference")),
+            "image_url_candidate": "",
+        }
+    if raw.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE":
+        return None
+    return {
+        "brand": clean_text(raw.get("brand")) or "Audison",
+        "source_model": clean_text(raw.get("source_model")),
+        "source_title": clean_text(raw.get("source_title")),
+        "source_component": clean_text(raw.get("source_component")),
+        "source_sku": clean_text(raw.get("source_sku")),
+        "official_product_page_url": clean_text(raw.get("official_product_page_url")),
+        "image_url_candidate": clean_text(raw.get("image_url_candidate")),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=5)
@@ -195,37 +226,9 @@ def main():
         rows = list(csv.DictReader(f))
     pending = []
     for raw in rows:
-        # Current owner-audited register: only individually verified product pages.
-        current_schema = "manufacturer_match_status" in raw
-        if current_schema:
-            if clean_text(raw.get("manufacturer_match_status")) != "EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND":
-                continue
-            url = clean_text(raw.get("official_manufacturer_reference"))
-            source_title = clean_text(raw.get("source_description"))
-            source_model = clean_text(raw.get("source_model_in_description"))
-            if not source_model:
-                parts = [clean_text(part) for part in source_title.split(" - ")]
-                if len(parts) >= 3 and parts[0].casefold() == "audison":
-                    source_model = parts[1]
-            row = {
-                "brand": "Audison", "source_model": source_model,
-                "source_title": source_title, "source_component": "",
-                "source_sku": clean_text(raw.get("supplier_sku_reference_only")),
-                "official_product_page_url": url,
-                "image_url_candidate": "",
-            }
-        else:
-            if raw.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE":
-                continue
-            row = {
-                "brand": clean_text(raw.get("brand")) or "Audison",
-                "source_model": clean_text(raw.get("source_model")),
-                "source_title": clean_text(raw.get("source_title")),
-                "source_component": clean_text(raw.get("source_component")),
-                "source_sku": clean_text(raw.get("source_sku")),
-                "official_product_page_url": clean_text(raw.get("official_product_page_url")),
-                "image_url_candidate": clean_text(raw.get("image_url_candidate")),
-            }
+        row = normalize_audit_row(raw)
+        if not row:
+            continue
         url = row["official_product_page_url"]
         if not url:
             continue
