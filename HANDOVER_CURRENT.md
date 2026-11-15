@@ -1705,3 +1705,7 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 
 ### Release boundary
 - No production deployment, Axxess upload, DNS/payment change, live Supabase write, product import/activation, live price/stock change or paid hosting spend occurred in this session.
+
+
+### Preview cache/version marker
+- Refreshed the owner-preview iframe build marker from the stale 2026-11-05 value to `20261115-verified-audio-filter` in `owner-preview.html`, commit `30ddd401ebb882b1f6c11901b75ec31cbacba848`. This is a source change only; it does not imply that Cloudflare has deployed the updated page.
