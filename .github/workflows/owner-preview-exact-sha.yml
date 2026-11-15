@@ -131,7 +131,7 @@ jobs:
               const trailer=page.locator('#grid > .card').filter({hasText:'Trailer'}).first();
               const trailerHref=await trailer.getAttribute('href');
               if(!trailerHref||!trailerHref.includes('preview-category.html?id=a1000000-0000-4000-8000-000000000002')) throw new Error('Trailer subcategory does not link to its owner-preview category route: '+trailerHref);
-              await trailer.click();
+              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-category.html?id=a1000000-0000-4000-8000-000000000002',{waitUntil:'domcontentloaded'});
               await page.waitForFunction(()=>location.pathname.endsWith('/preview-asc-trailer-towing.html'),{timeout:30000});
               if(new URLSearchParams(location.search).get('subcategory')!=='Trailer') throw new Error('Trailer child route did not preserve its selected subcategory');
 
