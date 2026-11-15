@@ -8,7 +8,8 @@
     "latest verified execution checkpoint on canonical main",
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (public repository processing authorised; all products Price On Request)",
     "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams",
-    "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project"
+    "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project",
+    "2026-11-15 owner instruction: continue consolidated storefront delivery until resolved"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -122,7 +123,7 @@
     {
       "id": "asc-six-catalogue-source-extraction",
       "priority": 5,
-      "status": "paused_pending_post_merge_verification",
+      "status": "in_progress",
       "execution_mode": "scheduled-deterministic",
       "automatic": true,
       "source": [
@@ -139,7 +140,7 @@
         "Keep OCR output review-only and DO NOT IMPORT",
         "Retain exact owner-approved ASC Price On Request wording in any customer-facing staging presentation"
       ],
-      "next_action": "Run repeatable OCR extraction and generate source-page review evidence."
+      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. Run repeatable OCR extraction and generate source-page review evidence."
     },
     {
       "id": "audio-planetworld-source-extraction",
@@ -200,7 +201,7 @@
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "paused_pending_post_merge_verification",
+      "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -213,7 +214,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "OA014-1 OneNav Classic 9-inch Toyota Prado 2002–2009 now has an exact owner-authorised retailer image and verified description in the review-only preview; continue remaining OneNav model-by-model, and never substitute a similar series or vehicle-fitment image."
+      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. OA014-1 OneNav Classic 9-inch Toyota Prado 2002–2009 now has an exact owner-authorised retailer image and verified description in the review-only preview; continue remaining OneNav model-by-model, and never substitute a similar series or vehicle-fitment image."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -237,7 +238,7 @@
     {
       "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "paused_pending_post_merge_verification",
+      "status": "in_progress",
       "execution_mode": "scheduled-qa",
       "automatic": true,
       "source": [
@@ -250,12 +251,12 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Cloudflare public-package QA and supplier/SKU exposure audit passed on exact SHA 1e97ee09496d4dbcc20531e269a043b49de6f28a. Image workflow is updating the sample manifest status; rerun exact-head package QA after its bot commit. Hosted staging preview and mobile/desktop owner acceptance remain outstanding; no production deployment."
+      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. Cloudflare public-package QA and supplier/SKU exposure audit passed on exact SHA 1e97ee09496d4dbcc20531e269a043b49de6f28a. Image workflow is updating the sample manifest status; rerun exact-head package QA after its bot commit. Hosted staging preview and mobile/desktop owner acceptance remain outstanding; no production deployment."
     },
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "paused_pending_post_merge_verification",
+      "status": "in_progress",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -274,7 +275,7 @@
         "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
         "Customer display hides supplier names/internal SKUs and uses Price On Request"
       ],
-      "next_action": "Preview now has separate Automotive Sensors (9), Automotive Switches (8), Globes (8), Fuel Pumps (9), ASC Aerials (8), and Car Mats (8) routes. Car Audio Accessories now displays separate Trims and Harnesses; source rows are split 23/24 and held pending exact product images/descriptions. Finish exact-head route tests; other non-pilot Auto Electrical and Car Care subcategories remain source-pending."
+      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. Preview now has separate Automotive Sensors (9), Automotive Switches (8), Globes (8), Fuel Pumps (9), ASC Aerials (8), and Car Mats (8) routes. Car Audio Accessories now displays separate Trims and Harnesses; source rows are split 23/24 and held pending exact product images/descriptions. Finish exact-head route tests; other non-pilot Auto Electrical and Car Care subcategories remain source-pending."
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
@@ -315,9 +316,26 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Repository PR consolidation is complete and final open-PR search returned zero. QA workflows now trigger package-only checks on main and browser QA when the public package QA workflow changes. The connected run reader exposes PR-triggered runs only, so push-run success is not verified. Continue by obtaining exact-main package/browser QA evidence and the manually controlled non-production owner-preview deployment/desktop-mobile acceptance. No production deployment or live data writes.",
+      "next_action": "Latest main observed: 0874f62954b28c8b5e49aad6ced11e24e4195bf7. Open PR search: zero. Need exact-main package/browser QA evidence, then one hosted staging owner preview tied to that same verified SHA and desktop/mobile acceptance. The available commit-run wrapper does not expose push-triggered runs; do not infer success. No production deployment.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
+    },
+    {
+      "id": "out-of-scope-catalogue-quarantine",
+      "priority": 10,
+      "status": "quarantined",
+      "execution_mode": "scope-and-publication-guard",
+      "automatic": false,
+      "source": [
+        "suppliers/ASC/ASC_Trailer_and_Towing_Catalogue.csv",
+        "main commit 0874f62954b28c8b5e49aad6ced11e24e4195bf7"
+      ],
+      "success_criteria": [
+        "Keep the 165-row Trailer & Towing dataset out of the approved three-department customer preview",
+        "Do not expose supplier SKU or source metadata",
+        "Preserve source file unchanged pending owner scope decision"
+      ],
+      "next_action": "Quarantined from storefront processing: Trailer & Towing is not one of the three approved homepage departments. No deletion or history rewrite; await explicit owner scope change before processing."
     }
   ],
   "coordination": {
