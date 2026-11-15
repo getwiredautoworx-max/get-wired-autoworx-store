@@ -86,7 +86,8 @@ for name in OPTIONAL_ROOT_FILES:
 # Cloudflare supplies CF_PAGES_BRANCH. Include owner-preview routes on non-main
 # branches automatically; main always receives the clean production package.
 # The explicit flag remains available for local/manual preview builds.
-branch = os.environ.get("CF_PAGES_BRANCH")
+branch = (os.environ.get("CF_PAGES_BRANCH") or os.environ.get("CF_BRANCH")
+          or os.environ.get("GITHUB_HEAD_REF") or os.environ.get("GITHUB_REF_NAME"))
 include_preview = (branch is not None and branch != "main") or os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
@@ -108,7 +109,10 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72), ("asc-trailer-towing-owner-preview.json", 165)]:
+review_catalogue_requirements = [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]
+if include_preview:
+    review_catalogue_requirements.append(("asc-trailer-towing-owner-preview.json", 165))
+for filename, expected_minimum in review_catalogue_requirements:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
