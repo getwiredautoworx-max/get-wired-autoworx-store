@@ -630,3 +630,13 @@ The original open-PR reconciliation has advanced. Selective current-main integra
 - #184 and #67 remain open as one overlapping Owner APK feature cluster because both modify `android-owner-app/app/src/main/assets/admin_app.html` and `MainActivity.java`. #67 additionally adds `veyron-admin` and tests. Reconcile on a fresh main-based candidate; no live admin publishing/data writes or function deployment.
 
 Exactly three original proposals remain open: #184, #155, #67. One canonical main and one active task only. Next: converge #184/#67 first, then resolve #155.
+
+
+## 2026-11-15 — Owner APK overlap disposition checkpoint
+
+| PR | Current disposition | Evidence / next action |
+|---|---|---|
+| #184 | Selectively ported to candidate PR #206; original remains open pending validation | Candidate branch `integration/owner-apk-secure-shell-2026-11-15`, head `16a26367f17346a0d70c0b08b0478748be75e184`. Navigation allowlist and separate Owner/Caelex bridges adopted. Exact-head APK build/emulator and catalogue QA are still running; Public SKU Exposure Audit passed (run `43693241919`). |
+| #67 | Not merged; blocked for safe UI/function adoption | Admin page contains direct `owner_publish_product` live publishing and supplier quote/payment/procurement mutations. Function is service-role-backed and includes product/category mutation handlers. No deployment/live writes authorised. Rebuild as fail-closed/read-only-by-default candidate after PR #206 security shell is validated. |
+
+PR #206 is the single active Owner APK candidate. No parallel Owner APK integration branch is authorised. If #206 exact-head checks pass, merge it and close #184 as superseded. Keep #67 open until its prohibited mutation paths are removed or safely gated and tested. Production remains HOLD.
