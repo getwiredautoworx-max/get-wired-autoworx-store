@@ -572,3 +572,48 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - Store Production QA run `43689664917` failed only because the canonical production domain does not yet serve the merged storefront (`LIVE_BUTTON_ONLY_NOT_DEPLOYED`). This is expected under the owner-directed production HOLD. Do not deploy or weaken the check to clear it.
 - These results verify the merge commit; later commits in this checkpoint are documentation-only. Production and live data remain untouched.
 - PR #204 is merged. One canonical project now exists on `main`; remaining open PRs are separately classified proposals and are not active storefront/catalogue workstreams.
+
+
+
+## OPEN PR AUDIT AND CONSOLIDATION — 2026-11-15
+
+### Canonical outcome
+- Owner instruction: "Audit and consolidate open PRs. I want this as a single project going forward."
+- Canonical repository remains `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`. The current main line is seven documentation commits beyond functional merge `3e38e137afd7a5ec00395c3a51a2da0318a4da98`; no application code was changed by those documentation commits.
+- Initial live inventory: 21 open PRs. Result: 13 closed with explanatory PR comments; 8 remain open as selective proposals only. No PR in this audit was merged, no branch was deleted, and no history was rewritten.
+- One active workstream is recorded in `automation/task-queue.json`: `open-pr-reconciliation`. All retained PRs are inactive candidates until individually rebased onto current main, reviewed and tested. They are not independent project sources of truth.
+
+### Closed PRs and reason
+| PR | Disposition |
+|---:|---|
+| #150 | Closed as duplicate of repository-cleanup PR #164. |
+| #143 | Closed as superseded/overlapping with broader background-controller PR #154; its production-retry guard remains a required review check for #154. |
+| #48 | Closed as stale ASC stock/discontinuation cleanup outside current catalogue-only workflow. |
+| #49 | Closed because it includes ASC Buyers Guides, explicitly excluded by owner directive. |
+| #51 | Closed as overlapping historical ASC stock/discontinuation cleanup. |
+| #65 | Closed as ASC live stock/discontinuation audit, outside current approved catalogue scope. |
+| #32 | Closed because its eight-root navigation conflicts with the current three-department storefront. |
+| #72 | Closed as stale legacy storefront candidate based on PR #70/recovery branch; no wholesale merge. |
+| #28 | Closed as stale legacy documentation/schema pack carrying obsolete eight-category assumptions. |
+| #31 | Closed as dependent on obsolete PR #28 schema branch; any needed validation must be rebuilt against current main. |
+| #53 | Closed as dependent on obsolete schema branch and historical hard-coded SKU quote-only list; current rule is Price On Request for all suppliers. |
+| #81 | Closed as overlapping/superseded by newer Owner APK candidate #184. |
+| #82 | Closed as competing APK-free Owner Hub/PWA alternative; one owner-app direction only. |
+
+### Remaining open PRs — selective review queue
+| PR | Current disposition | Required next action |
+|---:|---|---|
+| #184 | Owner APK WebView/security and install-test candidate | Compare with #67 on shared APK files; rebase and test only as one coordinated owner-app task. |
+| #164 | Repository cleanup proposal | Check current main for already-removed marker files and preserve current handover; merge only if a clean, non-conflicting delta remains. |
+| #155 | Part-image-search security/rate-limit proposal | Security review of service-role RPC, migration privileges, trusted client IP and failure modes; rebase and exact-head tests. Migration remains source-only; no Supabase apply/deploy. |
+| #154 | Background-controller safety proposal | Rebase onto current main; incorporate #143 production-QA no-auto-retry guard; verify read-only artifact inventory and allowlist tests. |
+| #152 | Category snapshot config-discovery fix | Rebase and run config regression plus snapshot tests; no live refresh/write. |
+| #137 | Courier collection-origin privacy fix | Rebase and run security/unit tests; no secret changes, live carrier calls or function deployment. |
+| #67 | Owner catalogue-management/admin proposal | Security review and compare shared APK files with #184; no live Supabase writes or function deployment. |
+| #3 | Isolated Sales Intelligence APK | Remains a separately scoped optional application proposal, not part of storefront release; do not merge into storefront by default. |
+
+### Consolidation rules from this audit
+- `main` is the sole canonical source of truth. No PR branch is a second project or parallel workstream.
+- No remaining PR is approved for wholesale merge. Branches are substantially behind/diverged from current main (the sampled candidates are 2–23 commits ahead and 405–884 commits behind by GitHub compare); each must be rebased or selectively ported and retested against current main before adoption.
+- Shared-file overlaps (#154/#143, #184/#81, #184/#67) must be resolved as one implementation path, not merged independently.
+- Keep production HOLD. No deployment, Axxess upload, live Supabase/data/price/stock write, DNS/payment change, or paid hosting spend was performed.
