@@ -1678,3 +1678,30 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 
 ### Work in progress
 - Reconcile a safe, cost-free path to build and inspect the current three-category customer storefront from main, then fix concrete public-safe customer-facing defects on main or one coordinated current-main candidate. No production deployment, Axxess upload, live Supabase write, DNS/payment change or paid hosting action is authorised.
+
+
+## STOREFRONT DELIVERY DEFECT FIX — 2026-11-15
+
+### Confirmed customer-preview defect and repair
+- The owner-preview loader in `index-new.html` previously mapped all 72 records from `assets/audio-catalogue-secondary-preview.json` directly into customer-style product cards, regardless of image verification status.
+- A direct audit of the 72 records found: 62 `OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH`; 6 `EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY`; 3 `IMAGE_HOLD_MODEL_VARIANT_UNCONFIRMED` with no image; and 1 `OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_LOW_RES`. All 72 have descriptions and are marked review-only.
+- Fixed the loader to include only records with an accepted exact-image status, a non-empty image URL, a non-empty description and `PREVIEW_ONLY_NOT_LIVE` publication status. The eligible count is **68**; all **4** held/low-resolution exceptions are excluded. Customer prices remain Price On Request and stock remains unconfirmed.
+- Added regression assertions to `tests/three-category-storefront-structure.test.cjs` requiring 68 eligible records, four exclusions and the exact loader filter.
+- Code commit: `965ec42b431a21d9fd5044e592ca47ce73f32032`. Regression-test commit: `23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10`. Queue checkpoint: `d2128fc6d559dbd31b1bc420f16ad28fa53ed162`.
+- The fix is committed on canonical `main`; this is code integration, not an assertion that the test suite ran successfully. GitHub combined status for the code/test SHA returned no statuses, and the connected workflow-run reader exposes PR-triggered runs only and returned no runs for this push. Exact-main test success is therefore **unverified**.
+
+### Current storefront delivery blockers — evidence, not assumptions
+- The normal customer storefront queries active products from Supabase. The last recorded read-only Supabase audit found `public.products` has **0 rows and 0 active products**. No product import or live write is authorised; therefore the live customer catalogue remains unpopulated.
+- The owner-preview mode loads local review-only data: 34 Auto Electrical records, 68 eligible Audio Connections records after this fix, and 16 ASC image-treatment samples (8 Aerials and 8 Car Mats). This is a limited preview dataset, not a completed catalogue; it does not include a verified Car Care product catalogue. Planetworld's 3,317-row source snapshot is not equivalent to 3,317 verified customer listings.
+- The category snapshot still has exactly three approved active roots and 29 nodes, but zero direct active products. The existing public package builder includes preview routes only on a non-main branch or with `GW_INCLUDE_PREVIEW_ROUTES=1`; a standard main package does not automatically contain the owner-preview routes.
+- The existing owner-preview URL could not be accessed through the available browser check in this session. Its deployed SHA, current content, and hosted mobile/desktop behaviour remain unverified. Do not present it as a current preview tied to main.
+- Current open-PR search returned only PR #208, an owner-review-only ASC Trailer & Towing proposal. It remains excluded from the three-department scope and is not approved for merge/publication. The queue's prior statement that the open-PR search returned zero is now stale because #208 was subsequently opened; do not merge it.
+
+### Next execution priority
+1. Obtain an exact-main automated test result for `23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10` (or the newer documentation/queue descendant) using a supported, cost-free workflow path. Do not claim success from static inspection.
+2. Establish one current, non-production owner preview tied to the tested SHA without using Cloudflare credits or deploying production. If the available hosting path requires spend, stop before deployment and report the exact approval/credit blocker.
+3. Continue the actual catalogue population work: complete verified Auto Electrical catalogue records, build a verified Car Care catalogue (not only the 8-item Car Mats sample), and continue exact-model Planetworld/Audio Connections enrichment. Keep all candidates review-only / DO NOT IMPORT until approval.
+4. Recheck the three-root navigation, child routes, brand → product-type → product flow, exact images, customer price labels, mobile and desktop behaviour. Keep production HOLD.
+
+### Release boundary
+- No production deployment, Axxess upload, DNS/payment change, live Supabase write, product import/activation, live price/stock change or paid hosting spend occurred in this session.
