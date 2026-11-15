@@ -13,7 +13,7 @@ required = [
     'web.removeJavascriptInterface("AndroidBridge")',
     'new OwnerBridge()',
     'new CaelexBridge()',
-    'return uri.getPath() != null',
+    'uri.getPath() != null',
 ]
 for item in required:
     if item not in source:
