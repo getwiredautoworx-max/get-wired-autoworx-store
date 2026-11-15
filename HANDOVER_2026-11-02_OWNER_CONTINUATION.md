@@ -1979,3 +1979,11 @@ At the time this plan is appended, the recorded active integration candidate is 
 - Current owner review link: https://owner-preview.get-wired-autoworx-store.pages.dev/preview-asc-trailer-towing.html
 - PR #208 remains OPEN / DRAFT / UNMERGED. No production import, merge, checkout/payment changes, Axxess changes, or Supabase writes were performed. The clean live catalogue state remains deliberate.
 - Owner action: inspect the preview and provide corrections or approval. Do not merge or import until the owner explicitly approves.
+
+
+## 2026-11-15 — PR #208 BUILD-PACKAGING FIX
+- Rechecked PR #208 current branch and Cloudflare deployment comments. Cloudflare's newest reported build failure in the PR timeline was for commit `939ebb8d0b46de1ae3dc0998127152031ca65194`; it produced no deployment URL. The connected GitHub Actions status lookup for PR head `7563cf4831e9efa557f22ff574a7d893642247e4` returned no PR-triggered runs; the Cloudflare dashboard log itself is not accessible through the connected read interface.
+- Identified and fixed a deterministic packaging defect in `scripts/build-cloudflare-pages-public.py`: the builder copied the ASC review JSON only for preview builds but unconditionally required that file in its review-catalogue validation loop. A normal/main package therefore failed even though the ASC data was correctly excluded from production. The builder now validates the ASC review file only when preview routes are included.
+- Also expanded non-main branch detection to accept Cloudflare's Pages branch variable, Workers branch variable, and GitHub branch variables, while retaining the explicit `GW_INCLUDE_PREVIEW_ROUTES=1` override used by the dedicated staging workflow.
+- Fix commit: `fae09c28608cbc5f546ea47a62b9f7328bfdfe91` on the PR #208 branch. This is a source-only fix; no PR merge, production deploy, Supabase write, catalogue import or live store change.
+- Next verification: allow the dedicated branch-triggered staging workflow to build the allowlisted preview package, run exact-head regression/SKU audits, deploy to the dedicated `owner-preview` Cloudflare Pages branch, confirm its exact-SHA marker, and complete hosted 390px/1365px checks. Do not claim a working URL until the workflow and URL checks pass.
