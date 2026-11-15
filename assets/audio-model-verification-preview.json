@@ -757,7 +757,10 @@
       "manufacturerPage": "https://www.focal.com/products/hilov3",
       "component": "Accessories & Installation",
       "primaryPreviewRecordId": "pw-0262",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://www.focal.com/products/hilov3",
+      "imageVerificationNote": "Focal official HILO V3 product page confirms the exact converter model; Focal-hosted product image visually checked and shows HILO.V3 marking. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-C6E9DE57",
@@ -795,12 +798,14 @@
       "modelNumber": "KW-M590BT",
       "manufacturerPage": "https://www.jvc.com/my/car-entertainment/multimedia-receivers/kw-m590bt/",
       "component": "Radios & Multimedia",
-      "imageUrl": "https://images.crutchfieldonline.com/ImageHandler/trim/869/652/products/2024/22/105/g105KWM590B-o_other0.jpg",
-      "imageStatus": "EXACT_MODEL_RETAILER_IMAGE_REVIEW_ONLY",
+      "imageUrl": "https://jasc.jvc.com/files/image/4281/1/1280x1024-10/KW-M590BW_M_CP_ANGLE.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
       "imageSource": "Crutchfield exact-model KW-M590BT product image; retailer-hosted image candidate, not yet hosted-preview verified",
       "imageSourceUrl": "https://www.crutchfield.com/p_105KWM590B/JVC-KW-M590BT.html",
       "primaryPreviewRecordId": "pw-1489",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageVerificationSource": "https://www.jvc.com/my/car-entertainment/multimedia-receivers/kw-m590bt/",
+      "imageVerificationNote": "JVC official KW-M590BT product page and manufacturer-hosted 1280px product image visually checked; image shows the matching 6.8-inch KW-M590BT receiver. Replaced retailer image with official manufacturer image. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-C0C3EE3F",
