@@ -1575,3 +1575,10 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - No production deployment, Axxess upload, DNS/payment change, live Supabase write, live catalogue/price/stock/active-flag change, or APK signing/distribution occurred. Production remains HOLD.
 - Repository/PR consolidation is complete. This does NOT mean catalogue enrichment, product identity/image/description verification, hosted preview acceptance, or production readiness is complete. Resume the single coordinated storefront-content and owner-preview queue from current `main`; do not reopen or recreate competing PRs.
 - Task queue and reconciliation register updated in the same documentation checkpoint.
+
+
+## POST-CONSOLIDATION MAINLINE VERIFICATION — TASK START — 2026-11-15
+- Repository PR consolidation completed; latest verified main commit before this task: `8483e849b8a01d4606fffdbfdebacc396aa63bd6`. Final open-PR search returned zero.
+- New single workstream: post-merge verification and owner preview. Task is to audit the consolidated mainline storefront build/package and current staging preview, then run exact-main non-production checks and mobile/desktop preview validation where available.
+- Preserve the three approved homepage departments and all supplier/privacy/pricing rules. Review-only catalogue records remain DO NOT IMPORT. No production deploy, Axxess upload, DNS/payment change, live Supabase write, or release-credit spend.
+- Task-start recorded. Do not create a new integration branch unless a verified defect requires a focused fix; keep work on canonical mainline with one candidate only.
