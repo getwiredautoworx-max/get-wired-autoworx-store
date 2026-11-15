@@ -297,7 +297,8 @@ The owner has clarified the business model and corrected the previous blanket co
 
 This owner clarification supersedes the earlier blanket private-data-boundary statements in this handover and any automation prompts. Those statements must not be used to stop authorised catalogue work.
 
-## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
+## OWNER PRICE-DISPLAY OVERRIDE — 2026-11-09
+The owner's latest instruction supersedes older RRP display rules: all supplier products must show **Price On Request** until current supplier prices and stock can be synchronised reliably and the owner approves that process. Do not display stale catalogue RRPs, dealer prices or calculated selling prices as current retail prices. Preserve source price evidence internally for future reconciliation. ASC must use the exact customer-facing wording **Price On Request due to Limited Stock and Availability**; other suppliers use generic **Price On Request** unless directed otherwise. Do not invent stock or orderability.
 
 
 ## LIVE EXECUTION STATUS — 2026-11-09 06:34 SAST
@@ -1402,3 +1403,23 @@ Workflow runs associated with checkpoint commit `dd1c948a33b8de944930a0d5a26ab01
 ### Release and change boundaries
 - No merge, production deployment, Axxess upload, live catalogue/price/stock/Supabase write, DNS/payment change, branch deletion/history rewrite or paid hosting spend was performed in this checkpoint.
 - Production remains HOLD. No other PR/branch is to be merged wholesale. Keep the single-project/single-active-workstream protocol. Gemini remains inactive until the existing Google API key is accepted; do not describe Gemini as collaborating without a successful model execution.
+
+
+## OWNER-AUTHORISED CONSOLIDATION COMPLETED — 2026-11-15 09:22 SAST
+
+### Canonical project state
+- The owner instructed: "Complete consolidation." This is the explicit approval to integrate the sole consolidation candidate into canonical `main`; it did not authorise production release or live-system changes.
+- PR #204, `Consolidate Get Wired AutoWorx storefront and catalogue review work`, was marked ready for review and successfully merged into `main` using a merge commit.
+- Merge commit / canonical `main` head: `3e38e137afd7a5ec00395c3a51a2da0318a4da98`.
+- PR #204: merged. The consolidated branch `integration/store-consolidated-2026-11-14` is now integrated history, not an independent active working project.
+- The merge includes the current three-department storefront foundation, selective Audison Forza review enrichment, 29 Electrocity ignition looms/modules review records, the six-catalogue ASC review-only extraction/register work, public-package sanitisation/build changes, tests, queue and reconciliation evidence.
+- ASC baseline remains 978 visible product cards across the six owner-approved catalogues. All catalogue records remain REVIEW ONLY / DO NOT IMPORT; no product is approved for live import by this merge.
+- The repository remains public. No private repository or runner was created or required.
+
+### Post-merge QA and remaining integration hygiene
+- Before merge, the exact PR head `295d42c4285cde570a547f2c0f7586cd7a7d1edc` had seven successful PR-triggered checks: Public SKU Exposure Audit (43613604534), Cloudflare Pages Public Package QA (43613604529), Supplier Catalogue Review Data QA (43613604610), Storefront Smoke Test (43613604568), Catalogue & Supplier Routing Review QA (43613604578), Public-Safe Catalogue Worker (43613604557), and Owner Preview Mobile/Desktop Browser QA (43613604608).
+- These are pre-merge-head results, not post-merge verification. Recheck workflows against merge SHA `3e38e137afd7a5ec00395c3a51a2da0318a4da98` before claiming post-merge QA complete.
+- The merge candidate's handover contained historical checkpoints that incorrectly describe PR #204 as unmerged and repeat older blockers. This section supersedes those historical status statements. Preserve historical evidence; do not delete it.
+- The queue's previous `single-project-reconciliation` task and active-candidate fields must be reconciled to the merged state. One active follow-on task only: verify post-merge workflows and correct queue/handover/register consistency, then present one canonical non-production owner preview for review.
+- The latest PR inventory showed 19 other open PRs. They are not active storefront/catalogue workstreams. Their existing register dispositions remain: independent app/security/privacy/config proposals, duplicate/stale cleanup or schema proposals, legacy storefront/eight-root proposals, and separate sales APK. Do not wholesale-merge or close them merely to make the open-PR count zero; any future adoption must be selective and based on a new task.
+- Production remains HOLD. No production deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change, branch deletion/history rewrite or paid hosting spend was performed.
