@@ -640,3 +640,11 @@ Exactly three original proposals remain open: #184, #155, #67. One canonical mai
 | #67 | Not merged; blocked for safe UI/function adoption | Admin page contains direct `owner_publish_product` live publishing and supplier quote/payment/procurement mutations. Function is service-role-backed and includes product/category mutation handlers. No deployment/live writes authorised. Rebuild as fail-closed/read-only-by-default candidate after PR #206 security shell is validated. |
 
 PR #206 is the single active Owner APK candidate. No parallel Owner APK integration branch is authorised. If #206 exact-head checks pass, merge it and close #184 as superseded. Keep #67 open until its prohibited mutation paths are removed or safely gated and tested. Production remains HOLD.
+
+### PR #206 exact-head hardening update — 2026-11-15
+- Latest candidate head: `b2cedbfb5bc8a16ff51d306d9a89f81273a027ea`.
+- Exact six-page local navigation allowlist replaces broad `file:///android_asset/` prefix acceptance. Static regression script is wired into APK workflow before build.
+- Public SKU Exposure Audit run `43693408531`: PASS.
+- APK build/checksum/artifact/emulator workflow `43693408445`: in progress at last check; build, SHA-256 and artifact upload steps not yet confirmed complete on this latest head.
+- Catalogue & Supplier Routing QA run `43693408439`: in progress at last check.
+- PR #206 remains open and unmerged pending exact-head APK/emulator and catalogue QA results. No production or live-system action.
