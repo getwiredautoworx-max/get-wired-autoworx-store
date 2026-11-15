@@ -7,7 +7,8 @@
     "latest owner instructions in the active conversation",
     "latest verified execution checkpoint on canonical main",
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (public repository processing authorised; all products Price On Request)",
-    "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams"
+    "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams",
+    "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -32,6 +33,26 @@
     "preview_population": "review-only local preview data must render without requiring active/live Supabase product rows; no invented products or category assignments"
   },
   "tasks": [
+    {
+      "id": "open-pr-reconciliation",
+      "priority": 10,
+      "status": "in_progress",
+      "execution_mode": "single-canonical-main-review",
+      "automatic": false,
+      "source": [
+        "all open pull requests on canonical repository",
+        "current owner directives",
+        "canonical main"
+      ],
+      "success_criteria": [
+        "All previously open PRs have a recorded disposition against current owner rules",
+        "Duplicate, superseded and conflicting proposals are closed with an explanatory audit comment",
+        "Remaining PRs are explicitly queued as selective candidates, not active parallel projects",
+        "No stale branch is merged without current-main rebasing and exact-head checks",
+        "One active workstream and one canonical main branch remain authoritative"
+      ],
+      "next_action": "13 of 21 open PRs closed with explanatory comments: #150, #143, #48, #49, #51, #65, #32, #72, #28, #31, #53, #81, #82. Eight remain for selective review: #184, #164, #155, #154, #152, #137, #67, #3. Rebase/review one candidate at a time; no remaining PR is authorised for wholesale merge."
+    },
     {
       "id": "single-project-reconciliation",
       "priority": 10,
@@ -265,7 +286,7 @@
     {
       "id": "post-merge-verification-and-owner-preview",
       "priority": 10,
-      "status": "in_progress",
+      "status": "paused_pending_open_pr_reconciliation",
       "execution_mode": "verification-and-owner-preview",
       "automatic": false,
       "source": [
@@ -281,17 +302,17 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Post-merge code checks are complete: Catalogue Image Audit, Public SKU Exposure Audit, Storefront Smoke Test, Background Task Controller, Owner Preview Mobile/Desktop QA and Public URL HTTP Verification passed on 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Store Production QA failed only because the live domain has not been deployed with the merged storefront; preserve production HOLD. Next verify the non-production owner-preview URL and record its exact SHA; do not deploy, upload to Axxess or write live data."
+      "next_action": "Resume after open PR inventory has been reconciled into one canonical task queue."
     }
   ],
   "coordination": {
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
-    "active_task_id": "post-merge-verification-and-owner-preview",
+    "canonical_head": "4c0943b205959ee3f0d9c8766dc000ef3aae0f14",
+    "active_task_id": "open-pr-reconciliation",
     "active_workers": 1,
-    "parallel_workstreams": "paused; one post-merge owner-preview verification task only",
+    "parallel_workstreams": "paused; one open-PR reconciliation task only",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -304,6 +325,6 @@
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
-    "active_candidate_status": "Consolidation PR #204 merged into main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. No separate active consolidation candidate exists. Post-merge non-production checks passed except Store Production QA, which correctly remains blocked because production has not been deployed under the production HOLD. Current single active task: verify one consolidated non-production owner preview. All catalogue rows remain REVIEW ONLY / DO NOT IMPORT."
+    "active_candidate_status": "13 superseded/duplicate/conflicting PRs closed with audit comments. Eight retained as selective proposals; none is an active competing storefront. Canonical main remains the sole source of truth; no PR was merged and production remains HOLD."
   }
 }
