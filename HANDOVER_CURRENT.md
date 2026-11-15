@@ -1536,3 +1536,17 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Tightened local navigation beyond the original PR #184 prefix check: only six exact bundled top-level pages may stay in the WebView (`admin_app.html`, store, checkout, admin, index and index-new). This prevents an arbitrary bundled asset reached from remote Caelex content from regaining the privileged Owner bridge.
 - Added `scripts/test-owner-apk-webview-security.py` and made the APK workflow run it before building. Direct source assertion check found all required allowlist and bridge-separation invariants, with no broad asset-prefix acceptance and no Caelex snapshot read/clear methods in the remote bridge.
 - Exact latest-head CI runs: APK build/emulator `43693408445`, catalogue routing QA `43693408439`, Public SKU Exposure Audit `43693408531`; all were in progress at last check. Earlier-head runs are superseded and are not acceptance evidence.
+
+
+## CONSOLIDATION EXECUTION — OWNER APK CLUSTER RESOLVED — 2026-11-15
+- Owner-directed consolidation/merge request executed against the single canonical `main` branch.
+- PR #206 (`integration/owner-apk-secure-shell-2026-11-15`) was verified mergeable and merged by squash after all three exact-head checks completed successfully on candidate SHA `b2cedbfb5bc8a16ff51d306d9a89f81273a027ea`:
+  - APK build + Android API 35 emulator install/launch: run `43693408445` — SUCCESS.
+  - Catalogue & Supplier Routing Review QA: run `43693408439` — SUCCESS.
+  - Public SKU Exposure Audit: run `43693408531` — SUCCESS.
+- Merge commit on `main`: `0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8` (PR #206).
+- PR #184 closed as superseded by #206. No duplicate Owner APK security proposal remains open.
+- The merged security shell enforces exact top-level bundled-page navigation allowlisting, isolates privileged Owner and remote Caelex JavaScript bridges, limits remote bridge operations to capture/return, and includes `scripts/test-owner-apk-webview-security.py` as a workflow gate. APK artifact remains a debug install-test artifact only; it is not signed or distributed.
+- Verified PR inventory must now be refreshed. Known remaining proposals: #67 (owner catalogue/category manager; unsafe mutation paths must be removed/disabled before adoption) and #155 (Part Image Search runtime defect/migration review). Do not wholesale merge either. Reconcile #67 next into a read-only, fail-closed candidate; then fix and test #155. Keep all Supabase functions/migrations repository-only pending explicit approval.
+- Production remains HOLD. No Axxess upload, production deployment, DNS/payment change, live Supabase write, live catalogue/price/stock change, or APK distribution was performed.
+- Next acceptance target: a single current-main-based, read-only owner catalogue management proposal with exact-head tests and security review; then re-audit all open PRs and close only genuinely superseded proposals. Keep the storefront itself on one coordinated mainline candidate.
