@@ -315,8 +315,9 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Task started 2026-11-15 after all PRs were reconciled (zero open PRs). Audit canonical main storefront build/package and current free staging preview; run exact-main non-production QA and verify mobile/desktop owner-preview behavior against the same SHA. Do not deploy production or write live data. Review-only catalogues remain DO NOT IMPORT.",
-      "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6"
+      "next_action": "Repository PR consolidation is complete and final open-PR search returned zero. QA workflows now trigger package-only checks on main and browser QA when the public package QA workflow changes. The connected run reader exposes PR-triggered runs only, so push-run success is not verified. Continue by obtaining exact-main package/browser QA evidence and the manually controlled non-production owner-preview deployment/desktop-mobile acceptance. No production deployment or live data writes.",
+      "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
+      "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     }
   ],
   "coordination": {
