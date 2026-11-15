@@ -140,7 +140,7 @@
         "Keep OCR output review-only and DO NOT IMPORT",
         "Retain exact owner-approved ASC Price On Request wording in any customer-facing staging presentation"
       ],
-      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. Run repeatable OCR extraction and generate source-page review evidence."
+      "next_action": "Resume bounded OCR/extraction from the six approved ASC catalogue PDFs only; exclude Buyers Guides. Keep page/source provenance, review-only status and exact ASC Price On Request wording. Verify the 50-image sample separately; do not import."
     },
     {
       "id": "audio-planetworld-source-extraction",
@@ -233,7 +233,7 @@
         "Populated product pages use verified catalogue data",
         "No obsolete eight-root navigation"
       ],
-      "next_action": "RESUMED 2026-11-15: integrate only independently verified review-only product records into the single mainline customer preview, preserving three roots and correct department→subcategory→brand→product-type navigation. No live writes; hide supplier names and internal identifiers; Price On Request."
+      "next_action": "Static audit confirms exactly three approved roots and expected category nodes. Populate the one owner preview only from verified review-only catalogue datasets; do not confuse 0 live active products with local preview counts. Auto Electrical/Car Care catalogue coverage and complete product verification remain outstanding. Trailer & Towing source file is separately quarantined and excluded."
     },
     {
       "id": "continuous-qa-and-owner-preview",
@@ -316,7 +316,7 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Latest main observed: 0874f62954b28c8b5e49aad6ced11e24e4195bf7. Open PR search: zero. Need exact-main package/browser QA evidence, then one hosted staging owner preview tied to that same verified SHA and desktop/mobile acceptance. The available commit-run wrapper does not expose push-triggered runs; do not infer success. No production deployment.",
+      "next_action": "Static audit completed 2026-11-15: category-tree has exactly 3 approved active roots and 29 nodes, but 0 direct active products. Structural and browser QA scripts/workflows are present and scoped correctly. Their successful execution on latest main and hosted owner-preview acceptance remain unverified; connected run reader exposes PR-triggered runs only. Obtain exact-main test evidence and a single hosted non-production preview tied to that SHA. No production deployment.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     },
