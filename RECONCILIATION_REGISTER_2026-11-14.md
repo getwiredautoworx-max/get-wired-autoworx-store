@@ -617,3 +617,16 @@ Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Clas
 - No remaining PR is approved for wholesale merge. Branches are substantially behind/diverged from current main (the sampled candidates are 2–23 commits ahead and 405–884 commits behind by GitHub compare); each must be rebased or selectively ported and retested against current main before adoption.
 - Shared-file overlaps (#154/#143, #184/#81, #184/#67) must be resolved as one implementation path, not merged independently.
 - Keep production HOLD. No deployment, Axxess upload, live Supabase/data/price/stock write, DNS/payment change, or paid hosting spend was performed.
+
+## 2026-11-15 selective consolidation update
+
+The original open-PR reconciliation has advanced. Selective current-main integrations/dispositions:
+- #164 closed after repository cleanup was ported to main.
+- #152 closed after category snapshot configuration discovery, regression tests and scheduled-refresh gate were ported to main.
+- #137 closed as superseded by existing main courier collection-origin privacy handling; the branch's redundant helper was not ported because it omitted destination province.
+- #154 safety changes selectively ported on a fresh current-main branch and merged as #205 at `f148ccc55efc91d3b46f83bb1b29109bdb6c2f05`. Artifact cleanup is now read-only inventory, fallback schedule hourly, retry scope is individual failed jobs in a safe allowlist, and production/release/data-write/deploy workflows are excluded. Buyer Guide extraction was omitted under current owner scope. Source PR safety test run 41452514667 passed; no exact-main push run was visible in the available commit-run view at checkpoint time.
+- #3 closed as a separate Sales Intelligence APK outside current storefront scope.
+- #155 remains open but blocked: successful vision response path reassigns a `const identification` binding; migration requires `gw_private` schema/ownership/grant validation. No deployment or migration apply.
+- #184 and #67 remain open as one overlapping Owner APK feature cluster because both modify `android-owner-app/app/src/main/assets/admin_app.html` and `MainActivity.java`. #67 additionally adds `veyron-admin` and tests. Reconcile on a fresh main-based candidate; no live admin publishing/data writes or function deployment.
+
+Exactly three original proposals remain open: #184, #155, #67. One canonical main and one active task only. Next: converge #184/#67 first, then resolve #155.
