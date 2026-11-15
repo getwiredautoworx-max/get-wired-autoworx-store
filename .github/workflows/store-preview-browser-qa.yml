@@ -11,6 +11,7 @@ on:
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/cloudflare-public-pages-build-qa.yml'
   push:
     branches: [main]
     paths:
