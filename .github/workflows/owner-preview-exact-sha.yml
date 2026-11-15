@@ -115,7 +115,7 @@ jobs:
               const frame=page.frameLocator('#store');
               await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:45000});
               const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catContent b').allTextContents();
-              const expected=['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories'];
+              const expected=['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories','ASC Trailer & Towing'];
               if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Homepage root mismatch: '+JSON.stringify(roots));
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
               const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
