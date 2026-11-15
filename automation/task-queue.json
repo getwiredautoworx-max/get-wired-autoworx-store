@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Kicker image batch advanced 2026-11-15: visually checked the official KICKER product-page images for 43C104, 46CXA3604, 46CXA4001 and 46CXA6605; synced exact manufacturer image URLs and review-only verification notes into the 69-record verification register. These four image matches are review-only, not import approval. Next: resolve the remaining four Kicker manufacturer-page-image-link-only records and audit Alpine's eight unspecified image statuses; preserve exact model/variant checks and DO NOT IMPORT."
+      "next_action": "Kicker model image verification advanced 2026-11-15: all 12 Kicker audio product records now have exact official manufacturer-page images visually checked and marked official_manufacturer_image_verified_review_only; the separate KW16400p/m speaker-wire image remains owner-authorized retailer-image verified. Four previously link-only Kicker records (43C124, 43C84, 46CXA12001, 48CWR104) have been visually checked and synchronized in the 69-record register. Next: audit Alpine's eight unspecified image statuses against exact manufacturer pages/images; then review Focal/JVC model exceptions. All data remains review-only / DO NOT IMPORT."
     },
     {
       "id": "onenav-model-image-reconciliation",
