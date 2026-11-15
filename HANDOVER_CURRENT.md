@@ -1450,3 +1450,36 @@ Merge SHA tested by push-triggered workflows: `3e38e137afd7a5ec00395c3a51a2da031
 - Task queue commit: `bdca4fef62ebbfee3e30c0f787ce1316f00ba3fb`; it sets `single-project-reconciliation` to completed and `post-merge-verification-and-owner-preview` as the only in-progress task.
 - The queue's push-triggered Catalogue Image Audit (43689823373), Public SKU Exposure Audit (43689823358) and Background Task Controller (43689823341) all completed successfully on that documentation checkpoint. A subsequent controller invocation (43689843106) was still running at the last read; do not claim its outcome until checked.
 - The functional storefront/catalogue merge remains SHA `3e38e137afd7a5ec00395c3a51a2da0318a4da98`. Later main commits are documentation-only; production remains HOLD.
+
+
+
+## OPEN PULL REQUEST AUDIT — 2026-11-15
+
+### Owner instruction and result
+- Owner instruction: "Audit and consolidate open PRs. I want this as a single project going forward."
+- Read the binding owner directives and current handover before acting. The canonical project remains this public repository on `main`; no separate repository or parallel storefront candidate is required.
+- Live open-PR inventory at task start: 21. Thirteen PRs were closed with explanatory audit comments: #150, #143, #48, #49, #51, #65, #32, #72, #28, #31, #53, #81 and #82.
+- Eight PRs remain open as selective proposals only: #184, #164, #155, #154, #152, #137, #67 and #3. They are not active parallel workstreams and none is approved for wholesale merge.
+- No PR was merged during this audit. No branch was deleted, no history was rewritten, and no production/live-system action occurred.
+
+### Why the 13 were closed
+- #49 contained ASC Buyers Guides, explicitly excluded by owner direction; #48, #51 and #65 were old ASC stock/discontinuation cleanup work outside the current catalogue-only scope.
+- #32 implements the superseded eight-root storefront; #72 is a stale storefront candidate based on an older recovery line.
+- #28, #31 and #53 depend on the old schema/docs branch and legacy category/SKU assumptions; any still-needed validator must be rebuilt against current owner rules.
+- #150 duplicates #164; #143 overlaps the broader #154 controller candidate (its production-QA retry guard remains a required acceptance condition for #154).
+- #81 overlaps the newer #184 Owner APK candidate; #82 proposes a competing PWA owner hub and was closed to avoid multiple owner-app paths.
+
+### Remaining selective proposals
+- #184 and #67 share Owner APK files and must be reconciled into one owner-app implementation before either is adopted.
+- #154 is the preferred background-controller candidate; incorporate the #143 no-production-auto-retry rule, then rebase and run exact-head tests.
+- #155 requires security review of the rate-limit migration/RPC and exact-head tests. Migration remains source-only; do not apply it to Supabase or deploy the function.
+- #152 requires current-main rebase and config regression tests; no live snapshot refresh/write.
+- #137 requires current-main rebase and courier-origin privacy/security tests; no secret changes, live carrier calls or deployment.
+- #164 is a cleanup proposal; check whether its marker-file removals are already present on main before adopting anything.
+- #3 remains an optional isolated Sales Intelligence APK proposal, outside storefront release scope.
+
+### Branch integrity and execution control
+- GitHub compare showed sampled remaining candidate branches are stale/diverged from current main (2–23 commits ahead and 405–884 commits behind). Do not merge them directly. Rebase or selectively port one task at a time, run exact-head tests, then decide adoption.
+- `automation/task-queue.json` was updated in commit `301ba386178f6fad852e9e82fcb68976b8cc25dc`; it records `open-pr-reconciliation` as the sole active task and pauses owner-preview follow-up until this audit queue is reconciled.
+- `RECONCILIATION_REGISTER_2026-11-14.md` was updated in commit `2f8e5204c7d692780bf215e4510d534423a29507` with all 21 dispositions and next actions.
+- Main remains the only canonical project. All other work is queued, not active. Production remains HOLD. No deployment, Axxess upload, live Supabase/catalogue/price/stock write, DNS/payment change or paid hosting spend occurred.
