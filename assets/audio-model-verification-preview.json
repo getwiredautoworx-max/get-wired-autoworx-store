@@ -807,7 +807,10 @@
       "manufacturerPage": "https://www.kicker.com/comp-10-4-ohm-subwoofer",
       "component": "Subwoofers",
       "primaryPreviewRecordId": "pw-1499",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://www.kicker.com/comp-10-4-ohm-subwoofer",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model marking and product form match. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-414870FF",
@@ -871,7 +874,10 @@
       "manufacturerPage": "https://www.kicker.com/CXA3604-4x90-Watt-4-Channel-Full-Range-Amp",
       "component": "Amplifiers",
       "primaryPreviewRecordId": "pw-1551",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://www.kicker.com/CXA3604-4x90-Watt-4-Channel-Full-Range-Amp",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model marking and product form match. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-E3E19CA3",
@@ -883,7 +889,10 @@
       "manufacturerPage": "https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",
       "component": "Amplifiers",
       "primaryPreviewRecordId": "pw-1552",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model marking and product form match. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-6A3D2257",
@@ -895,7 +904,10 @@
       "manufacturerPage": "https://www.kicker.com/CXA6605-4x90-Watt-4-Channel-Full-Range-Amp-with-300-watt-Class-D-Sub-Channel",
       "component": "Amplifiers",
       "primaryPreviewRecordId": "pw-1553",
-      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY"
+      "integrationStatus": "INTEGRATED_PRIMARY_PREVIEW_REVIEW_ONLY",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageVerificationSource": "https://www.kicker.com/CXA6605-4x90-Watt-4-Channel-Full-Range-Amp-with-300-watt-Class-D-Sub-Channel",
+      "imageVerificationNote": "Official KICKER product-page model and manufacturer-hosted product image visually checked; exact model marking and product form match. Review-only; not approved for import."
     },
     {
       "gwSku": "GW-382FCDC3",
