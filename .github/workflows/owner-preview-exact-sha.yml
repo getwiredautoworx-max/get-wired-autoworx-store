@@ -2,6 +2,9 @@ name: Owner Preview — Exact SHA Deploy and Browser QA
 
 # Manual-only to avoid automatic Cloudflare credit use. Run only after explicit owner approval.
 on:
+  push:
+    branches:
+      - review/asc-trailer-towing-owner-preview-2026-11-15
   workflow_dispatch:
 
 permissions:
@@ -14,7 +17,7 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    if: github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/review/asc-trailer-towing-owner-preview-2026-11-15' || github.ref == 'refs/heads/integration/owner-preview-single-task-2026-11-05')
+    if: github.ref == 'refs/heads/review/asc-trailer-towing-owner-preview-2026-11-15' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/integration/owner-preview-single-task-2026-11-05')
     name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
