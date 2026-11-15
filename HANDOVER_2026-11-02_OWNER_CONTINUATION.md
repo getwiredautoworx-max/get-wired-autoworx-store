@@ -1967,3 +1967,15 @@ At the time this plan is appended, the recorded active integration candidate is 
 - GitHub connector's commit-run lookup currently returns no runs because that wrapper only returns PR-triggered runs; no successful workflow run or preview URL has yet been verified. The new push-triggered workflow should start from the workflow commit, but its run status must be confirmed in GitHub Actions. Do not claim deployment success until `qa-build-result.json` reports this exact SHA and hosted Playwright checks pass.
 - Workflow URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/owner-preview-exact-sha.yml
 - Next: inspect the new workflow run and logs; fix any failing build/test step without changing production; verify exact SHA at `https://owner-preview.get-wired-autoworx-store.pages.dev/qa-build-result.json`; then verify the 165-card page at `https://owner-preview.get-wired-autoworx-store.pages.dev/preview-asc-trailer-towing.html` on mobile and desktop and send the verified URL to the owner.
+
+
+## 2026-11-15 — PR #208 ASC TRAILER & TOWING PREVIEW DEPLOYED AND HOSTED QA PASSED
+- Final verified preview commit at time of QA: `7563cf4831e9efa557f22ff574a7d893642247e4`.
+- GitHub Actions run `43700383477` completed with `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43700383477
+- Successful checks: customer-only Pages package build; exact-head category/catalogue/package/SKU invariants; deployment to Cloudflare Pages branch `owner-preview`; exact deployed SHA verification; Playwright Chromium hosted checks at mobile 390×844 and desktop 1365×900.
+- Hosted QA verified: non-production owner-preview banner; ASC Trailer & Towing root with exactly seven child categories; direct Trailer child link to filtered review page; 165 review cards; seven filters; Trailer filter returns 70 records; exact `Price On Request Due to Stock Availability` label; filter reset restores 165; no horizontal overflow on mobile or desktop; no hosted JavaScript errors.
+- Root cause fixed: the previous exact-SHA workflow was restricted to an unrelated integration branch, and the customer-only build regression test still assumed three roots. Updated branch-scoped push workflow deploys only to `owner-preview`; production branch `main` remains untouched.
+- Additional fixes: regression tests now recognise the separate ASC owner-review root; owner-review root is asserted only in `preview-category.html` (not production `category.html`); the old 48-image audit assertion was reconciled to 49 verified manufacturer-image records; ASC child cards now link directly to their filtered review listings, independent of zero live stock/product counts.
+- Current owner review link: https://owner-preview.get-wired-autoworx-store.pages.dev/preview-asc-trailer-towing.html
+- PR #208 remains OPEN / DRAFT / UNMERGED. No production import, merge, checkout/payment changes, Axxess changes, or Supabase writes were performed. The clean live catalogue state remains deliberate.
+- Owner action: inspect the preview and provide corrections or approval. Do not merge or import until the owner explicitly approves.
