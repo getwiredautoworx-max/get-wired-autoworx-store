@@ -1486,3 +1486,27 @@ Merge SHA tested by push-triggered workflows: `3e38e137afd7a5ec00395c3a51a2da031
 
 
 - Follow-up correction: task-queue commit `97bd163bf70383084e81ac10f19d0e7df0c8a63d` explicitly records the verified functional code baseline as `3e38e137afd7a5ec00395c3a51a2da0318a4da98`; subsequent commits in this audit are documentation-only. Latest main ref after this handover update is the resulting commit.
+
+## 2026-11-15 — Selective PR consolidation checkpoint
+
+Canonical project remains `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`. Latest functional merge from this reconciliation is PR #205 at `f148ccc55efc91d3b46f83bb1b29109bdb6c2f05`; subsequent commit `8dc9625ff3af497129255f65c3ffad9a1ed38920` updates the task queue only.
+
+### Completed selective integrations / dispositions
+- PR #164: closed after selectively porting generated Android build exclusions and removing obsolete root status/session files.
+- PR #152: closed after porting category snapshot config resolution, environment-first configuration, regression tests, dedicated workflow and refresh test gate. PR-head regression run 41449633110 passed. No Supabase write occurred.
+- PR #137: closed as superseded by existing main courier collection-origin privacy safeguards. Branch helper was not ported because redundant and omitted delivery province.
+- PR #154: safety changes selectively ported on a fresh current-main branch and merged via PR #205. The controller now inventories artifacts read-only, uses an hourly fallback schedule, targets bounded job-level retries and excludes production QA, live release gates, data/image writes and all Cloudflare deployments from retry. Owner-prohibited Buyer Guide extraction monitoring/retries were omitted. Original PR #154 safety workflow run 41452514667 passed. Available commit-run view did not expose a post-merge push run for #205; do not claim exact-main workflow success until independently verified.
+- PR #3: closed as a separate Sales Intelligence APK outside the current storefront consolidation scope.
+
+### Remaining open proposals — not parallel workstreams
+- PR #184 Owner APK WebView/security: overlaps PR #67 on `admin_app.html` and `MainActivity.java`.
+- PR #67 Owner catalogue/category management: includes the overlapping Owner APK UI plus `veyron-admin` Edge Function and tests. Live admin writes/publishing remain prohibited; no function deployment or live data change is authorised.
+- PR #155 Part Image Search security: held for correction. Its current branch declares `const identification` and then reassigns it after the vision response, causing a runtime failure on successful inference. It also requires verification that `gw_private` exists and that migration ownership/grants are safe. No migration application or function deployment is authorised.
+
+### Next execution order
+1. Reconcile #184 and #67 into one current-main-based Owner APK candidate, preserving WebView bridge restrictions and keeping all live publish/admin mutations unavailable until owner approval. Do not merge either stale branch wholesale.
+2. Correct and test #155, validate the migration in isolated PostgreSQL, and port only after exact-head tests pass. Keep all Supabase changes repository-only pending approval.
+3. Reconcile the three remaining PR dispositions, then resume exact-head storefront/owner-preview QA. Production remains HOLD.
+
+### Verified open PR inventory
+Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR inventory now has 18 closed dispositions; PR #205 is the new selective integration PR and is merged.
