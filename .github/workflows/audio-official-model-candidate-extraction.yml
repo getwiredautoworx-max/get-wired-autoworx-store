@@ -6,7 +6,7 @@ on:
     - cron: "37 */4 * * *"
   push:
     branches:
-      - fix/owner-preview-population-and-full-height-images-2026-11-09
+      - main
     paths:
       - "scripts/extract-audison-official-candidates.py"
       - "catalogue-review/planetworld-audison-official-model-audit.csv"
