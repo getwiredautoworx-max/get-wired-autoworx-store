@@ -1663,3 +1663,18 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Review-register image status now shows: Audison 41/41 verified; Kicker 13/13 records have a verified image status (12 official manufacturer images plus the separately owner-authorized exact retailer image); Focal 2/2; JVC 2/2; Kenwood 1/1; Pioneer 1/1; Alpine 6/9 verified, 2/9 official-page-link-only pending high-resolution visual retrieval, 1/9 other existing status. These counts refer only to the 69-record model-verification register, not all 3,317 catalogue rows.
 - GitHub combined status returned no status checks for latest HEAD, and the connected commit workflow-run reader returned no workflow runs (it only exposes PR-triggered runs). No exact-main CI pass is claimed. Hosted preview remains unverified; no manual deployment was triggered.
 - The canonical execution line is still `main`; no new integration branch or PR was created. Historical branches remain in the repository and must not be bulk-deleted by age/name alone. No production, live data, Axxess, DNS/payment or paid hosting action occurred.
+
+
+## OWNER CONTINUATION — STOREFRONT DELIVERY REALITY CHECK — 2026-11-15 17:xx SAST
+
+### Task start
+- Owner's priority is a single, genuinely usable customer storefront, not further status-only reconciliation. This session starts with a direct main-branch review of the owner directives, current handover, storefront entry points, public package builder, open PRs and latest main commit.
+- Baseline main SHA: `8082cc526717fdc1124fe5a161f8a2db1630fadb`.
+- The latest recorded handover says Supabase `public.products` has 0 rows and 0 active products; the 770 staged catalogue records are review-only. It also records only 34 Auto Electrical pilot records, limited Audio preview populations, and no verified Car Care product dataset beyond an 8-item Car Mats sample. This is a material reason the visible store can appear empty despite extensive behind-the-scenes activity.
+- `index.html` redirects to `store.html`; `store.html` embeds `index-new.html`. The owner-preview wrapper `owner-preview.html` embeds `index-new.html?ownerPreview=1&previewBuild=20261105-photo-category-buttons`.
+- `scripts/build-cloudflare-pages-public.py` includes owner-preview routes only when `CF_PAGES_BRANCH != main` or `GW_INCLUDE_PREVIEW_ROUTES=1`. The standard main package deliberately excludes those routes. Do not assume the old hosted owner-preview URL reflects the current main SHA.
+- Open PR snapshot: only PR #208 is open. It is an ASC Trailer & Towing owner-review-only PR, explicitly not approved for merge/publication and outside the current approved three-department scope. Leave it untouched.
+- Direct web access to the previously supplied owner-preview URL failed in this session; therefore hosted preview content and deployed SHA cannot be verified from that URL here. No claim of preview readiness is supported.
+
+### Work in progress
+- Reconcile a safe, cost-free path to build and inspect the current three-category customer storefront from main, then fix concrete public-safe customer-facing defects on main or one coordinated current-main candidate. No production deployment, Axxess upload, live Supabase write, DNS/payment change or paid hosting action is authorised.
