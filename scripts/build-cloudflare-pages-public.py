@@ -31,10 +31,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "preview-asc-trailer-towing.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
+    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json", "asc-trailer-towing-owner-preview.json",
     "product-image-treatment-sample.json",
     "audio-catalogue-secondary-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
@@ -54,6 +54,7 @@ PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
 PUBLIC_REVIEW_DATA_FILES = [
     "auto-electrical-owner-preview.json",
     "audio-catalogue-secondary-preview.json",
+    "asc-trailer-towing-owner-preview.json",
 ]
 
 REQUIRED_ASSET_FILES = [
@@ -108,7 +109,7 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
+for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72), ("asc-trailer-towing-owner-preview.json", 165)]:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
@@ -165,7 +166,7 @@ if include_preview:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
+    print("PLANETWORLD_AUDIO_CONNECTIONS_ASC_TRAILER_TOWING_PREVIEW_ASSETS_PASS source_pdfs=0 asc_rows=165")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
