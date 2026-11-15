@@ -1442,5 +1442,11 @@ Merge SHA tested by push-triggered workflows: `3e38e137afd7a5ec00395c3a51a2da031
 - Background Task Controller also completed successfully on the merge SHA (run 43689694542; push controller run 43689664920). Other controller invocations were cancelled as superseded; no need to retry successful work.
 - Public URL HTTP verification returned success for the current public homepage and policy pages. This does not mean the merged storefront was deployed to production.
 - These workflow runs are associated with the merge SHA. Subsequent commits in this session changed only handover, register and task-queue documentation; no application code or storefront payload was changed.
-- Canonical functional merge remains `3e38e137afd7a5ec00395c3a51a2da0318a4da98`. Documentation checkpoint commits: `b47b666c7e6b0bcc61a1a639929b7ef55a02fc36` (handover), `7383554fa3d8287c20738bc456e17db5439ee57a` (register), followed by the queue checkpoint to be recorded after its update.
+- Canonical functional merge remains `3e38e137afd7a5ec00395c3a51a2da0318a4da98`. Documentation checkpoint commits: `b47b666c7e6b0bcc61a1a639929b7ef55a02fc36` (handover), `7383554fa3d8287c20738bc456e17db5439ee57a` (register), followed by task-queue commit `bdca4fef62ebbfee3e30c0f787ce1316f00ba3fb`.
 - Consolidation is complete at the repository/code-integration level. Owner preview acceptance and production release are separate gates and remain outstanding. Catalogue rows remain REVIEW ONLY / DO NOT IMPORT.
+
+
+### Documentation checkpoint follow-up
+- Task queue commit: `bdca4fef62ebbfee3e30c0f787ce1316f00ba3fb`; it sets `single-project-reconciliation` to completed and `post-merge-verification-and-owner-preview` as the only in-progress task.
+- The queue's push-triggered Catalogue Image Audit (43689823373), Public SKU Exposure Audit (43689823358) and Background Task Controller (43689823341) all completed successfully on that documentation checkpoint. A subsequent controller invocation (43689843106) was still running at the last read; do not claim its outcome until checked.
+- The functional storefront/catalogue merge remains SHA `3e38e137afd7a5ec00395c3a51a2da0318a4da98`. Later main commits are documentation-only; production remains HOLD.
