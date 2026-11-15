@@ -132,7 +132,7 @@ jobs:
               const trailerHref=await trailer.getAttribute('href');
               if(!trailerHref||!trailerHref.includes('preview-asc-trailer-towing.html?subcategory=Trailer')) throw new Error('Trailer subcategory does not link directly to its filtered owner-review catalogue: '+trailerHref);
               await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/'+trailerHref,{waitUntil:'domcontentloaded'});
-              if(new URLSearchParams(location.search).get('subcategory')!=='Trailer') throw new Error('Trailer child link did not preserve its selected subcategory');
+              if(new URL(page.url()).searchParams.get('subcategory')!=='Trailer') throw new Error('Trailer child link did not preserve its selected subcategory: '+page.url());
 
               // Verify all 165 records, subcategory filter, POR label and responsive layout.
               await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-asc-trailer-towing.html',{waitUntil:'domcontentloaded'});
