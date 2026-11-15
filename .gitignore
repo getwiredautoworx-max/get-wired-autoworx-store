@@ -22,3 +22,9 @@ credentials/
 .wrangler/
 node_modules/
 .DS_Store
+
+# Generated Android build outputs; keep application source and configuration tracked.
+*.apk
+*.aab
+.gradle/
+android-owner-app/app/build/
