@@ -54,7 +54,6 @@ PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
 PUBLIC_REVIEW_DATA_FILES = [
     "auto-electrical-owner-preview.json",
     "audio-catalogue-secondary-preview.json",
-    "asc-trailer-towing-owner-preview.json",
 ]
 
 REQUIRED_ASSET_FILES = [
