@@ -144,7 +144,7 @@
     {
       "id": "audio-planetworld-source-extraction",
       "priority": 1,
-      "status": "paused_pending_reconciliation",
+      "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -157,7 +157,7 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "The source snapshot has 3,317 Planetworld rows. After the current owner-preview enrichment overlay, the read-only audit sees 3,321 rows, 72 exact image+description verified, 3,240 missing image fields and 3,202 missing descriptions. Continue exact official-model/product-image/description batches; do not treat titles alone as finished products. All prices stay Price On Request and supplier/internal SKU fields stay hidden."
+      "next_action": "RESUMED 2026-11-15: continue source-backed Planetworld enrichment using exact model/page/image/description matches. The 3,317-row source remains review-only; no generic image substitution. Prior audit found 72 fully verified; next focus is exact image/description batches, starting with current Audison candidate extraction. All customer prices remain Price On Request."
     },
     {
       "id": "electrocity-ignition-pilot",
@@ -179,7 +179,7 @@
     {
       "id": "audio-video-content-enrichment",
       "priority": 1,
-      "status": "paused_pending_reconciliation",
+      "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -195,7 +195,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Planetworld exact-image candidate manifest now contains 22 rows: 12 Kicker and 10 Audison. Audison image candidates verified for bit DMI, B-CON, bit One HD Virtuoso, bit Ten, bit Tune, AP4 D, AF M12.14 bit, AF M8.14 bit, AF C8.14 bit and AF M5.11 bit. All remain NOT_APPROVED / DO_NOT_IMPORT. Four Forza amplifier descriptions need technical wording reconciliation: manufacturer distinguishes amplified output channels from total DSP channels (AF M12.14: 12 amp / 14 DSP; AF M8.14 and AF C8.14: 8 amp / 14 DSP; AF M5.11: 5 amp / 11 DSP). Continue remaining Audison records, then next brands. Audio Connections remains 62/66 eligible with four held records; Alpine six remain separate review-only."
+      "next_action": "RESUMED 2026-11-15: stale administrative pause removed. Audison exact-page extractor schema mismatch fixed; current register is normalized, collection-only rows held, schema regression test added, workflow trigger moved to canonical main. Verify exact-main workflow run and contact-sheet manifest; visually inspect candidate images/model matches, then continue bounded Audison/Kicker batches. All remain candidate-only/DO NOT IMPORT until verified."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -218,7 +218,7 @@
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "paused_pending_post_merge_verification",
+      "status": "in_progress",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
@@ -232,7 +232,7 @@
         "Populated product pages use verified catalogue data",
         "No obsolete eight-root navigation"
       ],
-      "next_action": "Integrate verified category navigation and exact-image/description-only product cards into one current-main-based candidate. Current review-only product pilots: Auto Electrical 34, Audio 72 Planetworld + 61 Audio Connections, ASC Aerials 8, Car Mats 8. Other source rows remain withheld until verified; no supplier names/internal SKUs shown."
+      "next_action": "RESUMED 2026-11-15: integrate only independently verified review-only product records into the single mainline customer preview, preserving three roots and correct department→subcategory→brand→product-type navigation. No live writes; hide supplier names and internal identifiers; Price On Request."
     },
     {
       "id": "continuous-qa-and-owner-preview",
