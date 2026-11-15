@@ -141,7 +141,7 @@ assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store',sig
 assert.ok(categoryCleanup.includes("window.installGetWiredCategoryCleanup=function(frame)") && !categoryCleanup.includes("style.display='none'"), 'category cleanup must preserve root and child category visibility when product counts are zero or unknown');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
-  assert.ok(categoryPage.includes(id) && categoryPage.includes(label), 'category page root '+label);
+  assert.ok(previewCategory.includes(id) && previewCategory.includes(label), 'owner-preview category route root '+label);
 }
 const children = name => tree.categories.filter(c => c.active && c.name === name);
 for (const name of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])
