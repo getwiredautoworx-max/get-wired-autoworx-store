@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   deploy-staging-preview:
-    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/integration/owner-preview-single-task-2026-11-05') || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'integration/owner-preview-single-task-2026-11-05')
+    if: github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/review/asc-trailer-towing-owner-preview-2026-11-15' || github.ref == 'refs/heads/integration/owner-preview-single-task-2026-11-05')
     name: Build and deploy the single active owner preview
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -46,7 +46,10 @@ jobs:
           test -f pages-public/preview-category.html
           test -f pages-public/preview-audio-brand.html
           test -f pages-public/preview-audio-products.html
-          echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
+          test -f pages-public/preview-asc-trailer-towing.html
+          test -f pages-public/assets/asc-trailer-towing-owner-preview.json
+          python3 -c 'import json; d=json.load(open("pages-public/assets/asc-trailer-towing-owner-preview.json")); assert len(d["records"]) == 165; assert all(r.get("price") is None and r.get("stock_quantity") == 0 for r in d["records"]); assert all("supplierCode" not in r and "sku" not in r for r in d["records"])'
+          echo "GW_PR208_ASC_TRAILER_TOWING_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
       - name: Set up Node.js for exact-head regression checks
@@ -120,6 +123,26 @@ jobs:
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
               const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
               if(!checkoutHidden) throw new Error('Checkout is exposed in owner preview');
+              // Verify the PR #208 ASC catalogue directly on the exact deployed SHA.
+              const ascPage=await browser.newPage({viewport:{width:390,height:844}});
+              ascPage.on('pageerror',e=>errors.push('ASC route: '+String(e)));
+              await ascPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-asc-trailer-towing.html',{waitUntil:'domcontentloaded'});
+              await ascPage.locator('.card').first().waitFor({state:'visible',timeout:30000});
+              const ascCount=await ascPage.locator('.card').count();
+              const ascSummary=await ascPage.locator('#summary').innerText();
+              if(ascCount!==165||!ascSummary.includes('165 review-only listings')) throw new Error('ASC preview expected 165 cards; got '+ascCount+' summary='+ascSummary);
+              const ascSelect=ascPage.locator('#category');
+              const ascSubcategories=await ascSelect.locator('option').evaluateAll(opts=>opts.map(o=>o.value).filter(Boolean));
+              if(ascSubcategories.length!==7) throw new Error('ASC preview expected seven subcategories: '+JSON.stringify(ascSubcategories));
+              await ascSelect.selectOption('Trailer');
+              const trailerCount=await ascPage.locator('.card').count();
+              if(trailerCount!==70) throw new Error('ASC Trailer filter expected 70 cards, got '+trailerCount);
+              const ascPrice=await ascPage.locator('.card .price').first().innerText();
+              if(ascPrice!=='Price On Request Due to Stock Availability') throw new Error('ASC price label mismatch: '+ascPrice);
+              await ascPage.setViewportSize({width:1365,height:900});
+              const ascDims=await ascPage.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
+              if(ascDims.scroll>ascDims.width+2) throw new Error('ASC desktop horizontal overflow: '+JSON.stringify(ascDims));
+              await ascPage.close();
               const collage=frame.locator('.audioFourTile img');
               if(await collage.count()!==4) throw new Error('Audio root collage must contain four department images');
               for(let i=0;i<4;i++){
