@@ -36,7 +36,7 @@
     {
       "id": "open-pr-reconciliation",
       "priority": 10,
-      "status": "in_progress",
+      "status": "completed",
       "execution_mode": "single-canonical-main-review",
       "automatic": false,
       "source": [
@@ -51,7 +51,14 @@
         "No stale branch is merged without current-main rebasing and exact-head checks",
         "One active workstream and one canonical main branch remain authoritative"
       ],
-      "next_action": "Owner APK security shell selectively ported from #184 onto current main as PR #206, branch integration/owner-apk-secure-shell-2026-11-15, exact candidate SHA 16a26367f17346a0d70c0b08b0478748be75e184. PR-triggered validation is running (APK workflow 43693242050; catalogue routing QA 43693241943; public SKU audit 43693241919). #67 was not wholesale-ported: its admin page includes a direct owner_publish_product live-publishing path and supplier quote/payment/procurement mutations, outside the no-live-write boundary. Next: complete exact-head CI for #206; if green, merge security shell and close #184 as superseded. Then redesign #67 catalogue-management UI/function with explicit fail-closed mutation controls and tests before any adoption. #155 remains next after the Owner APK cluster. No live Supabase writes, function deployment, production deployment, APK signing/distribution."
+      "next_action": "Completed 2026-11-15: all open PRs reconciled; final open-PR search returned zero. PR #206 merged as 0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8; #184 closed as superseded. PR #67 closed without merge after review found unsafe live catalogue/publishing and supplier quote/payment/procurement mutations. PR #207 selectively rebuilt from current main, all exact-head checks passed (Part Image Search Security 43694076115, Delivery Quote Security 43694076196, Owner APK/emulator 43694076125), merged as 0a8005e83a4251e1a0a380c0a9d782237335906a; #155 closed as superseded. No live Supabase migration/function deployment or production action. Next: resume one coordinated storefront content and hosted owner-preview QA workstream from main; production remains HOLD.",
+      "completed_this_session": [
+        "2026-11-15: completed selective Owner APK security integration PR #206, exact-head checks all passed, merged as 0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8; closed #184 as superseded.",
+        "2026-11-15: closed #67 without merge after identifying direct live publishing/catalogue mutations and supplier quote/cost, payment, procurement and fulfilment actions; no code deployed or live data changed.",
+        "2026-11-15: selectively rebuilt #155 as current-main PR #207; fixed successful-inference const reassignment, removed price/stock from customer image-search responses, added bounded payload validation, strict origins, HMAC durable rate limit and isolated PostgreSQL tests.",
+        "2026-11-15: PR #207 exact-head checks all passed: Part Image Search Security 43694076115; Delivery Quote Security 43694076196; Owner APK/emulator 43694076125. Merged as 0a8005e83a4251e1a0a380c0a9d782237335906a; closed #155 as superseded.",
+        "2026-11-15: final open-PR search returned zero. No live Supabase migration/function deployment, production deployment, Axxess upload, DNS/payment change, live catalogue/price/stock write, or APK signing/distribution."
+      ]
     },
     {
       "id": "single-project-reconciliation",
