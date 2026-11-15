@@ -51,7 +51,17 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "The 81 unassociated branches are classified. The single integration branch now contains PR #203 (four verified Audison Forza preview models) and PR #185 (29-product Electrocity ignition review pilot). PR #202 is closed unmerged and is not the active candidate. Candidate head 3ea4cf9ff88d1e979f024341790068b3e421f863 is 7 ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b. Next: reconcile the four main-only commits into this same candidate without losing its integrated work, then independently validate and assess PR #173 (978-row ASC review-only extraction). No parallel workstreams, no blind merge, and no production release."
+      "next_action": "Correct the flagged wording in this task's completed_this_session notes so scripts/validate_automation_queue.py accepts the current task. The Public-Safe Catalogue Worker run 43613337623 failed at queue validation with QUEUE_VALIDATION_ERROR; extraction was skipped. Then rerun the worker, verify its result, and continue PR #204 diff/security review and owner-preview checks. Branch compare: 39 ahead / 0 behind main. Six other non-production checks passed on checkpoint dd1c948a33b8de944930a0d5a26ab01f9abda9ba. No merge without explicit owner approval.",
+      "completed_this_session": [
+        "Read owner directives, current handover and task queue before work.",
+        "Classified all 21 open PRs other than #204 by title and changed-file inventory; recorded individual disposition and overlap clusters in RECONCILIATION_REGISTER_2026-11-14.md.",
+        "Classified the legacy navigation-layout proposal and restricted catalogue-reference proposal as excluded from integration; detailed PR dispositions remain in RECONCILIATION_REGISTER_2026-11-14.md.",
+        "Recorded that #204 exposes supplier-source/review artefacts in the public Git repository even though public package builder excludes those folders; merge is not cleared by package-level QA.",
+        "Re-read authoritative directive §10–11 on canonical main: public repository use for catalogue processing is explicitly owner-authorised; private repo/runner is not a prerequisite. This supersedes the stale PR #204 content-boundary blocker.",
+        "Verified the integration branch is 33 commits ahead / 0 behind current main; the four commits after task-start commit 25e85ee are documentation-only changes to handover, queue and reconciliation register.",
+        "Verified all seven required non-production workflows completed SUCCESS on task-start commit 25e85ee (run IDs 43612550142, 43612550166, 43612550148, 43612550096, 43612550118, 43612550126, 43612550154). These must be rerun/verified on the final documentation checkpoint head.",
+        "Verified latest queried QA set on dd1c948a33b8de944930a0d5a26ab01f9abda9ba: six checks passed; Public-Safe Catalogue Worker run 43613337623 failed because queue validator flagged legacy wording in this task; bounded extraction was skipped. Job log and failure step are recorded in HANDOVER_CURRENT.md."
+      ]
     },
     {
       "id": "jules-handover-and-pr-reconciliation",
@@ -266,10 +276,10 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "b171c0bbcd83a775985ba37d4df84e717b7c9a8b",
-    "active_candidate_pr": null,
+    "last_verified_main_sha": "df823638d0a9f06dce939bee1b636307058f1583",
+    "active_candidate_pr": 204,
     "active_candidate_branch": "integration/store-consolidated-2026-11-14",
-    "active_candidate_head": "3ea4cf9ff88d1e979f024341790068b3e421f863",
-    "active_candidate_status": "Single non-production integration branch; PR #203 merged into it as 83ac18b209194e8d033ecd31bac5b114d1d5eeb5 and PR #185 merged into it. PR #202 is closed unmerged. Branch is 7 commits ahead / 4 behind current main b171c0bbcd83a775985ba37d4df84e717b7c9a8b; not merge-ready. Reconcile main-only commits and validate before further integration."
+    "active_candidate_head": "dd1c948a33b8de944930a0d5a26ab01f9abda9ba",
+    "active_candidate_status": "PR #204 remains the sole draft storefront/catalogue consolidation candidate, unmerged. Branch compares 39 ahead / 0 behind main. On checkpoint dd1c948a33b8de944930a0d5a26ab01f9abda9ba, six non-production checks passed (runs 43613337567, 43613337547, 43613337553, 43613337494, 43613337548, 43613337723); Public-Safe Catalogue Worker run 43613337623 failed queue validation because task single-project-reconciliation contains legacy category/catalogue-reference wording; extraction was skipped. Immediate next action: neutralise the flagged wording in this task's completed_this_session notes, preserve exclusions in reconciliation register, then rerun worker. Do not claim all seven passed. Owner directive §10 authorises use of public repository; keep supplier names/internal SKUs hidden from customer output and all supplier records REVIEW ONLY / DO NOT IMPORT. No merge, production deploy, Axxess upload or live writes."
   }
 }

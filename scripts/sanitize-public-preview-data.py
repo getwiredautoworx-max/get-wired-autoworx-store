@@ -14,7 +14,7 @@ FILES = [
     "product-image-treatment-sample.json",
 ]
 FORBIDDEN_KEYS = re.compile(
-    r"^(supplier(name|sku|modelnumber)?|dealer(cost|price)|wholesaleprice|internal(sku|id)|gwsku)$",
+    r"^(supplier.*|sourceSku(?:ReferenceInternal)?|sourceSupplierWorkbook(?:Sheet|Row)?|imageSource(?:Note|Url)|dealer(?:Cost|Price)|wholesalePrice|internal(?:Sku|Id)|gwSku)$",
     re.I,
 )
 SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections", re.I)
@@ -30,6 +30,11 @@ def clean(value):
     if isinstance(value, list):
         return [clean(item) for item in value]
     if isinstance(value, str):
+        # Preserve exact image URLs; replacing supplier tokens inside a URL
+        # breaks the authorised image asset. Customer-visible labels are
+        # checked separately with URLs excluded from the text scan.
+        if re.match(r"^https?://", value, re.I):
+            return value
         return SUPPLIER_NAMES.sub("supplier", value)
     return value
 

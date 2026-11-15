@@ -484,3 +484,75 @@ No branch was deleted, closed or merged as part of this audit. The categories be
 - PR #202 is the only active code-integration candidate. It is draft, GitHub reports mergeable=true, and all five exact-head non-production QA checks passed. Await explicit owner merge approval.
 - The next task after PR #202 is OneNav exact-model enrichment from the review evidence, not a new parallel workstream.
 - Main SHA at this checkpoint: `e5791fbf1308916a4a2041a4307ac1943604617f`.
+
+
+## RECONCILIATION EXECUTION — MAIN ANCESTRY RESTORED — 2026-11-14
+- The prior draft PR #204 was reported 6 commits behind `main`. I inspected Git trees against merge base `e5791fbf1308916a4a2041a4307ac1943604617f`: main had changes in four paths; three documentation/control files differed, while the audio official-model manifest had identical content on both sides.
+- Created a two-parent merge commit `9d52679694981c73f28a08ad2b19603f9fa218b6` with parents `b9a1d9808c4dc6ec22dda39ed62b241b2638dacc` (integration candidate) and `df823638d0a9f06dce939bee1b636307058f1583` (main). Its tree uses current main as base and overlays the 47 candidate-only changed files. The three overlapping documentation/control files retain main's version for now; the shared audio manifest is identical. Branch update used expected-head protection and succeeded.
+- Verified compare after update: integration branch is **15 commits ahead / 0 behind main**; 47 candidate code/catalogue/test files remain in the diff. PR #204 follows the branch head automatically. GitHub's PR snapshot still reports `mergeable=false` immediately after ancestry restoration; allow status recalculation and recheck before taking further action. Do not force merge.
+- Candidate content remains non-production: Audison preview work and 29 Electrocity ignition pilot records; no ASC Buyers Guides. Customer-facing supplier names/internal SKUs remain hidden; all supplier product prices remain Price On Request; product records remain review-only / DO NOT IMPORT.
+- Exact-head CI has not yet been established. No tests, preview checks or production release are claimed as passed. Next: recheck PR mergeability, reconcile owner checkpoint notes into the branch without replacing main's current directives, inspect public-data exposure, and run all available non-production checks.
+
+
+## ASC REVIEW WORKSTREAM CONSOLIDATED — 2026-11-14
+- Selectively integrated the ASC work from PR #173 into the single integration branch at `050876850a79f8c02c4dde156c2caaef9b6e9869`: six review-only register/evidence files and two extraction scripts. The old PR's standalone handover and workflow changes were intentionally excluded to avoid reintroducing stale instructions/parallel QA configuration.
+- Closed PR #173 as superseded by PR #204; its branch remains as historical evidence. All further ASC work is to continue through the single consolidation PR.
+- Scope remains the six ASC catalogues only; no Buyers Guides. Counts recorded by the ASC review docs: 978 product cards (78 Aerials, 106 Sensors, 368 Switches, 158 Globes, 139 Car Mats, 129 Fuel Pumps); 50 manually reviewed pilot descriptions; 42 printed fitments verified; 928 remaining descriptions are OCR drafts; 63 OCR false-positive tokens quarantined. The 978-row full extraction output is not represented as a finished customer catalogue; records remain REVIEW ONLY / DO NOT IMPORT.
+- Source-card images remain raw catalogue crops/watermarked and require the approved image-treatment and exact-product visual QA before customer publication. Owner-authorised image use does not mean image treatment or product verification is complete. ASC exact price wording remains `Price On Request due to Limited Stock and Availability`; no numeric prices or stock values exist.
+- Current PR #204 head at time of consolidation: `050876850a79f8c02c4dde156c2caaef9b6e9869`; comparison with main: 21 commits ahead / 0 behind; GitHub reports mergeable=true. Exact-head QA must be checked again after these ASC files were added.
+- No live import, Supabase write, Axxess upload, production deployment or paid hosting spend.
+
+## OPEN PULL REQUEST TRIAGE — 2026-11-14 SESSION
+
+Scope: 21 open PRs other than the sole storefront/catalogue candidate #204. Classification is based on live PR titles and complete changed-file path inventories; it is a routing decision, not approval to merge/close or to write live data.
+
+| PR | Current classification | Reason / next handling |
+|---|---|---|
+| #184 | Independent owner-app work; review separately | APK WebView bridge and install-test artifact; overlaps #81 owner APK work. Compare code before choosing one path. |
+| #49 | Reject from this consolidation | Contains multiple ASC Buyers Guide PDFs, contrary to the owner's explicit exclusion. Do not merge or reuse its Buyers Guide data. |
+| #164 | Duplicate cleanup proposal | Same six cleanup paths as #150. Select one only if useful; documentation cleanup is not a storefront milestone. |
+| #155 | Independent security proposal; retain for review | Part-image search rate limiting/payload validation and SQL migration; no automatic merge or live migration. |
+| #154 | Independent background-controller safety proposal | Read-only artifact inventory/targeted retries; overlaps #143 on controller policy. Review together, do not merge both blindly. |
+| #152 | Independent category snapshot fix | Config discovery and regression tests; check compatibility with current three-category structure before selective adoption. |
+| #143 | Independent production-safety proposal | Prevents production QA auto-retries; overlaps #154. Retain safety changes for combined code review. |
+| #137 | Independent privacy/security proposal | Removes hard-coded collection origin from courier quotes; relevant safety work, but requires isolated review and tests before adoption. |
+| #72 | Superseded storefront proposal | Contains legacy storefront files and old PR #70 repair line; do not merge wholesale against current consolidated storefront. Salvage only a demonstrated still-present defect. |
+| #81 | Duplicate owner-app proposal | Cloud-based owner APK overlaps newer #184; compare both and retain one coherent owner-app direction. |
+| #67 | Separate owner-admin feature, blocked from integration | Adds stock/category management and Supabase admin function; requires explicit live-data permissions and security review. No live data writes. |
+| #82 | Alternative owner-app proposal | APK-free Owner Hub PWA is a competing owner interface to #81/#184; do not run multiple owner-app implementations. |
+| #65 | ASC review-only audit tool candidate | Supplier status/discontinuation reconciler; potentially useful only if it uses permitted catalogues and stays read-only. Validate source scope; no Buyers Guides or live writes. |
+| #48 | ASC cleanup proposal; stale/overlapping | Discontinued product cleanup from export; overlaps #49/#51. Keep as review evidence only; no deactivation SQL execution. |
+| #51 | ASC cleanup proposal; stale/overlapping | Repeats #49 crawl/compare/cleanup paths and adds status report/review SQL. Do not merge alongside #49; Buyers Guide lineage must be excluded. |
+| #53 | Schema/quote-only guardrail candidate | Catalogue contract and quote-only SKU validation; review against current schema and task queue before selective adoption. |
+| #31 | Duplicate schema-validation proposal | Shares validator/test paths with #53. Compare and retain only one current validator implementation. |
+| #32 | Reject from current storefront | Enforces legacy eight-category roots, directly conflicts with current owner-approved three-category model. |
+| #28 | Documentation/schema reference only; stale | Contains historical eight-category knowledge-base content and large-behind docs pack. Do not merge wholesale; only extract still-current neutral documentation if needed. |
+| #3 | Independent sales APK proposal | Separate sales-intelligence application, not required for the storefront consolidation; leave outside current scope. |
+
+### Triage outcome
+- None of the 21 non-#204 PRs is authorised for wholesale merge or closure by this triage.
+- Clearly excluded from current storefront consolidation: #49 (Buyers Guides), #32 (eight-category model), #72 (legacy storefront line), #28 (stale eight-category documentation), #67 (live admin/data capability), #3 (separate sales APK).
+- Duplicate/overlapping clusters requiring one-path selection: owner APK #81/#184 and Owner Hub #82; background controller #143/#154; ASC cleanup #48/#49/#51; schema validator #31/#53; repository cleanup #150/#164.
+- Independent security/privacy candidates to review after storefront reconciliation: #155, #137. Independent config and review-only candidates: #152, #65.
+- This triage closes the initial open-PR inventory classification only. It does not constitute code-level security review of these proposals or final PR #204 supplier-data boundary approval.
+
+## PR #204 CONTENT BOUNDARY REVIEW — INITIAL FINDING
+- Changed-file inventory confirms #204 contains suppliers/Electrocity/** source/review artefacts and catalogue-review/** datasets in the public repository, in addition to the public storefront package changes.
+- The public package builder excludes supplier/review areas and public SKU audit passed on the prior exact code-tree. That is a customer-package safeguard, not repository confidentiality. The PR description itself confirms supplier-source files are retained in the public repository.
+- Therefore #204 is NOT cleared for merge yet. Before merge, remove supplier-confidential source/evidence files from the public repository or obtain explicit owner confirmation that each identified file is authorised for public repository publication. Keep public storefront package free of supplier names/internal SKUs regardless.
+- Do not move files into a private repository or delete historical sources without explicit owner approval. Production remains HOLD.
+
+
+## PR #204 PUBLIC-REPOSITORY BOUNDARY — OWNER DIRECTIVE RESOLUTION — 2026-11-14
+- Earlier note `PR #204 CONTENT BOUNDARY REVIEW — INITIAL FINDING` classified supplier-source/review files in the public repository as a merge blocker unless each file received separate publication approval.
+- Re-read the binding owner directive on canonical `main`: section 10 (2026-11-09) explicitly says keep the main GitHub repository public; use the existing public repository and approved workflows for catalogue processing; do not require or create a private repository/runner as a prerequisite. This owner clarification supersedes the earlier blanket private-data-boundary concern. Accordingly, the mere presence of supplier catalogue source/review files in the public repository is NOT a blocker to PR #204.
+- Retain the independent controls: no credentials/tokens/personal data/genuine secrets; supplier names and internal supplier SKUs must not appear in customer-facing content; public package builder must exclude supplier/catalogue-review source folders; all records remain REVIEW ONLY / DO NOT IMPORT; no live data changes or production release.
+- No source files were deleted, moved or made private. This is a policy reconciliation, not a publication or release action.
+
+
+## FINAL BRANCH CHECKPOINT — 2026-11-14 17:58 SAST
+- Current `main`: `df823638d0a9f06dce939bee1b636307058f1583`.
+- Current consolidation branch: `integration/store-consolidated-2026-11-14`; final documentation checkpoint `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`; compare **36 ahead / 0 behind**.
+- Public-repository content boundary resolved under owner directive §10 (2026-11-09). Keep repository public; do not create a private repo/runner or move/delete supplier-source files for this reason. Preserve credential/secret protection and customer-output sanitisation.
+- Seven QA workflows passed on earlier task-start SHA `25e85eea483d4c220c2c83e0ca874470e76241b5` (runs 43612550142, 43612550166, 43612550148, 43612550096, 43612550118, 43612550126, 43612550154). No PR-triggered runs were returned for final documentation checkpoint SHA `e6ceb11869babcb24fd2b40fa99a8e69fa92d399`; exact-head QA is NOT VERIFIED on that final SHA.
+- PR #204 remains draft and unmerged. No production/deployment/live-data action was taken.
