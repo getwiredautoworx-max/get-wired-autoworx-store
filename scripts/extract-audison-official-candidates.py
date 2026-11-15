@@ -194,17 +194,51 @@ def main():
     with AUDIT.open(newline="", encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))
     pending = []
-    for row in rows:
-        if row.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE": continue
-        url = clean_text(row.get("official_product_page_url"))
-        if not url: continue
+    for raw in rows:
+        # Current owner-audited register: only individually verified product pages.
+        current_schema = "manufacturer_match_status" in raw
+        if current_schema:
+            if clean_text(raw.get("manufacturer_match_status")) != "EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND":
+                continue
+            url = clean_text(raw.get("official_manufacturer_reference"))
+            source_title = clean_text(raw.get("source_description"))
+            source_model = clean_text(raw.get("source_model_in_description"))
+            if not source_model:
+                parts = [clean_text(part) for part in source_title.split(" - ")]
+                if len(parts) >= 3 and parts[0].casefold() == "audison":
+                    source_model = parts[1]
+            row = {
+                "brand": "Audison", "source_model": source_model,
+                "source_title": source_title, "source_component": "",
+                "source_sku": clean_text(raw.get("supplier_sku_reference_only")),
+                "official_product_page_url": url,
+                "image_url_candidate": "",
+            }
+        else:
+            if raw.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE":
+                continue
+            row = {
+                "brand": clean_text(raw.get("brand")) or "Audison",
+                "source_model": clean_text(raw.get("source_model")),
+                "source_title": clean_text(raw.get("source_title")),
+                "source_component": clean_text(raw.get("source_component")),
+                "source_sku": clean_text(raw.get("source_sku")),
+                "official_product_page_url": clean_text(raw.get("official_product_page_url")),
+                "image_url_candidate": clean_text(raw.get("image_url_candidate")),
+            }
+        url = row["official_product_page_url"]
+        if not url:
+            continue
         prior = existing.get(url)
-        if prior and prior.get("status") != "FETCH_FAILED_RETRY": continue
-        if prior and int(prior.get("attempts", 0)) >= 3: continue
-        host = (urlparse(url).hostname or "").lower()
-        if host not in ALLOWED_PAGE_HOSTS: continue
-        title = clean_text(row.get("source_title"))
-        if any(token and token in title.casefold() for token in override_tokens): continue
+        if prior and prior.get("status") != "FETCH_FAILED_RETRY":
+            continue
+        if prior and int(prior.get("attempts", 0)) >= 3:
+            continue
+        if (urlparse(url).hostname or "").lower() not in ALLOWED_PAGE_HOSTS:
+            continue
+        title = row["source_title"]
+        if any(token and token in title.casefold() for token in override_tokens):
+            continue
         pending.append(row)
     batch = pending[:max(1, args.limit)]
     new_items = []
