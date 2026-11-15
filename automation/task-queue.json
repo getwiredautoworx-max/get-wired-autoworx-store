@@ -51,7 +51,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Consolidation PR #204 was merged by explicit owner instruction into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Verify all post-merge GitHub Actions checks on that merge SHA, reconcile queue/handover/register state, and then deliver one canonical non-production owner preview. Production remains HOLD.",
+      "next_action": "Completed: PR #204 is integrated into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Post-merge non-production checks are recorded in HANDOVER_CURRENT.md. Production remains HOLD.",
       "completed_this_session": [
         "Read owner directives, current handover and task queue before work.",
         "Classified all 21 open PRs other than #204 by title and changed-file inventory; recorded individual disposition and overlap clusters in RECONCILIATION_REGISTER_2026-11-14.md.",
@@ -261,6 +261,27 @@
         "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
       ],
       "next_action": "All 50 sample outputs have been regenerated with product-area bounds preserved, external catalogue captions/code strips masked, and Get Wired watermark applied over the ASC watermark. The 50-row manifest and contact sheet exist; contact sheet review and high-resolution spot checks passed. Owner acceptance remains pending; do not import into production."
+    },
+    {
+      "id": "post-merge-verification-and-owner-preview",
+      "priority": 10,
+      "status": "in_progress",
+      "execution_mode": "verification-and-owner-preview",
+      "automatic": false,
+      "source": [
+        "canonical main",
+        "merge commit 3e38e137afd7a5ec00395c3a51a2da0318a4da98",
+        "GitHub Actions post-merge runs",
+        "current owner directives and HANDOVER_CURRENT.md"
+      ],
+      "success_criteria": [
+        "Canonical storefront and catalogue work is integrated into main with no separate active consolidation candidate",
+        "Post-merge non-production QA results are recorded against the merge SHA",
+        "Production QA failure is correctly attributed to the intentional production HOLD and is not bypassed by deployment",
+        "Task queue, handover and reconciliation register agree on canonical main and active task",
+        "One consolidated non-production owner preview is identified and tied to the verified code SHA"
+      ],
+      "next_action": "Post-merge code checks are complete: Catalogue Image Audit, Public SKU Exposure Audit, Storefront Smoke Test, Background Task Controller, Owner Preview Mobile/Desktop QA and Public URL HTTP Verification passed on 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Store Production QA failed only because the live domain has not been deployed with the merged storefront; preserve production HOLD. Next verify the non-production owner-preview URL and record its exact SHA; do not deploy, upload to Axxess or write live data."
     }
   ],
   "coordination": {
@@ -268,9 +289,9 @@
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
     "canonical_head": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
-    "active_task_id": "single-project-reconciliation",
+    "active_task_id": "post-merge-verification-and-owner-preview",
     "active_workers": 1,
-    "parallel_workstreams": "paused until post-merge verification and one owner-preview checkpoint complete",
+    "parallel_workstreams": "paused; one post-merge owner-preview verification task only",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -279,10 +300,10 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "df823638d0a9f06dce939bee1b636307058f1583",
+    "last_verified_main_sha": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
-    "active_candidate_status": "Consolidation PR #204 is merged into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. No separate active storefront/catalogue candidate remains. Next: verify post-merge workflows on merge SHA, reconcile queue/handover/register, then present one non-production owner preview. Production remains HOLD."
+    "active_candidate_status": "Consolidation PR #204 merged into main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. No separate active consolidation candidate exists. Post-merge non-production checks passed except Store Production QA, which correctly remains blocked because production has not been deployed under the production HOLD. Current single active task: verify one consolidated non-production owner preview. All catalogue rows remain REVIEW ONLY / DO NOT IMPORT."
   }
 }
