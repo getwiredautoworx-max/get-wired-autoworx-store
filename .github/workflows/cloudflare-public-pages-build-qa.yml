@@ -1,6 +1,40 @@
 name: Cloudflare Pages Public Package QA
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build-cloudflare-pages-public.py"
+      - "scripts/audit-audio-preview.py"
+      - "scripts/apply-audio-preview-overrides.py"
+      - ".github/workflows/cloudflare-pages-deploy.yml"
+      - ".github/workflows/cloudflare-layout-preview.yml"
+      - ".github/workflows/publish-approved-storefront-preview.yml"
+      - ".github/workflows/cloudflare-public-pages-build-qa.yml"
+      - "index.html"
+      - "store.html"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "checkout.html"
+      - "checkout-v2.html"
+      - "category.html"
+      - "returns-refunds.html"
+      - "terms-and-conditions.html"
+      - "privacy-policy.html"
+      - "assets/**"
+      - "preview-store.html"
+      - "preview-category.html"
+      - "preview-products.html"
+      - "preview-product.html"
+      - "preview-audio.html"
+      - "preview-audio-brand.html"
+      - "preview-audio-products.html"
+      - "preview-planetworld.html"
+      - "tests/three-category-storefront-structure.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
+      - "catalogue-review/planetworld-one-official-model-audit.csv"
+      - "assets/audio-product-enrichment-overrides.json"
   pull_request:
     branches: [main, integration/storefront-current-main-2026-11-09]
     paths:
