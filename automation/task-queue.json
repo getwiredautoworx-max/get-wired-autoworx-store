@@ -51,7 +51,7 @@
         "No stale branch is merged without current-main rebasing and exact-head checks",
         "One active workstream and one canonical main branch remain authoritative"
       ],
-      "next_action": "13 of 21 open PRs closed with explanatory comments: #150, #143, #48, #49, #51, #65, #32, #72, #28, #31, #53, #81, #82. Eight remain for selective review: #184, #164, #155, #154, #152, #137, #67, #3. Rebase/review one candidate at a time; no remaining PR is authorised for wholesale merge."
+      "next_action": "Selective consolidations on current main: PR #164 closed after repository cleanup; PR #152 closed after category-snapshot config fix and regression gate; PR #137 closed as superseded by the existing courier privacy protection; PR #154 closed after its safe controller changes were selectively ported and merged through PR #205 (merge commit f148ccc55efc91d3b46f83bb1b29109bdb6c2f05); PR #3 closed as a separate out-of-scope Sales Intelligence app. Of the original 21 proposals, 18 are now closed; only #184, #155 and #67 remain open. #155 is blocked by a const reassignment runtime defect and needs migration-schema/security validation. #184 and #67 overlap the same Owner APK files and must be reconciled into one current-main-based Owner app candidate, with live publishing/admin mutations disabled until explicit owner approval. Next: resolve the Owner APK overlap as one candidate, then repair/review #155. Do not wholesale merge stale branches."
     },
     {
       "id": "single-project-reconciliation",
@@ -84,7 +84,13 @@
         "Verified latest queried QA set on dd1c948a33b8de944930a0d5a26ab01f9abda9ba: six checks passed; Public-Safe Catalogue Worker run 43613337623 failed because queue validator flagged legacy wording in this task; bounded extraction was skipped. Job log and failure step are recorded in HANDOVER_CURRENT.md.",
         "Owner explicitly instructed completion of consolidation; PR #204 was marked ready and merged into main as 3e38e137afd7a5ec00395c3a51a2da0318a4da98.",
         "PR #204 exact head 295d42c4285cde570a547f2c0f7586cd7a7d1edc had seven successful pre-merge PR checks; post-merge checks remain to be verified.",
-        "The integration branch is now incorporated into canonical main; no separate active storefront/catalogue candidate remains."
+        "The integration branch is now incorporated into canonical main; no separate active storefront/catalogue candidate remains.",
+        "2026-11-15: selectively ported PR #164 repository cleanup to main; excluded generated Android build outputs and removed obsolete root status/session files; closed PR #164.",
+        "2026-11-15: selectively ported PR #152 category snapshot config resolution to main, added environment-first config resolution with checkout client fallback, regression tests, dedicated workflow and refresh gate; PR-head regression run 41449633110 passed; closed PR #152. No Supabase writes.",
+        "2026-11-15: closed PR #137 as superseded by existing main courier-origin privacy handling; its helper was not ported because redundant and omitted delivery province.",
+        "2026-11-15: reviewed PR #155 and recorded a blocking runtime defect (const identification reassigned) plus required migration schema/privilege validation; left open and not deployed.",
+        "2026-11-15: selectively ported PR #154 safety changes onto a fresh current-main branch, removed prohibited Buyer Guide workflow monitoring/retry, merged as PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05; PR #154 closed as superseded. Original controller safety workflow passed on source PR head (run 41452514667); exact current-main push workflow run not exposed by the available commit-run view.",
+        "2026-11-15: closed PR #3 as out-of-scope separate Sales Intelligence APK; confirmed only #184, #155 and #67 remain open. #184/#67 share Owner APK files and are queued as one unified candidate."
       ]
     },
     {
@@ -309,7 +315,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
+    "canonical_head": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
     "active_task_id": "open-pr-reconciliation",
     "active_workers": 1,
     "parallel_workstreams": "paused; one open-PR reconciliation task only",
@@ -321,10 +327,10 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "3e38e137afd7a5ec00395c3a51a2da0318a4da98",
+    "last_verified_main_sha": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
-    "active_candidate_status": "Functional storefront/catalogue code baseline is 3e38e137afd7a5ec00395c3a51a2da0318a4da98; later main commits in this audit are documentation-only. Thirteen superseded/duplicate/conflicting PRs closed with audit comments. Eight retained as selective proposals; none is an active competing storefront. Canonical main is the only source of truth; production remains HOLD."
+    "active_candidate_status": "Current main includes selective repository cleanup, category snapshot configuration regression protection, existing courier collection-origin privacy safeguards, and the safe background controller protections merged via PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05. Only three proposals remain open: #184 and #67 overlap on Owner APK source and are queued for one unified current-main integration; #155 is blocked pending runtime fix and security/migration review. One active task, one canonical main. Production remains HOLD."
   }
 }
