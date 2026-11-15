@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Kicker model image verification advanced 2026-11-15: all 12 Kicker audio product records now have exact official manufacturer-page images visually checked and marked official_manufacturer_image_verified_review_only; the separate KW16400p/m speaker-wire image remains owner-authorized retailer-image verified. Four previously link-only Kicker records (43C124, 43C84, 46CXA12001, 48CWR104) have been visually checked and synchronized in the 69-record register. Next: audit Alpine's eight unspecified image statuses against exact manufacturer pages/images; then review Focal/JVC model exceptions. All data remains review-only / DO NOT IMPORT."
+      "next_action": "Audio image verification advanced 2026-11-15: all 12 Kicker model images visually verified from official KICKER pages; KW16400p/m remains separately owner-authorized retailer image verified. Alpine audit corrected to six records without imageStatus (not eight): HCE-C2100RD, HDZ-653, R2-A60F and S2-A55V now have official manufacturer image visual verification recorded; R2-A60F trailing punctuation corrected to exact model. R2-W10D2 and S2-S40C exact official model pages and image links are confirmed, but full-resolution images could not be visually retrieved, so both remain link-only review status. Next: resolve these two image retrieval exceptions, then audit Focal/JVC exceptions. All data remains review-only / DO NOT IMPORT."
     },
     {
       "id": "onenav-model-image-reconciliation",
