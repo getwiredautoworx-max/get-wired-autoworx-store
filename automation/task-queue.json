@@ -299,7 +299,7 @@
     {
       "id": "post-merge-verification-and-owner-preview",
       "priority": 10,
-      "status": "paused_pending_open_pr_reconciliation",
+      "status": "in_progress",
       "execution_mode": "verification-and-owner-preview",
       "automatic": false,
       "source": [
@@ -315,7 +315,8 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Resume after open PR inventory has been reconciled into one canonical task queue."
+      "next_action": "Task started 2026-11-15 after all PRs were reconciled (zero open PRs). Audit canonical main storefront build/package and current free staging preview; run exact-main non-production QA and verify mobile/desktop owner-preview behavior against the same SHA. Do not deploy production or write live data. Review-only catalogues remain DO NOT IMPORT.",
+      "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6"
     }
   ],
   "coordination": {
