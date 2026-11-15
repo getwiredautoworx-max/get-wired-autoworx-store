@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "RESUMED 2026-11-15: stale administrative pause removed. Audison exact-page extractor schema mismatch fixed; current register is normalized, collection-only rows held, schema regression test added, workflow trigger moved to canonical main. Verify exact-main workflow run and contact-sheet manifest; visually inspect candidate images/model matches, then continue bounded Audison/Kicker batches. All remain candidate-only/DO NOT IMPORT until verified."
+      "next_action": "Audison image exception resolved 2026-11-15: exact APX 690 (69070060 / pw-0182) official gallery image visually verified and review-only record updated; Audison image-verification status is now complete across all 41 Audison audit records. Continue next bounded exact-page batch and verify extractor output; all candidate data remains DO NOT IMPORT."
     },
     {
       "id": "onenav-model-image-reconciliation",
