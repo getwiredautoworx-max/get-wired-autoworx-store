@@ -53,6 +53,15 @@ assert.ok(oneNavFj && oneNavHilux, 'verified OneNav OA011-1 and OA013-1 previews
 assert.equal(oneNavFj.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-FJ-Cruiser-600x600.webp?v=1739954757&width=533');
 assert.equal(oneNavHilux.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533');
 assert.ok([oneNavFj, oneNavHilux].every(p => p.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null && p.supplierSku === undefined));
+const oneNavHilux2015 = primary.records.find(record => record.id === 'pw-2126');
+assert.ok(oneNavHilux2015, 'verified OneNav OA018-1 preview record must be present');
+assert.equal(oneNavHilux2015.modelNumber, 'OA018-1');
+assert.equal(oneNavHilux2015.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-600x600.webp?v=1739875929&width=533');
+assert.equal(oneNavHilux2015.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE');
+assert.equal(oneNavHilux2015.priceOnRequestText, 'Price On Request');
+assert.equal(oneNavHilux2015.indicativePrice, null);
+assert.equal(oneNavHilux2015.hasStock, null);
+assert.equal(oneNavHilux2015.supplierSku, undefined);
 assert.equal(oneNavPrado.indicativePrice, null);
 assert.equal(oneNavPrado.hasStock, null);
 const bitDmi = primary.records.find(record => record.brand === 'Audison' && record.title === 'Audison bit DMI Digital MOST Interface');
