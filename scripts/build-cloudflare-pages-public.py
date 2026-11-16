@@ -31,10 +31,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "review-asc-trailer-towing.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "trailer-towing.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json", "asc-trailer-towing-owner-preview.json",
+    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json", "trailer-towing-catalogue.json",
     "product-image-treatment-sample.json",
     "audio-catalogue-secondary-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
