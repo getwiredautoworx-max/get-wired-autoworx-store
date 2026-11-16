@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Trailer &amp; Towing | Get Wired AutoWorx</title>
+<style>
+:root{color-scheme:dark;--bg:#07111e;--panel:#0d1d30;--line:#244663;--blue:#16a9ff;--muted:#a9bdcf}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f4f8fc;font:15px/1.5 Arial,sans-serif}
+header{background:#06101c;border-bottom:1px solid var(--line);padding:22px max(16px,calc((100% - 1180px)/2))}
+main{max-width:1180px;margin:auto;padding:20px 16px 50px}
+h1{margin:5px 0;font-size:clamp(25px,4vw,38px)}p{color:var(--muted)}
+.flag{display:inline-block;padding:5px 9px;border:1px solid #a77923;background:#3a2a0b;color:#ffe1a1;border-radius:5px;font-size:11px;font-weight:bold;letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.stat,.controls,.product{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px}
+.stat b{display:block;font-size:23px;color:var(--blue)}
+.controls{display:flex;gap:9px;flex-wrap:wrap}.controls input,.controls select{min-height:44px;padding:10px;border-radius:7px;border:1px solid #42627e;background:#07111e;color:white}.controls input{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:14px}.product h2{font-size:15px;line-height:1.4;margin:8px 0}.tag{display:inline-block;background:#15334d;color:#cceaff;padding:3px 7px;border-radius:5px;font-size:11px}.price{color:#ffd28b;font-weight:bold}.small{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.controls input{min-width:100%}}
+</style>
+</head>
+<body>
+<header><span class="flag">GET WIRED AUTOWORX · TRAILER &amp; TOWING</span><h1>Trailer &amp; Towing</h1><p>Explore trailer parts, towing equipment, canopy spares and accessories.</p></header>
+<main>
+<p>Browse the catalogue by product group or search by description. Prices and availability are confirmed on request.</p>
+<section class="stats"><div class="stat"><b id="total">—</b>Catalogue records</div><div class="stat"><b id="groups">—</b>Product groups</div><div class="stat"><b>On request</b>Pricing</div><div class="stat"><b>On request</b>Availability</div></section>
+<section class="controls"><input id="q" type="search" placeholder="Search product descriptions"><select id="cat"><option value="all">All groups</option></select><select id="sort"><option value="title">Sort by product</option><option value="subcategory">Sort by group</option></select></section>
+<p id="count" class="small">Loading products…</p><section id="items" class="grid"></section>
+</main>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let records=[];
+function render(){const q=document.getElementById('q').value.trim().toLowerCase(),cat=document.getElementById('cat').value,sort=document.getElementById('sort').value;
+const rows=records.filter(p=>(cat==='all'||p.subcategory===cat)&&(!q||(p.title+' '+p.description).toLowerCase().includes(q)));
+rows.sort((a,b)=>String(a[sort]||'').localeCompare(String(b[sort]||'')));
+document.getElementById('count').textContent='Showing '+rows.length+' of '+records.length+' products';
+document.getElementById('items').innerHTML=rows.map(p=>'<article class="product"><span class="tag">'+esc(p.subcategory)+'</span><h2>'+esc(p.title)+'</h2><p>'+esc(p.description)+'</p><p class="price">'+esc(p.priceDisplay)+'</p><p class="small">'+esc(p.availabilityDisplay)+'</p></article>').join('')||'<p>No matching products.</p>';}
+fetch('assets/trailer-towing-catalogue.json').then(r=>{if(!r.ok)throw Error('Sanitised review dataset unavailable');return r.json()}).then(data=>{
+if(!Array.isArray(data.records))throw Error('Product catalogue is unavailable');
+records=data.records;
+const groups=[...new Set(records.map(p=>p.subcategory))].sort();
+document.getElementById('total').textContent=records.length;document.getElementById('groups').textContent=groups.length;
+document.getElementById('cat').innerHTML='<option value="all">All groups</option>'+groups.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
+render();
+}).catch(e=>{document.getElementById('count').textContent='Products could not be loaded: '+e.message;});
+['q','cat','sort'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',render));
+</script>
+</body></html>
