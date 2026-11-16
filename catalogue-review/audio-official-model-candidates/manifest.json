@@ -10,21 +10,360 @@
       "source_component": "",
       "source_sku_reference_internal": "66755100",
       "official_product_page_url": "https://audison.com/product/af-m12-14-bit/",
-      "extracted_at": "2026-11-15T15:49:15.940474+00:00",
+      "extracted_at": "2026-11-16T07:33:21.277848+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/af-m12-14-bit/",
       "page_title": "Audison Forza AF M12.14 bit - DSP AMP",
       "h1": "AF M12.14 bit DSP Amplifier | 1080 W | 14 CH DSP + 12 x 90 W @ 2 ohm | D-class Fully Bridgeable",
       "meta_description": "Audison Forza AF M12.14 bit boasts twelve high-fidelity amplified channels 60 x 12 @4Ω with the audiophile sound of Audison D-Class technology.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/audison_logo_forza.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_PANNELLO_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_PANNELLO_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF_M12.14_bit_dim.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_USB_cable.jpeg",
+          "alt": "USB CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_control_cable.jpeg",
+          "alt": "CONTROL CABLE AF bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/Audison_DSP_OUT.jpg",
+          "alt": "DSP OUT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_AFM12_14_spk_out_lo.jpeg",
+          "alt": "SPK OUT 12CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_PRE-IN.jpeg",
+          "alt": "PRE IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_in.jpeg",
+          "alt": "SPEAKER IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_Instal_kit.jpeg",
+          "alt": "FORZA INSTALL KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_C2O_small2.jpg",
+          "alt": "C2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+          "alt": "bit DMI"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_bit-Drive_low-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/HiResAudiologo.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_acoustic_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_electric_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_esa_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_adt_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/05/audison_All_Channels_Driven.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_Fully_bridgeable_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/DPD-logo-e1654872013317.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_qio_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_absolute_volume_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Logo_MaestroAR_blue-black_web.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_8_inputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-eq.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-time-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/De-Phase-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Uss-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_14_dsp_outputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison-bitdrive-logo-black-qqmedvp7lrz0if5v17wz6uo9cbiiskbvg3i1y2pcge.png",
+          "alt": "audison-bitdrive-logo-black"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/07/audison-bitd-logo-black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-UI-3-0_v1.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison_accordo20_logo-r7x2crwy7nxfi7bwjtd26090pzm6p5kwgg5e74wsb4.png",
+          "alt": "audison_accordo20_logo"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-01-system-loudness.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-03-mic-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-04-enhanced-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-05-time-delay.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_Automatic_Calibration_ACCORDO_2.png",
+          "alt": "Audison_Automatic_Calibration_ACCORDO_2"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Fig-33-Processing-Complete-1.jpg",
+          "alt": "Fig 33 Processing Complete 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-btdrive-3-0-Upmixer-2.png",
+          "alt": "Upmixer 2.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Highpass-cx.jpg",
+          "alt": "Input EQ with High-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Lowpass-cx.jpg",
+          "alt": "Input eq with Low-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_aggiornamento-fw_.png",
+          "alt": "Audison_aggiornamento-fw_"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Update-center.png",
+          "alt": "Update center"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/EISA-Award-Audison-AF-M12.14-bit.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.png",
+          "alt": "b-con"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.jpg",
+          "alt": "B-CON II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AF-M1D_EMO-LATO-FUSIBILI_2023_02_03-111.jpg",
+          "alt": "AF M1D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11-300x169.jpg",
+          "alt": "AF M4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/08/AUDISON_AF-C4D_emo-lato-fusibile_2022_05_11.jpg",
+          "alt": "AF C4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M6D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+          "alt": "AF M6D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1-300x227.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM - CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP1.5.jpg",
+          "alt": "OP 1.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP4.5.jpg",
+          "alt": "OP 4.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_ReAmp3.jpg",
+          "alt": "AFBMW ReAMP 3"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AF+M12.14+bit&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=2251&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Faf-m12-14-bit%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+      "image_alt": "AF M12.14 bit",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/af-m12-14-bit.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_width": 4000,
+      "image_height": 2249,
+      "image_sha256": "ee71b49fa568c221a85dae7cc261179521611ce6a763c504ee18ba201cb86369",
+      "image_content_type": "image/png",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "af-m8-14-bit",
@@ -34,21 +373,360 @@
       "source_component": "",
       "source_sku_reference_internal": "66755105",
       "official_product_page_url": "https://audison.com/product/af-m8-14-bit/",
-      "extracted_at": "2026-11-15T15:49:19.061274+00:00",
+      "extracted_at": "2026-11-16T07:33:28.798002+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/af-m8-14-bit/",
       "page_title": "Audison Forza AF M8.14 bit - DSP AMPLIFIER",
       "h1": "AF M8.14 bit DSP Amplifier | 1120 W | 14 CH DSP + 8 x 140 W @ 2 ohm | D-class Fully Bridgeable",
       "meta_description": "Forza AF M8.14 bit boasts eight high-fidelity amplified channels 90W x 8 @4Ω, with the audiophile sound of the latest generation Audison D-Class technology.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/audison_logo_forza.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_PANNELLO_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_provided_accessories.jpg",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_PANNELLO_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_provided_accessories.jpg",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_USB_cable.jpeg",
+          "alt": "USB CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_control_cable.jpeg",
+          "alt": "CONTROL CABLE AF bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/Audison_DSP_OUT.jpg",
+          "alt": "DSP OUT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_out.jpg",
+          "alt": "SPK OUT 8CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_PRE-IN.jpeg",
+          "alt": "PRE IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_in.jpeg",
+          "alt": "SPEAKER IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_Instal_kit.jpeg",
+          "alt": "FORZA INSTALL KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_C2O_small2.jpg",
+          "alt": "C2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_bit-Drive_low-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/HiResAudiologo.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_acoustic_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_electric_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_esa_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_adt_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/05/audison_All_Channels_Driven.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_Fully_bridgeable_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/DPD-logo-e1654872013317.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_qio_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_absolute_volume_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Logo_MaestroAR_blue-black_web.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_8_inputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-eq.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-time-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/De-Phase-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Uss-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_14_dsp_outputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_6_pre_outs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison-bitdrive-logo-black-qqmedvp7lrz0if5v17wz6uo9cbiiskbvg3i1y2pcge.png",
+          "alt": "audison-bitdrive-logo-black"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/07/audison-bitd-logo-black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-UI-3-0_v1.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison_accordo20_logo-r7x2crwy7nxfi7bwjtd26090pzm6p5kwgg5e74wsb4.png",
+          "alt": "audison_accordo20_logo"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-01-system-loudness.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-03-mic-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-04-enhanced-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-05-time-delay.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_Automatic_Calibration_ACCORDO_2.png",
+          "alt": "Audison_Automatic_Calibration_ACCORDO_2"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Fig-33-Processing-Complete-1.jpg",
+          "alt": "Fig 33 Processing Complete 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-btdrive-3-0-Upmixer-2.png",
+          "alt": "Upmixer 2.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Highpass-cx.jpg",
+          "alt": "Input EQ with High-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Lowpass-cx.jpg",
+          "alt": "Input eq with Low-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_aggiornamento-fw_.png",
+          "alt": "Audison_aggiornamento-fw_"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Update-center.png",
+          "alt": "Update center"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.png",
+          "alt": "b-con"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.jpg",
+          "alt": "B-CON II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AF-M1D_EMO-LATO-FUSIBILI_2023_02_03-111.jpg",
+          "alt": "AF M1D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11-300x169.jpg",
+          "alt": "AF M4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/08/AUDISON_AF-C4D_emo-lato-fusibile_2022_05_11.jpg",
+          "alt": "AF C4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M6D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+          "alt": "AF M6D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1-300x227.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM - CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP1.5.jpg",
+          "alt": "OP 1.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP4.5.jpg",
+          "alt": "OP 4.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_ReAmp3.jpg",
+          "alt": "AFBMW ReAMP 3"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AF+M8.14+bit&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3081&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Faf-m8-14-bit%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+      "image_alt": "AF M8.14 bit",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/af-m8-14-bit.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_width": 4000,
+      "image_height": 2249,
+      "image_sha256": "8a9b5be6f9bf24547bede6c4ba11b53ff33f0e21c14e15b511b41f432f5a6b55",
+      "image_content_type": "image/png",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "af-c8-14-bit",
@@ -58,21 +736,368 @@
       "source_component": "",
       "source_sku_reference_internal": "66755107",
       "official_product_page_url": "https://audison.com/product/af-c8-14-bit/",
-      "extracted_at": "2026-11-15T15:49:22.092536+00:00",
+      "extracted_at": "2026-11-16T07:33:35.159378+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/af-c8-14-bit/",
       "page_title": "Audison Forza AF C8.14 bit - DSP AMP",
       "h1": "AF C8.14 bit DSP Amplifier | 800 W | 14 CH DSP + 8 x 100 W @ 2 ohm | D-class Fully Bridgeable",
       "meta_description": "Forza AF C8.14 bit boasts eight high-fidelity amplified channels 65W x 8 @4Ω with the audiophile sound of the Audison D-Class technology.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/audison_logo_forza.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_PANNELLO_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_AF_C_8_14_bit_top.jpg",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_PANNELLO_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_AF_C_8_14_bit_top.jpg",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_AF_C_8_14_bit_dimension.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_USB_cable.jpeg",
+          "alt": "USB CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_control_cable.jpeg",
+          "alt": "CONTROL CABLE AF bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/Audison_DSP_OUT.jpg",
+          "alt": "DSP OUT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_out.jpg",
+          "alt": "SPK OUT 8CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_PRE-IN.jpeg",
+          "alt": "PRE IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_in.jpeg",
+          "alt": "SPEAKER IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_Instal_kit.jpeg",
+          "alt": "FORZA INSTALL KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_C2O_small2.jpg",
+          "alt": "C2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+          "alt": "bit DMI"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1-1.jpg",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_bit-Drive_low-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/HiResAudiologo.jpg",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_acoustic_rta_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_electric_rta_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_esa_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_adt_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/05/audison_All_Channels_Driven.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_Fully_bridgeable_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/DPD-logo-e1654872013317.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_qio_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_absolute_volume_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Logo_MaestroAR_blue-black_web.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_8_inputs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-eq.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-time-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/De-Phase-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Uss-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_14_dsp_outputs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_6_pre_outs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison-bitdrive-logo-black-qqmedvp7lrz0if5v17wz6uo9cbiiskbvg3i1y2pcge.png",
+          "alt": "audison-bitdrive-logo-black"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/07/audison-bitd-logo-black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-UI-3-0_v1.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison_accordo20_logo-r7x2crwy7nxfi7bwjtd26090pzm6p5kwgg5e74wsb4.png",
+          "alt": "audison_accordo20_logo"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-01-system-loudness.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-03-mic-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-04-enhanced-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-05-time-delay.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_Automatic_Calibration_ACCORDO_2.png",
+          "alt": "Audison_Automatic_Calibration_ACCORDO_2"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Fig-33-Processing-Complete-1.jpg",
+          "alt": "Fig 33 Processing Complete 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-btdrive-3-0-Upmixer-2.png",
+          "alt": "Upmixer 2.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Highpass-cx.jpg",
+          "alt": "Input EQ with High-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Lowpass-cx.jpg",
+          "alt": "Input eq with Low-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_aggiornamento-fw_.png",
+          "alt": "Audison_aggiornamento-fw_"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Update-center.png",
+          "alt": "Update center"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.png",
+          "alt": "b-con"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.jpg",
+          "alt": "B-CON II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AF-M1D_EMO-LATO-FUSIBILI_2023_02_03-111.jpg",
+          "alt": "AF M1D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11-300x169.jpg",
+          "alt": "AF M4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/08/AUDISON_AF-C4D_emo-lato-fusibile_2022_05_11.jpg",
+          "alt": "AF C4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M6D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+          "alt": "AF M6D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1-300x227.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1-1.jpg",
+          "alt": "AFC - CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP1.5.jpg",
+          "alt": "OP 1.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP4.5.jpg",
+          "alt": "OP 4.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_ReAmp3.jpg",
+          "alt": "AFBMW ReAMP 3"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AF+C8.14+bit&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3085&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Faf-c8-14-bit%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+      "image_alt": "AF C8.14 bit",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/af-c8-14-bit.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_width": 4000,
+      "image_height": 2249,
+      "image_sha256": "06d7821b0195d9c1babc9931c8170b0fa794006e6924b126d9b3b8d01b5b8e53",
+      "image_content_type": "image/png",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "af-m5-11-bit",
@@ -82,21 +1107,364 @@
       "source_component": "",
       "source_sku_reference_internal": "66755110",
       "official_product_page_url": "https://audison.com/product/af-m5-11-bit/",
-      "extracted_at": "2026-11-15T15:49:25.106864+00:00",
+      "extracted_at": "2026-11-16T07:33:39.775533+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/af-m5-11-bit/",
       "page_title": "Audison Forza AF M5.11 bit - DSP AMP",
       "h1": "AF M5.11 bit DSP Amplifier | 1200 W | 11 CH DSP + 4 x 150 W @ 2 ohm + 1 x 600 W @ 2 ohm | D-class Fully Bridgeable",
       "meta_description": "Forza AF M5.11 bit boasts five high-fidelity amplified channels 100W x 4 + 400W @4Ω with the audiophile sound of Audison D-Class technology.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/audison_logo_forza.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_PANNELLO_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_PANNELLO_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Audison_Forza_AF_M_5_11_bit_dim.jpg",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_USB_cable.jpeg",
+          "alt": "USB CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_control_cable.jpeg",
+          "alt": "CONTROL CABLE AF bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/Audison_DSP_OUT.jpg",
+          "alt": "DSP OUT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/Audison_Forza_AF-M5.11-bit_SPK_OUT.jpg",
+          "alt": "SPK OUT 4CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_M5_11_bit_subwoofer_out_cable.jpeg",
+          "alt": "SPK OUT 2CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_PRE-IN.jpeg",
+          "alt": "PRE IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_in.jpeg",
+          "alt": "SPEAKER IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_Instal_kit.jpeg",
+          "alt": "FORZA INSTALL KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_C2O_small2.jpg",
+          "alt": "C2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+          "alt": "bit DMI"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_bit-Drive_low-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/HiResAudiologo.jpg",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_acoustic_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_electric_rta_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_esa_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_adt_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/05/audison_All_Channels_Driven.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_Fully_bridgeable_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/DPD-logo-e1654872013317.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_qio_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_absolute_volume_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Logo_MaestroAR_blue-black_web.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_8_inputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-eq.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-time-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/De-Phase-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Uss-1.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_11_dsp_outputs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_6_pre_outs_low.png",
+          "alt": "AFM – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison-bitdrive-logo-black-qqmedvp7lrz0if5v17wz6uo9cbiiskbvg3i1y2pcge.png",
+          "alt": "audison-bitdrive-logo-black"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/07/audison-bitd-logo-black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-UI-3-0_v1.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison_accordo20_logo-r7x2crwy7nxfi7bwjtd26090pzm6p5kwgg5e74wsb4.png",
+          "alt": "audison_accordo20_logo"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-01-system-loudness.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-03-mic-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-04-enhanced-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-05-time-delay.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_Automatic_Calibration_ACCORDO_2.png",
+          "alt": "Audison_Automatic_Calibration_ACCORDO_2"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Fig-33-Processing-Complete-1.jpg",
+          "alt": "Fig 33 Processing Complete 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-btdrive-3-0-Upmixer-2.png",
+          "alt": "Upmixer 2.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Highpass-cx.jpg",
+          "alt": "Input EQ with High-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Lowpass-cx.jpg",
+          "alt": "Input eq with Low-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_aggiornamento-fw_.png",
+          "alt": "Audison_aggiornamento-fw_"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Update-center.png",
+          "alt": "Update center"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.png",
+          "alt": "b-con"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.jpg",
+          "alt": "B-CON II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AF-M1D_EMO-LATO-FUSIBILI_2023_02_03-111.jpg",
+          "alt": "AF M1D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11-300x169.jpg",
+          "alt": "AF M4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/08/AUDISON_AF-C4D_emo-lato-fusibile_2022_05_11.jpg",
+          "alt": "AF C4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M6D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+          "alt": "AF M6D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1-300x227.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1.jpg",
+          "alt": "AFM - CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP1.5.jpg",
+          "alt": "OP 1.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP4.5.jpg",
+          "alt": "OP 4.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_ReAmp3.jpg",
+          "alt": "AFBMW ReAMP 3"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AF+M5.11+bit&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3090&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Faf-m5-11-bit%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+      "image_alt": "AF M5.11 bit",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/af-m5-11-bit.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_width": 4000,
+      "image_height": 2249,
+      "image_sha256": "852477ef5ed86025634118bcfc28eff934242a2e29b3b722f369bd10522f0f90",
+      "image_content_type": "image/png",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "af-c4-10-bit",
@@ -106,21 +1474,352 @@
       "source_component": "",
       "source_sku_reference_internal": "66755115",
       "official_product_page_url": "https://audison.com/product/af-c4-10-bit/",
-      "extracted_at": "2026-11-15T15:49:28.113850+00:00",
+      "extracted_at": "2026-11-16T07:33:44.217628+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/af-c4-10-bit/",
       "page_title": "Audison Forza AF C4.10 bit - DSP AMP",
       "h1": "AF C4.10 bit DSP Amplifier | 600 W | 10 CH DSP + 4 x 150 W @ 2 ohm | D-class Fully Bridgeable",
       "meta_description": "Forza AF C4.10 bit boasts four high-fidelity amplified channels 90W x 4 @4Ω with the audiophile sound of the latest generation Audison D-Class technology.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/audison_logo_forza.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_PANNELLO_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_PANNELLO_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/dimensions-AF-C4.10-bit.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_USB_cable.jpeg",
+          "alt": "USB CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_control_cable.jpeg",
+          "alt": "CONTROL CABLE AF bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/Audison_DSP_OUT.jpg",
+          "alt": "DSP OUT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/Audison_Forza_AF-M5.11-bit_SPK_OUT.jpg",
+          "alt": "SPK OUT 4CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_PRE-IN.jpeg",
+          "alt": "PRE IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_speaker_in.jpeg",
+          "alt": "SPEAKER IN CABLE 8 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_Instal_kit.jpeg",
+          "alt": "FORZA INSTALL KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_C2O_small2.jpg",
+          "alt": "C2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+          "alt": "bit DMI"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1-1.jpg",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_bit-Drive_low-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/HiResAudiologo.jpg",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_acoustic_rta_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_electric_rta_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_esa_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_adt_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/05/audison_All_Channels_Driven.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_Fully_bridgeable_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/DPD-logo-e1654872013317.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_qio_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_absolute_volume_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Logo_MaestroAR_blue-black_web.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_8_inputs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-eq.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/de-time-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/De-Phase-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/Uss-1.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_10_dsp_outputs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/audison_6_pre_outs_low.png",
+          "alt": "AFC – CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison-bitdrive-logo-black-qqmedvp7lrz0if5v17wz6uo9cbiiskbvg3i1y2pcge.png",
+          "alt": "audison-bitdrive-logo-black"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/07/audison-bitd-logo-black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-UI-3-0_v1.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/audison_accordo20_logo-r7x2crwy7nxfi7bwjtd26090pzm6p5kwgg5e74wsb4.png",
+          "alt": "audison_accordo20_logo"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-01-system-loudness.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-03-mic-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-04-enhanced-gain.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-bitdrive-30-05-time-delay.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_Automatic_Calibration_ACCORDO_2.png",
+          "alt": "Audison_Automatic_Calibration_ACCORDO_2"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Fig-33-Processing-Complete-1.jpg",
+          "alt": "Fig 33 Processing Complete 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/audison-btdrive-3-0-Upmixer-2.png",
+          "alt": "Upmixer 2.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Highpass-cx.jpg",
+          "alt": "Input EQ with High-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/06/audison-bitdrive-3-0-Lowpass-cx.jpg",
+          "alt": "Input eq with Low-Pass filter"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Audison_aggiornamento-fw_.png",
+          "alt": "Audison_aggiornamento-fw_"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/Update-center.png",
+          "alt": "Update center"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AUDISON_DRC-MP-CAN_EMO_2024_03_26-JPG.jpg",
+          "alt": "DRC MP CAN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/DRC-AC_EMO-LUCE-BLU_case-con-ghiera-111.jpg",
+          "alt": "DRC AC"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/03/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.png",
+          "alt": "b-con"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_B-CON-II_EMO_2025_05_06-copia-1-300x226.jpg",
+          "alt": "B-CON II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AF-M1D_EMO-LATO-FUSIBILI_2023_02_03-111.jpg",
+          "alt": "AF M1D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M4D_EMO-LATO-FUSIBILI_2022_05_11-300x169.jpg",
+          "alt": "AF M4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/08/AUDISON_AF-C4D_emo-lato-fusibile_2022_05_11.jpg",
+          "alt": "AF C4D"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/12/AUDISON_AF-M6D_EMO-LATO-FUSIBILI_2022_05_11.jpg",
+          "alt": "AF M6D"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1-300x227.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Forza_DSP_AF_LINK.jpg",
+          "alt": "AF LINK CABLE"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/11/CLK1-1.jpg",
+          "alt": "AFC - CLK"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_ReAmp3.jpg",
+          "alt": "AFBMW ReAMP 3"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AF+C4.10+bit&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3094&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Faf-c4-10-bit%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+      "image_alt": "AF C4.10 bit",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/af-c4-10-bit.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_width": 4000,
+      "image_height": 2249,
+      "image_sha256": "949a1fbbe58eb4e80a8658338f07e71fe6738aec99fb70a81f3582aaeed82598",
+      "image_content_type": "image/png",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "f2o",
@@ -144,7 +1843,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "f4in",
@@ -168,7 +1869,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "apl2",
@@ -192,7 +1895,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "apbmw-reamp-1",
@@ -216,7 +1921,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "apbmw-biamp-2",
@@ -240,7 +1947,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "av-1-1",
@@ -264,7 +1973,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "av-1-1-ii",
@@ -288,7 +1999,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "av-3-0",
@@ -312,7 +2025,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "av-3-0-ii",
@@ -336,7 +2051,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     },
     {
       "candidate_id": "av-6-5",
@@ -360,7 +2077,9 @@
       "image_width": 1920,
       "image_height": 1200,
       "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp"
+      "image_content_type": "image/webp",
+      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
+      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     }
   ],
   "runs": [
@@ -465,7 +2184,13 @@
       "candidate_count": 5,
       "remaining_exact_pages": 20,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T07:33:51.472795+00:00",
+      "candidate_count": 5,
+      "remaining_exact_pages": 30,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T07:10:01.612598+00:00"
+  "updated_at": "2026-11-16T07:33:51.472827+00:00"
 }
