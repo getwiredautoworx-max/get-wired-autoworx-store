@@ -48,7 +48,12 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       assert.equal(writes.length, 0, 'owner preview must not issue live write requests');
 
       await page.goto(BASE + '/owner-preview.html', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('iframe');
+      await page.waitForSelector('#store');
+      await page.waitForFunction(() => {
+        const iframe = document.querySelector('#store');
+        return iframe && iframe.contentDocument &&
+          iframe.contentDocument.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3;
+      }, null, { timeout: 30000 });
       const frame = page.frames().find(f => f.url().includes('index-new.html'));
       assert.ok(frame, 'owner preview must embed the current three-category storefront');
       await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
