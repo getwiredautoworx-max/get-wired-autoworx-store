@@ -1829,23 +1829,104 @@
       "source_component": "",
       "source_sku_reference_internal": "66755156",
       "official_product_page_url": "https://audison.com/product/f2o/",
-      "extracted_at": "2026-11-15T21:11:29.935219+00:00",
+      "extracted_at": "2026-11-16T07:35:11.564784+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/f2o/",
       "page_title": "F2O - Audison | Premium Car & Marine Audio Systems",
       "h1": "F2O Accessories | Forza extension board",
       "meta_description": "The F2O accessory is a digital input extension board, compatible with the new line of Audison AF bit amplifiers with integrated Dsp.The card fits the dedicated external slot of the AF bit amplifier and it adds either an additional Coaxial S/PDIF or a second Toslink S/PDIF input. The type of additional input can be selected",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+          "alt": "F2O"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/AUDISON_AF-M17-bit_EMO.png",
+          "alt": "AF M1.7 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=F2O&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3110&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Ff2o%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+      "image_alt": "F2O",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/f2o.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 959,
+      "image_height": 726,
+      "image_sha256": "01653a5f656945daf2efc6bb1dcaecce913d232415c1b9dc27573671faa336c4",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "f4in",
@@ -1855,23 +1936,104 @@
       "source_component": "",
       "source_sku_reference_internal": "66755157",
       "official_product_page_url": "https://audison.com/product/f4in/",
-      "extracted_at": "2026-11-15T21:11:34.188814+00:00",
+      "extracted_at": "2026-11-16T07:35:13.971107+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/f4in/",
       "page_title": "F4IN - Audison | Premium Car & Marine Audio Systems",
       "h1": "F4IN Accessories | Forza extension board",
       "meta_description": "The F4IN accessory is an analog input extension board, compatible with the new line of Audison AF bit amplifiers with integrated Dsp. The card fits the dedicated external slot of the AF bit amplifier and adds four analog high-voltage input channels to the AF bit native eight, thus reaching a total of twelve high-level (SPK",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+          "alt": "F4IN"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
+          "alt": "AF M12.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF C8.14 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+          "alt": "AF M5.11 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+          "alt": "AF C4.10 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/07/AUDISON_AF-M17-bit_EMO.png",
+          "alt": "AF M1.7 bit"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=F4IN&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=3111&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Ff4in%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+      "image_alt": "F4IN",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/f4in.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 959,
+      "image_height": 726,
+      "image_sha256": "a614194c3395391d736b0623d8b95721f1e738c30796b235d7d171706cce3b45",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "apl2",
@@ -1881,23 +2043,96 @@
       "source_component": "",
       "source_sku_reference_internal": "66771820",
       "official_product_page_url": "https://audison.com/product/apl2/",
-      "extracted_at": "2026-11-15T21:11:36.947359+00:00",
+      "extracted_at": "2026-11-16T07:35:16.260188+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apl2/",
       "page_title": "APL2 - Audison | Premium Car & Marine Audio Systems",
       "h1": "APL2 Accessories | AP4 D – AP1 D Link Cable | for AP5.9 bit or AP4.9 bit",
       "meta_description": "Cable to connect AP5.9 bit and AP4.9 bit to AP4 D and AP1 D amplifiers",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
+          "alt": "APL2"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
+          "alt": "APL2"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AP-F-IN-ADP.jpg",
+          "alt": "AP F IN ADP"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP1.5.jpg",
+          "alt": "OP 1.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_OP4.5.jpg",
+          "alt": "OP 4.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_STR_.jpg",
+          "alt": "STR"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APL2&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=672&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapl2%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
+      "image_alt": "APL2",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/apl2.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 1200,
+      "image_height": 800,
+      "image_sha256": "0419587230cc58d61e9303ea85eb7009e8a2fe6b91db55c0b669a296fc5a08cf",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "apbmw-reamp-1",
@@ -1907,23 +2142,84 @@
       "source_component": "",
       "source_sku_reference_internal": "66772201",
       "official_product_page_url": "https://audison.com/product/apbmw-reamp-1/",
-      "extracted_at": "2026-11-15T21:11:40.634764+00:00",
+      "extracted_at": "2026-11-16T07:35:18.656187+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-reamp-1/",
       "page_title": "APBMW ReAMP 1 - Audison | Premium Car & Marine Audio Systems",
       "h1": "APBMW ReAMP 1 Accessories | Plug&Play T-Harness to install Audison AF bit on BMW | Compatible with BMW 2004+ with Hi-Fi 676 system and BMW 2014+ with 674 low level Harman-Kardon system",
       "meta_description": "This Plug&Play harness allows the replacement of the OEM BMW amplifier with an Audison AP bit or AF bit amplifier on BMW vehicles from 2004+ equipped with the HI-FI 676 sound system options and on BMW vehicles from 2014+ equipped with 674 low level Harman-Kardon system. The OEM seven-channel analog amplifier is connected via a",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
+          "alt": "APBMW ReAMP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
+          "alt": "APBMW ReAMP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_AP-H-ASD-BYPASS.jpg",
+          "alt": "AP H ASD BYPASS"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APBMW+ReAMP+1&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=730&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapbmw-reamp-1%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
+      "image_alt": "APBMW ReAMP 1",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/apbmw-reamp-1.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 1024,
+      "image_height": 683,
+      "image_sha256": "312ce2f67d1b7a09ce38689bbcfc7469585332e039c9d8011f0ed24368e9f0fd",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "apbmw-biamp-2",
@@ -1933,23 +2229,96 @@
       "source_component": "",
       "source_sku_reference_internal": "66772203",
       "official_product_page_url": "https://audison.com/product/apbmw-biamp-2/",
-      "extracted_at": "2026-11-15T21:11:43.403042+00:00",
+      "extracted_at": "2026-11-16T07:35:21.045731+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-biamp-2/",
       "page_title": "APBMW BIAMP 2 - Audison | Premium Car & Marine Audio Systems",
       "h1": "APBMW BIAMP 2 Accessories | Plug & Play T-harness for BMW upgrade",
       "meta_description": "APBMW BIAMP 2 Plug & Play T-harness provides the ability to:1. Take the front speaker output signal from the OEM head unit through the under-seat woofer connector and route it to the AP bit amplifier input.2. Separately route the signal from the AP bit amplifier outputs to the front midrange housed in the car door",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
+          "alt": "APBMW BIAMP 2"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
+          "alt": "APBMW BIAMP 2"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/07/HYUNDAI-KIA-4CH.jpg",
+          "alt": "CN MX T-H HYKI"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/07/15104048.jpg",
+          "alt": "CN MX T-H BYD 4 CH"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/06/38P.jpg",
+          "alt": "CN MX T-H 38P PREMIUM"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/07/32P-copia.jpg",
+          "alt": "CN MX T-H 32P PREMIUM"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APBMW+BIAMP+2&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=734&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapbmw-biamp-2%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
+      "image_alt": "APBMW BIAMP 2",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/apbmw-biamp-2.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 1264,
+      "image_height": 793,
+      "image_sha256": "e17c852c12f9f6fffd072f87b044ea7832f9dad89d0abd7b7d46e2f6bb0ad0b6",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "av-1-1",
@@ -1959,23 +2328,120 @@
       "source_component": "",
       "source_sku_reference_internal": "69010020",
       "official_product_page_url": "https://audison.com/product/av-1-1/",
-      "extracted_at": "2026-11-16T07:09:47.179112+00:00",
+      "extracted_at": "2026-11-16T07:35:23.530967+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-1-1/",
       "page_title": "AV 1.1 - Audison | Premium Car & Marine Audio Systems",
       "h1": "AV 1.1 Tweeter | 180 W Peak Power | 28 mm | 4 ohm",
       "meta_description": "The AV 1.1 tweeter features a very light Tetolon membrane, CCAW voice coil wound on double layer and high density Neodymium magnet.The advanced design and engineering dedicated to the rear damping chamber with annular geometry and the magnet area, along with the attention for the selection of the materials, resulted in a frequency response on",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_voce-1.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce__AV1.1_SPACCATO.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389332_AV11c.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce__AV1.1_SPACCATO.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389332_AV11c.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV-1.1.png",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+1.1&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=763&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-1-1%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+      "image_alt": "AV 1.1",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/av-1-1.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 730,
+      "image_height": 800,
+      "image_sha256": "51d840404cd799d1dca5ba8afe6edf20c9fda564b1ae4c9b8c617ecd510856e5",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "av-1-1-ii",
@@ -1985,23 +2451,460 @@
       "source_component": "",
       "source_sku_reference_internal": "69010021",
       "official_product_page_url": "https://audison.com/product/av-1-1-ii/",
-      "extracted_at": "2026-11-16T07:09:50.138357+00:00",
+      "extracted_at": "2026-11-16T07:35:25.910811+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-1-1-ii/",
       "page_title": "Audison VOCE II AV 1.1 II hi-res tweeter",
       "h1": "AV 1.1 II Tweeter | 180 W Peak Power Filtered | 28 mm (1.1 in.) | 4 ohm",
       "meta_description": "Audison Voce AV 1.1 II: Hi-Res tweeter with Tetolon soft dome, advanced damping, and seamless integration for exceptional car audio performance.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_logo_voce-II.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_PROSPETTIVA_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_SPACCATO_2024_10_15-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_EMO_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_PROSPETTIVA_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_DETTAGLIO-CAVO_2024_11_14-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_DETTAGLIO-CAVO-CONNETTORE_2024_11_14-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_SPACCATO_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_PROSPETTIVA_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_SPACCATO_2024_10_15-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_EMO_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_PROSPETTIVA_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_DETTAGLIO-CAVO_2024_11_14-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_DETTAGLIO-CAVO-CONNETTORE_2024_11_14-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_SPACCATO_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV1_1_II.png",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV-1_1_II_Graph.png",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_SPACCATO_2024_10_15-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_PLASTIC-GRILLE_EMO_2024_10_16-copia-1.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV-1.1_face_plate.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV_1_1_accessory.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_DETTAGLIO-CAVO-CONNETTORE_2024_11_14-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AV-1.1-dim.png",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AV-1_1_II_Graph.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV-1_1-box.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_AV-11-II_PLASTIC-GRILLE_EMO_2024_10_16-copia.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison-voceII-logo-white-300x62.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/1668192141642-300x300.jpeg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_VOCE_II_AVX-65-II_EMO.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrange.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65_II_woofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voceII_crossover.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_grille_silverA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avg65_II_grille_silver_black.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6p_II_kit-1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6s_II_kit.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_av10_II_subwoofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_av12_II_subwoofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avbx10_II_sub_box.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avbx12_II_sub_box.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/elettromedia_eID_program.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_listening_session1a.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voceII_faston1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_D.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_C.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_aif_oem_integration_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_aif_oem_integration_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeC.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeD.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeE.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65P_II_diecasr_aluminum_basket.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65P_II_cone.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_car_immersive_audio.jpg",
+          "alt": "audison_car_immersive_audio"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_C.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_D.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_G.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers.jpg",
+          "alt": "audison_avx_65_II_coaxial_crossovers"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers_A.jpg",
+          "alt": "audison_avx_65_II_coaxial_crossovers_A"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_II_mesh_grilles_black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_II_mesh_grilles_silver.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_grille_silverA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avg65_II_grille_silver_black.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6p_II_kit-1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_65P_II_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_avcx_2p_tw_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6s_II_kit.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AV-1_0-OEM.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_65S_II_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech3.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech2.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-boxes.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech2.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech3.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2026/06/AUDISON_AV-11-II_MESH-GRILLE_EMO_hi-res.png",
+          "alt": "AV 1.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AVX_6_5_II_hi_res.jpg",
+          "alt": "AVX 6.5 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/01/AUDISON_AV-65-S-II_EMO-300x225.jpg",
+          "alt": "AV 6.5 S II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+1.1+II&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=22096&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-1-1-ii%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
+      "image_alt": "AV 1.1 II",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/av-1-1-ii.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 2500,
+      "image_height": 2250,
+      "image_sha256": "3c3813f5ce35c314f820395bcfbc41ef9101828b8d90999de57a91d783183e9e",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "av-3-0",
@@ -2011,23 +2914,108 @@
       "source_component": "",
       "source_sku_reference_internal": "69020020",
       "official_product_page_url": "https://audison.com/product/av-3-0/",
-      "extracted_at": "2026-11-16T07:09:53.041510+00:00",
+      "extracted_at": "2026-11-16T07:35:28.738287+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-3-0/",
       "page_title": "AV 3.0 - Audison | Premium Car & Marine Audio Systems",
       "h1": "AV 3.0 Mid Range | 100 W Peak Power | 70 mm | 4 ohm",
       "meta_description": "The core of the AV 3.0 midrange is a powerful Neodymium magnetic group: efficiency and linearity make it an irreplaceable component to achieve a fine yet dynamic mid range, while its compact size allows versatile and high-performance installations.Grille included.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_voce-1.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30b.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30b.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+3.0&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=19558&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-3-0%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+      "image_alt": "AV 3.0",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/av-3-0.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
-      "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_width": 800,
+      "image_height": 754,
+      "image_sha256": "c9a9fd20698466b37afdf5e75ee0c69449668f0d46b3a3ceee90702dd3f65105",
+      "image_content_type": "image/jpeg",
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "av-3-0-ii",
@@ -2037,23 +3025,452 @@
       "source_component": "",
       "source_sku_reference_internal": "69020021",
       "official_product_page_url": "https://audison.com/product/av-3-0-ii/",
-      "extracted_at": "2026-11-16T07:09:55.819655+00:00",
+      "extracted_at": "2026-11-16T07:35:31.206656+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-3-0-ii/",
       "page_title": "Audison AV 3.0 II midrange",
       "h1": "AV 3.0 II Mid Range | 100 W Peak Power | 70 mm (3.5 in.) | 4 ohm",
       "meta_description": "The Audison VOCE II AV 3.0 II mid-range speaker is meticulously crafted to deliver exceptional clarity and rich detail in the crucial mid-frequency range. Featuring a specialized cone made from pressed paper with cotton fibers, the AV 3.0 II offers an ideal balance of rigidity and responsiveness, enhancing sound reproduction for today’s car audio enthusiasts.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_logo_voce-II.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_PROSP_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_PROSP_2024_10_22_no-terminal-block-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SILVER-GR_EMO_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SILVER-GR_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SPACCATO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-30-II_SILVER-GR_EMO_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_PROSP_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_PROSP_2024_10_22_no-terminal-block-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SILVER-GR_EMO_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SILVER-GR_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II_SPACCATO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-30-II_SILVER-GR_EMO_2025_01_10-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeA.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-30-II_EMO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AV-3.0-II-Graph.png",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-30-II_SPACCATO_2024_10_22-copia.jpg",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AV-3_0_faston.png",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AV-3.0-II-Dim.png",
+          "alt": "AV 3.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AV-3.0-II-Graph.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AVG-30-II_SILVER_PROSPETTIVA_2024_10_22-copia-1.jpg",
+          "alt": "AVG 3.0 S II"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_AV-30-II_PROSP_2024_10_22_no-terminal-block-copia.jpg",
+          "alt": "AVG 3.0 S II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison-voceII-logo-white-300x62.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/1668192141642-300x300.jpeg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_VOCE_II_AVX-65-II_EMO.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrange.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65_II_woofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voceII_crossover.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_grille_silverA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avg65_II_grille_silver_black.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6p_II_kit-1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6s_II_kit.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_av10_II_subwoofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_av12_II_subwoofer.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avbx10_II_sub_box.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avbx12_II_sub_box.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/elettromedia_eID_program.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_listening_session1a.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voceII_faston1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_D.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_C.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_aif_oem_integration_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_aif_oem_integration_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeC.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeD.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_midrangeE.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65P_II_diecasr_aluminum_basket.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av65P_II_cone.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_car_immersive_audio.jpg",
+          "alt": "audison_car_immersive_audio"
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_C.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_D.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_G.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers.jpg",
+          "alt": "audison_avx_65_II_coaxial_crossovers"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers_A.jpg",
+          "alt": "audison_avx_65_II_coaxial_crossovers_A"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_II_mesh_grilles_black.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_II_mesh_grilles_silver.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av30_II_grille_silverA.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avg65_II_grille_silver_black.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6p_II_kit-1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av11_II_tweeter_B.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_65P_II_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_voce_avcx_2p_tw_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/elementor/thumbs/hires-r0h5qqk7rfcf5uy808h0lxza809j0qbr5iypvdgkiw.png",
+          "alt": "HI-Res Audio"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_k6s_II_kit.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2024/08/AV-1_0-OEM.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_av_65S_II_A.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/audison_avx_65_II_coaxial_crossovers.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech3.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-tech2.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-boxes.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech1.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech2.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2025/09/audison_avII-subwoofers-box-tech3.jpg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/01/eID_logo-150x150.png",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2026/06/AUDISON_AV-11-II_MESH-GRILLE_EMO_hi-res.png",
+          "alt": "AV 1.0 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
+          "alt": "AV 1.1 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2025/01/AUDISON_AVX_6_5_II_hi_res.jpg",
+          "alt": "AVX 6.5 II"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/01/AUDISON_AV-65-S-II_EMO-300x225.jpg",
+          "alt": "AV 6.5 S II"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+3.0+II&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=22106&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-3-0-ii%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
+      "image_alt": "AV 3.0 II",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/av-3-0-ii.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 2500,
+      "image_height": 1875,
+      "image_sha256": "9324c4a5b3a3a3b149a3de67deac2dae6b44ce053581df8db420b0ad3347a7fd",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     },
     {
       "candidate_id": "av-6-5",
@@ -2063,23 +3480,124 @@
       "source_component": "",
       "source_sku_reference_internal": "69030020",
       "official_product_page_url": "https://audison.com/product/av-6-5/",
-      "extracted_at": "2026-11-16T07:09:58.724529+00:00",
+      "extracted_at": "2026-11-16T07:35:33.960770+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-6-5/",
       "page_title": "AV 6.5 - Audison | Premium Car & Marine Audio Systems",
       "h1": "AV 6.5 Woofer | 200 W Peak Power | 165 mm | 4 ohm",
       "meta_description": "Originating directly from the experience of the Thesis line components, the Voce woofer features an aluminium basket with a great aerodynamic structure, a cotton-fibre paper pressed cone with Light Damping treatment, a Triple Wave surround in butyl rubber and extremely light Copper Clad Aluminium Wire coils.",
-      "image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
+      "jsonld_image_urls": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_voce-1.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65b.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65c_800_526.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65b.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65c_800_526.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/AV-6.5.png",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AV_Grile.jpg",
+          "alt": "AV GR6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+6.5&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=811&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-6-5%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
       "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+      "image_alt": "AV 6.5",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
       "status": "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW",
       "local_image_path": "catalogue-review/audio-official-model-candidates/images/av-6-5.jpg",
-      "image_width": 1920,
-      "image_height": 1200,
-      "image_sha256": "2a5765005204617409e9b83247d54c73f1ec20aee3018eeb03b852f1b381b80c",
+      "image_width": 771,
+      "image_height": 800,
+      "image_sha256": "207b66de576e7280ba501f8c0caf419d4b061b5059ff2da9b99a3c3fadf528d2",
       "image_content_type": "image/webp",
-      "image_review_status": "REJECTED_SHARED_IMAGE_HASH",
-      "image_review_reason": "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
+      "image_review_status": "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
     }
   ],
   "runs": [
@@ -2190,7 +3708,13 @@
       "candidate_count": 5,
       "remaining_exact_pages": 30,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T07:35:36.429178+00:00",
+      "candidate_count": 10,
+      "remaining_exact_pages": 20,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T07:33:51.472827+00:00"
+  "updated_at": "2026-11-16T07:35:36.429207+00:00"
 }
