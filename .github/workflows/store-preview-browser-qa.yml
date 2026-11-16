@@ -12,6 +12,7 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'scripts/build-cloudflare-pages-public.py'
       - 'HANDOVER_CURRENT.md'
       - '.github/workflows/store-preview-browser-qa.yml'
       - '.github/workflows/cloudflare-public-pages-build-qa.yml'
@@ -27,6 +28,7 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'scripts/build-cloudflare-pages-public.py'
       - 'HANDOVER_CURRENT.md'
       - '.github/workflows/store-preview-browser-qa.yml'
 permissions:
