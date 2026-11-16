@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
@@ -104,7 +104,7 @@
     {
       "id": "jules-handover-and-pr-reconciliation",
       "priority": 9,
-      "status": "paused_pending_post_merge_verification",
+      "status": "paused",
       "execution_mode": "scheduled-monitor",
       "automatic": true,
       "source": [
@@ -123,7 +123,7 @@
     {
       "id": "asc-six-catalogue-source-extraction",
       "priority": 5,
-      "status": "in_progress",
+      "status": "paused",
       "execution_mode": "scheduled-deterministic",
       "automatic": true,
       "source": [
@@ -140,12 +140,12 @@
         "Keep OCR output review-only and DO NOT IMPORT",
         "Retain exact owner-approved ASC Price On Request wording in any customer-facing staging presentation"
       ],
-      "next_action": "Resume bounded OCR/extraction from the six approved ASC catalogue PDFs only; exclude Buyers Guides. Keep page/source provenance, review-only status and exact ASC Price On Request wording. Verify the 50-image sample separately; do not import."
+      "next_action": "Paused while the single active Audio & Video enrichment workstream is completed. Resume only from the six approved ASC catalogues; no Buyers Guides, and retain review-only status."
     },
     {
       "id": "audio-planetworld-source-extraction",
       "priority": 1,
-      "status": "in_progress",
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -158,7 +158,7 @@
         "Keep current-price and stock validity separate from historical source values",
         "Do not expose supplier metadata in customer-facing output"
       ],
-      "next_action": "RESUMED 2026-11-15: continue source-backed Planetworld enrichment using exact model/page/image/description matches. The 3,317-row source remains review-only; no generic image substitution. Prior audit found 72 fully verified; next focus is exact image/description batches, starting with current Audison candidate extraction. All customer prices remain Price On Request."
+      "next_action": "Subsumed under the single active audio-video-content-enrichment workstream; do not run a separate worker or create another branch. Continue only as a bounded subtask when assigned by the active workstream."
     },
     {
       "id": "electrocity-ignition-pilot",
@@ -196,12 +196,12 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Audio image verification advanced 2026-11-15: all 12 Kicker model images are visually verified from official KICKER pages; KW16400p/m speaker wire remains owner-authorized retailer image verified. Alpine: HCE-C2100RD, HDZ-653, R2-A60F and S2-A55V visually verified; R2-W10D2 and S2-S40C remain exact official page/link-only because high-resolution image retrieval failed. Focal HILO V3 now has exact Focal-hosted image visually verified; Focal P20FE remains owner-authorized image verified. JVC KW-M590BT now uses the exact official JVC-hosted image (replaced retailer image); JVC CS-DR162 already official-image verified. Kenwood and Pioneer records were already official-image verified. Next: resolve the two Alpine high-resolution image exceptions, then reconcile model descriptions and duplicate/variant identity across the audio verification set. All data remains review-only / DO NOT IMPORT."
+      "next_action": "2026-11-16: Audison official-image candidate audit advanced to 34 exact-model records; 25 local image assets have unique hashes, 9 exact official image URLs/alt labels remain remote-only because the Audison CDN closes GitHub-runner connections. Five APX coaxial speaker preview overrides are now present with official images, concise verified specifications, Price On Request and no stock. APX 4/APX 5 image mapping and APX 570 manufacturer-page mapping were corrected; APBMW K4E/K4M variant image selection is guarded. Public SKU Exposure Audit and Catalogue Image Audit passed. Cloudflare public-package QA was blocked by stale image-count assertions (updated from 48 to 63 and page-link count 4 to 2; exact-main rerun pending). Store Production QA and public URL verification show the live site is still not the merged button-only storefront and Cloudflare serves challenge HTML for the live homepage/category JSON/product image; no deployment is authorised. Next: verify exact-main package QA, continue the next verified product group, and keep all candidates review-only."
     },
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "in_progress",
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -214,12 +214,12 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. OA014-1 OneNav Classic 9-inch Toyota Prado 2002–2009 now has an exact owner-authorised retailer image and verified description in the review-only preview; continue remaining OneNav model-by-model, and never substitute a similar series or vehicle-fitment image."
+      "next_action": "Paused pending safe integration path. Existing OneNav branch is 24 commits ahead / 250 behind canonical main; do not merge, rebase, force-push or create a replacement branch. Continue only review-only model research after the current Audison content checkpoint."
     },
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "in_progress",
+      "status": "queued",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
@@ -233,7 +233,7 @@
         "Populated product pages use verified catalogue data",
         "No obsolete eight-root navigation"
       ],
-      "next_action": "2026-11-15 mainline fix: owner-preview Audio Connections loader now excludes all 4 records with unresolved image/variant or low-resolution image status; only 68 records with exact accepted image, non-empty description and PREVIEW_ONLY_NOT_LIVE status are eligible. Regression assertions added to tests/three-category-storefront-structure.test.cjs. Exact commit 23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10. Automated workflow result is not visible through the connected PR-only run reader; hosted preview remains unverified. Next: obtain exact-main test result and a same-SHA preview without paid hosting spend, then continue Auto Electrical/Car Care verified catalogue population."
+      "next_action": "Queued behind the active Audio & Video content-enrichment checkpoint. Resume after the current product group is source-verified and owner-preview QA is green; retain the three approved homepage roots only."
     },
     {
       "id": "continuous-qa-and-owner-preview",
@@ -251,12 +251,12 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "2026-11-15: owner-preview audio filter and regression test committed to main (23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10). Static data audit confirms 68 eligible Audio Connections records and 4 excluded exceptions. GitHub combined status is empty and connected workflow-run reader returns no runs for this push SHA; do not claim exact-head QA. Direct access to the existing owner-preview URL failed in this session, so no deployed SHA or hosted mobile/desktop acceptance is verified. Next: establish a cost-free exact-main test and same-SHA hosted preview path; keep production HOLD."
+      "next_action": "Supporting QA only. Latest main commit 73b764a80: Cloudflare package QA test-count assertion corrected; rerun pending. Production QA fails at LIVE_BUTTON_ONLY_NOT_DEPLOYED; public HTTP check reports Cloudflare challenge HTML for homepage/category JSON/product image. Do not deploy or bypass production HOLD."
     },
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "in_progress",
+      "status": "queued",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -275,7 +275,7 @@
         "Every product preview record has a valid department and subcategory path; no dangling category IDs, zero-result navigation caused by mismatched slug/parent, or unsupported live-data dependency",
         "Customer display hides supplier names/internal SKUs and uses Price On Request"
       ],
-      "next_action": "RESUMED 2026-11-15 under the single coordinated mainline delivery queue. Continue only bounded review-only work with source provenance, exact-model/image validation and independent QA; do not import or deploy. Preview now has separate Automotive Sensors (9), Automotive Switches (8), Globes (8), Fuel Pumps (9), ASC Aerials (8), and Car Mats (8) routes. Car Audio Accessories now displays separate Trims and Harnesses; source rows are split 23/24 and held pending exact product images/descriptions. Finish exact-head route tests; other non-pilot Auto Electrical and Car Care subcategories remain source-pending."
+      "next_action": "Queued behind the active Audio & Video content-enrichment checkpoint; preserve approved three-root taxonomy and existing review-only route evidence."
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
@@ -316,7 +316,7 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "2026-11-15 latest main SHA 23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10. Structural tree remains 3 approved roots/29 nodes/0 direct active products. Owner-preview loader now excludes four held/low-resolution Audio Connections records (68 eligible) with regression assertions committed. Exact-main workflow evidence and hosted preview remain unverified; web access to existing owner-preview URL failed and connected run reader exposes PR-triggered runs only. Next: verify exact-main tests and secure a cost-free same-SHA hosted owner preview; no production deployment.",
+      "next_action": "Supporting release gate only. Production remains HOLD; current live site is not the consolidated button-only storefront and Cloudflare challenge HTML prevents public homepage/category JSON/product image verification. Use only a cost-free exact-main owner preview; do not deploy.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     },
@@ -342,10 +342,10 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "eb59e7ee268cfd188450f4454ae7cd5b2349d44f",
-    "active_task_id": "open-pr-reconciliation",
+    "canonical_head": "73b764a80ec4418ec4bf6a93d8ba0c79486552ed",
+    "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
-    "parallel_workstreams": "paused; one open-PR reconciliation task only",
+    "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -354,11 +354,11 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "f148ccc55efc91d3b46f83bb1b29109bdb6c2f05",
-    "active_candidate_pr": 206,
-    "active_candidate_branch": "integration/owner-apk-secure-shell-2026-11-15",
-    "active_candidate_head": "b2cedbfb5bc8a16ff51d306d9a89f81273a027ea",
-    "active_candidate_status": "PR #206 current head b2cedbfb5bc8a16ff51d306d9a89f81273a027ea includes exact top-level local asset allowlisting (not broad file:///android_asset prefix) and scripts/test-owner-apk-webview-security.py, run before APK build. Static source inspection confirms all six required local paths, bridge replacement and no remote Caelex snapshot read/clear methods. Exact-head runs 43693408445 (APK build/emulator), 43693408439 (catalogue routing QA), and 43693408531 (public SKU audit) are in progress. #67 remains excluded pending fail-closed rewrite of live publishing/quote/payment/procurement paths."
+    "last_verified_main_sha": "73b764a80ec4418ec4bf6a93d8ba0c79486552ed",
+    "active_candidate_pr": null,
+    "active_candidate_branch": null,
+    "active_candidate_head": null,
+    "active_candidate_status": "No active PR candidate. Current work proceeds on canonical main as review-only catalogue/preview enrichment; production remains HOLD."
   },
   "audit_log": [
     {

@@ -155,6 +155,10 @@ workflow_results = []
 api_errors = []
 retry_actions = []
 now_dt = datetime.now(timezone.utc)
+main_ref_data, main_ref_error = get_json(f"{API}/commits/main")
+current_main_sha = main_ref_data.get("sha") if not main_ref_error and isinstance(main_ref_data, dict) else None
+if main_ref_error:
+    api_errors.append({"workflow": "canonical-main-ref", "error": main_ref_error})
 
 for filename, workflow_ref in WORKFLOWS:
     url = f"{API}/actions/workflows/{workflow_ref}/runs?per_page=1"
@@ -196,6 +200,13 @@ for filename, workflow_ref in WORKFLOWS:
     if filename not in AUTO_RETRY_ALLOWLIST:
         item["retry_action"] = "not_allowed_for_this_workflow"
         continue
+    if item.get("head_branch") == "main":
+        if not current_main_sha:
+            item["retry_action"] = "skipped_canonical_main_sha_unavailable"
+            continue
+        if item.get("head_sha") != current_main_sha:
+            item["retry_action"] = "skipped_stale_main_run_superseded_by_newer_commit"
+            continue
     try:
         updated_dt = datetime.fromisoformat((item["updated_at"] or "").replace("Z", "+00:00"))
     except ValueError:
@@ -293,7 +304,15 @@ else:
     lines.append("- No automatic retries requested in this checkpoint.")
 lines += ["", "## Persistent task queue", ""]
 for task in sorted(queue.get("tasks", []), key=lambda t: t.get("priority", 999)):
-    lines += [f"### {task['priority']}. {task['id']} — {task['status']}", "", task["description"], "", f"**Next action:** {task['next_action']}", ""]
+    description = task.get("description") or task.get("summary")
+    if not description:
+        criteria = task.get("success_criteria", [])
+        description = "Success criteria: " + "; ".join(criteria[:3]) if criteria else "No description recorded in task queue."
+    next_action = task.get("next_action") or "No next action recorded."
+    priority = task.get("priority", "—")
+    task_id = task.get("id", "unnamed-task")
+    status = task.get("status", "unknown")
+    lines += [f"### {priority}. {task_id} — {status}", "", description, "", f"**Next action:** {next_action}", ""]
 lines += [
     "## Safety rules", "",
     "- No product, price, category, stock, or image database writes are performed by this controller.",

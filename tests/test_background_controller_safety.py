@@ -58,6 +58,16 @@ class BackgroundControllerSafetyTests(unittest.TestCase):
         self.assertTrue(forbidden.isdisjoint(allowlist))
         self.assertIn("staging-category-navigation-acceptance.yml", allowlist)
 
+    def test_task_queue_checkpoint_supports_success_criteria_without_description(self):
+        self.assertIn('task.get("description")', self.script)
+        self.assertIn('task.get("success_criteria", [])', self.script)
+        self.assertIn('task.get("next_action")', self.script)
+
+    def test_stale_main_runs_are_not_automatically_retried(self):
+        self.assertIn('get_json(f"{API}/commits/main")', self.script)
+        self.assertIn('item.get("head_sha") != current_main_sha', self.script)
+        self.assertIn('skipped_stale_main_run_superseded_by_newer_commit', self.script)
+
     def test_cancelled_and_stopped_jobs_are_supported_selectively(self):
         retryable = assignment(self.tree, "RETRYABLE_JOB_CONCLUSIONS")
         self.assertTrue({"failure", "timed_out", "cancelled", "startup_failure"}.issubset(retryable))
