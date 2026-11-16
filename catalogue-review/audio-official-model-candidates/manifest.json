@@ -9929,23 +9929,586 @@
       "source_component": "",
       "source_sku_reference_internal": "69070020",
       "official_product_page_url": "https://audison.com/product/av-x6-5/",
-      "extracted_at": "2026-11-16T07:43:54.046428+00:00",
+      "extracted_at": "2026-11-16T07:45:39.205024+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-x6-5/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "AV X6.5 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "AV X6.5 Coaxial | 200 W Peak Power | 165 mm | 4 ohm",
+      "meta_description": "The AV X5 and AV X6.5 coax speakers are the evolution of the woofer from the same line, thanks to the introduction of an excellent 1 Tetolon dome tweeter. The Orientable High Frequency Tuning technology also provides the ability to optimize dispersion in high range to achieve the best performance in the listening point, while",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/av-x6-5/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/av-x6-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/av-x6-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/av-x6-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/av-x6-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/av-x6-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/av-x6-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_voce-1.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65b.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65c_800_640.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65b.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65c_800_640.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AV_Grile.jpg",
+          "alt": "AV GR6.5"
+        },
+        {
+          "url": "https://audison.com/product/av-gr6-5/",
+          "alt": "AV GR6.5"
+        },
+        {
+          "url": "https://audison.com/product/av-gr6-5/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12479896625425-Download-Comp-System-Coax-Sub-Voce-Manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/av_x6.5_tech_sheet_tech_sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://audison.com/product/av-1-1/",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://audison.com/product/av-6-5/",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://audison.com/product/av-k6/",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://audison.com/product/av-3-0/",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/av-x6-5/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/av-x6-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/av-x6-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/av-x6-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/av-x6-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/av-x6-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/av-x6-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+X6.5&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=964&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-x6-5%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
       "image_alt": "AV X6.5",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669f117c90>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apx-4",
@@ -9955,21 +10518,606 @@
       "source_component": "",
       "source_sku_reference_internal": "69070030",
       "official_product_page_url": "https://audison.com/product/apx-4/",
-      "extracted_at": "2026-11-16T07:43:55.871662+00:00",
+      "extracted_at": "2026-11-16T07:45:41.889802+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-4/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APX 4 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APX 4 Coaxial | 120 W Peak Power | 100 mm | 4 ohm",
+      "meta_description": "APX 4 features a concentric coaxial tweeter. With a single point of sound emission, it delivers a consistent in-phase response, enabling accurate reconstruction of the acoustic scene, comparable to a system with a separate woofer and tweeter. The 4\" cone surround features the exclusive shallow Triple Wave profile, ensuring maximum excursion linearity.",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apx-4/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apx-4/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-4/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-4/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-4/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-4/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-4/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783693_APX-4_PROSP_def_800_600.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_-APX-4_TOP-VIEW_2022_10_13_JPG.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_-APX-4_PROSPETTIVA-LATO-MOTORE_2022_10_13_JPG.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783693_APX-4_PROSP_def_800_600.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_-APX-4_TOP-VIEW_2022_10_13_JPG.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_-APX-4_PROSPETTIVA-LATO-MOTORE_2022_10_13_JPG.jpg",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://store.elettromedia.com/apx-4/",
+          "alt": "Buy online"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/APX4.png",
+          "alt": "APX 4"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/apg_2_1_1-2.jpg",
+          "alt": "APG 4"
+        },
+        {
+          "url": "https://audison.com/product/apg-4/",
+          "alt": "APG 4"
+        },
+        {
+          "url": "https://audison.com/product/apg-4/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_-APX-4_PROSPETTIVA-LATO-MOTORE_2022_10_13_JPG.jpg",
+          "alt": "APG 4"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12708335304977-Download-Comp-Coax-System-Prima-speakers-manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AUDISON_Prima_APX4_Tech_Sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/03/KIT-TESLA-MAIN.jpg",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://audison.com/product/ap-tsl-3y-spk-kit/",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AP-1_VISTA-XOVER-ACCESSORI_2022_11_14_JPG-110.jpg",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://audison.com/product/ap-1/",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_AP1P_Tweeter.jpg",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://audison.com/product/ap-1p/",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_AP2_MV_emo.jpg",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://audison.com/product/ap-2-mv/",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apx-4/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apx-4/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-4/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-4/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-4/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-4/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-4/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APX+4&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=969&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapx-4%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
-      "image_url": "",
-      "image_review_status": "NO_EXACT_MODEL_IMAGE_ALT",
-      "image_review_reason": "No official gallery image alt/title contains the exact source model; generic Open Graph and unlabelled JSON-LD images are not accepted.",
-      "status": "EXACT_MODEL_PAGE_NO_EXACT_IMAGE_CANDIDATE"
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
+      "image_alt": "APX 4",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 1,
+      "status": "FETCH_FAILED_RETRY",
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apx-5",
@@ -9979,21 +11127,606 @@
       "source_component": "",
       "source_sku_reference_internal": "69070040",
       "official_product_page_url": "https://audison.com/product/apx-5/",
-      "extracted_at": "2026-11-16T07:43:56.930109+00:00",
+      "extracted_at": "2026-11-16T07:45:44.603448+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-5/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APX 5 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APX 5 Coaxial | 150 W Peak Power | 130 mm | 4 ohm",
+      "meta_description": "APX 5 features a concentric coaxial tweeter: with one single point of sound emission it is possible to obtain a consistent in-phase response, with consequent reconstruction of the acoustic scene comparable to a system of separate woofer + tweeter.The 5\" cones surround features the exclusive shallow Triple Wave profile, for maximum excursion linearity.",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apx-5/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apx-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783970_APX-5_PROSP_def_800_600-1.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-5_VISTA-IN-PIANTA_2022_07_20_JPG.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-5_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389783970_APX-5_PROSP_def_800_600-1.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-5_VISTA-IN-PIANTA_2022_07_20_JPG.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-5_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://store.elettromedia.it/apx-5/",
+          "alt": "Buy online"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/APX5.png",
+          "alt": "APX 5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/apg_2_1_1.jpg",
+          "alt": "APG 5"
+        },
+        {
+          "url": "https://audison.com/product/apg-5/",
+          "alt": "APG 5"
+        },
+        {
+          "url": "https://audison.com/product/apg-5/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_APX-5_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APG 5"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12708335304977-Download-Comp-Coax-System-Prima-speakers-manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AUDISON_Prima_APX5_Tech_Sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/03/KIT-TESLA-MAIN.jpg",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://audison.com/product/ap-tsl-3y-spk-kit/",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AP-1_VISTA-XOVER-ACCESSORI_2022_11_14_JPG-110.jpg",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://audison.com/product/ap-1/",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_AP1P_Tweeter.jpg",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://audison.com/product/ap-1p/",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_AP2_MV_emo.jpg",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://audison.com/product/ap-2-mv/",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apx-5/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apx-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APX+5&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=973&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapx-5%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
-      "image_url": "",
-      "image_review_status": "NO_EXACT_MODEL_IMAGE_ALT",
-      "image_review_reason": "No official gallery image alt/title contains the exact source model; generic Open Graph and unlabelled JSON-LD images are not accepted.",
-      "status": "EXACT_MODEL_PAGE_NO_EXACT_IMAGE_CANDIDATE"
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
+      "image_url": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
+      "image_alt": "APX 5",
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 1,
+      "status": "FETCH_FAILED_RETRY",
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apx-6-5",
@@ -10003,23 +11736,610 @@
       "source_component": "",
       "source_sku_reference_internal": "69070050",
       "official_product_page_url": "https://audison.com/product/apx-6-5/",
-      "extracted_at": "2026-11-16T07:43:57.994007+00:00",
+      "extracted_at": "2026-11-16T07:45:47.292187+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-6-5/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APX 6.5 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APX 6.5 Coaxial | 210 W Peak Power | 165 mm | 4 ohm",
+      "meta_description": "APX 6.5 features a concentric coaxial tweeter: with one single point of sound emission it is possible to obtain a consistent in-phase response, with consequent reconstruction of the acoustic scene comparable to a system of separate woofer + tweeter.The cones surround features the exclusive shallow Triple Wave profile, for maximum excursion linearity.",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apx-6-5/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apx-6-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-6-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-6-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-6-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-6-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-6-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389784365_APX-6_prosp_800_600.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-65_TOP-VIEW_2022_07_13_JPG.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/AUDISON_APX-6_5_spaccato.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-65_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389784365_APX-6_prosp_800_600.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-65_TOP-VIEW_2022_07_13_JPG.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/AUDISON_APX-6_5_spaccato.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-65_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/APX-6_5.png",
+          "alt": "APX 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/apg_2_1_1-1.jpg",
+          "alt": "APG 6.5"
+        },
+        {
+          "url": "https://audison.com/product/apg-6-5/",
+          "alt": "APG 6.5"
+        },
+        {
+          "url": "https://audison.com/product/apg-6-5/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_APX-6_5_spaccato.jpg",
+          "alt": "APG 6.5"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12708335304977-Download-Comp-Coax-System-Prima-speakers-manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AUDISON_Prima_APX6_5_Tech_Sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/03/KIT-TESLA-MAIN.jpg",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://audison.com/product/ap-tsl-3y-spk-kit/",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AP-1_VISTA-XOVER-ACCESSORI_2022_11_14_JPG-110.jpg",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://audison.com/product/ap-1/",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_AP1P_Tweeter.jpg",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://audison.com/product/ap-1p/",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_AP2_MV_emo.jpg",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://audison.com/product/ap-2-mv/",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apx-6-5/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apx-6-5/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-6-5/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-6-5/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-6-5/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-6-5/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-6-5/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APX+6.5&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=977&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapx-6-5%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
       "image_alt": "APX 6.5",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbc950>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apx-690",
@@ -10029,23 +12349,598 @@
       "source_component": "",
       "source_sku_reference_internal": "69070060",
       "official_product_page_url": "https://audison.com/product/apx-690/",
-      "extracted_at": "2026-11-16T07:43:59.720666+00:00",
+      "extracted_at": "2026-11-16T07:45:49.908895+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-690/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APX 690 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APX 690 Coaxial | 300 W Peak Power | 6″ x 9″ | 4 ohm",
+      "meta_description": "The APX 690 features an exclusive 40 mm horn loading dome tweeter that contributes to maximize efficiency up to 96dB SPL and an acoustics lens specifically designed and applied to the tweeter to increase dispersion in the high frequency range.To strengthen the emission of very high frequency ranges otherwise affected by off-axis positioning compared to",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apx-690/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apx-690/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-690/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-690/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-690/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-690/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-690/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791669_APX-690_PROSP_def_800_444.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-CON-GRIGLIA_2022_07_20_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791669_APX-690_PROSP_def_800_444.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-CON-GRIGLIA_2022_07_20_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-690_PROSPETTIVA-LATO-MOTORE_2022_07_13_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/APX-690.png",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg",
+          "alt": "APX 690"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12708335304977-Download-Comp-Coax-System-Prima-speakers-manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AUDISON_Prima_APX690_Tech_Sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/03/KIT-TESLA-MAIN.jpg",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://audison.com/product/ap-tsl-3y-spk-kit/",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AP-1_VISTA-XOVER-ACCESSORI_2022_11_14_JPG-110.jpg",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://audison.com/product/ap-1/",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_AP1P_Tweeter.jpg",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://audison.com/product/ap-1p/",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_AP2_MV_emo.jpg",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://audison.com/product/ap-2-mv/",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apx-690/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apx-690/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-690/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-690/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-690/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-690/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-690/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APX+690&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=982&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapx-690%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg",
       "image_alt": "APX 690",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbcae0>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apx-570",
@@ -10055,23 +12950,590 @@
       "source_component": "",
       "source_sku_reference_internal": "69070070",
       "official_product_page_url": "https://audison.com/product/apx-570/",
-      "extracted_at": "2026-11-16T07:44:01.475337+00:00",
+      "extracted_at": "2026-11-16T07:45:52.457042+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-570/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APX 570 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APX 570 Coaxial | 210 W Peak Power | 5″ x 7″ | 4 ohm",
+      "meta_description": "APX 570 features a concentric coaxial tweeter: with one single point of sound emission it is possible to obtain a consistent in-phase response, with consequent reconstruction of the acoustic scene comparable to a system of separate woofer + tweeter. The 5x7\" cones surround features an exclusive shallow Triple Wave profile, for maximum excursion linearity.",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apx-570/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apx-570/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-570/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-570/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-570/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-570/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-570/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389786502_APX-570_PROSP_def_800_444.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-570_VISTA-IN-PIANTA_2022_07_20_JPG.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-570_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1389786502_APX-570_PROSP_def_800_444.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-570_VISTA-IN-PIANTA_2022_07_20_JPG.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APX-570_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2024/10/APX-570.png",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/09/AUDISON_APX-570_PROSPETTIVA-LATO-MOTORE_2022_07_20_JPG.jpg",
+          "alt": "APX 570"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12708335304977-Download-Comp-Coax-System-Prima-speakers-manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/AUDISON_Prima_APX570_Tech_Sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2026/03/KIT-TESLA-MAIN.jpg",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://audison.com/product/ap-tsl-3y-spk-kit/",
+          "alt": "AP TSL 3Y SPK KIT"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_AP-1_VISTA-XOVER-ACCESSORI_2022_11_14_JPG-110.jpg",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://audison.com/product/ap-1/",
+          "alt": "AP 1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_Prima_AP1P_Tweeter.jpg",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://audison.com/product/ap-1p/",
+          "alt": "AP 1P"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_AP2_MV_emo.jpg",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://audison.com/product/ap-2-mv/",
+          "alt": "AP 2 MV"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apx-570/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apx-570/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apx-570/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apx-570/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apx-570/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apx-570/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apx-570/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APX+570&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=986&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapx-570%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
       "image_alt": "APX 570",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbcdb0>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apbmw-x4e",
@@ -10081,23 +13543,586 @@
       "source_component": "",
       "source_sku_reference_internal": "69070080",
       "official_product_page_url": "https://audison.com/product/apbmw-x4e/",
-      "extracted_at": "2026-11-16T07:44:03.171077+00:00",
+      "extracted_at": "2026-11-16T07:45:54.992622+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-x4e/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APBMW X4E - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APBMW X4E Coaxial | 80 W Peak Power | 100 mm | BMW Upgrade",
+      "meta_description": "The APBMW X coaxials have been designed for BMW-MINI models that do not allow the installation of a two-way system on the front or the upgrade of the rear system. The 100 mm (4 in.) APBMW X4E, with basket and fixing screws dedicated to the specific car model, feature a water-repellent pressed-paper cone for natural",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4e/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4e/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-x4e/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-x4e/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-x4e/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-x4e/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-x4e/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4E.jpg",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4E.jpg",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/13075147578001-Download-Coax-System-Sub-Prima-for-BMW-Manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_APBMW_X4E_Tech_Sheet-1.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APBX-8-DS_EMO-B_2022_11_28_JPG-108.jpg",
+          "alt": "APBX 8 DS"
+        },
+        {
+          "url": "https://audison.com/product/apbx-8-ds/",
+          "alt": "APBX 8 DS"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1468512865_APBX_8_R_EMO_800_599.png",
+          "alt": "APBX 8 R"
+        },
+        {
+          "url": "https://audison.com/product/apbx-8-r/",
+          "alt": "APBX 8 R"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/AUDISON_APBX-10-AS_EMO-B_2022_11_30_jpg-98.jpg",
+          "alt": "APBX 10 AS2"
+        },
+        {
+          "url": "https://audison.com/product/apbx-10-as2/",
+          "alt": "APBX 10 AS2"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/S8-4.2_EMO.jpg",
+          "alt": "APBMW S8-4.2"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-s8-4-2/",
+          "alt": "APBMW S8-4.2"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/APBMW-S8_emo-1-77.jpg",
+          "alt": "APBMW S8-2.2"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-s8-2-2/",
+          "alt": "APBMW S8-2.2"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4e/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4e/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-x4e/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-x4e/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-x4e/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-x4e/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-x4e/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APBMW+X4E&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=990&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapbmw-x4e%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
       "image_alt": "APBMW X4E",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbc8b0>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apbmw-x4m",
@@ -10107,23 +14132,570 @@
       "source_component": "",
       "source_sku_reference_internal": "69070085",
       "official_product_page_url": "https://audison.com/product/apbmw-x4m/",
-      "extracted_at": "2026-11-16T07:44:04.888850+00:00",
+      "extracted_at": "2026-11-16T07:45:57.508160+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-x4m/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APBMW X4M - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APBMW X4M Coaxial | 80 W Peak Power | 100 mm | BMW Upgrade",
+      "meta_description": "The APBMW X coaxials have been designed for BMW-MINI models that do not allow the installation of a two-way system on the front of the upgrade of the rear system. The 100 mm (4 in.) APBMW X4M, with basket and fixing screws dedicated to the specific car model, features a water-repellent pressed-paper cone for natural",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4m/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4m/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-x4m/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-x4m/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-x4m/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-x4m/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-x4m/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_prima-2.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4M.jpg",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4M.jpg",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "Read more"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/13075147578001-Download-Coax-System-Sub-Prima-for-BMW-Manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison_APBMW_X4M_Tech_Sheet-1.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/1468512865_APBX_8_R_EMO_800_599.png",
+          "alt": "APBX 8 R"
+        },
+        {
+          "url": "https://audison.com/product/apbx-8-r/",
+          "alt": "APBX 8 R"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/S8-4.2_EMO.jpg",
+          "alt": "APBMW S8-4.2"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-s8-4-2/",
+          "alt": "APBMW S8-4.2"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/03/APBMW-S8_emo-1-77.jpg",
+          "alt": "APBMW S8-2.2"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-s8-2-2/",
+          "alt": "APBMW S8-2.2"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4m/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4m/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-x4m/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-x4m/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-x4m/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-x4m/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-x4m/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APBMW+X4M&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=996&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapbmw-x4m%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
       "image_alt": "APBMW X4M",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbc810>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "apbmw-a4e",
@@ -10133,23 +14705,554 @@
       "source_component": "",
       "source_sku_reference_internal": "69082001",
       "official_product_page_url": "https://audison.com/product/apbmw-a4e/",
-      "extracted_at": "2026-11-16T07:44:06.589925+00:00",
+      "extracted_at": "2026-11-16T07:46:00.103505+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-a4e/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "APBMW A4E - Audison | Premium Car & Marine Audio Systems",
+      "h1": "APBMW A4E Accessories | Accessories Kit | BMW Upgrade",
+      "meta_description": "Specially developed to fit the midrange and coaxials on BMW models equipped with non-standard fixings.",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-a4e/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-a4e/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-a4e/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-a4e/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-a4e/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+          "alt": "APBMW A4E"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12477780090385-Download-APBMW-A4E-Manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-K4E_emo.jpg",
+          "alt": "APBMW K4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-k4e/",
+          "alt": "APBMW K4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-K4E-emo2-1.jpg",
+          "alt": "APBMW K4M"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-k4m/",
+          "alt": "APBMW K4M"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4e/",
+          "alt": "APBMW X4E"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-x4m/",
+          "alt": "APBMW X4M"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/apbmw-a4e/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/apbmw-a4e/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/apbmw-a4e/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/apbmw-a4e/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/apbmw-a4e/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/apbmw-a4e/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=APBMW+A4E&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=1020&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fapbmw-a4e%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
       "image_alt": "APBMW A4E",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
-      "error": "cannot identify image file <_io.BytesIO object at 0x7f669edbc8b0>"
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "Remote end closed connection without response"
     }
   ],
   "runs": [
@@ -10290,7 +15393,13 @@
       "candidate_count": 9,
       "remaining_exact_pages": 0,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T07:46:02.541690+00:00",
+      "candidate_count": 9,
+      "remaining_exact_pages": 0,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T07:44:08.301077+00:00"
+  "updated_at": "2026-11-16T07:46:02.541718+00:00"
 }
