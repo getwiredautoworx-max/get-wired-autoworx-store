@@ -33,6 +33,7 @@ on:
       - "preview-planetworld.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/public-preview-data-sanitization.test.cjs"
       - "catalogue-review/planetworld-one-official-model-audit.csv"
       - "assets/audio-product-enrichment-overrides.json"
   pull_request:
@@ -67,6 +68,7 @@ on:
       - "preview-planetworld.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
+      - "tests/public-preview-data-sanitization.test.cjs"
       - "catalogue-review/planetworld-one-official-model-audit.csv"
       - "assets/audio-product-enrichment-overrides.json"
 permissions:
