@@ -89,6 +89,39 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       assert.deepEqual(dataAudit.audioPriceLabels, ['Price On Request']);
       const audioOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
       assert.equal(audioOverflow, false, 'audio product route must not overflow horizontally at viewport ' + width);
+
+      await page.goto(BASE + '/trailer-towing.html', { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.getElementById('total')?.textContent === '165' &&
+        document.getElementById('groups')?.textContent === '7', null, { timeout: 20000 });
+      const trailerText = await page.locator('body').innerText();
+      assert.ok(trailerText.includes('Trailer & Towing'), 'Trailer and Towing must be presented as a customer-facing category');
+      assert.ok(trailerText.includes('Price On Request due to Limited Stock and Availability'), 'ASC products must use the approved customer price wording');
+      assert.ok(!/OWNER_PREVIEW|REVIEW_ONLY|not imported|supplier|dealer cost|dealer price|source sku|stock code/i.test(trailerText),
+        'customer-facing Trailer and Towing page must not expose internal review or supplier details');
+      const trailerAudit = await page.evaluate(async () => {
+        const data = await fetch('assets/trailer-towing-catalogue.json').then(r => r.json());
+        const serialised = JSON.stringify(data);
+        return {
+          records: data.records.length,
+          groups: [...new Set(data.records.map(p => p.subcategory))].length,
+          fields: [...new Set(data.records.flatMap(p => Object.keys(p)))].sort(),
+          supplierLeak: /ASC|supplier|supplierCode|supplierSku|sourcePrice|dealerCost|category_id|reviewStatus|uniqueSupplierCodes|stock_quantity/i.test(serialised),
+          priceLabels: [...new Set(data.records.map(p => p.priceDisplay))]
+        };
+      });
+      assert.equal(trailerAudit.records, 165, 'all 165 Trailer and Towing records must be present');
+      assert.equal(trailerAudit.groups, 7, 'all seven Trailer and Towing product groups must be present');
+      assert.equal(trailerAudit.supplierLeak, false, 'public Trailer and Towing JSON must contain no supplier identity, internal IDs, review states or stock fields');
+      assert.deepEqual(trailerAudit.priceLabels, ['Price On Request due to Limited Stock and Availability']);
+      assert.deepEqual(trailerAudit.fields, ['availabilityDisplay', 'description', 'priceDisplay', 'subcategory', 'title']);
+      await page.locator('#cat').selectOption({ label: 'Towing' });
+      await page.waitForFunction(() => document.getElementById('count').textContent === 'Showing 49 of 165 products');
+      await page.locator('#q').fill('ISOLATOR COVER FOR 4317/4217');
+      await page.waitForFunction(() => document.getElementById('count').textContent === 'Showing 1 of 165 products');
+      const trailerOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+      assert.equal(trailerOverflow, false, 'Trailer and Towing route must not overflow horizontally at viewport ' + width);
+      assert.deepEqual(pageErrors, [], 'all storefront routes must load without JavaScript errors: ' + pageErrors.join('; '));
+      assert.equal(writes.length, 0, 'Trailer and Towing preview must not issue live write requests');
       await page.close();
       console.log('PASS owner preview viewport=' + width + ' roots=3 audio=Sony/Component Speakers price=POR checkout=blocked no-live-writes');
     }
