@@ -5,6 +5,8 @@ on:
     paths:
       - 'index-new.html'
       - 'owner-preview.html'
+      - 'trailer-towing.html'
+      - 'assets/trailer-towing-catalogue.json'
       - 'preview-audio*.html'
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
@@ -17,6 +19,8 @@ on:
     paths:
       - 'index-new.html'
       - 'owner-preview.html'
+      - 'trailer-towing.html'
+      - 'assets/trailer-towing-catalogue.json'
       - 'preview-audio*.html'
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
