@@ -15262,7 +15262,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69051030",
       "official_product_page_url": "https://audison.com/product/av-k6/",
-      "extracted_at": "2026-11-16T08:05:27.121442+00:00",
+      "extracted_at": "2026-11-16T08:08:26.646424+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-k6/",
       "page_title": "AV K6 - Audison | Premium Car & Marine Audio Systems",
@@ -15817,8 +15817,8 @@
       "image_url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
       "image_alt": "AV K6",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -16026,7 +16026,13 @@
       "candidate_count": 1,
       "remaining_exact_pages": 0,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T08:08:29.376532+00:00",
+      "candidate_count": 1,
+      "remaining_exact_pages": 0,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T08:05:29.827848+00:00"
+  "updated_at": "2026-11-16T08:08:29.376561+00:00"
 }
