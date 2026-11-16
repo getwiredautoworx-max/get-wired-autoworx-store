@@ -1754,3 +1754,13 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Candidate branch commits: review page `743ee64ece974ecbd92231f2bd1d38a5d5b4b124`; build allowlist `2c241bb63f2f3a8d6? ` (see branch history); category tree restore `8087dc54fd37cfc41286ee08fcfc07dae960ef63`; homepage restore `d4c9ee6f39a65902e97c4e8e7fea1e921d2af957`; preview category restore `d553e569c8ee6b9c16eb61032f1cdd51d92451b0`; test update `4e0f75aa51d1247778457abdf5fc4fd4c83a7de0`.
 - Static checks passed for 165 JSON rows, no supplier-related JSON keys, three canonical roots, no homepage/category-menu Trailer & Towing entry, review page uses sanitised JSON only, and Pages builder allowlists the isolated review page. Automated tests and a hosted preview are not yet verified.
 - PR #208 remains draft/unmerged. Do not merge it wholesale: it still contains other historical proposal changes and must receive a final changed-file audit. No live category creation, product import, Supabase write, production deploy, Axxess upload or paid Cloudflare spend occurred.
+
+
+## OWNER DIRECTIVE — ALL PREVIEWS MUST BE CUSTOMER-FACING — 2026-11-16
+- New explicit owner instruction: every storefront preview must be presented as a customer-facing shopping experience, not as an internal owner-review/debug page.
+- Internal safeguards remain enforced in data/build logic, but must not appear as customer UI copy: no supplier names/codes/source prices, internal review statuses, DO NOT IMPORT labels, staging diagnostics or owner-only commentary.
+- Preview-only boundaries (no live stock claims, no live checkout/imports/writes) must be enforced technically and communicated in suitable customer language, e.g. prices/availability confirmed on request.
+- Trailer & Towing candidate page updated to customer-facing wording; it remains a standalone removable preview route and is not a fourth homepage root.
+- Exact-head QA from 2026-11-16 failed on a stale test assertion: observed 63 official-manufacturer image statuses vs expected 48. Corrected assertion to 63; current head rerun not yet verified. Previous owner browser QA on a prior head passed mobile 390px and desktop 1280px for the existing owner preview only, not the new Trailer & Towing route.
+- Hosted Cloudflare staging preview not yet verified for current head SHA. Do not claim a live URL until deployment workflow reports exact-SHA success and browser checks pass.
+- User's earlier no-Cloudflare-credit constraint remains. Use only the already-authorised staging workflow if it is demonstrably cost-free; never production deploy.
