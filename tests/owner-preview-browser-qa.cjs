@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 
-const BASE = 'http://127.0.0.1:4173';
+const BASE = process.env.GW_PREVIEW_BASE_URL || 'http://127.0.0.1:4173';
 const SUPPLIER_NAMES = /Planetworld|Audio Connections/i;
 const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spares', 'Car Care & Accessories'];
 
@@ -29,6 +29,28 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
         }
         return route.continue();
       });
+
+      if (process.env.GW_EXPECTED_PREVIEW_SHA) {
+        const deadline = Date.now() + 180000;
+        let marker = null;
+        while (Date.now() < deadline) {
+          try {
+            const response = await page.goto(BASE + '/qa-build-result.json', { waitUntil: 'domcontentloaded', timeout: 15000 });
+            if (response && response.ok()) {
+              const candidate = await response.json();
+              if (candidate.commit === process.env.GW_EXPECTED_PREVIEW_SHA) {
+                marker = candidate;
+                break;
+              }
+            }
+          } catch (_) {}
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+        assert.ok(marker, 'hosted Cloudflare preview must publish the exact expected commit SHA');
+        assert.equal(marker.result, 'PASS', 'hosted preview must carry a successful package QA marker');
+        assert.equal(marker.preview_only, true, 'hosted deployment must be a preview-only package');
+        assert.equal(marker.branch, process.env.GW_EXPECTED_PREVIEW_BRANCH, 'hosted preview branch must match the PR head branch');
+      }
 
       await page.goto(BASE + '/index-new.html?ownerPreview=1&previewBuild=exact-head-qa', { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
