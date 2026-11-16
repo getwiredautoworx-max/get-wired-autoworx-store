@@ -163,11 +163,11 @@ def select_exact_model_image(image_candidates, source_model):
         return None
     for candidate in image_candidates:
         label = clean_text(candidate.get("alt"))
-        label = re.sub(r"^(?:image|product image)\\s*:\\s*", "", label, flags=re.IGNORECASE)
+        label = re.sub(r"^(?:image|product image)\s*:\s*", "", label, flags=re.IGNORECASE)
         alt_key = re.sub(r"[^a-z0-9]+", "", label.casefold())
         candidate_url = clean_text(candidate.get("url"))
         parsed = urlparse(candidate_url)
-        if parsed.path and not re.search(r"\\.(?:png|jpe?g|webp|avif)$", parsed.path, flags=re.IGNORECASE):
+        if parsed.path and not re.search(r"\.(?:png|jpe?g|webp|avif)$", parsed.path, flags=re.IGNORECASE):
             continue
         if parsed.hostname and parsed.hostname.lower() not in ALLOWED_IMAGE_HOSTS:
             continue
