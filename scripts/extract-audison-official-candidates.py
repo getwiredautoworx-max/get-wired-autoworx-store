@@ -151,7 +151,7 @@ def select_exact_model_image(image_candidates, source_model):
         return None
     for candidate in image_candidates:
         alt_key = re.sub(r"[^a-z0-9]+", "", clean_text(candidate.get("alt")).casefold())
-        if target and target in alt_key:
+        if target and target == alt_key:
             return candidate
     return None
 
