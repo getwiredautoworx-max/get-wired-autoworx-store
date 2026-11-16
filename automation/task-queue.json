@@ -196,12 +196,12 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-16: The Audison Prima APK component-kit group is now added to the owner-preview overrides: APK 130, APK 165, APK 165P, APK 165 Ohm2 (kept distinct as 2 ohm), APK 690 (6×9, not 690 mm), APK 163 (3-way), APBMW K4E (large basket) and APBMW K4M (small basket). All eight have exact official manufacturer gallery images and page-derived descriptions/specifications; all remain PREVIEW_ONLY_NOT_LIVE, Price On Request, no numeric price/stock and no supplier fields. Current override file: 36 records total / 29 Audison; all 36 preview-only. Exact public-content SHA f600bbface93f435d44105bed68b4b340125b940 passed Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit. Secondary audio preview audit: 105 PREVIEW_ONLY_NOT_LIVE, 3 explicit holds. Latest manifest-only commit b606acb199059cba7ac945af7ed254e3d82cddfa adds exact AV K6 and AVK 6A P II kit candidates; manifest 36 rows, 25 local unique images, 11 remote-only due Audison anti-bot response. AV-series and Prima APK groups are complete. Next bounded group: Audison integration interfaces/accessories — F2O, F4IN, APL2, APBMW ReAMP1 and APBMW BIAMP2; then APBX8DS subwoofer and AF C4.10 bit amplifier. Production QA/public URL verification remain blocked by live Cloudflare challenge and non-consolidated production; no deployment or credit use."
+      "next_action": "2026-11-16: Audison candidate batch is complete for the 36 exact official product-page records. The 34 Audison enrichment overrides plus seven already-integrated verified primary-preview records cover the candidate set. The global override file has 41 records (34 Audison, 7 other approved brands), all PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null and no supplier fields. Public-content SHA f7c9c4c2fe8a5ed0fb4fe0eabdb93f9a6142ffef passed Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit. Latest manifest-only commit 3dac179614a8af26f308892e0b7986c8cfc2015c. Manifest: 36 exact candidates, 25 local unique image files and 11 official remote-only image URLs blocked from local download by Audison anti-bot HTML; remote URLs are used in preview where exact and approved. Next subtask: OneNav Classic head-unit reconciliation on canonical main as review-only data; do not merge/rebase the divergent OneNav branch. First: set the existing Prado preview model to OA014-1, add exact OA715-1 Jimny, then verify OA009-1 image while keeping OA009-2 separate. Production QA/public URL verification remain blocked by live Cloudflare challenge and non-consolidated production; no deployment or credit use."
     },
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "paused",
+      "status": "in_progress",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -214,7 +214,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "Paused pending safe integration path. Existing OneNav branch is 24 commits ahead / 250 behind canonical main; do not merge, rebase, force-push or create a replacement branch. Continue only review-only model research after the current Audison content checkpoint."
+      "next_action": "Subtask of the single active audio-video-content-enrichment workstream, executed directly on canonical main as review-only product data. Do not merge, rebase, force-push or create a replacement for the divergent OneNav branch (24 ahead / 250 behind). Start with OA014-1 Prado model-number reconciliation, add OA715-1 Jimny with exact official manufacturer image, then verify OA009-1 image and keep OA009-2 distinct. Use exact official fitment/spec evidence, Price On Request, null stock and PREVIEW_ONLY_NOT_LIVE; no supplier fields."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "b606acb199059cba7ac945af7ed254e3d82cddfa",
+    "canonical_head": "3dac179614a8af26f308892e0b7986c8cfc2015c",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
@@ -354,7 +354,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "f600bbface93f435d44105bed68b4b340125b940",
+    "last_verified_main_sha": "f7c9c4c2fe8a5ed0fb4fe0eabdb93f9a6142ffef",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
