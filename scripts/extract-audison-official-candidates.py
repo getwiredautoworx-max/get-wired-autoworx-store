@@ -271,7 +271,7 @@ def main():
         if not url:
             continue
         prior = existing.get(url)
-        if prior and prior.get("status") != "FETCH_FAILED_RETRY":
+        if prior and prior.get("status") != "FETCH_FAILED_RETRY" and prior.get("image_review_status") != "REJECTED_SHARED_IMAGE_HASH":
             continue
         if prior and int(prior.get("attempts", 0)) >= 3:
             continue
@@ -327,7 +327,16 @@ def main():
             item["error"] = str(exc)[:500]
         new_items.append(item)
         time.sleep(1.0)
-    manifest.setdefault("items", []).extend(new_items)
+    # Replace rejected historical generic-image candidates in place; do not duplicate audit rows.
+    manifest_items = manifest.setdefault("items", [])
+    positions = {item.get("official_product_page_url"): index for index, item in enumerate(manifest_items)}
+    for item in new_items:
+        url = item.get("official_product_page_url")
+        if url in positions:
+            manifest_items[positions[url]] = item
+        else:
+            positions[url] = len(manifest_items)
+            manifest_items.append(item)
     manifest.setdefault("runs", []).append({
         "run_at": datetime.now(timezone.utc).isoformat(),
         "candidate_count": len(new_items),
