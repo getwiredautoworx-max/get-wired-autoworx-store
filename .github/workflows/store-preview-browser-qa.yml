@@ -80,11 +80,43 @@ jobs:
               const body = deploy?.body || '';
               const latest = body.match(/Latest commit:[\s\S]*?<code>([0-9a-f]{7,40})<\/code>/i);
               const branchUrl = body.match(/Branch Preview URL:[\s\S]*?href='([^']+)'/i);
-              if (latest && expectedSha.startsWith(latest[1]) && /Deploy successful!/i.test(body) && branchUrl) {
+              let deploymentMatches = false;
+              let deploymentNote = '';
+              if (latest && /Deploy successful!/i.test(body) && branchUrl) {
+                if (expectedSha.startsWith(latest[1])) {
+                  deploymentMatches = true;
+                  deploymentNote = 'exact PR head';
+                } else {
+                  try {
+                    const deployed = await github.rest.repos.getCommit({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      ref: latest[1]
+                    });
+                    const comparison = await github.rest.repos.compareCommits({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      base: deployed.data.sha,
+                      head: expectedSha
+                    });
+                    const laterFiles = comparison.data.files || [];
+                    const qaOnly = laterFiles.length > 0 && laterFiles.every(file =>
+                      /^(tests\\/|\\.github\\/workflows\\/|HANDOVER_CURRENT\\.md$)/.test(file.filename)
+                    );
+                    if (comparison.data.status === 'ahead' && qaOnly) {
+                      deploymentMatches = true;
+                      deploymentNote = 'same customer content; later commits change QA/workflow/handover files only';
+                    }
+                  } catch (error) {
+                    core.info('Waiting for exact Pages deployment metadata: ' + error.message);
+                  }
+                }
+              }
+              if (deploymentMatches) {
                 core.exportVariable('GW_PREVIEW_BASE_URL', branchUrl[1]);
                 core.exportVariable('GW_EXPECTED_PREVIEW_SHA', expectedSha);
                 core.exportVariable('GW_EXPECTED_PREVIEW_BRANCH', expectedBranch);
-                core.info('Cloudflare Pages deployment matches exact PR head ' + expectedShort + ': ' + branchUrl[1]);
+                core.info('Cloudflare Pages deployment matches ' + deploymentNote + ' for PR head ' + expectedShort + ': ' + branchUrl[1]);
                 return;
               }
               await new Promise(resolve => setTimeout(resolve, 5000));
