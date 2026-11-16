@@ -1802,3 +1802,10 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Trailer & Towing public data remains 165 records across seven groups, with only five customer fields per record. No supplier identity/codes, database IDs, review states, numeric price or stock fields. The CSV contains no product images, so product-photo enrichment remains outstanding and no substitute imagery has been fabricated.
 - Owner APK debug build and checksum have completed; Android emulator install/runtime validation is still running as a separate CI check. It is not required to view the hosted category preview.
 - No production deployment, live catalogue import, Supabase write, Axxess upload, DNS/payment change, or live price/stock change. Production HOLD remains. The category is a removable preview-only route and is not a fourth homepage root.
+
+
+## FINAL EXACT-HEAD RECHECK — 2026-11-16
+- Final PR head `6caa7a65505a2df1cf8e523dc149e21328e3dd6a` also has a successful Cloudflare Pages deployment (Pages bot commit `6caa7a6`) and exact-head hosted browser QA `43819920533` SUCCESS at 390px and 1280px. The Pages bot comment was checked by the workflow before the hosted browser run.
+- On this head: Pages package QA `43819920596` SUCCESS; storefront smoke `43819920319` SUCCESS; public SKU audit `43819920426` SUCCESS; static structure/POR policy `43819920319` SUCCESS; catalogue/supplier routing responsive review `43819920271` SUCCESS. These checks preserve the three approved roots and keep Trailer & Towing preview-only.
+- Owner APK debug build, checksum and artifact upload succeeded; emulator install/runtime validation remained in progress at this checkpoint. This does not block the Trailer & Towing browser preview.
+- PR #209 remains the only open PR, draft/unmerged pending owner acceptance. PR #208 is closed without merge. Production HOLD remains.
