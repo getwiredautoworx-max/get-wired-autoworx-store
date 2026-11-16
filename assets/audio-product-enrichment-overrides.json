@@ -597,6 +597,28 @@
       "indicativePrice": null,
       "hasStock": null,
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
+    },
+    {
+      "id": "preview-audison-avk-6a-p-ii",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - AVK 6A P II - KIT 2Way ACTIVE WOOFER+TWEETER"
+      },
+      "appendIfMissing": true,
+      "title": "Audison AVK 6A P II 2-Way Active Component Speaker Kit",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "modelNumber": "AVK 6A P II",
+      "description": "Two-way active component speaker kit combining the AV 1.1 II 28 mm Tetolon dome tweeters with AV 6.5 P II 165 mm woofers. Rated at 300 W peak and 150 W continuous, 4 ohm impedance and 91 dB sensitivity. The woofer operates from 45 Hz–7.5 kHz and the tweeter from 1 kHz–40 kHz. This is the active AVK 6A P II kit, distinct from the passive AV K6 kit and from the standalone AV 1.1 II tweeter; confirm exact vehicle fitment before purchase.",
+      "imageUrl": "https://static.audison.com/media/2025/02/Audison_AV-K6PA-II_KIT_2025_01_16-copia.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact AVK 6A P II active-kit manufacturer page and official gallery image visually verified. Kept distinct from AV K6 passive kit and standalone AV 1.1 II tweeter. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
