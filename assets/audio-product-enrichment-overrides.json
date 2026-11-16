@@ -486,6 +486,90 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-av-x6-5",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - AV X6.5 - SET 2 WAY COAX 165mm"
+      },
+      "appendIfMissing": true,
+      "title": "Audison AV X6.5 6.5-inch 2-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "AV X6.5",
+      "description": "165 mm (6.5 in) 2-way coaxial speaker with a 25 mm Tetolon dome tweeter, orientable high-frequency tuning and an included on-wire crossover. Rated at 200 W peak and 100 W continuous, 4 ohm impedance, 91 dB sensitivity and 50 Hz–22 kHz frequency response. Uses a 30 mm CCAW voice coil, aerodynamic basket and Triple Wave butyl-rubber surround.",
+      "imageUrl": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact AV X6.5 manufacturer page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-x4e",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW X4E -SET COAX 2Way 100mm for BMW LargeBasket"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APBMW X4E BMW Large-Basket 4-inch Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APBMW X4E",
+      "description": "100 mm (4 in) BMW-MINI-specific 2-way coaxial speaker with a dedicated basket and fixing screws. Features a water-repellent pressed-paper cone, 24 mm Tetolon dome tweeter and 25 mm woofer voice coil. Rated at 80 W peak and 40 W continuous, 4 ohm impedance, 88 dB sensitivity and 100 Hz–22 kHz frequency response. The catalogue identifies this as the large-basket variant; confirm exact vehicle fitment before purchase.",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APBMW X4E manufacturer page and gallery image visually verified. Large-basket variant kept separate from APBMW X4M small-basket variant. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-x4m",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW X4M -SET COAX 2Way 100mm for BMW SmallBasket"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APBMW X4M BMW Small-Basket 4-inch Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APBMW X4M",
+      "description": "100 mm (4 in) BMW-MINI-specific 2-way coaxial speaker with a dedicated basket and fixing screws. Features a water-repellent pressed-paper cone, 24 mm Tetolon dome tweeter and 25 mm woofer voice coil. Rated at 80 W peak and 40 W continuous, 4 ohm impedance, 88 dB sensitivity and 100 Hz–22 kHz frequency response. The catalogue identifies this as the small-basket variant; confirm exact vehicle fitment before purchase.",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APBMW X4M manufacturer page and gallery image visually verified. Small-basket variant kept separate from APBMW X4E large-basket variant. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-a4e",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW A4E - ACCESSORIES KIT"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APBMW A4E BMW Speaker Mount Adapter Kit",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Speaker Mounts & Adapters",
+      "modelNumber": "APBMW A4E",
+      "description": "BMW speaker-mount accessory kit developed to fit midrange and coaxial speakers on BMW models equipped with non-standard fixings. This is an installation accessory, not a speaker set or amplifier. The manufacturer page does not publish a vehicle list or power specifications; confirm the exact vehicle and fixing pattern before purchase.",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APBMW A4E manufacturer accessory page and official gallery image visually verified. Classified as speaker mounting accessory, not a speaker. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
