@@ -36,7 +36,7 @@ jobs:
       - name: Test current Audison audit register schema
         run: python tests/test-audison-audit-schema.py
       - name: Extract a bounded batch of exact Audison product-page candidates
-        run: python scripts/extract-audison-official-candidates.py --limit 5
+        run: python scripts/extract-audison-official-candidates.py --limit 10
       - name: Commit review-only candidate images and manifest
         shell: bash
         run: |
