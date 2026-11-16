@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-16: Audison official-image candidate audit contains 34 exact-model records; 25 have local image assets with unique SHA-256 values and 9 are verified official remote image URLs because the GitHub runner cannot download bytes (remote connection closed). All 9 remote-only products now use exact official image URLs in the review-only owner-preview overrides. There are 20 Audison overrides, with 13/34 manifest models covered and 21 still to enrich. Added APX 4, APX 5, APX 6.5, APX 570, APX 690, AV X6.5, APBMW X4E, APBMW X4M and APBMW A4E. All 27 global enrichment overrides are explicitly PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null, with no supplier fields. APX4/APX5 mapping and APX570 official page were corrected; K4E/K4M variant guard added. Public SKU Exposure Audit and Catalogue Image Audit passed; Cloudflare Pages Public Package QA and Storefront Smoke Test passed on exact public-content SHA a03571c9. Standard customer-only package and isolated non-production preview package both build and pass supplier-safe route checks. Production QA/public URL checks still fail because the live domain serves Cloudflare challenge HTML for homepage/category JSON/product image and the live site is not the consolidated button-only storefront. No deployment or Cloudflare credits. Next product group: Audison AV-series speakers (AV 1.1, AV 1.1 II, AV 3.0, AV 3.0 II, AV 6.5 and AV 6.5 P II), then Prima APK speaker group."
+      "next_action": "2026-11-16: Audison image candidate manifest now contains 36 exact-model product-page records. 25 have local image files with unique SHA-256; 11 exact official gallery URLs/alt labels remain remote-only because GitHub runners receive the Audison anti-bot /.well-known/sgcapt HTML. These remote URLs are used directly in the owner-preview data where approved. The APX coaxial group (APX 4, APX 5, APX 6.5, APX 570, APX 690), AV X6.5, BMW APBMW X4E/X4M, APBMW A4E and AVK 6A P II active kit now have preview overrides; AV K6 is already integrated in the verified primary preview. Corrected source mapping for SKU 69051030 to AV K6 kit and 69051035 to AVK 6A P II kit; standalone AV 1.1 / AV 1.1 II tweeters remain separate products. There are 21 Audison overrides and 28 global overrides; every override is PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null and hasStock=null, with no supplier fields. Exact public-content SHA 29b2c443: Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit passed. Secondary audio preview audit reports 97 PREVIEW_ONLY_NOT_LIVE and 3 explicit holds; generic price/stock suppression passed. Production QA still fails because live site is not the consolidated button-only storefront; public URL check reports Cloudflare challenge HTML on live homepage/category JSON/product image. No deploy or Cloudflare credits. AV-series product group is complete; next bounded group is Audison Prima APK speakers (APK130, APK165, APK165P, APK165 Ohm2, APK690, APK163, APBMW K4E and APBMW K4M)."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -251,7 +251,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Supporting QA only. Latest main commit 73b764a80: Cloudflare package QA test-count assertion corrected; rerun pending. Production QA fails at LIVE_BUTTON_ONLY_NOT_DEPLOYED; public HTTP check reports Cloudflare challenge HTML for homepage/category JSON/product image. Do not deploy or bypass production HOLD."
+      "next_action": "Supporting QA only. Exact public-content SHA 29b2c443 passed Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit. Production QA still reports LIVE_BUTTON_ONLY_NOT_DEPLOYED; public HTTP verification sees Cloudflare challenge HTML for the live homepage/category JSON/product image. No production deployment or credit use."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -316,7 +316,7 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Supporting release gate only. Production remains HOLD; current live site is not the consolidated button-only storefront and Cloudflare challenge HTML prevents public homepage/category JSON/product image verification. Use only a cost-free exact-main owner preview; do not deploy.",
+      "next_action": "Supporting release gate only. Non-production customer-only and isolated owner-preview packages build and pass route/supplier-safety tests on public-content SHA 29b2c443. Live production remains HOLD because it is not the consolidated button-only storefront and Cloudflare challenge HTML blocks public homepage/category JSON/product image verification. No deployment.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     },
@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "a03571c9b80b983b4c38fe77916605a7dd9366bf",
+    "canonical_head": "b00ae2579c06961cde23addca7ded43d5a24d763",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
@@ -354,7 +354,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "a03571c9b80b983b4c38fe77916605a7dd9366bf",
+    "last_verified_main_sha": "29b2c443ded673b4e3fb1b6939e7d070919cd68e",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
