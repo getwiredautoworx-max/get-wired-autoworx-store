@@ -795,6 +795,116 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-f2o",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - F2O - FORZA OPTICAL EXTENSION"
+      },
+      "title": "Audison F2O Digital Input Expansion Board",
+      "modelNumber": "F2O",
+      "component": "DSP Input Expansion Boards",
+      "description": "Digital input expansion board for Audison AF bit amplifiers with integrated DSP. Fits the amplifier's dedicated external slot and adds either a coaxial S/PDIF input or a second Toslink S/PDIF input, selected by an onboard switch. A coaxial input cable is included when that input mode is selected.",
+      "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact official Audison product page and manufacturer gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-f4in",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - F4IN - FORZA SPEAKER IN 4CH EXTENSION"
+      },
+      "title": "Audison F4IN 4-Channel Analog Input Expansion Board",
+      "modelNumber": "F4IN",
+      "component": "DSP Input Expansion Boards",
+      "description": "Analog input expansion board for Audison AF bit amplifiers with integrated DSP. Adds four high-voltage speaker-level input channels to the amplifier's eight native channels, for up to twelve high-level inputs. Input sensitivity is 3.2–32 Vrms, intended for integration with higher-voltage OEM audio systems; confirm compatibility with the exact AF bit amplifier and vehicle system.",
+      "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact official Audison product page and manufacturer gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apl2",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APL2 - AP4D/1D LINK CABLE"
+      },
+      "title": "Audison APL2 AP4D / AP1D Amplifier Link Cable",
+      "modelNumber": "APL2",
+      "component": "Amplifier Link Cables",
+      "description": "Connection cable for linking an Audison AP5.9 bit or AP4.9 bit amplifier to an AP4 D or AP1 D amplifier. This is a dedicated amplifier interconnection accessory, not an amplifier or signal processor.",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact official Audison product page and manufacturer gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-reamp-1",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW ReAMP 1 - ADAPTER CABLE BMW-42PIN TO AP BIT"
+      },
+      "title": "Audison APBMW ReAMP 1 BMW 42-Pin Plug-and-Play T-Harness",
+      "modelNumber": "APBMW ReAMP 1",
+      "component": "Vehicle Integration Harnesses",
+      "description": "Plug-and-play harness for replacing the OEM amplifier with an Audison AP bit or AF bit amplifier on BMW vehicles from 2004+ with the Hi-Fi 676 system, or BMW vehicles from 2014+ with the low-level Harman-Kardon 674 system. Uses the OEM 42-pin connector. Not compatible with MOST 677/688 systems or current RAM-equipped models requiring AFBMW ReAMP 3; ReAMP 1, ReAMP 2 and ReAMP 3 have different pinouts and are not interchangeable. Check the exact factory audio option before ordering.",
+      "imageUrl": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact official Audison product page and manufacturer gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-biamp-2",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW BIAMP 2 - UNDERSEAT T-H SET 450CM/177 in 2PCS"
+      },
+      "title": "Audison APBMW BIAMP 2 BMW / MINI Underseat Amplifier T-Harness",
+      "modelNumber": "APBMW BIAMP 2",
+      "component": "Vehicle Integration Harnesses",
+      "description": "Plug-and-play T-harness pair for BMW and MINI vehicles without a factory amplifier. Routes the front-speaker signal from the OEM head unit through the under-seat woofer connector to an Audison AP bit amplifier, then routes amplifier outputs to the front-door midrange and under-seat subwoofer without cutting OEM wiring. Includes left- and right-channel cables, each 450 cm long. Not for vehicles equipped with an OEM amplifier.",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact official Audison product page and manufacturer gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
