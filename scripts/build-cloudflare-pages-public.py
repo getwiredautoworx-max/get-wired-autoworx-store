@@ -31,11 +31,11 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "trailer-towing.html", "product-image-treatment-pilot.html",
 ]
 PREVIEW_ASSET_FILES = [
     "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
-    "product-image-treatment-sample.json",
+    "product-image-treatment-sample.json", "trailer-towing-catalogue.json",
     "audio-catalogue-secondary-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
@@ -108,7 +108,10 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
+review_catalogue_requirements = [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]
+if include_preview:
+    review_catalogue_requirements.append(("trailer-towing-catalogue.json", 165))
+for filename, expected_minimum in review_catalogue_requirements:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
@@ -123,7 +126,15 @@ for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), (
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
             raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
-print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 price=POR stock=unconfirmed")
+    if filename == "trailer-towing-catalogue.json":
+        expected_fields = {"subcategory", "title", "description", "priceDisplay", "availabilityDisplay"}
+        if any(set(record) != expected_fields for record in records):
+            raise SystemExit("Trailer & Towing public records contain unexpected internal fields")
+        if any(record.get("priceDisplay") != "Price On Request due to Limited Stock and Availability" for record in records):
+            raise SystemExit("Trailer & Towing customer price wording does not match owner policy")
+        if re.search(r"\bASC\b|supplier|category_id|reviewStatus|stock_quantity|uniqueSupplierCodes", serialised, re.I):
+            raise SystemExit("Trailer & Towing public data exposes supplier or internal fields")
+print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 trailer_towing=165 price=POR stock=unconfirmed")
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
