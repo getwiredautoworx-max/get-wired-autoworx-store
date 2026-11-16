@@ -1776,3 +1776,12 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Latest test assertion commit: `74942df95f9d6a244998855aa7be33a21229d9a1`. Exact-head CI result for this newest commit not yet confirmed. The most recent completed public-package run still failed at the second stale assertion before its correction.
 - Hosted staging deployment of this latest route has not been confirmed. Do not present the route as live or claim hosted QA. The current workflow uses the Cloudflare Pages `owner-preview` branch and exact-SHA checks; only run where it is confirmed not to incur paid Cloudflare credits.
 - PR #208 remains draft/unmerged; no live store category, product import, Supabase write, production deployment or Axxess upload.
+
+
+## AUDIO AUDISON IMAGE EXTRACTION — TASK START — 2026-11-16
+- Task ID: AUDIO-AUDISON-IMAGE-EXTRACTION-2026-11-16.
+- Preflight: read the owner-authoritative directives and current handover on `main`; verified current `main` head `1f65437249be0e1588a568665c448f49c39f2677`.
+- Scope: repair the review-only Audison official-product image candidate extractor. Do not touch storefront routes, product imports, pricing, stock, OneNav branch, ASC workstream, deployment or production.
+- Evidence at start: 15 manifest entries all share one image URL and SHA-256; the latest scheduled extractor run succeeded at schema/execution level but did not produce model-specific images.
+- Acceptance: use exact-model manufacturer gallery images only when the image alt/title proves the model; reject shared generic image hashes; retain all candidates as review-only; verify the next exact workflow output; no customer publication.
+- Release boundary: do not deploy, merge, alter live data or consume Cloudflare/Netlify credits.
