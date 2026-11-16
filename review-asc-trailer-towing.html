@@ -1,3 +1,49 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ASC Trailer & Towing — Owner Review</title><style>*{box-sizing:border-box}body{margin:0;background:#eef3f7;color:#173650;font-family:Arial,sans-serif}.wrap{max-width:1400px;margin:auto;padding:16px}.banner{background:#08223a;color:white;border-left:5px solid #08a5ff;border-radius:12px;padding:18px}.banner h1{margin:8px 0}.banner p{line-height:1.5;color:#d7e7f4}.badge{background:#ffdf80;color:#302300;padding:5px 8px;border-radius:5px;font-size:11px;font-weight:bold}.stats,.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.stat,.card,.controls{background:white;border:1px solid #d5e0e8;border-radius:10px;padding:12px}.stat b{display:block;font-size:22px;color:#0878c9}.controls{display:flex;gap:8px;flex-wrap:wrap}.controls input,.controls select{padding:11px;border:1px solid #b7c9d7;border-radius:8px;min-height:42px}.controls input{flex:1;min-width:200px}.card{min-width:0}.sku{font:700 12px monospace;color:#0878c9}.tag{display:inline-block;background:#eaf4fb;padding:4px 7px;border-radius:5px;font-size:11px;margin-top:7px}.card h2{font-size:15px;line-height:1.4}.desc{font-size:13px;color:#405b70;line-height:1.5}.price{font-size:13px;color:#9a4d00;font-weight:bold}.note{font-size:11px;color:#6b7e8c}.hint{font-size:12px;color:#647b8e}@media(max-width:950px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.stats{grid-template-columns:repeat(2,1fr)}.card{padding:9px}}@media(max-width:350px){.grid{grid-template-columns:1fr}}</style></head><body><main class="wrap"><header class="banner"><span class="badge">OWNER REVIEW · NOT LIVE · NOT IMPORTED</span><h1>Trailer & Towing Catalogue</h1><p>ASC supplier catalogue review. Check supplier SKU, source description, subcategory and price status. Supplier descriptions are shown as extracted; suspected errors are not silently corrected. Nothing on this page writes to Supabase or publishes products to the live store.</p></header><section class="stats"><div class="stat"><b id="total">—</b>Products</div><div class="stat"><b id="unique">—</b>Unique SKUs</div><div class="stat"><b id="groups">—</b>Subcategories</div><div class="stat"><b>Review only</b>Publication state</div></section><section class="controls"><input id="q" type="search" placeholder="Search SKU or description"><select id="cat"><option value="all">All subcategories</option></select><select id="sort"><option value="supplierCode">Sort by SKU</option><option value="description">Sort by description</option><option value="subcategory">Sort by subcategory</option></select></section><p class="hint" id="count">Loading catalogue…</p><section class="grid" id="items"></section></main><script>
-function parseCSV(s){let a=[],r=[],f='',q=false;for(let i=0;i<s.length;i++){let c=s[i];if(q){if(c==='"'&&s[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){r.push(f);f=''}else if(c==='\n'){r.push(f.replace(/\r$/,''));a.push(r);r=[];f=''}else f+=c}if(f||r.length){r.push(f.replace(/\r$/,''));a.push(r)}return a}const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let data=[];function render(){let q=document.getElementById('q').value.toLowerCase(),cat=document.getElementById('cat').value,sort=document.getElementById('sort').value;let rows=data.filter(p=>(cat==='all'||p.subcategory===cat)&&(!q||(p.supplierCode+' '+p.description).toLowerCase().includes(q)));rows.sort((a,b)=>a[sort].localeCompare(b[sort]));document.getElementById('count').textContent='Showing '+rows.length+' of '+data.length+' products';document.getElementById('items').innerHTML=rows.map(p=>'<article class="card"><div class="sku">ASC SKU: '+esc(p.supplierCode)+'</div><span class="tag">'+esc(p.subcategory)+'</span><h2>'+esc(p.description)+'</h2><p class="desc">Source category: '+esc(p.category)+'</p><p class="price">Price On Request Due to Stock Availability</p><p class="note">Source price field: '+esc(p.price)+'</p></article>').join('')||'<p>No matching products.</p>'}fetch('suppliers/ASC/ASC_Trailer_and_Towing_Catalogue.csv').then(r=>{if(!r.ok)throw Error('CSV not found in this preview');return r.text()}).then(s=>{let rows=parseCSV(s);data=rows.slice(1).filter(r=>r.length===5&&r[2]).map(r=>({category:r[0],subcategory:r[1],supplierCode:r[2],description:r[3],price:r[4]}));let cats=[...new Set(data.map(p=>p.subcategory))].sort();document.getElementById('total').textContent=data.length;document.getElementById('unique').textContent=new Set(data.map(p=>p.supplierCode)).size;document.getElementById('groups').textContent=cats.length;document.getElementById('cat').innerHTML='<option value="all">All subcategories</option>'+cats.map(c=>'<option>'+esc(c)+'</option>').join('');render()}).catch(e=>document.getElementById('count').textContent='Preview load error: '+e.message);['q','cat','sort'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',render));
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Trailer &amp; Towing — Isolated Test Category | Get Wired AutoWorx</title>
+<style>
+:root{color-scheme:dark;--bg:#07111e;--panel:#0d1d30;--line:#244663;--blue:#16a9ff;--muted:#a9bdcf}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f4f8fc;font:15px/1.5 Arial,sans-serif}
+header{background:#06101c;border-bottom:1px solid var(--line);padding:22px max(16px,calc((100% - 1180px)/2))}
+main{max-width:1180px;margin:auto;padding:20px 16px 50px}
+h1{margin:5px 0;font-size:clamp(25px,4vw,38px)}p{color:var(--muted)}
+.flag{display:inline-block;padding:5px 9px;border:1px solid #a77923;background:#3a2a0b;color:#ffe1a1;border-radius:5px;font-size:11px;font-weight:bold;letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.stat,.controls,.product{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px}
+.stat b{display:block;font-size:23px;color:var(--blue)}
+.controls{display:flex;gap:9px;flex-wrap:wrap}.controls input,.controls select{min-height:44px;padding:10px;border-radius:7px;border:1px solid #42627e;background:#07111e;color:white}.controls input{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:14px}.product h2{font-size:15px;line-height:1.4;margin:8px 0}.tag{display:inline-block;background:#15334d;color:#cceaff;padding:3px 7px;border-radius:5px;font-size:11px}.price{color:#ffd28b;font-weight:bold}.small{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.controls input{min-width:100%}}
+</style>
+</head>
+<body>
+<header><span class="flag">ISOLATED TEST · REVIEW ONLY · NOT LIVE · NOT IMPORTED</span><h1>Trailer &amp; Towing</h1><p>Temporary catalogue test category. It is deliberately separate from the three approved homepage departments and is not linked from customer navigation.</p></header>
+<main>
+<p><b>Testing boundary:</b> Sanitised catalogue records only. Supplier codes and source prices are excluded. No checkout, stock claim, product import or live database write is enabled.</p>
+<section class="stats"><div class="stat"><b id="total">—</b>Catalogue records</div><div class="stat"><b id="groups">—</b>Source groups</div><div class="stat"><b>0</b>Imported products</div><div class="stat"><b>Review only</b>Publication state</div></section>
+<section class="controls"><input id="q" type="search" placeholder="Search product descriptions"><select id="cat"><option value="all">All groups</option></select><select id="sort"><option value="title">Sort by product</option><option value="subcategory">Sort by group</option></select></section>
+<p id="count" class="small">Loading isolated test catalogue…</p><section id="items" class="grid"></section>
+</main>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let records=[];
+function render(){const q=document.getElementById('q').value.trim().toLowerCase(),cat=document.getElementById('cat').value,sort=document.getElementById('sort').value;
+const rows=records.filter(p=>(cat==='all'||p.subcategory===cat)&&(!q||(p.title+' '+p.description).toLowerCase().includes(q)));
+rows.sort((a,b)=>String(a[sort]||'').localeCompare(String(b[sort]||'')));
+document.getElementById('count').textContent='Showing '+rows.length+' of '+records.length+' review-only products';
+document.getElementById('items').innerHTML=rows.map(p=>'<article class="product"><span class="tag">'+esc(p.subcategory)+'</span><h2>'+esc(p.title)+'</h2><p>'+esc(p.description)+'</p><p class="price">'+esc(p.priceDisplay)+'</p><p class="small">'+esc(p.availabilityDisplay)+'</p><p class="small">DO NOT IMPORT · '+esc(p.reviewStatus)+'</p></article>').join('')||'<p>No matching products.</p>';}
+fetch('assets/asc-trailer-towing-owner-preview.json').then(r=>{if(!r.ok)throw Error('Sanitised review dataset unavailable');return r.json()}).then(data=>{
+if(data.status!=='OWNER_PREVIEW_ONLY_NOT_IMPORTED'||!Array.isArray(data.records))throw Error('Dataset status validation failed');
+records=data.records.filter(p=>p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'&&p.price===null&&p.stock_quantity===0);
+const groups=[...new Set(records.map(p=>p.subcategory))].sort();
+document.getElementById('total').textContent=records.length;document.getElementById('groups').textContent=groups.length;
+document.getElementById('cat').innerHTML='<option value="all">All groups</option>'+groups.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
+render();
+}).catch(e=>{document.getElementById('count').textContent='Catalogue test could not load: '+e.message;});
+['q','cat','sort'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',render));
+</script>
+</body></html>
