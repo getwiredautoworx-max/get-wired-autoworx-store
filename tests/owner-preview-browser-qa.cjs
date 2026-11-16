@@ -54,10 +54,15 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
         return iframe && iframe.contentDocument &&
           iframe.contentDocument.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3;
       }, null, { timeout: 30000 });
-      const frame = page.frames().find(f => f.url().includes('index-new.html'));
-      assert.ok(frame, 'owner preview must embed the current three-category storefront');
-      await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
-      await frame.waitForFunction(() => document.documentElement.dataset.gwPreviewLocked === '1', null, { timeout: 10000 });
+      const frameSrc = await page.locator('#store').getAttribute('src');
+      assert.ok(frameSrc && frameSrc.includes('index-new.html'), 'owner preview must embed the current three-category storefront');
+      const frame = page.frameLocator('#store');
+      await frame.locator('#categoryGrid>.rootCategoryLink').first().waitFor({ state: 'attached', timeout: 30000 });
+      await page.waitForFunction(() => {
+        const iframe = document.querySelector('#store');
+        return iframe && iframe.contentDocument &&
+          iframe.contentDocument.documentElement.dataset.gwPreviewLocked === '1';
+      }, null, { timeout: 10000 });
       const visibleCheckoutControls = await frame.locator('a[href*="checkout"], .checkoutNow, #checkout, .checkout-fab').evaluateAll(nodes =>
         nodes.filter(node => {
           const style = getComputedStyle(node);
