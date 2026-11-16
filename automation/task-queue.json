@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-16: Audison candidate batch is complete for the 36 exact official product-page records. The 34 Audison enrichment overrides plus seven already-integrated verified primary-preview records cover the candidate set. The global override file has 41 records (34 Audison, 7 other approved brands), all PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null and no supplier fields. Public-content SHA f7c9c4c2fe8a5ed0fb4fe0eabdb93f9a6142ffef passed Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit. Latest manifest-only commit 3dac179614a8af26f308892e0b7986c8cfc2015c. Manifest: 36 exact candidates, 25 local unique image files and 11 official remote-only image URLs blocked from local download by Audison anti-bot HTML; remote URLs are used in preview where exact and approved. Next subtask: OneNav Classic head-unit reconciliation on canonical main as review-only data; do not merge/rebase the divergent OneNav branch. First: set the existing Prado preview model to OA014-1, add exact OA715-1 Jimny, then verify OA009-1 image while keeping OA009-2 separate. Production QA/public URL verification remain blocked by live Cloudflare challenge and non-consolidated production; no deployment or credit use."
+      "next_action": "2026-11-16: Audison candidate batch and product groups are complete for the 36 exact official product-page records; 34 Audison overrides plus seven existing verified primary-preview records cover the candidate set. Global override file now has 42 records (34 Audison, 2 OneNav, 6 other approved brands), all PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null and no supplier fields. OneNav Classic: existing Prado record pw-2120 now carries official manufacturer SKU OA014-1; added Jimny record pw-2158 as OA715-1 using the exact manufacturer-hosted installed-fitment image. OA009-1 Toyota 280mm details are verified, but no exact image has been approved; rejected the ON009-2A11 CANBUS Pro Series image and kept OA009-1 image pending. Exact main package QA 77164230 passed isolated preview and supplier-safe sanitization; Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit passed on content SHA 4298e6d. OneNav branch remains 24 ahead/250 behind and is not merged/rebased. Next: finish OneNav Classic image reconciliation (OA009-1 remains pending), verify OneNav brand logo/button, then continue remaining OneNav model candidates. Production QA/public URL verification remain blocked by live Cloudflare challenge and non-consolidated production; no deployment or credit use."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -214,7 +214,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "Subtask of the single active audio-video-content-enrichment workstream, executed directly on canonical main as review-only product data. Do not merge, rebase, force-push or create a replacement for the divergent OneNav branch (24 ahead / 250 behind). Start with OA014-1 Prado model-number reconciliation, add OA715-1 Jimny with exact official manufacturer image, then verify OA009-1 image and keep OA009-2 distinct. Use exact official fitment/spec evidence, Price On Request, null stock and PREVIEW_ONLY_NOT_LIVE; no supplier fields."
+      "next_action": "Direct canonical-main review-only data work; do not merge/rebase/force-push the divergent OneNav branch (24 ahead / 250 behind). Completed: OA014-1 Prado Classic model number added to pw-2120; OA715-1 Jimny Classic added as pw-2158 with official OneNav installed-fitment image and exact specs. OA009-1 Toyota 280mm details verified, but image remains pending; reject ON009-2A11 Pro Series CANBUS image and keep OA009-2 separate. Next: search for an exact OA009-1 image without variant inference; if none, retain image-pending state, then verify OneNav brand logo/button and continue the remaining exact OneNav rows."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -251,7 +251,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Supporting QA only. Exact public-content SHA f600bbface93f435d44105bed68b4b340125b940 passed Cloudflare Pages Public Package QA, Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit. Secondary audio preview audit reports 105 PREVIEW_ONLY_NOT_LIVE and 3 explicit holds. Production QA still reports LIVE_BUTTON_ONLY_NOT_DEPLOYED; public HTTP verification sees Cloudflare challenge HTML for the live homepage/category JSON/product image. No production deployment or credit use."
+      "next_action": "Supporting QA only. Package QA on exact main 77164230 passed standard customer-only build and isolated non-production preview routes/supplier-safe sanitization. Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit passed on preceding content SHA 4298e6d. Production QA still reports LIVE_BUTTON_ONLY_NOT_DEPLOYED; public URL check sees Cloudflare challenge HTML for the live homepage/category JSON/product image. No production deployment or credit use."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -316,7 +316,7 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Supporting release gate only. Non-production customer-only and isolated owner-preview packages build and pass route/supplier-safety tests on public-content SHA f600bbface93f435d44105bed68b4b340125b940. Live production remains HOLD because it is not the consolidated button-only storefront and Cloudflare challenge HTML blocks public homepage/category JSON/product image verification. No deployment.",
+      "next_action": "Supporting release gate only. Non-production customer-only and isolated owner-preview packages build and pass route/supplier-safety tests on exact main 77164230. Live production remains HOLD because it is not the consolidated button-only storefront and Cloudflare challenge HTML blocks public homepage/category JSON/product image verification. No deployment.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     },
@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "3dac179614a8af26f308892e0b7986c8cfc2015c",
+    "canonical_head": "77164230a3896e6b004a5adcc771599e04794813",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
@@ -354,7 +354,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "f7c9c4c2fe8a5ed0fb4fe0eabdb93f9a6142ffef",
+    "last_verified_main_sha": "77164230a3896e6b004a5adcc771599e04794813",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
