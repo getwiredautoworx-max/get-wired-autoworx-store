@@ -15253,6 +15253,62 @@
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
+    },
+    {
+      "candidate_id": "av-k6",
+      "brand": "Audison",
+      "source_model": "AV K6",
+      "source_title": "Audison - AV K6 - KIT 2 WAY AV 1.1+AV 6.5+AV CX 2W MB+GRILLE",
+      "source_component": "",
+      "source_sku_reference_internal": "69051030",
+      "official_product_page_url": "https://audison.com/product/av-k6/",
+      "extracted_at": "2026-11-16T08:04:23.496307+00:00",
+      "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
+      "final_url": "https://audison.com/product/av-k6/",
+      "page_title": "",
+      "h1": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "jsonld_image_urls": [],
+      "image_candidates": [],
+      "jsonld_products": 0,
+      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "image_url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+      "image_alt": "AV K6",
+      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 1,
+      "status": "FETCH_FAILED_RETRY",
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "image URL returned non-image content type text/html; body prefix='<html><head><link rel=\"icon\" href=\"data:;\"><meta http-equiv=\"refresh\" content=\"0;/.well-known/sgcapt'"
+    },
+    {
+      "candidate_id": "avk-6a-p-ii",
+      "brand": "Audison",
+      "source_model": "AVK 6A P II",
+      "source_title": "Audison - AVK 6A P II - KIT 2Way ACTIVE WOOFER+TWEETER",
+      "source_component": "",
+      "source_sku_reference_internal": "69051035",
+      "official_product_page_url": "https://audison.com/product/avk-6a-p-ii/",
+      "extracted_at": "2026-11-16T08:04:25.244225+00:00",
+      "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
+      "final_url": "https://audison.com/product/avk-6a-p-ii/",
+      "page_title": "",
+      "h1": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "jsonld_image_urls": [],
+      "image_candidates": [],
+      "jsonld_products": 0,
+      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "image_url": "https://static.audison.com/media/2025/02/Audison_AV-K6PA-II_KIT_2025_01_16-copia.jpg",
+      "image_alt": "AVK 6A P II",
+      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 1,
+      "status": "FETCH_FAILED_RETRY",
+      "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
+      "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
+      "error": "image URL returned non-image content type text/html; body prefix='<html><head><link rel=\"icon\" href=\"data:;\"><meta http-equiv=\"refresh\" content=\"0;/.well-known/sgcapt'"
     }
   ],
   "runs": [
@@ -15417,7 +15473,13 @@
       "candidate_count": 0,
       "remaining_exact_pages": 0,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T08:04:26.886773+00:00",
+      "candidate_count": 2,
+      "remaining_exact_pages": 0,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T07:59:21.268740+00:00"
+  "updated_at": "2026-11-16T08:04:26.886803+00:00"
 }
