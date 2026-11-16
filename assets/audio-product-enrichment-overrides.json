@@ -15,7 +15,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "modelNumber": null,
-      "appendIfMissing": true
+      "appendIfMissing": true,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "match": {
@@ -36,7 +37,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "id": "preview-audison-bit-dmi",
-      "appendIfMissing": true
+      "appendIfMissing": true,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-bcon",
@@ -57,7 +59,8 @@
       "imageReviewNote": "Exact Audison B-CON official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-arcam-avr21",
@@ -78,7 +81,8 @@
       "imageReviewNote": "Exact ARCAM AVR21 official product page and manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-adeo-plano-135-vision-acoustic",
@@ -99,7 +103,8 @@
       "imageReviewNote": "Exact ADEO Plano 135-inch Vision Acoustic product listing and listing image verified against the 135-inch, 16:9, Vision Acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-adeo-plano-120-reference-white-2",
@@ -120,7 +125,8 @@
       "imageReviewNote": "Exact ADEO Plano 120-inch Reference White 2 product listing and listing image verified against the 120-inch, 16:9, non-acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-adeo-plano-135-reference-white-2",
@@ -141,7 +147,8 @@
       "imageReviewNote": "Exact ADEO Plano 135-inch Reference White 2 listing and product image verified against the 135-inch, 16:9, non-acoustic specification; owner-preview only. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-adeo-prestige-180-vision-acoustic",
@@ -162,7 +169,8 @@
       "imageReviewNote": "Exact ADEO Prestige 180-inch Vision Acoustic listing and product image verified against the 180-inch, 16:9, acoustic-transparent specification; owner-preview only. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-arcam-avr11",
@@ -183,7 +191,8 @@
       "imageReviewNote": "Exact ARCAM AVR11 official product page and front-panel manufacturer image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-bit-one-hd-virtuoso",
@@ -204,7 +213,8 @@
       "imageReviewNote": "Exact Audison bit One HD Virtuoso manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-bit-ten",
@@ -225,7 +235,8 @@
       "imageReviewNote": "Exact Audison bit Ten manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-bit-tune",
@@ -246,7 +257,8 @@
       "imageReviewNote": "Exact Audison bit Tune manufacturer product page and image verified; review-only owner preview. No supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-ap4d",
@@ -267,7 +279,8 @@
       "imageReviewNote": "Exact Audison Prima AP4 D manufacturer product page and image verified; rated and maximum power figures retain their stated THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-af-m12-14-bit",
@@ -290,7 +303,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "imageApprovalStatus": "OWNER_AUTHORISED_FOR_OWNER_PREVIEW",
-      "importStatus": "DO_NOT_IMPORT"
+      "importStatus": "DO_NOT_IMPORT",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-af-m8-14-bit",
@@ -313,7 +327,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "imageApprovalStatus": "OWNER_AUTHORISED_FOR_OWNER_PREVIEW",
-      "importStatus": "DO_NOT_IMPORT"
+      "importStatus": "DO_NOT_IMPORT",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-af-m4d",
@@ -334,7 +349,8 @@
       "imageReviewNote": "Exact Audison Forza AF M4D manufacturer product page and image verified; rated output figures retain the stated 14.4 VDC / 1% THD conditions. Review-only owner preview; no supplier item code, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-af-c8-14-bit",
@@ -357,7 +373,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "imageApprovalStatus": "OWNER_AUTHORISED_FOR_OWNER_PREVIEW",
-      "importStatus": "DO_NOT_IMPORT"
+      "importStatus": "DO_NOT_IMPORT",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-af-m5-11-bit",
@@ -380,7 +397,8 @@
       "indicativePrice": null,
       "hasStock": null,
       "imageApprovalStatus": "OWNER_AUTHORISED_FOR_OWNER_PREVIEW",
-      "importStatus": "DO_NOT_IMPORT"
+      "importStatus": "DO_NOT_IMPORT",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apx-4",
@@ -401,7 +419,8 @@
       "imageReviewNote": "Exact APX 4 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apx-5",
@@ -422,7 +441,8 @@
       "imageReviewNote": "Exact APX 5 manufacturer product page and official gallery image visually verified; distinct from the APX 570 5×7 model. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apx-6-5",
@@ -443,7 +463,8 @@
       "imageReviewNote": "Exact APX 6.5 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apx-570",
@@ -464,7 +485,8 @@
       "imageReviewNote": "Exact APX 570 5×7 manufacturer product page and official gallery image visually verified. This is not the round 130 mm APX 5. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apx-690",
@@ -485,7 +507,8 @@
       "imageReviewNote": "Exact APX 690 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-av-x6-5",
@@ -506,7 +529,8 @@
       "imageReviewNote": "Exact AV X6.5 manufacturer page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apbmw-x4e",
@@ -527,7 +551,8 @@
       "imageReviewNote": "Exact APBMW X4E manufacturer page and gallery image visually verified. Large-basket variant kept separate from APBMW X4M small-basket variant. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apbmw-x4m",
@@ -548,7 +573,8 @@
       "imageReviewNote": "Exact APBMW X4M manufacturer page and gallery image visually verified. Small-basket variant kept separate from APBMW X4E large-basket variant. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     },
     {
       "id": "preview-audison-apbmw-a4e",
@@ -569,7 +595,8 @@
       "imageReviewNote": "Exact APBMW A4E manufacturer accessory page and official gallery image visually verified. Classified as speaker mounting accessory, not a speaker. Review-only owner preview; no supplier SKU, price or stock is displayed.",
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
-      "hasStock": null
+      "hasStock": null,
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE"
     }
   ]
 }
