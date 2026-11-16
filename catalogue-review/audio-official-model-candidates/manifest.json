@@ -15262,25 +15262,566 @@
       "source_component": "",
       "source_sku_reference_internal": "69051030",
       "official_product_page_url": "https://audison.com/product/av-k6/",
-      "extracted_at": "2026-11-16T08:04:23.496307+00:00",
+      "extracted_at": "2026-11-16T08:05:27.121442+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-k6/",
-      "page_title": "",
-      "h1": "",
-      "meta_description": "",
-      "og_image_url": "",
+      "page_title": "AV K6 - Audison | Premium Car & Marine Audio Systems",
+      "h1": "AV K6 Kit | 250 W Peak Power | Kit 2 way 4 ohm | AV 1.1 + AV 6.5 + Crossover",
+      "meta_description": "The prestigious Eisa Award European In-Car Speaker System 2010-2011 was bestowed to the AV K6 and AV K5 kits, which gather and comprise the most advanced technologies developed for the Audison components, at the service of music.The whole R & amp;D laboratory's experience was poured into the design of these precious components, to create a",
+      "og_image_url": "https://static.audison.com/media/2023/02/audison-2023-preview-v02.jpg",
       "jsonld_image_urls": [],
-      "image_candidates": [],
+      "image_candidates": [
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/news/",
+          "alt": "News"
+        },
+        {
+          "url": "https://audison.com/blog/",
+          "alt": "Blog"
+        },
+        {
+          "url": "https://audison.com/about-audison/",
+          "alt": "About us"
+        },
+        {
+          "url": "https://elettromedia.com/careers",
+          "alt": "Work with us"
+        },
+        {
+          "url": "https://audison.com/product/av-k6/",
+          "alt": "Contact us"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/zh_CN.svg",
+          "alt": "Change language to 简体中文"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/es_ES.svg",
+          "alt": "Change language to Español"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/de_DE.svg",
+          "alt": "Change language to Deutsch"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/fr_FR.svg",
+          "alt": "Change language to Français"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/it_IT.svg",
+          "alt": "Change language to Italiano"
+        },
+        {
+          "url": "https://audison.com/content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/automotive",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-forza/",
+          "alt": "Forza"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-sr/",
+          "alt": "SR"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifier-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors-bit/",
+          "alt": "Bit"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-thesis/",
+          "alt": "Thesis"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-voce-ii/",
+          "alt": "Voce II"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box-prima/",
+          "alt": "Prima"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-streaming-device/",
+          "alt": "Streaming Device"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-interfaces/",
+          "alt": "Interfaces"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-remote-controller/",
+          "alt": "Remote-Controller"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-sound-tuning-tools/",
+          "alt": "Sound Tuning Tools"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-t-harness/",
+          "alt": "T-Harness"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-cables/",
+          "alt": "Cables"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-wire/",
+          "alt": "Speaker Wire"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-grilles/",
+          "alt": "Speaker Grilles"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-speaker-support/",
+          "alt": "Speaker Mount"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories-others/",
+          "alt": "Others"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "View all"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Explore Now"
+        },
+        {
+          "url": "https://audison.com/marine",
+          "alt": "Overview"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/audison_logo.svg",
+          "alt": "Audison | Premium Car & Marine Audio Systems"
+        },
+        {
+          "url": "https://audison.com/product/av-k6/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/av-k6/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/av-k6/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/av-k6/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/av-k6/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/av-k6/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": ".st0{fill:#FFFFFF;}"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://audison.com",
+          "alt": "Home"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Voce"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers-voce/",
+          "alt": "Back"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_voce-1.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/p_1315389335_AVK6_800_452.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/11/p_1315389335_AVK6_800_452.jpg",
+          "alt": "AV K6"
+        },
+        {
+          "url": "https://audison.com/audison-dealers",
+          "alt": "Find a Dealer"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/articles/12479896625425-Download-Comp-System-Coax-Sub-Voce-Manual",
+          "alt": "Owner's Manual"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/av_k6_tech_sheet_tech_sheet.pdf",
+          "alt": "Technical Datasheet"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://audison.com/product/av-1-1/",
+          "alt": "AV 1.1"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://audison.com/product/av-6-5/",
+          "alt": "AV 6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://audison.com/product/av-x6-5/",
+          "alt": "AV X6.5"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/06/p_1315389333_AV30a_800_754.jpg",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://audison.com/product/av-3-0/",
+          "alt": "AV 3.0"
+        },
+        {
+          "url": "https://static.audison.com/media/2023/02/audison_loading.svg",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car audio configurator"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Locate a distributor"
+        },
+        {
+          "url": "https://audison.com/product/av-k6/",
+          "alt": "Get Support"
+        },
+        {
+          "url": "https://audison.com/product/av-k6/",
+          "alt": "EN"
+        },
+        {
+          "url": "https://audison.com/it/product/av-k6/",
+          "alt": "IT"
+        },
+        {
+          "url": "https://audison.com/fr/product/av-k6/",
+          "alt": "FR"
+        },
+        {
+          "url": "https://audison.com/de/product/av-k6/",
+          "alt": "DE"
+        },
+        {
+          "url": "https://audison.com/es/product/av-k6/",
+          "alt": "ES"
+        },
+        {
+          "url": "https://audison.com/zh/product/av-k6/",
+          "alt": "ZH"
+        },
+        {
+          "url": "https://audison.com/support/",
+          "alt": "Support"
+        },
+        {
+          "url": "https://audison.com/support/warranty/",
+          "alt": "Warranty"
+        },
+        {
+          "url": "https://audison.zendesk.com/hc/en-gb/categories/4620538812177-FAQ-Frequently-Asked-Questions",
+          "alt": "FAQ"
+        },
+        {
+          "url": "https://audison.com/audison-dealers/",
+          "alt": "Dealers"
+        },
+        {
+          "url": "https://audison.com/audison-distributors/",
+          "alt": "Distributors"
+        },
+        {
+          "url": "https://audison.com/collections/car-dsp-amplifiers/",
+          "alt": "DSP Amps"
+        },
+        {
+          "url": "https://audison.com/collections/car-amplifiers/",
+          "alt": "Amplifiers"
+        },
+        {
+          "url": "https://audison.com/collections/car-processors/",
+          "alt": "Processors"
+        },
+        {
+          "url": "https://audison.com/collections/car-speakers/",
+          "alt": "Speakers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofers/",
+          "alt": "Subwoofers"
+        },
+        {
+          "url": "https://audison.com/collections/car-subwoofer-box/",
+          "alt": "Subwoofer Box"
+        },
+        {
+          "url": "https://audison.com/collections/car-accessories/",
+          "alt": "Accessories"
+        },
+        {
+          "url": "https://audison.com/collections/car-merchandising/",
+          "alt": "Merchandising"
+        },
+        {
+          "url": "https://audison.com/marine/the-new-reference/",
+          "alt": "The New Reference"
+        },
+        {
+          "url": "https://audison.com/marine/on-board/",
+          "alt": "On Board"
+        },
+        {
+          "url": "https://audison.com/marine/the-collection/",
+          "alt": "The Collection"
+        },
+        {
+          "url": "https://audison.com/marine/iconic-design/",
+          "alt": "Iconic Design"
+        },
+        {
+          "url": "https://audison.com/marine/heritage/",
+          "alt": "Heritage"
+        },
+        {
+          "url": "https://audison.com/marine#how-it-started",
+          "alt": "How it Started"
+        },
+        {
+          "url": "https://audison.com/sound-pack-configurator/",
+          "alt": "Car Audio Configurator"
+        },
+        {
+          "url": "https://audison.com/bit-dmi-vehicle-compatibility/",
+          "alt": "bit DMI Vehicle Compatibility"
+        },
+        {
+          "url": "https://audison.com/audison-catalogue/",
+          "alt": "Audison Catalogue"
+        },
+        {
+          "url": "https://audison.com/thesis-catalogue/",
+          "alt": "Thesis Catalogue"
+        },
+        {
+          "url": "https://audison.com/marine-catalogue/",
+          "alt": "Marine Catalogue"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "terms & conditions"
+        },
+        {
+          "url": "https://audison.com/privacy-policy-forms/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1",
+          "alt": ""
+        },
+        {
+          "url": "https://audison.com/privacy-policy/",
+          "alt": "Privacy Policy"
+        },
+        {
+          "url": "https://audison.com/cookie-policy/",
+          "alt": "Cookie Policy"
+        },
+        {
+          "url": "https://www.facebook.com/tr?id=164116730855418&ev=PageView&noscript=1&cd%5Bpage_title%5D=AV+K6&cd%5Bpost_type%5D=products&cd%5Bpost_id%5D=918&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=audison.com%2Fproduct%2Fav-k6%2F",
+          "alt": ""
+        },
+        {
+          "url": "https://static.audison.com/media/2022/11/audison_logo_c.svg",
+          "alt": ""
+        }
+      ],
       "jsonld_products": 0,
-      "model_match_status": "MODEL_MATCH_NOT_PROVEN",
+      "model_match_status": "EXACT_MODEL_TEXT_FOUND",
       "image_url": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
       "image_alt": "AV K6",
-      "image_match_evidence": "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 1,
+      "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
+      "attempts": 2,
       "status": "FETCH_FAILED_RETRY",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
-      "error": "image URL returned non-image content type text/html; body prefix='<html><head><link rel=\"icon\" href=\"data:;\"><meta http-equiv=\"refresh\" content=\"0;/.well-known/sgcapt'"
+      "error": "Remote end closed connection without response"
     },
     {
       "candidate_id": "avk-6a-p-ii",
@@ -15479,7 +16020,13 @@
       "candidate_count": 2,
       "remaining_exact_pages": 0,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T08:05:29.827821+00:00",
+      "candidate_count": 1,
+      "remaining_exact_pages": 0,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T08:04:26.886803+00:00"
+  "updated_at": "2026-11-16T08:05:29.827848+00:00"
 }
