@@ -619,6 +619,182 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-130",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 130 - KIT 2Way AP 1+AP 5+Grilles"
+      },
+      "title": "Audison APK 130 5-inch 2-Way Component Speaker Kit",
+      "modelNumber": "APK 130",
+      "description": "Two-way component kit pairing the AP 1 tweeter with a 130 mm (5 in) AP 5 woofer and APCX TW crossover. Rated at 225 W peak and 75 W continuous, 4 ohm impedance and 70 Hz–20 kHz frequency response. The woofer uses a 32 mm voice coil; the 26 mm tweeter crossover offers 0 dB / +2 dB level adjustment for different mounting positions.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-130_2022_12_13_JPG-55.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-165",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 165 - KIT 2Way AP 1+AP 6.5+Grilles"
+      },
+      "title": "Audison APK 165 6.5-inch 2-Way Component Speaker Kit",
+      "modelNumber": "APK 165",
+      "description": "Two-way component kit pairing the AP 1 tweeter with a 165 mm (6.5 in) AP 6.5 woofer, grilles and APCX TW crossover. Rated at 300 W peak and 100 W continuous, 4 ohm impedance and 60 Hz–20 kHz frequency response. Uses a 32 mm woofer voice coil and a tweeter level selector for installation tuning.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-165_2022_10_05_JPG-72.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-165p",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 165P - KIT 2Way AP 6.5P+AP 1P+XOVER"
+      },
+      "title": "Audison APK 165P 6.5-inch High-Power 2-Way Component Speaker Kit",
+      "modelNumber": "APK 165P",
+      "description": "High-power two-way kit combining the AP 1P tweeter and 165 mm (6.5 in) AP 6.5P woofer with crossover. Rated at 345 W peak and 115 W continuous, 4 ohm impedance and 50 Hz–24 kHz frequency response. The woofer uses a 32 mm voice coil; the 29 mm tweeter includes AIF (Any Install Faceplate) mounting options.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165P.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-165-ohm2",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 165 Ohm2 - KIT 2Way AP 1+AP 6.5 Ohm2+Grilles"
+      },
+      "title": "Audison APK 165 Ohm2 6.5-inch 2-Way 2-Ohm Component Speaker Kit",
+      "modelNumber": "APK 165 Ohm2",
+      "description": "Two-way 2 ohm component kit pairing the AP 1 tweeter with the 165 mm (6.5 in) AP 6.5 Ohm2 woofer and separate dedicated woofer/tweeter crossovers. Rated at 300 W peak and 100 W continuous, with a 50 Hz–20 kHz frequency response. This is the 2 ohm version; it is not interchangeable with the 4 ohm APK 165 kit.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2022/10/1462525932_APK165_Ohm2_Grile_800_622.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-690",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 690 - KIT 2Way AP 1+AP 690+XOVER"
+      },
+      "title": "Audison APK 690 6×9-inch 2-Way Component Speaker Kit",
+      "modelNumber": "APK 690",
+      "description": "Two-way component kit pairing the AP 1 tweeter with a 6×9 in AP 690 elliptical woofer and dedicated APCX TW 690 crossover. Rated at 300 W peak and 100 W continuous, 4 ohm impedance, 95 dB sensitivity and 40 Hz–20 kHz frequency response. The compact crossover includes tweeter-level attenuation for installation tuning.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2026/06/Audison_APK-690.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apk-163",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APK 163 - KIT 3Way AP 1+AP 6.5+AP 4+XOVER+Grilles"
+      },
+      "title": "Audison APK 163 3-Way Component Speaker Kit",
+      "modelNumber": "APK 163",
+      "description": "Three-way component kit comprising the AP 1 tweeter, 100 mm AP 4 midrange, 165 mm (6.5 in) AP 6.5 woofer, grilles and dedicated crossovers for the individual drivers. Rated at 375 W peak and 125 W continuous, 4 ohm impedance and 50 Hz–20 kHz frequency response, with 89.5 dB sensitivity.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-163_SISTEMA_prova-01-2.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-k4e",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW K4E -KIT 2Way TW+MID+ACC for BMW LargeBasket"
+      },
+      "title": "Audison APBMW K4E BMW Large-Basket 4-inch 2-Way Upgrade Kit",
+      "modelNumber": "APBMW K4E",
+      "description": "BMW-MINI 2-way upgrade kit with a 100 mm (4 in) midrange, 29 mm Tetolon dome tweeter, Plug & Play connectors, tweeter support and dedicated crossover. Rated at 100 W peak and 50 W continuous, 4 ohm impedance, 88 dB sensitivity and 90 Hz–23 kHz frequency response. The source catalogue identifies this as the large-basket variant; verify exact vehicle compatibility before purchase.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4E_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apbmw-k4m",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APBMW K4M -KIT 2Way TW+MID+ACC for BMW SmallBasket"
+      },
+      "title": "Audison APBMW K4M BMW Small-Basket 4-inch 2-Way Upgrade Kit",
+      "modelNumber": "APBMW K4M",
+      "description": "BMW-MINI 2-way upgrade kit with a 100 mm (4 in) midrange, 29 mm Tetolon dome tweeter, Plug & Play connectors, tweeter support and dedicated crossover. Rated at 100 W peak and 50 W continuous, 4 ohm impedance and 88 dB sensitivity. The source catalogue identifies this as the small-basket variant; verify exact vehicle compatibility before purchase.",
+      "appendIfMissing": true,
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Component Speaker Kits",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4M.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact model manufacturer product page and official gallery image visually verified. Owner-authorized reseller image use; review-only preview. No supplier SKU, price or stock is displayed.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
