@@ -1764,3 +1764,15 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Exact-head QA from 2026-11-16 failed on a stale test assertion: observed 63 official-manufacturer image statuses vs expected 48. Corrected assertion to 63; current head rerun not yet verified. Previous owner browser QA on a prior head passed mobile 390px and desktop 1280px for the existing owner preview only, not the new Trailer & Towing route.
 - Hosted Cloudflare staging preview not yet verified for current head SHA. Do not claim a live URL until deployment workflow reports exact-SHA success and browser checks pass.
 - User's earlier no-Cloudflare-credit constraint remains. Use only the already-authorised staging workflow if it is demonstrably cost-free; never production deploy.
+
+
+## TRAILER & TOWING CUSTOMER-FACING PREVIEW — QA FINDINGS — 2026-11-16
+- Corrected prior status statement: automated tests HAD run on the candidate and failed; it was inaccurate to describe all test execution as outstanding.
+- First Cloudflare Pages Public Package QA failure was stale manufacturer image audit expectation: observed 63 `official_manufacturer_image_verified_review_only` records vs expected 48. Corrected expected count to 63.
+- Next run exposed another stale assertion: observed 2 `official_manufacturer_page_image_link_review_only` records vs expected 4. Corrected expected count to 2.
+- Added exact owner-approved ASC customer price-display assertion and changed all 165 JSON records to `Price On Request due to Limited Stock and Availability`.
+- Reworked isolated Trailer & Towing page into customer-facing wording; removed visible internal labels/statuses and retained sanitised JSON only. Updated exact-SHA hosted browser QA workflow to visit `review-asc-trailer-towing.html`, verify 165 records, seven filters, 70 Trailer entries, exact POR wording and responsive overflow.
+- Static verification: three approved root departments; no Trailer & Towing homepage/category-menu link; 165 JSON rows; no supplier/SKU/source-price keys; all rows use exact POR wording; route and build allowlist agree.
+- Latest test assertion commit: `74942df95f9d6a244998855aa7be33a21229d9a1`. Exact-head CI result for this newest commit not yet confirmed. The most recent completed public-package run still failed at the second stale assertion before its correction.
+- Hosted staging deployment of this latest route has not been confirmed. Do not present the route as live or claim hosted QA. The current workflow uses the Cloudflare Pages `owner-preview` branch and exact-SHA checks; only run where it is confirmed not to incur paid Cloudflare credits.
+- PR #208 remains draft/unmerged; no live store category, product import, Supabase write, production deployment or Axxess upload.
