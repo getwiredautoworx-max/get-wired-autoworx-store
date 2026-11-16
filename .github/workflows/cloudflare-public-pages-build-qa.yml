@@ -31,6 +31,7 @@ on:
       - "preview-audio-brand.html"
       - "preview-audio-products.html"
       - "preview-planetworld.html"
+      - "trailer-towing.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
       - "catalogue-review/planetworld-one-official-model-audit.csv"
@@ -65,6 +66,7 @@ on:
       - "preview-audio-brand.html"
       - "preview-audio-products.html"
       - "preview-planetworld.html"
+      - "trailer-towing.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
       - "catalogue-review/planetworld-one-official-model-audit.csv"
@@ -99,7 +101,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-audio.html preview-audio-brand.html preview-audio-products.html preview-auto-electrical.html preview-asc-sample.html product-image-treatment-pilot.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-audio.html preview-audio-brand.html preview-audio-products.html preview-auto-electrical.html preview-asc-sample.html trailer-towing.html product-image-treatment-pilot.html; do
             test -s "pages-public/$page"
           done
           for page in preview-planetworld.html asc-catalogue-preview.html asc-catalogue-preview-data.json planetworld-catalogue-preview.json audio-connections-catalogue-preview.json; do
