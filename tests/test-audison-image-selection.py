@@ -17,28 +17,28 @@ def main():
         '<img src="/images/av-11-ii.jpg" alt="AV 1.1 II">'
         '<img src="/images/av-11.jpg" alt="AV 1.1">'
     )
-    candidates = [
-        {"url": item["url"], "alt": item["alt"]}
-        for item in parser.image_candidates
-    ]
+    candidates = [{"url": item["url"], "alt": item["alt"]} for item in parser.image_candidates]
     exact = MODULE.select_exact_model_image(candidates, "AV 1.1")
-    assert exact is not None, "exact AV 1.1 gallery image was not selected"
-    assert exact["url"] == "/images/av-11.jpg", "AV 1.1 must not match AV 1.1 II"
+    assert exact is not None and exact["url"] == "/images/av-11.jpg"
     assert MODULE.select_exact_model_image(candidates, "AV 1.1 II")["url"] == "/images/av-11-ii.jpg"
     assert MODULE.select_exact_model_image(
         [{"url": "https://static.audison.com/banner.jpg", "alt": "Audison website banner"}],
         "AV 1.1",
-    ) is None, "generic banner must never be accepted as an exact-model image"
-    assert MODULE.select_exact_model_image(
-        [{"url": "/images/other.jpg", "alt": "AV 1.1 II"}],
-        "AV 1.1",
-    ) is None, "variant suffix must not be treated as an exact model match"
+    ) is None
 
     parser = MODULE.PageParser()
     parser.feed('<a href="https://static.audison.com/av65pii.jpg" aria-label="Image: AV 6.5 P II"></a>')
     anchor_match = MODULE.select_exact_model_image(parser.image_candidates, "AV 6.5 P II")
-    assert anchor_match is not None and anchor_match["url"].endswith("av65pii.jpg"), "exactly labelled image anchor was not captured"
-    assert MODULE.select_exact_model_image(parser.image_candidates, "AV 6.5") is None, "AV 6.5 must not match AV 6.5 P II"
+    assert anchor_match is not None and anchor_match["url"].endswith("av65pii.jpg")
+    assert MODULE.select_exact_model_image(parser.image_candidates, "AV 6.5") is None
+
+    # A manufacturer page can expose a wrongly named K4E image before the K4M image.
+    k4m_candidates = [
+        {"url": "https://static.audison.com/APBMW-K4E-emo2.jpg", "alt": "Image: APBMW K4M"},
+        {"url": "https://static.audison.com/APBMW-K4M.jpg", "alt": "Image: APBMW K4M"},
+    ]
+    k4m = MODULE.select_exact_model_image(k4m_candidates, "APBMW K4M")
+    assert k4m is not None and k4m["url"].endswith("APBMW-K4M.jpg")
     print("AUDISON_EXACT_MODEL_IMAGE_SELECTION_PASS")
 
 

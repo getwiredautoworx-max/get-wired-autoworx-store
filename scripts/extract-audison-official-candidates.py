@@ -157,24 +157,34 @@ def model_match(source_model, source_title, page_title, h1, description):
     return "MODEL_MATCH_NOT_PROVEN"
 
 def select_exact_model_image(image_candidates, source_model):
-    """Accept a gallery image only when its own alt/title identifies the exact model."""
+    """Select only an exact model-labelled official image, preferring a matching filename."""
     target = re.sub(r"[^a-z0-9]+", "", clean_text(source_model).casefold())
     if not target:
         return None
-    for candidate in image_candidates:
+    matches = []
+    for index, candidate in enumerate(image_candidates):
         label = clean_text(candidate.get("alt"))
         label = re.sub(r"^(?:image|product image)\s*:\s*", "", label, flags=re.IGNORECASE)
         alt_key = re.sub(r"[^a-z0-9]+", "", label.casefold())
+        if target != alt_key:
+            continue
         candidate_url = clean_text(candidate.get("url"))
         parsed = urlparse(candidate_url)
         if parsed.path and not re.search(r"\.(?:png|jpe?g|webp|avif)$", parsed.path, flags=re.IGNORECASE):
             continue
         if parsed.hostname and parsed.hostname.lower() not in ALLOWED_IMAGE_HOSTS:
             continue
-        if target and target == alt_key:
-            return candidate
-    return None
-
+        filename_key = re.sub(r"[^a-z0-9]+", "", Path(parsed.path).name.casefold())
+        # K4E and K4M are distinct BMW fitment kits. Never cross-use their product images.
+        if target == "apbmwk4m" and "apbmwk4e" in filename_key:
+            continue
+        if target == "apbmwk4e" and "apbmwk4m" in filename_key:
+            continue
+        score = 2 if target in filename_key else 1
+        matches.append((score, -index, candidate))
+    if not matches:
+        return None
+    return max(matches, key=lambda item: (item[0], item[1]))[2]
 
 def download_image(url, candidate_id):
     if not url: return {"status": "NO_IMAGE_URL"}
@@ -242,7 +252,8 @@ def normalize_audit_row(raw):
             "source_title": source_title, "source_component": "",
             "source_sku": clean_text(raw.get("supplier_sku_reference_only")),
             "official_product_page_url": clean_text(raw.get("official_manufacturer_reference")),
-            "image_url_candidate": "",
+            "image_url_candidate": clean_text(raw.get("image_url_candidate")),
+            "image_alt_candidate": clean_text(raw.get("image_alt_candidate")),
         }
     if raw.get("match_status") != "OFFICIAL_EXACT_PRODUCT_PAGE":
         return None
@@ -323,14 +334,27 @@ def main():
             page = get_page(url)
             item.update(page)
             item["model_match_status"] = model_match(source_model, source_title, page["page_title"], page["h1"], page["meta_description"])
-            exact_image = select_exact_model_image(page.get("image_candidates", []), source_model)
+            image_candidates = list(page.get("image_candidates", []))
+            manual_image_url = clean_text(row.get("image_url_candidate"))
+            manual_image_alt = clean_text(row.get("image_alt_candidate"))
+            if manual_image_url and manual_image_alt:
+                image_candidates.append({
+                    "url": manual_image_url,
+                    "alt": manual_image_alt,
+                    "evidence_source": "MANUALLY_VERIFIED_OFFICIAL_GALLERY",
+                })
+            exact_image = select_exact_model_image(image_candidates, source_model)
             item["og_image_url"] = page.get("og_image_url", "")
             item["jsonld_image_urls"] = page.get("jsonld_image_urls", [])
             if exact_image:
                 candidate_image = exact_image["url"]
                 item["image_url"] = candidate_image
                 item["image_alt"] = exact_image.get("alt", "")
-                item["image_match_evidence"] = "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT"
+                item["image_match_evidence"] = (
+                    "MANUALLY_VERIFIED_OFFICIAL_GALLERY_IMAGE_ALT"
+                    if exact_image.get("evidence_source") == "MANUALLY_VERIFIED_OFFICIAL_GALLERY"
+                    else "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT"
+                )
                 item.update(download_image(candidate_image, candidate_id))
                 item["image_review_status"] = "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
                 item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
