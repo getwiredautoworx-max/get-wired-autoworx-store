@@ -381,6 +381,111 @@
       "hasStock": null,
       "imageApprovalStatus": "OWNER_AUTHORISED_FOR_OWNER_PREVIEW",
       "importStatus": "DO_NOT_IMPORT"
+    },
+    {
+      "id": "preview-audison-apx-4",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APX 4 - SET COAX 2Way 100mm"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APX 4 4-inch 2-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APX 4",
+      "description": "100 mm (4 in) 2-way coaxial speaker with a concentric tweeter for a single-point sound source. Rated at 120 W peak and 40 W continuous, 4 ohm impedance, 91 dB sensitivity and 80 Hz–23 kHz frequency response. Uses a 32 mm copper voice coil and shallow Triple Wave surround for controlled excursion and OEM-friendly installation.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APX 4 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apx-5",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APX 5 - SET COAX 2Way 130mm"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APX 5 5-inch 2-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APX 5",
+      "description": "130 mm (5 in) 2-way coaxial speaker with a concentric tweeter and shallow Triple Wave surround. Rated at 150 W peak and 50 W continuous, 4 ohm impedance, 93 dB sensitivity and 70 Hz–23 kHz frequency response. Includes a 32 mm copper voice coil and compact basket designed for OEM integration.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APX 5 manufacturer product page and official gallery image visually verified; distinct from the APX 570 5×7 model. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apx-6-5",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APX 6.5 - SET COAX 2Way 165mm"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APX 6.5 6.5-inch 2-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APX 6.5",
+      "description": "165 mm (6.5 in) 2-way coaxial speaker with a concentric tweeter and shallow Triple Wave surround. Rated at 210 W peak and 70 W continuous, 4 ohm impedance, 94 dB sensitivity and 60 Hz–23 kHz frequency response. Uses a 32 mm copper voice coil and compact low-profile basket for OEM integration.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APX 6.5 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apx-570",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APX 570 - SET COAX 2Way 5 inx7 in"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APX 570 5×7-inch 2-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APX 570",
+      "description": "5 × 7 in (elliptical) 2-way coaxial speaker with a concentric tweeter. Rated at 210 W peak and 70 W continuous, 4 ohm impedance, 93 dB sensitivity and 60 Hz–23 kHz frequency response. Features a 32 mm copper voice coil, shallow Triple Wave surround and compact basket for OEM integration.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APX 570 5×7 manufacturer product page and official gallery image visually verified. This is not the round 130 mm APX 5. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "preview-audison-apx-690",
+      "match": {
+        "brand": "Audison",
+        "title_contains": "Audison - APX 690 - KIT COAX 3Way 6 inX9 in+Grilles"
+      },
+      "appendIfMissing": true,
+      "title": "Audison APX 690 6×9-inch 3-Way Coaxial Speaker",
+      "brand": "Audison",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Coaxial Speakers",
+      "modelNumber": "APX 690",
+      "description": "6 × 9 in 3-way coaxial speaker with a 40 mm horn-loaded dome tweeter and a 15 mm super tweeter. Rated at 300 W peak and 100 W continuous, 4 ohm impedance, up to 96 dB sensitivity and 40 Hz–23 kHz frequency response. Designed for rear-deck installation with enhanced high-frequency dispersion.",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only",
+      "imageReviewNote": "Exact APX 690 manufacturer product page and official gallery image visually verified. Review-only owner preview; no supplier SKU, price or stock is displayed.",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
