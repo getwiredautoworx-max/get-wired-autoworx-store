@@ -384,3 +384,5 @@ assert.ok(ascTrailerReviewData.records.every(r=>r.price===null&&r.stock_quantity
 assert.ok(ascTrailerReviewPage.includes('assets/asc-trailer-towing-owner-preview.json'),'isolated test page must load the sanitised JSON dataset');
 assert.ok(!ascTrailerReviewPage.includes('suppliers/ASC/')&&!ascTrailerReviewPage.includes('supplierCode')&&!ascTrailerReviewPage.includes('sourcePrice'),'isolated test page must not load or render raw supplier source fields');
 assert.ok(!tree.categories.some(c=>c.name==='ASC Trailer & Towing'&&c.parent_id===null),'ASC test category must not become a fourth active root');
+
+assert.ok(ascTrailerReviewData.records.every(r=>r.priceDisplay==='Price On Request due to Limited Stock and Availability'),'ASC test products must use the exact owner-approved customer price wording');
