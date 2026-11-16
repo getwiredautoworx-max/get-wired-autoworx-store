@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Trailer &amp; Towing — Isolated Test Category | Get Wired AutoWorx</title>
+<title>Trailer &amp; Towing | Get Wired AutoWorx</title>
 <style>
 :root{color-scheme:dark;--bg:#07111e;--panel:#0d1d30;--line:#244663;--blue:#16a9ff;--muted:#a9bdcf}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f4f8fc;font:15px/1.5 Arial,sans-serif}
@@ -21,10 +21,10 @@ h1{margin:5px 0;font-size:clamp(25px,4vw,38px)}p{color:var(--muted)}
 </style>
 </head>
 <body>
-<header><span class="flag">ISOLATED TEST · REVIEW ONLY · NOT LIVE · NOT IMPORTED</span><h1>Trailer &amp; Towing</h1><p>Temporary review-only test category. It is separate from the three approved homepage departments and is not linked from customer navigation.</p></header>
+<header><span class="flag">GET WIRED AUTOWORX · TRAILER &amp; TOWING</span><h1>Trailer &amp; Towing</h1><p>Explore trailer parts, towing equipment, canopy spares and accessories.</p></header>
 <main>
-<p><b>Testing boundary:</b> Sanitised catalogue records only. Internal catalogue identifiers and source pricing are excluded. No checkout, stock claim, product import or live database write is enabled.</p>
-<section class="stats"><div class="stat"><b id="total">—</b>Catalogue records</div><div class="stat"><b id="groups">—</b>Source groups</div><div class="stat"><b>0</b>Imported products</div><div class="stat"><b>Review only</b>Publication state</div></section>
+<p>Browse the catalogue by product group or search by description. Prices and availability are confirmed on request.</p>
+<section class="stats"><div class="stat"><b id="total">—</b>Catalogue records</div><div class="stat"><b id="groups">—</b>Product groups</div><div class="stat"><b>On request</b>Pricing</div><div class="stat"><b>7</b>Product groups</div></section>
 <section class="controls"><input id="q" type="search" placeholder="Search product descriptions"><select id="cat"><option value="all">All groups</option></select><select id="sort"><option value="title">Sort by product</option><option value="subcategory">Sort by group</option></select></section>
 <p id="count" class="small">Loading isolated test catalogue…</p><section id="items" class="grid"></section>
 </main>
@@ -34,8 +34,8 @@ let records=[];
 function render(){const q=document.getElementById('q').value.trim().toLowerCase(),cat=document.getElementById('cat').value,sort=document.getElementById('sort').value;
 const rows=records.filter(p=>(cat==='all'||p.subcategory===cat)&&(!q||(p.title+' '+p.description).toLowerCase().includes(q)));
 rows.sort((a,b)=>String(a[sort]||'').localeCompare(String(b[sort]||'')));
-document.getElementById('count').textContent='Showing '+rows.length+' of '+records.length+' review-only products';
-document.getElementById('items').innerHTML=rows.map(p=>'<article class="product"><span class="tag">'+esc(p.subcategory)+'</span><h2>'+esc(p.title)+'</h2><p>'+esc(p.description)+'</p><p class="price">'+esc(p.priceDisplay)+'</p><p class="small">'+esc(p.availabilityDisplay)+'</p><p class="small">DO NOT IMPORT · '+esc(p.reviewStatus)+'</p></article>').join('')||'<p>No matching products.</p>';}
+document.getElementById('count').textContent='Showing '+rows.length+' of '+records.length+' products';
+document.getElementById('items').innerHTML=rows.map(p=>'<article class="product"><span class="tag">'+esc(p.subcategory)+'</span><h2>'+esc(p.title)+'</h2><p>'+esc(p.description)+'</p><p class="price">'+esc(p.priceDisplay)+'</p><p class="small">'+esc(p.availabilityDisplay)+'</p></article>').join('')||'<p>No matching products.</p>';}
 fetch('assets/asc-trailer-towing-owner-preview.json').then(r=>{if(!r.ok)throw Error('Sanitised review dataset unavailable');return r.json()}).then(data=>{
 if(data.status!=='OWNER_PREVIEW_ONLY_NOT_IMPORTED'||!Array.isArray(data.records))throw Error('Dataset status validation failed');
 records=data.records.filter(p=>p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'&&p.price===null&&p.stock_quantity===0);
