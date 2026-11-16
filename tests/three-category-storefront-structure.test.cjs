@@ -13,7 +13,7 @@ const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
 const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
 const audioOverrides = JSON.parse(read('assets/audio-product-enrichment-overrides.json')).records;
 const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
-assert.ok(audioOverrides.length === 42, 'the owner-preview enrichment override set must contain 27 curated records');
+assert.ok(audioOverrides.length === 44, 'the owner-preview enrichment override set must contain 44 curated records');
 assert.ok(audioOverrides.every(p => p.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'), 'every enrichment override must remain preview-only and never live');
 assert.ok(audioOverrides.every(p => p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null), 'all enrichment overrides must hide prices and stock until approved sync');
 assert.ok(audioOverrides.every(p => !Object.keys(p).some(k => /supplier/i.test(k))), 'supplier names and supplier SKU fields must not enter customer-facing overrides');
@@ -26,6 +26,13 @@ const jimnyClassic = audioOverrides.find(p => p.id === 'pw-2158');
 assert.equal(pradoClassic?.modelNumber, 'OA014-1', 'Prado Classic product must use official OneNav SKU OA014-1');
 assert.equal(jimnyClassic?.modelNumber, 'OA715-1', 'Jimny Classic product must use official OneNav SKU OA715-1');
 assert.equal(jimnyClassic?.imageUrl, 'https://onenav.co.za/wp-content/uploads/2022/09/Suzuki-Jimny.webp', 'Jimny image must be the exact manufacturer-page fitment image');
+const fjClassic = audioOverrides.find(p => p.id === 'pw-2117');
+const hiluxClassic = audioOverrides.find(p => p.id === 'pw-2119');
+assert.equal(fjClassic?.modelNumber, 'OA011-1');
+assert.equal(fjClassic?.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-FJ-Cruiser-600x600.webp?v=1739954757&width=533');
+assert.equal(hiluxClassic?.modelNumber, 'OA013-1');
+assert.equal(hiluxClassic?.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533');
+assert.ok([fjClassic, hiluxClassic].every(p => p?.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null), 'OneNav FJ Cruiser and Hilux/Fortuner previews must remain Price On Request and preview-only');
 assert.ok([pradoClassic, jimnyClassic].every(p => p?.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null), 'OneNav Classic previews must remain Price On Request and preview-only');
 const eligibleAudioRows = audio.records.filter(p =>
   ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH', 'EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY'].includes(p.imageStatus) &&

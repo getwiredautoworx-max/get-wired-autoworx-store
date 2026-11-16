@@ -923,6 +923,42 @@
       "priceOnRequestText": "Price On Request",
       "indicativePrice": null,
       "hasStock": null
+    },
+    {
+      "id": "pw-2117",
+      "appendIfMissing": true,
+      "title": "OneNav Classic 9-inch Multimedia System for Toyota FJ Cruiser Black (2007+)",
+      "brand": "OneNav",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Head Units & Media Players",
+      "modelNumber": "OA011-1",
+      "description": "Designed for Toyota FJ Cruiser 2007+. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-FJ-Cruiser-600x600.webp?v=1739954757&width=533",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Official OneNav product page confirms model OA011-1 and exact vehicle application; Go4LO OneNav Classic collection lists the matching vehicle-specific fascia image, visually inspected at preview resolution (533 px). The image visibly carries receiver marking CA409-CPAA, which is recorded separately and is not treated as the kit SKU; no hardware-code relationship is inferred. Owner image authorisation 2026-11-13 is the rights basis. Review-only pending owner render acceptance.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
+    },
+    {
+      "id": "pw-2119",
+      "appendIfMissing": true,
+      "title": "OneNav Classic 9-inch Multimedia System for Toyota Hilux / Fortuner (2011–2015)",
+      "brand": "OneNav",
+      "division": "Car Audio",
+      "collection": "Car Audio & Video",
+      "component": "Head Units & Media Players",
+      "modelNumber": "OA013-1",
+      "description": "Designed for Toyota Hilux/Fortuner 2011–2015. Features a 9-inch 1024 × 600 touchscreen, wired Apple CarPlay and Android Auto, built-in DSP with multi-band EQ, steering-wheel-control readiness, Bluetooth with an external microphone, 4 × 40 W maximum speaker output, 4.1-channel front/rear/subwoofer line-out, two RCA AV inputs, two video outputs, and front/rear camera inputs.",
+      "imageUrl": "https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-Fortuner-600x600.webp?v=1739876146&width=533",
+      "imageStatus": "owner_authorized_exact_retailer_image_verified_review_only",
+      "imageReviewNote": "Official OneNav product page confirms model OA013-1 and exact vehicle application; Go4LO OneNav Classic collection lists the matching vehicle-specific fascia image, visually inspected at preview resolution (533 px). The image visibly carries receiver marking CA409-CPAA, which is recorded separately and is not treated as the kit SKU; no hardware-code relationship is inferred. Owner image authorisation 2026-11-13 is the rights basis. Review-only pending owner render acceptance.",
+      "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
+      "priceOnRequestText": "Price On Request",
+      "indicativePrice": null,
+      "hasStock": null
     }
   ]
 }
