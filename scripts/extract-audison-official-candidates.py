@@ -37,6 +37,7 @@ class PageParser(HTMLParser):
         self._script_json = False
         self.jsonld = []
         self.image_candidates = []
+        self._anchor = None
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag.lower() == "meta":
@@ -44,6 +45,11 @@ class PageParser(HTMLParser):
             value = (attrs.get("content") or "").strip()
             if key and value:
                 self.meta[key] = html.unescape(value)
+        elif tag.lower() == "a":
+            self._anchor = {
+                "url": attrs.get("href") or "",
+                "label": clean_text(attrs.get("aria-label") or attrs.get("title") or ""),
+            }
         elif tag.lower() == "img":
             image_url = attrs.get("data-src") or attrs.get("data-lazy-src") or attrs.get("data-original") or attrs.get("src") or ""
             if not image_url:
@@ -61,7 +67,11 @@ class PageParser(HTMLParser):
             self._script_json = True
             self._script_parts = []
     def handle_endtag(self, tag):
-        if tag.lower() == "title": self._title = False
+        if tag.lower() == "a" and self._anchor:
+            if self._anchor.get("url") and self._anchor.get("label"):
+                self.image_candidates.append({"url": self._anchor["url"], "alt": self._anchor["label"]})
+            self._anchor = None
+        elif tag.lower() == "title": self._title = False
         elif tag.lower() == "h1": self._h1 = False
         elif tag.lower() == "script" and self._script_json:
             self._script_json = False
@@ -71,6 +81,8 @@ class PageParser(HTMLParser):
         if self._title: self.title_parts.append(data)
         if self._h1: self.h1_parts.append(data)
         if self._script_json: self._script_parts.append(data)
+        if self._anchor and not self._anchor.get("label"):
+            self._anchor["label"] = clean_text(data)
 
 def clean_text(value):
     return re.sub(r"\s+", " ", html.unescape(str(value or ""))).strip()
@@ -150,7 +162,15 @@ def select_exact_model_image(image_candidates, source_model):
     if not target:
         return None
     for candidate in image_candidates:
-        alt_key = re.sub(r"[^a-z0-9]+", "", clean_text(candidate.get("alt")).casefold())
+        label = clean_text(candidate.get("alt"))
+        label = re.sub(r"^(?:image|product image)\\s*:\\s*", "", label, flags=re.IGNORECASE)
+        alt_key = re.sub(r"[^a-z0-9]+", "", label.casefold())
+        candidate_url = clean_text(candidate.get("url"))
+        parsed = urlparse(candidate_url)
+        if parsed.path and not re.search(r"\\.(?:png|jpe?g|webp|avif)$", parsed.path, flags=re.IGNORECASE):
+            continue
+        if parsed.hostname and parsed.hostname.lower() not in ALLOWED_IMAGE_HOSTS:
+            continue
         if target and target == alt_key:
             return candidate
     return None
@@ -271,7 +291,7 @@ def main():
         if not url:
             continue
         prior = existing.get(url)
-        if prior and prior.get("status") != "FETCH_FAILED_RETRY" and prior.get("image_review_status") != "REJECTED_SHARED_IMAGE_HASH":
+        if prior and prior.get("status") != "FETCH_FAILED_RETRY" and prior.get("image_review_status") not in {"REJECTED_SHARED_IMAGE_HASH", "NO_EXACT_MODEL_IMAGE_ALT"}:
             continue
         if prior and int(prior.get("attempts", 0)) >= 3:
             continue

@@ -33,6 +33,12 @@ def main():
         [{"url": "/images/other.jpg", "alt": "AV 1.1 II"}],
         "AV 1.1",
     ) is None, "variant suffix must not be treated as an exact model match"
+
+    parser = MODULE.PageParser()
+    parser.feed('<a href="https://static.audison.com/av65pii.jpg" aria-label="Image: AV 6.5 P II"></a>')
+    anchor_match = MODULE.select_exact_model_image(parser.image_candidates, "AV 6.5 P II")
+    assert anchor_match is not None and anchor_match["url"].endswith("av65pii.jpg"), "exactly labelled image anchor was not captured"
+    assert MODULE.select_exact_model_image(parser.image_candidates, "AV 6.5") is None, "AV 6.5 must not match AV 6.5 P II"
     print("AUDISON_EXACT_MODEL_IMAGE_SELECTION_PASS")
 
 
