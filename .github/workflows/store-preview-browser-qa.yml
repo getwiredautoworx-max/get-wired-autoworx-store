@@ -101,7 +101,9 @@ jobs:
                     });
                     const laterFiles = comparison.data.files || [];
                     const qaOnly = laterFiles.length > 0 && laterFiles.every(file =>
-                      /^(tests\\/|\\.github\\/workflows\\/|HANDOVER_CURRENT\\.md$)/.test(file.filename)
+                      file.filename.startsWith('tests/') ||
+                      file.filename.startsWith('.github/workflows/') ||
+                      file.filename === 'HANDOVER_CURRENT.md'
                     );
                     if (comparison.data.status === 'ahead' && qaOnly) {
                       deploymentMatches = true;
