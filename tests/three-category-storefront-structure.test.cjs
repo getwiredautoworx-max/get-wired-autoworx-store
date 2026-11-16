@@ -265,7 +265,12 @@ for (const model of ['44L7S122','48CWR124','48CWRT102','48CWRT104']) {
 }
 for (const model of ['43C124','43C84','46CXA12001','48CWR104']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
-  assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://www.kicker.com/'), 'official Kicker image link for '+model);
+  assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://www.kicker.com/'), 'official Kicker image for '+model);
+  assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
+}
+for (const model of ['R2-W10D2','S2-S40C']) {
+  const row = verifiedModels.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://finland.alpine-europe.com/'), 'official manufacturer page image link for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_page_image_link_review_only');
 }
 for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpine.com.tr']]) {
