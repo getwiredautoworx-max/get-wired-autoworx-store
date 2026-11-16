@@ -49,7 +49,7 @@ jobs:
           test -f pages-public/preview-category.html
           test -f pages-public/preview-audio-brand.html
           test -f pages-public/preview-audio-products.html
-          test -f pages-public/preview-asc-trailer-towing.html
+          test -f pages-public/review-asc-trailer-towing.html
           test -f pages-public/assets/asc-trailer-towing-owner-preview.json
           python3 -c 'import json; d=json.load(open("pages-public/assets/asc-trailer-towing-owner-preview.json")); assert len(d["records"]) == 165; assert all(r.get("price") is None and r.get("stock_quantity") == 0 for r in d["records"]); assert all("supplierCode" not in r and "sku" not in r for r in d["records"])'
           echo "GW_PR208_ASC_TRAILER_TOWING_PREVIEW_PACKAGE_PASS"
@@ -122,35 +122,23 @@ jobs:
               if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Non-production preview banner missing');
               if(await page.locator('#store').count()!==1) throw new Error('Owner preview storefront frame missing');
 
-              // Verify the separate ASC root and its seven child categories.
-              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-category.html?id=a1000000-0000-4000-8000-000000000000',{waitUntil:'domcontentloaded'});
-              await page.locator('#grid > .card').first().waitFor({state:'visible',timeout:30000});
-              const subcategories=(await page.locator('#grid > .card h2').allTextContents()).map(x=>x.trim()).sort();
-              const expected=['Accessories','Adhesive Tapes','Canopy Spares','Lamps','Measuring Tools','Towing','Trailer'].sort();
-              if(JSON.stringify(subcategories)!==JSON.stringify(expected)) throw new Error('ASC root subcategories mismatch: '+JSON.stringify(subcategories));
-              const trailer=page.locator('#grid > .card').filter({hasText:'Trailer'}).first();
-              const trailerHref=await trailer.getAttribute('href');
-              if(!trailerHref||!trailerHref.includes('preview-asc-trailer-towing.html?subcategory=Trailer')) throw new Error('Trailer subcategory does not link directly to its filtered owner-review catalogue: '+trailerHref);
-              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/'+trailerHref,{waitUntil:'domcontentloaded'});
-              if(new URL(page.url()).searchParams.get('subcategory')!=='Trailer') throw new Error('Trailer child link did not preserve its selected subcategory: '+page.url());
-
-              // Verify all 165 records, subcategory filter, POR label and responsive layout.
-              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/preview-asc-trailer-towing.html',{waitUntil:'domcontentloaded'});
-              await page.locator('.card').first().waitFor({state:'visible',timeout:30000});
-              const total=await page.locator('.card').count();
-              const summary=await page.locator('#summary').innerText();
-              if(total!==165||!summary.includes('165 review-only listings')) throw new Error('ASC preview expected 165 cards; got '+total+' summary='+summary);
-              const select=page.locator('#category');
-              const options=await select.locator('option').evaluateAll(opts=>opts.map(o=>o.value).filter(Boolean));
-              if(options.length!==7) throw new Error('Expected seven ASC filters: '+JSON.stringify(options));
+              // Verify the isolated customer-facing Trailer & Towing category route.
+              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/review-asc-trailer-towing.html',{waitUntil:'domcontentloaded'});
+              await page.locator('.product').first().waitFor({state:'visible',timeout:30000});
+              const total=await page.locator('.product').count();
+              const summary=await page.locator('#count').innerText();
+              if(total!==165||!summary.includes('165')) throw new Error('Trailer & Towing expected 165 products; got '+total+' summary='+summary);
+              const select=page.locator('#cat');
+              const options=await select.locator('option').evaluateAll(opts=>opts.map(o=>o.value).filter(v=>v!=='all'));
+              if(options.length!==7) throw new Error('Expected seven Trailer & Towing filters: '+JSON.stringify(options));
               await select.selectOption('Trailer');
-              const trailerCount=await page.locator('.card').count();
-              if(trailerCount!==70) throw new Error('Trailer filter expected 70 records, got '+trailerCount);
-              const price=await page.locator('.card .price').first().innerText();
-              if(price!=='Price On Request Due to Stock Availability') throw new Error('ASC price label mismatch: '+price);
-              await select.selectOption('');
-              if(await page.locator('.card').count()!==165) throw new Error('Resetting the filter did not restore all 165 records');
-              const mobile=await page.locator('#products').evaluate(el=>({width:Math.round(el.getBoundingClientRect().width),scroll:el.scrollWidth,client:el.clientWidth}));
+              const trailerCount=await page.locator('.product').count();
+              if(trailerCount!==70) throw new Error('Trailer filter expected 70 products, got '+trailerCount);
+              const price=await page.locator('.product .price').first().innerText();
+              if(price!=='Price On Request due to Limited Stock and Availability') throw new Error('Customer-facing price wording mismatch: '+price);
+              await select.selectOption('all');
+              if(await page.locator('.product').count()!==165) throw new Error('Resetting the filter did not restore all 165 products');
+              const mobile=await page.locator('#items').evaluate(el=>({width:Math.round(el.getBoundingClientRect().width),scroll:el.scrollWidth,client:el.clientWidth}));
               if(mobile.scroll>mobile.client+2) throw new Error('Mobile product grid horizontal overflow: '+JSON.stringify(mobile));
               await page.setViewportSize({width:1365,height:900});
               const desktop=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
