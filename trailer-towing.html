@@ -11,6 +11,8 @@ header{background:#06101c;border-bottom:1px solid var(--line);padding:22px max(1
 main{max-width:1180px;margin:auto;padding:20px 16px 50px}
 h1{margin:5px 0;font-size:clamp(25px,4vw,38px)}p{color:var(--muted)}
 .flag{display:inline-block;padding:5px 9px;border:1px solid #a77923;background:#3a2a0b;color:#ffe1a1;border-radius:5px;font-size:11px;font-weight:bold;letter-spacing:.04em}
+header .brandline{color:#d2e9fb;font-weight:700;margin:7px 0 0}
+footer{max-width:1180px;margin:auto;padding:16px;color:var(--muted);text-align:center;border-top:1px solid var(--line);font-size:12px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
 .stat,.controls,.product{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px}
 .stat b{display:block;font-size:23px;color:var(--blue)}
@@ -21,13 +23,14 @@ h1{margin:5px 0;font-size:clamp(25px,4vw,38px)}p{color:var(--muted)}
 </style>
 </head>
 <body>
-<header><span class="flag">GET WIRED AUTOWORX · TRAILER &amp; TOWING</span><h1>Trailer &amp; Towing</h1><p>Explore trailer parts, towing equipment, canopy spares and accessories.</p></header>
+<header><span class="flag">GET WIRED AUTOWORX · TRAILER &amp; TOWING</span><h1>Trailer &amp; Towing</h1><p class="brandline">Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</p><p>Explore trailer parts, towing equipment, canopy spares and accessories.</p></header>
 <main>
 <p>Browse the catalogue by product group or search by description. Prices and availability are confirmed on request.</p>
 <section class="stats"><div class="stat"><b id="total">—</b>Catalogue records</div><div class="stat"><b id="groups">—</b>Product groups</div><div class="stat"><b>On request</b>Pricing</div><div class="stat"><b>On request</b>Availability</div></section>
 <section class="controls"><input id="q" type="search" placeholder="Search product descriptions"><select id="cat"><option value="all">All groups</option></select><select id="sort"><option value="title">Sort by product</option><option value="subcategory">Sort by group</option></select></section>
 <p id="count" class="small">Loading products…</p><section id="items" class="grid"></section>
 </main>
+<footer>Established Since 2012 · BEST PRICES • BEST WORKMANSHIP • GUARANTEED!</footer>
 <script>
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let records=[];
