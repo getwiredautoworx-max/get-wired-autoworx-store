@@ -9929,7 +9929,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69070020",
       "official_product_page_url": "https://audison.com/product/av-x6-5/",
-      "extracted_at": "2026-11-16T07:45:39.205024+00:00",
+      "extracted_at": "2026-11-16T07:48:21.019841+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/av-x6-5/",
       "page_title": "AV X6.5 - Audison | Premium Car & Marine Audio Systems",
@@ -10504,8 +10504,8 @@
       "image_url": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
       "image_alt": "AV X6.5",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -12349,7 +12349,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69070060",
       "official_product_page_url": "https://audison.com/product/apx-690/",
-      "extracted_at": "2026-11-16T07:45:49.908895+00:00",
+      "extracted_at": "2026-11-16T07:48:23.706935+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apx-690/",
       "page_title": "APX 690 - Audison | Premium Car & Marine Audio Systems",
@@ -12936,8 +12936,8 @@
       "image_url": "https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg",
       "image_alt": "APX 690",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -13543,7 +13543,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69070080",
       "official_product_page_url": "https://audison.com/product/apbmw-x4e/",
-      "extracted_at": "2026-11-16T07:45:54.992622+00:00",
+      "extracted_at": "2026-11-16T07:48:26.279428+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-x4e/",
       "page_title": "APBMW X4E - Audison | Premium Car & Marine Audio Systems",
@@ -14118,8 +14118,8 @@
       "image_url": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
       "image_alt": "APBMW X4E",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -14132,7 +14132,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69070085",
       "official_product_page_url": "https://audison.com/product/apbmw-x4m/",
-      "extracted_at": "2026-11-16T07:45:57.508160+00:00",
+      "extracted_at": "2026-11-16T07:48:28.845218+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-x4m/",
       "page_title": "APBMW X4M - Audison | Premium Car & Marine Audio Systems",
@@ -14691,8 +14691,8 @@
       "image_url": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
       "image_alt": "APBMW X4M",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -14705,7 +14705,7 @@
       "source_component": "",
       "source_sku_reference_internal": "69082001",
       "official_product_page_url": "https://audison.com/product/apbmw-a4e/",
-      "extracted_at": "2026-11-16T07:46:00.103505+00:00",
+      "extracted_at": "2026-11-16T07:48:31.404209+00:00",
       "review_status": "CANDIDATE_ONLY_NOT_APPROVED",
       "final_url": "https://audison.com/product/apbmw-a4e/",
       "page_title": "APBMW A4E - Audison | Premium Car & Marine Audio Systems",
@@ -15248,8 +15248,8 @@
       "image_url": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
       "image_alt": "APBMW A4E",
       "image_match_evidence": "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT",
-      "attempts": 2,
-      "status": "FETCH_FAILED_RETRY",
+      "attempts": 3,
+      "status": "MANUAL_FETCH_REQUIRED",
       "image_review_status": "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED",
       "image_review_reason": "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists.",
       "error": "Remote end closed connection without response"
@@ -15399,7 +15399,13 @@
       "candidate_count": 9,
       "remaining_exact_pages": 0,
       "review_only": true
+    },
+    {
+      "run_at": "2026-11-16T07:48:33.944557+00:00",
+      "candidate_count": 5,
+      "remaining_exact_pages": 0,
+      "review_only": true
     }
   ],
-  "updated_at": "2026-11-16T07:46:02.541718+00:00"
+  "updated_at": "2026-11-16T07:48:33.944585+00:00"
 }
