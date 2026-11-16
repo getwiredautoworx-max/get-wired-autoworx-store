@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-16: Audison official-image candidate audit advanced to 34 exact-model records; 25 local image assets have unique hashes, 9 exact official image URLs/alt labels remain remote-only because the Audison CDN closes GitHub-runner connections. Five APX coaxial speaker preview overrides are now present with official images, concise verified specifications, Price On Request and no stock. APX 4/APX 5 image mapping and APX 570 manufacturer-page mapping were corrected; APBMW K4E/K4M variant image selection is guarded. Public SKU Exposure Audit and Catalogue Image Audit passed. Cloudflare public-package QA was blocked by stale image-count assertions (updated from 48 to 63 and page-link count 4 to 2; exact-main rerun pending). Store Production QA and public URL verification show the live site is still not the merged button-only storefront and Cloudflare serves challenge HTML for the live homepage/category JSON/product image; no deployment is authorised. Next: verify exact-main package QA, continue the next verified product group, and keep all candidates review-only."
+      "next_action": "2026-11-16: Audison official-image candidate audit contains 34 exact-model records; 25 have local image assets with unique SHA-256 values and 9 are verified official remote image URLs because the GitHub runner cannot download bytes (remote connection closed). All 9 remote-only products now use exact official image URLs in the review-only owner-preview overrides. There are 20 Audison overrides, with 13/34 manifest models covered and 21 still to enrich. Added APX 4, APX 5, APX 6.5, APX 570, APX 690, AV X6.5, APBMW X4E, APBMW X4M and APBMW A4E. All 27 global enrichment overrides are explicitly PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null, with no supplier fields. APX4/APX5 mapping and APX570 official page were corrected; K4E/K4M variant guard added. Public SKU Exposure Audit and Catalogue Image Audit passed; Cloudflare Pages Public Package QA and Storefront Smoke Test passed on exact public-content SHA a03571c9. Standard customer-only package and isolated non-production preview package both build and pass supplier-safe route checks. Production QA/public URL checks still fail because the live domain serves Cloudflare challenge HTML for homepage/category JSON/product image and the live site is not the consolidated button-only storefront. No deployment or Cloudflare credits. Next product group: Audison AV-series speakers (AV 1.1, AV 1.1 II, AV 3.0, AV 3.0 II, AV 6.5 and AV 6.5 P II), then Prima APK speaker group."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "73b764a80ec4418ec4bf6a93d8ba0c79486552ed",
+    "canonical_head": "a03571c9b80b983b4c38fe77916605a7dd9366bf",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
@@ -354,7 +354,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "73b764a80ec4418ec4bf6a93d8ba0c79486552ed",
+    "last_verified_main_sha": "a03571c9b80b983b4c38fe77916605a7dd9366bf",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
