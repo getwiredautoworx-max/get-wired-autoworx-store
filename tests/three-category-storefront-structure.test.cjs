@@ -12,23 +12,19 @@ const previewAscSample = read('preview-asc-sample.html');
 const planet = JSON.parse(read('assets/audio-catalogue-primary-preview.json'));
 const verifiedModels = JSON.parse(read('assets/audio-model-verification-preview.json'));
 const audio = JSON.parse(read('assets/audio-catalogue-secondary-preview.json'));
+const eligibleAudioRows = audio.records.filter(p =>
+  ['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH', 'EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY'].includes(p.imageStatus) &&
+  Boolean(p.imageUrl) && Boolean(p.description) && p.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'
+);
+assert.equal(eligibleAudioRows.length, 68, 'only the 68 exact-image, described, review-only Audio Connections records may enter the owner preview');
+assert.equal(audio.records.length - eligibleAudioRows.length, 4, 'all four held/low-resolution Audio Connections exceptions must remain excluded');
 const autoElectrical = JSON.parse(read('assets/auto-electrical-owner-preview.json'));
 const imageSample = JSON.parse(read('assets/product-image-treatment-sample.json'));
-const ascTrailer = JSON.parse(read('assets/asc-trailer-towing-owner-preview.json'));
-const ascTrailerPage = read('preview-asc-trailer-towing.html');
 const ownerPreviewLoader = home.slice(home.indexOf('const previewProductData=async'), home.indexOf('const productTask=', home.indexOf('const previewProductData=async')));
-assert.equal(ascTrailer.records.length,165,'ASC Trailer & Towing owner preview must load all 165 CSV rows');
-assert.equal(new Set(ascTrailer.records.map(r=>r.id)).size,165,'ASC review records must have unique stable IDs');
-assert.deepEqual(Object.values(ascTrailer.summary.subcategories).reduce((a,b)=>a+b,0),165,'ASC subcategory counts must reconcile to all source rows');
-assert.ok(ascTrailer.records.every(r=>r.price===null&&r.stock_quantity===0&&r.priceDisplay==='Price On Request Due to Stock Availability'&&r.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'),'ASC records must remain price-on-request, zero-stock and review-only');
-assert.ok(ascTrailer.records.every(r=>!('supplierSku' in r)&&!('Supplier_SKU' in r)),'ASC public preview must not expose supplier stock codes');
-assert.ok(tree.categories.some(c=>c.id==='a1000000-0000-4000-8000-000000000000'&&c.name==='ASC Trailer & Towing'&&c.parent_id===null),'ASC Trailer & Towing must be a separate root category');
-assert.ok(previewCategory.includes("const ascRoutes={'a1000000-0000-4000-8000-000000000001':'preview-asc-trailer-towing.html?subcategory=Towing','a1000000-0000-4000-8000-000000000002':'preview-asc-trailer-towing.html?subcategory=Trailer'"), 'ASC child category cards must link directly to their filtered review listings without depending on live product counts');
-assert.ok(home.includes("'a1000000-0000-4000-8000-000000000000':'ASC Trailer & Towing'"),'ASC Trailer & Towing must appear as its own storefront root tile');
-assert.ok(ascTrailerPage.includes('OWNER PREVIEW — NON-PRODUCTION')&&ascTrailerPage.includes('PRODUCT IMAGE NOT INCLUDED IN SOURCE CSV'),'ASC preview must disclose non-production status and missing source images');
 assert.equal(imageSample.records.filter(p => p.subcategory === 'Aerials' && p.reviewStatus === 'REVIEW_ONLY_NOT_IMPORTED').length, 8, 'the ASC review sample must retain eight Aerials records');
 assert.equal(imageSample.records.filter(p => p.subcategory === 'Car Mats' && p.reviewStatus === 'REVIEW_ONLY_NOT_IMPORTED').length, 8, 'the ASC review sample must retain eight Car Mats records');
 assert.ok(ownerPreviewLoader.includes("['Aerials','Car Mats'].includes(p.subcategory)"), 'the unified owner preview must load the Aerials and Car Mats sample records');
+assert.ok(ownerPreviewLoader.includes("const eligibleAudio=(audioData.records||[]).filter(p=>['OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH','EXACT_MODEL_IMAGE_VERIFIED_REVIEW_ONLY'].includes(p.imageStatus)&&p.imageUrl&&p.description&&p.publicationStatus==='PREVIEW_ONLY_NOT_LIVE')"), 'the unified owner preview must exclude audio image holds, low-resolution images and incomplete records');
 assert.ok(ownerPreviewLoader.includes("'b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'c35d15c1-d665-413f-b528-878b6a655d5d'"), 'ASC Aerials and Car Mats samples must map to their approved category IDs');
 assert.ok(ownerPreviewLoader.includes("p.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'"), 'only explicitly review-only ASC sample records may enter the owner preview');
 const imageProcessor = read('scripts/process-product-image-pilot.py');
@@ -74,8 +70,7 @@ const roots = tree.categories.filter(c => c.active && c.parent_id === null)
 assert.deepEqual(roots, [
   ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio / Home Entertainment'],
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Spares'],
-  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories'],
-  ['a1000000-0000-4000-8000-000000000000','ASC Trailer & Towing']
+  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
 const autoElectricalNode = tree.categories.find(c => c.id === 'ba263c9f-d038-48bd-bca0-944f3ebdc5e9');
 const carCareNode = tree.categories.find(c => c.id === 'f98e7589-20a0-4825-9707-2680d29e5cb6');
@@ -142,7 +137,7 @@ assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store',sig
 assert.ok(categoryCleanup.includes("window.installGetWiredCategoryCleanup=function(frame)") && !categoryCleanup.includes("style.display='none'"), 'category cleanup must preserve root and child category visibility when product counts are zero or unknown');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
-  assert.ok(previewCategory.includes(id) && previewCategory.includes(label), 'owner-preview category route root '+label);
+  assert.ok(categoryPage.includes(id) && categoryPage.includes(label), 'category page root '+label);
 }
 const children = name => tree.categories.filter(c => c.active && c.name === name);
 for (const name of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])
@@ -250,7 +245,7 @@ assert.ok(
   'Kicker KW16400p/m must retain its exact Planetworld spool image and owner-authorised supplier-image status'
 );
 
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,49);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,48);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 assert.equal(verifiedModels.records.filter(row => row.imageUseAuthorization === 'OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04').length,2);
 for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021','66752000','66753000','66755030','66755110','66755115','66755156','66755157','66771820','66772201','66772203','69010020','69010021','69030020','69030021','69035010','69051040','69051050','69051055','69051060','69051070','69051075','69051090','69052020','69070030','69070040','69070050','69070070','69070080','69070085','69082001','69051030','69070020']) {
@@ -312,7 +307,7 @@ assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
-assert.ok(previewCategory.includes("const ROOTS=[['Car Audio / Home Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6'],['ASC Trailer & Towing','a1000000-0000-4000-8000-000000000000']]"), 'preview category route must show the three approved startup categories plus the separate ASC owner-review root');
+assert.ok(previewCategory.includes("const ROOTS=[['Car Audio / Home Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
 assert.ok(!/Vehicle Security|Marine Spares & Accessories|Tools, Hardware & Consumables|Camping, Leisure & Outdoors|Trailer & Canopy/.test(previewCategory), 'obsolete eight-root category buttons must be removed from the preview category route');
 assert.ok(returns.includes('<main class="wrap"><div class="card">'), 'returns page main content wrapper must remain intact after shell update');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
@@ -379,3 +374,13 @@ assert.ok(builder.includes('sanitize-public-preview-data.py') && builder.include
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
 
 assert.ok(previewCategory.includes("routeLabel==='car audio & video'") && previewCategory.includes("preview-audio.html?department=Car%20Audio"), 'Car Audio & Video must route by its customer-facing category label into the brand directory');
+
+
+// Isolated ASC Trailer & Towing test route: never add a fourth homepage root.
+const ascTrailerReviewPage = read('review-asc-trailer-towing.html');
+const ascTrailerReviewData = JSON.parse(read('assets/asc-trailer-towing-owner-preview.json'));
+assert.equal(ascTrailerReviewData.records.length,165,'isolated ASC test dataset must contain all 165 review records');
+assert.ok(ascTrailerReviewData.records.every(r=>r.price===null&&r.stock_quantity===0&&r.reviewStatus==='REVIEW_ONLY_NOT_IMPORTED'),'ASC test records must remain quote-only, zero-stock and review-only');
+assert.ok(ascTrailerReviewPage.includes('assets/asc-trailer-towing-owner-preview.json'),'isolated test page must load the sanitised JSON dataset');
+assert.ok(!ascTrailerReviewPage.includes('suppliers/ASC/')&&!ascTrailerReviewPage.includes('supplierCode')&&!ascTrailerReviewPage.includes('sourcePrice'),'isolated test page must not load or render raw supplier source fields');
+assert.ok(!tree.categories.some(c=>c.name==='ASC Trailer & Towing'&&c.parent_id===null),'ASC test category must not become a fourth active root');
