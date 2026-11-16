@@ -91,6 +91,16 @@ include_preview = (branch is not None and branch != "main") or os.environ.get("G
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    trailer_route = OUT / "trailer-towing.html"
+    trailer_text = trailer_route.read_text(encoding="utf-8")
+    for customer_phrase in (
+        "Sound &amp; Security • Auto Electrical • Spares &amp; Accessories",
+        "Established Since 2012",
+        "BEST PRICES • BEST WORKMANSHIP • GUARANTEED!",
+    ):
+        if customer_phrase not in trailer_text:
+            raise SystemExit(f"Trailer & Towing customer-facing brand copy missing: {customer_phrase}")
+    print("TRAILER_TOWING_CUSTOMER_BRANDING_PASS")
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
     for name in PREVIEW_ASSET_DIRS:
