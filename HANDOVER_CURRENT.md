@@ -1736,3 +1736,11 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 ### Next action
 - Obtain the owner's category-mapping decision for the seven Trailer & Towing source groups, or retain the dataset only as an isolated, sanitised owner-review artifact that does not add a fourth customer-facing root.
 - Once mapping is established, update one coordinated current-main candidate, strip supplier identifiers/source prices from every publicly reachable route, run exact-head tests, then verify a cost-free Cloudflare staging preview against the same SHA. Production remains HOLD.
+
+
+## ASC TRAILER & TOWING ISOLATED TEST CATEGORY — TASK START — 2026-11-16
+- Owner authorised a separate Trailer & Towing category for testing so it can be removed easily if needed.
+- Implement as an isolated review-only test route, not as a fourth active homepage root or customer navigation item. Keep canonical three-root storefront unchanged.
+- Use only the sanitised 165-record review JSON; do not load or expose the raw ASC CSV, supplier SKU, source price or internal source fields in any public route.
+- Preserve review-only / DO NOT IMPORT status, null prices, zero stock and Price On Request due to Limited Stock and Availability. No live imports, Supabase writes, production deployment or paid hosting spend.
+- Task start recorded before implementation. Candidate work is isolated to PR #208 review branch pending verification.
