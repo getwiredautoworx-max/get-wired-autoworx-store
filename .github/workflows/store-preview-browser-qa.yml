@@ -12,6 +12,7 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'HANDOVER_CURRENT.md'
       - '.github/workflows/store-preview-browser-qa.yml'
       - '.github/workflows/cloudflare-public-pages-build-qa.yml'
   push:
@@ -26,6 +27,7 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'HANDOVER_CURRENT.md'
       - '.github/workflows/store-preview-browser-qa.yml'
 jobs:
   browser-qa:
