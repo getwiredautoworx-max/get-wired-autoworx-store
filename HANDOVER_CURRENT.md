@@ -1709,3 +1709,30 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 
 ### Preview cache/version marker
 - Refreshed the owner-preview iframe build marker from the stale 2026-11-05 value to `20261115-verified-audio-filter` in `owner-preview.html`, commit `30ddd401ebb882b1f6c11901b75ec31cbacba848`. This is a source change only; it does not imply that Cloudflare has deployed the updated page.
+
+
+
+## ASC TRAILER & TOWING CSV RECONCILIATION — 2026-11-16
+
+### Task start and authority
+- Owner instructed: "Then verify and continue." Read the binding `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` and current handover on `main` before proceeding.
+- Task: verify the ASC Trailer & Towing catalogue source, reconcile its review output, inspect PR #208 against the approved three-root storefront architecture, and record the safe next step.
+- No production deployment, Cloudflare credit spend, Axxess upload, live Supabase write, product import/activation, live price/stock change, DNS/payment change or category-tree change was authorised or performed.
+
+### Verified source and reconciliation
+- Confirmed `suppliers/ASC/ASC_Trailer_and_Towing_Catalogue.csv` exists on canonical `main`; blob SHA: `9e6f3dbc3d2f37fa20d615695e7cfee73583d381`.
+- CSV contains 165 data rows. PR #208 review dataset contains 165 records with 165 unique stable IDs.
+- Subcategory reconciliation: Towing 49; Trailer 70; Lamps 3; Canopy Spares 29; Adhesive Tapes 11; Accessories 2; Measuring Tools 1. Total 165.
+- The generated JSON has no supplier-SKU/source-price fields; every record is null-priced, zero-stock, labelled Price On Request Due to Stock Availability, and marked REVIEW_ONLY_NOT_IMPORTED. This is a review dataset only, not a live or imported catalogue.
+
+### PR #208 verification and disposition
+- PR #208 remains open, draft, unmerged, non-mergeable; head branch `review/asc-trailer-towing-owner-preview-2026-11-15`, head SHA `86fe544a8bee08bc51a5fdc134916576b43b328d`, base SHA `ab621fbc2bc3db038f8150589d7478a93f8405fa`.
+- Its proposed category tree adds a fourth active root, "ASC Trailer & Towing". Canonical `main` has exactly the three approved roots: Auto Electrical Spares; Car Audio / Home Entertainment; Car Care & Accessories. The PR's fourth root and added root navigation conflict with the binding owner directive; do not merge as-is.
+- Its review HTML directly fetches the raw supplier CSV and renders supplier SKU and source-price fields. A noindex tag is not access control; this route must not be treated as a public customer page.
+- Existing approved subcategories do not explicitly define the placement of all seven source groups. No automatic category moves are permitted. Keep the records quarantined/review-only until a valid mapping into the existing approved structure is confirmed.
+- Posted verification findings and the blockers as a comment on PR #208 (GitHub comment ID 6908895126). PR remains draft/unmerged.
+- No hosted Cloudflare preview or same-SHA browser verification was established. Do not claim preview-ready status.
+
+### Next action
+- Obtain the owner's category-mapping decision for the seven Trailer & Towing source groups, or retain the dataset only as an isolated, sanitised owner-review artifact that does not add a fourth customer-facing root.
+- Once mapping is established, update one coordinated current-main candidate, strip supplier identifiers/source prices from every publicly reachable route, run exact-head tests, then verify a cost-free Cloudflare staging preview against the same SHA. Production remains HOLD.
