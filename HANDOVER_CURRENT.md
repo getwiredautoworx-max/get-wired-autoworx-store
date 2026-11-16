@@ -1744,3 +1744,13 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Use only the sanitised 165-record review JSON; do not load or expose the raw ASC CSV, supplier SKU, source price or internal source fields in any public route.
 - Preserve review-only / DO NOT IMPORT status, null prices, zero stock and Price On Request due to Limited Stock and Availability. No live imports, Supabase writes, production deployment or paid hosting spend.
 - Task start recorded before implementation. Candidate work is isolated to PR #208 review branch pending verification.
+
+
+## ASC TRAILER & TOWING ISOLATED TEST CATEGORY — IMPLEMENTATION CHECKPOINT — 2026-11-16
+- Owner approved a separate test category for easy removal. Implemented on the existing draft PR #208 branch as a standalone route: `review-asc-trailer-towing.html`.
+- The route reads only `assets/asc-trailer-towing-owner-preview.json` (165 sanitised review records). It does not fetch the source CSV and contains no supplier SKU/source-price rendering. The JSON records contain no supplier/SKU/source-price fields; all 165 remain null-priced, zero-stock and `REVIEW_ONLY_NOT_IMPORTED`.
+- The public Pages preview allowlist now packages the isolated route instead of the former fourth-root route. Standard homepage `index-new.html`, owner preview `preview-category.html`, and `assets/category-tree.json` were restored to canonical-main content in the candidate branch. Static verification confirms exactly three root categories and no Trailer & Towing homepage/category-menu entry.
+- Added regression assertions for 165 records, quote-only/zero-stock/review-only state, sanitised JSON loading, no raw supplier-source access, and no fourth active root.
+- Candidate branch commits: review page `743ee64ece974ecbd92231f2bd1d38a5d5b4b124`; build allowlist `2c241bb63f2f3a8d6? ` (see branch history); category tree restore `8087dc54fd37cfc41286ee08fcfc07dae960ef63`; homepage restore `d4c9ee6f39a65902e97c4e8e7fea1e921d2af957`; preview category restore `d553e569c8ee6b9c16eb61032f1cdd51d92451b0`; test update `4e0f75aa51d1247778457abdf5fc4fd4c83a7de0`.
+- Static checks passed for 165 JSON rows, no supplier-related JSON keys, three canonical roots, no homepage/category-menu Trailer & Towing entry, review page uses sanitised JSON only, and Pages builder allowlists the isolated review page. Automated tests and a hosted preview are not yet verified.
+- PR #208 remains draft/unmerged. Do not merge it wholesale: it still contains other historical proposal changes and must receive a final changed-file audit. No live category creation, product import, Supabase write, production deploy, Axxess upload or paid Cloudflare spend occurred.
