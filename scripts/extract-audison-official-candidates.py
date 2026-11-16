@@ -36,6 +36,7 @@ class PageParser(HTMLParser):
         self._h1 = False
         self._script_json = False
         self.jsonld = []
+        self.image_candidates = []
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag.lower() == "meta":
@@ -43,6 +44,15 @@ class PageParser(HTMLParser):
             value = (attrs.get("content") or "").strip()
             if key and value:
                 self.meta[key] = html.unescape(value)
+        elif tag.lower() == "img":
+            image_url = attrs.get("data-src") or attrs.get("data-lazy-src") or attrs.get("data-original") or attrs.get("src") or ""
+            if not image_url:
+                srcset = attrs.get("data-srcset") or attrs.get("srcset") or ""
+                if srcset:
+                    image_url = srcset.split(",")[0].strip().split(" ")[0]
+            alt = clean_text(attrs.get("alt") or attrs.get("title") or "")
+            if image_url:
+                self.image_candidates.append({"url": image_url, "alt": alt})
         elif tag.lower() == "title":
             self._title = True
         elif tag.lower() == "h1":
@@ -100,21 +110,27 @@ def get_page(url):
     title = clean_text(" ".join(parser.title_parts))
     h1 = clean_text(" ".join(parser.h1_parts))
     description = parser.meta.get("description") or parser.meta.get("og:description") or ""
-    image_url = parser.meta.get("og:image") or parser.meta.get("twitter:image") or ""
+    og_image_url = parser.meta.get("og:image") or parser.meta.get("twitter:image") or ""
     products = extract_jsonld(parser)
+    jsonld_image_urls = []
     for product in products:
         description = description or clean_text(product.get("description"))
-        if not image_url:
-            image = product.get("image")
-            if isinstance(image, list): image = image[0] if image else ""
-            if isinstance(image, dict): image = image.get("url", "")
-            if isinstance(image, str): image_url = image
+        image = product.get("image")
+        if isinstance(image, list): image = image[0] if image else ""
+        if isinstance(image, dict): image = image.get("url", "")
+        if isinstance(image, str) and image:
+            jsonld_image_urls.append(urljoin(final_url, image))
     return {
         "final_url": final_url,
         "page_title": title,
         "h1": h1,
         "meta_description": clean_text(description),
-        "image_url": urljoin(final_url, image_url) if image_url else "",
+        "og_image_url": urljoin(final_url, og_image_url) if og_image_url else "",
+        "jsonld_image_urls": jsonld_image_urls,
+        "image_candidates": [
+            {"url": urljoin(final_url, item["url"]), "alt": item["alt"]}
+            for item in parser.image_candidates
+        ],
         "jsonld_products": len(products),
     }
 
@@ -127,6 +143,18 @@ def model_match(source_model, source_title, page_title, h1, description):
     model_tokens = [x for x in re.findall(r"[a-z0-9.]+", token) if len(x) >= 3 and x not in {"audison", "amplifier", "amplifiers", "digital", "processor"}]
     if model_tokens and all(x in haystack for x in model_tokens): return "MODEL_TOKENS_FOUND_REVIEW_REQUIRED"
     return "MODEL_MATCH_NOT_PROVEN"
+
+def select_exact_model_image(image_candidates, source_model):
+    """Accept a gallery image only when its own alt/title identifies the exact model."""
+    target = re.sub(r"[^a-z0-9]+", "", clean_text(source_model).casefold())
+    if not target:
+        return None
+    for candidate in image_candidates:
+        alt_key = re.sub(r"[^a-z0-9]+", "", clean_text(candidate.get("alt")).casefold())
+        if target and target in alt_key:
+            return candidate
+    return None
+
 
 def download_image(url, candidate_id):
     if not url: return {"status": "NO_IMAGE_URL"}
@@ -159,7 +187,7 @@ def download_image(url, candidate_id):
     }
 
 def make_contact_sheet(items):
-    candidates = [x for x in items if x.get("local_image_path") and (ROOT / x["local_image_path"]).exists()]
+    candidates = [x for x in items if x.get("local_image_path") and x.get("image_review_status") != "REJECTED_SHARED_IMAGE_HASH" and (ROOT / x["local_image_path"]).exists()]
     if not candidates: return
     cell_w, cell_h, label_h = 320, 230, 48
     cols = 3
@@ -216,6 +244,16 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = read_manifest()
     existing = {x.get("official_product_page_url"): x for x in manifest.get("items", [])}
+    hashes = {}
+    for prior_item in manifest.get("items", []):
+        digest = prior_item.get("image_sha256")
+        if digest:
+            hashes.setdefault(digest, []).append(prior_item)
+    for digest, duplicates in hashes.items():
+        if len(duplicates) > 1:
+            for duplicate in duplicates:
+                duplicate["image_review_status"] = "REJECTED_SHARED_IMAGE_HASH"
+                duplicate["image_review_reason"] = "Identical image bytes are reused across distinct models; generic/shared image is not an exact-model product image."
     overrides_path = ROOT / "assets/audio-product-enrichment-overrides.json"
     override_tokens = []
     if overrides_path.exists():
@@ -265,10 +303,22 @@ def main():
             page = get_page(url)
             item.update(page)
             item["model_match_status"] = model_match(source_model, source_title, page["page_title"], page["h1"], page["meta_description"])
-            candidate_image = page["image_url"] or clean_text(row.get("image_url_candidate"))
-            item["image_url"] = candidate_image
-            item.update(download_image(candidate_image, candidate_id))
-            item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
+            exact_image = select_exact_model_image(page.get("image_candidates", []), source_model)
+            item["og_image_url"] = page.get("og_image_url", "")
+            item["jsonld_image_urls"] = page.get("jsonld_image_urls", [])
+            if exact_image:
+                candidate_image = exact_image["url"]
+                item["image_url"] = candidate_image
+                item["image_alt"] = exact_image.get("alt", "")
+                item["image_match_evidence"] = "EXACT_SOURCE_MODEL_IN_OFFICIAL_GALLERY_IMAGE_ALT"
+                item.update(download_image(candidate_image, candidate_id))
+                item["image_review_status"] = "EXACT_MODEL_ALT_CANDIDATE_REQUIRES_VISUAL_REVIEW"
+                item["status"] = "EXTRACTED_REQUIRES_VISUAL_AND_MODEL_REVIEW"
+            else:
+                item["image_url"] = ""
+                item["image_review_status"] = "NO_EXACT_MODEL_IMAGE_ALT"
+                item["image_review_reason"] = "No official gallery image alt/title contains the exact source model; generic Open Graph and unlabelled JSON-LD images are not accepted."
+                item["status"] = "EXACT_MODEL_PAGE_NO_EXACT_IMAGE_CANDIDATE"
         except Exception as exc:
             previous = existing.get(url, {})
             attempts = int(previous.get("attempts", 0)) + 1
