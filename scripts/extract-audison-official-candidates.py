@@ -191,14 +191,25 @@ def download_image(url, candidate_id):
     host = (urlparse(url).hostname or "").lower()
     if host not in ALLOWED_IMAGE_HOSTS:
         return {"status": "IMAGE_HOST_REVIEW_REQUIRED", "image_url": url}
-    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/avif,image/webp,image/png,image/jpeg,*/*"})
+    req = Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://audison.com/",
+    })
     with urlopen(req, timeout=25) as response:
         data = response.read(MAX_IMAGE_BYTES + 1)
         content_type = response.headers.get("Content-Type", "")
     if len(data) > MAX_IMAGE_BYTES: return {"status": "IMAGE_TOO_LARGE", "image_url": url}
-    image = Image.open(BytesIO(data))
-    image.verify()
-    image = Image.open(BytesIO(data)).convert("RGB")
+    if content_type and not content_type.lower().startswith("image/"):
+        preview = data[:100].decode("utf-8", errors="replace")
+        raise RuntimeError(f"image URL returned non-image content type {content_type}; body prefix={preview!r}")
+    try:
+        image = Image.open(BytesIO(data))
+        image.verify()
+        image = Image.open(BytesIO(data)).convert("RGB")
+    except Exception as exc:
+        raise RuntimeError(f"image decode failed; content_type={content_type}; bytes={len(data)}; prefix={data[:24].hex()}: {exc}") from exc
     width, height = image.size
     if width < 300 or height < 300:
         return {"status": "LOW_RES_IMAGE_REVIEW_REQUIRED", "image_url": url, "width": width, "height": height}
@@ -368,6 +379,9 @@ def main():
             attempts = int(previous.get("attempts", 0)) + 1
             item["attempts"] = attempts
             item["status"] = "FETCH_FAILED_RETRY" if attempts < 3 else "MANUAL_FETCH_REQUIRED"
+            if item.get("image_url") and item.get("image_alt"):
+                item["image_review_status"] = "EXACT_MODEL_ALT_MATCH_DOWNLOAD_FAILED"
+                item["image_review_reason"] = "Exact-model official image candidate was identified, but its image bytes could not be downloaded or decoded; do not import until a local verified image exists."
             item["error"] = str(exc)[:500]
         new_items.append(item)
         time.sleep(1.0)
