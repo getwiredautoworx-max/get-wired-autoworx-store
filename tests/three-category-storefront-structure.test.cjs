@@ -35,6 +35,7 @@ assert.equal(hiluxClassic?.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-
 const hilux2015 = audioOverrides.find(p => p.id === 'pw-2126');
 assert.equal(hilux2015?.modelNumber, 'OA018-1');
 assert.equal(hilux2015?.imageUrl, 'https://go4lo.co.za/cdn/shop/files/Toyota-Hilux-600x600_b92365e2-1f53-4a63-9a1e-965185d9fe9a.webp?v=1739876042&width=533');
+assert.match(hilux2015?.imageReviewNote || '', /screen-size conflict/i, 'OA018-1 screen-size conflict must remain explicitly recorded');
 assert.ok(hilux2015?.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && hilux2015.priceOnRequestText === 'Price On Request' && hilux2015.indicativePrice === null && hilux2015.hasStock === null, 'OA018-1 must remain Price On Request and preview-only while screen-size conflict is unresolved');
 assert.ok([fjClassic, hiluxClassic].every(p => p?.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null), 'OneNav FJ Cruiser and Hilux/Fortuner previews must remain Price On Request and preview-only');
 assert.ok([pradoClassic, jimnyClassic].every(p => p?.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE' && p.priceOnRequestText === 'Price On Request' && p.indicativePrice === null && p.hasStock === null), 'OneNav Classic previews must remain Price On Request and preview-only');
