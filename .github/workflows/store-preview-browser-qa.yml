@@ -50,3 +50,10 @@ jobs:
           exit 1
       - name: Verify mobile and desktop owner preview and audio product route
         run: node tests/owner-preview-browser-qa.cjs
+      - name: Verify hosted Cloudflare Pages preview for exact PR head
+        if: github.event_name == 'pull_request'
+        env:
+          GW_PREVIEW_BASE_URL: https://preview-trailer-towing-custo.get-wired-autoworx-store.pages.dev
+          GW_EXPECTED_PREVIEW_SHA: ${{ github.event.pull_request.head.sha }}
+          GW_EXPECTED_PREVIEW_BRANCH: ${{ github.head_ref }}
+        run: node tests/owner-preview-browser-qa.cjs
