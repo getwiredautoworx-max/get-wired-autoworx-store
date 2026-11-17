@@ -365,8 +365,8 @@
     "last_verified_main_sha": "77164230a3896e6b004a5adcc771599e04794813",
     "active_candidate_pr": 210,
     "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17",
-    "active_candidate_head": "a8dd073c338a4215dc4f82e2c8f4cbe90ff7dab2",
-    "active_candidate_status": "PR #210 is OPEN and DRAFT. ASC review stock has been removed from the candidate Pages allowlist; Electrocity Auto Electrical has 27 review-only records. Corrected images are generated inside the isolated preview package during QA; the first committed contact sheet is explicitly rejected/stale. Await exact-head package and browser checks; no merge or production deployment."
+    "active_candidate_head": null,
+    "active_candidate_status": "PR #210 is OPEN/DRAFT. Candidate branch removes ASC stock previews and replaces Auto Electrical sample data with 27 review-only Electrocity records. The corrected image processor runs inside the isolated Pages package build; exact-head CI is being re-triggered on the latest PR revision. No merge, live import or deployment."
   },
   "audit_log": [
     {
