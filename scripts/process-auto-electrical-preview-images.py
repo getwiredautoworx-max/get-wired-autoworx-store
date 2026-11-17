@@ -66,20 +66,16 @@ def main():
    # The source template places the product between the printed heading and
    # the supplier-code footer. This crop preserves the entire central photo
    # region while excluding both text bands and the outer page border.
-   left=int(round(w*0.04)); right=int(round(w*0.96))
-   top=int(round(h*0.16)); bottom=int(round(h*0.87))
+   left=int(round(w*0.05)); right=int(round(w*0.95))
+   top=int(round(h*0.16)); bottom=int(round(h*0.78))
    if bottom<=top or bottom-top < int(h*0.60): raise SystemExit("Unsafe product crop bounds: "+source.name)
    crop=im.crop((left,top,right,bottom))
    contained=ImageOps.contain(crop,(860,540),method=Image.Resampling.LANCZOS)
    canvas=Image.new("RGB",CANVAS,(255,255,255))
    canvas.paste(contained,((CANVAS[0]-contained.width)//2,(CANVAS[1]-contained.height)//2))
-   layer=Image.new("RGBA",CANVAS,(0,0,0,0))
-   fnt=font(28); box=fnt.getbbox(WATERMARK,stroke_width=1)
-   txt=Image.new("RGBA",(box[2]-box[0]+36,box[3]-box[1]+24),(0,0,0,0))
-   ImageDraw.Draw(txt).text((18-box[0],12-box[1]),WATERMARK,font=fnt,fill=(4,55,91,78),stroke_width=1,stroke_fill=(255,255,255,110))
-   rotated=txt.rotate(12,resample=Image.Resampling.BICUBIC,expand=True)
-   layer.alpha_composite(rotated,((CANVAS[0]-rotated.width)//2,(CANVAS[1]-rotated.height)//2))
-   result=Image.alpha_composite(canvas.convert("RGBA"),layer).convert("RGB")
+   draw=ImageDraw.Draw(canvas)
+   draw.text((CANVAS[0]-225,CANVAS[1]-22),WATERMARK,font=font(14),fill=(4,55,91))
+   result=canvas
    preview_id=f"auto-electrical-{index:03d}"
    output_name=preview_id+".jpg"
    output=OUT/output_name
