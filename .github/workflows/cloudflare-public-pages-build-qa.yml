@@ -33,7 +33,6 @@ on:
       - "preview-auto-electrical.html"
       - "scripts/process-auto-electrical-preview-images.py"
       - "tests/auto-electrical-review-population.test.cjs"
-      - ".github/workflows/electrocity-auto-electrical-image-treatment.yml"
       - "preview-planetworld.html"
       - "tests/three-category-storefront-structure.test.cjs"
       - "tests/audio-catalogue-preview.test.cjs"
