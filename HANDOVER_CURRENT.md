@@ -2,6 +2,18 @@
 
 ## Current directive: remove ASC stock; focus Electrocity Auto Electrical
 
+## QA checkpoint — 2026-11-17
+
+- The previous superseded PR #211 package build successfully generated 27 Auto Electrical image files; the image-treatment step and public review-data policy checks passed. The structural category test passed.
+- The owner-preview mobile/desktop browser check, public SKU exposure audit, button-only smoke test and Axxess package preparation workflow passed. Axxess preparation was package-only; no upload occurred.
+- Three old assertions failed and have been corrected on the active candidate: the pricing test still referenced the former ASC sample; the supplier-name test matched the letters “ASC” inside the vehicle name “Ascona”; and the storefront smoke test expected the old filter attribute rather than the current `data-filter` control. The task queue was also corrected to contain exactly one in-progress task and no obsolete source-workflow wording.
+- The ASC background worker is now manual-dispatch-only on main and its script fails closed unless the ASC task is explicitly active, in progress and automatic. This prevents background ASC extraction during the Electrocity priority.
+- PR #213 remains OPEN/DRAFT. No fresh exact-head workflow status is currently available after the latest corrections; do not call QA green and do not merge.
+- The corrected image build creates a 27-image contact sheet inside `pages-public/assets/auto-electrical-products/image-review-contact-sheet.jpg`. The previous contact sheet is marked rejected/stale. The new sheet still needs visual inspection; no workflow artifact was attached and no preview was deployed.
+
+---
+
+
 - Owner priority is now to remove **all ASC-derived product stock** from customer-facing store previews and package allowlists, then continue catalogue work with Electrocity under **Auto Electrical Spares**.
 - Original ASC supplier catalogues, extraction CSVs, image evidence, review manifests and PR history are retained for future reference. This is a storefront exclusion, not a deletion of source records.
 - Read-only Supabase verification on 2026-11-17: `public.products` contains 0 rows, 0 active products and 0 active stock units. `gw_private.catalogue_product_staging` contains 68 Audio Connections and 702 Planetworld records; no ASC or Electrocity rows were present. **No live product deletion or Supabase write is required.**
