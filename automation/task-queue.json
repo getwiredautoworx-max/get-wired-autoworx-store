@@ -183,7 +183,7 @@
         "Exact-branch automated package, sanitization, SKU-exposure, image and storefront tests pass before owner preview.",
         "No live Supabase write, production import, deployment, Axxess upload or paid hosting use without separate approval."
       ],
-      "next_action": "PR #211 is the active DRAFT review (supersedes closed PR #210). Candidate removes ASC preview data/routes/assets and replaces the ASC Auto Electrical pilot with 27 eligible Electrocity records (24 modules, 3 looms); two exceptions remain quarantined. Corrected image processor generates fresh images and a contact sheet inside the isolated pages-public package during build. Next: exact-head CI, inspect generated image/contact sheet, then mobile/desktop owner review. No live import, Supabase write, merge or deployment."
+      "next_action": "PR #212 is the active DRAFT review; PRs #210 and #211 are closed as superseded. ASC scheduled/PR extraction automation is paused (manual dispatch only) and the worker requires explicit active/automatic ASC task authorization. Candidate excludes ASC customer-facing preview assets and shows 27 eligible Electrocity records (24 modules, 3 looms); two records remain quarantined. The corrected image processor generates fresh images/contact sheet inside the isolated Pages package at build time. Next: exact-head CI, inspect generated image QA output, then mobile/desktop owner review. No live import, Supabase write, merge or deployment."
     },
     {
       "id": "audio-video-content-enrichment",
@@ -259,7 +259,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "PR #211 exact-head QA. Build script generates sanitized Auto Electrical images into pages-public at build time, verifies exactly 27 files, checks supplier/SKU privacy, fitment status, POR/null price/null stock and category split, and runs storefront structure/audio/pricing/sanitization tests. Inspect workflow results and owner preview routes; do not deploy or use Cloudflare credits."
+      "next_action": "PR #212 exact-head QA. Build script generates sanitized Auto Electrical images into pages-public at build time, verifies exactly 27 files, checks supplier/SKU privacy, fitment status, POR/null price/null stock and category split, and runs storefront structure/audio/pricing/sanitization tests. Inspect workflow results and owner preview routes; do not deploy or use Cloudflare credits."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -363,10 +363,10 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "77164230a3896e6b004a5adcc771599e04794813",
-    "active_candidate_pr": 211,
+    "active_candidate_pr": 212,
     "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17",
     "active_candidate_head": null,
-    "active_candidate_status": "PR #211 is the active DRAFT review for the owner-priority candidate branch; it supersedes closed PR #210. The branch excludes ASC product previews and carries 27 review-only Electrocity Auto Electrical records. Exact-head package QA is triggered by the new PR open event. No merge, live import or deployment."
+    "active_candidate_status": "PR #212 is the active DRAFT review; PRs #210 and #211 are closed as superseded. ASC scheduled/PR worker triggers have been removed on main and the worker now fails closed unless ASC is explicitly the active automatic task. The candidate removes ASC storefront previews and carries 27 review-only Electrocity Auto Electrical products. Exact-head QA pending; no merge or deployment."
   },
   "audit_log": [
     {
