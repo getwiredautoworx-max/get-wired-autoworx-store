@@ -1,3 +1,29 @@
+# OWNER PRIORITY CHANGE — 2026-11-17
+
+## Current directive: remove ASC stock; focus Electrocity Auto Electrical
+
+- Owner priority is now to remove **all ASC-derived product stock** from customer-facing store previews and package allowlists, then continue catalogue work with Electrocity under **Auto Electrical Spares**.
+- Original ASC supplier catalogues, extraction CSVs, image evidence, review manifests and PR history are retained for future reference. This is a storefront exclusion, not a deletion of source records.
+- Read-only Supabase verification on 2026-11-17: `public.products` contains 0 rows, 0 active products and 0 active stock units. `gw_private.catalogue_product_staging` contains 68 Audio Connections and 702 Planetworld records; no ASC or Electrocity rows were present. **No live product deletion or Supabase write is required.**
+- Candidate branch: `owner/electrocity-auto-electrical-priority-2026-11-17`. It removes ASC sample routes/data/images from the non-production Pages allowlist and replaces the ASC Auto Electrical pilot with Electrocity review-only records. This branch is not merged or deployed.
+- ASC preview material removed from the candidate package allowlist: `preview-asc-sample.html`, `product-image-treatment-pilot.html`, `product-image-treatment-sample.json`, and `assets/get-wired-product-pilot/`. The unified owner preview no longer loads the 16 ASC Aerials/Car Mats sample records.
+- Electrocity source register: 29 records. Current eligible customer-preview set: **27 records (24 Ignition Modules, 3 Ignition Looms)**. Fitment evidence: 3 confirmed and 24 corroborated. Two records remain excluded:
+  - `GWA-EC-000012`: source fitment discrepancy; retain pending supplier clarification.
+  - `GWA-EC-000022`: supplier SKU is identical to the OEM/model identifier; retain pending code-role resolution.
+- Customer-facing data omits supplier identity and internal supplier SKU. All 27 records remain `PREVIEW_ONLY_NOT_LIVE`, Price On Request, `indicativePrice=null`, `hasStock=null`, and availability-to-confirm.
+- New Auto Electrical preview categories: Ignition Modules and Ignition Looms. Other departments and categories are paused.
+- **Image QA correction required:** the first contact sheet still showed supplier-code footer text because the source page images are 560×460, not 560×420. The image processor has now been corrected to crop x=5–95%, y=16–78%, remove the header/footer bands, and place a small Get Wired watermark at bottom-right. The currently committed image set/contact sheet is stale until the updated image workflow regenerates all 27 files. Do not approve or publish those images until the regenerated contact sheet is visually checked.
+- PR #209 (ASC Trailer & Towing, 165 review-only listings) is being closed as out of current scope; retain its source branch and CSV history without merging.
+- Production remains HOLD. No Supabase writes, catalogue imports, production deployments, Cloudflare credit use, Axxess uploads, DNS/payment changes or live price/stock changes.
+
+### Immediate execution sequence
+1. Open the owner-priority candidate PR to trigger the image-treatment and package-QA workflows.
+2. Regenerate and visually inspect all 27 sanitized Auto Electrical images; verify no supplier heading or footer code remains and no product is clipped.
+3. Run exact-PR-head package, route, supplier/SKU exposure, price/stock policy, and mobile/desktop checks.
+4. Present the isolated owner preview for review. Do not merge or deploy without owner approval.
+
+---
+
 ## STORE BUILD RESUMPTION CHECKPOINT — 2026-11-17
 
 ### Canonical state and release boundary
