@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "7c4a25f50a878cc83fb45f587f8bd01f9a9f9db6",
+    "canonical_head": "29ab5769f5588fd911a026e93e2e3cc60ac4e1a1",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
