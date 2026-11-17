@@ -196,7 +196,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-16: Audison candidate batch and product groups are complete for the 36 exact official product-page records; 34 Audison overrides plus seven existing verified primary-preview records cover the candidate set. Global override file now has 42 records (34 Audison, 2 OneNav, 6 other approved brands), all PREVIEW_ONLY_NOT_LIVE, Price On Request, indicativePrice=null, hasStock=null and no supplier fields. OneNav Classic: existing Prado record pw-2120 now carries official manufacturer SKU OA014-1; added Jimny record pw-2158 as OA715-1 using the exact manufacturer-hosted installed-fitment image. OA009-1 Toyota 280mm details are verified, but no exact image has been approved; rejected the ON009-2A11 CANBUS Pro Series image and kept OA009-1 image pending. Exact main package QA 77164230 passed isolated preview and supplier-safe sanitization; Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit passed on content SHA 4298e6d. OneNav branch remains 24 ahead/250 behind and is not merged/rebased. Next: finish OneNav Classic image reconciliation (OA009-1 remains pending), verify OneNav brand logo/button, then continue remaining OneNav model candidates. Production QA/public URL verification remain blocked by live Cloudflare challenge and non-consolidated production; no deployment or credit use."
+      "next_action": "2026-11-17: Resume on canonical main. OA009-1 official OneNav page confirms Classic SKU/specifications but no approved exact image is exposed; NXT Level Tech exact-SKU page is not inspectable (403), so image remains pending and ON009-2A11 Pro CANBUS image remains rejected. OA012-1 third-party listing confirms Classic SKU/RAV4 fitment, while official OneNav RAV4 page identifies different ON012-1A Evolution/Pro variant and different specifications; do not transfer its image/specs. Verified OneNav brand-button route to preview-audio-brand.html and product-type route to preview-audio-products.html; current mark is a text-based SVG wordmark, not official image artwork. Next: continue bounded exact OneNav SKU/image reconciliation, then run full QA on current main 29ab5769 before any refreshed preview. Last explicitly QA-verified baseline remains 77164230; do not claim 29ab exact-head QA yet. All work remains PREVIEW_ONLY_NOT_LIVE, Price On Request, null indicative price/stock. Production HOLD; no merge/deploy/credits/live writes."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -214,7 +214,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "Direct canonical-main review-only data work; do not merge/rebase/force-push the divergent OneNav branch (24 ahead / 250 behind). Completed: OA014-1 Prado Classic model number added to pw-2120; OA715-1 Jimny Classic added as pw-2158 with official OneNav installed-fitment image and exact specs. OA009-1 Toyota 280mm details verified, but image remains pending; reject ON009-2A11 Pro Series CANBUS image and keep OA009-2 separate. Next: search for an exact OA009-1 image without variant inference; if none, retain image-pending state, then verify OneNav brand logo/button and continue the remaining exact OneNav rows."
+      "next_action": "2026-11-17: OA009-1 official product page confirms exact Classic SKU/specs but no approved exact image; third-party NXT Level Tech exact-SKU page could not be visually inspected (403); keep image pending and reject ON009-2A11 Pro CANBUS. OA012-1 NXT Level Tech listing confirms Classic/RAV4 SKU, but official OneNav RAV4 page identifies different ON012-1A Evolution/Pro variant; do not transfer image/specs. Continue remaining OneNav Classic rows with exact SKU/variant/image evidence only; retain unresolved images as pending. Brand button route and separate product-type route are present in code; custom text SVG is not the official logo asset. No import or live publication."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -251,7 +251,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Supporting QA only. Package QA on exact main 77164230 passed standard customer-only build and isolated non-production preview routes/supplier-safe sanitization. Storefront Smoke Test, Public SKU Exposure Audit and Catalogue Image Audit passed on preceding content SHA 4298e6d. Production QA still reports LIVE_BUTTON_ONLY_NOT_DEPLOYED; public URL check sees Cloudflare challenge HTML for the live homepage/category JSON/product image. No production deployment or credit use."
+      "next_action": "The last explicitly QA-verified main baseline is 77164230. Current main is 29ab5769 after 12 subsequent commits, including review-only manifest/audit checkpoints; exact-head QA and hosted browser checks have not yet been confirmed for 29ab5769. Run package QA, storefront smoke, public SKU exposure, catalogue image audit and mobile/desktop browser QA on the exact current SHA before presenting a refreshed preview. Production QA remains intentionally blocked by live Cloudflare challenge/non-consolidated production; no deployment or credit use."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -342,7 +342,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "77164230a3896e6b004a5adcc771599e04794813",
+    "canonical_head": "29ab5769f5588fd911a026e93e2e3cc60ac4e1a1",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
