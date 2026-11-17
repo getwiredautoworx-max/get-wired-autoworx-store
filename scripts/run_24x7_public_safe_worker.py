@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "suppliers" / "ASC"
 OUT = ROOT / "catalogue-review" / "asc-catalogue-extraction"
 CHECKPOINT = ROOT / "background-task-checkpoint"
+QUEUE = ROOT / "automation" / "task-queue.json"
 APPROVED = {
     "ASC- Aerials (1).pdf",
     "ASC- Automotive Sensors (1).pdf",
@@ -27,6 +28,35 @@ APPROVED = {
 
 def main() -> int:
     CHECKPOINT.mkdir(parents=True, exist_ok=True)
+    queue = json.loads(QUEUE.read_text(encoding="utf-8"))
+    coordination = queue.get("coordination", {})
+    active_task_id = coordination.get("active_task_id")
+    asc_task = next((task for task in queue.get("tasks", []) if task.get("id") == "asc-six-catalogue-source-extraction"), None)
+    asc_authorised = bool(
+        asc_task
+        and active_task_id == "asc-six-catalogue-source-extraction"
+        and asc_task.get("status") == "in_progress"
+        and asc_task.get("automatic") is True
+    )
+    if not asc_authorised:
+        report = {
+            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+            "status": "skipped_owner_priority_change",
+            "active_task_id": active_task_id,
+            "asc_task_status": asc_task.get("status") if asc_task else None,
+            "asc_task_automatic": asc_task.get("automatic") if asc_task else None,
+            "message": "No ASC extraction was run. The owner has prioritised Electrocity Auto Electrical; ASC processing requires the ASC task to be explicitly active and automatic in the owner task queue."
+        }
+        (CHECKPOINT / "public-safe-worker-status.json").write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
+        (CHECKPOINT / "PUBLIC_SAFE_WORKER_STATUS.md").write_text(
+            "# Public-Safe Catalogue Worker Checkpoint\\n\\n"
+            "- Status: **skipped — owner priority change**\\n"
+            f"- Active task: {active_task_id}\\n"
+            "- ASC extraction: not run.\\n",
+            encoding="utf-8"
+        )
+        print(json.dumps(report, indent=2))
+        return 0
     found = {p.name for p in SOURCE.glob("*.pdf") if p.is_file()}
     if found != APPROVED:
         missing = sorted(APPROVED - found)
