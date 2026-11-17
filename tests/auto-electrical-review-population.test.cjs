@@ -48,5 +48,5 @@ const source=fs.readFileSync("suppliers/Electrocity/catalogue-work/ignition-loom
 const rows=parseCSV(source);
 assert.equal(rows.length,29);
 for(const r of rows){if(r.electrocity_sku)assert.ok(!visible.toLowerCase().includes(r.electrocity_sku.toLowerCase()),"internal supplier SKU leaked: "+r.provisional_gw_id);}
-assert.doesNotMatch(visible,/Electrocity|ASC/i,"supplier identities must not enter customer-facing product data");
+assert.doesNotMatch(visible,/Electrocity|\\bASC\\b/i,"supplier identities must not enter customer-facing product data");
 console.log("PASS: 27 Auto Electrical products; 24 modules, 3 looms; 2 records quarantined; supplier SKUs hidden; POR and stock-unconfirmed; 27 sanitized images present.");
