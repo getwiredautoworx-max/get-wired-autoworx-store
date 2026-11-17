@@ -97,7 +97,7 @@
         "2026-11-15: selectively ported PR #152 category snapshot config resolution to main, added environment-first config resolution with checkout client fallback, regression tests, dedicated workflow and refresh gate; PR-head regression run 41449633110 passed; closed PR #152. No Supabase writes.",
         "2026-11-15: closed PR #137 as superseded by existing main courier-origin privacy handling; its helper was not ported because redundant and omitted delivery province.",
         "2026-11-15: reviewed PR #155 and recorded a blocking runtime defect (const identification reassigned) plus required migration schema/privilege validation; left open and not deployed.",
-        "2026-11-15: selectively ported PR #154 safety changes onto a fresh current-main branch, removed prohibited Buyer Guide workflow monitoring/retry, merged as PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05; PR #154 closed as superseded. Original controller safety workflow passed on source PR head (run 41452514667); exact current-main push workflow run not exposed by the available commit-run view.",
+        "2026-11-15: selectively ported PR #154 safety changes onto a fresh current-main branch, removed obsolete source-workflow monitoring/retry, merged as PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05; PR #154 closed as superseded. Original controller safety workflow passed on source PR head (run 41452514667); exact current-main push workflow run not exposed by the available commit-run view.",
         "2026-11-15: closed PR #3 as out-of-scope separate Sales Intelligence APK; confirmed only #184, #155 and #67 remain open. #184/#67 share Owner APK files and are queued as one unified candidate."
       ]
     },
