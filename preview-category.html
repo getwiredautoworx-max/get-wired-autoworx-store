@@ -91,7 +91,8 @@ function artFor(label){
  const exact=localAudio.find(([re])=>re.test(n));
  if(exact)return exact[1];
  // External category artwork is a review-only visual aid. Source reuse permission is not confirmed; do not treat these URLs as production-approved product imagery.
- const photos=[\n  [/ignition modules?/,'assets/auto-electrical-products/auto-electrical-002.jpg'],\n  [/ignition looms?/,'assets/auto-electrical-products/auto-electrical-025.jpg'],
+ const photos=[
+  [/ignition modules?/,'assets/auto-electrical-products/auto-electrical-002.jpg'],\n  [/ignition looms?/,'assets/auto-electrical-products/auto-electrical-025.jpg'],
   [/automotive sensors?/,'assets/product-placeholder.svg'],
   [/automotive switches?/,'assets/product-placeholder.svg'],
   [/fuel pumps?/,'assets/product-placeholder.svg'],
