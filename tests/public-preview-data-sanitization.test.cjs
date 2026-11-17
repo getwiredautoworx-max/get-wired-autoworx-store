@@ -8,7 +8,6 @@ const files = [
   'audio-catalogue-secondary-preview.json',
   'audio-model-verification-preview.json',
   'auto-electrical-owner-preview.json',
-  'product-image-treatment-sample.json'
 ];
 const primaryPath = path.join(root, 'audio-catalogue-primary-preview.json');
 const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf8'));
