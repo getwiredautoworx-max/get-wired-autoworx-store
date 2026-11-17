@@ -1,7 +1,6 @@
 "use strict";
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
-const path=require("node:path");
 const data=JSON.parse(fs.readFileSync("assets/auto-electrical-owner-preview.json","utf8"));
 assert.equal(data.status,"OWNER PREVIEW ONLY — REVIEW ONLY — DO NOT IMPORT");
 assert.equal(data.products.length,27,"expected 27 eligible Auto Electrical preview products");
@@ -11,7 +10,7 @@ assert.equal(data.summary.corroboratedFitmentRecords,24);
 assert.equal(data.summary.excludedFromPreview,2);
 const visible=JSON.stringify(data.products);
 for(let i=1;i<=27;i++){
- const file="assets/auto-electrical-products/auto-electrical-"+String(i).padStart(3,"0")+".jpg";
+ const file="pages-public/assets/auto-electrical-products/auto-electrical-"+String(i).padStart(3,"0")+".jpg";
  assert.ok(fs.existsSync(file),"missing sanitized customer image "+file);
 }
 for(const p of data.products){
