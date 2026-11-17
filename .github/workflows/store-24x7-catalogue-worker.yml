@@ -1,18 +1,8 @@
 name: 24x7 Public-Safe Catalogue Worker
 
+# Paused by owner priority change on 2026-11-17. Manual dispatch only; the worker also checks the owner task queue before extraction.
 on:
-  schedule:
-    - cron: "23 */4 * * *"
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-    paths:
-      - "automation/task-queue.json"
-      - "scripts/run_24x7_public_safe_worker.py"
-      - "scripts/asc_catalogue_extract.py"
-      - "scripts/validate_automation_queue.py"
-      - "suppliers/ASC/**"
-      - ".github/workflows/store-24x7-catalogue-worker.yml"
 
 permissions:
   contents: write
@@ -77,9 +67,3 @@ jobs:
             git commit -m "automation: refresh ASC catalogue OCR review evidence"
             git push origin HEAD:automation/catalogue-extraction-checkpoints
           fi
-
-      - name: Explain PR validation mode
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "PR validation ran the public-safe ASC extraction and task-queue checks." >> "$GITHUB_STEP_SUMMARY"
-          echo "PR jobs do not commit generated outputs or alter any branch." >> "$GITHUB_STEP_SUMMARY"
