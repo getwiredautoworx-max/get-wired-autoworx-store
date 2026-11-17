@@ -3,7 +3,7 @@
 ### Canonical state and release boundary
 - Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical branch: `main`.
 - Latest content commit before this checkpoint: `29ab5769f5588fd911a026e93e2e3cc60ac4e1a1` (`chore(audio): checkpoint official product-page image candidates`).
-- Latest canonical main HEAD after the handover and task-queue checkpoint commits: `7c4a25f50a878cc83fb45f587f8bd01f9a9f9db6`. These two commits only update handover/task coordination records; no storefront code, product records or production systems were changed.
+- Subsequent commits after `29ab5769f5588fd911a026e93e2e3cc60ac4e1a1` update only the handover and task-queue coordination records; no storefront code, product records or production systems were changed. Keep `coordination.canonical_head` pinned to the latest content-code baseline until a new code change is verified.
 - Task queue's prior canonical head was `77164230a3896e6b004a5adcc771599e04794813`; main has 12 subsequent commits. The 77164230 package QA remains the last explicitly verified baseline; do not claim the newer 29ab5769 head passed exact-head QA until rerun.
 - Sole active build workstream remains `audio-video-content-enrichment`, continuing directly on canonical main as review-only work.
 - PR #209 remains a separate DRAFT, OPEN, UNMERGED Trailer & Towing review candidate. It does not become a fourth homepage department and is not a production release.
