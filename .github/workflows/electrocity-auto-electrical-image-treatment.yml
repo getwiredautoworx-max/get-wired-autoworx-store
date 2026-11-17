@@ -9,6 +9,14 @@ on:
       - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/normalised-review.csv"
       - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/page-evidence/**"
       - ".github/workflows/electrocity-auto-electrical-image-treatment.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "scripts/process-auto-electrical-preview-images.py"
+      - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/normalised-review.csv"
+      - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/page-evidence/**"
+      - ".github/workflows/electrocity-auto-electrical-image-treatment.yml"
 permissions:
   contents: write
 concurrency:
@@ -21,6 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -40,5 +49,6 @@ jobs:
           git add catalogue-review/electrocity-auto-electrical-contact-sheet.jpg
           if git diff --cached --quiet; then echo "No image-treatment output changes."; exit 0; fi
           git commit -m "chore(images): add sanitized Auto Electrical preview images"
-          git pull --rebase origin "$GITHUB_REF_NAME"
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          target_branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$target_branch"
+          git push origin "HEAD:$target_branch"
