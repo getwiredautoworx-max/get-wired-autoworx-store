@@ -1,0 +1,411 @@
+{
+  "status": "OWNER_PREVIEW_ONLY — REVIEW ONLY — DO NOT IMPORT",
+  "count": 27,
+  "records": [
+    {
+      "previewId": "auto-electrical-001",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "9706677c12b2814cb140293f241c14194a0d4d457568be4d670ecfdbf7215123",
+      "outputImageSha256": "350c224f66c927fb0c2b5956aa5615b32e45b7ee18260ff5d5883f0a911f9548",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-002",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "a63d1f593c9a902c8f4aab59d9394964a018a217d05b02630fb404584da6ea2e",
+      "outputImageSha256": "33f4125526dcd675df68899021cd434e16a2c94309708c147c3ad017c32c1898",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-003",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "9bdd047c7125023253c4f943fb7327fd6205d727653cfde291dd12d84a33fbcd",
+      "outputImageSha256": "ad41fb92fb79d86950ed923f2bd42da285d738a44a73a758f0cf9e9f32e6118e",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-004",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "0225a771f6465b889bd9b8e53da30cb3cd2b9a472b1eaac2118a7a7bd1cc3347",
+      "outputImageSha256": "a21e44bcbe88fc4b400ac2912d33126076fb199ec5bd03d2bedc4124785c92fb",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-005",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "939a51553a1a27f510a29eada63d01ac6cb601a139bcd6e32fa078d34e53335e",
+      "outputImageSha256": "d4e1d73acb58e8a56c4012c1b1077f6990d8868864337d619bd61068205b0e6a",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-006",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "933c725cbedcf19ec05acb0cdbad50cfb64892b1c66ad6944512df899653834f",
+      "outputImageSha256": "ae240d6dab70c3889965e29baef383f4de187bf05267eef9e0a777f866e72f17",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-007",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "b44b22d48d3a1dcc024e19dfa76756991b6a800c0e6feb1ec2f092dbef7fc94a",
+      "outputImageSha256": "ff26f371a0906499418564c8576d68efae044e862b6205ad7323f9a2a96ea784",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-008",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "40b5017edabe81821c17ef4c4f26d3c1c52d7adfb4c3f3ed9b6292276927f371",
+      "outputImageSha256": "ad1c5d9b5d01d4a73251ae6b45a6fde69a1a87eacb076126b228d6a9230cd3d7",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-009",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "2a9c8b25aaf13cdac4e4c7e9c9f82a6da83c22df8b86b172cc449e3e3ed9b386",
+      "outputImageSha256": "ea2a4e447204eccbba4f54530ca11c8bbf037e62d8a101f287aec05538ac3e67",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-010",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "404d1590b69dbee18a79c8bc0cd1ee54ffe570a39732872b29acad1a55e4d0d0",
+      "outputImageSha256": "b2345a2509bbb1af3d6b9fd1217e52070f5cee661508375e0ed901ffe641b07e",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-011",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "1ded767864b2a5e077b63eb2ae5b8c6eb98e6389126e077f7fbaeabe3d295c9d",
+      "outputImageSha256": "41149b8d9b43157c5c2e9f577aebd25f66538df966c5c1836e66da4c6f7ebacc",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-012",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "424ce9c11778c7870b18952f7f9498d6aaa56a420b2326ede382bc74048e65bb",
+      "outputImageSha256": "0d1a50ea66738c43ef2ee31a0fd72f3db7a2e599e961ade51d9b205f7912e433",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-013",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "44688a37c99cc99bcdd4b19f16e9ab1b0512cbe8183395844673849b3bb5764c",
+      "outputImageSha256": "9bc7b0dcc0cb2b534b8d8839dad4c03408f7e1619f1cd9e8d95877934935ac03",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-014",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "61c0cba27910936b382e0b55c8eef991fb51857a75ce2fb9cf1117624087fc02",
+      "outputImageSha256": "5abdc5612c8945a9aaf390870c944363159d84beeec5aa53b1316212633441fb",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-015",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "41028c77b03090bb4154733420454a5f8aedbb921615e3ba6b1d0a8fc88b9b84",
+      "outputImageSha256": "cd7d3ec31637f537071c39fdfccc67b4b8a3cf855bd03af1828984163c7bf3b8",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-016",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "28193eaa11fdeeee67f3ea67e8662be05f4085ae71b9bcb58cf96a58a79b8e56",
+      "outputImageSha256": "0dfbc743b493159b7b90e7a7ae9fd8e3ea997090386b2d66139557cd628b08b9",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-017",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "98d2a964ea26f05a586399978f06b558a34b5fbe5da343b924845be816bb1b78",
+      "outputImageSha256": "b5c6a30949a7156cc4b58deb1a8c0894a82ba8c7b6c398a1d4e9391e023601eb",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-018",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "16911bc4111d42a5fc5973af23443a101126c688507ba8262a36906c41714385",
+      "outputImageSha256": "2a67b6a0d779e68f7559dbca013062fabe41e31af06820f023d0c613242a2386",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-019",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "94483acce780e70dce4f23905cb61ba265d53131200fdce51e2b3da19270667b",
+      "outputImageSha256": "02d73a0516f5d7e32bda1afd62a55dc51e73bda49021e58eb02c29a671bb0a3b",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-020",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "34fddfe97054cd8ac93efa5803d5afa48bf00cbddcc73bfb895eeabbb9ae431d",
+      "outputImageSha256": "f175cda417799631c2565ca3117c4ca1cb17bd6cb4b3c9b7a8297d7561ae1cb8",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-021",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "220833afbb1dbf53d13c091466c9eb91d4536a996ab7b8ee3b6e6009c87ad5a4",
+      "outputImageSha256": "3311cddb146a01ac5f76052d63ac725b1140c16369feb15965ad8c17c24b567a",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-022",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "02255e470f23c4954a22d84ac52d12b812c52b80d674b4cf4abf983400adc46a",
+      "outputImageSha256": "e7f95e6c1ba5e871e283084da8165bf4e1670883eb548bffdf04ea04485a4f89",
+      "sourceDimensions": "560x440",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 70,
+        "right": 538,
+        "bottom": 383
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-023",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "e09385c644c507932aa1ee1cff3b96fa398fe099ac10a96f1aa73391e0687300",
+      "outputImageSha256": "eb365584109bfef6135f420bec31ba6fcfbf637b2b8e9b370ab26f79fcc91319",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-024",
+      "category": "Ignition Modules",
+      "sourceImageSha256": "dab4b40f246e25feaead890cd2b901f21da3143ed3d554c5c452a35ec7b6b4e6",
+      "outputImageSha256": "0196ac9166bd1a4fe71f4f3c4f6c3c263df23828bd713c4817a087965bf135fd",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-025",
+      "category": "Ignition Looms",
+      "sourceImageSha256": "0df3d2fe6f6a37e592e8ff6f722e95dc4c1310c7f29fb5709673599c7fe44f8d",
+      "outputImageSha256": "2eab33012ebff25a5f1498840f030053b3ca6e1854452271e05bb88fd02454aa",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-026",
+      "category": "Ignition Looms",
+      "sourceImageSha256": "5a3d6bbfc6777c17ed42823525535467fa139ce0d637518115bd3ba5850b9382",
+      "outputImageSha256": "f084b5dc3acc3d771ea171bb5c6c8efc2a90179fa9a41cd919be1a3179056a05",
+      "sourceDimensions": "560x460",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 74,
+        "right": 538,
+        "bottom": 400
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    },
+    {
+      "previewId": "auto-electrical-027",
+      "category": "Ignition Looms",
+      "sourceImageSha256": "53f9e13c12e2b6654b44c206a9d2c7938993721edaeacca49b6f8191c636984e",
+      "outputImageSha256": "4c5bf311c7d0cf40364ea3822d31a8574b25eefa290bf52402b40093d9f25188",
+      "sourceDimensions": "560x450",
+      "outputDimensions": "900x600",
+      "cropBoundsPx": {
+        "left": 22,
+        "top": 72,
+        "right": 538,
+        "bottom": 392
+      },
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
+    }
+  ]
+}
