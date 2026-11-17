@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T15:19:36Z",
+  "generated_at": "2026-11-17",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -75,19 +75,19 @@
       "direct_active_products": 0
     },
     {
-      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
-      "name": "Car Audio & Video",
-      "slug": "car-audio",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
+      "name": "Car Audio / Home Entertainment",
+      "slug": "car-audio-home-entertainment-lifestyle",
+      "parent_id": null,
       "active": true,
       "sort_order": 0,
       "direct_active_products": 0
     },
     {
-      "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "name": "Car Audio / Home Entertainment",
-      "slug": "car-audio-home-entertainment-lifestyle",
-      "parent_id": null,
+      "id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "name": "Car Audio & Video",
+      "slug": "car-audio",
+      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
       "active": true,
       "sort_order": 0,
       "direct_active_products": 0
@@ -172,6 +172,26 @@
       "active": true,
       "sort_order": 10,
       "direct_active_products": 0
+    },
+    {
+      "id": "e5c0d6a7-7b45-4a1c-9f72-0a1e0e6b3f12",
+      "name": "Ignition Looms",
+      "slug": "ignition-looms",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 60,
+      "direct_active_products": 0,
+      "description": "Ignition wiring looms"
+    },
+    {
+      "id": "e5c0d6a7-7b45-4a1c-9f72-0a1e0e6b3f11",
+      "name": "Ignition Modules",
+      "slug": "ignition-modules",
+      "parent_id": "ba263c9f-d038-48bd-bca0-944f3ebdc5e9",
+      "active": true,
+      "sort_order": 50,
+      "direct_active_products": 0,
+      "description": "Ignition control modules"
     },
     {
       "id": "76aee522-bf0e-4e7e-809c-e5c31afd3f6b",
@@ -263,5 +283,8 @@
       "sort_order": 1001,
       "direct_active_products": 0
     }
+  ],
+  "notes": [
+    "Owner-priority preview adds Ignition Modules and Ignition Looms as review-only Auto Electrical subcategories; no products are live-imported."
   ]
 }
