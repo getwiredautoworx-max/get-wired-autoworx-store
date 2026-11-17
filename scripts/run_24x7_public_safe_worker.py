@@ -47,14 +47,15 @@ def main() -> int:
             "asc_task_automatic": asc_task.get("automatic") if asc_task else None,
             "message": "No ASC extraction was run. The owner has prioritised Electrocity Auto Electrical; ASC processing requires the ASC task to be explicitly active and automatic in the owner task queue."
         }
-        (CHECKPOINT / "public-safe-worker-status.json").write_text(json.dumps(report, indent=2) + "\\n", encoding="utf-8")
-        (CHECKPOINT / "PUBLIC_SAFE_WORKER_STATUS.md").write_text(
-            "# Public-Safe Catalogue Worker Checkpoint\\n\\n"
-            "- Status: **skipped — owner priority change**\\n"
-            f"- Active task: {active_task_id}\\n"
-            "- ASC extraction: not run.\\n",
-            encoding="utf-8"
-        )
+        (CHECKPOINT / "public-safe-worker-status.json").write_text(json.dumps(report, indent=2) + chr(10), encoding="utf-8")
+        status_lines = [
+            "# Public-Safe Catalogue Worker Checkpoint",
+            "",
+            "- Status: **skipped — owner priority change**",
+            f"- Active task: {active_task_id}",
+            "- ASC extraction: not run."
+        ]
+        (CHECKPOINT / "PUBLIC_SAFE_WORKER_STATUS.md").write_text(chr(10).join(status_lines) + chr(10), encoding="utf-8")
         print(json.dumps(report, indent=2))
         return 0
     found = {p.name for p in SOURCE.glob("*.pdf") if p.is_file()}
