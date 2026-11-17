@@ -4,5 +4,5 @@ assert.equal(autoElectrical.products.length, 27, 'Auto Electrical preview must c
 assert.ok(autoElectrical.products.every(p => p.priceDisplay === 'Price On Request'), 'Auto Electrical preview must suppress numeric prices');
 assert.ok(autoElectrical.products.every(p => p.availabilityDisplay === 'Availability to confirm'), 'Auto Electrical preview must not claim stock availability');
 assert.ok(autoElectrical.products.every(p => p.indicativePrice === null && p.hasStock === null), 'Auto Electrical preview must retain null price and stock values');
-assert.doesNotMatch(JSON.stringify(autoElectrical.products), /Electrocity|\\bASC\\b/i, 'supplier identity must not appear in customer-facing product data');
+assert.doesNotMatch(JSON.stringify(autoElectrical.products), /Electrocity|\bASC\b/i, 'supplier identity must not appear in customer-facing product data');
 console.log('PASS: 27 Auto Electrical review records use generic Price On Request and availability-to-confirm wording; no supplier identity, live price or stock is exposed.');
