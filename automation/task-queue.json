@@ -364,9 +364,9 @@
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "77164230a3896e6b004a5adcc771599e04794813",
     "active_candidate_pr": 213,
-    "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17",
+    "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17-final",
     "active_candidate_head": null,
-    "active_candidate_status": "PR #213 is the active DRAFT review on the final owner-priority branch. Only Electrocity Auto Electrical is in progress; all other catalogue work is paused/queued. ASC automation is manual-only and queue-gated. Exact-head QA pending."
+    "active_candidate_status": "PR #213 is the active DRAFT review on the final candidate branch. PRs #210–#212 are closed as superseded. Only Electrocity Auto Electrical is in progress; all ASC product previews are excluded and the ASC worker is manual-only and queue-gated. Exact-head QA pending."
   },
   "audit_log": [
     {
