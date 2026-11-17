@@ -26,7 +26,20 @@ for(const p of data.products){
  assert.match(p.imageStatus,/SOURCE_LABELS_AND_INTERNAL_CODE_REMOVED/);
  assert.ok(!Object.keys(p).some(k=>/supplier|internalSku|gwSku/i.test(k)));
 }
-function parseCSV(s){let out=[],row=[],v="",q=false;for(let i=0;i<s.length;i++){const c=s[i];if(q){if(c==='"'&&s[i+1]==='"'){v+='"';i++;}else if(c==='"')q=false;else v+=c;}else if(c==='"')q=true;else if(c===','){row.push(v);v="";}else if(c==='\\n'){row.push(v);out.push(row);row=[];v="";}else if(c!=='\\r')v+=c;}if(v.length||row.length){row.push(v);out.push(row);}const h=out.shift();return out.filter(r=>r.some(x=>x!=="")).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));}
+function parseCSV(s){
+ let out=[],row=[],v="",q=false;
+ for(let i=0;i<s.length;i++){
+  const c=s[i];
+  if(q){if(c==='"'&&s[i+1]==='"'){v+='"';i++;}else if(c==='"')q=false;else v+=c;}
+  else if(c==='"')q=true;
+  else if(c===','){row.push(v);v="";}
+  else if(c.charCodeAt(0)===10){row.push(v);out.push(row);row=[];v="";}
+  else if(c.charCodeAt(0)!==13)v+=c;
+ }
+ if(v.length||row.length){row.push(v);out.push(row);}
+ const h=out.shift();
+ return out.filter(r=>r.some(x=>x!=="")).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));
+}
 const source=fs.readFileSync("suppliers/Electrocity/catalogue-work/ignition-looms-modules/normalised-review.csv","utf8");
 const rows=parseCSV(source);
 assert.equal(rows.length,29);
