@@ -46,7 +46,7 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
-PREVIEW_ASSET_DIRS = ["auto-electrical-products"]
+PREVIEW_ASSET_DIRS = []
 # Sanitised, review-only local catalogue records power the owner-facing
 # customer-view route (?ownerPreview=1) without requiring live Supabase rows.
 # They are never treated as live stock or verified supplier prices.
@@ -91,6 +91,10 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
+    # Generate neutral customer-safe Auto Electrical images in the preview package.
+    # Pillow is pinned and installed only for non-production owner-preview builds.
+    subprocess.run([sys.executable, "-m", "pip", "install", "--disable-pip-version-check", "Pillow==11.0.0"], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "process-auto-electrical-preview-images.py"), str(OUT / "assets" / "auto-electrical-products")], cwd=ROOT, check=True)
     for name in PREVIEW_ASSET_DIRS:
         source_dir = ROOT / "assets" / name
         if not source_dir.is_dir():
