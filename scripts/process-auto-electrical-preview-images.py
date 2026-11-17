@@ -8,10 +8,11 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE_CSV=ROOT/"suppliers/Electrocity/catalogue-work/ignition-looms-modules/normalised-review.csv"
 SOURCE_DIR=ROOT/"suppliers/Electrocity/catalogue-work/ignition-looms-modules/page-evidence"
-OUT=ROOT/"assets/auto-electrical-products"
+OUT=Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/"assets/auto-electrical-products"
 REVIEW=ROOT/"catalogue-review"
 MANIFEST=REVIEW/"electrocity-auto-electrical-image-manifest.json"
 CONTACT=REVIEW/"electrocity-auto-electrical-contact-sheet.jpg"
+CONTACT_PUBLIC=OUT/"image-review-contact-sheet.jpg"
 EXPECTED_SOURCE_ROWS=29
 EXPECTED_OUTPUTS=27
 EXCLUDED={
@@ -102,6 +103,7 @@ def main():
   draw.text((x+10,y+151),preview_id,font=label_font,fill=(15,48,73))
   draw.text((x+10,y+166),category,font=font(12),fill=(75,96,112))
  contact.save(CONTACT,format="JPEG",quality=90,optimize=True)
+ contact.save(CONTACT_PUBLIC,format="JPEG",quality=90,optimize=True)
  manifest={"status":"OWNER_PREVIEW_ONLY — REVIEW ONLY — DO NOT IMPORT","count":len(manifest_rows),"records":manifest_rows}
  MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(f"AUTO_ELECTRICAL_IMAGE_TREATMENT_PASS images={len(manifest_rows)} excluded={len(EXCLUDED)} output={OUT}")
