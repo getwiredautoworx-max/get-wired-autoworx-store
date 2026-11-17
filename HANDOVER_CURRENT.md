@@ -1,3 +1,31 @@
+## STORE BUILD RESUMPTION CHECKPOINT — 2026-11-17
+
+### Canonical state and release boundary
+- Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical branch: `main`.
+- Latest main commit verified from GitHub: `29ab5769f5588fd911a026e93e2e3cc60ac4e1a1` (`chore(audio): checkpoint official product-page image candidates`).
+- Task queue's prior canonical head was `77164230a3896e6b004a5adcc771599e04794813`; main has 12 subsequent commits. The 77164230 package QA remains the last explicitly verified baseline; do not claim the newer 29ab5769 head passed exact-head QA until rerun.
+- Sole active build workstream remains `audio-video-content-enrichment`, continuing directly on canonical main as review-only work.
+- PR #209 remains a separate DRAFT, OPEN, UNMERGED Trailer & Towing review candidate. It does not become a fourth homepage department and is not a production release.
+- Production remains HOLD: no merge, production deployment, Cloudflare credit use, live Supabase write/import, Axxess upload, DNS/payment change, or live price/stock update.
+
+### OneNav verification continuation
+- OA009-1: official OneNav product page confirms the exact Classic SKU and Toyota 280 mm / 9-inch identity, including 1024 × 600 specifications. The accessible page text does not expose an approved exact product image. A search result for NXT Level Tech carries the exact OA009-1 title/SKU, but the product page returned HTTP 403 to the inspection tool; its image could not be visually checked. Keep the image pending. Continue rejecting the unrelated ON009-2A11 Pro Series CANBUS image.
+- OA012-1: NXT Level Tech lists the exact Classic SKU and RAV4 (2019+) fitment. The current official OneNav page found for RAV4 identifies ON012-1A, a different Evolution/Pro variant with 1280 × 720 / 4 × 50 W specifications. Do not transfer its image or specifications to Classic OA012-1. Keep OA012-1 image pending.
+- OneNav navigation code review: the Car Audio landing maps the `onenav` brand to its own wordmark and sends the brand button to `preview-audio-brand.html`; the dedicated brand page maps OneNav to the same wordmark and product-type links to `preview-audio-products.html`. Repository regression tests assert this separation. The current mark is a text-based SVG wordmark, not a downloaded official logo asset; hosted visual acceptance remains outstanding.
+- Source checks: official OA009-1 product page https://onenav.co.za/product/onenav-classic-9inch-for-toyota-280mm/ ; official RAV4 page currently identifies the distinct ON012-1A variant https://onenav.co.za/product/onenav-10-1-inch-for-toyota-rav4-2019/ ; official OneNav catalogue PDF https://onenav.co.za/wp-content/uploads/2023/02/OneNav-Catalogue_Web.pdf .
+- Do not substitute images, infer variants, or promote any candidate to live. Keep OneNav candidates PREVIEW_ONLY_NOT_LIVE, Price On Request, null indicative price and null stock.
+
+### Next execution steps
+1. Continue the remaining OneNav rows in bounded SKU batches: exact official identity/variant, fitment, image provenance and visual inspection; quarantine mismatches and retain image-pending states.
+2. Verify the OneNav wordmark/button in a hosted owner preview; do not call the custom text SVG an official image asset.
+3. Run the complete public package, storefront smoke, SKU exposure, catalogue image, and mobile/desktop browser checks against the exact current main SHA before issuing a refreshed preview link.
+4. Keep PR #209 isolated and unmerged unless the owner changes the approved department scope.
+
+### Network access note
+- Owner's Windows 7 wired PC internet access was restored on 2026-11-17. DHCP now assigns IPv4 `192.168.18.6` with router `192.168.18.1`; router ping, external `8.8.8.8` ping, GitHub DNS lookup, Google, GitHub and the repository URL all passed. No router reset or printer-sharing change was made.
+
+---
+
 # GET WIRED AUTOWORX — CURRENT EXECUTION HANDOVER
 
 ## GEMINI CREDENTIAL RETEST — 2026-11-12
