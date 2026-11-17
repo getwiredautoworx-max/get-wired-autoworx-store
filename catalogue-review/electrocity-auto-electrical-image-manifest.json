@@ -1,5 +1,5 @@
 {
-  "status": "STALE_REJECTED — supplier-code footer remained visible in first image-treatment run; do not publish or use",
+  "status": "OWNER_PREVIEW_ONLY — REVIEW ONLY — DO NOT IMPORT",
   "count": 27,
   "records": [
     {
@@ -15,7 +15,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-002",
@@ -30,7 +30,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-003",
@@ -45,7 +45,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-004",
@@ -60,7 +60,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-005",
@@ -75,7 +75,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-006",
@@ -90,7 +90,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-007",
@@ -105,7 +105,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-008",
@@ -120,7 +120,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-009",
@@ -135,7 +135,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-010",
@@ -150,7 +150,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-011",
@@ -165,7 +165,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-012",
@@ -180,7 +180,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-013",
@@ -195,7 +195,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-014",
@@ -210,7 +210,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-015",
@@ -225,7 +225,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-016",
@@ -240,7 +240,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-017",
@@ -255,7 +255,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-018",
@@ -270,7 +270,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-019",
@@ -285,7 +285,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-020",
@@ -300,7 +300,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-021",
@@ -315,7 +315,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-022",
@@ -330,7 +330,7 @@
         "right": 532,
         "bottom": 343
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-023",
@@ -345,7 +345,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-024",
@@ -360,7 +360,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-025",
@@ -375,7 +375,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-026",
@@ -390,7 +390,7 @@
         "right": 532,
         "bottom": 359
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     },
     {
       "previewId": "auto-electrical-027",
@@ -405,7 +405,7 @@
         "right": 532,
         "bottom": 351
       },
-      "treatmentStatus": "FAILED_VISUAL_QA_SUPPLIER_CODE_FOOTER_VISIBLE — superseded by corrected crop bounds x=5–95%, y=16–78%"
+      "treatmentStatus": "SOURCE_HEADER_AND_SUPPLIER_CODE_FOOTER_EXCLUDED; PRODUCT_PHOTO_AREA_PRESERVED; GET_WIRED_WATERMARK_APPLIED; REVIEW_ONLY"
     }
   ]
 }
