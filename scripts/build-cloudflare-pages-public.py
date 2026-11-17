@@ -31,11 +31,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html",
 ]
 PREVIEW_ASSET_FILES = [
     "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
-    "product-image-treatment-sample.json",
     "audio-catalogue-secondary-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
@@ -47,12 +46,11 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
-PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
+PREVIEW_ASSET_DIRS = ["auto-electrical-products"]
 # Sanitised, review-only local catalogue records power the owner-facing
 # customer-view route (?ownerPreview=1) without requiring live Supabase rows.
 # They are never treated as live stock or verified supplier prices.
 PUBLIC_REVIEW_DATA_FILES = [
-    "auto-electrical-owner-preview.json",
     "audio-catalogue-secondary-preview.json",
 ]
 
@@ -108,22 +106,37 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
+review_files = [("audio-catalogue-secondary-preview.json", 72)]
+if include_preview:
+    review_files.append(("auto-electrical-owner-preview.json", 27))
+for filename, expected_minimum in review_files:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
-    if len(records) < expected_minimum:
-        raise SystemExit(f"Review catalogue incomplete in public package: {filename} records={len(records)}")
+    count_invalid = len(records) != expected_minimum if filename == "auto-electrical-owner-preview.json" else len(records) < expected_minimum
+    if count_invalid:
+        raise SystemExit(f"Review catalogue count mismatch in public package: {filename} records={len(records)} expected={expected_minimum}")
     serialised = json.dumps(review_data, ensure_ascii=False)
-    # Exact authorised image URLs may retain their original hosting domain.
-    # Supplier-name policy applies to visible labels/metadata, not image URLs.
     customer_visible_text = re.sub(r"https?://\S+", "[image-asset-url]", serialised, flags=re.I)
-    if re.search(r"Planetworld|Audio\s+Connections", customer_visible_text, re.I):
+    forbidden_suppliers = r"Planetworld|Audio\s+Connections|Electrocity" if filename == "auto-electrical-owner-preview.json" else r"Planetworld|Audio\s+Connections"
+    if re.search(forbidden_suppliers, customer_visible_text, re.I):
         raise SystemExit(f"Supplier identity leaked into public review text: {filename}")
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
             raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
-print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 price=POR stock=unconfirmed")
+        if filename == "auto-electrical-owner-preview.json":
+            if any(re.search(r"supplier|internalSku|gwSku", key, re.I) for key in record):
+                raise SystemExit(f"Internal supplier identifier leaked: {record.get('id')}")
+            image_rel = record.get("image", "")
+            if not image_rel.startswith("assets/auto-electrical-products/") or not (OUT / image_rel).is_file():
+                raise SystemExit(f"Sanitized Auto Electrical image missing: {record.get('id')}")
+    if filename == "auto-electrical-owner-preview.json":
+        counts = {}
+        for record in records:
+            counts[record.get("category")] = counts.get(record.get("category"), 0) + 1
+        if counts != {"Ignition Modules": 24, "Ignition Looms": 3}:
+            raise SystemExit(f"Auto Electrical category split mismatch: {counts}")
+print("PUBLIC_REVIEW_DATA_POLICY_PASS audio>=72 auto_electrical=27_preview_only price=POR stock=unconfirmed")
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
@@ -161,7 +174,7 @@ if include_preview:
     for name in PREVIEW_ASSET_DIRS:
         if not (OUT / "assets" / name).is_dir():
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
-    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs"]:
+    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs", "auto-electrical-review-population.test.cjs", "three-category-storefront-structure.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
