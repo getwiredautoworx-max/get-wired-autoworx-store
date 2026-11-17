@@ -299,12 +299,12 @@ for (const [model,domain] of [['CS-DR162','jasc.jvc.com'],['ILX-F115D','www.alpi
 for (const obj of [planet,audio,autoElectrical]) {
   const rows=obj.records||obj.products||[];
   const customerRows=JSON.stringify(rows).replace(/https?:\/\/[^\s"'<>]+/gi,'[image-asset-url]');
-  assert.ok(!/Planetworld|Audio Connections/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
+  assert.ok(!/Planetworld|Audio Connections|Electrocity/i.test(customerRows),'supplier names must not be used as customer-facing product labels');
   assert.ok(!/dealerCost|dealerPrice|wholesalePrice|supplierSku|supplierName|supplierModelNumber|internalSku|gwSku/i.test(customerRows),'internal supplier identifiers and costs must not appear in customer-facing product records');
 }
 assert.ok(previewCategory.includes("'owner-auto-ignition-modules':'preview-auto-electrical.html?category=Ignition%20Modules'") && previewCategory.includes("'owner-auto-ignition-looms':'preview-auto-electrical.html?category=Ignition%20Looms'"), 'the active Auto Electrical subcategories must route to their review-only filters');
 assert.ok(previewCategory.includes("name:'Ignition Modules',count:24") && previewCategory.includes("name:'Ignition Looms',count:3"), 'Auto Electrical must show 24 ignition modules and 3 ignition looms');
-assert.ok(previewAutoElectrical.includes("new URLSearchParams(location.search).get('category')") && previewAutoElectrical.includes("dataset.category===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');
+assert.ok(previewAutoElectrical.includes("params.get('category')") && previewAutoElectrical.includes("dataset.filter===active"), 'Auto Electrical preview must honour category deep links and highlight the active filter');
 assert.ok(!previewCategory.includes('preview-asc-sample.html'), 'ASC Aerials and Car Mats must not route to active product previews');
 assert.ok(audioPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioPage.includes('imageStatus==="OWNER_AUTHORIZED_EXACT_MODEL_IMAGE_MATCH"') && audioPage.includes('&&p.imageUrl'), 'Audio Connections preview must exclude held, failed-image and low-resolution records');
 assert.ok(audioBrandPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"') && audioProductsPage.includes('publicationStatus==="PREVIEW_ONLY_NOT_LIVE"'), 'Audio brand and product routes must use the same verified-only secondary catalogue filter');
