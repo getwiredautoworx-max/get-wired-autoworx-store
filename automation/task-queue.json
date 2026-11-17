@@ -183,7 +183,7 @@
         "Exact-branch automated package, sanitization, SKU-exposure, image and storefront tests pass before owner preview.",
         "No live Supabase write, production import, deployment, Axxess upload or paid hosting use without separate approval."
       ],
-      "next_action": "PR #212 is the active DRAFT review; PRs #210 and #211 are closed as superseded. ASC scheduled/PR extraction automation is paused (manual dispatch only) and the worker requires explicit active/automatic ASC task authorization. Candidate excludes ASC customer-facing preview assets and shows 27 eligible Electrocity records (24 modules, 3 looms); two records remain quarantined. The corrected image processor generates fresh images/contact sheet inside the isolated Pages package at build time. Next: exact-head CI, inspect generated image QA output, then mobile/desktop owner review. No live import, Supabase write, merge or deployment."
+      "next_action": "PR #213 remains OPEN/DRAFT. A previous superseded-PR build generated 27 images and passed image-treatment/data-policy checks; public SKU exposure and responsive owner-preview checks passed. Failures were stale assertions (ASC-specific pricing sample, generic ASC substring matching Ascona, old filter selector, queue multiple-active/legacy wording) and are corrected. No fresh exact-head status is currently available. Next: obtain a new full package QA run and visually inspect the generated contact sheet before owner review. No live import, Supabase write, merge or deployment."
     },
     {
       "id": "audio-video-content-enrichment",
@@ -259,7 +259,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "Supporting QA is queued behind the single active Electrocity Auto Electrical workstream. Run exact-head build, sanitization, SKU-exposure, image and responsive tests for PR #213; do not start a second in-progress task."
+      "next_action": "Queued support task. Previous superseded-PR responsive and public SKU audits passed; stale test assertions have been corrected. Await fresh PR #213 exact-head package, route, sanitization, SKU and image checks. The generated contact sheet is inside the isolated Pages package and must be visually reviewed before approval."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -366,7 +366,7 @@
     "active_candidate_pr": 213,
     "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17-final",
     "active_candidate_head": null,
-    "active_candidate_status": "PR #213 is the active DRAFT review on the final candidate branch. PRs #210–#212 are closed as superseded. Only Electrocity Auto Electrical is in progress; all ASC product previews are excluded and the ASC worker is manual-only and queue-gated. Exact-head QA pending."
+    "active_candidate_status": "PR #213 is OPEN/DRAFT. Prior superseded-PR build generated 27 images and passed image/data policy plus public SKU exposure and responsive checks; outdated pricing, supplier-name regex, filter-selector and queue assertions were corrected. No fresh exact-head workflow status is currently available; do not merge until a new full QA run and visual contact-sheet review pass."
   },
   "audit_log": [
     {
