@@ -1,3 +1,8 @@
-# Supplier source extraction — review only
+# Audio Catalogue Review — Review Only
 
-Generated from the tracked Planetworld XLSX files and Audio Connections PDFs on the review branch. Planetworld product rows are split into small CSV chunks; source file, worksheet and row provenance are retained. Candidate fields are heuristic column picks only; the complete row is preserved. Only Products sheets are treated as product rows; workbook metadata sheets remain in the inventory. No product matches, GW SKUs, images, prices, stock or imports are approved.
+This folder contains curated audio and entertainment catalogue evidence, image candidates, model checks and review registers. It is a research and owner-review workspace, not a live product catalogue.
+
+- Retain only audio and entertainment product evidence and image candidates.
+- Keep supplier names, supplier SKUs, dealer costs, wholesale pricing and confidential terms out of customer-facing data.
+- Product records remain review-only until exact model, description, image, price and availability have been verified and approved.
+- Do not import or modify live products, prices, stock or Supabase data from this folder.
