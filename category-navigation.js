@@ -9,38 +9,17 @@
     'home-entertainment':'07b76301-da5c-4810-a19f-d8b6e2ae2f06',
     'band-equipment':'862605ef-5223-4525-aad6-ee17c2c6f9e7',
     'dj-equipment':'83ea8ae6-a464-40a2-a503-272792f70be8',
-    instruments:'76aee522-bf0e-4e7e-809c-e5c31afd3f6b',
-    lifestyle:'f91c7c30-82b4-42d4-bf4f-e807172cedc4',
-    'vacuum-cleaners':'b6d72815-c634-424c-9520-abed7cbdee1a',
-    'pool-cleaners':'a8593e12-53fb-4514-ad19-d9e9a19b6953',
-    'alternators-starters':'07bc149c-4ab3-41bd-bab3-01415cb8a24c',
-    'batteries-charging':'8f2e0f4e-6787-4fbf-b99b-4bea3a1dba10',
-    'fuses-relays-wiring':'2a3c2f37-19de-472c-8fe9-d6c61ee4fd16',
-    'globes-vehicle-lighting':'89595653-97d4-4b18-ba69-117547d32ed0',
-    'sensors-switches':'9f85f25f-800d-4ae4-854d-0213d83b86fa',
-    'car-care':'75d265b0-4e9c-4492-b54f-0db7c8202756',
-    'car-mats':'c35d15c1-d665-413f-b528-878b6a655d5d',
-    'seat-covers-interior':'b4332bab-a908-4c27-9fe4-68965617620e',
-    'exterior-accessories':'9bbc3d8e-5c54-4a36-839d-7658a681ac31'
+    instruments:'76aee522-bf0e-4e7e-809c-e5c31afd3f6b'
   };
   const ALIASES={
     'CAR AUDIO':'car-audio',
-    'CAR AUDIO / HOME ENTERTAINMENT / LIFESTYLE':'car-audio',
-    'AUDIO, ENTERTAINMENT & MUSIC':'car-audio',
+    'AUDIO & ENTERTAINMENT':'car-audio',
+    'CAR AUDIO / HOME ENTERTAINMENT':'car-audio',
     'HOME ENTERTAINMENT':'home-entertainment',
     'BAND EQUIPMENT':'band-equipment',
     'DJ EQUIPMENT':'dj-equipment',
-    'INSTRUMENTS':'instruments',
-    'LIFESTYLE':'lifestyle',
-    'VACUUM CLEANERS':'vacuum-cleaners',
-    'POOL CLEANERS':'pool-cleaners',
-    'AUTO ELECTRICAL PARTS & SPARES':'alternators-starters',
-    'AUTO ELECTRICAL':'alternators-starters',
-    'CAR CARE & ACCESSORIES':'car-care',
-    'CAR MATS':'car-mats',
-    'CAR CARE':'car-care'
-  };
-  function clean(s){return String(s||'').replace(/\s+/g,' ').trim().toUpperCase();}
+    'INSTRUMENTS':'instruments'
+  };  function clean(s){return String(s||'').replace(/\s+/g,' ').trim().toUpperCase();}
   function openCategory(id){
     if(!id)return;
     // Root-absolute path is required because Cloudflare Pages may serve store.html at /store.
