@@ -2015,7 +2015,7 @@ The following read-only consistency checks were run against the reconciled candi
 - All 27 preview records remain Price On Request, availability to confirm, null indicative price, null stock and `PREVIEW_ONLY_NOT_LIVE`.
 - The source image contact sheet has not yet been visually accepted. The image crop/build still requires fresh exact-head CI and owner visual review.
 - Exact-head GitHub Actions have not been recorded for the current workflow-updated candidate. Earlier failures on `94c2573c9be3c781c38a0a2afad35979abc35621` occurred before the 45 source/evidence files were restored; do not treat those old results as current or as a green build.
-- `.github/workflows/store-24x7-catalogue-worker.yml` is manual-dispatch-only in this candidate; the task queue marks ASC work cancelled, and the worker's queue guard must fail closed. Main remains unchanged until owner-approved merge.
+- The ASC-specific 24x7 worker workflow, Python runner and operating contract have been removed from the candidate. No ASC extraction automation remains in the candidate tree. Main remains unchanged until owner-approved merge.
 
 
 ## EXACT-HEAD QA UPDATE — 2026-11-18
@@ -2029,3 +2029,9 @@ Candidate code head tested: `e9ce88e63df5a0f0f4e5acfcd83e25c7a71e173b`.
 - The automated catalogue-image audit passed, but the 27-image contact sheet still requires visual inspection. This is not a substitute for the Terminal Catalogue product-image review.
 - A documentation-only handover update follows these code checks; no storefront code, source data, or package logic changes after the tested code head.
 - No merge into `main`, production deployment, Supabase import/write, live price/stock change, payment/DNS change or Axxess upload occurred. Production remains HOLD.
+
+
+## RETIRED ASC AUTOMATION REMOVED — 2026-11-18
+- Removed the legacy `.github/workflows/store-24x7-catalogue-worker.yml`, `scripts/run_24x7_public_safe_worker.py` and `automation/24x7-worker-operating-contract.md`.
+- The Python runner was exclusively an ASC extractor: it read `suppliers/ASC`, wrote to `catalogue-review/asc-catalogue-extraction`, and invoked the now-removed `scripts/asc_catalogue_extract.py`. Leaving it manual-only would have retained broken, ASC-specific automation.
+- The ASC task entries remain in the task queue as cancelled audit history; no ASC worker, extractor, source folder, sample page, image pilot or workflow remains in the candidate working tree.
