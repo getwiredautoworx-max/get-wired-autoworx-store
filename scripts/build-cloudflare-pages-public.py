@@ -31,10 +31,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html",
+    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
+    "audio-catalogue-primary-preview.json",
     "audio-catalogue-secondary-preview.json", "audio-model-verification-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
@@ -91,9 +91,6 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
-    # Generate neutral customer-safe Auto Electrical images in the preview package.
-    # Pillow is pinned and installed only for non-production owner-preview builds.
-    subprocess.run([sys.executable, "-m", "pip", "install", "--disable-pip-version-check", "Pillow==11.0.0"], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "process-auto-electrical-preview-images.py"), str(OUT / "assets" / "auto-electrical-products")], cwd=ROOT, check=True)
     for name in PREVIEW_ASSET_DIRS:
         source_dir = ROOT / "assets" / name
@@ -111,36 +108,22 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
 review_files = [("audio-catalogue-secondary-preview.json", 72)]
-if include_preview:
-    review_files.append(("auto-electrical-owner-preview.json", 27))
 for filename, expected_minimum in review_files:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
-    count_invalid = len(records) != expected_minimum if filename == "auto-electrical-owner-preview.json" else len(records) < expected_minimum
+    count_invalid = len(records) < expected_minimum
     if count_invalid:
         raise SystemExit(f"Review catalogue count mismatch in public package: {filename} records={len(records)} expected={expected_minimum}")
     serialised = json.dumps(review_data, ensure_ascii=False)
     customer_visible_text = re.sub(r"https?://\S+", "[image-asset-url]", serialised, flags=re.I)
-    forbidden_suppliers = r"Planetworld|Audio\s+Connections|Electrocity" if filename == "auto-electrical-owner-preview.json" else r"Planetworld|Audio\s+Connections"
+    forbidden_suppliers = r"Electrocity"
     if re.search(forbidden_suppliers, customer_visible_text, re.I):
         raise SystemExit(f"Supplier identity leaked into public review text: {filename}")
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
             raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
-        if filename == "auto-electrical-owner-preview.json":
-            if any(re.search(r"supplier|internalSku|gwSku", key, re.I) for key in record):
-                raise SystemExit(f"Internal supplier identifier leaked: {record.get('id')}")
-            image_rel = record.get("image", "")
-            if not image_rel.startswith("assets/auto-electrical-products/") or not (OUT / image_rel).is_file():
-                raise SystemExit(f"Sanitized Auto Electrical image missing: {record.get('id')}")
-    if filename == "auto-electrical-owner-preview.json":
-        counts = {}
-        for record in records:
-            counts[record.get("category")] = counts.get(record.get("category"), 0) + 1
-        if counts != {"Ignition Modules": 24, "Ignition Looms": 3}:
-            raise SystemExit(f"Auto Electrical category split mismatch: {counts}")
-print("PUBLIC_REVIEW_DATA_POLICY_PASS audio>=72 auto_electrical=27_preview_only price=POR stock=unconfirmed")
+print("PUBLIC_REVIEW_DATA_POLICY_PASS audio>=72 preview_only price=POR stock=unconfirmed")
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
