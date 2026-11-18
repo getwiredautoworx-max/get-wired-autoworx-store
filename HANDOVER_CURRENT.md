@@ -8,7 +8,7 @@ The active working scope is now a clean Audio & Entertainment storefront. This s
 - Working branch: `owner/electrocity-auto-electrical-priority-2026-11-17-final`
 - Current branch head at this handover: `07f66ed20a1f52d10fdcaa8c5729bd28a4b70bbf`
 - Existing draft PR: [#213 — Owner reset: Audio & Entertainment only](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/213)
-- PR comparison against current main: 81 commits ahead, 0 behind.
+- PR comparison against current main: ahead of main and 0 commits behind (see PR #213 for the live ahead count).
 - Current main commit: `7ec84e6e1254e2f6598305f42702beab3ade7901`. Main has not been modified by this reset.
 - 350 files removed from the previous working candidate during this reset.
 - Current tracked tree: 5,242 files. Remaining supplier folder is Audio Connections only; remaining supplier source PDFs are STARSOUND and Sony Mobile ES.
@@ -45,8 +45,8 @@ Passed:
 - Axxess package preparation (artifact only; no Axxess upload).
 
 Owner APK:
-- Debug APK build and upload of install-test artifact passed.
-- Android emulator validation remains in progress.
+- The debug APK build and install-test artifact upload passed on the earlier candidate.
+- Android emulator validation for the latest candidate remains in progress.
 
 Cloudflare:
 - Cloudflare Pages generated a **non-production branch preview** for the audio-only candidate:
