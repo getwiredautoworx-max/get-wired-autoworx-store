@@ -102,24 +102,6 @@
       "direct_active_products": 0
     },
     {
-      "id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "name": "Lifestyle",
-      "slug": "lifestyle",
-      "parent_id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
-      "active": true,
-      "sort_order": 50,
-      "direct_active_products": 0
-    },
-    {
-      "id": "a8593e12-53fb-4514-ad19-d9e9a19b6953",
-      "name": "Pool Cleaners",
-      "slug": "pool-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "active": true,
-      "sort_order": 1000,
-      "direct_active_products": 0
-    },
-    {
       "id": "3fb18314-b5c5-4edf-8db2-00a29e18d027",
       "name": "Signal Processing & Crossovers",
       "slug": "car-audio-signal-processing",
@@ -153,15 +135,6 @@
       "parent_id": "8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11",
       "active": true,
       "sort_order": 10,
-      "direct_active_products": 0
-    },
-    {
-      "id": "b6d72815-c634-424c-9520-abed7cbdee1a",
-      "name": "Vacuum Cleaners",
-      "slug": "vacuum-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "active": true,
-      "sort_order": 1001,
       "direct_active_products": 0
     }
   ],
