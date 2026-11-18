@@ -21,7 +21,7 @@ OUT = ROOT / "pages-public"
 node = shutil.which("node")
 if not node:
     raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
-subprocess.run([node, str(ROOT / "tests" / "three-category-storefront-structure.test.cjs")], cwd=ROOT, check=True)
+subprocess.run([node, str(ROOT / "tests" / "audio-only-storefront-scope.test.cjs")], cwd=ROOT, check=True)
 
 REQUIRED_ROOT_FILES = [
     "index.html", "store.html", "index-new.html", "product.html", "products.html",
@@ -91,7 +91,6 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
-    subprocess.run([sys.executable, str(ROOT / "scripts" / "process-auto-electrical-preview-images.py"), str(OUT / "assets" / "auto-electrical-products")], cwd=ROOT, check=True)
     for name in PREVIEW_ASSET_DIRS:
         source_dir = ROOT / "assets" / name
         if not source_dir.is_dir():
@@ -161,11 +160,11 @@ if include_preview:
     for name in PREVIEW_ASSET_DIRS:
         if not (OUT / "assets" / name).is_dir():
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
-    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs", "auto-electrical-review-population.test.cjs", "three-category-storefront-structure.test.cjs"]:
+    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs", "audio-only-storefront-scope.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
+    print("AUDIO_ONLY_PREVIEW_ASSETS_PASS non_audio_catalogue=excluded")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
@@ -179,7 +178,7 @@ if include_preview:
     # before this owner-preview package was emitted.
     qa_marker = {
         "result": "PASS",
-        "test": "tests/three-category-storefront-structure.test.cjs",
+        "test": "tests/audio-only-storefront-scope.test.cjs",
         "commit": os.environ.get("CF_PAGES_COMMIT_SHA") or os.environ.get("GITHUB_SHA"),
         "branch": os.environ.get("CF_PAGES_BRANCH"),
         "preview_only": True,

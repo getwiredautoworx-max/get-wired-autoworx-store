@@ -1,0 +1,16 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const tree = JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));
+const html = fs.readFileSync('index-new.html','utf8');
+const root = '1a13bc42-4f54-44f6-9658-36d141b77f4b';
+assert.ok(tree.categories.some(c=>c.id===root),'audio root category must remain');
+assert.ok(tree.categories.every(c=>c.id===root || tree.categories.some(p=>p.id===c.parent_id)),'all retained categories must remain attached to the audio hierarchy');
+assert.ok(tree.categories.every(c=>!/(auto electrical|car care|ignition|fuel pump|sensor|switch)/i.test(c.name)),'non-audio categories must not be present in the customer category snapshot');
+assert.match(html,/const HOME_CATEGORY_IDS=\['1a13bc42-4f54-44f6-9658-36d141b77f4b'\]/,'homepage must expose only the audio root');
+assert.match(html,/const expectedRoots=\['1a13bc42-4f54-44f6-9658-36d141b77f4b'\]/,'snapshot validation must require only the audio root');
+assert.doesNotMatch(html,/fetch\('assets\/auto-electrical-owner-preview\.json'/,'homepage must not load the removed Auto Electrical preview');
+assert.match(html,/audio-catalogue-secondary-preview\.json/,'audio review-only catalogue must remain available');
+assert.match(html,/checkout-v2\.html/,'checkout route must remain in the storefront shell');
+assert.match(html,/YOUR CART/,'cart interface must remain in the storefront shell');
+console.log('AUDIO_ONLY_STOREFRONT_SCOPE_PASS categories='+tree.categories.length);
