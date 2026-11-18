@@ -2016,3 +2016,16 @@ The following read-only consistency checks were run against the reconciled candi
 - The source image contact sheet has not yet been visually accepted. The image crop/build still requires fresh exact-head CI and owner visual review.
 - Exact-head GitHub Actions have not been recorded for the current workflow-updated candidate. Earlier failures on `94c2573c9be3c781c38a0a2afad35979abc35621` occurred before the 45 source/evidence files were restored; do not treat those old results as current or as a green build.
 - `.github/workflows/store-24x7-catalogue-worker.yml` is manual-dispatch-only in this candidate; the task queue marks ASC work cancelled, and the worker's queue guard must fail closed. Main remains unchanged until owner-approved merge.
+
+
+## EXACT-HEAD QA UPDATE — 2026-11-18
+Candidate code head tested: `e9ce88e63df5a0f0f4e5acfcd83e25c7a71e173b`.
+- Current comparison to `main`: 66 commits ahead, 0 behind; 276 changed files (180 removed, 76 added, 20 modified).
+- Passed on this code head: Cloudflare Pages Public Package QA; Supplier Catalogue Review Data QA; Catalogue Image Audit; Public SKU Exposure Audit; Storefront Smoke Test; Button-Only Storefront Smoke Test; Owner Preview Mobile and Desktop Browser QA; Prepare Axxess Upload Package.
+- Still running at checkpoint: Catalogue & Supplier Routing Review QA; Owner APK build and emulator validation.
+- The Cloudflare package issue was corrected by adding `audio-model-verification-preview.json` to the preview asset allowlist and removing the retired image-treatment sample from the sanitizer/test file list.
+- The routing QA issue was corrected by replacing the stale 34-ASC/50-image test with 27 Electrocity review-only assertions. The current routing workflow is still running; do not mark it passed until its result completes.
+- The Axxess workflow only created a GitHub Actions package artifact. It did not upload to Axxess or deploy the site.
+- The automated catalogue-image audit passed, but the 27-image contact sheet still requires visual inspection. This is not a substitute for the Terminal Catalogue product-image review.
+- A documentation-only handover update follows these code checks; no storefront code, source data, or package logic changes after the tested code head.
+- No merge into `main`, production deployment, Supabase import/write, live price/stock change, payment/DNS change or Axxess upload occurred. Production remains HOLD.
