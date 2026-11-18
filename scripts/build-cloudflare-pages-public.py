@@ -35,7 +35,7 @@ PREVIEW_ROOT_FILES = [
 ]
 PREVIEW_ASSET_FILES = [
     "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
-    "audio-catalogue-secondary-preview.json",
+    "audio-catalogue-secondary-preview.json", "audio-model-verification-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
     "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
