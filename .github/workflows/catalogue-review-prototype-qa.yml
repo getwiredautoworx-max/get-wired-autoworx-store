@@ -7,7 +7,8 @@ on:
       - "catalogue-review/**"
       - "preview-auto-electrical.html"
       - "assets/auto-electrical-owner-preview.json"
-      - "assets/asc-auto-electrical-pilot/**"
+      - "suppliers/Electrocity/catalogue-work/**"
+      - "suppliers/Electrocity/Ignition Looms-Coils-Modules/**"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/auto-electrical-review-population.test.cjs"
       - "tests/auto-electrical-owner-preview.test.cjs"
@@ -46,7 +47,8 @@ on:
       - "catalogue-review/**"
       - "preview-auto-electrical.html"
       - "assets/auto-electrical-owner-preview.json"
-      - "assets/asc-auto-electrical-pilot/**"
+      - "suppliers/Electrocity/catalogue-work/**"
+      - "suppliers/Electrocity/Ignition Looms-Coils-Modules/**"
       - "scripts/build-cloudflare-pages-public.py"
       - "tests/auto-electrical-review-population.test.cjs"
       - "tests/auto-electrical-owner-preview.test.cjs"
@@ -116,7 +118,7 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           node scripts/catalogue-review-prototype.spec.js
-      - name: Run ASC Auto Electrical review-only data checks
+      - name: Run Electrocity Auto Electrical review-only data checks
         if: hashFiles('tests/auto-electrical-review-population.test.cjs') != '' && hashFiles('tests/auto-electrical-owner-preview.test.cjs') != ''
         run: |
           node tests/auto-electrical-review-population.test.cjs

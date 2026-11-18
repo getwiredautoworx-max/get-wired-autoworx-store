@@ -3,10 +3,8 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "catalogue-review/asc-catalogue-extraction/**"
-      - "staging/asc-staged-catalogue-products-do-not-import.csv"
       - "suppliers/Electrocity/catalogue-work/ignition-looms-modules/**"
-      - "tests/test_asc_reload_validation.py"
+      - "suppliers/Electrocity/Ignition Looms-Coils-Modules/**"
       - "tests/electrocity-ignition-fitment-exception.test.cjs"
       - ".github/workflows/supplier-catalogue-review-qa.yml"
 permissions:
@@ -25,9 +23,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Validate ASC 978-row review dataset when present
-        if: hashFiles('tests/test_asc_reload_validation.py') != ''
-        run: python3 tests/test_asc_reload_validation.py
       - name: Validate Electrocity ignition pilot fitment quarantine when present
         if: hashFiles('tests/electrocity-ignition-fitment-exception.test.cjs') != ''
         run: node tests/electrocity-ignition-fitment-exception.test.cjs

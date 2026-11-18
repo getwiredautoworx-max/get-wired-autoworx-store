@@ -1995,3 +1995,10 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - The 29-row pilot has 27 eligible review-only listings and two quarantined exceptions. The 27 preview images are regenerated from the restored page-evidence inputs by `scripts/process-auto-electrical-preview-images.py`; the internal Electrocity SKU remains private.
 - The previous Cloudflare package and supplier QA failures were caused by the absent source register/page-evidence inputs. The candidate now includes those inputs, and the public-package workflow path filters include the Electrocity source folders and image-processing script so future source changes rerun QA.
 - The active workstream remains the Terminal Catalogue. The ignition pilot remains queued and review-only; no product import or live data change is authorised.
+
+
+## FINAL WORKFLOW RECONCILIATION NOTE — 2026-11-18
+- Updated `.github/workflows/catalogue-review-prototype-qa.yml`: removed the retired ASC pilot path trigger, renamed the Auto Electrical data-check step to Electrocity, and added the Electrocity source folders as QA triggers.
+- Updated `.github/workflows/supplier-catalogue-review-qa.yml`: removed ASC-only source/staging/test triggers and the retired ASC 978-row validation step; retained Electrocity review-data validation and added the approved ignition source PDF path.
+- These workflow edits are in the PR candidate only. Current main remains unchanged until owner approval and merge.
+- Latest candidate head before this workflow-only correction: `0eae687970ee41e1cd31481877259948a64d8e67`. The previously reported QA failures belong to older head `94c2573c9be3c781c38a0a2afad35979abc35621`, before the Electrocity source register and page-evidence files were restored. Do not treat those results as current, and do not claim the latest head is green until fresh exact-head checks complete.
