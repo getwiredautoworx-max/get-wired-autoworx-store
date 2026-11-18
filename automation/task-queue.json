@@ -186,7 +186,7 @@
         "Exact-branch automated package, sanitization, SKU-exposure, image and storefront tests pass before owner preview.",
         "No live Supabase write, production import, deployment, Axxess upload or paid hosting use without separate approval."
       ],
-      "next_action": "Queued behind the active Electrocity Terminal Catalogue extraction. Preserve the 27 Electrocity Ignition Module/Loom records as review-only; do not import or publish until the exact-head QA and image contact sheet are accepted."
+      "next_action": "Source evidence restored from existing commit 9b18697: two approved ignition PDFs, 29-row raw/normalised review package and 29 page-evidence crops. Keep 27 eligible records review-only and two quarantined. This pilot remains queued behind the active Terminal Catalogue extraction; do not import or publish until exact-head QA and image contact sheet are accepted."
     },
     {
       "id": "audio-video-content-enrichment",

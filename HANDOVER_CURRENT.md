@@ -1987,3 +1987,11 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - A second path/content inspection found generic-named files that were still tied directly to the old ASC 50-product pilot: `assets/get-wired-product-pilot/` (50 images), `assets/product-image-treatment-sample.json`, `product-image-treatment-pilot.html`, `scripts/process-product-image-pilot.py` and `.github/workflows/product-image-treatment-sample.yml`.
 - These files explicitly referenced `catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv` and `assets/catalogue-source-crops/asc-*.jpg`. They are now removed from the reconciliation candidate tree along with the named ASC files.
 - The active Electrocity image pipeline is separate: it uses `assets/auto-electrical-products/` and `scripts/process-auto-electrical-preview-images.py`. Do not restore the retired 50-image ASC pilot.
+
+
+## ELECTROCITY IGNITION SOURCE EVIDENCE RESTORED — 2026-11-18
+- Restored the existing owner-verified Electrocity source/evidence package from historical commit `9b18697e40427e0dd7cde29810af6c69762cdeeb` into the current PR candidate. No new source data was invented.
+- Restored source inventory and workflow documents, the approved Ignition Modules and Ignition Looms PDFs, the 29-row raw/normalised review package, 29 page-evidence crops, source manifest, exceptions and QA report. Also retained the supplier's other Electrocity PDFs as source material; converters and ignition coils are not part of the current 29-row pilot.
+- The 29-row pilot has 27 eligible review-only listings and two quarantined exceptions. The 27 preview images are regenerated from the restored page-evidence inputs by `scripts/process-auto-electrical-preview-images.py`; the internal Electrocity SKU remains private.
+- The previous Cloudflare package and supplier QA failures were caused by the absent source register/page-evidence inputs. The candidate now includes those inputs, and the public-package workflow path filters include the Electrocity source folders and image-processing script so future source changes rerun QA.
+- The active workstream remains the Terminal Catalogue. The ignition pilot remains queued and review-only; no product import or live data change is authorised.
