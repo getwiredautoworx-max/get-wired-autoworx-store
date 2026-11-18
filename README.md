@@ -10,7 +10,7 @@ The live store is hosted through Axxess. Catalogue recovery, category integratio
 
 ## Handover
 
-Read the single current continuation file: [HANDOVER_2026-11-02_OWNER_CONTINUATION.md](HANDOVER_2026-11-02_OWNER_CONTINUATION.md). Do not use superseded handover filenames.
+Read the single current continuation file: [HANDOVER_CURRENT.md](HANDOVER_CURRENT.md). Do not use superseded handover filenames.
 
 ## Execution brief
 

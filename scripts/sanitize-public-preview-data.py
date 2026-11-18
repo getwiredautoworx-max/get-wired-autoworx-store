@@ -11,13 +11,12 @@ FILES = [
     "audio-catalogue-secondary-preview.json",
     "audio-model-verification-preview.json",
     "auto-electrical-owner-preview.json",
-    "product-image-treatment-sample.json",
 ]
 FORBIDDEN_KEYS = re.compile(
     r"^(supplier.*|sourceSku(?:ReferenceInternal)?|sourceSupplierWorkbook(?:Sheet|Row)?|imageSource(?:Note|Url)|dealer(?:Cost|Price)|wholesalePrice|internal(?:Sku|Id)|gwSku)$",
     re.I,
 )
-SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections", re.I)
+SUPPLIER_NAMES = re.compile(r"Planetworld|Audio\s+Connections|Electrocity", re.I)
 
 def clean(value):
     if isinstance(value, dict):

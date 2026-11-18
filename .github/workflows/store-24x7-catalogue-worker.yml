@@ -1,6 +1,6 @@
 name: 24x7 Public-Safe Catalogue Worker
 
-# Paused by owner priority change on 2026-11-17. Manual dispatch only; the worker also checks the owner task queue before extraction.
+# Paused by owner priority change on 2026-11-17. Manual dispatch only; the worker checks the task queue before extraction.
 on:
   workflow_dispatch:
 

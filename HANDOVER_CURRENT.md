@@ -1,3 +1,42 @@
+# OWNER PRIORITY CHANGE — 2026-11-17
+
+## Current directive: remove ASC stock; focus Electrocity Auto Electrical
+
+## QA checkpoint — 2026-11-17
+
+- The previous superseded PR #211 package build successfully generated 27 Auto Electrical image files; the image-treatment step and public review-data policy checks passed. The structural category test passed.
+- The owner-preview mobile/desktop browser check, public SKU exposure audit, button-only smoke test and Axxess package preparation workflow passed. Axxess preparation was package-only; no upload occurred.
+- Three old assertions failed and have been corrected on the active candidate: the pricing test still referenced the former ASC sample; the supplier-name test matched the letters “ASC” inside the vehicle name “Ascona”; and the storefront smoke test expected the old filter attribute rather than the current `data-filter` control. The task queue was also corrected to contain exactly one in-progress task and no obsolete source-workflow wording.
+- The ASC background worker is now manual-dispatch-only on main and its script fails closed unless the ASC task is explicitly active, in progress and automatic. This prevents background ASC extraction during the Electrocity priority.
+- PR #213 remains OPEN/DRAFT. No fresh exact-head workflow status is currently available after the latest corrections; do not call QA green and do not merge.
+- The corrected image build creates a 27-image contact sheet inside `pages-public/assets/auto-electrical-products/image-review-contact-sheet.jpg`. The previous contact sheet is marked rejected/stale. The new sheet still needs visual inspection; no workflow artifact was attached and no preview was deployed.
+
+---
+
+
+- Owner priority is now to remove **all ASC-derived product stock** from customer-facing store previews and package allowlists, then continue catalogue work with Electrocity under **Auto Electrical Spares**.
+- Owner instruction 2026-11-17: remove all ASC source/catalogue, extraction, review, staging and product-image files from the current repository working tree. Do not restore or continue ASC processing. Earlier Git commits remain as version history; do not copy ASC files back into the current tree.
+- Read-only Supabase verification on 2026-11-17: `public.products` contains 0 rows, 0 active products and 0 active stock units. `gw_private.catalogue_product_staging` contains 68 Audio Connections and 702 Planetworld records; no ASC or Electrocity rows were present. **No live product deletion or Supabase write is required.**
+- Candidate branch: `owner/electrocity-auto-electrical-priority-2026-11-17-final`; PR #213 is OPEN/DRAFT (supersedes closed PRs #210–#212). It removes ASC sample routes/data/images from the non-production Pages allowlist and replaces the ASC Auto Electrical pilot with Electrocity review-only records. This branch is not merged or deployed.
+- ASC preview material removed from the candidate package allowlist: `preview-asc-sample.html`, `product-image-treatment-pilot.html`, `product-image-treatment-sample.json`, and `assets/get-wired-product-pilot/`. The unified owner preview no longer loads the 16 ASC Aerials/Car Mats sample records.
+- Electrocity source register: 29 records. Current eligible customer-preview set: **27 records (24 Ignition Modules, 3 Ignition Looms)**. Fitment evidence: 3 confirmed and 24 corroborated. Two records remain excluded:
+  - `GWA-EC-000012`: source fitment discrepancy; retain pending supplier clarification.
+  - `GWA-EC-000022`: supplier SKU is identical to the OEM/model identifier; retain pending code-role resolution.
+- Customer-facing data omits supplier identity and internal supplier SKU. All 27 records remain `PREVIEW_ONLY_NOT_LIVE`, Price On Request, `indicativePrice=null`, `hasStock=null`, and availability-to-confirm.
+- New Auto Electrical preview categories: Ignition Modules and Ignition Looms. Other departments and categories are paused.
+- **Image QA correction required:** the first contact sheet still showed supplier-code footer text because the source page images are 560×460, not 560×420. The image processor has now been corrected to crop x=5–95%, y=16–78%, remove the header/footer bands, and place a small Get Wired watermark at bottom-right. Fresh 27-image outputs and a contact sheet are generated directly inside the isolated `pages-public` package during the non-production preview build (Pillow 11.0.0 pinned); the stale committed JPEGs are not copied. The first contact sheet is marked `STALE_REJECTED`. Do not approve or publish until the new package output is visually inspected.
+- PR #209 (ASC Trailer & Towing, 165 review-only listings) was closed on 2026-11-17 without merge as out of current scope; its source branch and CSV history are retained. PRs #210, #211 and #212 were closed without merge after their CI runs became stale; PR #213 is the active draft.
+- ASC background processing is paused: `.github/workflows/store-24x7-catalogue-worker.yml` is manual-dispatch-only (no schedule or PR trigger), and `scripts/run_24x7_public_safe_worker.py` fails closed unless the ASC task is explicitly the active in-progress task with `automatic=true`. This prevents the previous ASC worker from continuing while Electrocity is the active priority.
+- Production remains HOLD. No Supabase writes, catalogue imports, production deployments, Cloudflare credit use, Axxess uploads, DNS/payment changes or live price/stock changes.
+
+### Immediate execution sequence
+1. Open the owner-priority candidate PR to trigger the image-treatment and package-QA workflows.
+2. Regenerate and visually inspect all 27 sanitized Auto Electrical images; verify no supplier heading or footer code remains and no product is clipped.
+3. Run exact-PR-head package, route, supplier/SKU exposure, price/stock policy, and mobile/desktop checks.
+4. Present the isolated owner preview for review. Do not merge or deploy without owner approval.
+
+---
+
 ## STORE BUILD RESUMPTION CHECKPOINT — 2026-11-17
 
 ### Canonical state and release boundary
@@ -1911,3 +1950,34 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Exact main `77164230a3896e6b004a5adcc771599e04794813`: Cloudflare Pages Public Package QA `43830075254` passed both standard customer-only and isolated non-production preview builds, including supplier-safe sanitization. Storefront Smoke Test `43829838478`, Public SKU Exposure Audit `43829838600` and Catalogue Image Audit `43829838495` passed on the preceding content SHA `4298e6d8319111b40e3dc553691830ea06aa18d3`.
 - The OneNav work is performed directly on canonical main as review-only data. The existing OneNav branch remains 24 ahead / 250 behind; do not merge, rebase, force-push or create a replacement branch. Production remains HOLD; no deployment or credit use.
 - Next: continue exact OneNav model/image reconciliation; OA009-1 remains image-pending until an exact image is found. Verify the OneNav brand logo and customer-facing brand button, then proceed through remaining OneNav product rows.
+
+
+## REPOSITORY & ELECTROCITY RECONCILIATION CHECKPOINT — 2026-11-18
+
+### Canonical state and owner direction
+- Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`; canonical branch: `main`.
+- Reconciliation candidate: PR #213, kept as the single open review candidate. The candidate is updated with current main as its first parent and the existing PR head as its second parent; no new working branch is created.
+- Owner instruction (17 November 2026): remove all ASC-named source, extraction, review, staging and product-image files from the current repository working tree. Do not restore or continue ASC processing. Historical Git commits remain as Git history; they are not to be copied back into the current tree.
+- Current Auto Electrical source work is Electrocity only. Other supplier departments remain unchanged and paused unless reprioritised.
+
+### ASC removal and preview reconciliation
+- The candidate applies the ASC removals and replaces the old 34-record ASC Auto Electrical sample with 27 Electrocity review-only records: 24 Ignition Modules and 3 Ignition Looms.
+- The 27 records remain `PREVIEW_ONLY_NOT_LIVE`, Price On Request, availability to confirm, null indicative price and null stock. Two source exceptions remain excluded.
+- The old ASC preview route, image-treatment sample, ASC extraction workflow, ASC source PDFs/CSV, ASC staging/review files and ASC-derived sample images are excluded from the candidate tree.
+- No fresh exact-head workflow status was available before this reconciliation. The refreshed candidate must pass fresh package, sanitisation, SKU-exposure, responsive and image QA. The generated 27-image contact sheet still needs visual inspection. Production remains HOLD.
+
+### Electrocity Terminal Catalogue — preserved and audited
+- The newer Terminal Catalogue upload on current main is preserved in the reconciled candidate: original PDF, `Analysis output 1.png`, 172 extracted JPG files, the folder README and one canonical review CSV.
+- The CSV is not import-ready: 29 generic placeholder rows; supplier SKU is `Product`; descriptions are `Item 1`–`Item 29`; six referenced images are missing; 149 other extracted images are not represented.
+- An identical duplicate CSV existed at `suppliers/Electrocity/Auto Electrical Spares/updated_terminal_catalogue_2026_under_10_store_import.csv`. The candidate removes that redundant parent-folder copy and keeps the copy inside `Terminal Catalogue/`.
+- Next active workstream: extract the actual Terminal Catalogue products from the original PDF, preserving supplier codes, titles, descriptions, dimensions/specifications, source-page references and exact product-image matches. Use `Analysis output 1.png` as the accepted image-treatment reference. Do not import the placeholder CSV.
+
+### Repository hygiene audit
+- Before reconciliation, the main tree contained 5,790 entries, 279 branches and 208 pull requests; PR #213 was the only open PR.
+- 82 branch names had no matching PR head (including `main` itself), leaving 81 non-main unassociated branches. No branch was deleted because their unique work has not yet been audited.
+- Exact blob hashing found 381 duplicate-content groups with 495 extra file paths. These are not bulk-deleted: product-image references and SKU mappings must be checked before removing any duplicate assets.
+- Root README now points to this file as the single current handover. Dated handover snapshots remain historical records, not active instructions.
+
+### Release boundary
+- No merge into `main`, production deployment, Cloudflare credit use, Axxess upload, DNS/payment change, Supabase write/import, live price or stock update, or checkout activation occurred.
+- PR #213 remains a draft review candidate. Production remains HOLD.
