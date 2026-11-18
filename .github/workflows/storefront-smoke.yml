@@ -11,7 +11,7 @@ on:
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
-      - 'tests/three-category-storefront-structure.test.cjs'
+      - 'tests/audio-only-storefront-scope.test.cjs'
       - 'tests/pricing-display-policy.test.cjs'
       - '.github/workflows/storefront-smoke.yml'
   push:
@@ -25,7 +25,7 @@ on:
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
-      - 'tests/three-category-storefront-structure.test.cjs'
+      - 'tests/audio-only-storefront-scope.test.cjs'
       - 'tests/pricing-display-policy.test.cjs'
       - '.github/workflows/storefront-smoke.yml'
 jobs:
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify three-category structure and supplier-safe catalogue data
-        run: node tests/three-category-storefront-structure.test.cjs
+      - name: Verify audio-only category scope and supplier-safe catalogue data
+        run: node tests/audio-only-storefront-scope.test.cjs
       - name: Verify current Price On Request and availability policy
         run: node tests/pricing-display-policy.test.cjs

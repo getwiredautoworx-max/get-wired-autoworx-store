@@ -10,7 +10,6 @@ FILES = [
     "audio-catalogue-primary-preview.json",
     "audio-catalogue-secondary-preview.json",
     "audio-model-verification-preview.json",
-    "auto-electrical-owner-preview.json",
 ]
 FORBIDDEN_KEYS = re.compile(
     r"^(supplier.*|sourceSku(?:ReferenceInternal)?|sourceSupplierWorkbook(?:Sheet|Row)?|imageSource(?:Note|Url)|dealer(?:Cost|Price)|wholesalePrice|internal(?:Sku|Id)|gwSku)$",

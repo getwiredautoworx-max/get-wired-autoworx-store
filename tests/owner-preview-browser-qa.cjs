@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 
 const BASE = 'http://127.0.0.1:4173';
 const SUPPLIER_NAMES = /Planetworld|Audio Connections/i;
-const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spares', 'Car Care & Accessories'];
+const EXPECTED_ROOTS = ['Audio & Entertainment'];
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -31,9 +31,9 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       });
 
       await page.goto(BASE + '/index-new.html?ownerPreview=1&previewBuild=exact-head-qa', { waitUntil: 'domcontentloaded' });
-      await page.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
+      await page.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 1, null, { timeout: 30000 });
       const roots = await page.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
-      assert.deepEqual(roots.map(x => x.trim()), EXPECTED_ROOTS, 'homepage must expose exactly the three owner-approved main categories');
+      assert.deepEqual(roots.map(x => x.trim()), EXPECTED_ROOTS, 'homepage must expose exactly the one owner-approved audio category');
       assert.deepEqual(pageErrors, [], 'homepage must not raise JavaScript errors: ' + pageErrors.join('; '));
       const homeText = await page.locator('body').innerText();
       assert.ok(!SUPPLIER_NAMES.test(homeText), 'supplier names must not appear on customer-facing homepage content');
@@ -45,8 +45,8 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       await page.goto(BASE + '/owner-preview.html', { waitUntil: 'domcontentloaded' });
       await page.waitForSelector('iframe');
       const frame = page.frames().find(f => f.url().includes('index-new.html'));
-      assert.ok(frame, 'owner preview must embed the current three-category storefront');
-      await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
+      assert.ok(frame, 'owner preview must embed the current audio-only storefront');
+      await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 1, null, { timeout: 30000 });
       await frame.waitForFunction(() => document.documentElement.dataset.gwPreviewLocked === '1', null, { timeout: 10000 });
       const visibleCheckoutControls = await frame.locator('a[href*="checkout"], .checkoutNow, #checkout, .checkout-fab').evaluateAll(nodes =>
         nodes.filter(node => {
@@ -56,7 +56,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       );
       assert.deepEqual(visibleCheckoutControls, [], 'owner preview must keep checkout and order actions blocked; visible controls: ' + JSON.stringify(visibleCheckoutControls));
       const frameRoots = await frame.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
-      assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the three approved root categories');
+      assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the one approved audio root category');
 
       await page.goto(BASE + '/preview-audio.html?department=Car%20Audio&brand=Sony&component=Component%20Speakers&label=Car%20Audio%20%26%20Video', { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => {
@@ -75,22 +75,22 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
           fetch('assets/audio-catalogue-secondary-preview.json').then(r => r.json())
         ]);
         return {
-          planetRows: planet.records.length,
+          primaryRows: planet.records.length,
           audioRows: audio.records.length,
-          planetPriceLeaks: planet.records.filter(r => typeof r.indicativePrice === 'number' || typeof r.hasStock === 'boolean').length,
+          primaryPriceLeaks: planet.records.filter(r => typeof r.indicativePrice === 'number' || typeof r.hasStock === 'boolean').length,
           audioPriceLeaks: audio.records.filter(r => typeof r.indicativePrice === 'number' || typeof r.hasStock === 'boolean').length,
           audioPriceLabels: [...new Set(audio.records.map(r => r.priceOnRequestText))]
         };
       });
-      assert.equal(dataAudit.planetRows, 3317);
+      assert.equal(dataAudit.primaryRows, 3317);
       assert.equal(dataAudit.audioRows, 72, 'secondary Audio Connections preview contains 72 reconciled review records');
-      assert.equal(dataAudit.planetPriceLeaks, 0, 'Planetworld preview JSON must not retain numeric price or stock claims');
+      assert.equal(dataAudit.primaryPriceLeaks, 0, 'Primary audio preview JSON must not retain numeric price or stock claims');
       assert.equal(dataAudit.audioPriceLeaks, 0, 'Audio Connections preview JSON must not retain numeric price or stock claims');
       assert.deepEqual(dataAudit.audioPriceLabels, ['Price On Request']);
       const audioOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
       assert.equal(audioOverflow, false, 'audio product route must not overflow horizontally at viewport ' + width);
       await page.close();
-      console.log('PASS owner preview viewport=' + width + ' roots=3 audio=Sony/Component Speakers price=POR checkout=blocked no-live-writes');
+      console.log('PASS owner preview viewport=' + width + ' roots=1 audio=Sony/Component Speakers price=POR checkout=blocked no-live-writes');
     }
   } finally {
     await browser.close();
