@@ -127,10 +127,8 @@ print("PUBLIC_REVIEW_DATA_POLICY_PASS audio>=72 preview_only price=POR stock=unc
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
-image_source = ROOT / "assets" / "products_webp"
-if not image_source.is_dir():
-    raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
-shutil.copytree(image_source, OUT / "assets" / "products_webp")
+# Legacy product-image libraries are intentionally excluded from the public package.
+# They remain in the private review scope until every image is mapped to an approved audio SKU.
 
 # The output is an allowlist, not a copy of the repository root. Assert that no
 # internal source/review directories or supplier documents entered the package.
@@ -146,9 +144,6 @@ for required in REQUIRED_ROOT_FILES:
     if not (OUT / required).is_file():
         raise SystemExit(f"Public Pages package missing required page: {required}")
 
-image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
-if image_count == 0:
-    raise SystemExit("No WebP product images were copied")
 
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
@@ -171,7 +166,7 @@ else:
         raise SystemExit(f"Preview-only routes leaked into standard package: {leaked_preview}")
     print("PAGES_PREVIEW_ROUTES_EXCLUDED_PASS")
 
-print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} webp_images={image_count}")
+print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} unclassified_legacy_images_excluded=true")
 print("PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github")
 if include_preview:
     # Public, non-sensitive proof that the exact structural regression suite ran

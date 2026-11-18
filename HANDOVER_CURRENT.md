@@ -30,7 +30,7 @@ The active working scope is now a clean Audio & Entertainment storefront. This s
 - Old three-category storefront tests and category-navigation mappings for non-audio departments.
 
 ### Preserved but quarantined pending image mapping
-- The 790 legacy product images and 4,101 WebP assets remain temporarily because they are not reliably mapped to audio/non-audio SKUs. They are not approved as live catalogue inventory. Do not bulk-delete or expose them as products until image-to-product references are audited.
+- The 790 legacy product images and 4,101 WebP assets remain temporarily in GitHub because they are not reliably mapped to audio/non-audio SKUs. They are excluded from the public Pages preview package and are not displayed as products. Do not bulk-delete or expose them until image-to-product references are audited.
 - Historical Git commits remain available for recovery; no bulk Git branch or history deletion is part of this reset.
 
 ### QA checkpoint — candidate code commit `22f4b82eb0c72ab172b57054f549935c0f885582`
