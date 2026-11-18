@@ -2002,3 +2002,17 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Updated `.github/workflows/supplier-catalogue-review-qa.yml`: removed ASC-only source/staging/test triggers and the retired ASC 978-row validation step; retained Electrocity review-data validation and added the approved ignition source PDF path.
 - These workflow edits are in the PR candidate only. Current main remains unchanged until owner approval and merge.
 - Latest candidate head before this workflow-only correction: `0eae687970ee41e1cd31481877259948a64d8e67`. The previously reported QA failures belong to older head `94c2573c9be3c781c38a0a2afad35979abc35621`, before the Electrocity source register and page-evidence files were restored. Do not treat those results as current, and do not claim the latest head is green until fresh exact-head checks complete.
+
+
+## STATIC ELECTROCITY DATA QA — 2026-11-18
+The following read-only consistency checks were run against the reconciled candidate files (not a substitute for GitHub Actions or visual image review):
+- 29 normalised source rows with 42 columns.
+- 29 source page-evidence PNGs; all 29 row-level image references resolve to a file.
+- The source manifest identifies the two pilot PDFs: 5-page Ignition Modules (26 source rows) and 1-page Ignition Looms (3 source rows).
+- 27 customer-preview records: 24 Ignition Modules and 3 Ignition Looms; 3 confirmed-fitment and 24 corroborated-fitment records; 2 source records excluded from preview.
+- 27 referenced product image files exist in the candidate tree.
+- No Electrocity supplier SKU or supplier identity appears in customer-facing preview records.
+- All 27 preview records remain Price On Request, availability to confirm, null indicative price, null stock and `PREVIEW_ONLY_NOT_LIVE`.
+- The source image contact sheet has not yet been visually accepted. The image crop/build still requires fresh exact-head CI and owner visual review.
+- Exact-head GitHub Actions have not been recorded for the current workflow-updated candidate. Earlier failures on `94c2573c9be3c781c38a0a2afad35979abc35621` occurred before the 45 source/evidence files were restored; do not treat those old results as current or as a green build.
+- `.github/workflows/store-24x7-catalogue-worker.yml` is manual-dispatch-only in this candidate; the task queue marks ASC work cancelled, and the worker's queue guard must fail closed. Main remains unchanged until owner-approved merge.
