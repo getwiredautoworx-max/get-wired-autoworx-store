@@ -8,7 +8,7 @@ The active working scope is now a clean Audio & Entertainment storefront. This s
 - Working branch: `owner/electrocity-auto-electrical-priority-2026-11-17-final`
 - Current branch head at this handover: `07f66ed20a1f52d10fdcaa8c5729bd28a4b70bbf`
 - Existing draft PR: [#213 — Owner reset: Audio & Entertainment only](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/213)
-- PR comparison against current main: 77 commits ahead, 0 behind.
+- PR comparison against current main: 81 commits ahead, 0 behind.
 - Current main commit: `7ec84e6e1254e2f6598305f42702beab3ade7901`. Main has not been modified by this reset.
 - 350 files removed from the previous working candidate during this reset.
 - Current tracked tree: 5,242 files. Remaining supplier folder is Audio Connections only; remaining supplier source PDFs are STARSOUND and Sony Mobile ES.
@@ -46,12 +46,12 @@ Passed:
 
 Owner APK:
 - Debug APK build and upload of install-test artifact passed.
-- Android emulator validation was still running at the time of this handover update.
+- Android emulator validation remains in progress.
 
 Cloudflare:
 - Cloudflare Pages generated a **non-production branch preview** for the audio-only candidate:
   https://owner-electrocity-auto-elect-jlhe.get-wired-autoworx-store.pages.dev/owner-preview.html
-- The preview uses the owner-preview route; checkout and Supabase write actions are blocked.
+- The preview uses the owner-preview route; checkout and Supabase write actions are blocked. The latest Pages deployment is commit `c6a3e64`; its package contains 56 allowlisted files and excludes all unclassified legacy WebP product images.
 - The separate Cloudflare Workers build check failed. It is not a reason to merge or claim a production release. Investigate separately.
 - The Pages preview is for storefront review only; no production release is authorised.
 
