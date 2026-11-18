@@ -50,12 +50,22 @@ Passed:
 Build log confirmed: `PAGES_PUBLIC_BUILD_PASS files=56 unclassified_legacy_images_excluded=true`.
 
 ### Owner APK — emulator validation PASSED
-- Workflow: [Build and Validate Get Wired AutoWorx Owner APK](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244249805)
-- Run `44244249805`, attempt 1, completed successfully on 18 November 2026.
+- Latest workflow: [Build and Validate Get Wired AutoWorx Owner APK](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489949)
+- Latest run `44244489949`, attempt 1, completed successfully on 18 November 2026 for candidate commit `acb2f9f736f516f156016d6f12d98d2559884c94`. Earlier run `44244249805` also passed.
 - Passed: Owner WebView security-boundary check, debug APK build, SHA-256 recording, install-test artifact upload, Android emulator startup and APK emulator validation.
 - Install-test APK artifact: `get-wired-autoworx-owner-install-test-apk`; artifact ID `14401315584`; expires 25 November 2026.
 - Artifact digest: `sha256:e87eab8e20b975d2922dac7fc5a01ec6d22fd330548d5253ce6cb36ab4731f58`.
 - Emulator success does not replace a final physical Android phone install/use test.
+
+### Latest full QA refresh — candidate commit `acb2f9f736f516f156016d6f12d98d2559884c94`
+The following latest candidate checks all completed successfully on 18 November 2026:
+- [Owner APK build and Android emulator validation](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489949).
+- [Owner preview mobile and desktop browser QA](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489998). The browser job installed Chromium/Playwright, started a local static preview server, and passed the mobile/desktop owner-preview and audio-product-route check.
+- [Cloudflare Pages public package QA](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489902).
+- [Storefront smoke test](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489970) and [button-only smoke test](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244490028).
+- [Supplier catalogue review-data QA](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489850), [catalogue image audit](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489903), [public SKU exposure audit](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244489977), and [Axxess package preparation](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/44244490017) all passed.
+
+These automated checks validate the static owner preview and APK launch/install path. They do not constitute an owner visual sign-off, a physical phone test, live checkout/payment test, or production release.
 
 ### Customer-facing non-production preview
 **Commit-specific owner preview:** https://dfb42c3a.get-wired-autoworx-store.pages.dev/owner-preview.html
