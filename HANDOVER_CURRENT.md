@@ -1981,3 +1981,9 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 ### Release boundary
 - No merge into `main`, production deployment, Cloudflare credit use, Axxess upload, DNS/payment change, Supabase write/import, live price or stock update, or checkout activation occurred.
 - PR #213 remains a draft review candidate. Production remains HOLD.
+
+
+## FOLLOW-UP ASC-DERIVED IMAGE PILOT REMOVAL — 2026-11-18
+- A second path/content inspection found generic-named files that were still tied directly to the old ASC 50-product pilot: `assets/get-wired-product-pilot/` (50 images), `assets/product-image-treatment-sample.json`, `product-image-treatment-pilot.html`, `scripts/process-product-image-pilot.py` and `.github/workflows/product-image-treatment-sample.yml`.
+- These files explicitly referenced `catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv` and `assets/catalogue-source-crops/asc-*.jpg`. They are now removed from the reconciliation candidate tree along with the named ASC files.
+- The active Electrocity image pipeline is separate: it uses `assets/auto-electrical-products/` and `scripts/process-auto-electrical-preview-images.py`. Do not restore the retired 50-image ASC pilot.
