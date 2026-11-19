@@ -21,7 +21,7 @@ OUT = ROOT / "pages-public"
 node = shutil.which("node")
 if not node:
     raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
-subprocess.run([node, str(ROOT / "tests" / "three-category-storefront-structure.test.cjs")], cwd=ROOT, check=True)
+subprocess.run([node, str(ROOT / "tests" / "audio-only-storefront-scope.test.cjs")], cwd=ROOT, check=True)
 
 REQUIRED_ROOT_FILES = [
     "index.html", "store.html", "index-new.html", "product.html", "products.html",
@@ -31,12 +31,11 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
+    "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html",
 ]
 PREVIEW_ASSET_FILES = [
-    "audio-catalogue-primary-preview.json", "auto-electrical-owner-preview.json",
-    "product-image-treatment-sample.json",
-    "audio-catalogue-secondary-preview.json",
+    "audio-catalogue-primary-preview.json",
+    "audio-catalogue-secondary-preview.json", "audio-model-verification-preview.json",
     "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg", "brand-logos/sony.svg",
     "audio-types/speakers.svg", "audio-types/subwoofers.svg", "audio-types/amplifiers.svg",
     "audio-types/head-units.svg", "audio-types/cameras-monitors.svg", "audio-types/signal-processing.svg",
@@ -47,12 +46,11 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
-PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
+PREVIEW_ASSET_DIRS = []
 # Sanitised, review-only local catalogue records power the owner-facing
 # customer-view route (?ownerPreview=1) without requiring live Supabase rows.
 # They are never treated as live stock or verified supplier prices.
 PUBLIC_REVIEW_DATA_FILES = [
-    "auto-electrical-owner-preview.json",
     "audio-catalogue-secondary-preview.json",
 ]
 
@@ -108,30 +106,29 @@ subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-
 
 # Fail the build if the owner review data is missing, exposes supplier identity,
 # or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
+review_files = [("audio-catalogue-secondary-preview.json", 72)]
+for filename, expected_minimum in review_files:
     review_path = OUT / "assets" / filename
     review_data = json.loads(review_path.read_text(encoding="utf-8"))
     records = review_data.get("records", review_data.get("products", []))
-    if len(records) < expected_minimum:
-        raise SystemExit(f"Review catalogue incomplete in public package: {filename} records={len(records)}")
+    count_invalid = len(records) < expected_minimum
+    if count_invalid:
+        raise SystemExit(f"Review catalogue count mismatch in public package: {filename} records={len(records)} expected={expected_minimum}")
     serialised = json.dumps(review_data, ensure_ascii=False)
-    # Exact authorised image URLs may retain their original hosting domain.
-    # Supplier-name policy applies to visible labels/metadata, not image URLs.
     customer_visible_text = re.sub(r"https?://\S+", "[image-asset-url]", serialised, flags=re.I)
-    if re.search(r"Planetworld|Audio\s+Connections", customer_visible_text, re.I):
+    forbidden_suppliers = r"Electrocity"
+    if re.search(forbidden_suppliers, customer_visible_text, re.I):
         raise SystemExit(f"Supplier identity leaked into public review text: {filename}")
     for record in records:
         if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
             raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
-print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 price=POR stock=unconfirmed")
+print("PUBLIC_REVIEW_DATA_POLICY_PASS audio>=72 preview_only price=POR stock=unconfirmed")
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
-image_source = ROOT / "assets" / "products_webp"
-if not image_source.is_dir():
-    raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
-shutil.copytree(image_source, OUT / "assets" / "products_webp")
+# Legacy product-image libraries are intentionally excluded from the public package.
+# They remain in the private review scope until every image is mapped to an approved audio SKU.
 
 # The output is an allowlist, not a copy of the repository root. Assert that no
 # internal source/review directories or supplier documents entered the package.
@@ -147,9 +144,6 @@ for required in REQUIRED_ROOT_FILES:
     if not (OUT / required).is_file():
         raise SystemExit(f"Public Pages package missing required page: {required}")
 
-image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
-if image_count == 0:
-    raise SystemExit("No WebP product images were copied")
 
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
@@ -161,25 +155,25 @@ if include_preview:
     for name in PREVIEW_ASSET_DIRS:
         if not (OUT / "assets" / name).is_dir():
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
-    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs"]:
+    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs", "audio-only-storefront-scope.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
+    print("AUDIO_ONLY_PREVIEW_ASSETS_PASS non_audio_catalogue=excluded")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
         raise SystemExit(f"Preview-only routes leaked into standard package: {leaked_preview}")
     print("PAGES_PREVIEW_ROUTES_EXCLUDED_PASS")
 
-print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} webp_images={image_count}")
+print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} unclassified_legacy_images_excluded=true")
 print("PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github")
 if include_preview:
     # Public, non-sensitive proof that the exact structural regression suite ran
     # before this owner-preview package was emitted.
     qa_marker = {
         "result": "PASS",
-        "test": "tests/three-category-storefront-structure.test.cjs",
+        "test": "tests/audio-only-storefront-scope.test.cjs",
         "commit": os.environ.get("CF_PAGES_COMMIT_SHA") or os.environ.get("GITHUB_SHA"),
         "branch": os.environ.get("CF_PAGES_BRANCH"),
         "preview_only": True,

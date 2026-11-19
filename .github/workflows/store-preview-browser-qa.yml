@@ -8,7 +8,6 @@ on:
       - 'preview-audio*.html'
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
-      - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
       - '.github/workflows/cloudflare-public-pages-build-qa.yml'
@@ -20,7 +19,6 @@ on:
       - 'preview-audio*.html'
       - 'assets/category-tree.json'
       - 'assets/*catalogue-preview.json'
-      - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
 jobs:

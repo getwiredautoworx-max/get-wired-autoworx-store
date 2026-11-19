@@ -7,8 +7,6 @@ const files = [
   'audio-catalogue-primary-preview.json',
   'audio-catalogue-secondary-preview.json',
   'audio-model-verification-preview.json',
-  'auto-electrical-owner-preview.json',
-  'product-image-treatment-sample.json'
 ];
 const primaryPath = path.join(root, 'audio-catalogue-primary-preview.json');
 const primary = JSON.parse(fs.readFileSync(primaryPath, 'utf8'));
@@ -195,5 +193,5 @@ for (const file of files) {
   assert.ok(!/"(?:imageSourceNote|imageSourceUrl)"\s*:/i.test(raw), file+' must not expose internal image-source provenance');
   checked++;
 }
-assert.ok(checked >= 4, 'at least four public preview catalogue files must be sanitized');
+assert.ok(checked >= 3, 'the three retained audio preview catalogue files must be sanitized');
 console.log('PUBLIC_PREVIEW_DATA_SANITIZATION_PASS files='+checked);

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-16",
+  "updated": "2026-11-18",
   "authority": [
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
     "latest owner instructions in the active conversation",
@@ -9,7 +9,8 @@
     "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (public repository processing authorised; all products Price On Request)",
     "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams",
     "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project",
-    "2026-11-15 owner instruction: continue consolidated storefront delivery until resolved"
+    "2026-11-15 owner instruction: continue consolidated storefront delivery until resolved",
+    "2026-11-17/18 owner instruction: remove all ASC files from the current working tree; continue Auto Electrical work with Electrocity; preserve and process the uploaded Terminal Catalogue using Analysis output 1 as the approved image reference."
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -17,7 +18,7 @@
     "Car Care & Accessories"
   ],
   "policy": {
-    "source_scope": "approved supplier catalogues only; no ASC Buyers Guides",
+    "source_scope": "Approved supplier catalogues only. Current Auto Electrical workstream is Electrocity only. No ASC files or ASC Buyers Guides in the current repository tree; other supplier work remains paused unless reprioritised.",
     "candidate_data": "review-only; DO NOT IMPORT until independently verified and owner-approved",
     "live_store_mutations": "prohibited",
     "production_deploy": "prohibited without separate explicit owner approval",
@@ -31,7 +32,9 @@
     "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run",
     "public_repository_catalogue_processing": "authorised by owner; no private repository/private runner prerequisite; protect actual credentials/secrets and do not expose supplier names/internal SKUs in customer views",
     "customer_price_display": "Price On Request for all supplier products until reliable supplier price/stock synchronisation is approved",
-    "preview_population": "review-only local preview data must render without requiring active/live Supabase product rows; no invented products or category assignments"
+    "preview_population": "review-only local preview data must render without requiring active/live Supabase product rows; no invented products or category assignments",
+    "asc_source_files": "Owner instruction 2026-11-17: remove all ASC source, extraction, review, staging and product-image files from the current working tree. Do not restore or process ASC files. Git history remains as history only.",
+    "terminal_catalogue": "Electrocity Terminal Catalogue is review-only until the original PDF is re-extracted and all supplier codes, descriptions, dimensions, source pages and exact image matches are verified. The existing 29-row placeholder CSV must not be imported."
   },
   "tasks": [
     {
@@ -52,7 +55,7 @@
         "No stale branch is merged without current-main rebasing and exact-head checks",
         "One active workstream and one canonical main branch remain authoritative"
       ],
-      "next_action": "Completed 2026-11-15: all open PRs reconciled; final open-PR search returned zero. PR #206 merged as 0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8; #184 closed as superseded. PR #67 closed without merge after review found unsafe live catalogue/publishing and supplier quote/payment/procurement mutations. PR #207 selectively rebuilt from current main, all exact-head checks passed (Part Image Search Security 43694076115, Delivery Quote Security 43694076196, Owner APK/emulator 43694076125), merged as 0a8005e83a4251e1a0a380c0a9d782237335906a; #155 closed as superseded. No live Supabase migration/function deployment or production action. Next: resume one coordinated storefront content and hosted owner-preview QA workstream from main; production remains HOLD.",
+      "next_action": "Completed 2026-11-18: PR #213 is the sole open candidate and has been reconciled against current main using a two-parent merge commit. Fresh exact-head package and image QA remain required before owner review or merge.",
       "completed_this_session": [
         "2026-11-15: completed selective Owner APK security integration PR #206, exact-head checks all passed, merged as 0bc4f879b2521efaa0ac3ee2aafbbec265f8fdc8; closed #184 as superseded.",
         "2026-11-15: closed #67 without merge after identifying direct live publishing/catalogue mutations and supplier quote/cost, payment, procurement and fulfilment actions; no code deployed or live data changed.",
@@ -64,7 +67,7 @@
     {
       "id": "single-project-reconciliation",
       "priority": 10,
-      "status": "completed",
+      "status": "queued",
       "execution_mode": "verified-integration",
       "automatic": false,
       "source": [
@@ -80,7 +83,7 @@
         "Task queue and handover contain one ordered execution plan with one active workstream",
         "No supplier-source material is added to customer-facing output and no unapproved release action occurs"
       ],
-      "next_action": "Completed: PR #204 is integrated into canonical main at 3e38e137afd7a5ec00395c3a51a2da0318a4da98. Post-merge non-production checks are recorded in HANDOVER_CURRENT.md. Production remains HOLD.",
+      "next_action": "Queued after the Electrocity Terminal Catalogue. Review the 81 non-main unassociated branches and 134 closed-unmerged branch heads for unique work before any branch deletion. Do not create parallel workstreams.",
       "completed_this_session": [
         "Read owner directives, current handover and task queue before work.",
         "Classified all 21 open PRs other than #204 by title and changed-file inventory; recorded individual disposition and overlap clusters in RECONCILIATION_REGISTER_2026-11-14.md.",
@@ -97,7 +100,7 @@
         "2026-11-15: selectively ported PR #152 category snapshot config resolution to main, added environment-first config resolution with checkout client fallback, regression tests, dedicated workflow and refresh gate; PR-head regression run 41449633110 passed; closed PR #152. No Supabase writes.",
         "2026-11-15: closed PR #137 as superseded by existing main courier-origin privacy handling; its helper was not ported because redundant and omitted delivery province.",
         "2026-11-15: reviewed PR #155 and recorded a blocking runtime defect (const identification reassigned) plus required migration schema/privilege validation; left open and not deployed.",
-        "2026-11-15: selectively ported PR #154 safety changes onto a fresh current-main branch, removed prohibited Buyer Guide workflow monitoring/retry, merged as PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05; PR #154 closed as superseded. Original controller safety workflow passed on source PR head (run 41452514667); exact current-main push workflow run not exposed by the available commit-run view.",
+        "2026-11-15: selectively ported PR #154 safety changes onto a fresh current-main branch, removed obsolete source-workflow monitoring/retry, merged as PR #205 at f148ccc55efc91d3b46f83bb1b29109bdb6c2f05; PR #154 closed as superseded. Original controller safety workflow passed on source PR head (run 41452514667); exact current-main push workflow run not exposed by the available commit-run view.",
         "2026-11-15: closed PR #3 as out-of-scope separate Sales Intelligence APK; confirmed only #184, #155 and #67 remain open. #184/#67 share Owner APK files and are queued as one unified candidate."
       ]
     },
@@ -122,10 +125,10 @@
     },
     {
       "id": "asc-six-catalogue-source-extraction",
-      "priority": 5,
-      "status": "paused",
+      "priority": 7,
+      "status": "cancelled",
       "execution_mode": "scheduled-deterministic",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "suppliers/ASC/ASC- Aerials (1).pdf",
         "suppliers/ASC/ASC- Automotive Sensors (1).pdf",
@@ -140,7 +143,7 @@
         "Keep OCR output review-only and DO NOT IMPORT",
         "Retain exact owner-approved ASC Price On Request wording in any customer-facing staging presentation"
       ],
-      "next_action": "Paused while the single active Audio & Video enrichment workstream is completed. Resume only from the six approved ASC catalogues; no Buyers Guides, and retain review-only status."
+      "next_action": "Cancelled by owner instruction 2026-11-17: all ASC source/catalogue, extraction, review, staging and product-image files are to be removed from the current working tree. Do not restore or continue ASC extraction."
     },
     {
       "id": "audio-planetworld-source-extraction",
@@ -162,25 +165,33 @@
     },
     {
       "id": "electrocity-ignition-pilot",
-      "priority": 6,
-      "status": "paused_pending_reconciliation",
+      "priority": 1,
+      "status": "queued",
       "execution_mode": "scheduled-qa",
-      "automatic": true,
+      "automatic": false,
       "source": [
-        "PR #185",
-        "suppliers/Electrocity/Ignition Looms-Coils-Modules/"
+        "suppliers/Electrocity/catalogue-work/ignition-looms-modules/normalised-review.csv",
+        "suppliers/Electrocity/catalogue-work/ignition-looms-modules/page-evidence/",
+        "assets/auto-electrical-owner-preview.json",
+        "scripts/process-auto-electrical-preview-images.py",
+        "owner directive dated 2026-11-17"
       ],
       "success_criteria": [
-        "Verify all 29 pilot records and source evidence remain present",
-        "Keep GWA-EC-000012 / IG-T003 quarantined pending supplier clarification",
-        "Do not promote corroborated fitment to confirmed"
+        "All ASC-derived product stock is absent from the customer-facing owner preview and non-production Pages package; original ASC sources and review history are retained.",
+        "Auto Electrical shows only 27 eligible Electrocity review records: 24 Ignition Modules and 3 Ignition Looms.",
+        "Two exceptions remain quarantined: the source fitment discrepancy record and the supplier-SKU/OEM-model collision record.",
+        "All 27 customer image crops remove the supplier heading and supplier-code footer without clipping product bodies; Get Wired watermark is subtle and does not obscure the product.",
+        "Customer-facing product data contains no supplier name or internal supplier SKU; all products remain Price On Request, availability unconfirmed, null indicative price and null stock.",
+        "The Auto Electrical category and product filters route correctly on mobile and desktop.",
+        "Exact-branch automated package, sanitization, SKU-exposure, image and storefront tests pass before owner preview.",
+        "No live Supabase write, production import, deployment, Axxess upload or paid hosting use without separate approval."
       ],
-      "next_action": "Run read-only PR and evidence checks; supplier clarification remains owner/supplier dependent."
+      "next_action": "Source evidence restored from existing commit 9b18697: two approved ignition PDFs, 29-row raw/normalised review package and 29 page-evidence crops. Keep 27 eligible records review-only and two quarantined. This pilot remains queued behind the active Terminal Catalogue extraction; do not import or publish until exact-head QA and image contact sheet are accepted."
     },
     {
       "id": "audio-video-content-enrichment",
-      "priority": 1,
-      "status": "in_progress",
+      "priority": 4,
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -196,12 +207,12 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "2026-11-17: Resume on canonical main. OA009-1 official OneNav page confirms Classic SKU/specifications but no approved exact image is exposed; NXT Level Tech exact-SKU page is not inspectable (403), so image remains pending and ON009-2A11 Pro CANBUS image remains rejected. OA012-1 third-party listing confirms Classic SKU/RAV4 fitment, while official OneNav RAV4 page identifies different ON012-1A Evolution/Pro variant and different specifications; do not transfer its image/specs. Verified OneNav brand-button route to preview-audio-brand.html and product-type route to preview-audio-products.html; current mark is a text-based SVG wordmark, not official image artwork. Next: continue bounded exact OneNav SKU/image reconciliation, then run full QA on current main 29ab5769 before any refreshed preview. Last explicitly QA-verified baseline remains 77164230; do not claim 29ab exact-head QA yet. All work remains PREVIEW_ONLY_NOT_LIVE, Price On Request, null indicative price/stock. Production HOLD; no merge/deploy/credits/live writes."
+      "next_action": "Paused by owner priority change on 2026-11-17. Do not continue Planetworld, Audio Connections or OneNav product enrichment until the Electrocity Auto Electrical priority is completed or the owner changes direction."
     },
     {
       "id": "onenav-model-image-reconciliation",
-      "priority": 4,
-      "status": "in_progress",
+      "priority": 5,
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -214,7 +225,7 @@
         "Unmatched products remain explicitly image-pending",
         "Record source evidence for each accepted match"
       ],
-      "next_action": "2026-11-17: OA009-1 official product page confirms exact Classic SKU/specs but no approved exact image; third-party NXT Level Tech exact-SKU page could not be visually inspected (403); keep image pending and reject ON009-2A11 Pro CANBUS. OA012-1 NXT Level Tech listing confirms Classic/RAV4 SKU, but official OneNav RAV4 page identifies different ON012-1A Evolution/Pro variant; do not transfer image/specs. Continue remaining OneNav Classic rows with exact SKU/variant/image evidence only; retain unresolved images as pending. Brand button route and separate product-type route are present in code; custom text SVG is not the official logo asset. No import or live publication."
+      "next_action": "Paused by owner priority change on 2026-11-17. Preserve current evidence and image holds; do not continue OneNav reconciliation until owner reprioritises."
     },
     {
       "id": "storefront-three-category-consolidation",
@@ -233,14 +244,14 @@
         "Populated product pages use verified catalogue data",
         "No obsolete eight-root navigation"
       ],
-      "next_action": "Queued behind the active Audio & Video content-enrichment checkpoint. Resume after the current product group is source-verified and owner-preview QA is green; retain the three approved homepage roots only."
+      "next_action": "Queued behind Electrocity Auto Electrical source verification and customer-style preview review. Keep the approved three homepage roots only."
     },
     {
       "id": "continuous-qa-and-owner-preview",
-      "priority": 8,
-      "status": "in_progress",
+      "priority": 2,
+      "status": "queued",
       "execution_mode": "scheduled-qa",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "GitHub Actions",
         "coordinated storefront candidate"
@@ -251,7 +262,7 @@
         "Desktop and mobile browser checks pass",
         "Owner receives preview and evidence"
       ],
-      "next_action": "The last explicitly QA-verified main baseline is 77164230. Current main is 29ab5769 after 12 subsequent commits, including review-only manifest/audit checkpoints; exact-head QA and hosted browser checks have not yet been confirmed for 29ab5769. Run package QA, storefront smoke, public SKU exposure, catalogue image audit and mobile/desktop browser QA on the exact current SHA before presenting a refreshed preview. Production QA remains intentionally blocked by live Cloudflare challenge/non-consolidated production; no deployment or credit use."
+      "next_action": "Run fresh exact-head package, route, sanitisation, public-SKU, responsive and image QA on PR #213 after branch reconciliation. The 27-image contact sheet still needs visual review. No production deployment."
     },
     {
       "id": "three-department-category-assignment-repair",
@@ -279,8 +290,8 @@
     },
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
-      "priority": 3,
-      "status": "paused_pending_post_merge_verification",
+      "priority": 8,
+      "status": "cancelled",
       "execution_mode": "workflow-dispatch-and-visual-review",
       "automatic": false,
       "source": [
@@ -295,12 +306,12 @@
         "All 50 output images and contact sheet exist, with checksums and 50 unique sample IDs",
         "Visually inspect all 50 images individually/contact sheet at readable resolution; confirm no bottom clipping and watermark does not obscure product"
       ],
-      "next_action": "All 50 sample outputs have been regenerated with product-area bounds preserved, external catalogue captions/code strips masked, and Get Wired watermark applied over the ASC watermark. The 50-row manifest and contact sheet exist; contact sheet review and high-resolution spot checks passed. Owner acceptance remains pending; do not import into production."
+      "next_action": "Cancelled by owner instruction. The legacy generic-named 50-image ASC-derived pilot, its JSON, HTML review page, processing script and workflow have been removed from the current reconciliation candidate. Do not restore them."
     },
     {
       "id": "post-merge-verification-and-owner-preview",
       "priority": 10,
-      "status": "in_progress",
+      "status": "queued",
       "execution_mode": "verification-and-owner-preview",
       "automatic": false,
       "source": [
@@ -316,7 +327,7 @@
         "Task queue, handover and reconciliation register agree on canonical main and active task",
         "One consolidated non-production owner preview is identified and tied to the verified code SHA"
       ],
-      "next_action": "Supporting release gate only. Non-production customer-only and isolated owner-preview packages build and pass route/supplier-safety tests on exact main 77164230. Live production remains HOLD because it is not the consolidated button-only storefront and Cloudflare challenge HTML blocks public homepage/category JSON/product image verification. No deployment.",
+      "next_action": "Do not run until owner approves PR #213 and it is merged. No production deployment or live writes.",
       "started_commit": "8483e849b8a01d4606fffdbfdebacc396aa63bd6",
       "latest_mainline_sha": "1391af478ef31844d868360915f3cdd2485617d3"
     },
@@ -336,6 +347,59 @@
         "Preserve source file unchanged pending owner scope decision"
       ],
       "next_action": "Quarantined from storefront processing: Trailer & Towing is not one of the three approved homepage departments. No deletion or history rewrite; await explicit owner scope change before processing."
+    },
+    {
+      "id": "electrocity-terminal-catalogue-reconciliation",
+      "priority": 10,
+      "status": "in_progress",
+      "execution_mode": "source-verified-review-only",
+      "automatic": false,
+      "source": [
+        "suppliers/Electrocity/Auto Electrical Spares/Terminal Catalogue/Original terminal_catalogue_2026_under_10.pdf",
+        "suppliers/Electrocity/Auto Electrical Spares/Terminal Catalogue/Analysis output 1.png",
+        "suppliers/Electrocity/Auto Electrical Spares/Terminal Catalogue/updated_terminal_catalogue_2026_under_10_store_import.csv"
+      ],
+      "success_criteria": [
+        "Extract actual supplier SKU, original product title and description, dimensions/specifications, source page and exact product image from the original PDF",
+        "Use Analysis output 1.png as the approved image-treatment reference",
+        "Verify every extracted product image for visibility, halo removal, resolution and correct source match",
+        "Do not use the incomplete 29-row placeholder CSV as import data",
+        "Build a review-only Auto Electrical preview; no Supabase or live catalogue writes"
+      ],
+      "next_action": "Process the original Electrocity Terminal Catalogue PDF. The current CSV has only 29 generic placeholder rows, six missing image references and 149 unrepresented extracted images. Rebuild the product register from the PDF before creating a customer-facing preview."
+    },
+    {
+      "id": "repository-duplicate-asset-audit",
+      "priority": 6,
+      "status": "queued",
+      "execution_mode": "reference-aware-cleanup",
+      "automatic": false,
+      "source": [
+        "current main Git tree and product/catalogue asset references"
+      ],
+      "success_criteria": [
+        "Map all 381 exact duplicate-content groups and 495 extra paths to product records and page references",
+        "Remove only files proven unreferenced or redundant",
+        "Preserve any same-image files that are intentionally linked to different SKUs"
+      ],
+      "next_action": "Run a reference-aware asset audit after the active Electrocity Terminal Catalogue task. Do not bulk-delete identical image blobs."
+    },
+    {
+      "id": "branch-cleanup-review",
+      "priority": 5,
+      "status": "queued",
+      "execution_mode": "branch-history-audit",
+      "automatic": false,
+      "source": [
+        "279 repository branches",
+        "208 pull requests"
+      ],
+      "success_criteria": [
+        "Classify all 81 non-main unassociated branches and 134 closed-unmerged PR branch heads",
+        "Identify unique work not present on main or in merged PRs",
+        "Delete branches only after their contents are confirmed redundant and owner policy permits"
+      ],
+      "next_action": "Defer branch deletion. Review unique commits and files before pruning."
     }
   ],
   "coordination": {
@@ -343,9 +407,9 @@
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
     "canonical_head": "29ab5769f5588fd911a026e93e2e3cc60ac4e1a1",
-    "active_task_id": "audio-video-content-enrichment",
+    "active_task_id": "electrocity-ignition-pilot",
     "active_workers": 1,
-    "parallel_workstreams": "One active Audio & Video content-enrichment workstream on canonical main; other workstreams are queued or paused until the next checkpoint.",
+    "parallel_workstreams": "One active Electrocity Auto Electrical workstream. ASC stock is excluded from customer-facing review packages; ASC source/history is retained. Audio, OneNav and other catalogue work is paused until the owner changes priority.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -355,10 +419,10 @@
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "77164230a3896e6b004a5adcc771599e04794813",
-    "active_candidate_pr": null,
-    "active_candidate_branch": null,
+    "active_candidate_pr": 213,
+    "active_candidate_branch": "owner/electrocity-auto-electrical-priority-2026-11-17-final",
     "active_candidate_head": null,
-    "active_candidate_status": "No active PR candidate. Current work proceeds on canonical main as review-only catalogue/preview enrichment; production remains HOLD."
+    "active_candidate_status": "PR #213 is OPEN/DRAFT. Prior superseded-PR build generated 27 images and passed image/data policy plus public SKU exposure and responsive checks; outdated pricing, supplier-name regex, filter-selector and queue assertions were corrected. No fresh exact-head workflow status is currently available; do not merge until a new full QA run and visual contact-sheet review pass."
   },
   "audit_log": [
     {
