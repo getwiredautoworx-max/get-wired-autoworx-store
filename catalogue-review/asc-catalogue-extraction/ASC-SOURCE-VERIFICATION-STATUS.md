@@ -10,7 +10,7 @@ Scope is limited to the six retained ASC product catalogues. No ASC buyer's guid
 | Automotive Sensors | 9 | 11 | 106 | 106 |
 | Automotive Switches | 22 | 16 | 368 | 368 |
 | Automotive Globes | 11 | 10 | 158 | 158 |
-| Car Mats | 11 | 14 | 144 | 144 |
+| Car Mats | 11 | 14 | 139 | 139 |
 | Fuel Pumps | 12 | 18 | 129 | 129 |
 | **Total** | **72** | **75** | **978** | **978** |
 
