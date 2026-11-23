@@ -344,7 +344,7 @@
     {
       "id": "customer-facing-stock-clearance",
       "priority": 0,
-      "status": "in_progress",
+      "status": "completed",
       "execution_mode": "public-package-stock-removal-and-exact-head-qa",
       "automatic": false,
       "source": [
@@ -363,17 +363,24 @@
         "Supplier catalogue PDFs and internal review-only catalogue evidence remain preserved",
         "Exact-head standard and preview package QA passes; no production deployment or live database mutation occurs"
       ],
-      "next_action": "Exact-head Cloudflare Pages Public Package QA run 45129389537 is queued on 009e3b7dfd7fdc6bc491d78c45549fcf6fecf877. Verify both standard and preview package builds; do not deploy production or spend hosting credits."
+      "next_action": "Completed 2026-11-23. Live product/supplier-stock tables are empty; standard and non-production public Pages packages passed exact-head QA with every product record array empty; no customer-facing stock remains in generated packages. Keep all product enrichment/import/publication paused until explicit owner reauthorization.",
+      "completed_this_session": [
+        "2026-11-23: verified public.products=0 and public.supplier_stock=0 in the canonical Supabase Store project; no live data deletion was necessary.",
+        "2026-11-23: updated public Pages packaging to strip all product records from standard and non-production preview builds while preserving repository source/review evidence.",
+        "2026-11-23: changed owner preview, Auto Electrical, audio, ASC sample and image-pilot notices to show no product stock; deleted legacy data/STORE_STOCK_IMPORT_2026-09-16.csv.",
+        "2026-11-23: exact-head Cloudflare Pages Public Package QA run 45129475488 passed on code SHA ae61ad95d710f5fa8ed0f75e60ad27aba635a009. Standard and preview package builds passed; four preview data files were confirmed empty; public preview sanitization and allowlist checks passed.",
+        "No production deployment, Cloudflare credit spend, live Supabase write, Axxess upload, DNS/payment change or supplier source-catalogue deletion occurred."
+      ]
     }
   ],
   "coordination": {
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "009e3b7dfd7fdc6bc491d78c45549fcf6fecf877",
-    "active_task_id": "customer-facing-stock-clearance",
-    "active_workers": 1,
-    "parallel_workstreams": "One bounded stock-clearance QA task only. All product enrichment/import/publication work paused; no customer-facing stock may be restored without explicit owner reauthorization.",
+    "canonical_head": "ae61ad95d710f5fa8ed0f75e60ad27aba635a009",
+    "active_task_id": null,
+    "active_workers": 0,
+    "parallel_workstreams": "No product enrichment, import or publication work is active. Customer-facing product stock is cleared. Keep product listings empty until explicit owner reauthorization.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -382,7 +389,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "009e3b7dfd7fdc6bc491d78c45549fcf6fecf877",
+    "last_verified_main_sha": "ae61ad95d710f5fa8ed0f75e60ad27aba635a009",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
@@ -398,6 +405,11 @@
       "date": "2026-11-23",
       "task": "customer-facing-stock-clearance",
       "result": "Owner directed deletion of all store stock. Supabase public.products=0 and public.supplier_stock=0 (already empty); gw_private.catalogue_product_staging=770 REVIEW_ONLY records, 675 with source supplier-stock fields, not customer stock. Updated Pages builder to empty all public product-record arrays in standard/preview output; owner preview notice changed to no stock; Auto Electrical/audio/ASC/image-pilot preview pages changed to show no stock; deleted data/STORE_STOCK_IMPORT_2026-09-16.csv. First QA run 45129310040: standard package passed; preview build failed because legacy test still expected Forza cards. Test rewritten to require zero public product records. Exact-head QA run 45129389537 queued on 009e3b7dfd7fdc6bc491d78c45549fcf6fecf877. No live DB writes, deployments, or source catalogue deletions."
+    },
+    {
+      "date": "2026-11-23",
+      "task": "customer-facing-stock-clearance",
+      "result": "SUCCESS — live public.products=0 and public.supplier_stock=0; all product arrays stripped from standard and non-production Pages packages; owner preview/category product routes show no listings; legacy STORE_STOCK_IMPORT_2026-09-16.csv deleted. Exact-head package QA run 45129475488 passed on ae61ad95d710f5fa8ed0f75e60ad27aba635a009. Internal REVIEW_ONLY staging/catalogue evidence retained; all enrichment/import/publication paused pending explicit owner reauthorization. No production deployment or live database writes."
     }
   ]
 }
