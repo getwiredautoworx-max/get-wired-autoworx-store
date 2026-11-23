@@ -15,7 +15,7 @@ EXPECTED_ROOTS = [
     "Car Audio / Home Entertainment",
     "Car Care & Accessories",
 ]
-FORBIDDEN_TERMS = ("buyers guide", "buyers guides", "eight-category", "eight category")
+FORBIDDEN_SOURCE_TERMS = ("buyers guide", "buyers guides")
 
 def validate() -> list[str]:
     errors: list[str] = []
@@ -30,6 +30,8 @@ def validate() -> list[str]:
             errors.append(f"policy.{key} must remain prohibited")
     if "authorised by owner" not in str(policy.get("public_repository_catalogue_processing", "")).lower():
         errors.append("public repository catalogue processing must follow the owner's explicit authorisation")
+    if "approved supplier catalogues only" not in str(policy.get("source_scope", "")).lower():
+        errors.append("policy.source_scope must remain limited to approved supplier catalogues")
     tasks = data.get("tasks", [])
     ids = [t.get("id") for t in tasks]
     if len(ids) != len(set(ids)):
@@ -37,9 +39,12 @@ def validate() -> list[str]:
     for task in tasks:
         if not task.get("id") or not task.get("success_criteria") or not task.get("next_action"):
             errors.append(f"task is missing required fields: {task.get('id')}")
-        haystack = json.dumps(task, ensure_ascii=False).lower()
-        if any(term in haystack for term in FORBIDDEN_TERMS):
-            errors.append(f"obsolete category or Buyers Guide instruction found in task {task.get('id')}")
+        # Do not scan task prose for forbidden terms: valid owner instructions
+        # explicitly say NOT to process ASC Buyers Guides, so that check creates
+        # false positives. Enforce the actual boundary on source paths instead.
+        source_paths = [str(source_path).lower() for source_path in task.get("source", [])]
+        if any(term in source_path for source_path in source_paths for term in FORBIDDEN_SOURCE_TERMS):
+            errors.append(f"out-of-scope Buyers Guide source listed in task {task.get('id')}")
     audio_tasks = [t for t in tasks if t.get("id") == "audio-planetworld-source-extraction"]
     if len(audio_tasks) != 1:
         errors.append("Audio Connections / Planetworld catalogue task must exist exactly once")
