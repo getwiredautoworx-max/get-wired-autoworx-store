@@ -2067,3 +2067,33 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Updated `automation/task-queue.json` to record the PR disposition, zero active workers, no active candidate and the latest verified main checkpoint. Queue update commit: `a798cad36200e1e8b6beaffd2a7934e46a9eaa92`.
 - No product, image, category, live database, price, stock, active-flag, deployment, Axxess, DNS, payment or hosting-credit changes were made in this reconciliation. Production remains HOLD.
 - Remaining delivery gap: the cleared package has passing exact-head QA, but there is still no verified hosted customer-facing preview tied to the current main SHA, and no owner desktop/mobile browser acceptance. Do not spend Cloudflare credits or deploy without explicit approval. Next safe work is to prepare and locally/CI-verify one empty-stock customer-facing preview package and reconcile the three-root navigation without reintroducing products; hosted preview requires an approved no-cost staging path or explicit hosting authorisation.
+
+
+## HANDOVER CHECKPOINT — SESSION CLOSE — 2026-11-23
+
+### Canonical project and repository state
+- Continue only in `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`. Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, this file and `automation/task-queue.json` at the start of the next session; current owner instructions supersede older category plans.
+- No open pull requests remain (verified after closing PR #213). Do not resurrect, merge or use PR #213 as a working candidate. Its branch remains historical evidence only.
+- PR #213 was closed unmerged because its 348-file diff removed owner-approved ASC source catalogue PDFs, review registers/evidence and unrelated Auto Electrical/catalogue assets. The explanatory disposition comment is on the PR. No source catalogue deletion was made in this session.
+- Last verified application/code checkpoint with passing stock-clearance package QA: `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`. Subsequent main commits `200ced5d78fdc8987b2adae2128546d0b645e2c8`, `a798cad36200e1e8b6beaffd2a7934e46e9e aa92` (queue/handover coordination update), and this handover update are documentation/coordination changes; do not confuse these with a new application build or hosted deployment.
+- PR reconciliation queue commit: `a798cad36200e1e8b6beaffd2a7934e46e9a aa92`. (Exact commit SHA to be confirmed from GitHub after this handover commit if needed.)
+
+### Owner instruction and stock state — do not reverse
+- All customer-facing product stock/listings remain cleared. Do not restore, import, enrich or publish products without explicit owner reauthorization.
+- The canonical Supabase public tables were verified empty: `public.products = 0`, `public.supplier_stock = 0`. Internal `gw_private.catalogue_product_staging` contains 770 REVIEW_ONLY candidates; preserve internally and do not publish.
+- Exact-head Cloudflare Pages Public Package QA passed on code SHA `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`, run [45129475488](https://github.com/get-wired-autoworx-store/actions/runs/45129475488). Standard and isolated non-production preview package builds passed; all four product-record data assets were empty and public sanitisation/allowlist checks passed.
+- No production deployment, Cloudflare credit spend, live database write, Axxess upload, DNS/payment change or supplier source-catalogue deletion occurred.
+
+### Remaining storefront delivery work
+1. Reconcile and verify the three owner-approved homepage department roots and their navigation in the single canonical project. Do not add product listings or invent a different category plan.
+2. Prepare one consolidated, customer-facing preview package with all product listings empty.
+3. Run tests against the exact resulting commit; retain run URL, commit SHA and test outcomes in this handover.
+4. Verify a hosted non-production preview tied to that exact commit and obtain owner mobile/desktop acceptance. This is NOT yet done: the prior owner-preview URL was not redeployed after stock clearance, and no current hosted preview or owner browser acceptance is verified.
+5. No Cloudflare credits or paid hosting spend. If a no-cost hosted staging route is unavailable, stop at reproducible package/CI verification and request explicit owner approval before any credit-consuming deployment.
+6. Production remains HOLD. No production deploy, Axxess upload, live data mutation, DNS/payment changes or checkout activation without explicit owner approval.
+
+### Coordination
+- Single-project, single-active-workstream discipline. No parallel agents or new assignments until the next bounded task is defined and recorded.
+- Active workers: 0. No active PR candidate. Product enrichment/import/publication: paused.
+- At the next session, start with the three-root navigation reconciliation, not product enrichment and not another broad branch/PR exercise. Make one bounded change set, test it, update this handover, then proceed to the next acceptance gate.
+- This checkpoint records the repository reconciliation and next actions; it does not claim the storefront is complete, hosted preview verified, or owner acceptance achieved.
