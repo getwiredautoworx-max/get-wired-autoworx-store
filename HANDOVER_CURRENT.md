@@ -2056,3 +2056,14 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Audio enrichment and all other product enrichment/import/publication tasks remain paused. Do not restore any customer-facing products without explicit owner reauthorization.
 - No production deployment, Cloudflare credit spend, live Supabase write, Axxess upload, DNS/payment change or supplier-source catalogue deletion occurred. The previously hosted owner-preview URL was not redeployed; its source package is now cleared and the exact-head package QA is green. Do not claim hosted preview deployment or owner browser acceptance.
 - Queue marked `customer-facing-stock-clearance` completed; active workers set to zero. Latest code SHA with passing QA: `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`.
+
+
+## SINGLE-PROJECT PR RECONCILIATION — 2026-11-23
+
+- Task-start: read the authoritative owner directives, current handover and canonical task queue before repository actions. Canonical repository: `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`.
+- Rechecked all open PRs after the owner-directed customer-facing stock clearance. PR #213 was the only open PR. Its 348-file diff removes the six approved ASC catalogue PDFs, ASC review registers/evidence, Auto Electrical routes/assets and unrelated catalogue/workflow files. This conflicts with the latest instruction to remove customer-facing listings while preserving internal source catalogues and review evidence.
+- Added an explanatory PR comment and closed #213 without merging, rebasing, deleting its branch or changing main. PR #213 remains available as historical evidence; it is not a candidate.
+- Final open-PR search returned zero. Canonical main remains the only source of truth. Latest main checkpoint before this documentation update: `200ced5d78fdc8987b2adae2128546d0b645e2c8`.
+- Updated `automation/task-queue.json` to record the PR disposition, zero active workers, no active candidate and the latest verified main checkpoint. Queue update commit: `a798cad36200e1e8b6beaffd2a7934e46a9eaa92`.
+- No product, image, category, live database, price, stock, active-flag, deployment, Axxess, DNS, payment or hosting-credit changes were made in this reconciliation. Production remains HOLD.
+- Remaining delivery gap: the cleared package has passing exact-head QA, but there is still no verified hosted customer-facing preview tied to the current main SHA, and no owner desktop/mobile browser acceptance. Do not spend Cloudflare credits or deploy without explicit approval. Next safe work is to prepare and locally/CI-verify one empty-stock customer-facing preview package and reconcile the three-root navigation without reintroducing products; hosted preview requires an approved no-cost staging path or explicit hosting authorisation.
