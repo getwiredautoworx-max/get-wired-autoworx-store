@@ -10,7 +10,8 @@
     "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams",
     "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project",
     "2026-11-15 owner instruction: continue consolidated storefront delivery until resolved",
-    "2026-11-23 live GitHub reconciliation: one active audio-video-content-enrichment workstream; dependent QA/preview tasks queued; PR #213 isolated and not an integration candidate"
+    "2026-11-23 live GitHub reconciliation: one active audio-video-content-enrichment workstream; dependent QA/preview tasks queued; PR #213 isolated and not an integration candidate",
+    "2026-11-23 owner instruction: remove all product stock/listings from customer-facing store; preserve only internal catalogue/review evidence"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -32,7 +33,9 @@
     "checkpoint": "record run ID, commit, outputs, counts, exceptions and next action after each run",
     "public_repository_catalogue_processing": "authorised by owner; no private repository/private runner prerequisite; protect actual credentials/secrets and do not expose supplier names/internal SKUs in customer views",
     "customer_price_display": "Price On Request for all supplier products until reliable supplier price/stock synchronisation is approved",
-    "preview_population": "review-only local preview data must render without requiring active/live Supabase product rows; no invented products or category assignments"
+    "preview_population": "customer-facing preview builds must publish empty product/records arrays; source catalogue and review evidence remain internal and must never be rendered as stock",
+    "customer_facing_product_stock": "zero listings and zero stock quantities in every customer-facing build/preview until explicit owner reauthorization",
+    "repopulation": "prohibited until a new explicit owner instruction; do not import, publish, or expose candidate/review records as store products"
   },
   "tasks": [
     {
@@ -181,7 +184,7 @@
     {
       "id": "audio-video-content-enrichment",
       "priority": 1,
-      "status": "in_progress",
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -197,7 +200,7 @@
         "Correct brand to product-type navigation",
         "No supplier identity in customer-facing content"
       ],
-      "next_action": "Single active workstream. Continue exact-SKU and exact-variant enrichment from the existing current-main review manifest; process actual eligible candidates rather than manifest-only checkpoints. Keep uncertain images/specs pending; no supplier names/internal SKUs in customer views. After the bounded content batch, hand off to exact-head QA and hosted staging verification. All output PREVIEW_ONLY_NOT_LIVE; no import, deployment or live writes."
+      "next_action": "Paused by owner instruction 2026-11-23 to remove all customer-facing product stock. Preserve existing catalogue/review evidence; do not republish or import any product records until the owner explicitly reauthorizes listings."
     },
     {
       "id": "onenav-model-image-reconciliation",
@@ -337,16 +340,40 @@
         "Preserve source file unchanged pending owner scope decision"
       ],
       "next_action": "Quarantined from storefront processing: Trailer & Towing is not one of the three approved homepage departments. No deletion or history rewrite; await explicit owner scope change before processing."
+    },
+    {
+      "id": "customer-facing-stock-clearance",
+      "priority": 0,
+      "status": "in_progress",
+      "execution_mode": "public-package-stock-removal-and-exact-head-qa",
+      "automatic": false,
+      "source": [
+        "owner instruction 2026-11-23",
+        "public.products",
+        "public.supplier_stock",
+        "scripts/build-cloudflare-pages-public.py",
+        "index-new.html",
+        "owner-preview and catalogue preview routes"
+      ],
+      "success_criteria": [
+        "Live public.products contains zero rows and public.supplier_stock contains zero rows",
+        "Every product-record array in standard and non-production public Pages packages is empty",
+        "Owner preview and all catalogue preview routes display no product listings",
+        "Legacy STORE_STOCK_IMPORT file is removed so it cannot be reimported accidentally",
+        "Supplier catalogue PDFs and internal review-only catalogue evidence remain preserved",
+        "Exact-head standard and preview package QA passes; no production deployment or live database mutation occurs"
+      ],
+      "next_action": "Run exact-head Cloudflare public package QA for both standard and non-production preview outputs. Keep all catalogue candidate data internal; no product re-publication without explicit owner reauthorization."
     }
   ],
   "coordination": {
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "630cefd345f45421cc1d9099575f3dfd8465cb4e",
-    "active_task_id": "audio-video-content-enrichment",
+    "canonical_head": "a9f04bc2530e9aa14272d4da3a9ff3aa652651e7",
+    "active_task_id": "customer-facing-stock-clearance",
     "active_workers": 1,
-    "parallel_workstreams": "Exactly one active Audio & Video content-enrichment workstream. OneNav SKU/image reconciliation is a bounded subtask within it; storefront QA and owner-preview verification are dependent gates, not concurrent workstreams.",
+    "parallel_workstreams": "One bounded stock-clearance QA task only. All product enrichment/import/publication work paused; no customer-facing stock may be restored without explicit owner reauthorization.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -355,7 +382,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "630cefd345f45421cc1d9099575f3dfd8465cb4e",
+    "last_verified_main_sha": "a9f04bc2530e9aa14272d4da3a9ff3aa652651e7",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
