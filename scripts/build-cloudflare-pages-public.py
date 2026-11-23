@@ -106,24 +106,40 @@ for name in PUBLIC_REVIEW_DATA_FILES:
 # explicitly review-only customer-view data assets.
 subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
 
-# Fail the build if the owner review data is missing, exposes supplier identity,
-# or accidentally carries a price/stock value into the customer-view package.
-for filename, expected_minimum in [("auto-electrical-owner-preview.json", 34), ("audio-catalogue-secondary-preview.json", 72)]:
-    review_path = OUT / "assets" / filename
-    review_data = json.loads(review_path.read_text(encoding="utf-8"))
-    records = review_data.get("records", review_data.get("products", []))
-    if len(records) < expected_minimum:
-        raise SystemExit(f"Review catalogue incomplete in public package: {filename} records={len(records)}")
-    serialised = json.dumps(review_data, ensure_ascii=False)
-    # Exact authorised image URLs may retain their original hosting domain.
-    # Supplier-name policy applies to visible labels/metadata, not image URLs.
-    customer_visible_text = re.sub(r"https?://\S+", "[image-asset-url]", serialised, flags=re.I)
-    if re.search(r"Planetworld|Audio\s+Connections", customer_visible_text, re.I):
-        raise SystemExit(f"Supplier identity leaked into public review text: {filename}")
-    for record in records:
-        if record.get("indicativePrice") is not None or record.get("hasStock") is not None:
-            raise SystemExit(f"Review data must remain POR/availability-unconfirmed: {filename} {record.get('id')}")
-print("PUBLIC_REVIEW_DATA_POLICY_PASS auto_electrical>=34 audio>=72 price=POR stock=unconfirmed")
+# Owner instruction (2026-11-23): remove ALL product stock/listings from
+# every customer-facing package, including owner-preview routes. Keep the
+# catalogue/review source files in the repository, but publish empty record
+# arrays so no candidate or legacy product can appear as store stock.
+PUBLIC_STOCK_DATA_FILES = [
+    "auto-electrical-owner-preview.json",
+    "audio-catalogue-primary-preview.json",
+    "audio-catalogue-secondary-preview.json",
+    "product-image-treatment-sample.json",
+]
+public_stock_counts = {}
+for filename in PUBLIC_STOCK_DATA_FILES:
+    public_path = OUT / "assets" / filename
+    if not public_path.is_file():
+        continue
+    public_data = json.loads(public_path.read_text(encoding="utf-8"))
+    cleared = False
+    for key in ("products", "records"):
+        if isinstance(public_data.get(key), list):
+            public_stock_counts[filename] = len(public_data[key])
+            public_data[key] = []
+            cleared = True
+    if not cleared:
+        raise SystemExit(f"Cannot prove stock removal for public asset: {filename}")
+    public_path.write_text(json.dumps(public_data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+
+for filename in PUBLIC_STOCK_DATA_FILES:
+    public_path = OUT / "assets" / filename
+    if public_path.is_file():
+        public_data = json.loads(public_path.read_text(encoding="utf-8"))
+        remaining = sum(len(public_data.get(key, [])) for key in ("products", "records") if isinstance(public_data.get(key), list))
+        if remaining != 0:
+            raise SystemExit(f"Customer-facing stock remains in {filename}: {remaining}")
+print("PUBLIC_PRODUCT_STOCK_REMOVED_PASS " + json.dumps(public_stock_counts, sort_keys=True))
 
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
