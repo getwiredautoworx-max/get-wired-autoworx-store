@@ -2,7 +2,7 @@
 
 **Live store:** https://www.getwiredauto.co.za/
 
-Automotive parts and accessories — Sound & Security • Auto Electrical.
+Automotive parts and accessories — Sound & Security • Auto Electrical • Spares & Accessories.
 
 ## Project status
 
@@ -10,8 +10,8 @@ The live store is hosted through Axxess. Catalogue recovery, category integratio
 
 ## Handover
 
-Read the single current continuation file: [HANDOVER_2026-11-02_OWNER_CONTINUATION.md](HANDOVER_2026-11-02_OWNER_CONTINUATION.md). Do not use superseded handover filenames.
+Read the owner authority first: [AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md](AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md), then the current continuation record: [HANDOVER_CURRENT.md](HANDOVER_CURRENT.md). Older handovers are historical and must not override these files.
 
-## Execution brief
+## Current execution plan
 
-Read [GEMINI_EXECUTION_BRIEF.md](GEMINI_EXECUTION_BRIEF.md) for prioritized tasks, expected deliverables and production-safety rules.
+The coordinated task queue is [automation/task-queue.json](automation/task-queue.json). It identifies the single active workstream, dependent QA gates and release restrictions.
