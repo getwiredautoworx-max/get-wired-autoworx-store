@@ -2021,3 +2021,26 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Execution: inspect the canonical Supabase project, product/catalogue tables, dependent references, storefront static data and deployment path before making any destructive change. Use a transactionally safe, verifiable deletion; do not touch customer/order/payment records, supplier source documents, auth data or unrelated assets.
 - Release boundary: this instruction authorises removal of store stock. It does not authorise production deployment or unrelated live changes. Verify the actual customer-facing source and report exactly what was deleted and what remains.
 - Status at task start: removal not yet executed; no database or storefront data changed by this entry.
+
+
+## OWNER TASK CHECKPOINT — REMOVE ALL STORE STOCK — 2026-11-23
+
+### Verified database state
+- Canonical Supabase project: `ojytykqpvonxvepprgbh` (Store, ACTIVE_HEALTHY, PostgreSQL 17.6.1).
+- Read-only query verified `public.products = 0` and `public.supplier_stock = 0`. The customer-facing database catalogue already contains no product or supplier-stock rows; no live database deletion was necessary or performed.
+- `gw_private.catalogue_product_staging = 770` records, all `REVIEW_ONLY`; 675 contain supplier source-stock fields. These are private, non-published catalogue review candidates, not store stock. Preserve them as review evidence; do not expose or import them.
+- Public categories and unrelated customer/order/payment/auth/settings data were not touched.
+
+### Customer-facing stock removal implemented in canonical main
+- Updated `scripts/build-cloudflare-pages-public.py` so every product-bearing public JSON asset is emptied during standard and non-production preview packaging: `auto-electrical-owner-preview.json`, `audio-catalogue-primary-preview.json`, `audio-catalogue-secondary-preview.json`, and `product-image-treatment-sample.json`. Repository source/review files remain intact.
+- Standard public package QA on commit `a9f04bc2530e9aa14272d4da3a9ff3aa652651e7` passed, including `PUBLIC_PRODUCT_STOCK_REMOVED_PASS` (34 Auto Electrical and 72 Audio Connections records stripped) and `PAGES_PUBLIC_BUILD_PASS files=4125 webp_images=4101`.
+- The same run's non-production preview build correctly emptied 3,322 primary audio, 72 secondary audio, 34 Auto Electrical and 50 image-pilot records, but the old `tests/public-preview-data-sanitization.test.cjs` still expected specific Forza/OneNav product cards. This test was replaced with assertions that all four public product-data arrays are empty and supplier/internal identifiers remain hidden.
+- Customer-facing notices were changed to state no stock is listed in `index-new.html` owner-preview mode, `preview-auto-electrical.html`, `preview-audio.html`, `preview-asc-sample.html`, and `product-image-treatment-pilot.html`.
+- Deleted legacy `data/STORE_STOCK_IMPORT_2026-09-16.csv` from main so the old store stock import cannot be re-used accidentally. Approved supplier catalogues and internal review/staging evidence were retained.
+- The stock-clearance task is the only active queue task. Audio enrichment is paused; no product listings may be republished/imported without explicit owner reauthorization.
+
+### QA / release state
+- First Cloudflare Pages Public Package QA run: [45129310040](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129310040) — standard package PASS; preview package failed only because the legacy test expected product records. The test has been corrected.
+- Corrected exact-head QA run: [45129389537](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129389537), queued on code commit `009e3b7dfd7fdc6bc491d78c45549fcf6fecf877`. Check both standard and preview builds before marking the task complete.
+- No production deployment, Cloudflare credit spend, live Supabase write, Axxess upload, DNS/payment change or supplier-source deletion was performed. Do not deploy production. The existing hosted owner preview has not been redeployed; the source package is cleared and must be rebuilt through the approved non-production process without consuming credits.
+- Next action: verify run 45129389537 and, if green, mark `customer-facing-stock-clearance` completed in the queue and append final exact-SHA evidence here. Do not resume product enrichment/publication without owner approval.
