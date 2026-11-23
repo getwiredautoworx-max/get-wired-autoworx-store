@@ -377,10 +377,10 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "ae61ad95d710f5fa8ed0f75e60ad27aba635a009",
+    "canonical_head": "200ced5d78fdc8987b2adae2128546d0b645e2c8",
     "active_task_id": null,
     "active_workers": 0,
-    "parallel_workstreams": "No product enrichment, import or publication work is active. Customer-facing product stock is cleared. Keep product listings empty until explicit owner reauthorization.",
+    "parallel_workstreams": "No active worker. Customer-facing stock clearance is complete; all product enrichment/import/publication remains paused. PR #213 is closed unmerged as a conflicting, superseded candidate. Customer-facing hosted preview remains unverified; no Cloudflare credit spend or deployment is authorised.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
@@ -389,11 +389,11 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "ae61ad95d710f5fa8ed0f75e60ad27aba635a009",
+    "last_verified_main_sha": "200ced5d78fdc8987b2adae2128546d0b645e2c8",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
-    "active_candidate_status": "No active PR candidate. Current work proceeds on canonical main as review-only catalogue/preview enrichment; production remains HOLD."
+    "active_candidate_status": "No active PR candidate. Canonical main only; PR #213 closed unmerged. Product listings remain empty; production HOLD."
   },
   "audit_log": [
     {
@@ -410,6 +410,11 @@
       "date": "2026-11-23",
       "task": "customer-facing-stock-clearance",
       "result": "SUCCESS — live public.products=0 and public.supplier_stock=0; all product arrays stripped from standard and non-production Pages packages; owner preview/category product routes show no listings; legacy STORE_STOCK_IMPORT_2026-09-16.csv deleted. Exact-head package QA run 45129475488 passed on ae61ad95d710f5fa8ed0f75e60ad27aba635a009. Internal REVIEW_ONLY staging/catalogue evidence retained; all enrichment/import/publication paused pending explicit owner reauthorization. No production deployment or live database writes."
+    },
+    {
+      "date": "2026-11-23",
+      "task": "single-project-pr-reconciliation",
+      "result": "SUCCESS — rechecked the only open PR (#213), found its 348-file diff deletes owner-approved ASC catalogue PDFs and internal review evidence contrary to the latest preservation instruction, and closes it with an explanatory comment without merging, rebasing or deleting its branch. Final open-PR search returned zero. Canonical main remains the sole source of truth at 200ced5d78fdc8987b2adae2128546d0b645e2c8. No production deployment, live data write, Axxess upload, DNS/payment change or Cloudflare credit spend."
     }
   ]
 }
