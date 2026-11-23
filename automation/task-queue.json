@@ -363,14 +363,14 @@
         "Supplier catalogue PDFs and internal review-only catalogue evidence remain preserved",
         "Exact-head standard and preview package QA passes; no production deployment or live database mutation occurs"
       ],
-      "next_action": "Run exact-head Cloudflare public package QA for both standard and non-production preview outputs. Keep all catalogue candidate data internal; no product re-publication without explicit owner reauthorization."
+      "next_action": "Exact-head Cloudflare Pages Public Package QA run 45129389537 is queued on 009e3b7dfd7fdc6bc491d78c45549fcf6fecf877. Verify both standard and preview package builds; do not deploy production or spend hosting credits."
     }
   ],
   "coordination": {
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "a9f04bc2530e9aa14272d4da3a9ff3aa652651e7",
+    "canonical_head": "009e3b7dfd7fdc6bc491d78c45549fcf6fecf877",
     "active_task_id": "customer-facing-stock-clearance",
     "active_workers": 1,
     "parallel_workstreams": "One bounded stock-clearance QA task only. All product enrichment/import/publication work paused; no customer-facing stock may be restored without explicit owner reauthorization.",
@@ -382,7 +382,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "a9f04bc2530e9aa14272d4da3a9ff3aa652651e7",
+    "last_verified_main_sha": "009e3b7dfd7fdc6bc491d78c45549fcf6fecf877",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
@@ -393,6 +393,11 @@
       "date": "2026-11-15",
       "task": "storefront-three-category-consolidation",
       "result": "Fixed owner-preview audio inclusion gate: 68 exact-image, described, review-only records retained; 4 held/low-resolution records excluded. Added regression assertions. Commit 23aa894b5cd7a4f1adb79c8a3ff4f266678c2b10. No deployment/live data changes; exact-head workflow and hosted preview still unverified."
+    },
+    {
+      "date": "2026-11-23",
+      "task": "customer-facing-stock-clearance",
+      "result": "Owner directed deletion of all store stock. Supabase public.products=0 and public.supplier_stock=0 (already empty); gw_private.catalogue_product_staging=770 REVIEW_ONLY records, 675 with source supplier-stock fields, not customer stock. Updated Pages builder to empty all public product-record arrays in standard/preview output; owner preview notice changed to no stock; Auto Electrical/audio/ASC/image-pilot preview pages changed to show no stock; deleted data/STORE_STOCK_IMPORT_2026-09-16.csv. First QA run 45129310040: standard package passed; preview build failed because legacy test still expected Forza cards. Test rewritten to require zero public product records. Exact-head QA run 45129389537 queued on 009e3b7dfd7fdc6bc491d78c45549fcf6fecf877. No live DB writes, deployments, or source catalogue deletions."
     }
   ]
 }
