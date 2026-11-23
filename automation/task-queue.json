@@ -343,7 +343,7 @@
     "mode": "single-project-single-active-workstream",
     "canonical_repository": "getwiredautoworx-max/get-wired-autoworx-store",
     "canonical_branch": "main",
-    "canonical_head": "4ea176db27174bd70fd0e6a97a8925f553112dd9",
+    "canonical_head": "630cefd345f45421cc1d9099575f3dfd8465cb4e",
     "active_task_id": "audio-video-content-enrichment",
     "active_workers": 1,
     "parallel_workstreams": "Exactly one active Audio & Video content-enrichment workstream. OneNav SKU/image reconciliation is a bounded subtask within it; storefront QA and owner-preview verification are dependent gates, not concurrent workstreams.",
@@ -355,7 +355,7 @@
       "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
-    "last_verified_main_sha": "4ea176db27174bd70fd0e6a97a8925f553112dd9",
+    "last_verified_main_sha": "630cefd345f45421cc1d9099575f3dfd8465cb4e",
     "active_candidate_pr": null,
     "active_candidate_branch": null,
     "active_candidate_head": null,
