@@ -25,11 +25,11 @@ for (const file of files) {
   }
   assert.ok(hasProductArray, file + ' must expose an empty product-record array');
   const raw = JSON.stringify(data);
-  const visibleText = raw.replace(/https?:\\/\\/[^\\s"'<>]+/gi, '[image-asset-url]');
-  assert.ok(!/Planetworld|Audio\\s+Connections/i.test(visibleText), file + ' must not expose supplier identities in customer-visible text');
-  assert.ok(!/"(?:supplierName|supplierSku|supplierModelNumber|dealerCost|dealerPrice|wholesalePrice|internalSku|internalId|gwSku)"\\s*:/i.test(raw), file + ' must not expose internal supplier or procurement fields');
-  assert.ok(!/"(?:sourceSkuReferenceInternal|sourceSupplierWorkbook|sourceSupplierWorkbookSheet|sourceSupplierWorkbookRow|supplierSource)"\\s*:/i.test(raw), file + ' must not expose source workbook provenance or internal supplier references');
-  assert.ok(!/"(?:imageSourceNote|imageSourceUrl)"\\s*:/i.test(raw), file + ' must not expose internal image-source provenance');
+  const visibleText = raw.replace(/https?:\/\/[^\s"'<>]+/gi, '[image-asset-url]');
+  assert.ok(!/Planetworld|Audio\s+Connections/i.test(visibleText), file + ' must not expose supplier identities in customer-visible text');
+  assert.ok(!/"(?:supplierName|supplierSku|supplierModelNumber|dealerCost|dealerPrice|wholesalePrice|internalSku|internalId|gwSku)"\s*:/i.test(raw), file + ' must not expose internal supplier or procurement fields');
+  assert.ok(!/"(?:sourceSkuReferenceInternal|sourceSupplierWorkbook|sourceSupplierWorkbookSheet|sourceSupplierWorkbookRow|supplierSource)"\s*:/i.test(raw), file + ' must not expose source workbook provenance or internal supplier references');
+  assert.ok(!/"(?:imageSourceNote|imageSourceUrl)"\s*:/i.test(raw), file + ' must not expose internal image-source provenance');
   checked++;
 }
 assert.equal(checked, 4, 'all four public product/review data assets must be present and empty');
