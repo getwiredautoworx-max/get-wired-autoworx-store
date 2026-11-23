@@ -2075,8 +2075,8 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Continue only in `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`. Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md`, this file and `automation/task-queue.json` at the start of the next session; current owner instructions supersede older category plans.
 - No open pull requests remain (verified after closing PR #213). Do not resurrect, merge or use PR #213 as a working candidate. Its branch remains historical evidence only.
 - PR #213 was closed unmerged because its 348-file diff removed owner-approved ASC source catalogue PDFs, review registers/evidence and unrelated Auto Electrical/catalogue assets. The explanatory disposition comment is on the PR. No source catalogue deletion was made in this session.
-- Last verified application/code checkpoint with passing stock-clearance package QA: `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`. Subsequent main commits `200ced5d78fdc8987b2adae2128546d0b645e2c8`, `a798cad36200e1e8b6beaffd2a7934e46e9e aa92` (queue/handover coordination update), and this handover update are documentation/coordination changes; do not confuse these with a new application build or hosted deployment.
-- PR reconciliation queue commit: `a798cad36200e1e8b6beaffd2a7934e46e9a aa92`. (Exact commit SHA to be confirmed from GitHub after this handover commit if needed.)
+- Last verified application/code checkpoint with passing stock-clearance package QA: `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`. Subsequent main commits `200ced5d78fdc8987b2adae2128546d0b645e2c8`, `a798cad36200e1e8b6beaffd2a7934e46a9eaa92` (queue/handover coordination update), and this handover update are documentation/coordination changes; do not confuse these with a new application build or hosted deployment.
+- PR reconciliation queue commit: `a798cad36200e1e8b6beaffd2a7934e46a9eaa92`. 
 
 ### Owner instruction and stock state — do not reverse
 - All customer-facing product stock/listings remain cleared. Do not restore, import, enrich or publish products without explicit owner reauthorization.
