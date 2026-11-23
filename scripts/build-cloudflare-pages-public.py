@@ -130,7 +130,7 @@ for filename in PUBLIC_STOCK_DATA_FILES:
             cleared = True
     if not cleared:
         raise SystemExit(f"Cannot prove stock removal for public asset: {filename}")
-    public_path.write_text(json.dumps(public_data, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    public_path.write_text(json.dumps(public_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 for filename in PUBLIC_STOCK_DATA_FILES:
     public_path = OUT / "assets" / filename
