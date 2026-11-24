@@ -55,13 +55,17 @@ def validate() -> list[str]:
     coordination = data.get("coordination", {})
     if coordination.get("canonical_branch") != "main":
         errors.append("coordination.canonical_branch must be main")
-    if coordination.get("active_workers") != 1:
-        errors.append("coordination.active_workers must be exactly 1")
-    if coordination.get("active_task_id") not in ids:
-        errors.append("coordination.active_task_id must identify a task in the queue")
+    workers = coordination.get("active_workers")
+    active_id = coordination.get("active_task_id")
     active = [t for t in tasks if t.get("status") == "in_progress"]
-    if len(active) != 1 or (active and active[0].get("id") != coordination.get("active_task_id")):
-        errors.append("exactly one in-progress task must match coordination.active_task_id")
+    if workers == 0:
+        if active_id is not None or active:
+            errors.append("idle queue must have no active task or worker")
+    elif workers == 1:
+        if len(active) != 1 or active_id not in ids or active[0].get("id") != active_id:
+            errors.append("one active worker must match one in-progress task")
+    else:
+        errors.append("only zero or one active worker permitted")
     return errors
 
 if __name__ == "__main__":
