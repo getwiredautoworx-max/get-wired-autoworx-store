@@ -58,6 +58,33 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const frameRoots = await frame.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
       assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the three approved root categories');
 
+      // The zero-stock shell must still let shoppers browse departments, brands and product types.
+      await page.goto(BASE + '/preview-audio.html', { waitUntil: 'domcontentloaded' });
+      await page.locator('#departments .audioTile').first().waitFor({ state: 'visible' });
+      assert.ok((await page.locator('#departments .audioTile').count()) >= 3, 'audio department cards must survive the catalogue reset');
+      await page.getByRole('button', { name: 'Open Car Audio & Video' }).click();
+      await page.locator('#brands a[aria-label="Sony"]').waitFor({ state: 'visible' });
+      assert.equal(await page.locator('#brands a.brandLogoButton').count() > 0, true, 'brand cards must remain visible without stock');
+      await page.locator('#brands a[aria-label="Sony"]').click();
+      await page.locator('#types a.typeCard').filter({ hasText: 'Speakers & Component Kits' }).waitFor({ state: 'visible' });
+      assert.ok((await page.locator('#types a.typeCard').count()) > 0, 'product type cards must be available without stock');
+      await page.locator('#types a.typeCard').filter({ hasText: 'Speakers & Component Kits' }).click();
+      await page.locator('#products .empty').waitFor({ state: 'visible' });
+      assert.equal(await page.locator('#products article.product').count(), 0, 'stock must remain zero after full click-through');
+      const pathOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+      assert.equal(pathOverflow, false, 'brand/product-type route must not overflow at viewport ' + width);
+      assert.equal(writes.length, 0, 'navigation must not issue live write requests');
+
+      // Homepage search and empty cart must be usable rather than missing or misleading.
+      await page.goto(BASE + '/index-new.html?ownerPreview=1', { waitUntil: 'domcontentloaded' });
+      await page.locator('#searchInput').waitFor({ state: 'visible' });
+      await page.locator('#searchInput').fill('nonexistent-product-xyz');
+      await page.waitForTimeout(350);
+      assert.equal(await page.locator('#shop .product').count(), 0, 'empty search must show no product cards');
+      const cartText = await page.locator('#cartItems').innerText();
+      assert.match(cartText, /Your cart is empty/i, 'the empty cart must be disclosed');
+      assert.equal(writes.length, 0, 'search and empty cart must never send a write request');
+
       await page.goto(BASE + '/preview-audio-products.html?department=Car%20Audio&brand=Sony&component=Speakers%20%26%20Component%20Kits&label=Car%20Audio%20%26%20Video', { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => {
         const products = document.getElementById('products');
@@ -90,7 +117,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const audioOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
       assert.equal(audioOverflow, false, 'audio product route must not overflow horizontally at viewport ' + width);
       await page.close();
-      console.log('PASS owner preview viewport=' + width + ' roots=3 audio=Sony/Speakers products=0 checkout=blocked no-live-writes');
+      console.log('PASS owner preview viewport=' + width + ' roots=3 department-brand-type-clickthrough=PASS search=PASS empty-cart=PASS products=0 checkout=blocked no-live-writes');
     }
   } finally {
     await browser.close();
