@@ -1,3 +1,27 @@
+## EMPTY STOREFRONT ACCEPTANCE & CLOUDFLARE RELEASE-CONTROL CHECKPOINT — 2026-11-24
+
+Owner instruction: continue corrections and acceptance until a functional empty storefront is available. Canonical main, no stock restoration or Supabase writes.
+
+### Verified
+
+- Brand and product-type navigation retained when catalogue arrays are empty; visible product search restored in `index-new.html`. Changes committed to main.
+- Exact local/package browser QA run [45416921118](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45416921118) passed across 320/390/430/1280px: 3 roots, department → brand → product type → zero product cards, search, empty cart, owner-preview checkout blocked and no network write requests.
+- Cloudflare Pages public package QA run [45417452438](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45417452438) passed, supplier/review dirs excluded, four customer asset record arrays zeroed. Original source/review data remain outside customer package.
+- Production QA run [45417044085](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45417044085) passed storefront source, delivery quote R35-per-item rule, public Supabase zero active product check (0 uncategorized, 0 null images, 0 null prices) and public source security; overall failed at live-site freshness, not source QA.
+- Public Cloudflare immutable URL `https://5c2a6ed2.get-wired-autoworx-store.pages.dev/owner-preview.html` independently verified in [45418099425](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45418099425) to serve exact package marker for commit `c8ca5482bec9f69089cc0ba4411ffa607b7dad55`, and zero records in 4 published assets. The friendly preview alias is **STALE**: marker `6e5a99875076f8ee6cab54f20625cd59e2e3e1de` from Nov 10. Do not use the alias as current preview.
+- Cloudflare metadata inspection in [45418570157](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45418570157) showed the immutable URL was Cloudflare-classified as `environment=production`, branch `main`, rather than truly isolated staging; Cloudflare Git integration had been automatically publishing main to production without a separate release step. Previous assertion 'no production deployments' was incorrect.
+- **Release control repaired** with an isolated safety workflow on existing `approved-storefront-preview-trigger` branch. GitHub run [45419253514](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45419253514) used Cloudflare API GET→PATCH→GET and verified `production_deployments_enabled: true → false`; unchanged production branch main and unchanged preview settings `all`. Therefore new main commits must no longer automatically deploy production. This toggle does not roll back already deployed production content.
+
+### Remaining and restrictions
+
+- Exact immutable URL browser QA initially failed due Cloudflare extensionless redirects (`/index-new` rather than `/index-new.html`), not a confirmed page/stock failure. Browser matcher amended in main commit `9f20c0a8f3ffe35cc8273d33db0a7a5abf981eb5`; verify new GitHub workflow run before declaring hosted browser pass.
+- Existing preview deployment action [45417502222](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45417502222) uploaded but failed branch-alias exact-SHA verification; staging branch alias remains stale. A future truly preview-classified deployment must be checked using Cloudflare API, not inferred from a pages.dev address.
+- Production live-site source mismatch and payment readiness (PayFast/PayJustNow absent, only EFT) remain release blockers. Do NOT override failed release gates or change live checkout settings.
+- Never restore deleted supplier catalogue files or public products without new explicit approval. Never deploy production or mutate live Supabase as part of QA.
+- Owner may inspect the immutable read-only owner-preview URL above, but it was classified as a production-environment artifact; it is **not** a fully verified isolated staging alias.
+
+---
+
 ## TASK START — EMPTY STOREFRONT QA — 2026-11-24
 
 Owner authorised outstanding tests and corrections. Scope: canonical main, empty customer-facing catalogue, local/package browser QA and runner compatibility; no production deployment or live data writes. Supplier reset supersedes earlier extraction tasks.
