@@ -1,4 +1,4 @@
-name: Publish Isolated Populated Store Preview
+name: Publish Isolated Empty Store Preview
 on:
   push:
     branches:
@@ -14,9 +14,9 @@ concurrency:
 jobs:
   publish-approved-baseline:
     name: Deploy preview routes to non-production Pages branch
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout current restored main storefront source
+      - name: Checkout canonical main storefront source
         uses: actions/checkout@v4
         with:
           ref: main
@@ -24,15 +24,40 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Record canonical main commit for exact-head verification
+        run: echo "CF_PAGES_COMMIT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Build customer-only Pages directory with isolated preview routes
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
 
       - name: Publish isolated Cloudflare Pages preview
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify hosted non-production preview matches current main and has zero public stock
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://approved-storefront-preview.get-wired-autoworx-store.pages.dev"
+          ok=0
+          for attempt in $(seq 1 20); do
+            if curl -fsS --max-time 15 "$base/qa-build-result.json?sha=$CF_PAGES_COMMIT_SHA" -o /tmp/gw-qa-marker; then
+              if python3 -c 'import json,os; d=json.load(open("/tmp/gw-qa-marker")); assert d.get("commit")==os.environ["CF_PAGES_COMMIT_SHA"] and d.get("result")=="PASS" and d.get("preview_only") is True'; then
+                ok=1; break
+              fi
+            fi
+            sleep 3
+          done
+          test "$ok" -eq 1 || { echo "PREVIEW_STALE_OR_NOT_DEPLOYED"; exit 1; }
+          curl -fsS --max-time 20 "$base/owner-preview.html" >/tmp/gw-preview.html
+          grep -qi "Get Wired AutoWorx" /tmp/gw-preview.html
+          for item in audio-catalogue-primary-preview.json audio-catalogue-secondary-preview.json auto-electrical-owner-preview.json product-image-treatment-sample.json; do
+            curl -fsS --max-time 20 "$base/assets/$item?sha=$CF_PAGES_COMMIT_SHA" -o "/tmp/$item"
+            python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert any(k in d for k in ("products","records")); assert all(len(d.get(k,[]))==0 for k in ("products","records"))' "/tmp/$item"
+          done
+          echo "CLOUDFLARE_EMPTY_PREVIEW_EXACT_HEAD_PASS url=$base/owner-preview.html sha=$CF_PAGES_COMMIT_SHA public_products=0"
