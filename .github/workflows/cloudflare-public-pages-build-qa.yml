@@ -5,8 +5,6 @@ on:
     branches: [main]
     paths:
       - "scripts/build-cloudflare-pages-public.py"
-      - "scripts/audit-audio-preview.py"
-      - "scripts/apply-audio-preview-overrides.py"
       - ".github/workflows/cloudflare-pages-deploy.yml"
       - ".github/workflows/cloudflare-layout-preview.yml"
       - ".github/workflows/publish-approved-storefront-preview.yml"
@@ -30,18 +28,12 @@ on:
       - "preview-audio.html"
       - "preview-audio-brand.html"
       - "preview-audio-products.html"
-      - "preview-planetworld.html"
       - "tests/three-category-storefront-structure.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
       - "tests/public-preview-data-sanitization.test.cjs"
-      - "catalogue-review/planetworld-one-official-model-audit.csv"
-      - "assets/audio-product-enrichment-overrides.json"
   pull_request:
-    branches: [main, integration/storefront-current-main-2026-11-09]
+    branches: [main]
     paths:
       - "scripts/build-cloudflare-pages-public.py"
-      - "scripts/audit-audio-preview.py"
-      - "scripts/apply-audio-preview-overrides.py"
       - ".github/workflows/cloudflare-pages-deploy.yml"
       - ".github/workflows/cloudflare-layout-preview.yml"
       - ".github/workflows/publish-approved-storefront-preview.yml"
@@ -65,12 +57,8 @@ on:
       - "preview-audio.html"
       - "preview-audio-brand.html"
       - "preview-audio-products.html"
-      - "preview-planetworld.html"
       - "tests/three-category-storefront-structure.test.cjs"
-      - "tests/audio-catalogue-preview.test.cjs"
       - "tests/public-preview-data-sanitization.test.cjs"
-      - "catalogue-review/planetworld-one-official-model-audit.csv"
-      - "assets/audio-product-enrichment-overrides.json"
 permissions:
   contents: read
 jobs:

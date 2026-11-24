@@ -11,6 +11,7 @@ on:
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
       - 'scripts/build-cloudflare-pages-public.py'
+      - 'automation/task-queue.json'
       - 'tests/three-category-storefront-structure.test.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
       - '.github/workflows/cloudflare-public-pages-build-qa.yml'
