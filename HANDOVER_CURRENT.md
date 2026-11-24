@@ -1,3 +1,9 @@
+## CLEANUP CHECKPOINT — 2026-11-24
+
+Verified removal from main tree of obsolete watermarked store ZIP, November 10 audio catalogue CSV and October 29 repository inventory CSV (10,709,482 bytes total). Git history retained. No storefront source, image assets, supplier placeholders, database or hosting settings changed. Remaining legacy review files, automation and images require dependency checks before removal: current Cloudflare package explicitly copies products_webp and pilot assets and runs legacy catalogue regression tests. Do not remove dependencies blindly. Full cleanup and post-cleanup build QA not yet complete.
+
+---
+
 ## REPOSITORY CLEANUP — 2026-11-24
 
 Owner authorised removal of unnecessary repository files to streamline stock-only workflow. Preserve approved shell, build dependencies, images used by navigation, security and import tools. Initial cleanup targets obsolete root ZIP backup and superseded historical catalogue/inventory exports; retain Git history. No deployment or database changes authorised.
