@@ -1,3 +1,13 @@
+## STORE OPTIMISATION CHECKPOINT — 2026-11-24
+
+- Canonical main retained; no new branch. Owner authorised continued store optimisation.
+- Cloudflare output aligned to `pages-public` in commit `0394491bf15456f3b7deb370480679f334ac15ac`; README hosting clarification `980296dfab6e961b9811f810be27b00fd95065e8`; public package now includes existing `_headers` via `1031c2078760b66c68b8d9aa26266c3d24986abc`.
+- Changes committed, not yet verified by exact-head package/browser QA. Live release run 45368853877 failed at Playwright installation and live source equality; navigation and checkout skipped.
+- Preserve 23 November zero customer-facing stock policy until explicit repopulation approval. Converter workbook exists but contents/images not yet verified. No production deployment or live database writes performed by this continuation.
+- Next: exact-head package QA, browser infrastructure diagnosis, converter workbook audit, non-production preview verification. Do not claim completion until tests pass.
+
+---
+
 ## STORE BUILD RESUMPTION CHECKPOINT — 2026-11-17
 
 ### Canonical state and release boundary
