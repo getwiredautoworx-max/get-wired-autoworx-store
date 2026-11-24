@@ -50,3 +50,7 @@ jobs:
           exit 1
       - name: Verify mobile and desktop owner preview and audio product route
         run: node tests/owner-preview-browser-qa.cjs
+      - name: Verify immutable Cloudflare preview in real browser at four screen widths
+        env:
+          GW_QA_BASE: https://5c2a6ed2.get-wired-autoworx-store.pages.dev
+        run: node tests/owner-preview-browser-qa.cjs
