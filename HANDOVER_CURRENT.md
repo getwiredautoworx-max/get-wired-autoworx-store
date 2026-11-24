@@ -1,3 +1,9 @@
+## TASK START — EMPTY STOREFRONT QA — 2026-11-24
+
+Owner authorised outstanding tests and corrections. Scope: canonical main, empty customer-facing catalogue, local/package browser QA and runner compatibility; no production deployment or live data writes. Supplier reset supersedes earlier extraction tasks.
+
+---
+
 ## SUPPLIER CATALOGUE RESET — 2026-11-24
 
 Owner explicitly instructed removal of all supplier catalogues from `suppliers/`. Commit `0012b97ae0f12ee88bc2276f578381a1dcdbd520` removed 58 catalogue files (48 XLSX, 9 PDF, 1 CSV) across all five suppliers. Retain README placeholders, store shell, and files outside suppliers. Previous catalogue extraction tasks referencing deleted sources must not be resumed until replacement sources are supplied. No production deployment or database mutation.
