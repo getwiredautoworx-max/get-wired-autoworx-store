@@ -1,3 +1,9 @@
+## CLEANUP ACCEPTANCE — 2026-11-24
+
+PASS package and idle queue validation run 45425255673; PASS local Chromium owner preview run 45425255843 at 320/390/430/1280px, three roots, department-brand-type navigation, search, empty cart, zero products, checkout blocked and no live writes. PASS package after further legacy script removal run 45425687867. Retired 27 historical scripts/tests/pages and two obsolete catalogue workflows; main tree 220 files / approximately 2.91 MB before this documentation update. Final workflow-only cleanup commit adf09701339b11668d40b2a72fbf2f1325797c3a; final exact-head rerun not yet observed. Production QA failure remains deferred, not a release approval. No new hosted preview deployed; stock upload end-to-end not yet tested with a new approved catalogue. Preserve current shell, security and deferred infrastructure. Git history retained.
+
+---
+
 ## STERILE STORE RESTART CLEANUP — 2026-11-24
 
 Canonical main cleanup commits 25882968c41e4be4a1b4d4661ad6c30143a25de1 and d05632820656de2be47e401340e9df5885ed0b36 removed 5,189 legacy image/catalogue/staging files (343,512,922 bytes), plus 21 obsolete snapshots/workflows. Verified main tree 249 files, 3,118,719 bytes. Four preview JSON files now contain empty arrays; old image minimum and legacy product count build requirements removed. Storefront HTML unchanged. Stock-only queue permits idle state; no stock or DB writes, no intentional deployment. Exact cleanup-head package QA run 45425255673 and browser QA run 45425255843 queued; do not claim complete until passed. Old production QA remains deferred; no launch authorisation. Historical Git commits retained. Some legacy scripts/docs and deferred infrastructure remain pending dependency verification. Next: verify exact-head package/browser tests, fix failures before stock upload.
