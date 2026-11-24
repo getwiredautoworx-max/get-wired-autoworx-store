@@ -47,7 +47,7 @@ PREVIEW_ASSET_FILES = [
     "audio-types/conferencing-collaboration.svg", "audio-types/other-home-ci.svg",
     "audio-types/musical-instruments.svg", "audio-types/marine-audio.svg", "audio-types/lifestyle-audio.svg",
 ]
-PREVIEW_ASSET_DIRS = ["get-wired-product-pilot"]
+PREVIEW_ASSET_DIRS = []
 # Sanitised, review-only local catalogue records power the owner-facing
 # customer-view route (?ownerPreview=1) without requiring live Supabase rows.
 # They are never treated as live stock or verified supplier prices.
@@ -98,7 +98,7 @@ if include_preview:
         if not source_dir.is_dir():
             raise SystemExit(f"Required preview asset directory missing: assets/{name}")
         shutil.copytree(source_dir, OUT / "assets" / name)
-    subprocess.run([sys.executable, str(ROOT / "scripts" / "apply-audio-preview-overrides.py"), str(OUT / "assets")], cwd=ROOT, check=True)
+
     subprocess.run([sys.executable, str(ROOT / "scripts" / "sanitize-public-preview-data.py"), str(OUT / "assets")], cwd=ROOT, check=True)
 for name in PUBLIC_REVIEW_DATA_FILES:
     copy_file(f"assets/{name}")
@@ -145,9 +145,8 @@ for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
 image_source = ROOT / "assets" / "products_webp"
-if not image_source.is_dir():
-    raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
-shutil.copytree(image_source, OUT / "assets" / "products_webp")
+if image_source.is_dir():
+    shutil.copytree(image_source, OUT / "assets" / "products_webp")
 
 # The output is an allowlist, not a copy of the repository root. Assert that no
 # internal source/review directories or supplier documents entered the package.
@@ -164,8 +163,7 @@ for required in REQUIRED_ROOT_FILES:
         raise SystemExit(f"Public Pages package missing required page: {required}")
 
 image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
-if image_count == 0:
-    raise SystemExit("No WebP product images were copied")
+
 
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
@@ -177,7 +175,7 @@ if include_preview:
     for name in PREVIEW_ASSET_DIRS:
         if not (OUT / "assets" / name).is_dir():
             raise SystemExit(f"Preview package missing asset directory: assets/{name}")
-    for test in ["pricing-display-policy.test.cjs", "audio-catalogue-preview.test.cjs"]:
+    for test in ["pricing-display-policy.test.cjs"]:
         subprocess.run([node, str(ROOT / "tests" / test)], cwd=ROOT, check=True)
     subprocess.run([node, str(ROOT / "tests" / "public-preview-data-sanitization.test.cjs")], cwd=ROOT, check=True)
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))

@@ -10,6 +10,8 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'scripts/build-cloudflare-pages-public.py'
+      - 'tests/three-category-storefront-structure.test.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
       - '.github/workflows/cloudflare-public-pages-build-qa.yml'
   push:
@@ -22,6 +24,8 @@ on:
       - 'assets/*catalogue-preview.json'
       - 'assets/auto-electrical-owner-preview.json'
       - 'tests/owner-preview-browser-qa.cjs'
+      - 'scripts/build-cloudflare-pages-public.py'
+      - 'tests/three-category-storefront-structure.test.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
 jobs:
   browser-qa:
@@ -49,8 +53,4 @@ jobs:
           cat /tmp/gw-preview-server.log
           exit 1
       - name: Verify mobile and desktop owner preview and audio product route
-        run: node tests/owner-preview-browser-qa.cjs
-      - name: Verify immutable Cloudflare preview in real browser at four screen widths
-        env:
-          GW_QA_BASE: https://5c2a6ed2.get-wired-autoworx-store.pages.dev
         run: node tests/owner-preview-browser-qa.cjs
