@@ -9,7 +9,7 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
 (async () => {
   const browser = await chromium.launch({ headless: true });
   try {
-    for (const width of [390, 1280]) {
+    for (const width of [320, 390, 430, 1280]) {
       const page = await browser.newPage({ viewport: { width, height: 900 } });
       page.setDefaultTimeout(20000);
       const writes = [];
@@ -58,14 +58,14 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       const frameRoots = await frame.locator('#categoryGrid>.rootCategoryLink .catContent b').allTextContents();
       assert.deepEqual(frameRoots.map(x => x.trim()), EXPECTED_ROOTS, 'owner preview iframe must retain exactly the three approved root categories');
 
-      await page.goto(BASE + '/preview-audio.html?department=Car%20Audio&brand=Sony&component=Component%20Speakers&label=Car%20Audio%20%26%20Video', { waitUntil: 'domcontentloaded' });
+      await page.goto(BASE + '/preview-audio-products.html?department=Car%20Audio&brand=Sony&component=Speakers%20%26%20Component%20Kits&label=Car%20Audio%20%26%20Video', { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => {
         const products = document.getElementById('products');
-        return products && !products.hidden && products.innerText.includes('Price On Request');
+        return products && !products.hidden && products.innerText.includes('No products are currently listed');
       });
       const audioText = await page.locator('body').innerText();
       assert.ok(audioText.includes('Sony'), 'brand-first route must retain the selected brand');
-      assert.ok(audioText.includes('Price On Request'), 'supplier products must show Price On Request');
+      assert.equal(await page.locator('#products article').count(), 0, 'empty store must not render product cards');
       assert.ok(!SUPPLIER_NAMES.test(audioText), 'supplier names must not appear in customer-facing audio product content');
       assert.ok(!/Proposed Get Wired SKU|Supplier SKU|Dealer Cost|Dealer Price/i.test(audioText), 'internal identifiers and dealer pricing must not appear');
       assert.ok(!/\bR\s?[\d,]+(?:\.\d{2})?\b/.test(audioText), 'stale numeric supplier prices must not appear');
@@ -82,15 +82,15 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
           audioPriceLabels: [...new Set(audio.records.map(r => r.priceOnRequestText))]
         };
       });
-      assert.equal(dataAudit.planetRows, 3317);
-      assert.equal(dataAudit.audioRows, 72, 'secondary Audio Connections preview contains 72 reconciled review records');
+      assert.equal(dataAudit.planetRows, 0);
+      assert.equal(dataAudit.audioRows, 0, 'secondary public catalogue must be empty');
       assert.equal(dataAudit.planetPriceLeaks, 0, 'Planetworld preview JSON must not retain numeric price or stock claims');
       assert.equal(dataAudit.audioPriceLeaks, 0, 'Audio Connections preview JSON must not retain numeric price or stock claims');
-      assert.deepEqual(dataAudit.audioPriceLabels, ['Price On Request']);
+      assert.deepEqual(dataAudit.audioPriceLabels, []);
       const audioOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
       assert.equal(audioOverflow, false, 'audio product route must not overflow horizontally at viewport ' + width);
       await page.close();
-      console.log('PASS owner preview viewport=' + width + ' roots=3 audio=Sony/Component Speakers price=POR checkout=blocked no-live-writes');
+      console.log('PASS owner preview viewport=' + width + ' roots=3 audio=Sony/Speakers products=0 checkout=blocked no-live-writes');
     }
   } finally {
     await browser.close();
