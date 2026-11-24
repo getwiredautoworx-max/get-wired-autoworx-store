@@ -33,11 +33,15 @@ jobs:
           node-version: '20'
       - name: Install Chromium and Playwright
         run: |
-          npm install --no-save playwright
+          npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
+      - name: Build isolated customer preview package
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+        run: python3 scripts/build-cloudflare-pages-public.py
       - name: Start local static preview server
         run: |
-          python3 -m http.server 4173 >/tmp/gw-preview-server.log 2>&1 &
+          python3 -m http.server 4173 --directory pages-public >/tmp/gw-preview-server.log 2>&1 &
           for i in $(seq 1 30); do
             curl -fsS http://127.0.0.1:4173/owner-preview.html >/dev/null && exit 0
             sleep 1
