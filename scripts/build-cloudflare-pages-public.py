@@ -28,7 +28,7 @@ REQUIRED_ROOT_FILES = [
     "checkout.html", "checkout-v2.html", "category.html", "returns-refunds.html",
     "terms-and-conditions.html", "product-details.js", "category-navigation.js",
 ]
-OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
+OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt", "_headers"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
     "preview-product.html", "preview-audio.html", "preview-audio-brand.html", "preview-audio-products.html", "preview-auto-electrical.html", "preview-asc-sample.html", "product-image-treatment-pilot.html",
