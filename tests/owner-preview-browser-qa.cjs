@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 
-const BASE = 'http://127.0.0.1:4173';
+const BASE = process.env.GW_QA_BASE || 'http://127.0.0.1:4173';
 const SUPPLIER_NAMES = /Planetworld|Audio Connections/i;
 const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spares', 'Car Care & Accessories'];
 
