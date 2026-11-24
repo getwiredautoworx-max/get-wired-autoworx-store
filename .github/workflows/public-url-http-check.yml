@@ -324,3 +324,32 @@ jobs:
             fi
           done
 
+  cloudflare-preview-alias-diagnostic:
+    name: Inspect Cloudflare Pages preview alias metadata (read-only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check deployment environments and alias assignment without any deployment
+        shell: bash
+        env:
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CF_ACCOUNT:-}" ] || [ -z "${CF_TOKEN:-}" ]; then
+            echo "CLOUDFLARE_ALIAS_INSPECTION_UNAVAILABLE: account connection secrets missing"
+            exit 0
+          fi
+          curl -fsS --max-time 30 -H "Authorization: Bearer $CF_TOKEN" "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/get-wired-autoworx-store/deployments?per_page=20" -o /tmp/gw-cf-deployments.json
+          python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/gw-cf-deployments.json'))
+          if not data.get('success'):
+              print('CLOUDFLARE_ALIAS_INSPECTION_ERROR', [e.get('code') for e in data.get('errors',[])])
+              raise SystemExit(1)
+          for d in data.get('result',[]):
+              trigger=d.get('deployment_trigger') or {}
+              meta=trigger.get('metadata') or {}
+              print('CLOUDFLARE_DEPLOYMENT',json.dumps({'url':d.get('url'),'environment':d.get('environment'),'aliases':d.get('aliases'),'branch':meta.get('branch'),'status':(d.get('latest_stage') or {}).get('status'),'created_on':d.get('created_on')},sort_keys=True))
+          PY
+
