@@ -1,17 +1,11 @@
 {
   "schema_version": 2,
   "project": "Get Wired AutoWorx",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "authority": [
-    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md",
-    "latest owner instructions in the active conversation",
-    "latest verified execution checkpoint on canonical main",
-    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md §10–11 (public repository processing authorised; all products Price On Request)",
-    "2026-11-14 owner instruction: one canonical project, one coordinated task queue, no parallel workstreams",
-    "2026-11-15 owner instruction: audit and consolidate all open PRs into one canonical project",
-    "2026-11-15 owner instruction: continue consolidated storefront delivery until resolved",
-    "2026-11-23 live GitHub reconciliation: one active audio-video-content-enrichment workstream; dependent QA/preview tasks queued; PR #213 isolated and not an integration candidate",
-    "2026-11-23 owner instruction: remove all product stock/listings from customer-facing store; preserve only internal catalogue/review evidence"
+    "Latest owner directive: final approved empty-store restart; stock uploads only",
+    "HANDOVER_CURRENT.md",
+    "AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md (only where consistent with latest directive)"
   ],
   "storefront_roots": [
     "Auto Electrical Spares",
@@ -110,7 +104,7 @@
       "priority": 9,
       "status": "paused",
       "execution_mode": "scheduled-monitor",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "PR #183",
         "PR #185",
@@ -129,7 +123,7 @@
       "priority": 5,
       "status": "paused",
       "execution_mode": "scheduled-deterministic",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "suppliers/ASC/ASC- Aerials (1).pdf",
         "suppliers/ASC/ASC- Automotive Sensors (1).pdf",
@@ -167,9 +161,9 @@
     {
       "id": "electrocity-ignition-pilot",
       "priority": 6,
-      "status": "paused_pending_reconciliation",
+      "status": "paused",
       "execution_mode": "scheduled-qa",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "PR #185",
         "suppliers/Electrocity/Ignition Looms-Coils-Modules/"
@@ -205,7 +199,7 @@
     {
       "id": "onenav-model-image-reconciliation",
       "priority": 4,
-      "status": "queued",
+      "status": "paused",
       "execution_mode": "model-assisted-review-required",
       "automatic": false,
       "source": [
@@ -223,7 +217,7 @@
     {
       "id": "storefront-three-category-consolidation",
       "priority": 7,
-      "status": "queued",
+      "status": "paused",
       "execution_mode": "model-assisted-development-and-qa",
       "automatic": false,
       "source": [
@@ -242,9 +236,9 @@
     {
       "id": "continuous-qa-and-owner-preview",
       "priority": 8,
-      "status": "queued",
+      "status": "paused",
       "execution_mode": "scheduled-qa",
-      "automatic": true,
+      "automatic": false,
       "source": [
         "GitHub Actions",
         "coordinated storefront candidate"
@@ -260,7 +254,7 @@
     {
       "id": "three-department-category-assignment-repair",
       "priority": 2,
-      "status": "queued",
+      "status": "paused",
       "execution_mode": "bounded-code-and-data-audit",
       "automatic": false,
       "source": [
@@ -284,7 +278,7 @@
     {
       "id": "asc-50-image-regeneration-and-visual-qa",
       "priority": 3,
-      "status": "paused_pending_post_merge_verification",
+      "status": "paused",
       "execution_mode": "workflow-dispatch-and-visual-review",
       "automatic": false,
       "source": [
@@ -304,7 +298,7 @@
     {
       "id": "post-merge-verification-and-owner-preview",
       "priority": 10,
-      "status": "queued",
+      "status": "paused",
       "execution_mode": "verification-and-owner-preview",
       "automatic": false,
       "source": [
@@ -327,7 +321,7 @@
     {
       "id": "out-of-scope-catalogue-quarantine",
       "priority": 10,
-      "status": "quarantined",
+      "status": "paused",
       "execution_mode": "scope-and-publication-guard",
       "automatic": false,
       "source": [
@@ -371,6 +365,22 @@
         "2026-11-23: exact-head Cloudflare Pages Public Package QA run 45129475488 passed on code SHA ae61ad95d710f5fa8ed0f75e60ad27aba635a009. Standard and preview package builds passed; four preview data files were confirmed empty; public preview sanitization and allowlist checks passed.",
         "No production deployment, Cloudflare credit spend, live Supabase write, Axxess upload, DNS/payment change or supplier source-catalogue deletion occurred."
       ]
+    },
+    {
+      "id": "next-owner-approved-stock-upload",
+      "priority": 1,
+      "status": "paused",
+      "automatic": false,
+      "execution_mode": "owner-directed",
+      "source": [
+        "New supplier catalogue explicitly supplied or identified by owner"
+      ],
+      "success_criteria": [
+        "Verify product descriptions, supplier SKU, category, pricing and exact images",
+        "Prepare customer-safe stock upload and preview",
+        "Obtain owner approval before live import or production deployment"
+      ],
+      "next_action": "Await next owner-approved supplier catalogue; no autonomous extraction or repopulation."
     }
   ],
   "coordination": {
@@ -380,13 +390,13 @@
     "canonical_head": "200ced5d78fdc8987b2adae2128546d0b645e2c8",
     "active_task_id": null,
     "active_workers": 0,
-    "parallel_workstreams": "No active worker. Customer-facing stock clearance is complete; all product enrichment/import/publication remains paused. PR #213 is closed unmerged as a conflicting, superseded candidate. Customer-facing hosted preview remains unverified; no Cloudflare credit spend or deployment is authorised.",
+    "parallel_workstreams": "None. Stock-only work starts on explicit owner instruction.",
     "branch_policy": "branches are evidence/candidates only; no branch is an independent source of truth",
     "pr_policy": "classify against canonical main; no blind merges; merge only with explicit owner approval",
     "contributor_protocol": {
-      "chatgpt": "coordinate, inspect evidence, reconcile queue and handover, perform bounded changes and verify",
-      "gemini": "disabled until Google accepts the existing API key; then one allowlisted task at a time, output only as draft PR",
-      "jules_or_other_agents": "no new assignments until the active queue is reconciled; all outputs must target the same approved task and report exact commit SHA"
+      "chatgpt": "One owner-directed stock upload at a time; no unrelated work.",
+      "gemini": "disabled",
+      "jules_or_other_agents": "disabled until owner instruction"
     },
     "release_policy": "production remains HOLD; no deployment, Axxess upload, live data write, DNS/payment change, or paid hosting spend without explicit approval",
     "last_verified_main_sha": "200ced5d78fdc8987b2adae2128546d0b645e2c8",
