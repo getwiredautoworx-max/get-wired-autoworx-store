@@ -1,3 +1,9 @@
+## STERILE STORE RESTART CLEANUP — 2026-11-24
+
+Canonical main cleanup commits 25882968c41e4be4a1b4d4661ad6c30143a25de1 and d05632820656de2be47e401340e9df5885ed0b36 removed 5,189 legacy image/catalogue/staging files (343,512,922 bytes), plus 21 obsolete snapshots/workflows. Verified main tree 249 files, 3,118,719 bytes. Four preview JSON files now contain empty arrays; old image minimum and legacy product count build requirements removed. Storefront HTML unchanged. Stock-only queue permits idle state; no stock or DB writes, no intentional deployment. Exact cleanup-head package QA run 45425255673 and browser QA run 45425255843 queued; do not claim complete until passed. Old production QA remains deferred; no launch authorisation. Historical Git commits retained. Some legacy scripts/docs and deferred infrastructure remain pending dependency verification. Next: verify exact-head package/browser tests, fix failures before stock upload.
+
+---
+
 ## CLEANUP CHECKPOINT — 2026-11-24
 
 Verified removal from main tree of obsolete watermarked store ZIP, November 10 audio catalogue CSV and October 29 repository inventory CSV (10,709,482 bytes total). Git history retained. No storefront source, image assets, supplier placeholders, database or hosting settings changed. Remaining legacy review files, automation and images require dependency checks before removal: current Cloudflare package explicitly copies products_webp and pilot assets and runs legacy catalogue regression tests. Do not remove dependencies blindly. Full cleanup and post-cleanup build QA not yet complete.
