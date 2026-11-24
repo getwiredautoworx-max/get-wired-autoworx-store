@@ -1,0 +1,54 @@
+name: Disable Unapproved Cloudflare Production Auto Deployments
+on:
+  push:
+    branches: [approved-storefront-preview-trigger]
+    paths:
+      - '.github/workflows/cloudflare-production-safety.yml'
+permissions:
+  contents: read
+jobs:
+  lock-production-deployments:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Disable automatic production deployment while preserving preview configuration
+        shell: bash
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CF_TOKEN:-}" ] || [ -z "${CF_ACCOUNT:-}" ]; then
+            echo "CLOUDFLARE_PRODUCTION_LOCK_FAILED: credentials unavailable"
+            exit 1
+          fi
+          base="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/get-wired-autoworx-store"
+          curl -fsS --max-time 30 -H "Authorization: Bearer $CF_TOKEN" "$base" > /tmp/cf-project-before.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/cf-project-before.json'))
+          assert x.get('success'), 'Cloudflare GET project failed'
+          p=x['result']
+          print('PRODUCTION_BRANCH_BEFORE',p.get('production_branch'))
+          print('PRODUCTION_AUTODEPLOY_BEFORE',((p.get('source') or {}).get('config') or {}).get('production_deployments_enabled'))
+          print('PREVIEW_AUTODEPLOY_BEFORE',((p.get('source') or {}).get('config') or {}).get('preview_deployment_setting'))
+          assert p.get('production_branch') == 'main', 'Unexpected production branch; not changing project'
+          assert (p.get('source') or {}).get('type') == 'github', 'Unexpected source; not changing project'
+          PY
+          curl -fsS --max-time 30 -X PATCH -H "Authorization: Bearer $CF_TOKEN" -H 'Content-Type: application/json' --data '{"source":{"config":{"production_deployments_enabled":false}}}' "$base" > /tmp/cf-project-patch.json
+          curl -fsS --max-time 30 -H "Authorization: Bearer $CF_TOKEN" "$base" > /tmp/cf-project-after.json
+          python3 - <<'PY'
+          import json
+          b=json.load(open('/tmp/cf-project-before.json'))['result']
+          response=json.load(open('/tmp/cf-project-patch.json'))
+          assert response.get('success'), 'Cloudflare PATCH rejected'
+          a=json.load(open('/tmp/cf-project-after.json'))['result']
+          before=(b.get('source') or {}).get('config') or {}
+          after=(a.get('source') or {}).get('config') or {}
+          print('PRODUCTION_AUTODEPLOY_AFTER',after.get('production_deployments_enabled'))
+          print('PREVIEW_AUTODEPLOY_AFTER',after.get('preview_deployment_setting'))
+          assert after.get('production_deployments_enabled') is False, 'Automatic production deployment was NOT disabled'
+          assert a.get('production_branch') == b.get('production_branch'), 'Production branch changed unexpectedly'
+          assert after.get('preview_deployment_setting') == before.get('preview_deployment_setting'), 'Preview setting changed unexpectedly'
+          print('CLOUDFLARE_PRODUCTION_AUTODEPLOY_DISABLED_PASS')
+          PY
