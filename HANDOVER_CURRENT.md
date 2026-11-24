@@ -1,3 +1,9 @@
+## FINAL STORE RESTART — OWNER DIRECTIVE — 2026-11-24
+
+This supersedes all earlier development priorities. Preserve the owner-approved empty storefront shell as the baseline. Only stock/catalogue upload work is authorised until further owner instruction. Process newly supplied or explicitly approved sources only; verify SKU, description, price, category and matching images; provide customer-facing review after each upload. Do not restore deleted catalogues. Suspend unrelated development, optimisation, APK, payment integration, hosting changes and production releases. Retain existing security safeguards and canonical main. Do not initiate stock imports until the owner supplies or identifies the next catalogue. Keep handover current. Existing release blockers remain recorded but deferred.
+
+---
+
 ## ACCEPTANCE VERIFICATION UPDATE — 2026-11-24 (LATEST)
 
 - **SUCCESS: hosted & local full browser QA** run [45420237004](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45420237004), both phases completed **success**, on test-code commit `56eb212a9f57a27149d47e8e3ca5e622c6389679`. Eight pass logs: 320px, 390px, 430px, 1280px *locally and against* immutable Cloudflare URL `https://5c2a6ed2.get-wired-autoworx-store.pages.dev`. For each: 3 main categories; audio department→brand→product type→zero product cards; search; empty cart; checkout blocked in owner preview; no write requests. Corrected Cloudflare extensionless navigation and frame URL race. This is a complete **empty storefront review-shell** functional QA pass, **not** launch approval.
