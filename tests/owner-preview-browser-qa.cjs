@@ -46,7 +46,12 @@ const EXPECTED_ROOTS = ['Car Audio / Home Entertainment', 'Auto Electrical Spare
       await page.locator('iframe#store').waitFor({ state: 'attached' });
       // A hosted iframe loads asynchronously: wait for actual frame navigation, not only the iframe element.
       await page.waitForFunction(() => !!document.querySelector('iframe#store')?.contentDocument?.body, null, { timeout: 45000 });
-      const frame = page.frames().find(f => /\/index-new(?:\.html)?(?:\?|$)/.test(f.url()));
+      await page.waitForFunction(() => {
+        const f = document.querySelector('iframe#store');
+        if (!f || !f.contentWindow) return false;
+        try { return /\/index-new(?:\.html)?$/.test(f.contentWindow.location.pathname); } catch { return false; }
+      }, null, { timeout: 30000 });
+      const frame = page.frames().find(f => f.url().includes('/index-new'));
       assert.ok(frame, 'owner preview must embed the current three-category storefront');
       await frame.waitForFunction(() => document.querySelectorAll('#categoryGrid>.rootCategoryLink').length === 3, null, { timeout: 30000 });
       await frame.waitForFunction(() => document.documentElement.dataset.gwPreviewLocked === '1', null, { timeout: 10000 });
