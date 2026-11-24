@@ -2162,3 +2162,38 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 3. Investigate why the hourly Background Task Controller schedule is not producing hourly scheduled runs; preserve read-only artifact inventory and request owner approval before any destructive retention cleanup.
 4. Resolve the Playwright runner/Chromium compatibility issue, then require exact-current-SHA package tests and same-SHA permitted hosted desktop/mobile checks before any preview-readiness claim.
 5. Keep all customer-facing product arrays empty, preserve internal review/source evidence, and maintain production HOLD. No branch, PR, product, live database, deployment, Axxess, DNS, payment or artifact-retention changes were made by this monitor run.
+
+
+## ASC DAILY MONITOR — 2026-11-24 09:04 SAST
+
+### Scope and comparison
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first, then this handover, before checking the ASC task/PR evidence.
+- Repository remains public. Latest observed canonical `main` before this documentation update: `95ac75b3fd55ef7fe5daf7b8cef70086f664d638` (2026-11-24 06:56:44 UTC). Its diff changes only `catalogue-review/audio-official-model-candidates/manifest.json`; no ASC source, register, editorial or image file changed since the 2026-11-23 checkpoint.
+- Live open-PR search: 0. PR #183 is closed unmerged/superseded; PR #204 is merged; PR #213 is closed unmerged. No PR action was taken.
+
+### ASC source and register recheck
+- All six approved ASC PDF paths resolve on `main` and return distinct Git blob SHAs. The GitHub file connector returned no PDF byte content for these binary files during this check, so no fresh page re-render was claimed; the current source-verification inventory and row-level registers were checked instead.
+- Current source inventory remains 6 PDFs / 72 pages / 978 physical cards: Aerials 78, Automotive Sensors 106, Automotive Switches 368, Automotive Globes 158, Car Mats 139, Fuel Pumps 129. The 983 preliminary count remains rejected.
+- Master register blob `3de246df967dedfdd26ed2381e4d04c7dd878bc4`: 978 rows, 978 unique source identifiers, 978 unique proposed Get Wired SKUs; per-source counts reconcile to the six totals.
+- Staging register blob `eb395ad635348b285a5d3a59390bdd3bcf5c3ef8`: 978 rows; all 978 use exact `Price On Request due to Limited Stock and Availability`, blank numeric price, `STAGED_REVIEW_ONLY`, and `DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL`.
+- Pilot editorial register blob `f88c1c9ab9dca39b8fc5ceae5f142650a64760b1`: 50 titles/descriptions verified, 42 explicit fitments transcribed, 8 source cards with no printed fitment, and 0 technical-specification fields transcribed. Remaining 928 descriptions are OCR candidates; 928 fitment records remain unreviewed; all 978 technical-specification records remain outstanding.
+
+### Image pilot — task-queue claim contradicted by artifacts
+- Manifest blob `da430e68d24b805888582d4d9aa7eefc15e899e1`: 50 rows, 50 unique IDs, 50 unique output hashes, all `REVIEW_ONLY_NOT_IMPORTED` and `OWNER_ACCEPTANCE_PENDING`.
+- All 50 source dimensions are 181x209. Manifest crop-bottom values are 146 (25 images), 163 (16), and 192 (9); 0/50 equal the source height of 209 required by the queue acceptance criterion.
+- All 50 manifest rows explicitly state `GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK`. Processor blob `82cf9bc1b950c9c3952bc31625909287b2e68497` uses a 0.70 product-area bottom ratio plus overrides and overlays the Get Wired watermark; it contains no operation that removes the original ASC watermark.
+- Therefore the task queue's `asc-50-image-regeneration-and-visual-qa` next-action statement that all 50 regenerated outputs satisfy full-height crop and watermark treatment is not supported by the current manifest/script. Task remains `paused_pending_post_merge_verification`; do not mark accepted. Image rights are owner-authorised, not a blocker.
+
+### QA, automation and release status
+- Last actual ASC 978-row QA: run [43613604610](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604610), 2026-11-14, checked out PR #204 head `295d42c4285cde570a547f2c0f7586cd7a7d1edc`. Actual log: PASS 978/978, unique source/GW SKUs, six source totals, source-page/category mapping, exact POR labels, no numeric price/stock invention, DO NOT IMPORT; pilot 50/42/0. This is historical QA, not a fresh current-main run.
+- Last ASC extraction worker: run [43613604557](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604557), 2026-11-14; queue validation passed and extraction reported 6 source files, 72 pages, 72 pages with text and 72 OCR pages. Current worker workflow is manual-dispatch-only; ASC extraction task remains paused. No newer ASC extraction/QA run was found in the checked evidence.
+- Current `automation/task-queue.json` blob `9d26702bf44cf32c22252aec7ad5c81e38c4266a` is dated 2026-11-23 and still pins `coordination.canonical_head=200ced5d78fdc8987b2adae2128546d0b645e2c8`, behind current main. It records 0 active workers, ASC extraction paused, image QA paused pending verification, and customer-facing stock clearance completed. The image task's next-action claim is stale/contradicted as above.
+- Stock-clearance package QA [45129475488](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129475488) passed on code SHA `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`: all four customer-facing product-record assets empty. This is not ASC editorial QA and is not an exact-current-SHA run. Latest recorded read-only Supabase check (2026-11-23) found `public.products=0` and `public.supplier_stock=0`; not re-queried in this monitor.
+- Production remains HOLD. No PR merge, deployment, Axxess upload, live data write, customer-facing payload change, supplier activation or Cloudflare credit use occurred.
+
+### Next actions
+1. Keep the six PDFs and 978-row review package on canonical main; do not import or republish.
+2. Correct the image processor to remove the ASC watermark rather than overlay it, and reconcile the full-height crop acceptance criterion with the intended caption masking. Reprocess and independently verify all 50 before wider treatment.
+3. Keep OCR candidates, unresolved captions (MA648, S5-16053, S5-16087), the M7-HY100 production-stopped item, and 26 no-photo Car Mats explicitly quarantined.
+4. Complete the remaining 928 title/description reviews, fitment transcription and 978 technical-specification transcriptions only when product-enrichment work is explicitly reauthorised.
+5. Reconcile the stale task-queue canonical head and contradictory image-task next-action in the next coordination update; do not reactivate paused work merely to make the monitor green.
