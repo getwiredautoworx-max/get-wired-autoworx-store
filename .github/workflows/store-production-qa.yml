@@ -51,50 +51,6 @@ jobs:
           fi
           grep -q "Delivery orders cannot be submitted until a quotation is confirmed" checkout-v2.html
 
-      - name: Verify canonical production domain is reachable
-        shell: bash
-        run: |
-          set -euo pipefail
-          status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
-          test "$status" = "200"
-          grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
-          if grep -Fq 'data-storefront-mode="buttons-only"' /tmp/live-store-home.html; then
-            echo "LIVE_BUTTON_ONLY_PASS: canonical production homepage is serving the buttons-only reset."
-          else
-            echo "LIVE_BUTTON_ONLY_NOT_DEPLOYED: canonical production homepage is reachable but does not yet serve the merged button-only storefront."
-            exit 1
-          fi
-          terms_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-terms.html -w '%{http_code}' https://www.getwiredauto.co.za/terms-and-conditions.html)"
-          test "$terms_status" = "200"
-          grep -Eiq "Terms & Conditions" /tmp/live-terms.html
-          returns_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-returns.html -w '%{http_code}' https://www.getwiredauto.co.za/returns-refunds.html)"
-          test "$returns_status" = "200"
-          grep -Eiq "Returns & Refunds" /tmp/live-returns.html
-          category_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category.html -w '%{http_code}' https://www.getwiredauto.co.za/category.html)"
-          test "$category_status" = "200"
-          snapshot_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category-tree.json -w '%{http_code}' https://www.getwiredauto.co.za/assets/category-tree.json)"
-          test "$snapshot_status" = "200"
-          grep -q "Auto Electrical" /tmp/live-category.html
-          grep -q "Spare Parts" /tmp/live-category-tree.json
-          image_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-000174D6.webp)"
-          test "$image_status" = "200"
-          image_type="$(file --mime-type -b /tmp/live-product-image.webp)"
-          test "$image_type" = "image/webp"
-          # Also verify a WebP newly committed by the current bounded exact-SKU retry.
-          new_image_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o /tmp/live-new-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-001CED3B.webp)"
-          test "$new_image_status" = "200"
-          new_image_type="$(file --mime-type -b /tmp/live-new-product-image.webp)"
-          test "$new_image_type" = "image/webp"
-          # Targeted verification for the eight exact-SKU assets found by the bounded image audit.
-          for sku in GW-F60D9CE9 GW-F632303D GW-F6416160 GW-F6461F7B GW-F6672DED GW-F672879F GW-F68FB0CE GW-F69F8DA1; do
-            status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o "/tmp/${sku}.webp" -w '%{http_code}' "https://www.getwiredauto.co.za/assets/products_webp/${sku}.webp")"
-            test "$status" = "200" || { echo "ERROR: exact-SKU asset ${sku} returned HTTP ${status}"; exit 1; }
-            type="$(file --mime-type -b "/tmp/${sku}.webp")"
-            test "$type" = "image/webp" || { echo "ERROR: exact-SKU asset ${sku} returned MIME ${type}"; exit 1; }
-            echo "EXACT_SKU_IMAGE_PASS: ${sku} HTTP ${status} ${type}"
-          done
-          echo "Canonical domain, category snapshot, established/new exact-SKU images, and all eight audit exception images returned HTTP 200 with WebP content type."
-
       - name: Validate delivery quote database rule
         shell: bash
         run: |
@@ -141,5 +97,49 @@ jobs:
             echo "ERROR: private supplier-cost or server-secret reference exposed in public source"
             exit 1
           fi
+
+      - name: Verify canonical production domain is reachable
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
+          test "$status" = "200"
+          grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
+          if grep -Fq 'data-storefront-mode="buttons-only"' /tmp/live-store-home.html; then
+            echo "LIVE_BUTTON_ONLY_PASS: canonical production homepage is serving the buttons-only reset."
+          else
+            echo "LIVE_BUTTON_ONLY_NOT_DEPLOYED: canonical production homepage is reachable but does not yet serve the merged button-only storefront."
+            exit 1
+          fi
+          terms_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-terms.html -w '%{http_code}' https://www.getwiredauto.co.za/terms-and-conditions.html)"
+          test "$terms_status" = "200"
+          grep -Eiq "Terms & Conditions" /tmp/live-terms.html
+          returns_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-returns.html -w '%{http_code}' https://www.getwiredauto.co.za/returns-refunds.html)"
+          test "$returns_status" = "200"
+          grep -Eiq "Returns & Refunds" /tmp/live-returns.html
+          category_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category.html -w '%{http_code}' https://www.getwiredauto.co.za/category.html)"
+          test "$category_status" = "200"
+          snapshot_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category-tree.json -w '%{http_code}' https://www.getwiredauto.co.za/assets/category-tree.json)"
+          test "$snapshot_status" = "200"
+          grep -q "Auto Electrical" /tmp/live-category.html
+          grep -q "Spare Parts" /tmp/live-category-tree.json
+          image_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-000174D6.webp)"
+          test "$image_status" = "200"
+          image_type="$(file --mime-type -b /tmp/live-product-image.webp)"
+          test "$image_type" = "image/webp"
+          # Also verify a WebP newly committed by the current bounded exact-SKU retry.
+          new_image_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o /tmp/live-new-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-001CED3B.webp)"
+          test "$new_image_status" = "200"
+          new_image_type="$(file --mime-type -b /tmp/live-new-product-image.webp)"
+          test "$new_image_type" = "image/webp"
+          # Targeted verification for the eight exact-SKU assets found by the bounded image audit.
+          for sku in GW-F60D9CE9 GW-F632303D GW-F6416160 GW-F6461F7B GW-F6672DED GW-F672879F GW-F68FB0CE GW-F69F8DA1; do
+            status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o "/tmp/${sku}.webp" -w '%{http_code}' "https://www.getwiredauto.co.za/assets/products_webp/${sku}.webp")"
+            test "$status" = "200" || { echo "ERROR: exact-SKU asset ${sku} returned HTTP ${status}"; exit 1; }
+            type="$(file --mime-type -b "/tmp/${sku}.webp")"
+            test "$type" = "image/webp" || { echo "ERROR: exact-SKU asset ${sku} returned MIME ${type}"; exit 1; }
+            echo "EXACT_SKU_IMAGE_PASS: ${sku} HTTP ${status} ${type}"
+          done
+          echo "Canonical domain, category snapshot, established/new exact-SKU images, and all eight audit exception images returned HTTP 200 with WebP content type."
 
 # Audit trigger: 2026-10-14 — execute existing read-only production QA checks without changing test behavior.
