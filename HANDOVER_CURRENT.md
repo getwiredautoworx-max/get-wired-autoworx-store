@@ -2097,3 +2097,68 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 - Active workers: 0. No active PR candidate. Product enrichment/import/publication: paused.
 - At the next session, start with the three-root navigation reconciliation, not product enrichment and not another broad branch/PR exercise. Make one bounded change set, test it, update this handover, then proceed to the next acceptance gate.
 - This checkpoint records the repository reconciliation and next actions; it does not claim the storefront is complete, hosted preview verified, or owner acceptance achieved.
+
+
+## TASK START — COORDINATION / AUTOMATION RECOVERY MONITOR — 2026-11-24 08:45 SAST
+
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first from `main` (blob SHA `7335e2c4ef60a7e4305fb42424b3342500b93700`), then this `HANDOVER_CURRENT.md` from `main` (pre-update blob SHA `b177433ead89ad1a26355bb31fa676554d864636`).
+- Live canonical `main` at inspection: `95ac75b3fd55ef7fe5daf7b8cef70086f664d638`; repository remains public.
+- Scope: read-only coordination and recovery monitoring. The separate enabled automation **Advance Get Wired audio and video catalogue** remains the sole audio catalogue editing worker. No duplicate product edits, branch creation, PR changes, workflow reruns, deployments, live data writes, or credit use were performed in this monitor run.
+
+## COORDINATION MONITOR CHECKPOINT — 2026-11-24 08:45 SAST
+
+### 1. Live repository, PRs and branches
+
+- Current `main`: `95ac75b3fd55ef7fe5daf7b8cef70086f664d638`, committed 2026-11-24 06:56:44 SAST by the scheduled audio candidate-extractor workflow. The commit changes only `catalogue-review/audio-official-model-candidates/manifest.json` (7 insertions, 1 deletion).
+- Live open-PR search returned **0 open PRs**. Corrected live dispositions:
+  - #190 MERGED to main at `9f33042485ae45199827269358cdde0ac18a1c0f`.
+  - #193 MERGED to main at `f267f76f87b631644cc298d2e311db7b93b73e68`.
+  - #199 MERGED to main at `123e41e83a8710fe427a1a4e1facdf34480b3130`.
+  - #201 MERGED to main at `a304b1e75de93d8f81a25b47de5498ba2dfd317d`.
+  - #194 CLOSED WITHOUT MERGE.
+  - #178 CLOSED WITHOUT MERGE (draft at closure), head `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`; current-main comparison: 1,001 ahead / 652 behind.
+  - #183 CLOSED WITHOUT MERGE, head `327d9a271196efe2144e93d81109b93cca83cbdd`; 33 ahead / 626 behind.
+  - #185 MERGED into `integration/store-consolidated-2026-11-14`, **not directly into main**; head `e695f3dcb056e15d80f5b9a2f9375d10995905cc`; 13 ahead / 626 behind current main.
+  - #189 CLOSED WITHOUT MERGE (draft), head `fae470d06180162530c39575462993923dd92f52`; 52 ahead / 619 behind.
+  - #209 CLOSED WITHOUT MERGE (draft), head `133071aa69ef204d65f2dc2d4cbb62691a01cc4a`; 27 ahead / 141 behind.
+  - #213 CLOSED WITHOUT MERGE (draft), head `c67b2f04db53fff10685702e5286c20f38419a5d`; 87 ahead / 48 behind.
+- The existing OneNav branch still exists at its previously recorded exact head `7427f1bd4d1b2723e6cf5762b5dc01757f9c8052`; it is now 24 ahead / 375 behind current main (was last recorded 24 / 78). The old integration branch `integration/audio-video-enrichment-current-main-2026-11-13` remains at `29c59f7a6972622209a292bcc9b514618d64595f`, 8 ahead / 297 behind. Neither is a safe integration candidate; do not rebase, merge, or copy its changes wholesale.
+- The live task queue remains stale: `automation/task-queue.json` says updated 2026-11-23, `coordination.canonical_head=200ced5d78fdc8987b2adae2128546d0b645e2c8` (7 commits behind current main), `active_task_id=null`, `active_workers=0`, and `audio-video-content-enrichment=paused`. This conflicts with the owner's current explicit coordination instruction that the separate enabled ChatGPT audio task is the sole audio editor. Do not start a second worker or alter the queue from this monitor task; record the discrepancy for the next coordinated queue reconciliation.
+
+### 2. Sole audio editing worker — verified automation state
+
+- Automation `6aed6a45c2f881918fa463b65cd2c8c0`, **Advance Get Wired audio and video catalogue**, is confirmed `is_enabled=true`.
+- Schedule: daily, Africa/Johannesburg, next run 2026-11-24 09:00 SAST. Last completed run: `b9b5f537-dbc0-8331-bb58-a880aac54d8e`, scheduled 2026-11-23 09:00 SAST and completed 09:56 SAST.
+- Its last result records a read-only/review-only OneNav pass and no repository changes. It reports 45 OneNav audit rows: 37 image-pending, 2 owner-preview candidates, 2 rejected, 3 owner-authorised retailer images verified, and 1 owner-authorised manufacturer image; all remain review-only.
+- Outstanding OneNav exceptions recorded by that worker: OA009-1 exact image pending; OA014-1 override/audit status drift; ON016-2LX has a 10 vs 10.1 inch source conflict; OA312-1 linked image appears marked OA1409-CPAA and is not an exact match. It also reported a stale OneNav regression-test expectation and a stock-independent brand/product-type navigation gap. No item was imported or published.
+- The worker's saved prompt contains old PR/head snapshots, so live `main` and this current handover must continue to take precedence. The next scheduled run is the only audio editing worker; this monitor must not duplicate its SKU/image work.
+
+### 3. Scheduled audio extractor — successful run, no candidate progress
+
+- GitHub Actions run [45329792710](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45329792710), workflow `Audio Official Model Candidate Extractor`, run #61, event `schedule`, completed SUCCESS on input SHA `3774901d7140144e515f5395dc442dc90abc8b61`.
+- Job `138227971033` passed the Audison audit-schema test (3 tests ran) and printed `AUDISON_EXACT_MODEL_IMAGE_SELECTION_PASS`.
+- Extraction output: `processed=0`, `remaining=0`, `total_candidates=36`, `review_only=true`. The 36 manifest rows are all `CANDIDATE_ONLY_NOT_APPROVED`; latest item extraction timestamp remains 2026-11-16 08:08:26 UTC.
+- The workflow nevertheless pushed manifest timestamp-only commit `95ac75b3fd55ef7fe5daf7b8cef70086f664d638`; it did not add or approve any candidate. This is a scheduled GitHub workflow with `contents: write` and an automatic push. Record it as a repository-write/coordination risk, not as product-enrichment progress. No workflow setting was changed.
+
+### 4. Background controller and retained-artifact pressure
+
+- Live `.github/workflows/background-task-controller.yml` currently schedules `17 * * * *` (hourly at minute 17), **not** the previously recorded `*/15` cadence.
+- Latest scheduled controller run [45311273240](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45311273240), run #5111, event `schedule`, completed SUCCESS on input SHA `3774901d7140144e515f5395dc442dc90abc8b61` at 2026-11-24 04:17 SAST. Its job reported `overall_status=attention_required`, 17 workflow runs checked, 3 failed/non-successful completed runs, 0 running runs, 0 retry requests and 0 monitoring errors.
+- Despite the hourly cron, no later scheduled controller success was present by 08:45 SAST (a 4 h 28 min gap after run #5111). Event-driven `workflow_run` successes are not scheduled successes; do not claim controller reliability.
+- The same run inventoried **400 retained Actions artifacts totaling 12,253,648,582 bytes (11,685.99 MiB)**. The largest entries are repeated owner APK artifacts around 300 MB each. Inventory was read-only; no artifact was deleted. Do not perform cleanup without explicit owner approval.
+
+### 5. QA, preview and release gates
+
+- Latest Cloudflare Pages Public Package QA observed: [45129475488](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129475488), SUCCESS on code SHA `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`. Current main is 9 commits ahead of that SHA; comparison shows only `HANDOVER_CURRENT.md`, `automation/task-queue.json` and the review-only Audison manifest changed. No application-code file changed after that passing code checkpoint, but no exact-current-SHA package QA run was found.
+- Latest Owner Preview Mobile and Desktop Browser QA observed: [45129215273](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129215273), SUCCESS on old SHA `44c492352d6e8919753305e4c2f74b05f0bb9c15`; it is not current-main hosted-preview acceptance.
+- Latest Storefront Read-Only Browser Smoke QA observed: [45239525007](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45239525007), FAILURE on old SHA `ef331696f779906818542f7217e2fb0b0fc829ed`; the prior handover records the PAGE_CONTENT assertion failing with bodyTextLength 0.
+- Latest Live Release Gates: [45292148422](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45292148422), FAILURE on `3774901d7140144e515f5395dc442dc90abc8b61`. Live HTTP/routes/version-marker checks passed, but Playwright 1.55 could not install Chromium because the runner resolved to unsupported `ubuntu26.04-x64`; desktop/mobile and checkout browser tests were skipped. Payment readiness also failed because no PayFast/PayJustNow integration is configured (Direct EFT only).
+- No hosted preview tied to current SHA `95ac75b3fd55ef7fe5daf7b8cef70086f664d638` and no current-SHA desktop/mobile owner acceptance are verified. Preview is NOT READY. Production remains HOLD.
+
+### 6. Next action and restrictions
+
+1. Let the enabled audio automation run its next scheduled review-only cycle; do not duplicate OneNav/product enrichment or alter customer-facing product data.
+2. Reconcile the task queue's stale canonical head/paused status against the enabled sole audio worker, without creating a second worker.
+3. Investigate why the hourly Background Task Controller schedule is not producing hourly scheduled runs; preserve read-only artifact inventory and request owner approval before any destructive retention cleanup.
+4. Resolve the Playwright runner/Chromium compatibility issue, then require exact-current-SHA package tests and same-SHA permitted hosted desktop/mobile checks before any preview-readiness claim.
+5. Keep all customer-facing product arrays empty, preserve internal review/source evidence, and maintain production HOLD. No branch, PR, product, live database, deployment, Axxess, DNS, payment or artifact-retention changes were made by this monitor run.
