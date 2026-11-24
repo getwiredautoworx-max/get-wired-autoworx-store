@@ -282,3 +282,45 @@ jobs:
             }
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
+
+  isolated-preview-verification:
+    name: Verify immutable Cloudflare empty-store preview
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check latest immutable Pages deployment and branch alias without redeploying
+        shell: bash
+        env:
+          EXPECTED_SOURCE_SHA: c8ca5482bec9f69089cc0ba4411ffa607b7dad55
+        run: |
+          set -euo pipefail
+          immutable="https://5c2a6ed2.get-wired-autoworx-store.pages.dev"
+          alias="https://approved-storefront-preview.get-wired-autoworx-store.pages.dev"
+          for base in "$immutable" "$alias"; do
+            echo "CHECK_HOSTED_URL=$base/owner-preview.html"
+            if curl -fsS -L --max-time 25 "$base/qa-build-result.json?check=$EXPECTED_SOURCE_SHA" -o /tmp/gw-marker; then
+              echo "HOSTED_MARKER_$(echo "$base" | sed -E 's#https?://##')=$(cat /tmp/gw-marker)"
+              if python3 -c 'import json,os; d=json.load(open("/tmp/gw-marker")); assert d.get("commit")==os.environ["EXPECTED_SOURCE_SHA"] and d.get("result")=="PASS" and d.get("preview_only") is True'; then
+                echo "HOSTED_EXACT_SHA_PASS base=$base"
+                if curl -fsS -L --max-time 20 "$base/owner-preview.html" >/tmp/gw-preview-html; then
+                  grep -qi 'Get Wired AutoWorx' /tmp/gw-preview-html
+                else
+                  echo "HOSTED_PREVIEW_ROUTE_FAILURE base=$base"
+                  test "$base" != "$immutable" || exit 1
+                  continue
+                fi
+                for item in audio-catalogue-primary-preview.json audio-catalogue-secondary-preview.json auto-electrical-owner-preview.json product-image-treatment-sample.json; do
+                  curl -fsS -L --max-time 20 "$base/assets/$item?check=$EXPECTED_SOURCE_SHA" -o /tmp/gw-catalogue
+                  python3 -c 'import json; d=json.load(open("/tmp/gw-catalogue")); assert any(k in d for k in ("products","records")); assert all(len(d.get(k,[]))==0 for k in ("products","records"))'
+                done
+                echo "HOSTED_EMPTY_STORE_PASS base=$base public_products=0"
+              else
+                echo "HOSTED_ALIAS_OR_SHA_MISMATCH base=$base"
+                test "$base" != "$immutable" || exit 1
+              fi
+            else
+              echo "HOSTED_REQUEST_FAILED base=$base"
+              test "$base" != "$immutable" || exit 1
+            fi
+          done
+
