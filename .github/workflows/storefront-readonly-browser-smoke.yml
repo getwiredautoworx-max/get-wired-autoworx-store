@@ -2,6 +2,9 @@ name: Storefront Read-Only Browser Smoke QA
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/storefront-readonly-browser-smoke.yml']
   schedule:
     - cron: "30 6 * * *"
 
@@ -67,11 +70,15 @@ jobs:
                   { status: response?.status() ?? null, finalUrl: desktop.url() });
                 add('HTTPS_CANONICAL', desktop.url().startsWith('https://') ? 'PASS' : 'FAIL', { finalUrl: desktop.url() });
                 const title = await desktop.title().catch(() => '');
-                const bodyText = await desktop.locator('body').innerText({ timeout: 10000 }).catch(() => '');
+                const shell = desktop.locator('iframe#store');
+                const content = await shell.count() ? desktop.frameLocator('iframe#store') : desktop;
+                await content.locator('body').waitFor({state:'visible',timeout:30000});
+                await content.locator('body').filter({hasText:/Auto Electrical/i}).waitFor({state:'visible',timeout:30000});
+                const bodyText = await content.locator('body').innerText({ timeout: 10000 });
                 add('PAGE_CONTENT', title.trim() && bodyText.trim().length > 30 ? 'PASS' : 'FAIL',
                   { title, bodyTextLength: bodyText.trim().length });
                 await desktop.screenshot({ path: path.join(out, 'desktop-home.png'), fullPage: true }).catch(() => {});
-                const internalLinks = await desktop.locator('a[href]').evaluateAll((els, origin) =>
+                const internalLinks = await content.locator('a[href]').evaluateAll((els, origin) =>
                   els.map(a => a.href).filter(h => h.startsWith(origin)).slice(0, 20), new URL(base).origin);
                 add('INTERNAL_LINKS_PRESENT', internalLinks.length ? 'PASS' : 'BLOCKED', { sampledCount: internalLinks.length });
                 report.sampledInternalLinks = internalLinks;
@@ -83,7 +90,10 @@ jobs:
                 const mobile = await browser.newPage({ ...devices['iPhone 13'] });
                 mobile.on('pageerror', e => report.pageErrors.push('mobile: ' + String(e)));
                 const mr = await mobile.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
-                const dimensions = await mobile.evaluate(() => ({
+                const mobileShell = mobile.locator('iframe#store');
+                const mobileContent = await mobileShell.count() ? mobile.frameLocator('iframe#store') : mobile;
+                await mobileContent.locator('body').filter({hasText:/Auto Electrical/i}).waitFor({state:'visible',timeout:30000});
+                const dimensions = await mobileContent.locator('body').evaluate(() => ({
                   viewportWidth: document.documentElement.clientWidth,
                   documentWidth: document.documentElement.scrollWidth,
                   bodyWidth: document.body?.scrollWidth || 0,
