@@ -1,0 +1,27 @@
+name: Approved workbook inspection
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/approved-workbook-inspection.yml'
+      - 'suppliers/Planetworld/get-wired-autoworx-kicker-dec-feb-promo-final.xlsx'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - run: |
+          python - <<'PY'
+          import openpyxl
+          w=openpyxl.load_workbook('suppliers/Planetworld/get-wired-autoworx-kicker-dec-feb-promo-final.xlsx',data_only=True,read_only=True)
+          for s in w:
+              print(s.title, s.max_row, s.max_column)
+              for row in s.iter_rows(max_row=4,values_only=True):
+                  print(repr(row))
+          PY
