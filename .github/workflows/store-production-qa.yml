@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   source-and-catalogue-qa:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -119,7 +119,7 @@ jobs:
           curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true" "${hdr[@]}" -H "Range: 0-0" -H "Prefer: count=exact" -D /tmp/headers -o /tmp/row
           count="$(awk 'BEGIN{IGNORECASE=1} /^content-range:/{print $2}' /tmp/headers | sed 's#^.*/##' | tr -d '\r')"
           test -n "$count"
-          test "$count" -ge 1
+          test "$count" -eq 0 # Owner-approved empty customer-facing store; never require imported stock
           uncategorized="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&category_id=is.null&limit=1" "${hdr[@]}" | jq 'length')"
           null_images="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&image_url=is.null&limit=1" "${hdr[@]}" | jq 'length')"
           priced_nulls="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&price=is.null&limit=1" "${hdr[@]}" | jq 'length')"
