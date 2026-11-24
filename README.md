@@ -6,7 +6,7 @@ Automotive parts and accessories — Sound & Security • Auto Electrical • Sp
 
 ## Project status
 
-The live store is hosted through Axxess. Catalogue recovery, category integration and release validation remain in progress. Production remains on HOLD. Staged catalogue assets and preview routes are not approved for live publication.
+Cloudflare Pages is the current storefront build and preview platform. The live custom-domain hosting and deployed revision must be verified separately before release. Catalogue recovery, category integration and release validation remain in progress. Production remains on HOLD. Staged catalogue assets and preview routes are not approved for live publication.
 
 ## Handover
 
