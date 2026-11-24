@@ -1,3 +1,14 @@
+## ACCEPTANCE VERIFICATION UPDATE — 2026-11-24 (LATEST)
+
+- **SUCCESS: hosted & local full browser QA** run [45420237004](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45420237004), both phases completed **success**, on test-code commit `56eb212a9f57a27149d47e8e3ca5e622c6389679`. Eight pass logs: 320px, 390px, 430px, 1280px *locally and against* immutable Cloudflare URL `https://5c2a6ed2.get-wired-autoworx-store.pages.dev`. For each: 3 main categories; audio department→brand→product type→zero product cards; search; empty cart; checkout blocked in owner preview; no write requests. Corrected Cloudflare extensionless navigation and frame URL race. This is a complete **empty storefront review-shell** functional QA pass, **not** launch approval.
+- **SUCCESS: Cloudflare production auto-deploy safety gate** workflow [45419253514](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45419253514) proved `production_deployments_enabled=false` post-API-PATCH, leaving production branch main and preview setting all unchanged. Do not re-enable without explicit owner approval. Automatic GitHub-to-production was found enabled previously and caused unexpected production-classified deployments.
+- **SUCCESS: zero customer-facing products** in package and public Supabase; prior exact-build HTTP tests prove four published catalogue assets empty. No products, stock, supplier source catalogs, or database mutations were introduced by current acceptance QA.
+- **WORKING REVIEW URL:** `https://5c2a6ed2.get-wired-autoworx-store.pages.dev/owner-preview.html`; verified immutable build SHA `c8ca5482bec9f69089cc0ba4411ffa607b7dad55`. Cloudflare API classified this immutable artifact `production`, branch `main`, so **do not claim it is isolated staging**. Friendly alias `https://approved-storefront-preview.get-wired-autoworx-store.pages.dev` is stale at SHA `6e5a99875076f8ee6cab54f20625cd59e2e3e1de`.
+- **REMAINING RELEASE GATES:** reliable non-production alias/preview with Cloudflare API-confirmed `environment=preview`, exact-current-main deploy; production/live source alignment; PayFast/PayJustNow, payment safety, and live release approval. Do not deploy production just to clear an irrelevant test. Manual source/production divergence remains intentionally blocked.
+- One coordinated canonical-main project. Existing `approved-storefront-preview-trigger` branch is deployment-only, not a second storefront workstream. Continue updates in current handover; no unnecessary PRs/branches.
+
+---
+
 ## EMPTY STOREFRONT ACCEPTANCE & CLOUDFLARE RELEASE-CONTROL CHECKPOINT — 2026-11-24
 
 Owner instruction: continue corrections and acceptance until a functional empty storefront is available. Canonical main, no stock restoration or Supabase writes.
