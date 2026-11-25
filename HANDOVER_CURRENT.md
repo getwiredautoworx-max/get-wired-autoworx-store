@@ -1,3 +1,8 @@
+## Planetworld reconciliation — 579 of 693 accepted
+- Isolated Cloudflare preview run 45665592897 passed hosted parity, desktop/mobile and workbook checks at https://497ef5b8.get-wired-autoworx-store.pages.dev/owner-preview.html. 329 manufacturer verified and 250 owner-accepted. 114 technical records remain: 27 recovered source candidates, 39 supplier-title only and 48 pending.
+- Added 16 Kicker records: seven KMA, KXMA, PXA and Warhorse amplifiers with load-specific RMS, plus nine marine speakers and grilles. Remaining by brand: Kicker 46, Audison 34, Alpine 20, DrArtex 11, Amplified 2, JVC 1.
+- OneNav official OX-4991DVR bracket-mount page displays the OX-4990DVR universal-mount gallery image, confirmed by both the image URL and alt text. Obtain a photo showing the exact OX-4991DVR mounting hardware before accepting it. Workbook image QA preserved 122 repairs. Fifteen individual photo exceptions and 11 shared-image groups remain. No new batch until closure.
+
 ## Planetworld technical reconciliation — 563 of 693 accepted
 - Preview run 45664236310 verified the isolated catalogue at https://8ea041df.get-wired-autoworx-store.pages.dev/owner-preview.html. All 693 records retained. 313 manufacturer verified and 250 owner-accepted. 130 technical records remain: 38 source candidates, 41 supplier-title only, 51 pending. Hosted parity, desktop/mobile review and workbook preservation passed.
 - Added six JVC, two Kenwood and one Pioneer records. Kenwood and Pioneer technical coverage is complete. JVC E3A-0323-00 remains open. Exact parts specialists corroborate the JVC/Kenwood DC and speaker wiring harness identity, but no manufacturer part listing was recovered. Do not assert universal model-year fitment.
