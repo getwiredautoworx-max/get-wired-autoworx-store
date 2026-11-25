@@ -27,6 +27,13 @@ for i,row in enumerate(rows,2):
     assert str(d["Vendor / Brand"]).lower()=="kicker", f"Unexpected brand row {i}"
     seen.add(sku)
     marine="marine" in category.lower()
+    original_category=category
+    # Classify by product title, not amplifier compatibility in descriptions.
+    if re.search(r"\b(?:wiring|wire|installation|install|power cable|amp kit|amplifier kit)\b", title, re.I) and re.search(r"kit|cable|wire|wiring", title, re.I) or re.search(r"wiring|wire kits|installation kits", category, re.I):
+        category="Wiring Kits"
+    elif re.search(r"amplifier", category, re.I):
+        category="Amplifiers"
+    print(f"CATEGORY {sku} {original_category} -> {category}: {title}")
     records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
 assert records
 (root/"assets/audio-catalogue-primary-preview.json").write_text(json.dumps({"records":records},ensure_ascii=False))
@@ -38,5 +45,6 @@ for name in ["preview-audio.html","preview-audio-brand.html","preview-audio-prod
     s=s.replace('new Set(["official_manufacturer_image_verified_review_only"', 'new Set(["workbook_image_candidate_review_only","official_manufacturer_image_verified_review_only"')
     assert "workbook_image_candidate_review_only" in s, name
     s=s.replace("No products are currently listed. Browse product types to see the empty store layout.","Browse the imported Kicker catalogue.")
+    s=s.replace("const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl);","const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl&&!p.imageUrl.includes('placeholder'));")
     p.write_text(s.replace(old,"price.textContent=Number.isFinite(p.indicativePrice)?new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(p.indicativePrice)+' incl. VAT':'Price On Request';"))
 print("KICKER_PREVIEW_RECORDS",len(records))
