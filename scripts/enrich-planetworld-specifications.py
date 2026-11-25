@@ -495,6 +495,28 @@ for sku, slug, size, ohms, rms, peak in (
         "Peak power": f"{peak} W",
     })
 
+
+SECONDARY_SPECS={
+    ("Kicker","46CXA18001T"): ("https://www.sonicelectronix.com/item-173213-Kicker-CXA1800.1-46CXA18001T.html", {"Model":"46CXA18001T","Configuration":"CXA1800.1 mono Class-D subwoofer amplifier"}),
+    ("Kicker","48CVTDF122"): ("https://www.crutchfield.ca/p_20648CF122/Kicker-48CVTDF122.html", {"Model":"48CVTDF122","Configuration":"Sealed down-firing enclosure with a 12-inch shallow-mount CompVT subwoofer","Enclosure impedance":"2 Ω"}),
+    ("Kicker","51KEYCHAIN"): ("https://nxtleveltech.co.za/product/kicker-performance-audio-silicone-3d-keychain", {"Model":"51KEYCHAIN","Configuration":"Kicker Performance Audio 3D silicone keychain"}),
+    ("Kicker","K11HS8"): ("https://sbrprosound.co.za/product/kicker-11hs8/", {"Model":"K11HS8","Configuration":"Hideaway compact 8-inch powered subwoofer enclosure","Manufacturer model":"11HS8","Amplifier power":"150 W RMS"}),
+    ("Kicker","KICKBAKCOMBO"): ("https://www.sonsound.co.za/shop-2/car-audio/speakers-car-audio/kicker-combo-2-bakkie-with-10inch-hideway-powered-subwoofer/", {"Model":"KICKBAKCOMBO","Configuration":"Bakkie audio bundle","Contents":"Kicker CS component and coaxial speaker sets, CXA360.4 amplifier, CK8 wiring kit, Hideaway powered subwoofer and four DrArtex sheets"}),
+    ("Alpine","I905-LC70"): ("https://www.rivoniacarsound.co.za/product/alpine-receiver-for-land-cruiser-70-series-i905-lc70/", {"Model":"I905-LC70","Configuration":"Toyota Land Cruiser 70 Series infotainment receiver kit","Screen":"9-inch touchscreen","Connectivity":"Wireless Apple CarPlay","Fitment":"Confirm dashboard and factory connectors before purchase"}),
+    ("Alpine","I905-LC70-24"): ("https://progressivecarsound.com.au/collections/speakers-1/products/i905-lc70-24", {"Model":"I905-LC70-24","Configuration":"9-inch infotainment receiver kit for 2024-onward Toyota Land Cruiser 70 Series","Connectivity":"Wireless Apple CarPlay and USB Android Auto","Fitment":"Confirm dashboard and factory connectors before purchase"}),
+    ("Alpine","LC70-269P"): ("https://sbrprosound.co.za/product/alpine-lc70-269p/", {"Model":"LC70-269P","Configuration":"Front and rear 6 × 9-inch door panel kit for Toyota Land Cruiser 70 Series"}),
+    ("Alpine","LC70-S269SC"): ("https://nxtleveltech.co.za/product/lc70-s269sc-s-series-lc70-single-door-pods", {"Model":"LC70-S269SC","Configuration":"S-Series single-door speaker pods for Toyota Land Cruiser 70 Series"}),
+    ("Alpine","S2-S69C-LC70"): ("https://www.bobshop.co.za/s2-s69c-s2-s10tw-for-lc70-s269p-kit-s2-s69c-lc70/p/691568873", {"Model":"S2-S69C-LC70","Configuration":"Alpine S2-S69C component speakers and S2-S10TW tweeters for the LC70-S269P kit"}),
+    ("DrArtex","D20"): ("https://nxtleveltech.co.za/product/dr-artex-roller-d20", {"Model":"D20","Configuration":"Hand roller for bonding automotive sound-deadening material"}),
+    ("DrArtex","D20L"): ("https://nxtleveltech.co.za/product/dr-artex-roller-d20l", {"Model":"D20L","Configuration":"Hand roller for bonding automotive sound-deadening material"}),
+    ("DrArtex","D30"): ("https://www.caraudiowarehouse.co.za/brand/drartex/", {"Model":"D30","Configuration":"Hand roller for bonding automotive sound-deadening material"}),
+    ("DrArtex","DBKB.2024"): ("https://nxtleveltech.co.za/product/dr-artex-carpet-black-01sh-150x1000", {"Model":"DBKB.2024","Configuration":"Single black carpet sheet","Sheet size as listed":"150 × 1000"}),
+    ("DrArtex","DEV25.2025"): ("https://nxtleveltech.co.za/brands/drartex", {"Model":"DEV25.2025","Configuration":"2025 Electra EV Silver vibration damping material","Thickness":"2.5 mm"}),
+    ("DrArtex","DEV50.2025"): ("https://nxtleveltech.co.za/brands/drartex", {"Model":"DEV50.2025","Configuration":"2025 Electra EV Blue vibration damping material","Thickness":"5.0 mm"}),
+    ("DrArtex","DVB70.2025"): ("https://nxtleveltech.co.za/product/dvb702025-dra-electra-ev-70-8sh-48x375cm-1839x148in", {"Model":"DVB70.2025","Configuration":"2025 Electra EV 7.0 sound-deadening sheets","Pack":"8 sheets, 48 × 37.5 cm each"}),
+    ("JVC","E3A-0323-00"): ("https://www.caraudiowarehouse.co.za/product/new-jvc-to-iso-cable-2017/", {"Model":"E3A-0323-00","Configuration":"Replacement DC power and wiring harness assembly","Fitment":"Match the head-unit model and original connector before fitting"}),
+}
+
 def main():
     assert json.loads((ROOT/"qa-build-result.json").read_text())["preview_only"] is True
     d=json.loads(DATA.read_text()); records=d["records"]; assert len(records)==693
@@ -504,7 +526,7 @@ def main():
     external=json.loads(evidence_file.read_text()) if evidence_file.exists() else {}
     for p in records:
         key=(p["brand"],p["modelNumber"])
-        source,facts=SPECS.get(key,("",{}))
+        source,facts=SPECS.get(key, SECONDARY_SPECS.get(key, ("", {})))
         if p["brand"]=="Hertz" and p["modelNumber"] in DISPLAY_CORRECTIONS:
             p["customerDisplayTitle"],p["customerDisplayDescription"]=DISPLAY_CORRECTIONS[p["modelNumber"]]
         supplied=title_facts(p.get("customerDisplayTitle",p["title"]))
@@ -537,25 +559,26 @@ def main():
         combined={"Supplier model / SKU":p["modelNumber"],"Product type":p.get("component","Car audio"),**combined}
         p["technicalSpecifications"]=[{"label":k,"value":v} for k,v in combined.items()]
         p["specificationSource"]=source or ("Supplier workbook product title" if supplied else "")
-        p["specificationStatus"]="exact_model_source_pending_review" if external_candidate else ("manufacturer_verified" if facts else ("supplier_description_accepted" if source_accepted else "supplier_title_only" if supplied else "pending"))
+        p["specificationStatus"]="exact_model_source_pending_review" if external_candidate else (("source_corroborated" if key in SECONDARY_SPECS else "manufacturer_verified") if facts else ("supplier_description_accepted" if source_accepted else "supplier_title_only" if supplied else "pending"))
         coverage[p["specificationStatus"]]+=1
     for a,b in zip(before,records):
         assert all(b[k]==v for k,v in a.items()),a["modelNumber"]
     actual_keys={(p["brand"],p["modelNumber"]) for p in records}
-    unmatched=sorted(set(SPECS)-actual_keys)
+    unmatched=sorted((set(SPECS) | set(SECONDARY_SPECS)) - actual_keys)
     if unmatched:
         print("UNMATCHED_EXPLICIT_SPEC_KEYS",json.dumps(unmatched),flush=True)
         for brand,sku in unmatched:
             print("EXACT_SKU_DIAGNOSTIC",json.dumps([{"brand":p["brand"],"model":p["modelNumber"],"gwa":p.get("getWiredSku"),"title":p["title"]} for p in records if p["modelNumber"]==sku or str(p.get("getWiredSku","")).endswith(sku)]),flush=True)
     assert not unmatched,unmatched
     assert coverage["manufacturer_verified"]==len(SPECS),coverage
+    assert coverage["source_corroborated"] == len(SECONDARY_SPECS), coverage
     assert sum(coverage.values())==693
     DATA.write_text(json.dumps(d,ensure_ascii=False))
     p=ROOT/"preview-audio-products.html"
     s=p.read_text()
     anchor="body.append(title,meta,desc,price);"
     assert anchor in s
-    s=s.replace(anchor,'''if(p.customerDisplayTitle)title.textContent=p.customerDisplayTitle;if(p.customerDisplayDescription)desc.textContent=p.customerDisplayDescription;body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='exact_model_source_pending_review'?'Exact-model source — technical review pending':p.specificationStatus==='supplier_description_accepted'?'Supplier product and fitment details':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(['manufacturer_verified','exact_model_source_pending_review'].includes(p.specificationStatus)&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Product specification source';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
+    s=s.replace(anchor,'''if(p.customerDisplayTitle)title.textContent=p.customerDisplayTitle;if(p.customerDisplayDescription)desc.textContent=p.customerDisplayDescription;body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='source_corroborated'?'Product details cross-checked against a model-specific source':p.specificationStatus==='exact_model_source_pending_review'?'Exact-model source — technical review pending':p.specificationStatus==='supplier_description_accepted'?'Supplier product and fitment details':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(['manufacturer_verified','source_corroborated','exact_model_source_pending_review'].includes(p.specificationStatus)&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Product specification source';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
     s=s.replace("</style>",".technicalSpecs{margin:12px 0;padding:12px;border:1px solid #d4e0e9;border-radius:9px;background:#f7fafc}.technicalSpecs h4{margin:0 0 8px;font-size:14px}.technicalSpecs dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 12px;margin:0 0 8px;font-size:13px}.technicalSpecs dt{font-weight:700}.technicalSpecs dd{margin:0;overflow-wrap:anywhere}.technicalSpecs small{color:#56748c}.technicalSpecs a{font-size:12px}</style>",1)
     p.write_text(s)
     print("SPECIFICATION_COVERAGE",json.dumps(dict(coverage)),flush=True)
