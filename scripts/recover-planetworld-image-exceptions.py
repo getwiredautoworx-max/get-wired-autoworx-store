@@ -9,8 +9,8 @@ P=Path("/tmp/planetworld-batch-image-evidence.json")
 PAGES={
 "GWA-ALP-R2-W10D2":("https://www.alpine.co.uk/p/Products/SingleView/R2-W10D2","R2-W10D2"),
 "GWA-AUD-69030021":("https://audison.com/product/av-6-5-p-ii/","AV 6.5 P II"),
-"GWA-FOC-IW-IMP22-IMPULSE":("https://www.focal-america.com/product/iw-imp-2-2/","IW IMP 2.2"),
-"GWA-HRZ-78242015":("https://ca.hertz-audio.com/product/cp-5-1k/","CP 5.1K"),
+"GWA-FOC-IW-IMP22-IMPULSE":("https://www.focal.com/products/iw-imp-22","IW IMP 2.2"),
+"GWA-HRZ-78242015":("https://hertz-audio.com/product/cp-5-1k/","CP 5.1K"),
 "GWA-ONE-3E2040F":("https://www.rivoniacarsound.co.za/product/third-eye-4-sensors-with-buzzer-rubber-rf/","3E2040F"),
 "GWA-ONE-CAM007-AHD":("https://www.caraudiowarehouse.co.za/product/onex-ahd-mountable-reverse-camera-front-and-rear/","CAM007-AHD"),
 "GWA-ONE-ON017-2A11":("https://sbrprosound.co.za/product/onenav-on017-2a11/","ON017-2A11"),
@@ -20,7 +20,19 @@ PAGES={
 "GWA-ONE-OX-CPAA3":("https://www.caraudiowarehouse.co.za/product/onex-3-in-1-wireless-carplay-and-android-auto-adaptor/","OX-CPAA3"),
 "GWA-ONE-OX-LCAM001":("https://www.caraudiowarehouse.co.za/product/onex-license-plate-camera/","OX-LCAM001"),
 }
+# Exact manufacturer gallery asset visually checked; decode before approval.
+INSPECTED = {
+    "GWA-AUD-69030021": ("https://static.audison.com/media/2025/01/AUDISON_AV-65-P-II_EMO-CONO_2024_10_16-copia.jpg","https://audison.com/product/av-6-5-p-ii/"),
+}
 def retry(row):
+    if row["gwa"] in INSPECTED and row["status"] not in ("ORIGINAL_AVAILABLE","REPLACEMENT_APPROVED"):
+        try:
+            url,source=INSPECTED[row["gwa"]]
+            url,digest=batch.verified_image(url)
+            return dict(row,status="REPLACEMENT_APPROVED",resolved=url,digest=digest,source=source)
+        except Exception as exc:
+            print("INSPECTED_IMAGE_DECODE_ERROR",row["gwa"],type(exc).__name__)
+
     if row["gwa"] not in PAGES or row["status"] in ("ORIGINAL_AVAILABLE","REPLACEMENT_APPROVED"): return row
     page,model=PAGES[row["gwa"]]
     try:
@@ -36,7 +48,7 @@ def retry(row):
             if not src: continue
             if batch.norm(model) in batch.norm(alt) and not re.search(r"diagram|dimension|chart|motor structure|graph|logo|next.gen.sound.performance",alt,re.I):
                 add(src,0 if re.search(r"front|back|side",alt,re.I) else 1)
-        if row["brand"]!="Alpine":
+        if row["brand"] not in ("Alpine","Focal Car Audio","Hertz"):
             for img in soup.select(".woocommerce-product-gallery img,.product-gallery img,.product-image img"):
                 add(img.get("data-large_image") or img.get("data-src") or img.get("src"),2)
             for raw in soup.find_all("script",type="application/ld+json"):
