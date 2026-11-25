@@ -1,0 +1,42 @@
+name: Planetworld reviewed photo reconciliation
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-reviewed-photos.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  reconcile:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-targeted-image-evidence
+          path: /tmp
+          run-id: 45599069675
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-photo-review-sheets
+          path: /tmp/planetworld-photo-review
+          run-id: 45615988991
+          github-token: ${{ github.token }}
+      - run: python scripts/approve-planetworld-reviewed-photos.py
+      - run: pip install openpyxl==3.1.5
+      - run: python scripts/verify-planetworld-workbook-repairs.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-reviewed-image-evidence
+          path: /tmp/planetworld-batch-image-evidence.json
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-workbook-repair-report
+          path: /tmp/planetworld-workbook-repair-report.json
+          retention-days: 7
