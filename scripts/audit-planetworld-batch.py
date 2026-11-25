@@ -14,7 +14,11 @@ SOURCES={
 "69020021":("https://audison.com/product/av-3-0-ii/","AV 3.0 II"),
 "78242015":("https://hertz-audio.com/product/cp-5-1k/","CP 5.1K"),
 "RM-RK258":("https://www.us.jvc.com/car/multimedia/rm_rk258/","RM-RK258"),
-"DMH-AP6650BT":("https://www.pioneer.com.au/shop/car/multimedia-receivers/wireless-receivers/dmh-ap6650bt/","DMH-AP6650BT"),
+"DMH-AP6650BT":("https://pioneercarentertainment.com/products/dmh-ap6650bt/","DMH-AP6650BT"),
+"69030021":("https://audison.com/product/av-6-5-p-ii/","AV 6.5 P II"),
+"78000069":("https://hertz-audio.com/product/ck-165/","CK 165"),
+"78032127":("https://hertz-audio.com/product/c-165-l/","C 165 L"),
+
 }
 def norm(s): return re.sub(r"[^a-z0-9]","",str(s).lower())
 def slug(s): return re.sub(r"[^a-z0-9 -]","",s.lower()).replace(" ","-").strip("-")
@@ -32,7 +36,7 @@ def verified_image(url):
 def page_candidates(page,model,strict_title=None):
     raw,actual=get(page)
     soup=BeautifulSoup(raw,"html.parser")
-    heading=" ".join(x.get_text(" ",strip=True) for x in soup.find_all("h1"))
+    heading=" ".join(x.get_text(" ",strip=True) for x in soup.find_all(["h1","h2","title"]))
     ogtitle=soup.find("meta",property="og:title")
     page_title=heading+" "+(ogtitle.get("content","") if ogtitle else "")
     if strict_title:
@@ -44,7 +48,7 @@ def page_candidates(page,model,strict_title=None):
     candidates=[]
     for img in soup.find_all("img"):
         alt=img.get("alt","")
-        if norm(model) in norm(alt) and len(norm(model))>=5:
+        if norm(model) in norm(alt) and len(norm(model))>=5 and not re.search(r"diagram|dimension|chart|motor structure|graph|logo",alt,re.I):
             candidates.append(img.get("data-src") or img.get("src"))
     for meta in soup.find_all("meta",property="og:image"):
         candidates.append(meta.get("content"))
@@ -62,6 +66,17 @@ def find_image(row):
         p,model=SOURCES[sku]
         try: candidates+=page_candidates(p,model)
         except Exception: pass
+    # Try SKU-specific supplier asset paths; these are candidates, not automatic approvals.
+    folders={"Alpine":"alpine","Amplified":"amplified","Audison":"audison","DrArtex":"dr-artex","Focal Car Audio":"focal-car-audio","Harness and Trims":"harness-and-trims","Hertz":"hertz","JVC Car Audio":"jvc","Kenwood Car Audio":"kenwood","One":"one","Pioneer Car Audio":"pioneer"}
+    folder=folders[brand]
+    for tail in ("assets/primary.webp","primary.webp"):
+        u="https://assets.planetworld.co.za/"+folder+"/products/"+quote(sku,safe="")+"/"+tail+"?width=1200&format=webp"
+        candidates.append((u,"Supplier SKU asset path; exact image identity requires review"))
+    # Known exact product pages, in addition to manufacturer sources.
+    extra={"69010021":"https://nxtleveltech.co.za/product/audison-av-11-ii-set-tweeter-28mm-grilles","RM-RK258":"https://sk.jvc.com/mobile-entertainment/accessories/RM-RK258/","ON009-F1":"https://nxtleveltech.co.za/product/onenav-frame-for-toyota-280mm-9-inch","ON014-FK3":"https://nxtleveltech.co.za/product/onenav-fitment-kit-for-toyota-prado-150-series-2013-2017-101-inch","ON013-F1":"https://nxtleveltech.co.za/product/onenav-frame-for-hiluxfortuner-2011-2015-9-inch"}
+    if sku in extra:
+        try: candidates+=page_candidates(extra[sku],sku,None if sku=="RM-RK258" else title)
+        except Exception: pass
     if brand=="One":
         # Public WooCommerce Store API; exact SKU and exact normalized name required.
         for host in ("https://onenav.co.za","https://www.rivoniacarsound.co.za","https://nxtleveltech.co.za"):
@@ -75,8 +90,9 @@ def find_image(row):
                         if img.get("src"): candidates.append((img["src"],p.get("permalink",host)))
             except Exception: pass
         try:
-            path=re.sub(r"-+","-",slug(title))
+            path=re.sub(r"-+","-",slug(title.replace(".","").replace("/","")))
             candidates+=page_candidates("https://nxtleveltech.co.za/product/"+path,sku,title)
+            candidates+=page_candidates("https://nxtleveltech.co.za/product/"+path+"/",sku,title)
         except Exception: pass
     for url,source in dict.fromkeys(candidates):
         try:
