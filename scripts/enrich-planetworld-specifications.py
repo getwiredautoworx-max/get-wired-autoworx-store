@@ -176,6 +176,30 @@ def title_facts(title):
     if features: facts["Features mentioned in supplier title"]=", ".join(features)
     return facts
 
+# Customer-facing corrections; original source title/description and supplier group remain immutable.
+DISPLAY_CORRECTIONS={
+  "66772099": [
+    "Audison AFBMW BOOSTER 01 – BMW 688 T-harness",
+    "Plug-and-play harness for Audison Forza amplifier integration with compatible BMW RAM/688 systems. Check the compatibility conditions below before ordering."
+  ],
+  "66772206": [
+    "Audison AFBMW ReAMP 3 – BMW RAM adapter harness",
+    "Plug-and-play BMW RAM harness for compatible Audison AF bit amplifiers. See system compatibility below."
+  ],
+  "78071121": [
+    "Hertz Dieci DSG 250.3 – 250 mm (10-inch) subwoofer grille",
+    "Protective grille for the Hertz DS 25.3 subwoofer."
+  ],
+  "78071126": [
+    "Hertz Dieci DSG 300.3 – 300 mm (12-inch) subwoofer grille",
+    "Protective grille for the Hertz DS 30 subwoofer."
+  ],
+  "78071155": [
+    "Hertz Cento CG 250 – 250 mm (10-inch) subwoofer grille",
+    "Protective grille for Hertz CS 250 S2 and CS 250 S4 subwoofers."
+  ]
+}
+
 def main():
     assert json.loads((ROOT/"qa-build-result.json").read_text())["preview_only"] is True
     d=json.loads(DATA.read_text()); records=d["records"]; assert len(records)==693
@@ -186,7 +210,9 @@ def main():
     for p in records:
         key=(p["brand"],p["modelNumber"])
         source,facts=SPECS.get(key,("",{}))
-        supplied=title_facts(p["title"])
+        if p["brand"]=="Hertz" and p["modelNumber"] in DISPLAY_CORRECTIONS:
+            p["customerDisplayTitle"],p["customerDisplayDescription"]=DISPLAY_CORRECTIONS[p["modelNumber"]]
+        supplied=title_facts(p.get("customerDisplayTitle",p["title"]))
         if key in (("Hertz","78071121"),("Hertz","78071155")):
             supplied.pop("Size as listed",None)
         # Manufacturer facts supersede ambiguous promotional power values.
@@ -227,7 +253,7 @@ def main():
     s=p.read_text()
     anchor="body.append(title,meta,desc,price);"
     assert anchor in s
-    s=s.replace(anchor,'''body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='exact_model_source_pending_review'?'Exact-model source — technical review pending':p.specificationStatus==='supplier_description_accepted'?'Supplier product and fitment details':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(['manufacturer_verified','exact_model_source_pending_review'].includes(p.specificationStatus)&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Product specification source';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
+    s=s.replace(anchor,'''if(p.customerDisplayTitle)title.textContent=p.customerDisplayTitle;if(p.customerDisplayDescription)desc.textContent=p.customerDisplayDescription;body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='exact_model_source_pending_review'?'Exact-model source — technical review pending':p.specificationStatus==='supplier_description_accepted'?'Supplier product and fitment details':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(['manufacturer_verified','exact_model_source_pending_review'].includes(p.specificationStatus)&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Product specification source';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
     s=s.replace("</style>",".technicalSpecs{margin:12px 0;padding:12px;border:1px solid #d4e0e9;border-radius:9px;background:#f7fafc}.technicalSpecs h4{margin:0 0 8px;font-size:14px}.technicalSpecs dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 12px;margin:0 0 8px;font-size:13px}.technicalSpecs dt{font-weight:700}.technicalSpecs dd{margin:0;overflow-wrap:anywhere}.technicalSpecs small{color:#56748c}.technicalSpecs a{font-size:12px}</style>",1)
     p.write_text(s)
     print("SPECIFICATION_COVERAGE",json.dumps(dict(coverage)),flush=True)
