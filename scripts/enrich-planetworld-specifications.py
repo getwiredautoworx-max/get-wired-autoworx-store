@@ -153,7 +153,10 @@ def main():
         supplied=title_facts(p["title"])
         evidence=external.get(p.get("getWiredSku") or ("Kicker:"+p["modelNumber"]),{})
         if not facts and evidence.get("facts") and evidence.get("source"):
-            source=evidence["source"]; facts=evidence["facts"]
+            source=evidence["source"]; facts={}
+            # Retain the candidate source and pending status; do not display unreviewed table values.
+            # Retrieved fields can be packaging dimensions, wrong variants or unrelated product facts.
+            # Candidate raw data remains in the research artifact; only explicit title facts are displayed.
             # External technical tables require review before being represented as fully verified.
             external_candidate=True
         else:
