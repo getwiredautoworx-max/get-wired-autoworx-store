@@ -6,6 +6,13 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","48CWRT104"):("https://www.kicker.com/comp-rt-10-4-ohm-subwoofer",{"Model":"48CWRT104","Driver size":"10 inch","Dual voice coil impedance":"4 + 4 ohms","Recommended amplifier power (RMS)":"400 W","Peak power":"800 W"}),
+("Kicker","48CWRT122"):("https://www.kicker.com/comp-rt-12-2-ohm-subwoofer",{"Model":"48CWRT122","Driver size":"12 inch","Dual voice coil impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
+("Kicker","48CWRT124"):("https://www.kicker.com/comp-rt-12-4-ohm-subwoofer",{"Model":"48CWRT124","Driver size":"12 inch","Dual voice coil impedance":"4 + 4 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
+("Kicker","48CWRT672"):("https://www.kicker.com/comp-rt-6-75-2-ohm-subwoofer",{"Model":"48CWRT672","Driver size":"6.75 inch","Dual voice coil impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"150 W","Peak power":"300 W"}),
+("Kicker","46KISLOC2"):("https://www.kicker.com/KISLOC2",{"Model":"46KISLOC2","Maximum input signal":"55 W (16 V)","Maximum RCA output":"8 V","DC-offset remote output":"12 V, 100 mA","Frequency response":"20–20,000 Hz"}),
+("Kicker","46KMC2"):("https://www.kicker.com/46KMC2",{"Model":"46KMC2","Audio sources":"Bluetooth, USB, RCA auxiliary, AM/FM","Output at 14.4 V, 4 ohms, <10% THD+N":"25 W × 4","RCA preamp outputs":"One set"}),
+("Kicker","46KRC12"):("https://www.kicker.com/46KRC12",{"Model":"46KRC12","Control":"Volume, track, station and source","Ingress rating":"IP66","Included cable":"25 ft (7.62 m)","Mounting hole":"2 inches (50.8 mm)"}),
 ("Audison","66700860"):("https://audison.com/product/avcx-3p/",{"Model":"AVCX 3P","Configuration":"Three-way passive crossover","Woofer low-pass":"250 Hz, 12 dB/octave","Midrange band-pass":"50 Hz–2.5 kHz, 12 dB/octave","Tweeter high-pass":"2.5 kHz, 12 dB/octave"}),
 ("Audison","66755030"):("https://audison.com/product/ap4-d/",{"Model":"AP4 D","Channels":"4","RMS at 4 ohms (14.4 V, 1% THD)":"70 W × 4","RMS at 2 ohms (14.4 V, 1% THD)":"130 W × 4","Bridged RMS at 4 ohms":"260 W × 2"}),
 ("Audison","66755120"):("https://audison.com/product/af-m1d/",{"Model":"AF M1D","Channels":"1","RMS at 4 ohms (14.4 V, 1% THD)":"600 W","RMS at 2 ohms (14.4 V, 1% THD)":"1,000 W","RMS at 1 ohm (14.4 V, 1% THD)":"1,200 W"}),
