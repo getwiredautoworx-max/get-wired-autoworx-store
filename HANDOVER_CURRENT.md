@@ -1,3 +1,11 @@
+## CURRENT OWNER TASK — 25 November 2026
+Supersedes stale ASC monitoring status below. No ASC restoration or new imports.
+Kicker isolated workflow run 45572315608 succeeded: 172 active image availability checks, workbook cell preservation, desktop 1440px and mobile 390px navigation, RCA 46KIYFM Wiring Kits classification, isolated Cloudflare deployment.
+Verified preview: https://deb34b0c.get-wired-autoworx-store.pages.dev/owner-preview.html
+Latest workflow excludes generated XLSX from public deployment. Earlier preview 5acaeb50 exposed generated XLSX; removal remains unverified. Repository is public and original supplier workbook confidentiality must also be addressed. GitHub Actions artifacts on public repositories are not confidential storage.
+Reusable multi-supplier workflow remains unvalidated; do not import next batch until closed. Live Release Gates run 45576091529 failed; not production-authorized.
+Completion rule: implement, audit, correct, test, verify, update handover, close. No production deployment, paid credits or Supabase writes.
+
 ## ASC DAILY MONITOR — 2026-11-25 09:13 SAST
 
 ### Authority and current repository state
