@@ -31,7 +31,37 @@ jobs:
         env:
           GW_BATCH_OWNER_REVIEW: '1'
       - run: python scripts/enrich-planetworld-specifications.py
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-model-spec-evidence
+          path: /tmp/prior-specs
+          run-id: 45590030767
+          github-token: ${{ github.token }}
+      - run: cp /tmp/prior-specs/planetworld-spec-evidence.json /tmp/prior-planetworld-spec-evidence.json
       - run: python -u scripts/collect-planetworld-model-specs.py
+      - name: Prepare coverage summary and missing model list
+        run: |
+          python - <<'PY'
+          import json,collections
+          from pathlib import Path
+          evidence=json.load(open('/tmp/planetworld-spec-evidence.json'))
+          records=json.load(open('pages-public/assets/audio-catalogue-primary-preview.json'))['records']
+          counts=collections.defaultdict(collections.Counter)
+          missing=[]
+          for p in records:
+              key=p.get('getWiredSku') or ('Kicker:'+p['modelNumber'])
+              e=evidence[key]
+              counts[p['brand']]['total']+=1
+              counts[p['brand']]['source_recovered']+=bool(e['facts'])
+              if not e['facts']: missing.append({'brand':p['brand'],'sku':p['modelNumber'],'title':p['title'],'component':p['component']})
+          print('BRAND_SPEC_COVERAGE',json.dumps(counts))
+          Path('/tmp/planetworld-missing-spec-models.json').write_text(json.dumps(missing,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-missing-spec-models
+          path: /tmp/planetworld-missing-spec-models.json
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         with:
           name: planetworld-model-spec-evidence
