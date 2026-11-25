@@ -6,6 +6,16 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Alpine","KAE-HF11DA"):("https://www.alpine.co.uk/p/Products/other-accessories2792",{"Model":"KAE-HF11DA","Configuration":"Anti-reflective screen protector","Compatibility":"Alpine iLX-F115D"}),
+("Alpine","KAE-HF9DA"):("https://www.alpine.co.uk/p/Products/other-accessories2792",{"Model":"KAE-HF9DA","Configuration":"Anti-reflective screen protector","Compatibility":"Alpine iLX-F905D"}),
+("Alpine","KTX-HF9"):("https://www.alpine.co.uk/p/Products/SingleView/KTX-HF9",{"Model":"KTX-HF9","Configuration":"Self-adhesive anti-glare screen film","Compatibility":"Alpine iLX-F903D, INE-F904D and INE-F904DC"}),
+("Alpine","KTE-RS10G"):("https://www.alpine-usa.com/product/%20subwoofer-grille-kters10g",{"Model":"KTE-RS10G","Configuration":"Powder-coated mesh grille for 10-inch shallow subwoofer","Compatibility":"Alpine RS-W10D4 and RS-W10D2","Included":"Mounting hardware"}),
+("Alpine","KTE-S65G"):("https://www.alpine.de/p/Products/SingleView/kte-s65g",{"Model":"KTE-S65G","Configuration":"165 mm S-Series metal-mesh speaker grille"}),
+("Alpine","KTE-S69G"):("https://www.alpine-electronics.co.za/p/Products/SingleView/kte-s69g",{"Model":"KTE-S69G","Configuration":"6 × 9 inch S-Series speaker grille"}),
+("Alpine","RUE-4360"):("https://www.alpine.co.uk/p/Products/SingleView/rue-4360",{"Model":"RUE-4360","Configuration":"Wireless head-unit remote","Compatibility":"Alpine Remote Ready head units"}),
+("Alpine","RUX-KNOB2"):("https://www.alpine-usa.com/product/rux-knob",{"Model":"RUX-KNOB.2","Configuration":"Wired remote subwoofer level control","Compatibility":"Select Alpine amplifiers. Check the amplifier model before purchase."}),
+("Alpine","UTE-200BT"):("https://www.alpine.co.uk/p/Products/SingleView/ute-200bt",{"Model":"UTE-200BT","Configuration":"Single-DIN digital media receiver","Audio sources":"USB and Bluetooth audio","Hands-free calling":"Bluetooth, microphone included"}),
+("Alpine","UTE-204DAB"):("https://www.alpine.co.uk/p/Products/SingleView/ute-204dab",{"Model":"UTE-204DAB","Configuration":"Single-DIN digital media receiver","Audio sources":"DAB+ radio, USB and Bluetooth audio","Hands-free calling":"Bluetooth, microphone included"}),
 ("Audison","66772025"):("https://safeandsoundtt.com/pdf/Audison_PP-Cable_Product-Info-Rev-18A.pdf",{"Model":"AP SPK OUT 4.9","Configuration":"Four-channel speaker output harness with circular female terminals","Compatibility":"Audison AP4.9 bit and compatible input/output extension cable"}),
 ("Audison","69081105"):("https://audison.com/collections/car-speakers-voce-ii/",{"Model":"AVG 6.5 S II","Configuration":"Silver 165 mm Audison Voce II speaker grille"}),
 ("Audison","66755100"):("https://audison.com/product/af-m12-14-bit/",{"Model":"AF M12.14 bit","DSP outputs":"14","DSP processing":"24-bit / 96 kHz","RMS at 4 ohms (14.4 V, 1% THD)":"60 W × 12","RMS at 2 ohms (14.4 V, 1% THD)":"90 W × 12","Bridged RMS at 4 ohms":"180 W × 6"}),
