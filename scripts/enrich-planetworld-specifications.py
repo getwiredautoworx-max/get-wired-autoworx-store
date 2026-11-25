@@ -6,6 +6,13 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","FPX 1.1000"):("https://www.focal.com/products/fpx-11000",{"Model":"FPX 1.1000","Channels":"1","Output at 4 ohms (RMS)":"420 W","Output at 2 ohms (RMS)":"700 W","Output at 1 ohm (RMS)":"1,000 W"}),
+("Focal","FPX 5.1200"):("https://www.focal-america.com/product/fpx-5-1200/",{"Model":"FPX 5.1200","Channels":"5","Output at 4 ohms (RMS)":"75 W × 4 + 420 W × 1 (CEA)","Output at 2 ohms (RMS)":"120 W × 4 + 720 W × 1 (manufacturer maximum)"}),
+("Focal","FDS 1.350 AMPLI COMPACT"):("https://www.focal.com/products/fds-1350",{"Model":"FDS 1.350","Channels":"1","Output at 4 ohms (RMS)":"210 W","Output at 2 ohms (RMS)":"350 W"}),
+("Focal","IY IMPULSE 4.320"):("https://www.focal-america.com/product/impulse4320/",{"Model":"Impulse 4.320","Channels":"4","Output at 4 ohms (RMS)":"55 W × 4 (CEA)","Output at 2 ohms (RMS)":"80 W × 4 (manufacturer maximum)"}),
+("Focal","AMP AP 4.380"):("https://media.focal-naim.com/dam/es-165-kx3e/catalogue_onboardsystems_en_web.pdf",{"Model":"AP 4.380","Channels":"4","Output at 4 ohms (RMS)":"70 W × 4 (CEA)","Output at 2 ohms (RMS)":"95 W × 4 (manufacturer maximum)"}),
+("Focal","KIT ICU690"):("https://www.focal.com/products/icu-690",{"Model":"ICU 690","Configuration":"6 × 9 inch two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"80 W","Maximum power":"160 W"}),
+("Focal","KIT ISU690"):("https://www.focal.com/products/isu-690",{"Model":"ISU 690","Configuration":"6 × 9 inch two-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"80 W","Maximum power":"160 W"}),
 ("Focal","KIT ACX130"):("https://www.focal.com/products/acx-130",{"Model":"ACX 130","Configuration":"130 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W","Sensitivity":"90 dB"}),
 ("Focal","KIT ACX165"):("https://www.focal.com/products/acx-165",{"Model":"ACX 165","Configuration":"165 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"60 W","Maximum power":"120 W","Sensitivity":"91.5 dB"}),
 ("Focal","KIT ACX690"):("https://www.focal.com/products/acx-690",{"Model":"ACX 690","Configuration":"6 × 9 inch three-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"80 W","Maximum power":"160 W","Sensitivity":"92 dB"}),
