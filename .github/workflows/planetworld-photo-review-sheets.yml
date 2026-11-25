@@ -1,0 +1,31 @@
+name: Planetworld photo contact sheets
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-photo-review-sheets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  sheets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow==11.3.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-targeted-image-evidence
+          path: /tmp
+          run-id: 45599069675
+          github-token: ${{ github.token }}
+      - run: python scripts/planetworld-photo-review-sheets.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-photo-review-sheets
+          path: /tmp/planetworld-photo-review
+          retention-days: 7
