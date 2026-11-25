@@ -103,3 +103,37 @@ for name in ["preview-audio.html","preview-audio-brand.html","preview-audio-prod
     s=s.replace("const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl);","const exactBrandImage=rows.find(p=>brandDisplayName(p.brandDisplayName||p.brand)===brand&&group(p)===t&&p.imageUrl&&!p.imageUrl.includes('placeholder'));")
     p.write_text(s.replace(old,"price.textContent=Number.isFinite(p.indicativePrice)?new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(p.indicativePrice)+' incl. VAT':'Price On Request';"))
 print("KICKER_PREVIEW_RECORDS",len(records))
+
+# Owner-approved homepage split, isolated from production and database.
+car="e3d19d20-fb46-426c-9f64-221d863add0b"
+audio="1a13bc42-4f54-44f6-9658-36d141b77f4b"
+security="owner-car-security"
+tree=root/"assets/category-tree.json"
+snapshot=json.loads(tree.read_text())
+cats=snapshot["categories"]
+for row in cats:
+    if row["id"]==car:
+        row.update(name="Car Audio & Security",parent_id=None,sort_order=-10)
+    if row["id"]==audio:
+        row["name"]="Audio & Home Entertainment"
+cats.append(dict(id=security,name="Vehicle Security",slug="vehicle-security",parent_id=car,active=True,sort_order=1008,direct_active_products=0))
+tree.write_text(json.dumps(snapshot,ensure_ascii=False))
+p=root/"index-new.html"
+s=p.read_text()
+s=s.replace("HOME_CATEGORY_IDS=['"+audio+"'","HOME_CATEGORY_IDS=['"+car+"','"+audio+"'")
+s=s.replace("const HOME_CATEGORY_LABELS={","const HOME_CATEGORY_LABELS={'"+car+"':'Car Audio & Security',")
+s=s.replace("Car Audio / Home Entertainment","Audio & Home Entertainment")
+s=s.replace('Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment','Home Entertainment, Band and Live Sound, and DJ Equipment')
+s=re.sub(r'<img src="https://images\.unsplash\.com/photo-1654447398824-dbcbefeafdd6[^"]*" alt="Car audio speakers installed in a vehicle"[^>]*>','',s,count=1)
+assert "HOME_CATEGORY_IDS=['"+car+"'" in s
+p.write_text(s)
+p=root/"preview-category.html"
+s=p.read_text().replace("Car Audio / Home Entertainment","Audio & Home Entertainment")
+s=s.replace("const ROOTS=[[","const ROOTS=[['Car Audio & Security','"+car+"'],[",1)
+old="if(current.id==='"+car+"'){location.replace('preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video');return}"
+new="if(current.id==='"+car+"'){render([{id:'owner-car-audio',name:'Car Audio & Video',count:0},{id:'"+security+"',name:'Vehicle Security',count:0}],current.name,'Choose Car Audio or Vehicle Security.');return}"
+assert old in s
+s=s.replace(old,new)
+s=s.replace("const audioRoutes={","const audioRoutes={'owner-car-audio':'preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',")
+p.write_text(s)
+print("HOMEPAGE_CATEGORY_SPLIT_OK")
