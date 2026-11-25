@@ -1,3 +1,46 @@
+## ASC DAILY MONITOR — 2026-11-25 09:13 SAST
+
+### Authority and current repository state
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first, then this handover, then the current task queue and ASC PR/artifact evidence.
+- Repository remains PUBLIC; latest observed main commit is `f8d5b41fdd0ae914518d657225ebc655bb15082c` (Kicker image fallback only). The preceding `1e7a6139bb00e425b77f74f3f84c055dc1131342` changes only this handover. No ASC product, image, source, register or QA changes are present in the latest commits.
+- Open PR search: 0. PR #183 is CLOSED WITHOUT MERGE. The 978-row package was selectively merged through PR #199 at `123e41e83a8710fe427a1a4e1facdf34480b3130`; PR #204 is also merged. No PR action was taken.
+- Latest owner restart instruction in this handover supersedes the older active-enrichment queue: empty customer storefront, stock/catalogue upload work only when a new/approved source is identified, no restoration of deleted catalogues or product repopulation without explicit owner reauthorisation.
+
+### Critical current-main source and evidence availability
+- All six previously approved ASC PDF paths now return 404 on current main:
+  - `suppliers/ASC/ASC- Aerials (1).pdf`
+  - `suppliers/ASC/ASC- Automotive Sensors (1).pdf`
+  - `suppliers/ASC/ASC- Automotive Switches (1).pdf`
+  - `suppliers/ASC/ASC- Automotive globes (1).pdf`
+  - `suppliers/ASC/ASC- Car Mats (1).pdf`
+  - `suppliers/ASC/ASC- Fuel Pumps (1).pdf`
+- This is explained by owner-directed source reset commit `0012b97ae0f12ee88bc2276f578381a1dcdbd520`, which explicitly deletes those six ASC PDFs (and 52 other supplier catalogue files). Do not restore them during monitoring: the latest restart instruction says not to restore deleted catalogues until the owner supplies or identifies the next source.
+- Current-main fetches also return 404 for the ASC master register, staged register, 50-row pilot register, 50-image manifest, image processor, ASC validator test and ASC extraction/QA workflows. The historic 978-row package is still available in Git history at PR #199 merge commit `123e41e83a8710fe427a1a4e1facdf34480b3130`; do not describe those files as present on current main.
+- The surviving `suppliers/ASC/README.md` is stale: it still says the six PDFs were uploaded on 1 November and extraction is in progress, despite the six paths being deleted on 24 November. Task queue also still lists the six deleted paths.
+- The current task queue is dated 2026-11-24, pins stale canonical head `200ced5d78fdc8987b2adae2128546d0b645e2c8`, and records `active_task_id=null`, `active_workers=0`; ASC extraction and image QA remain paused. Its image-task next-action claims regenerated/full-height outputs and high-resolution checks passed, but the retained historical manifest contradicts that claim.
+
+### Last verified historical catalogue baseline (PR #199 merge commit)
+- Six PDFs / 72 pages / 978 visible cards: Aerials 78; Automotive Sensors 106; Automotive Switches 368; Automotive Globes 158; Car Mats 139; Fuel Pumps 129. The preliminary 983 count is incorrect; do not revive the five nonexistent Car Mats entries.
+- Historical master CSV: 978 rows, 978 unique source SKUs, 978 unique proposed Get Wired SKUs; per-catalogue counts match above.
+- Historical staging CSV: 978 rows; 978 exact `Price On Request due to Limited Stock and Availability` labels; 978 blank numeric prices; 978 `STAGED_REVIEW_ONLY`; 978 `DO_NOT_IMPORT_WITHOUT_EXPLICIT_OWNER_APPROVAL`.
+- Historical pilot: 50/50 product titles/descriptions manually verified; 42 printed fitments transcribed; 8 pilot cards have no printed fitment; 0 technical-specification rows transcribed. Remaining 928 descriptions were OCR drafts; remaining 928 product fitments were not reviewed; all 978 technical-specification records remain outstanding.
+- Historical image manifest: 50/50 outputs remain REVIEW_ONLY_NOT_IMPORTED and OWNER_ACCEPTANCE_PENDING. Every row says `GET_WIRED_WATERMARK_OVERLAID_ON_SOURCE_WATERMARK`. Original image height is 209 px; crop-bottom values are 146 px (25 samples), 163 px (16), and 192 px (9). Therefore 0/50 satisfy full-height crop and 0/50 satisfy watermark-removal acceptance. The processor masks external caption/code regions and overlays the Get Wired watermark; it does not remove the original ASC watermark. Image-use authority is owner-granted, not a blocker. 26 Car Mats have no source photo.
+- Historical files are linked by commit for audit/recovery only:
+  - Master: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/123e41e83a8710fe427a1a4e1facdf34480b3130/catalogue-review/asc-catalogue-extraction/asc-master-sku-register-review-only.csv
+  - Staging: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/123e41e83a8710fe427a1a4e1facdf34480b3130/staging/asc-staged-catalogue-products-do-not-import.csv
+  - Pilot: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/123e41e83a8710fe427a1a4e1facdf34480b3130/catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv
+  - Image manifest: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/123e41e83a8710fe427a1a4e1facdf34480b3130/catalogue-review/asc-catalogue-extraction/product-image-treatment-pilot-manifest.csv
+  - Processor: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/123e41e83a8710fe427a1a4e1facdf34480b3130/scripts/process-product-image-pilot.py
+
+### QA, publication and next action
+- Last actual ASC 978-row QA: [run 43613604610](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604610), 2026-11-14, PASS on PR #204 head `295d42c4285cde570a547f2c0f7586cd7a7d1edc`. Job log confirms 978/978, unique source/GW SKUs, six totals, source/page/category mapping, exact POR labels, no numeric price/stock invention, DO NOT IMPORT; pilot 50 titles, 42 fitments, 0 specs.
+- Last extraction worker: [run 43613604557](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604557), 2026-11-14, SUCCESS; six source files, 72 pages, OCR complete. These are historical results, not current-main QA.
+- The ASC extraction and catalogue-review QA workflow files were retired in the 2026-11-24 cleanup; the validator test is also absent on current main. No fresh ASC QA/extraction is available or evidenced.
+- Current customer-facing `assets/auto-electrical-owner-preview.json` contains `products: []` (0); ASC records are not published. Historical staging rows remain review-only in Git history.
+- Next: preserve the empty storefront and production HOLD. Do not restore the six PDFs, registers, images or workflows or import any records in this monitor. If ASC work is reauthorised, first reconcile the owner-provided/identified source set and restore only explicitly approved catalogue inputs, then reconstruct review evidence, correct the image processor, and run exact-head QA before any owner review. No PR merge, deployment, Axxess upload, live write, customer payload change, supplier activation or Cloudflare credit spend occurred.
+
+---
+
 ## COORDINATION / AUDIO RECOVERY MONITOR — 2026-11-25 08:03 SAST
 
 ### Task start and authority
