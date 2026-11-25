@@ -253,6 +253,13 @@ def main():
         coverage[p["specificationStatus"]]+=1
     for a,b in zip(before,records):
         assert all(b[k]==v for k,v in a.items()),a["modelNumber"]
+    actual_keys={(p["brand"],p["modelNumber"]) for p in records}
+    unmatched=sorted(set(SPECS)-actual_keys)
+    if unmatched:
+        print("UNMATCHED_EXPLICIT_SPEC_KEYS",json.dumps(unmatched),flush=True)
+        for brand,sku in unmatched:
+            print("EXACT_SKU_DIAGNOSTIC",json.dumps([{"brand":p["brand"],"model":p["modelNumber"],"gwa":p.get("getWiredSku"),"title":p["title"]} for p in records if p["modelNumber"]==sku or str(p.get("getWiredSku","")).endswith(sku)]),flush=True)
+    assert not unmatched,unmatched
     assert coverage["manufacturer_verified"]==len(SPECS),coverage
     assert sum(coverage.values())==693
     DATA.write_text(json.dumps(d,ensure_ascii=False))
