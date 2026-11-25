@@ -122,3 +122,5 @@ jobs:
           await browser.close();
           console.log('PLANETWORLD_HOSTED_REVIEW_OK',base+'/owner-preview.html');
           JS
+
+# Diagnose unmatched exact specification keys without lowering the coverage gate.
