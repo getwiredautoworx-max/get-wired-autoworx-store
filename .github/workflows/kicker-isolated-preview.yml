@@ -1,0 +1,43 @@
+name: Kicker isolated catalogue preview
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kicker-isolated-preview.yml', 'scripts/build-kicker-owner-preview.py']
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - run: python scripts/build-cloudflare-pages-public.py
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+      - run: python scripts/build-kicker-owner-preview.py
+      - name: Confirm production branch and automatic deployment safety
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store" | python -c 'import json,sys; d=json.load(sys.stdin); assert d["success"]; p=d["result"]; assert p["production_branch"]=="main"; assert p["source"]["config"]["production_deployments_enabled"] is False'
+      - uses: cloudflare/wrangler-action@v4
+        id: deploy
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=kicker-owner-review --commit-hash=${{ github.sha }}
+      - name: Verify isolated deployment and hosted catalogue
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store/deployments" > /tmp/deployments.json
+          python -c 'import json,os; d=json.load(open("/tmp/deployments.json")); assert any(x["environment"]=="preview" and x["url"].rstrip("/")==os.environ["URL"].rstrip("/") for x in d["result"])'
+          curl -fsS "$URL/assets/audio-catalogue-primary-preview.json" > /tmp/hosted.json
+          python -c 'import json; assert json.load(open("/tmp/hosted.json"))==json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))'
+          echo "KICKER_PREVIEW_URL=$URL/owner-preview.html"
