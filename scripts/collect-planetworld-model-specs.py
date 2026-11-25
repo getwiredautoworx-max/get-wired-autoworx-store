@@ -84,6 +84,9 @@ def exact_page(url,record):
         if norm(item.get("content") or item.get_text())==ns: exact=True
     if re.search(r"\bSKU\s*:\s*"+re.escape(sku)+r"(?![\w.-])",soup.get_text(" ",strip=True),re.I): exact=True
     if not exact:return None
+    # Avoid related-product comparison tables and global footer/menu attributes.
+    for node in soup.select("header,footer,nav,aside,.related,.upsells,.cross-sells,[class*=related-product],[class*=recommendation]"):
+        node.decompose()
     f=fields(soup)
     if not f:return None
     return {"source":actual,"facts":f,"identity":"Exact SKU or model and brand on product page"}
@@ -95,9 +98,12 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
         indices=dict(zip(hosts,pool.map(sitemap,hosts)))
     print("SOURCE_INDEX_COUNTS",json.dumps({h:len(x) for h,x in indices.items()}),flush=True)
+    prior_path=Path("/tmp/prior-planetworld-spec-evidence.json")
+    prior=json.loads(prior_path.read_text()) if prior_path.exists() else {}
     def lookup(p):
         key=p.get("getWiredSku") or ("Kicker:"+p["modelNumber"])
         if p.get("specificationStatus")=="manufacturer_verified": return key,{"source":p["specificationSource"],"facts":{x["label"]:x["value"] for x in p["technicalSpecifications"]},"identity":"Existing source-backed model record"}
+        if prior.get(key,{}).get("facts") and prior[key].get("source"): return key,prior[key]
         sku=p["modelNumber"]; ns=norm(sku); title=p["title"]; title_slug=slug(title)
         relevant=HOSTS.get(p["brand"],[])+hosts[:4]
         candidates=[]
@@ -110,6 +116,8 @@ def main():
         for host in ("https://nxtleveltech.co.za","https://www.caraudiowarehouse.co.za"):
             candidates.append((2,host+"/product/"+title_slug+"/"))
         if p["brand"]=="Kicker": candidates.append((2,"https://www.kicker.com.au/product/"+slug(sku)+"/"))
+        # Supplier pages commonly use deeply nested product URLs, indexed by title.
+        # A model in the URL is discovery only; exact page identity remains mandatory.
         for _,url in sorted(set(candidates))[:5]:
             try:
                 result=exact_page(url,p)
