@@ -6,6 +6,10 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Audison","66740026"):("https://audison.zendesk.com/hc/en-gb/article_attachments/25194278834321",{"Model":"SR 1.500","Channels":"1","CEA output at 4 ohms (14.4 V, 1% THD+N)":"500 W × 1","RMS output at 2 ohms (14.4 V, 1% THD)":"800 W × 1","RMS output at 1 ohm (14.4 V, 1% THD)":"1,000 W × 1"}),
+("Audison","66740316"):("https://audison.zendesk.com/hc/en-gb/article_attachments/25194278834321",{"Model":"SR 4.300","Channels":"4","CEA output at 4 ohms (14.4 V, 1% THD+N)":"75 W × 4","RMS output at 2 ohms (14.4 V, 1% THD)":"130 W × 4"}),
+("Audison","66740321"):("https://audison.zendesk.com/hc/en-gb/article_attachments/25194278834321",{"Model":"SR 4.500","Channels":"4","CEA output at 4 ohms (14.4 V, 1% THD+N)":"125 W × 4","RMS output at 2 ohms (14.4 V, 1% THD)":"220 W × 4"}),
+("Audison","66740416"):("https://audison.zendesk.com/hc/en-gb/article_attachments/25194278834321",{"Model":"SR 5.600","Channels":"5","CEA output at 4 ohms (14.4 V, 1% THD+N)":"75 W × 4 + 300 W × 1","RMS output at 2 ohms (14.4 V, 1% THD)":"115 W × 4 + 550 W × 1"}),
 ("Kicker","48CWRT104"):("https://www.kicker.com/comp-rt-10-4-ohm-subwoofer",{"Model":"48CWRT104","Driver size":"10 inch","Dual voice coil impedance":"4 + 4 ohms","Recommended amplifier power (RMS)":"400 W","Peak power":"800 W"}),
 ("Kicker","48CWRT122"):("https://www.kicker.com/comp-rt-12-2-ohm-subwoofer",{"Model":"48CWRT122","Driver size":"12 inch","Dual voice coil impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
 ("Kicker","48CWRT124"):("https://www.kicker.com/comp-rt-12-4-ohm-subwoofer",{"Model":"48CWRT124","Driver size":"12 inch","Dual voice coil impedance":"4 + 4 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
