@@ -6,6 +6,15 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","46CSC464"):("https://www.kicker.com/app/manuals/mids_tweets/cs/2019_CS_Coax.pdf",{"Model":"46CSC464","Configuration":"4 × 6-inch two-way CS coaxial pair","Impedance":"4 Ω","Peak power":"150 W","Frequency response":"50 Hz–20 kHz"}),
+("Kicker","46CSC674"):("https://www.kicker.com/app/manuals/mids_tweets/cs/2019_CS_Coax.pdf",{"Model":"46CSC674","Configuration":"6.75-inch two-way CS coaxial pair","Impedance":"4 Ω","Peak power":"300 W","Frequency response":"40 Hz–20 kHz"}),
+("Kicker","46KB6G"):("https://www.kicker.com.au/product/46kb6g-8-ohm-75-watts-rms/",{"Model":"46KB6G","Configuration":"Grey 6.5-inch weather-resistant indoor/outdoor speaker system","Impedance":"8 Ω","Power":"75 W RMS"}),
+("Kicker","48PXA10005"):("https://www.kicker.com/48PXA10005",{"Model":"48PXA10005","Configuration":"Five-channel IP66/IP67 powersports amplifier","Main-channel output":"4 × 100 W at 4 Ω, 4 × 150 W at 2 Ω or 2 × 300 W bridged at 4 Ω","Subwoofer-channel output":"300 W at 4 Ω, 500 W at 2 Ω or 600 W at 1 Ω","Dynamic power":"1,400 W"}),
+("DrArtex","DBP07.2024"):("https://drartex.com/techcard/DBP07.2024",{"Model":"DBP07.2024","Configuration":"Baffle Plus Integra 2024 acoustic and thermal insulation","Thickness":"7 mm nominal designation (6.5 mm ±10% on manufacturer data sheet)","Pack":"11 sheets, 50 × 37.5 cm each, 2.06 m²"}),
+("DrArtex","DEV25.2024"):("https://drartex.com/techcard/DEV25.2024",{"Model":"DEV25.2024","Configuration":"Electra EV Silver 2.5 mm vibration damping sheets","Pack":"30 sheets, 50 × 30 cm each, 4.5 m²"}),
+("DrArtex","DEV50.2024"):("https://drartex.com/techcard/DEV50.2024",{"Model":"DEV50.2024","Configuration":"Electra EV Blue 5.0 mm vibration damping sheets","Pack":"15 sheets, 50 × 30 cm each, 2.25 m²"}),
+("DrArtex","DEE25.2025"):("https://drartex.com/catalog/drartex-gold-hd-245",{"Model":"DEE25.2025","Configuration":"Gold HD 2025 2.5 mm vibration damping sheets"}),
+("Kicker","KW16400p/m"):("https://www.kicker.com/KW16400",{"Model":"KW16400p/m","Configuration":"K-Series speaker cable, sold per metre","Gauge":"16 AWG","Manufacturer spool model":"KW16400"}),
 ("Kicker","43DSC6504"):("https://www.kicker.com/2016-ds-series",{"Model":"43DSC6504","Configuration":"6.5-inch two-way coaxial speaker pair","Impedance":"4 Ω","Power":"60 W RMS / 240 W peak"}),
 ("Kicker","45DL7R122"):("https://www.kicker.com/solo-baric-l7r-12-dual-subwoofer-box",{"Model":"45DL7R122","Configuration":"Dual 12-inch ported Solo-Baric L7R loaded enclosure","Enclosure impedance":"2 Ω","Recommended amplifier power":"1,200 W RMS","Port tuning":"31 Hz"}),
 ("Kicker","45KM124"):("https://www.kicker.com/km-subwoofers",{"Model":"45KM124","Configuration":"12-inch KM marine subwoofer","Impedance":"4 Ω"}),
