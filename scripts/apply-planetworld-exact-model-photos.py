@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 EVIDENCE = Path("/tmp/planetworld-batch-image-evidence.json")
 PHOTOS = {
@@ -52,14 +52,20 @@ def main():
         assert row["status"] in {"ORIGINAL_AVAILABLE", "UNRESOLVED"}, sku
         request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         try:
-            with urlopen(request, timeout=20) as response:
-                content = response.read(12_000_001)
-            if len(content) > 12_000_000:
-                raise ValueError("image exceeds 12 MB")
-            with Image.open(BytesIO(content)) as photo:
-                photo.load()
-                if min(photo.size) < 200:
-                    raise ValueError(f"image too small: {photo.size}")
+            for attempt in range(2):
+                try:
+                    with urlopen(request, timeout=20) as response:
+                        content = response.read(12_000_001)
+                    if len(content) > 12_000_000:
+                        raise ValueError("image exceeds 12 MB")
+                    with Image.open(BytesIO(content)) as photo:
+                        photo.load()
+                        if min(photo.size) < 200:
+                            raise ValueError(f"image too small: {photo.size}")
+                    break
+                except UnidentifiedImageError:
+                    if attempt == 1:
+                        raise
         except (URLError, OSError, ValueError) as error:
             print("EXACT_MODEL_PHOTO_PENDING", sku, str(error), flush=True)
             continue
