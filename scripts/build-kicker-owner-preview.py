@@ -33,6 +33,26 @@ for i,row in enumerate(rows,2):
         category="Wiring Kits"
     elif re.search(r"amplifier", category, re.I):
         category="Amplifiers"
+    if re.sub(r"[^A-Z0-9]", "", sku.upper())=="46KIYFM" or re.search(r"\bRCA\b.*\b(?:adapter|adaptor|connector|cable|splitter)\b", title, re.I):
+        category="Wiring Kits"
+    if re.sub(r"[^A-Z0-9]", "", sku.upper())=="47KEY5001":
+        category="Amplifiers"
+        import urllib.request
+        from html import unescape
+        try:
+            page=urllib.request.urlopen(urllib.request.Request("https://www.kicker.com.au/product/47key5001-500-watts-rms-mono-amp/",headers={"User-Agent":"Mozilla/5.0"}),timeout=15).read().decode("utf-8","replace")
+            match=re.search(r'<meta[^>]+property=["\x27]og:image["\x27][^>]+content=["\x27]([^"\x27]+)',page,re.I)
+            if match:
+                candidate=unescape(match.group(1))
+                with urllib.request.urlopen(candidate,timeout=15) as response:
+                    assert response.headers.get_content_type().startswith("image/")
+                    data=response.read()
+                target=root/"assets/kicker-47key5001.jpg"
+                target.write_bytes(data)
+                image="assets/kicker-47key5001.jpg"
+                print("KEY5001_IMAGE_REPLACED",candidate)
+        except Exception as exc:
+            print("KEY5001_IMAGE_PENDING",str(exc))
     print(f"CATEGORY {sku} {original_category} -> {category}: {title}")
     records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
 assert records
