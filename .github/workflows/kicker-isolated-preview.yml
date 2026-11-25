@@ -69,8 +69,9 @@ jobs:
             await page.goto(base+'/preview-category.html?id=e3d19d20-fb46-426c-9f64-221d863add0b');
             await page.getByText('Vehicle Security',{exact:true}).first().waitFor();
             await page.getByText('Car Audio & Video',{exact:true}).first().click();
-            await page.getByText('Kicker',{exact:true}).first().waitFor({timeout:30000});
-            await page.goto(base+'/preview-audio-products.html?department=Car%20Audio&brand=Kicker&component=Amplifiers');
+            await page.locator('#brands a').filter({has:page.locator('img[alt*="Kicker" i]')}).first().waitFor({timeout:30000}).catch(async()=>{ console.log('NAVIGATION_DIAGNOSTIC',page.url(),await page.locator('body').innerText()); throw Error('Kicker brand tile missing'); });
+            await page.locator('#brands a').filter({has:page.locator('img[alt*="Kicker" i]')}).first().click();
+            await page.getByText('Amplifiers',{exact:true}).first().click();
             await page.getByText(/46CXA4001/).first().waitFor({timeout:30000});
             await page.getByText(/47KEY5001/).first().waitFor();
             const data=await (await page.request.get(base+'/assets/audio-catalogue-primary-preview.json')).json();
