@@ -6,6 +6,16 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Audison","66750411"):("https://audison.com/product/vcr-s2/",{"Model":"VCR-S2","Configuration":"Wired subwoofer volume control","Compatibility":"Compatible Audison SR and Forza amplifiers","Connector":"Molex"}),
+("Audison","66750530"):("https://audison.com/product/vcra/",{"Model":"VCRA","Configuration":"Remote subwoofer level control","Fitment":"Check amplifier model before purchase"}),
+("Audison","66750610"):("https://audison.com/product/drc/",{"Model":"DRC","Configuration":"Digital remote control","Compatibility":"Audison TH and bit systems","Functions":"Volume adjustment and preset selection"}),
+("Audison","66750615"):("https://audison.com/product/drc-mp/",{"Model":"DRC MP","Configuration":"Digital remote control for compatible Audison bit processors","Functions":"Master volume, source, subwoofer level and DSP preset selection"}),
+("Audison","66750616"):("https://audison.com/product/drc-mp-can/",{"Model":"DRC MP CAN","Compatibility":"Forza bit DSP amplifiers with DRCC port","Display":"White OLED","DSP presets":"Up to six"}),
+("Audison","66750625"):("https://audison.com/product/drc-ab/",{"Model":"DRC AB","Configuration":"Dashboard digital audio controller","Functions":"Audio level, source and preset control"}),
+("Audison","66750650"):("https://audison.com/product/bit-dmi/",{"Model":"bit DMI","Configuration":"Digital MOST interface","Application":"Connect compatible factory digital audio systems to Audison signal processors"}),
+("Audison","66752000"):("https://audison.com/product/bit-ten/",{"Model":"bit Ten","Input channels":"4","Output channels":"5","Processing":"24-bit / 48 kHz fixed-point DSP","Tuning":"Equalization, crossovers and time alignment"}),
+("Audison","66755156"):("https://audison.com/product/f2o/",{"Model":"F2O","Compatibility":"Audison AF bit DSP amplifiers","Configuration":"Selectable coaxial or optical S/PDIF input extension","Included cable":"Coaxial input cable"}),
+("Audison","66755157"):("https://audison.com/product/f4in/",{"Model":"F4IN","Compatibility":"Audison AF bit DSP amplifiers","Added inputs":"Four high-level analog inputs","Input sensitivity":"3.2–32 V RMS"}),
 ("Kicker","51KMC4"):("https://www.kicker.com/51KMC4",{"Model":"51KMC4","Display":"3-inch colour LCD","Audio sources":"AM/FM, weather band, Bluetooth, USB and RCA auxiliary","Amplified channels":"4","Ingress rating":"IP66"}),
 ("Kicker","48KMC6"):("https://www.kicker.com/48KMC6",{"Model":"48KMC6","Display":"3.5-inch colour LCD","Audio sources":"AM/FM, weather band, satellite-ready, Bluetooth, USB and RCA auxiliary","Amplified channels":"6","Peak output (total)":"240 W","Ingress rating":"IP66"}),
 ("Kicker","47KPB1"):("https://www.kicker.com/powerbars-family",{"Model":"47KPB1","Configuration":"Six-speaker powered soundbar","Amplifier output (manufacturer rating)":"150 W","Ingress rating":"IP66"}),
