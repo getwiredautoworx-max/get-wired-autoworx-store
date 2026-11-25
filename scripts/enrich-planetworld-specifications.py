@@ -6,6 +6,9 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","48KMA6004"):("https://www.kicker.com/48KMA-marine-multichannel-6004-amplifier",{"Model":"48KMA6004","RMS output at 4 ohms":"75 W × 4","RMS output at 2 ohms":"150 W × 4","Additional RMS rating":"300 W × 2 at 4 ohms bridged","Frequency response":"10–20,000 Hz"}),
+("Kicker","48KMA6006"):("https://www.kicker.com/48KMA-marine-multichannel-6006-amplifier",{"Model":"48KMA6006","RMS output at 4 ohms":"50 W × 6","RMS output at 2 ohms":"100 W × 6","Additional RMS rating":"200 W × 3 at 4 ohms bridged","Frequency response":"10–20,000 Hz"}),
+("Kicker","48KMA8001"):("https://www.kicker.com/48KMA-marine-mono-8001-amplifier",{"Model":"48KMA8001","RMS output at 4 ohms":"300 W × 1","RMS output at 2 ohms":"600 W × 1","Additional RMS rating":"800 W × 1 at 1 ohm","Frequency response":"25–200 Hz"}),
 ("Kicker","43DSC3504"):("https://www.kicker.com/app/catalog/2016catalog.pdf",{"Model":"43DSC3504","Nominal size":"3.5 inch","Speaker design":"2-way coaxial","Impedance":"4 ohms","Recommended amplifier power (RMS)":"20 W","Peak power":"80 W","Frequency response":"80–20,000 Hz"}),
 ("Kicker","43DSC404"):("https://www.kicker.com/app/catalog/2016catalog.pdf",{"Model":"43DSC404","Nominal size":"4 inch","Speaker design":"2-way coaxial","Impedance":"4 ohms","Recommended amplifier power (RMS)":"30 W","Peak power":"120 W","Frequency response":"60–20,000 Hz"}),
 ("Kicker","43DSC4604"):("https://www.kicker.com/app/catalog/2016catalog.pdf",{"Model":"43DSC4604","Nominal size":"4 × 6 inch","Speaker design":"2-way coaxial","Impedance":"4 ohms","Recommended amplifier power (RMS)":"30 W","Peak power":"120 W","Frequency response":"50–20,000 Hz"}),
