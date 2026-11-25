@@ -51,7 +51,10 @@ jobs:
                   assert exc.code in (403,404,410)
               except urllib.error.URLError as exc:
                   print('OLD_HOST_UNREACHABLE',type(exc.reason).__name__)
-          with urllib.request.urlopen(keep+'/owner-preview.html',timeout=30) as res: assert res.status==200
+          print('OLD_PREVIEW_FILES_UNAVAILABLE')
+          import subprocess
+          subprocess.run(['curl','-fsSL','--retry','2','-A','Mozilla/5.0',keep+'/owner-preview.html','-o','/tmp/owner-preview-check.html'],check=True)
+          assert 'iframe' in open('/tmp/owner-preview-check.html').read().lower()
           print('OLD_PREVIEW_CLEANUP_OK')
           PY
       - name: Remove supplier workbook artifacts from identified runs
