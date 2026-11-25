@@ -22,9 +22,16 @@ PAGES={
 }
 # Exact manufacturer gallery asset visually checked; decode before approval.
 INSPECTED = {
+    "GWA-JVC-RMRK258": ("https://jasc-cdn.novena.hr/files/image/811/1/490x305-10/222232_RM-RK258_Remote_janet.jpg","https://sk.jvc.com/mobile-entertainment/accessories/RM-RK258/"),
+    "GWA-PIO-DMH-AP6650BT": ("https://pioneercarentertainment.com/wp-content/uploads/2025/03/DMH-AP6650BT-2.jpg","https://pioneercarentertainment.com/products/dmh-ap6650bt/"),
     "GWA-AUD-69030021": ("https://static.audison.com/media/2025/01/AUDISON_AV-65-P-II_EMO-CONO_2024_10_16-copia.jpg","https://audison.com/product/av-6-5-p-ii/"),
 }
 def retry(row):
+    # Focal product page serves an asset named for a different BMW harness; do not accept it.
+    if row["gwa"] == "GWA-FOC-IW-IMP22-IMPULSE":
+        if row["status"] == "REPLACEMENT_CANDIDATE" and "iw-bmw-yiso" in row.get("resolved","").lower():
+            return dict(row,status="UNRESOLVED",resolved="",digest="",source="",reason="Manufacturer gallery filename conflicts with exact model")
+        return row
     if row["gwa"] in INSPECTED and row["status"] not in ("ORIGINAL_AVAILABLE","REPLACEMENT_APPROVED"):
         try:
             url,source=INSPECTED[row["gwa"]]
