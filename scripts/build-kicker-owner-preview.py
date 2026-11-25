@@ -25,13 +25,13 @@ for i,row in enumerate(rows,2):
     assert str(d["Vendor / Brand"]).lower()=="kicker", f"Unexpected brand row {i}"
     seen.add(sku)
     marine="marine" in category.lower()
-    records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="owner_authorized_exact_supplier_image_verified_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
+    records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
 assert records
 (root/"assets/audio-catalogue-primary-preview.json").write_text(json.dumps({"records":records},ensure_ascii=False))
-for name in ["preview-audio-products.html"]:
+for name in ["preview-audio.html","preview-audio-brand.html","preview-audio-products.html"]:
     p=root/name
     s=p.read_text()
     old="price.textContent='Price On Request';"
-    assert old in s
+    s=s.replace("new Set([\'official_manufacturer_image_verified_review_only\'","new Set([\'workbook_image_candidate_review_only\',\'official_manufacturer_image_verified_review_only\'")
     p.write_text(s.replace(old,"price.textContent=Number.isFinite(p.indicativePrice)?new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(p.indicativePrice)+' incl. VAT':'Price On Request';"))
 print("KICKER_PREVIEW_RECORDS",len(records))
