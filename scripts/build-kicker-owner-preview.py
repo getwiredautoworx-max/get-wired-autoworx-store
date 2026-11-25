@@ -22,7 +22,7 @@ for i,row in enumerate(rows,2):
     assert sku and sku not in seen and title and desc and category, f"Invalid row {i}"
     assert isinstance(price,(int,float)) and math.isfinite(price) and price>0, f"Invalid price row {i}"
     if urlparse(image).scheme!="https" or not urlparse(image).hostname:
-        print(f"IMAGE_PENDING row {i}")
+        print(f"IMAGE_PENDING row {i} model={sku} title={title}")
         image="assets/product-placeholder.svg"
     assert str(d["Vendor / Brand"]).lower()=="kicker", f"Unexpected brand row {i}"
     seen.add(sku)
