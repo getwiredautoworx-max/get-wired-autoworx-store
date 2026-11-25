@@ -1,0 +1,60 @@
+name: Planetworld combined staging
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-combined-staging.yml','scripts/stage-planetworld-batch.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - run: python scripts/build-cloudflare-pages-public.py
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+      - run: python scripts/build-kicker-owner-preview.py
+      - run: python scripts/stage-planetworld-batch.py
+      - name: Local browser navigation and source parity
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+          python -m http.server 8765 --directory pages-public > /tmp/http.log 2>&1 &
+          node --input-type=module <<'JS'
+          import {chromium} from 'playwright';
+          import assert from 'node:assert/strict';
+          const base='http://127.0.0.1:8765';
+          const browser=await chromium.launch({headless:true});
+          for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+            const page=await browser.newPage({viewport});
+            const data=await (await page.request.get(base+'/assets/audio-catalogue-primary-preview.json')).json();
+            assert.equal(data.records.length,693);
+            const names=[...new Set(data.records.map(x=>x.brand))];
+            assert.equal(names.length,12);
+            await page.goto(base+'/preview-audio.html?department=Car%20Audio');
+            for(const name of names){
+              const tile=page.locator('#brands a').filter({has:page.locator('img[alt="'+name+'"]')});
+              const link=page.locator('#brands a[aria-label="'+name+'"]');
+              await link.first().waitFor({timeout:15000}).catch(async()=>{console.log('BRAND_NAV_DIAGNOSTIC',name,await page.locator('#brands').innerText(),await page.locator('#brands').innerHTML());throw Error('Missing brand '+name)});
+              const href=await link.first().getAttribute('href');
+              await page.goto(new URL(href,base).href);
+              const card=page.locator('#types a.typeCard').first();
+              await card.waitFor({timeout:15000});
+              await card.click();
+              await page.locator('#products article.product').first().waitFor({timeout:15000});
+              await page.goto(base+'/preview-audio.html?department=Car%20Audio');
+              console.log('BRAND_NAV_OK',viewport.width,name);
+            }
+            await page.close();
+          }
+          await browser.close();
+          JS
+      - name: Staging-only boundary
+        run: |
+          cat /tmp/planetworld-stage-result.json
+          echo 'No Cloudflare deployment or database writes. Image approval is a separate mandatory release gate.'
