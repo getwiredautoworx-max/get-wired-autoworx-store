@@ -1,3 +1,8 @@
+## Planetworld reconciliation — first verified photo replacements, 25 November 2026
+- Isolated review 45652576266 succeeded at https://1a23fd10.get-wired-autoworx-store.pages.dev/owner-preview.html. Verified 189 manufacturer records plus 250 accepted supplier descriptions = 439/693. Hosted data parity and desktop/mobile checks passed.
+- Four exact photos replaced: Alpine R2-W10D2, Audison APBX 8 R and APBX 10 S4S, and Hertz DCX 710.3. Workbook QA passed across all 11 files, with 119 approved image changes and 17 standard photo exceptions remaining. Shared-image identity review remains open. The original DCX 570.3 replacement source returned HTTP 403.
+- Next review build adds a different exact-model DCX 570.3 photo, an official CP 5.1K photo and a model-specific Focal IW IMP 2.2 photo. It also adds the manufacturer-confirmed IW IMP 2.2 technical entry. Verify build logs and exact coverage before promoting. No new batch or production deployment.
+
 ## Planetworld reconciliation — 433 accepted technical records, 25 November 2026
 - Run 45652001664 passed hosted data parity, desktop/mobile review and workbook preservation. Verified isolated preview https://40dc0f0f.get-wired-autoworx-store.pages.dev/owner-preview.html. Coverage: 183 manufacturer verified, 250 accepted supplier descriptions, 91 exact-model candidates pending review, 96 supplier-title only, 73 pending. 260 technical records remain.
 - This continuation added and deployed 23 Kicker records (DS coaxials, marine accessories and amplifiers, Comp/CompRT, and LX). Continue exact-model manufacturer evidence from the remaining candidates. All 79 Hertz-range records and the 250 owner-accepted ONE/Harness & Trims descriptions retain acceptance.

@@ -11,6 +11,14 @@ from PIL import Image
 
 EVIDENCE = Path("/tmp/planetworld-batch-image-evidence.json")
 PHOTOS = {
+    "GWA-HRZ-78242015": (
+        "https://static.hertz-audio.com/media/2024/09/HERTZ_CP-51K_PROSPETTIVA_2024_05_06-copia.jpg",
+        "https://my.hertz-audio.com/product/cp-5-1k/",
+    ),
+    "GWA-FOC-IW-IMP22-IMPULSE": (
+        "https://www.carfeature.de/media/image/28/ae/50/FOCAL-INSIDE-ISO-Kabelsatz-FOAKACFIHI00000-IW-IMP2-2_b_0_600x600.jpg",
+        "https://www.carfeature.de/de/hifi-navigation/zubehoer/marken-zubehoer/focal/26944/focal-iw-imp2.2-inside-iso-kabelsatz",
+    ),
     "GWA-ALP-R2-W10D2": (
         "https://images.crutchfieldonline.com/ImageHandler/trim/869/652/products/2022/28/500/g500R2W10D2-o_other1.jpg",
         "https://www.crutchfield.com/p_500R2W10D2/Alpine-R2-W10D2.html",
@@ -24,7 +32,7 @@ PHOTOS = {
         "https://allisautosoundandalarms.co.za/product/audison-prima-apbx-10-s4s-sealed-enclosure-with-800-watts-10-inch-shallow-subwoofer/",
     ),
     "GWA-HRZ-78040180": (
-        "https://images.sonicelectronix.com/images/4877449/big/dcx5703.jpg",
+        "https://gibbyselectronicsupermarket.ca/cdn/shop/files/Hertz_DCX570.3_Back.jpg?v=1704733456&width=1214",
         "https://hertz-audio.com/product/dcx-570-3/",
     ),
     "GWA-HRZ-78040190": (

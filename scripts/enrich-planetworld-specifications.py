@@ -6,6 +6,7 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","IW-IMP2.2 - IMPULSE"):("https://www.focal.com/products/iw-imp-22",{"Model":"IW IMP 2.2","Product type":"ISO radio adapter harness","Amplifier compatibility":"Focal Impulse 4.320","Application":"Connects the original radio wiring to the amplifier"}),
 ("Kicker","46L7T102"):("https://www.kicker.com/10-inch-l7t-2-ohm-subwoofer",{"Model":"46L7T102","Driver size":"10 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
 ("Kicker","46L7T82"):("https://www.kicker.com/8-inch-l7t-2-ohm-subwoofer",{"Model":"46L7T82","Driver size":"8 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"350 W","Peak power":"700 W"}),
 ("Kicker","44L7S102"):("https://www.kicker.com/solo-baric-l7s-10-2-ohm-subwoofer",{"Model":"44L7S102","Driver size":"10 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"600 W","Peak power":"1200 W"}),
