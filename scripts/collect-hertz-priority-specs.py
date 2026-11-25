@@ -25,7 +25,9 @@ def recover(p):
     print("HERTZ_MODEL",key,title,flush=True)
     if p.get("specificationStatus")=="manufacturer_verified":return key,data.get(key,{})
     matches=[(t,u) for t,u in index if (t==tt if alias else match(tt,t))]
-    if not matches: return key,data.get(key,{})
+    if not matches:
+        print("HERTZ_NO_MATCH",key,alias or title,flush=True)
+        return key,data.get(key,{})
     n=max(len(t) for t,u in matches); matches=[(t,u) for t,u in matches if len(t)==n]
     if len({tuple(t) for t,u in matches})!=1:
         print("HERTZ_AMBIGUOUS",key,[u for t,u in matches],flush=True);return key,data.get(key,{})
@@ -36,11 +38,21 @@ def recover(p):
             h1=soup.find("h1")
             if not h1:continue
             ht=tokens(h1.get_text(" ",strip=True))
-            if ht[:len(t)]!=t:continue
+            if ht[:len(t)]!=t:
+                if key in ("GWA-HRZ-78000069","GWA-HRZ-78032127"): print("HERTZ_HEADING_MISMATCH",key,t,ht,actual,flush=True)
+                continue
             # Require type delimiter directly after model, not a longer model variant.
             if len(ht)>len(t) and ht[len(t)] not in ("kit","woofer","tweeter","midrange","mid","coaxial","speaker","subwoofer","amplifier","grille","grill","crossover","remote","controller","accessory","processor","component","cable","wiring","enclosure","adapter","interface","horn","driver","passive","active"):continue
             for node in soup.select("header,footer,nav,aside,.related,.upsells,.cross-sells,[class*=related-product],[class*=recommendation]"):node.decompose()
             facts=collector.fields(soup)
+            # Locate exact manufacturer label/value rows even when CSS uses generic divs.
+            label=re.compile(r"^(?:Power Handling|Power Output|Continuous Power|RMS Power|Peak Power|Impedance|Frequency Response|Sensitivity|Nominal diameter|Woofer Size|Tweeter Size|Voice Coil|Mounting Depth|Crossover|Magnet Material|Cone Material|Grilles Included|Channels|Supply Voltage|Fuse|Input Sensitivity|Signal.to.Noise|Dimensions|Dimension [A-Z]|SPL|Total Weight|Weight|Size|Amplifier Class|Load Impedance|Filter|Subwoofer Size)",re.I)
+            for node in soup.find_all(["div","li","tr","dl"]):
+                parts=[collector.clean(x.get_text(" ",strip=True)) for x in node.find_all(["div","span","p","strong","b","dt","dd","th","td"],recursive=False)]
+                if len(parts)!=2:continue
+                k,v=parts
+                if 2<=len(k)<=70 and 1<=len(v)<=110 and label.search(k) and re.search(r"\d|yes|no|ferrite|neodymium|paper|aluminium|aluminum|class|wired|wireless|mesh",v,re.I): facts.setdefault(k,v)
+            if key in ("GWA-HRZ-78000069","GWA-HRZ-78032127"): print("HERTZ_DIAGNOSTIC",key,"heading",h1.get_text(" ",strip=True),"facts",json.dumps(facts),"tables",len(soup.select("table")),flush=True)
             # Hertz specification rows may be divs rather than tables; find leaf label/value pairs in actual spec containers.
             for node in soup.select("[class*=spec],[class*=tech]"):
                 for child in node.find_all(["div","li"],recursive=False):
@@ -49,7 +61,9 @@ def recover(p):
                         k,v=parts
                         if len(k)<=65 and len(v)<=100 and collector.LABEL.search(k) and collector.VALUE.search(v) and not re.search(r"price|stock|shipping|warranty",k,re.I):facts.setdefault(k,v)
             # Do not mix identical field labels from LF/HF or multi-channel tables without labels.
-            if not facts:continue
+            if not facts:
+                print("HERTZ_EMPTY_FIELDS",key,actual,h1.get_text(" ",strip=True),flush=True)
+                continue
             result={"source":actual,"facts":facts,"identity":"Manufacturer model explicitly present in title and product H1; technical fields require review"}
             print("HERTZ_SOURCE",key,actual,json.dumps(facts,ensure_ascii=True),flush=True)
             return key,result
