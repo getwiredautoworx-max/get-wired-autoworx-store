@@ -9,7 +9,7 @@ SPECS={
 ("JVC","CS-DR162"):("https://www.jvc.com/usa/car-entertainment/speakers/cs-dr162/",{"Speaker type":"6.5-inch 2-way coaxial","RMS power handling":"50 W","Peak power handling":"300 W","Impedance":"4 ohms","Sensitivity":"88 dB","Frequency response":"88 Hz–22 kHz","Mounting depth":"44 mm"}),
 ("Kenwood","KDC-1040U"):("https://www.kenwood.com/ae/car/receiver/kdc-1040u/",{"Playback":"CD, USB; FLAC, WAV, MP3, WMA","Inputs":"Front USB and AUX","Preout":"1 × 2.5 V","Equalizer":"3-band","Faceplate":"Detachable","Android playback":"USB AOA2 on compatible devices"}),
 ("Pioneer","DMH-AP6650BT"):("https://pioneercarentertainment.com/products/dmh-ap6650bt/",{"Display":"9-inch touchscreen","Connectivity":"Bluetooth, Wi-Fi, USB","Apple CarPlay":"Wired and wireless","Android Auto":"Wired and wireless","WebLink Cast":"Wired"}),
-("Kicker","46CXA4001"):("https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",{"Amplifier type":"Mono Class D","RMS at 1 ohm":"400 W × 1"}),
+("Kicker","46CXA4001"):("https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",{"Amplifier type":"Mono Class D","Power at 4 ohms":"150 W × 1","Power at 2 ohms":"300 W × 1","Power at 1 ohm":"400 W × 1","Frequency response":"25–200 Hz","Low-pass crossover":"50–200 Hz, 12 dB/octave","Subsonic filter":"25 Hz, 24 dB/octave","Bass boost":"0–6 dB at 40 Hz","Input sensitivity":"125 mV–5 V low level; 1–40 V high level","Signal-to-noise ratio":">95 dB"}),
 ("Kicker","47KEY5001"):("https://www.kicker.com/key-5001-1-channel-smart-amplifier",{"Amplifier type":"Mono smart amplifier","RMS at 1 ohm":"500 W × 1"}),
 }
 def title_facts(title):
@@ -45,23 +45,39 @@ def main():
     d=json.loads(DATA.read_text()); records=d["records"]; assert len(records)==693
     before=json.loads(json.dumps(records))
     coverage=collections.Counter()
+    evidence_file=Path("/tmp/planetworld-spec-evidence.json")
+    external=json.loads(evidence_file.read_text()) if evidence_file.exists() else {}
     for p in records:
         key=(p["brand"],p["modelNumber"])
         source,facts=SPECS.get(key,("",{}))
         supplied=title_facts(p["title"])
-        p["technicalSpecifications"]=[{"label":k,"value":v} for k,v in (facts or supplied).items()]
+        evidence=external.get(p.get("getWiredSku") or ("Kicker:"+p["modelNumber"]),{})
+        if not facts and evidence.get("facts") and evidence.get("source"):
+            source=evidence["source"]; facts=evidence["facts"]
+            # External technical tables require review before being represented as fully verified.
+            external_candidate=True
+        else:
+            external_candidate=False
+        if p.get("component") in ("Trims","Harnesses"):
+            fit=re.search(r"\b(?:frame|fitment kit|fascia|trim|harness|adapter|adaptor)\s+(?:for\s+)?(.+)",p["title"],re.I)
+            if fit and re.search(r"\b(?:Toyota|Ford|Mazda|Suzuki|Nissan|Isuzu|BMW|Audi|VW|Volkswagen|Kia|Hyundai|Mitsubishi|Honda|Mercedes|Merc|GWM|Jeep|Mahindra)\b",fit.group(1),re.I):
+                supplied["Vehicle application as listed"]=fit.group(1).strip(" -")
+        combined=dict(supplied); combined.update(facts)
+        combined={"Model":p["modelNumber"],"Product type":p.get("component","Car audio"),**combined}
+        p["technicalSpecifications"]=[{"label":k,"value":v} for k,v in combined.items()]
         p["specificationSource"]=source or ("Supplier workbook product title" if supplied else "")
-        p["specificationStatus"]="manufacturer_verified" if facts else ("supplier_title_only" if supplied else "pending")
+        p["specificationStatus"]="exact_model_source_pending_review" if external_candidate else ("manufacturer_verified" if facts else ("supplier_title_only" if supplied else "pending"))
         coverage[p["specificationStatus"]]+=1
     for a,b in zip(before,records):
         assert all(b[k]==v for k,v in a.items()),a["modelNumber"]
     assert coverage["manufacturer_verified"]==len(SPECS),coverage
+    assert sum(coverage.values())==693
     DATA.write_text(json.dumps(d,ensure_ascii=False))
     p=ROOT/"preview-audio-products.html"
     s=p.read_text()
     anchor="body.append(title,meta,desc,price);"
     assert anchor in s
-    s=s.replace(anchor,'''body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(p.specificationStatus==='manufacturer_verified'&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Manufacturer specifications';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
+    s=s.replace(anchor,'''body.append(title,meta,desc);const specs=document.createElement('section');specs.className='technicalSpecs';const sh=document.createElement('h4');sh.textContent='Technical specifications & features';specs.append(sh);const fields=Array.isArray(p.technicalSpecifications)?p.technicalSpecifications:[];if(fields.length){const dl=document.createElement('dl');fields.forEach(f=>{const dt=document.createElement('dt');dt.textContent=f.label;const dd=document.createElement('dd');dd.textContent=f.value;dl.append(dt,dd)});specs.append(dl)}const note=document.createElement('small');note.textContent=p.specificationStatus==='manufacturer_verified'?'Manufacturer specifications':p.specificationStatus==='exact_model_source_pending_review'?'Exact-model source — technical review pending':p.specificationStatus==='supplier_title_only'?'Supplier title information — full specifications pending':'Full technical specifications pending verification';specs.append(note);if(['manufacturer_verified','exact_model_source_pending_review'].includes(p.specificationStatus)&&p.specificationSource){const a=document.createElement('a');a.href=p.specificationSource;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Product specification source';specs.append(document.createElement('br'),a)}body.append(specs,price);''')
     s=s.replace("</style>",".technicalSpecs{margin:12px 0;padding:12px;border:1px solid #d4e0e9;border-radius:9px;background:#f7fafc}.technicalSpecs h4{margin:0 0 8px;font-size:14px}.technicalSpecs dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 12px;margin:0 0 8px;font-size:13px}.technicalSpecs dt{font-weight:700}.technicalSpecs dd{margin:0;overflow-wrap:anywhere}.technicalSpecs small{color:#56748c}.technicalSpecs a{font-size:12px}</style>",1)
     p.write_text(s)
     print("SPECIFICATION_COVERAGE",json.dumps(dict(coverage)),flush=True)
