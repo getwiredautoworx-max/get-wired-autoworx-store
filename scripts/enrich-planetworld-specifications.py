@@ -6,6 +6,13 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","51KMC4"):("https://www.kicker.com/51KMC4",{"Model":"51KMC4","Display":"3-inch colour LCD","Audio sources":"AM/FM, weather band, Bluetooth, USB and RCA auxiliary","Amplified channels":"4","Ingress rating":"IP66"}),
+("Kicker","48KMC6"):("https://www.kicker.com/48KMC6",{"Model":"48KMC6","Display":"3.5-inch colour LCD","Audio sources":"AM/FM, weather band, satellite-ready, Bluetooth, USB and RCA auxiliary","Amplified channels":"6","Peak output (total)":"240 W","Ingress rating":"IP66"}),
+("Kicker","47KPB1"):("https://www.kicker.com/powerbars-family",{"Model":"47KPB1","Configuration":"Six-speaker powered soundbar","Amplifier output (manufacturer rating)":"150 W","Ingress rating":"IP66"}),
+("Kicker","47KPB2"):("https://www.kicker.com/powerbars-family",{"Model":"47KPB2","Configuration":"Ten-speaker powered soundbar","Amplifier output (manufacturer rating)":"300 W","Ingress rating":"IP66"}),
+("Kicker","48BTCAN65"):("https://www.kicker.com/powercans",{"Model":"48BTCAN65","Configuration":"Powered tower speakers with Bluetooth","Driver size":"6.5-inch woofers and 1-inch tweeters","Built-in amplifier output (manufacturer rating)":"75 W × 2"}),
+("Kicker","51KBTR"):("https://www.kicker.com/files/manuals/51KBTR.pdf",{"Model":"51KBTR","Configuration":"Bluetooth audio receiver","RCA output voltage":"4 V"}),
+("Kicker","51KSS365"):("https://www.kicker.com/51KSS365",{"Model":"51KSS365","Configuration":"6.5-inch three-way component kit","Impedance":"4 ohms","Recommended amplifier power (RMS)":"15–80 W"}),
 ("Kicker","45KM654"):("https://www.kicker.com/km-6-5-inch-4-ohm-coaxial",{"Model":"45KM654","Configuration":"Marine coaxial speaker","Nominal driver size":"6.5 inch","Impedance":"4 ohms","Recommended amplifier power (RMS)":"65 W"}),
 ("Kicker","45KM654L"):("https://www.kicker.com/km-6-5-inch-4-ohm-led-coaxial",{"Model":"45KM654L","Configuration":"Marine coaxial speaker with LED lighting","Nominal driver size":"6.5 inch","Impedance":"4 ohms","Recommended amplifier power (RMS)":"65 W"}),
 ("Kicker","45KM84L"):("https://www.kicker.com/km-8-inch-4-ohm-led-coaxial",{"Model":"45KM84L","Configuration":"Marine coaxial speaker with LED lighting","Nominal driver size":"8 inch","Impedance":"4 ohms","Recommended amplifier power (RMS)":"150 W"}),
