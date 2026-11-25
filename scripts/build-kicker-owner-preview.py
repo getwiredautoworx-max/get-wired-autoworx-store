@@ -88,6 +88,23 @@ for i,row in enumerate(rows,2):
                 print("CXA4001_IMAGE_PENDING no usable image")
         except Exception as exc:
             print("CXA4001_IMAGE_PENDING",str(exc))
+    if re.sub(r"[^A-Z0-9]", "", sku.upper())=="46CXA4001" and image.endswith("placeholder.svg"):
+        try:
+            source="https://www.kicker.com.au/product/46cxa400-1-400-watts-rms-monoblock-subwoofer-amplifier/"
+            page=urllib.request.urlopen(urllib.request.Request(source,headers={"User-Agent":"Mozilla/5.0"}),timeout=20).read().decode("utf-8","replace")
+            match=re.search(r'<meta[^>]+property=["\x27]og:image["\x27][^>]+content=["\x27]([^"\x27]+)',page,re.I)
+            assert match, "No product image metadata"
+            candidate=unescape(match.group(1)) if "unescape" in globals() else __import__("html").unescape(match.group(1))
+            with urllib.request.urlopen(candidate,timeout=20) as response:
+                mime=response.headers.get_content_type()
+                assert mime in ("image/jpeg","image/png","image/webp")
+                data=response.read()
+            assert len(data)>5000
+            image="assets/kicker-46cxa4001."+{"image/jpeg":"jpg","image/png":"png","image/webp":"webp"}[mime]
+            (root/image).write_bytes(data)
+            print("CXA4001_IMAGE_REPLACED",candidate)
+        except Exception as exc:
+            print("CXA4001_IMAGE_PENDING fallback",str(exc))
     print(f"CATEGORY {sku} {original_category} -> {category}: {title}")
     records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
 assert records
