@@ -1,3 +1,49 @@
+## COORDINATION / AUDIO RECOVERY MONITOR — 2026-11-25 08:03 SAST
+
+### Task start and authority
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first from `main` (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`), then this `HANDOVER_CURRENT.md` from `main` (pre-update blob `83f3c7a47ddc6360c25c19e2c7338858ebc18d35`).
+- Canonical repository remains public. Code/data head inspected: `563458e671d9104e6e4deb232311fb9117f0a743`.
+- Scope was coordination/recovery monitoring only. No product enrichment edits, branch creation, PR changes, workflow reruns, live database/catalogue writes, Axxess upload, production deployment, DNS/payment change or monitor-initiated Cloudflare deployment.
+
+### 1. Live GitHub state
+- Live open-PR search: **0 open PRs**.
+- Current dispositions rechecked:
+  - #190, #193, #199, #201 and #204: MERGED.
+  - #185: MERGED into `integration/store-consolidated-2026-11-14`, not directly into `main`.
+  - #178, #183, #189, #194 and #213: CLOSED WITHOUT MERGE.
+- Existing OneNav branch `work/audio-one-nav-current-main-2026-11-11`: head `7427f1bd4d1b2723e6cf5762b5dc01757f9c8052`; compare against inspected main: **24 ahead / 444 behind**.
+- Old audio integration branch `integration/audio-video-enrichment-current-main-2026-11-13`: head `29c59f7a6972622209a292bcc9b514618d64595f`; compare against inspected main: **8 ahead / 366 behind**.
+- Neither branch is a clean integration candidate. No active integration PR or new Kicker Git branch exists; the Kicker preview uses a Cloudflare Pages deployment branch, not a GitHub branch.
+
+### 2. New Kicker catalogue intake and isolated preview
+- Owner-uploaded source workbook is present at `suppliers/Planetworld/get-wired-autoworx-kicker-dec-feb-promo-final.xlsx`, added in commit `0257933a877f588ae1bf67c54c704747cddba513` (2026-11-24 17:58 SAST).
+- New workflow `.github/workflows/kicker-isolated-preview.yml` builds an isolated package and deploys it with Wrangler to the Cloudflare Pages preview branch `kicker-owner-review`. The workflow checks that Cloudflare production deployments are disabled and confirms the resulting deployment is classified as `preview`.
+- Latest workflow run [45555553295](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45555553295) completed SUCCESS on exact code SHA `563458e671d9104e6e4deb232311fb9117f0a743`. It verified that the hosted `assets/audio-catalogue-primary-preview.json` exactly matched the generated package.
+- Exact immutable owner-preview URL reported by the successful run: https://618cfab0.get-wired-autoworx-store.pages.dev/owner-preview.html (alias: https://kicker-owner-review.get-wired-autoworx-store.pages.dev). The wrapper identifies this as non-production and blocks checkout/order submission and Supabase write actions.
+- **Critical content-policy mismatch in that preview build:** the build logged `KICKER_PREVIEW_RECORDS 172`. For every included row it requires a positive numeric `Store Price (Incl VAT)`, writes that value as `indicativePrice`, and the generated audio pages replace the Price On Request renderer with ZAR currency display. It also copies `Supplier SKU Reference` into `modelNumber`; the product card renders that field as “Model: …”. Thus the hosted preview contains numeric supplier prices and publicly exposes internal supplier SKU references, contrary to the current owner rule that all supplier products remain Price On Request and supplier SKUs must not appear customer-facing. These records are generated only in the preview build; canonical `assets/audio-catalogue-primary-preview.json` on main remains empty (0 records), and no live database write was made.
+- The generated preview also changes the approved three-root structure: it promotes Car Audio & Video to a new “Car Audio & Security” root, retains “Audio & Home Entertainment” as a separate root, and adds Vehicle Security beneath it. This yields four roots in the generated preview. Canonical `assets/category-tree.json` on main remains 29 categories and the approved three roots.
+- Image status is review-only, not final acceptance: records are tagged `workbook_image_candidate_review_only`. The run reports exact image still pending for `46CXA4001` (placeholder retained); it retrieved a manufacturer image for `47KEY5001`. No mobile/desktop browser acceptance was run on this exact Kicker preview SHA.
+- The source workbook is a newly supplied catalogue, but that does not waive the all-supplier Price On Request rule, internal-SKU concealment, exact-image verification or approved category structure. Do not treat this preview as publication-ready. Owner decision/correction is required before it is used for customer-facing review or publication. The monitor did not withdraw or edit it. Cloudflare billing/credit consumption cannot be established from GitHub logs; the Kicker workflow itself performed a Wrangler Pages preview deployment, while this monitor did not deploy.
+
+### 3. Automation and queue reconciliation
+- Separate ChatGPT automation **Advance Get Wired audio and video catalogue** remains enabled (automation ID `6aed6a45c2f881918fa463b65cd2c8c0`). Last completed run `15267c3e-aea4-8323-833b-95f6d952354e` was 2026-11-24 09:23 SAST and reported review-only OneNav research with no repository changes. Its next scheduled run is 2026-11-25 09:00 SAST; at this monitor checkpoint it had not yet run today. It remains the sole audio catalogue editing worker; no duplicate work or automation edits were made.
+- Current `automation/task-queue.json` blob `81950bf6b6c29e336600cf0b23dd73333c976a89` is dated 2026-11-24 and still records canonical head `200ced5d78fdc8987b2adae2128546d0b645e2c8`, `active_workers=0`, `audio-video-content-enrichment=paused`, and `next-owner-approved-stock-upload=paused`. It does not reflect the newly supplied Kicker workbook/preview or the separately enabled ChatGPT audio task. Preserve the no-live-stock rule; do not start a second worker or alter the queue from this monitor.
+- The repository-level `.github/workflows/background-task-controller.yml` and `.github/workflows/audio-official-model-candidate-extraction.yml` are now absent from main after the 2026-11-24 cleanup. Do not report the old controller cron as active or recreate retired automation without owner instruction.
+- Last verified artifact inventory remains the prior 400 retained artifacts / 12,253,648,582 bytes. This run did not obtain a fresh full inventory and did not delete artifacts.
+
+### 4. Release and QA state
+- Latest Live Release Gates run [45500288207](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45500288207) ran on SHA `c0ac6b62bbe6fc7e08ad4898f40ea2a46b257a4b`, not current main, and FAILED. Playwright/Chromium installation succeeded; live category navigation passed desktop and mobile, but rendered **8 roots** in each viewport. Checkout UI passed desktop and mobile with order submission intercepted. The final gate failed because live storefront static files did not exactly match repository source. Payment readiness remains unconfirmed: Direct EFT is the only configured checkout method; PayFast/PayJustNow integration is absent.
+- The last recorded full package QA pass after cleanup was run `45425687867`, before the Kicker workbook/preview changes. The Kicker run verifies build, isolated deployment environment and hosted JSON equality only; it is not full package QA or mobile/desktop browser acceptance for the exact current SHA.
+- Canonical main still has zero product records in its public preview JSON. Production remains **HOLD**; no customer stock was restored by this monitor.
+
+### 5. Next action
+1. Keep the Kicker preview isolated and unapproved. Before any customer-facing use, the sole audio worker must reconcile the 172 records to Price On Request, remove supplier SKU references from public payloads/cards, preserve the three approved roots, and complete exact-model image review (including 46CXA4001); obtain owner acceptance.
+2. Reconcile the task queue against the newly supplied workbook and the enabled sole audio automation without starting a second worker.
+3. Continue to require exact-current-SHA package and desktop/mobile browser checks; resolve live source mismatch and payment readiness separately. Production remains HOLD.
+4. Do not rerun workflows, change branches/PRs, delete artifacts, deploy, spend credits or write live data without explicit owner approval.
+
+---
+
 ## CLEANUP ACCEPTANCE — 2026-11-24
 
 PASS package and idle queue validation run 45425255673; PASS local Chromium owner preview run 45425255843 at 320/390/430/1280px, three roots, department-brand-type navigation, search, empty cart, zero products, checkout blocked and no live writes. PASS package after further legacy script removal run 45425687867. Retired 27 historical scripts/tests/pages and two obsolete catalogue workflows; main tree 220 files / approximately 2.91 MB before this documentation update. Final workflow-only cleanup commit adf09701339b11668d40b2a72fbf2f1325797c3a; final exact-head rerun not yet observed. Production QA failure remains deferred, not a release approval. No new hosted preview deployed; stock upload end-to-end not yet tested with a new approved catalogue. Preserve current shell, security and deferred infrastructure. Git history retained.
