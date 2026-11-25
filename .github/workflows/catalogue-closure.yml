@@ -27,7 +27,7 @@ jobs:
           old='https://5acaeb50.get-wired-autoworx-store.pages.dev'
           keep='https://deb34b0c.get-wired-autoworx-store.pages.dev'
           # The identified deployment is recent; select only its exact URL.
-          deployments=cf('?env=preview&per_page=100')['result']
+          deployments=cf()['result']
           assert any(d['url'].rstrip('/')==keep and d['environment']=='preview' for d in deployments), 'Verified preview missing'
           matches=[d for d in deployments if d['url'].rstrip('/')==old]
           for d in matches:
@@ -41,7 +41,7 @@ jobs:
               else:
                   raise AssertionError('Deleted deployment still exists')
               print('EXPOSED_PREVIEW_DELETED')
-          assert not any(d['url'].rstrip('/')==old for d in cf('?env=preview&per_page=100')['result'])
+          assert not any(d['url'].rstrip('/')==old for d in cf()['result'])
           for filename in ('kicker-catalogue-image-repaired.xlsx','kicker-image-audit.xlsx'):
               try:
                   with urllib.request.urlopen(old+'/'+filename+'?closure=1',timeout=30) as res:
