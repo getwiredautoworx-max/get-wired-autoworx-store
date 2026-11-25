@@ -45,7 +45,7 @@ jobs:
         run: python scripts/verify-planetworld-workbook-repairs.py
       - name: Check review scope
         run: |
-          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=190; assert sum(p.get("imageReviewState")=="photo_pending" for p in d) in range(11,15); assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==4'
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=190; assert sum(p.get("imageReviewState")=="photo_pending" for p in d) in range(11,15); assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==3; assert next(p for p in d if p.get("getWiredSku")=="GWA-ONE-OX-CPAA3")["imageGatePassed"]'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:

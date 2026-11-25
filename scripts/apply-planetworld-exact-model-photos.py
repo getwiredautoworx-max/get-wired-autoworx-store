@@ -11,6 +11,10 @@ from PIL import Image, UnidentifiedImageError
 
 EVIDENCE = Path("/tmp/planetworld-batch-image-evidence.json")
 PHOTOS = {
+    "GWA-ONE-OX-CPAA3": (
+        "https://cdn.autostyle.co.za/wp-content/uploads/2026/01/07074149/OX-CPAA3.jpg",
+        "https://www.autostyle.co.za/product/onex-3-in-1-wireless-carplay-and-android-auto-adaptor/",
+    ),
     "GWA-ALP-KAE-HF11DA": (
         "https://shop.alpine.co.uk/cdn/shop/products/KAE-HF11DA_Anti-reflective-Screen-Protector-for_iLX-F115D_large.jpg?v=1648826841",
         "https://shop.alpine.co.uk/products/kae-hf11da-anti-reflective-screen-protector-for-ilx-f115d",
@@ -57,7 +61,7 @@ def main():
     repaired = []
     for sku, (url, source) in PHOTOS.items():
         row = by_sku[sku]
-        assert row["status"] in {"ORIGINAL_AVAILABLE", "UNRESOLVED"}, sku
+        assert row["status"] in {"ORIGINAL_AVAILABLE", "UNRESOLVED", "REPLACEMENT_CANDIDATE"}, sku
         request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         try:
             for attempt in range(2):
