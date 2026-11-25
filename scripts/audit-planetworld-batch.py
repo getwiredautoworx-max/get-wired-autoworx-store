@@ -53,6 +53,11 @@ def page_candidates(page,model,strict_title=None):
     for meta in soup.find_all("meta",property="og:image"):
         candidates.append(meta.get("content"))
     return [(urljoin(actual,x),actual) for x in candidates if x]
+# Manufacturer product gallery photos independently inspected on exact product pages.
+APPROVED_REPLACEMENTS={
+    "GWA-AUD-69010021":("https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg","https://audison.com/product/av-1-1-ii/"),
+    "GWA-AUD-69020021":("https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg","https://audison.com/product/av-3-0-ii/"),
+}
 def find_image(row):
     sku,title,brand=row["sku"],row["title"],row["brand"]
     original=row["image"]
@@ -61,6 +66,12 @@ def find_image(row):
         return dict(row,status="ORIGINAL_AVAILABLE",resolved=url,digest=digest,source="Workbook")
     except Exception as exc:
         reason=type(exc).__name__
+    if row["gwa"] in APPROVED_REPLACEMENTS:
+        try:
+            url,source=APPROVED_REPLACEMENTS[row["gwa"]]
+            url,digest=verified_image(url)
+            return dict(row,status="REPLACEMENT_APPROVED",resolved=url,digest=digest,source=source)
+        except Exception: pass
     candidates=[]
     if sku in SOURCES:
         p,model=SOURCES[sku]
