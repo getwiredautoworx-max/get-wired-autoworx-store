@@ -22,10 +22,8 @@ jobs:
         run: |
           mkdir -p private-qa
           mv pages-public/kicker-*.xlsx private-qa/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: kicker-catalogue-private-review
-          path: private-qa/
+      - name: Verify supplier documents excluded
+        run: test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:
           TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
