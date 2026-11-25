@@ -2,7 +2,7 @@ name: Planetworld batch intake
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/planetworld-batch-intake.yml']
+    paths: ['.github/workflows/planetworld-batch-intake.yml','scripts/audit-planetworld-batch.py']
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install openpyxl==3.1.5
+      - run: pip install openpyxl==3.1.5 pillow beautifulsoup4
       - name: Inspect exact uploaded workbooks
         run: |
           python - <<'PY'
@@ -42,3 +42,6 @@ jobs:
                       else:
                           print('FIRST_ROW',json.dumps(data[0],default=str)[:1200])
           PY
+      - name: Audit all supplied images and resolve missing-image candidates
+        run: python -u scripts/audit-planetworld-batch.py
+        timeout-minutes: 20
