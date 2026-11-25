@@ -1,3 +1,8 @@
+## Planetworld reconciliation — 629 of 693 accepted
+- Isolated Cloudflare review run 45667281829 passed hosted parity, desktop/mobile and workbook checks at https://2ebda1c7.get-wired-autoworx-store.pages.dev/owner-preview.html. All 693 products retained. 379 manufacturer verified and 250 owner-accepted. Remaining technical records: 64 (19 recovered source candidates, 20 supplier-title only, 25 pending).
+- Added 50 exact records: 7 Kicker, 33 Audison and 10 Alpine. Remaining technical work: Kicker 39, Alpine 10, DrArtex 11, Amplified 2, Audison 1, JVC 1. Only Audison CX690 remains; supplier labels it an Audison grille while manufacturer/retail evidence points to a Hertz speaker model that includes grilles. Obtain exact grille-only part or packaging evidence before changing brand or fitment.
+- Workbook image QA preserved 122 approved changes. Fifteen individual photo exceptions and 11 shared-photo groups remain. Next batch remains on hold until technical and photo acceptance.
+
 ## Planetworld reconciliation — 579 of 693 accepted
 - Isolated Cloudflare preview run 45665592897 passed hosted parity, desktop/mobile and workbook checks at https://497ef5b8.get-wired-autoworx-store.pages.dev/owner-preview.html. 329 manufacturer verified and 250 owner-accepted. 114 technical records remain: 27 recovered source candidates, 39 supplier-title only and 48 pending.
 - Added 16 Kicker records: seven KMA, KXMA, PXA and Warhorse amplifiers with load-specific RMS, plus nine marine speakers and grilles. Remaining by brand: Kicker 46, Audison 34, Alpine 20, DrArtex 11, Amplified 2, JVC 1.
