@@ -35,9 +35,20 @@ jobs:
         with:
           name: planetworld-model-spec-evidence
           path: /tmp/prior-specs
-          run-id: 45590030767
+          run-id: 45592367894
           github-token: ${{ github.token }}
       - run: cp /tmp/prior-specs/planetworld-spec-evidence.json /tmp/prior-planetworld-spec-evidence.json
+      - name: Validate updated Hertz model matching
+        run: |
+          python - <<'PY'
+          import runpy,re
+          m=runpy.run_path('scripts/collect-planetworld-model-specs.py')
+          a=m['model_alias']
+          assert a({'brand':'Hertz','modelNumber':'78000059','title':'Hertz Cento Series CK 130 5inch 2 Way'})=='CK 130'
+          assert a({'brand':'Hertz','modelNumber':'78242000','title':'CP 1.700 - D-CLASS MONO AMPLIFIER'})=='CP 1.700'
+          assert not a({'brand':'Hertz','modelNumber':'78000133','title':'Hertz Dieci Series DSK130.30 5inch 120W'})
+          print('HERTZ_ALIAS_REGRESSION_PASS')
+          PY
       - run: python -u scripts/collect-planetworld-model-specs.py
       - name: Prepare coverage summary and missing model list
         run: |
