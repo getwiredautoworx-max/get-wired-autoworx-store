@@ -35,7 +35,7 @@ jobs:
         with:
           name: planetworld-model-spec-evidence
           path: /tmp/prior-specs
-          run-id: 45590608012
+          run-id: 45592043338
           github-token: ${{ github.token }}
       - run: cp /tmp/prior-specs/planetworld-spec-evidence.json /tmp/planetworld-spec-evidence.json
       - run: python -u scripts/collect-hertz-priority-specs.py
