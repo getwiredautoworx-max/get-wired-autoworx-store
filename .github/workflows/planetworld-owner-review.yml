@@ -20,7 +20,7 @@ jobs:
         with:
           name: planetworld-targeted-image-evidence
           path: /tmp
-          run-id: 45588204152
+          run-id: 45599069675
           github-token: ${{ github.token }}
       - run: python scripts/build-cloudflare-pages-public.py
         env:
@@ -33,13 +33,13 @@ jobs:
         with:
           name: planetworld-model-spec-evidence
           path: /tmp
-          run-id: 45592367894
+          run-id: 45598423453
           github-token: ${{ github.token }}
       - run: python scripts/enrich-planetworld-specifications.py
       - run: python scripts/localize-amplified-logo.py
       - name: Check review scope
         run: |
-          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==13; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==118'
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==12; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==116'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:
