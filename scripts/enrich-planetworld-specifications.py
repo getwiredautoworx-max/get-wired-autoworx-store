@@ -6,6 +6,12 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","KIT ACX130"):("https://www.focal.com/products/acx-130",{"Model":"ACX 130","Configuration":"130 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W","Sensitivity":"90 dB"}),
+("Focal","KIT ACX165"):("https://www.focal.com/products/acx-165",{"Model":"ACX 165","Configuration":"165 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"60 W","Maximum power":"120 W","Sensitivity":"91.5 dB"}),
+("Focal","KIT ACX690"):("https://www.focal.com/products/acx-690",{"Model":"ACX 690","Configuration":"6 × 9 inch three-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"80 W","Maximum power":"160 W","Sensitivity":"92 dB"}),
+("Focal","KIT ASE130"):("https://www.focal.com/products/ase-130",{"Model":"ASE 130","Configuration":"130 mm two-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W","Sensitivity":"90 dB"}),
+("Focal","KIT PS130FE"):("https://www.focal.com/products/ps-130-fe",{"Model":"PS 130 FE","Configuration":"130 mm two-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"60 W","Maximum power":"120 W","Sensitivity":"90.5 dB"}),
+("Focal","KIT SUB P20FE"):("https://www.focal.com/products/p-20-fe",{"Model":"P 20 FE","Configuration":"200 mm subwoofer","Nominal impedance":"4 ohms","Nominal power (RMS)":"250 W","Maximum power":"500 W","Sensitivity":"82.5 dB"}),
 ("Alpine","R2-W10D2"):("https://www.alpine.co.uk/p/Products/SingleView/r2-w10d2",{"Model":"R2-W10D2","Driver size":"10 inch","Dual voice coil impedance":"2 + 2 ohms","RMS power handling":"750 W","Peak power handling":"2250 W"}),
 ("Alpine","R2-W10D4"):("https://www.alpine.co.uk/p/Products/SingleView/r2-w10d4",{"Model":"R2-W10D4","Driver size":"10 inch","Dual voice coil impedance":"4 + 4 ohms","RMS power handling":"750 W","Peak power handling":"2250 W"}),
 ("Alpine","R2-W12D4"):("https://www.alpine.co.uk/p/Products/SingleView/r2-w12d4",{"Model":"R2-W12D4","Driver size":"12 inch","Dual voice coil impedance":"4 + 4 ohms","RMS power handling":"750 W","Peak power handling":"2250 W"}),
