@@ -6,6 +6,15 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","KIT AC100"):("https://www.focal.com/products/100-ac",{"Model":"100 AC","Configuration":"100 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
+("Focal","KIT AC130"):("https://www.focal.com/products/130-ac",{"Model":"130 AC","Configuration":"130 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W"}),
+("Focal","KIT AC570"):("https://www.focal.com/products/570-ac",{"Model":"570 AC","Configuration":"5 × 7 inch two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"60 W","Maximum power":"120 W"}),
+("Focal","KIT AS130"):("https://www.focal.com/products/130-as",{"Model":"130 AS","Configuration":"130 mm two-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W"}),
+("Focal","KIT PC130"):("https://www.focal-america.com/product/pc-130/",{"Model":"PC 130","Configuration":"130 mm two-way coaxial kit","Nominal power (RMS)":"60 W","Maximum power":"120 W"}),
+("Focal","RCX-130"):("https://www.focal-america.com/product/rcx130/",{"Model":"RCX 130","Configuration":"130 mm two-way coaxial kit","Nominal power (RMS)":"50 W","Maximum power":"100 W","Frequency response":"65–21,000 Hz"}),
+("Focal","KIT I SUB TWIN"):("https://www.focal.com/products/isub-twin",{"Model":"ISUB Twin","Configuration":"Pair of compact passive subwoofer enclosures","Maximum power":"200 W × 2","Nominal impedance":"2 ohms","Frequency response (±3 dB)":"50–150 Hz"}),
+("Focal","KIT ISUB-2.1"):("https://www.focal.com/products/isub-active-21",{"Model":"ISUB Active 2.1","Configuration":"200 mm active subwoofer with two-channel front-speaker amplification","Nominal power (RMS)":"130 W","Maximum power":"260 W","Nominal impedance":"4 ohms"}),
+("Focal","HILO V3"):("https://www.focal.com/products/hilov3",{"Model":"Hilo V3","Application":"Convert factory speaker-level audio to a low-level signal for an external amplifier","Installation":"Retains the original radio and controls"}),
 ("Focal","FPX 1.1000"):("https://www.focal.com/products/fpx-11000",{"Model":"FPX 1.1000","Channels":"1","Output at 4 ohms (RMS)":"420 W","Output at 2 ohms (RMS)":"700 W","Output at 1 ohm (RMS)":"1,000 W"}),
 ("Focal","FPX 5.1200"):("https://www.focal-america.com/product/fpx-5-1200/",{"Model":"FPX 5.1200","Channels":"5","Output at 4 ohms (RMS)":"75 W × 4 + 420 W × 1 (CEA)","Output at 2 ohms (RMS)":"120 W × 4 + 720 W × 1 (manufacturer maximum)"}),
 ("Focal","FDS 1.350 AMPLI COMPACT"):("https://www.focal.com/products/fds-1350",{"Model":"FDS 1.350","Channels":"1","Output at 4 ohms (RMS)":"210 W","Output at 2 ohms (RMS)":"350 W"}),
