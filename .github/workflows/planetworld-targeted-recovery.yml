@@ -1,0 +1,30 @@
+name: Planetworld targeted image recovery
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-targeted-recovery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5 pillow beautifulsoup4
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-image-evidence
+          path: /tmp
+          run-id: 45587115485
+          github-token: ${{ github.token }}
+      - run: python -u scripts/recover-planetworld-image-exceptions.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-targeted-image-evidence
+          path: /tmp/planetworld-batch-image-evidence.json
+          retention-days: 3
