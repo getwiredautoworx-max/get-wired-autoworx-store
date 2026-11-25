@@ -6,6 +6,10 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+# KIAC1088 cross-reference to 6 WM grille: https://www.gapaudio.it/wp-content/uploads/2024/04/AFI_LISTINO_FOCAL_CAR_AUDIO_APRILE_2024.pdf
+("Focal","IW-IMP2.1"):("https://focalaustralia.com.au/wp-content/uploads/2023/05/Focal-Inside-Cable-information.pdf",{"Model":"IW IMP 2.1","Configuration":"ISO harness for front speakers and one passive subwoofer channel","Amplifier compatibility":"Focal Impulse 4.320"}),
+("Focal","BMW SUB HARNESS DUAL 500"):("https://focalaustralia.com.au/wp-content/uploads/2023/05/Focal-Inside-Cable-information.pdf",{"Model":"BMW SUB HARNESS DUAL 500 (IW-BMW-DUAL SUB)","Configuration":"BMW subwoofer connection cable set"}),
+("Focal","KIAC1088"):("https://www.focal.com/products/6wm",{"Model":"KIAC1088","Configuration":"Optional aluminium speaker grille","Speaker compatibility":"Focal Utopia M 6 WM, 165 mm"}),
 ("Kicker","46CK4"):("https://www.kicker.com/CK4",{"Model":"46CK4","Configuration":"Complete amplifier installation kit","Power and ground wire":"4 AWG","Included fuse":"100 A AFS"}),
 ("Kicker","46CK8"):("https://www.kicker.com/CK8",{"Model":"46CK8","Configuration":"Complete amplifier installation kit","Power and ground wire":"8 AWG","Included fuse":"60 A AFS"}),
 ("Kicker","47VK6"):("https://www.kicker.com/47VK6-amplifier-install-kit",{"Model":"47VK6","Configuration":"Complete amplifier installation kit","Power and ground wire":"6 AWG","Included fuse":"80 A MANL"}),
