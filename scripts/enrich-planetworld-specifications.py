@@ -6,6 +6,11 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","KIT IC BMW100"):("https://www.focal.com/products/ic-bmw-100",{"Model":"IC BMW 100","Configuration":"100 mm BMW two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
+("Focal","KIT IC MBZ 100"):("https://www.focal.com/products/ic-mbz-100",{"Model":"IC MBZ 100","Configuration":"100 mm Mercedes-Benz two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
+("Focal","KIT ES165KX3"):("https://www.focal-america.com/product/es165kx3/",{"Model":"ES 165 KX3","Configuration":"165 mm three-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"120 W","Maximum power":"240 W"}),
+("Focal","KIT SUBE25KX"):("https://www.focal-america.com/product/e25kx/",{"Model":"E 25 KX","Configuration":"250 mm dual-voice-coil subwoofer","Nominal impedance":"4 + 4 ohms","Nominal power (RMS)":"600 W","Maximum power":"1200 W"}),
+("Focal","KIT SUB 30KXE"):("https://www.focal.com/products/sub-30-kxe",{"Model":"SUB 30 KXE","Configuration":"300 mm dual-voice-coil subwoofer","Nominal power (RMS)":"800 W","Maximum power":"1600 W"}),
 ("Focal","KIT AC100"):("https://www.focal.com/products/100-ac",{"Model":"100 AC","Configuration":"100 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
 ("Focal","KIT AC130"):("https://www.focal.com/products/130-ac",{"Model":"130 AC","Configuration":"130 mm two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"50 W","Maximum power":"100 W"}),
 ("Focal","KIT AC570"):("https://www.focal.com/products/570-ac",{"Model":"570 AC","Configuration":"5 × 7 inch two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"60 W","Maximum power":"120 W"}),
