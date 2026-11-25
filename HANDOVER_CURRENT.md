@@ -1,3 +1,10 @@
+## Current Planetworld owner review — 25 November 2026
+- Isolated Cloudflare owner review successfully deployed and verified in workflow 45587994078 (success). Exact tested preview: https://baad7f86.get-wired-autoworx-store.pages.dev/owner-preview.html
+- 693 records: 172 existing Kicker + 521 new products across 11 additional ranges. Hosted catalogue equals generated catalogue. All 12 brand navigation routes passed on desktop 1440px and mobile 390px. Supplier spreadsheets excluded. Production branch safety checks passed; no production or Supabase changes.
+- New batch image evidence from run 45587115485: 388 original available, 2 approved replacements, 114 replacement candidates awaiting exact-model approval, 17 unresolved. Review build marks image exceptions and is NOT final batch acceptance. Do not falsely close the remaining image and repaired-workbook verification requirements.
+- Targeted recovery script and workflow run 45588204152 use retained evidence and exact product sources without repeating accepted image audits. Continue outstanding image approvals, corrected workbook integrity checks, and final isolated review update; keep Kicker baseline and existing owner review intact until verified successor.
+- Owner authorised browsing preview; do not start subsequent stock batch before final acceptance. No production deployment, paid credits or Supabase writes.
+
 ## Planetworld batch progress — 25 November 2026
 - Data validation passed in run 45586205995: 521 active rows, unique Get Wired SKUs and brand/model pairs, positive VAT-inclusive workbook prices and reconciled warehouse stock totals. Image decoding: 388 original links available, 1 unapproved Alpine image candidate (motor illustration, not accepted), 132 unresolved, including 123 ONE.
 - Combined staging run 45586819225 PASSED: 693 records (172 retained Kicker + 521 new), all 12 brand routes navigable through product-type to product list at 1440px desktop and 390px mobile. No deployment made. Staging alone is not image approval.
