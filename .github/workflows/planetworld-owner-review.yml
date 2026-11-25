@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install openpyxl==3.1.5
+      - run: pip install openpyxl==3.1.5 pillow beautifulsoup4
       - uses: actions/download-artifact@v4
         with:
           name: planetworld-targeted-image-evidence
@@ -33,9 +33,10 @@ jobs:
         with:
           name: planetworld-model-spec-evidence
           path: /tmp
-          run-id: 45590030767
+          run-id: 45592367894
           github-token: ${{ github.token }}
       - run: python scripts/enrich-planetworld-specifications.py
+      - run: python scripts/localize-amplified-logo.py
       - name: Check review scope
         run: |
           python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==13; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==118'
@@ -86,7 +87,22 @@ jobs:
               await page.goto(base+'/preview-audio.html?department=Car%20Audio');
               const link=page.locator('#brands a[aria-label="'+name+'"]').first();
               await link.waitFor({timeout:15000});
+              if(name==='Amplified'){
+                const logo=link.locator('img');
+                await logo.waitFor({timeout:15000});
+                await logo.evaluate(img=>img.decode());
+                assert.ok((await logo.getAttribute('src')).includes('assets/brand-logos/amplified.png'));
+                assert.ok(await logo.evaluate(img=>img.naturalWidth>=100));
+                console.log('AMPLIFIED_LOGO_TILE_OK',viewport.width);
+              }
               await page.goto(new URL(await link.getAttribute('href'),base).href);
+              if(name==='Amplified'){
+                const logo=page.locator('.brandHero img');
+                await logo.waitFor({timeout:15000});
+                await logo.evaluate(img=>img.decode());
+                assert.ok(await logo.evaluate(img=>img.naturalWidth>=100));
+                console.log('AMPLIFIED_LOGO_BRAND_OK',viewport.width);
+              }
               const card=page.locator('#types a.typeCard').first();
               await card.waitFor({timeout:15000});
               await card.click();
