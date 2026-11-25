@@ -154,3 +154,53 @@ s=s.replace(old,new)
 s=s.replace("const audioRoutes={","const audioRoutes={'owner-car-audio':'preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',")
 p.write_text(s)
 print("HOMEPAGE_CATEGORY_SPLIT_OK")
+
+# Audit image availability and produce a non-destructive workbook repair manifest.
+import concurrent.futures, urllib.request
+from openpyxl import Workbook
+def audit_image(record):
+    url=record["imageUrl"]
+    try:
+        if url.startswith("assets/"):
+            assert (root/url).is_file() and "placeholder" not in url
+        else:
+            req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+            with urllib.request.urlopen(req,timeout=15) as response:
+                assert response.headers.get_content_type().startswith("image/")
+                assert len(response.read(4096))>1000
+        return (record["modelNumber"],url,"AVAILABLE","")
+    except Exception as exc:
+        return (record["modelNumber"],url,"REVIEW_REQUIRED",str(exc))
+with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:
+    audit=list(pool.map(audit_image,records))
+report=Workbook()
+sheet=report.active
+sheet.title="Image audit"
+sheet.append(["Supplier SKU","Preview image","Availability","Issue"])
+for row in audit:
+    sheet.append(row)
+    if row[2]!="AVAILABLE": print("IMAGE_AUDIT_FAILURE",row)
+report.save(root/"kicker-image-audit.xlsx")
+print("IMAGE_AUDIT_TOTAL",len(audit),"AVAILABLE",sum(row[2]=="AVAILABLE" for row in audit))
+# Preserve workbook cells and formulas; only repair the two confirmed missing/broken images.
+source=Path("suppliers/Planetworld/get-wired-autoworx-kicker-dec-feb-promo-final.xlsx")
+book=load_workbook(source)
+sheet=book["Store_Catalog_Upload"]
+cols={cell.value:cell.column for cell in sheet[1]}
+repairs={"46CXA4001":"https://www.kicker.com.au/wp-content/uploads/1970/01/46CXA4001.jpg","47KEY5001":"https://www.kicker.com.au/wp-content/uploads/2020/10/47KEY5001-FR-scaled.jpg"}
+available={row[0] for row in audit if row[2]=="AVAILABLE" and row[1].startswith("assets/kicker-")}
+for row in range(2,sheet.max_row+1):
+    sku=str(sheet.cell(row,cols["Supplier SKU Reference"]).value or "").strip()
+    if sku in repairs and sku in available:
+        sheet.cell(row,cols["Product Image URL"]).value=repairs[sku]
+output=root/"kicker-catalogue-image-repaired.xlsx"
+book.save(output)
+check=load_workbook(output)
+original=load_workbook(source)
+for before in original:
+    after=check[before.title]
+    for row in before:
+        for cell in row:
+            if before.title==sheet.title and cell.column==cols["Product Image URL"] and str(before.cell(cell.row,cols["Supplier SKU Reference"]).value or "").strip() in available: continue
+            assert cell.value==after[cell.coordinate].value, (before.title,cell.coordinate)
+print("WORKBOOK_CELL_PRESERVATION_OK")
