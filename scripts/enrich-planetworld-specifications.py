@@ -10,7 +10,11 @@ SPECS={
 ("Kenwood","KDC-1040U"):("https://www.kenwood.com/ae/car/receiver/kdc-1040u/",{"Playback":"CD, USB; FLAC, WAV, MP3, WMA","Inputs":"Front USB and AUX","Preout":"1 × 2.5 V","Equalizer":"3-band","Faceplate":"Detachable","Android playback":"USB AOA2 on compatible devices"}),
 ("Pioneer","DMH-AP6650BT"):("https://pioneercarentertainment.com/products/dmh-ap6650bt/",{"Display":"9-inch touchscreen","Connectivity":"Bluetooth, Wi-Fi, USB","Apple CarPlay":"Wired and wireless","Android Auto":"Wired and wireless","WebLink Cast":"Wired"}),
 ("Kicker","46CXA4001"):("https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp",{"Amplifier type":"Mono Class D","Power at 4 ohms":"150 W × 1","Power at 2 ohms":"300 W × 1","Power at 1 ohm":"400 W × 1","Frequency response":"25–200 Hz","Low-pass crossover":"50–200 Hz, 12 dB/octave","Subsonic filter":"25 Hz, 24 dB/octave","Bass boost":"0–6 dB at 40 Hz","Input sensitivity":"125 mV–5 V low level; 1–40 V high level","Signal-to-noise ratio":">95 dB"}),
-("Kicker","47KEY5001"):("https://www.kicker.com/key-5001-1-channel-smart-amplifier",{"Amplifier type":"Mono smart amplifier","RMS at 1 ohm":"500 W × 1"}),
+("Kicker","47KEY5001"):("https://www.kicker.com/key-5001-1-channel-smart-amplifier",{"Amplifier type":"Mono smart amplifier","RMS at 4 ohms":"150 W","RMS at 2 ohms":"300 W","RMS at 1 ohm":"500 W","Frequency response":"10–160 Hz","Low-pass filter":"40–160 Hz","High-pass filter":"10–40 Hz","Input sensitivity":"1–40 V high level; 125 mV–5 V low level","Signal-to-noise ratio":">90 dB A-weighted"}),
+("Audison","69010021"):("https://audison.com/product/av-1-1-ii/",{"Model":"AV 1.1 II","Type":"Tweeter","Diameter":"28 mm","Peak power (filtered)":"180 W","Impedance":"4 ohms","Dome":"Tetolon soft dome","Upper frequency extension":"40 kHz"}),
+("Audison","69020021"):("https://audison.com/product/av-3-0-ii/",{"Model":"AV 3.0 II","Type":"Midrange","Diameter":"70 mm","Peak power":"100 W","Impedance":"4 ohms","Cone":"Pressed paper with cotton fibres","Grille":"Black mesh metal"}),
+("Audison","69030021"):("https://audison.com/product/av-6-5-p-ii/",{"Model":"AV 6.5 P II","Type":"Mid-bass woofer","Diameter":"165 mm","RMS power handling":"150 W","Peak power":"300 W","Impedance":"4 ohms","Voice coil":"40 mm"}),
+("Hertz","78242015"):("https://hertz-audio.com/product/cp-5-1k/",{"Model":"CP 5.1K","Channels":"5","Class":"D","RMS at 4 ohms":"4 × 80 W + 1 × 330 W","RMS at 2 ohms":"4 × 130 W + 1 × 510 W","Minimum impedance in 5-channel mode":"2 ohms","Inputs":"High and low level","Supply":"11–15 V DC","Fuses":"2 × 30 A","Adjustable crossover":"Yes"}),
 }
 def title_facts(title):
     # Extract only explicit title facts. Never infer RMS from watts, features from model codes,
@@ -63,7 +67,7 @@ def main():
             if fit and re.search(r"\b(?:Toyota|Ford|Mazda|Suzuki|Nissan|Isuzu|BMW|Audi|VW|Volkswagen|Kia|Hyundai|Mitsubishi|Honda|Mercedes|Merc|GWM|Jeep|Mahindra)\b",fit.group(1),re.I):
                 supplied["Vehicle application as listed"]=fit.group(1).strip(" -")
         combined=dict(supplied); combined.update(facts)
-        combined={"Model":p["modelNumber"],"Product type":p.get("component","Car audio"),**combined}
+        combined={"Supplier model / SKU":p["modelNumber"],"Product type":p.get("component","Car audio"),**combined}
         p["technicalSpecifications"]=[{"label":k,"value":v} for k,v in combined.items()]
         p["specificationSource"]=source or ("Supplier workbook product title" if supplied else "")
         p["specificationStatus"]="exact_model_source_pending_review" if external_candidate else ("manufacturer_verified" if facts else ("supplier_title_only" if supplied else "pending"))
