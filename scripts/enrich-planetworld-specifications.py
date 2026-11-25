@@ -6,6 +6,15 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("JVC","CS-DR695HP"):("https://www.jvc.com/ae/car-entertainment/speakers/cs-dr695hp/",{"Model":"CS-DR695HP","Configuration":"6 × 9 inch five-way coaxial","Impedance":"4 ohms","RMS handling":"100 W","Peak handling":"800 W","Frequency response":"49–19,000 Hz"}),
+("JVC","KD-T752BT"):("https://www.jvc.com/ae/car-entertainment/audio-receivers/kd-t752bt/",{"Model":"KD-T752BT","Chassis":"Single DIN","Playback":"CD, USB and Bluetooth"}),
+("JVC","KD-X182BT"):("https://in.jvc.com/car/audio-receivers/kd_x182bt/",{"Model":"KD-X182BT","Chassis":"Single DIN","Playback":"USB and Bluetooth"}),
+("JVC","KD-X282BT"):("https://www.jvc.com/in/car-entertainment/audio-receivers/kd-x282bt/",{"Model":"KD-X282BT","Chassis":"Single DIN","Playback":"USB and Bluetooth"}),
+("JVC","KD-X482BT"):("https://www.jvc.com/my/car-entertainment/audio-receivers/kd-x482bt/",{"Model":"KD-X482BT","Chassis":"Single DIN","Playback":"USB and Bluetooth"}),
+("JVC","KW-M590BT"):("https://www.jvc.com/ae/car-entertainment/multimedia-receivers/kw-m590bt/",{"Model":"KW-M590BT","Display":"6.8-inch capacitive touchscreen","Smartphone integration":"Wired Apple CarPlay and Android Auto via USB","Connectivity":"Bluetooth and USB mirroring","Audio tuning":"13-band equalizer"}),
+("Kenwood","KDC-130U"):("https://manuals.jvckenwood.com/download/files/B5A-2597-10.pdf",{"Model":"KDC-130U","Chassis":"Single DIN","Playback":"CD and USB","Auxiliary input":"Front 3.5 mm input"}),
+("Kenwood","KDC-154UM"):("https://manuals.jvckenwood.com/download/files/B5A-2597-10.pdf",{"Model":"KDC-154UM","Chassis":"Single DIN","Playback":"CD and USB","Auxiliary input":"Front 3.5 mm input"}),
+("Pioneer","TS-G1610F-2"):("https://pioneercarentertainment.com/products/ts-g1610f/",{"Model":"TS-G1610F","Configuration":"6.5-inch dual-cone speaker","Maximum music power":"280 W"}),
 ("Kicker","50CWCS104"):("https://www.kicker.com/50CWCS104",{"Model":"50CWCS104","Driver size":"10 inch","Configuration":"Single voice coil","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"125–250 W","Peak power":"500 W"}),
 ("Kicker","50CWCS124"):("https://www.kicker.com/50CWCS124",{"Model":"50CWCS124","Driver size":"12 inch","Configuration":"Single voice coil","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"150–300 W","Peak power":"600 W"}),
 ("Kicker","50CWCS84"):("https://www.kicker.com/50CWCS84",{"Model":"50CWCS84","Driver size":"8 inch","Configuration":"Single voice coil","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"100–200 W","Peak power":"400 W"}),
