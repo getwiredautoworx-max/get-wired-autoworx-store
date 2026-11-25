@@ -1,0 +1,44 @@
+name: Planetworld batch intake
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-batch-intake.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - name: Inspect exact uploaded workbooks
+        run: |
+          python - <<'PY'
+          import zipfile,io,json,collections
+          from openpyxl import load_workbook
+          p='suppliers/Planetworld/get-wired-autoworx-car-audio-all-11-brands-in-stock.zip'
+          with zipfile.ZipFile(p) as z:
+              assert len(z.namelist())==11
+              for n in z.namelist():
+                  assert n.endswith('.xlsx') and '/' not in n
+                  b=load_workbook(io.BytesIO(z.read(n)),read_only=True,data_only=True)
+                  print('WORKBOOK',n)
+                  for s in b:
+                      rows=iter(s.values)
+                      h=next(rows,())
+                      print('SHEET',s.title,s.max_row,s.max_column,json.dumps(h,default=str))
+                      if s.max_row<2: continue
+                      data=list(rows)
+                      if s.title=='Store_Catalog_Upload':
+                          print('SAMPLE',json.dumps(dict(zip(h,data[0])),default=str))
+                          for k in ('Vendor / Brand','Product Category','Publish Status','Inventory Status','Product Type','Image Status'):
+                              if k in h: print('COUNTS',k,json.dumps(collections.Counter(str(row[h.index(k)]) for row in data)))
+                          if 'Product Image URL' in h:
+                              print('MISSING_IMAGES',[(row[h.index('Supplier SKU Reference')],row[h.index('Product Title')]) for row in data if not str(row[h.index('Product Image URL')] or '').startswith('https://')])
+                      else:
+                          print('FIRST_ROW',json.dumps(data[0],default=str)[:1200])
+          PY
