@@ -35,5 +35,8 @@ for name in ["preview-audio.html","preview-audio-brand.html","preview-audio-prod
     s=p.read_text()
     old="price.textContent='Price On Request';"
     s=s.replace("new Set([\'official_manufacturer_image_verified_review_only\'","new Set([\'workbook_image_candidate_review_only\',\'official_manufacturer_image_verified_review_only\'")
+    s=s.replace('new Set(["official_manufacturer_image_verified_review_only"', 'new Set(["workbook_image_candidate_review_only","official_manufacturer_image_verified_review_only"')
+    assert "workbook_image_candidate_review_only" in s, name
+    s=s.replace("No products are currently listed. Browse product types to see the empty store layout.","Browse the imported Kicker catalogue.")
     p.write_text(s.replace(old,"price.textContent=Number.isFinite(p.indicativePrice)?new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(p.indicativePrice)+' incl. VAT':'Price On Request';"))
 print("KICKER_PREVIEW_RECORDS",len(records))
