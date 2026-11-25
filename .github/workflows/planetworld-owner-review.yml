@@ -29,6 +29,7 @@ jobs:
       - run: python scripts/stage-planetworld-batch.py
         env:
           GW_BATCH_OWNER_REVIEW: '1'
+      - run: python scripts/enrich-planetworld-specifications.py
       - name: Check review scope
         run: |
           python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==17; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==114'
@@ -86,6 +87,12 @@ jobs:
               await page.locator('#products article.product').first().waitFor({timeout:15000});
               console.log('HOSTED_BRAND_NAV_OK',viewport.width,name);
             }
+            await page.goto(base+'/preview-audio-brand.html?department=Car%20Audio&brand=Alpine');
+            await page.getByText('Amplifiers',{exact:true}).first().click();
+            const bbx=page.locator('article.product').filter({hasText:'BBX-F1200'}).first();
+            await bbx.getByText('Technical specifications & features',{exact:true}).waitFor();
+            await bbx.getByText('4 × 50 W',{exact:true}).waitFor();
+            console.log('TECHNICAL_SPEC_UI_OK',viewport.width);
             await page.close();
           }
           await browser.close();
