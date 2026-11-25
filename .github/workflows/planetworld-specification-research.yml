@@ -1,0 +1,39 @@
+name: Planetworld technical specification research
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-specification-research.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  research:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5 beautifulsoup4
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-image-evidence
+          path: /tmp
+          run-id: 45587115485
+          github-token: ${{ github.token }}
+      - run: python scripts/build-cloudflare-pages-public.py
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+      - run: python scripts/build-kicker-owner-preview.py
+      - run: python scripts/stage-planetworld-batch.py
+        env:
+          GW_BATCH_OWNER_REVIEW: '1'
+      - run: python scripts/enrich-planetworld-specifications.py
+      - run: python -u scripts/collect-planetworld-model-specs.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-model-spec-evidence
+          path: /tmp/planetworld-spec-evidence.json
+          retention-days: 7
