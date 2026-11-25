@@ -18,6 +18,14 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: '1'
       - run: python scripts/build-kicker-owner-preview.py
+      - name: Keep supplier workbook outside public deployment
+        run: |
+          mkdir -p private-qa
+          mv pages-public/kicker-*.xlsx private-qa/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kicker-catalogue-private-review
+          path: private-qa/
       - name: Confirm production branch and automatic deployment safety
         env:
           TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -41,3 +49,41 @@ jobs:
           curl -fsS "$URL/assets/audio-catalogue-primary-preview.json" > /tmp/hosted.json
           python -c 'import json; assert json.load(open("/tmp/hosted.json"))==json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))'
           echo "KICKER_PREVIEW_URL=$URL/owner-preview.html"
+
+      - name: Browser acceptance tests
+        env:
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          node --input-type=module <<'JS'
+          import {chromium} from 'playwright';
+          import assert from 'node:assert/strict';
+          const browser=await chromium.launch({headless:true});
+          for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+            const page=await browser.newPage({viewport});
+            const base=process.env.URL;
+            await page.goto(base+'/owner-preview.html');
+            const frame=page.frameLocator('iframe').first();
+            await frame.getByText('Car Audio & Security',{exact:true}).first().waitFor({timeout:30000});
+            await page.goto(base+'/preview-category.html?id=e3d19d20-fb46-426c-9f64-221d863add0b');
+            await page.getByText('Vehicle Security',{exact:true}).first().waitFor();
+            await page.getByText('Car Audio & Video',{exact:true}).first().click();
+            await page.getByText('Kicker',{exact:true}).first().waitFor({timeout:30000});
+            await page.goto(base+'/preview-audio-products.html?department=Car%20Audio&brand=Kicker&component=Amplifiers');
+            await page.getByText(/46CXA4001/).first().waitFor({timeout:30000});
+            await page.getByText(/47KEY5001/).first().waitFor();
+            const data=await (await page.request.get(base+'/assets/audio-catalogue-primary-preview.json')).json();
+            assert.equal(data.records.length,172);
+            for(const sku of ['46CXA4001','47KEY5001']){
+              const item=data.records.find(x=>x.modelNumber===sku);
+              assert(item.imageUrl.startsWith('assets/kicker-'));
+              assert((await page.request.get(base+'/'+item.imageUrl)).ok());
+            }
+            assert.equal(data.records.find(x=>x.modelNumber==='46KIYFM').component,'Wiring Kits');
+            assert.equal((await page.request.get(base+'/kicker-catalogue-image-repaired.xlsx')).headers()['content-type']?.includes('spreadsheet'),false);
+            await page.close();
+            console.log('BROWSER_ACCEPTANCE_OK',viewport.width);
+          }
+          await browser.close();
+          JS
