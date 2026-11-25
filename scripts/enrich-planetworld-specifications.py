@@ -6,6 +6,16 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","51KSC404"):("https://www.kicker.com/51KSC404",{"Model":"51KSC404","Nominal size":"4 inch","Configuration":"Two-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–75 W"}),
+("Kicker","51KSC504"):("https://www.kicker.com/51KSC504",{"Model":"51KSC504","Nominal size":"5.25 inch","Configuration":"Two-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–75 W"}),
+("Kicker","51KSC6504"):("https://www.kicker.com/51KSC6504",{"Model":"51KSC6504","Nominal size":"6.5 inch","Configuration":"Two-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–100 W"}),
+("Kicker","51KSC6704"):("https://www.kicker.com/51KSC6704",{"Model":"51KSC6704","Nominal size":"6.75 inch","Configuration":"Two-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–100 W"}),
+("Kicker","51KSC6904"):("https://www.kicker.com/51KSC6904",{"Model":"51KSC6904","Nominal size":"6 × 9 inch","Configuration":"Two-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–150 W"}),
+("Kicker","51KSC69304"):("https://www.kicker.com/51KSC69304",{"Model":"51KSC69304","Nominal size":"6 × 9 inch","Configuration":"Three-way coaxial","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–150 W"}),
+("Kicker","51KSS504"):("https://www.kicker.com/51KSS504",{"Model":"51KSS504","Nominal size":"5.25 inch","Configuration":"Two-way component kit","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–100 W"}),
+("Kicker","51KSS6504"):("https://www.kicker.com/51KSS6504",{"Model":"51KSS6504","Nominal size":"6.5 inch","Configuration":"Two-way component kit","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–125 W"}),
+("Kicker","51KSS6704"):("https://www.kicker.com/51KSS6704",{"Model":"51KSS6704","Nominal size":"6.75 inch","Configuration":"Two-way component kit","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–125 W"}),
+("Kicker","51KSS6904"):("https://www.kicker.com/51KSS6904",{"Model":"51KSS6904","Nominal size":"6 × 9 inch","Configuration":"Two-way component kit","Rated impedance":"4 ohms","Recommended amplifier power (RMS)":"15–150 W"}),
 # KIAC1088 cross-reference to 6 WM grille: https://www.gapaudio.it/wp-content/uploads/2024/04/AFI_LISTINO_FOCAL_CAR_AUDIO_APRILE_2024.pdf
 ("Focal","IW-IMP2.1"):("https://focalaustralia.com.au/wp-content/uploads/2023/05/Focal-Inside-Cable-information.pdf",{"Model":"IW IMP 2.1","Configuration":"ISO harness for front speakers and one passive subwoofer channel","Amplifier compatibility":"Focal Impulse 4.320"}),
 ("Focal","BMW SUB HARNESS DUAL 500"):("https://focalaustralia.com.au/wp-content/uploads/2023/05/Focal-Inside-Cable-information.pdf",{"Model":"BMW SUB HARNESS DUAL 500 (IW-BMW-DUAL SUB)","Configuration":"BMW subwoofer connection cable set"}),
