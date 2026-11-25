@@ -6,6 +6,16 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Hertz","78211040"):("https://hertz-audio.com/hcp-amplifiers/",{"Model":"HRC","Type":"Wired remote subwoofer level control","Compatibility":"Selected Hertz HCP amplifiers; e.g. HCP 5D, HCP 1DK","Function":"Adjust subwoofer volume remotely"}),
+("Hertz","78071165"):("https://hertz-audio.com/product/cg-300/",{"Model":"CG 300","Type":"Subwoofer protective grille","Nominal driver size":"300 mm (12 inch)","Compatibility":"Hertz CS 300 S2 and CS 300 S4","Dimensions":"308 × 28.3 mm (diameter × height)","Material":"Steel mesh"}),
+("Hertz","78071155"):("https://hertz-audio.com/product/cg-250/",{"Model":"CG 250","Type":"Subwoofer protective grille","Nominal driver size":"250 mm (10 inch)","Compatibility":"Hertz CS 250 S2 and CS 250 S4","Dimensions":"260 × 28.3 mm (diameter × height)","Material":"Steel mesh","Supplier correction":"SKU 78071155 is 250 mm, not 8-inch"}),
+("Hertz","78071145"):("https://hertz-audio.com/product/mg-300-3/",{"Model":"MG 300.3","Type":"Subwoofer protective grille","Nominal driver size":"300 mm","Compatibility":"Hertz MP 300 D2/D4.3","Dimensions":"327 × 45 mm (diameter × height)","Material":"Cast aluminium ring and steel mesh"}),
+("Hertz","78071126"):("https://hertz-audio.com/product/dsg-300-3/",{"Model":"DSG 300.3","Type":"Subwoofer protective grille","Nominal driver size":"300 mm (12 inch)","Compatibility":"Hertz DS 30 subwoofer","Supplier correction":"SKU 78071126 corresponds to DSG 300.3"}),
+("Hertz","78071121"):("https://ca.hertz-audio.com/product/dsg-250-3/",{"Model":"DSG 250.3","Type":"Subwoofer protective grille","Nominal driver size":"250 mm (10 inch)","Compatibility":"Hertz DS 25.3","Supplier correction":"SKU 78071121 corresponds to DSG 250.3, not DG 250.3 8-inch"}),
+("Hertz","78035551"):("https://hertz-audio.com/product/mpbx-300-s2-1/",{"Model":"MPBX 300 S2","Continuous power handling":"500 W","Peak power handling":"1000 W","Impedance":"2 ohms","Driver size":"300 mm (12 inch)","Frequency response":"25–400 Hz","Enclosure":"Sealed, shallow; depth 175 mm; 15 mm wood"}),
+("Hertz","78035400"):("https://nl.hertz-audio.com/product/car-audio-subwoofers-dieci-ds25-3/",{"Model":"DS 25.3","Continuous power handling":"150 W","Peak power handling":"600 W","Impedance":"4 ohms","Driver size":"250 mm (10 inch)","Frequency response":"32–400 Hz"}),
+("Hertz","66772206"):("https://audison.com/product/afbmw-reamp-3/",{"Model":"AFBMW ReAMP 3","Manufacturer brand":"Audison (supplier lists under Hertz)","Type":"Plug-and-play T-harness","Compatibility":"BMW RAM module, Standard or Hi-Fi 676; 688 Harman/Kardon with 7 of 9 channels via this harness","Integration":"Audison AF bit amplifier; use Booster 01 for full 688 integration"}),
+("Hertz","66772099"):("https://audison.com/product/afbmw-booster/",{"Model":"AFBMW BOOSTER 01","Manufacturer brand":"Audison (supplier lists under Hertz)","Type":"Plug-and-play T-harness","Compatibility":"BMW RAM with 688 Harman/Kardon system and booster for underseat woofers","Integration":"Audison Forza AF bit amplifier with F4IN; retains OEM booster and network","Exclusions":"BMW i4 G26 door woofer/trunk subwoofer arrangement; BMW iX four-underseat-woofer arrangement"}),
 ("Hertz","78000220"):("https://hertz-audio.com/product/dsk-170-3/",{"Model":"DSK 170.3","Continuous power handling":"80 W","Peak power handling":"160 W","Impedance":"4 ohms","Woofer size":"170 mm","Tweeter size":"24 mm","Frequency response":"50 Hz–23 kHz","Crossover":"High-pass","Supplier model alias":"DSK170.30; exact SKU 78000220 confirmed as DSK 170.3"}),
 ("Hertz","78000144"):("https://hertz-audio.com/product/dsk-165-3/",{"Model":"DSK 165.3","Continuous power handling":"80 W","Peak power handling":"160 W","Impedance":"4 ohms","Woofer size":"165 mm","Tweeter size":"24 mm","Frequency response":"50 Hz–23 kHz","Crossover":"3.5 kHz at 12 dB/oct","Supplier model alias":"DSK165.30; exact SKU 78000144 confirmed as DSK 165.3"}),
 ("Hertz","78000133"):("https://hertz-audio.com/product/dsk-130-3/",{"Model":"DSK 130.3","Continuous power handling":"60 W","Peak power handling":"120 W","Impedance":"4 ohms","Woofer size":"130 mm","Tweeter size":"24 mm","Frequency response":"60 Hz–23 kHz","Crossover":"High-pass","Supplier model alias":"DSK130.30; exact SKU 78000133 confirmed as DSK 130.3"}),
@@ -151,6 +161,11 @@ def main():
         key=(p["brand"],p["modelNumber"])
         source,facts=SPECS.get(key,("",{}))
         supplied=title_facts(p["title"])
+        if key in (("Hertz","78071121"),("Hertz","78071155")):
+            supplied.pop("Size as listed",None)
+        # Manufacturer facts supersede ambiguous promotional power values.
+        if facts and any("power" in k.lower() or "RMS" in k for k in facts):
+            supplied.pop("Power rating as listed (RMS/peak unspecified)",None)
         evidence=external.get(p.get("getWiredSku") or ("Kicker:"+p["modelNumber"]),{})
         if not facts and evidence.get("facts") and evidence.get("source"):
             source=evidence["source"]; facts={}
