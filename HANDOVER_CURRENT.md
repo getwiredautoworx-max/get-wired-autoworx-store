@@ -1,3 +1,11 @@
+## Catalogue closure evidence — 25 November 2026
+- Kicker customer preview (verified desktop/mobile in run 45572315608): https://deb34b0c.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Reusable image gate: scripts/catalogue_image_gate.py. Independent schema, missing-image rejection and real workbook decoding passed in runs 45584171766 and 45584384509. 172/172 active images decoded, two repaired, other cells/formulas preserved. This validates the audit/repair component, not automatic mapping of arbitrary future workbook schemas.
+- GitHub artifact cleanup: SUPPLIER_ARTIFACT_CLEANUP_OK in both runs. Future Kicker workflow no longer uploads supplier XLSX as public-repository artifacts.
+- Cloudflare obsolete preview 5acaeb50: cleanup listing error in 45584384509; default listing endpoint correction in e6f37e06d9d9f4fe33b4b1f144b34781fd7ee6f0; rerun 45584595107 not yet verified.
+- Confidentiality: original supplier workbook is in public Git history. Owner decision required before making repo private (may affect free runner allowance) or maintaining public source code with sanitized catalogue exports and private original storage; deleting the current file alone does not remove history or copies. Do not upload further confidential source workbooks to public repository.
+- No production deployment, paid credits or Supabase writes. Hold next catalogue integration until owner readiness gates are closed.
+
 ## CURRENT OWNER TASK — 25 November 2026
 Supersedes stale ASC monitoring status below. No ASC restoration or new imports.
 Kicker isolated workflow run 45572315608 succeeded: 172 active image availability checks, workbook cell preservation, desktop 1440px and mobile 390px navigation, RCA 46KIYFM Wiring Kits classification, isolated Cloudflare deployment.
