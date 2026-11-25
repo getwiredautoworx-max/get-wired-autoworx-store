@@ -6,6 +6,12 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","46L7T102"):("https://www.kicker.com/10-inch-l7t-2-ohm-subwoofer",{"Model":"46L7T102","Driver size":"10 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"500 W","Peak power":"1000 W"}),
+("Kicker","46L7T82"):("https://www.kicker.com/8-inch-l7t-2-ohm-subwoofer",{"Model":"46L7T82","Driver size":"8 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"350 W","Peak power":"700 W"}),
+("Kicker","44L7S102"):("https://www.kicker.com/solo-baric-l7s-10-2-ohm-subwoofer",{"Model":"44L7S102","Driver size":"10 inch","Impedance":"2 + 2 ohms","Recommended amplifier power (RMS)":"600 W","Peak power":"1200 W"}),
+("Kicker","44L7S124"):("https://www.kicker.com/solo-baric-l7s-12-4-ohm-subwoofer",{"Model":"44L7S124","Driver size":"12 inch","Impedance":"4 + 4 ohms","Recommended amplifier power (RMS)":"750 W","Peak power":"1500 W"}),
+("Kicker","44DL7S122"):("https://www.kicker.com/dual-12-solo-baric-l7s-subwoofer-box",{"Model":"44DL7S122","Driver size":"Two 12-inch drivers","Impedance":"2 ohms","Recommended amplifier power (RMS)":"1500 W","Peak power":"3000 W"}),
+("Kicker","45KMF124"):("https://www.kicker.com/kmf-12-inch-4-ohm-subwoofer",{"Model":"45KMF124","Driver size":"12 inch","Impedance":"4 ohms","Recommended amplifier power (RMS)":"175 W","Peak power":"350 W"}),
 ("Kicker","51LX12005"):("https://www.kicker.com/51LX12005",{"Model":"51LX12005","RMS output at 4 ohms (14.4 V)":"125 W × 4 stereo + 300 W sub","RMS output at 2 ohms (14.4 V)":"175 W × 4 stereo + 550 W sub","RMS output at 1 ohm (14.4 V)":"700 W sub"}),
 ("Kicker","51LX13007"):("https://www.kicker.com/51LX13007",{"Model":"51LX13007","RMS output at 4 ohms (14.4 V)":"125 W × 4 + 65 W × 2 stereo + 300 W sub","RMS output at 2 ohms (14.4 V)":"150 W × 4 + 65 W × 2 stereo + 550 W sub","RMS output at 1 ohm (14.4 V)":"700 W sub"}),
 ("Kicker","51LX16501"):("https://www.kicker.com/51LX16501",{"Model":"51LX16501","RMS output at 4 ohms (14.4 V)":"550 W mono","RMS output at 2 ohms (14.4 V)":"1,000 W mono","RMS output at 1 ohm (14.4 V)":"1,650 W mono"}),
