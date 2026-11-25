@@ -6,6 +6,15 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Audison","66771510"):("https://audison.com/product/op-1-5/",{"Model":"OP 1.5","Configuration":"TOSLINK optical S/PDIF cable","Length":"1.5 m"}),
+("Audison","66771520"):("https://audison.com/product/op-4-5/",{"Model":"OP 4.5","Configuration":"TOSLINK optical S/PDIF cable","Length":"4.5 m"}),
+("Audison","66771540"):("https://audison.com/product/cbt1/",{"Model":"CBT1","Configuration":"Four-channel RCA adapter cable","Compatibility":"Audison bit Ten and bit Ten D","Head unit pre-out requirement":"2 V minimum"}),
+("Audison","66771820"):("https://audison.com/product/apl2/",{"Model":"APL2","Configuration":"Amplifier link cable","Compatibility":"Connects AP5.9 bit or AP4.9 bit to AP4 D or AP1 D"}),
+("Audison","66772020"):("https://audison.com/product/ap-spk-out-5-9/",{"Model":"AP SPK OUT 5.9","Configuration":"Numbered circular-terminal speaker output cable","Compatibility":"AP5.9 bit and compatible input/output extension cable"}),
+("Audison","66772095"):("https://audison.com/product/ap-h-asd-bypass/",{"Model":"AP H ASD BYPASS","Configuration":"BMW Active Sound Design module bypass cable","Compatibility":"Check BMW factory audio configuration before purchase","Excluded applications":"Vehicles using AF BMW ReAMP3"}),
+("Audison","66772200"):("https://audison.com/product/apbmw-biamp-1/",{"Model":"APBMW BIAMP 1","Configuration":"Under-seat bi-amplification T-harness pair","Compatibility":"Compatible BMW or MINI without a factory amplifier","Length":"4.5 m per cable"}),
+("Audison","66772203"):("https://audison.com/product/apbmw-biamp-2/",{"Model":"APBMW BIAMP 2","Configuration":"Under-seat T-harness pair with factory head-unit signal routing to AP bit","Compatibility":"Compatible BMW or MINI without a factory amplifier","Length":"4.5 m per cable"}),
+("Audison","66772201"):("https://audison.com/product/apbmw-reamp-1/",{"Model":"APBMW ReAMP 1","Configuration":"42-pin factory amplifier replacement harness","Compatibility":"BMW Hi-Fi 676 from 2004 or low-level Harman Kardon 674 from 2014","Amplifier compatibility":"Audison AP bit or AF bit"}),
 ("Audison","66750411"):("https://audison.com/product/vcr-s2/",{"Model":"VCR-S2","Configuration":"Wired subwoofer volume control","Compatibility":"Compatible Audison SR and Forza amplifiers","Connector":"Molex"}),
 ("Audison","66750530"):("https://audison.com/product/vcra/",{"Model":"VCRA","Configuration":"Remote subwoofer level control","Fitment":"Check amplifier model before purchase"}),
 ("Audison","66750610"):("https://audison.com/product/drc/",{"Model":"DRC","Configuration":"Digital remote control","Compatibility":"Audison TH and bit systems","Functions":"Volume adjustment and preset selection"}),
