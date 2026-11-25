@@ -6,6 +6,17 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Focal","P60"):("https://www.focal.com/products/p60-limited-edition",{"Model":"P60 Limited Edition","Vehicle application":"Porsche 911 (992); confirm factory audio configuration before purchase","Configuration":"Plug-and-play speaker upgrade kit","Driver materials":"Composite sandwich woofers and midranges; beryllium tweeters"}),
+("Focal","IY-AC-IMPULSE"):("https://www.focal.com/products/cable-iso-iy-ac-impulse-4320",{"Model":"IY-AC Impulse 4.320","Configuration":"ISO center-channel adapter cable","Amplifier compatibility":"Focal Impulse 4.320"}),
+("Focal","FORD YISO / Y ISO HARNESS"):("https://www.focal.com/products/ford-y-iso-harness",{"Model":"Ford Y-ISO Harness","Application":"Adapter for compatible Ford factory radios; confirm vehicle and connector fitment","Amplifier compatibility":"Focal Impulse 4.320","Length":"1 m"}),
+("Focal","MBZ ISO / Y ISO HARNESS"):("https://www.focal.com/products/iw-mbz-y-iso-harness",{"Model":"IW MBZ Y-ISO Harness","Application":"Adapter for compatible Mercedes-Benz factory radios; confirm vehicle and connector fitment","Amplifier compatibility":"Focal Impulse 4.320","Length":"1 m"}),
+("Focal","TOYOTA YISO / Y ISO HARNESS"):("https://www.focal.com/products/toy-y-iso-harness",{"Model":"Toyota Y-ISO Harness","Application":"Adapter for compatible Toyota factory radios; confirm vehicle and connector fitment","Amplifier compatibility":"Focal Impulse 4.320","Length":"1 m"}),
+("Kicker","52GL78"):("https://www.kicker.com/52GL78",{"Model":"52GL78","Configuration":"Square steel mesh subwoofer grille","Nominal driver size":"8 inch"}),
+("Kicker","52GL710"):("https://www.kicker.com/52GL710",{"Model":"52GL710","Configuration":"Square steel mesh subwoofer grille","Nominal driver size":"10 inch"}),
+("Kicker","52GL712"):("https://www.kicker.com/52GL712",{"Model":"52GL712","Configuration":"Square steel mesh subwoofer grille","Nominal driver size":"12 inch"}),
+("Kicker","52GR8"):("https://www.kicker.com/52GR8",{"Model":"52GR8","Configuration":"Round steel mesh subwoofer grille","Nominal driver size":"8 inch"}),
+("Kicker","52GR10"):("https://www.kicker.com/52GR10",{"Model":"52GR10","Configuration":"Round steel mesh subwoofer grille","Nominal driver size":"10 inch"}),
+("Kicker","52GR12"):("https://www.kicker.com/52GR12",{"Model":"52GR12","Configuration":"Round steel mesh subwoofer grille","Nominal driver size":"12 inch"}),
 ("Focal","KIT IC BMW100"):("https://www.focal.com/products/ic-bmw-100",{"Model":"IC BMW 100","Configuration":"100 mm BMW two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
 ("Focal","KIT IC MBZ 100"):("https://www.focal.com/products/ic-mbz-100",{"Model":"IC MBZ 100","Configuration":"100 mm Mercedes-Benz two-way coaxial kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"40 W","Maximum power":"80 W"}),
 ("Focal","KIT ES165KX3"):("https://www.focal-america.com/product/es165kx3/",{"Model":"ES 165 KX3","Configuration":"165 mm three-way component kit","Nominal impedance":"4 ohms","Nominal power (RMS)":"120 W","Maximum power":"240 W"}),
