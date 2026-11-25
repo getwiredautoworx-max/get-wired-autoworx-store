@@ -11,6 +11,10 @@ from PIL import Image, UnidentifiedImageError
 
 EVIDENCE = Path("/tmp/planetworld-batch-image-evidence.json")
 PHOTOS = {
+    "GWA-ONE-OX-4990DVR": (
+        "https://onenav.co.za/wp-content/uploads/2025/09/OX-4990DVR-%E2%80%93-OneX-Smart-Mirror-with-4K-DVR-Wi-Fi-600x600.png",
+        "https://onenav.co.za/product/onex-universal-mount-smart-mirror-dvr-wifi-4k-camera/",
+    ),
     "GWA-ONE-OX-CPAA3": (
         "https://cdn.autostyle.co.za/wp-content/uploads/2026/01/07074149/OX-CPAA3.jpg",
         "https://www.autostyle.co.za/product/onex-3-in-1-wireless-carplay-and-android-auto-adaptor/",
