@@ -6,6 +6,19 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","46CK4"):("https://www.kicker.com/CK4",{"Model":"46CK4","Configuration":"Complete amplifier installation kit","Power and ground wire":"4 AWG","Included fuse":"100 A AFS"}),
+("Kicker","46CK8"):("https://www.kicker.com/CK8",{"Model":"46CK8","Configuration":"Complete amplifier installation kit","Power and ground wire":"8 AWG","Included fuse":"60 A AFS"}),
+("Kicker","47VK6"):("https://www.kicker.com/47VK6-amplifier-install-kit",{"Model":"47VK6","Configuration":"Complete amplifier installation kit","Power and ground wire":"6 AWG","Included fuse":"80 A MANL"}),
+("Kicker","47VK8"):("https://www.kicker.com/47VK8-amplifier-install-kit",{"Model":"47VK8","Configuration":"Complete amplifier installation kit","Power and ground wire":"8 AWG","Included fuse":"60 A MANL"}),
+("Kicker","46KI24"):("https://www.kicker.com/signal-cable",{"Model":"46KI24","Configuration":"K-Series RCA interconnect","Channels":"2","Length":"4 m"}),
+("Kicker","46KI25"):("https://www.kicker.com/signal-cable",{"Model":"46KI25","Configuration":"K-Series RCA interconnect","Channels":"2","Length":"5 m"}),
+("Kicker","46KI44"):("https://www.kicker.com/signal-cable",{"Model":"46KI44","Configuration":"K-Series RCA interconnect","Channels":"4","Length":"4 m"}),
+("Kicker","46KI46"):("https://www.kicker.com/signal-cable",{"Model":"46KI46","Configuration":"K-Series RCA interconnect","Channels":"4","Length":"6 m"}),
+("Kicker","46KIYFM"):("https://www.kicker.com/signal-cable",{"Model":"46KIYFM","Configuration":"RCA male/female Y-adapter"}),
+("Kicker","46KISL"):("https://www.kicker.com/signal-cable",{"Model":"46KISL","Configuration":"Two-channel speaker-wire to RCA adapter"}),
+("Kicker","46FHD"):("https://www.kicker.com/FHD",{"Model":"46FHD","Configuration":"Dual AFS fuse holder","Accepted power cable":"1/0 to 8 AWG"}),
+("Kicker","46FHS"):("https://www.kicker.com/brass-hardware",{"Model":"46FHS","Configuration":"Single AFS fuse holder"}),
+("Kicker","46GT2"):("https://www.kicker.com/brass-hardware",{"Model":"46GT2","Configuration":"Ground termination block"}),
 ("Focal","P60"):("https://www.focal.com/products/p60-limited-edition",{"Model":"P60 Limited Edition","Vehicle application":"Porsche 911 (992); confirm factory audio configuration before purchase","Configuration":"Plug-and-play speaker upgrade kit","Driver materials":"Composite sandwich woofers and midranges; beryllium tweeters"}),
 ("Focal","IY-AC-IMPULSE"):("https://www.focal.com/products/cable-iso-iy-ac-impulse-4320",{"Model":"IY-AC Impulse 4.320","Configuration":"ISO center-channel adapter cable","Amplifier compatibility":"Focal Impulse 4.320"}),
 ("Focal","FORD YISO / Y ISO HARNESS"):("https://www.focal.com/products/ford-y-iso-harness",{"Model":"Ford Y-ISO Harness","Application":"Adapter for compatible Ford factory radios; confirm vehicle and connector fitment","Amplifier compatibility":"Focal Impulse 4.320","Length":"1 m"}),
