@@ -6,6 +6,10 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","51LX12005"):("https://www.kicker.com/51LX12005",{"Model":"51LX12005","RMS output at 4 ohms (14.4 V)":"125 W × 4 stereo + 300 W sub","RMS output at 2 ohms (14.4 V)":"175 W × 4 stereo + 550 W sub","RMS output at 1 ohm (14.4 V)":"700 W sub"}),
+("Kicker","51LX13007"):("https://www.kicker.com/51LX13007",{"Model":"51LX13007","RMS output at 4 ohms (14.4 V)":"125 W × 4 + 65 W × 2 stereo + 300 W sub","RMS output at 2 ohms (14.4 V)":"150 W × 4 + 65 W × 2 stereo + 550 W sub","RMS output at 1 ohm (14.4 V)":"700 W sub"}),
+("Kicker","51LX16501"):("https://www.kicker.com/51LX16501",{"Model":"51LX16501","RMS output at 4 ohms (14.4 V)":"550 W mono","RMS output at 2 ohms (14.4 V)":"1,000 W mono","RMS output at 1 ohm (14.4 V)":"1,650 W mono"}),
+("Kicker","51LX5004"):("https://www.kicker.com/51LX5004",{"Model":"51LX5004","RMS output at 4 ohms (14.4 V)":"125 W × 4 stereo","RMS output at 2 ohms (14.4 V)":"225 W × 4 stereo","Bridged RMS output at 4 ohms":"450 W × 2"}),
 ("Kicker","48KMA6004"):("https://www.kicker.com/48KMA-marine-multichannel-6004-amplifier",{"Model":"48KMA6004","RMS output at 4 ohms":"75 W × 4","RMS output at 2 ohms":"150 W × 4","Additional RMS rating":"300 W × 2 at 4 ohms bridged","Frequency response":"10–20,000 Hz"}),
 ("Kicker","48KMA6006"):("https://www.kicker.com/48KMA-marine-multichannel-6006-amplifier",{"Model":"48KMA6006","RMS output at 4 ohms":"50 W × 6","RMS output at 2 ohms":"100 W × 6","Additional RMS rating":"200 W × 3 at 4 ohms bridged","Frequency response":"10–20,000 Hz"}),
 ("Kicker","48KMA8001"):("https://www.kicker.com/48KMA-marine-mono-8001-amplifier",{"Model":"48KMA8001","RMS output at 4 ohms":"300 W × 1","RMS output at 2 ohms":"600 W × 1","Additional RMS rating":"800 W × 1 at 1 ohm","Frequency response":"25–200 Hz"}),
