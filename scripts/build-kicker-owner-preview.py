@@ -53,6 +53,41 @@ for i,row in enumerate(rows,2):
                 print("KEY5001_IMAGE_REPLACED",candidate)
         except Exception as exc:
             print("KEY5001_IMAGE_PENDING",str(exc))
+    if re.sub(r"[^A-Z0-9]", "", sku.upper())=="46CXA4001":
+        category="Amplifiers"
+        import urllib.request
+        from html.parser import HTMLParser
+        from urllib.parse import urljoin
+        class ProductImages(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.urls=[]
+            def handle_starttag(self,tag,attrs):
+                d=dict(attrs)
+                if tag=="img" and re.search(r"CX(?:A)?400[. ]?1",d.get("alt",""),re.I):
+                    self.urls.append(d.get("data-src") or d.get("src"))
+        try:
+            source="https://www.kicker.com/CXA4001-400-Watt-Mono-Class-D-Subwoofer-Amp"
+            parser=ProductImages()
+            parser.feed(urllib.request.urlopen(urllib.request.Request(source,headers={"User-Agent":"Mozilla/5.0"}),timeout=20).read().decode("utf-8","replace"))
+            for candidate in filter(None,parser.urls):
+                try:
+                    with urllib.request.urlopen(urljoin(source,candidate),timeout=15) as response:
+                        mime=response.headers.get_content_type()
+                        assert mime in ("image/jpeg","image/png","image/webp")
+                        data=response.read()
+                    assert len(data)>5000
+                    suffix={"image/jpeg":"jpg","image/png":"png","image/webp":"webp"}[mime]
+                    image="assets/kicker-46cxa4001."+suffix
+                    (root/image).write_bytes(data)
+                    print("CXA4001_IMAGE_REPLACED",candidate)
+                    break
+                except Exception:
+                    continue
+            else:
+                print("CXA4001_IMAGE_PENDING no usable image")
+        except Exception as exc:
+            print("CXA4001_IMAGE_PENDING",str(exc))
     print(f"CATEGORY {sku} {original_category} -> {category}: {title}")
     records.append(dict(brand="Kicker",title=title,description=desc,modelNumber=sku,component=category,collection="Marine Audio" if marine else "Car Audio & Video",division="Marine Audio" if marine else "Car Audio",indicativePrice=price,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE"))
 assert records
