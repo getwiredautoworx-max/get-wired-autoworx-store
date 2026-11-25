@@ -6,6 +6,13 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Kicker","48KMA3604"):("https://www.kicker.com/48KMA-marine-multichannel-3604-amplifier",{"Model":"48KMA3604","RMS output at 4 ohms (14.4 V)":"65 W × 4","RMS output at 2 ohms (14.4 V)":"90 W × 4","Additional RMS rating (14.4 V)":"180 W × 2 bridged at 4 ohms"}),
+("Kicker","48KXMA8004"):("https://www.kicker.com/files/whitepapers/48KXMA8004-wp.pdf",{"Model":"48KXMA8004","RMS output at 4 ohms (14.4 V)":"100 W × 4","RMS output at 2 ohms (14.4 V)":"200 W × 4","Additional RMS rating (14.4 V)":"400 W × 2 bridged at 4 ohms"}),
+("Kicker","48KXMA9005"):("https://www.kicker.com/files/whitepapers/48KXMA9005-wp.pdf",{"Model":"48KXMA9005","RMS output at 4 ohms (14.4 V)":"75 W × 4 + 200 W sub","RMS output at 2 ohms (14.4 V)":"125 W × 4 + 400 W sub","Additional RMS rating (14.4 V)":"250 W × 2 bridged at 4 ohms (main channels)"}),
+("Kicker","48PXA4004"):("https://www.kicker.com/48PXA4004",{"Model":"48PXA4004","RMS output at 4 ohms (14.4 V)":"100 W × 4","RMS output at 2 ohms (14.4 V)":"150 W × 4","Additional RMS rating (14.4 V)":"300 W × 2 bridged at 4 ohms"}),
+("Kicker","48PXA6001"):("https://www.kicker.com/48PXA6001",{"Model":"48PXA6001","RMS output at 4 ohms (14.4 V)":"300 W mono","RMS output at 2 ohms (14.4 V)":"500 W mono","Additional RMS rating (14.4 V)":"600 W mono at 1 ohm"}),
+("Kicker","49WXA10004"):("https://www.kicker.com/49WXA10004",{"Model":"49WXA10004","RMS output at 4 ohms (14.4 V)":"250 W × 4","RMS output at 2 ohms (14.4 V)":"450 W × 4","Additional RMS rating (14.4 V)":"900 W × 2 bridged at 4 ohms"}),
+("Kicker","49WXA36001"):("https://www.kicker.com/49WXA36001",{"Model":"49WXA36001","RMS output at 4 ohms (14.4 V)":"1,400 W mono","RMS output at 2 ohms (14.4 V)":"2,500 W mono","Additional RMS rating (14.4 V)":"3,600 W mono at 1 ohm"}),
 ("JVC","CS-DR695HP"):("https://www.jvc.com/ae/car-entertainment/speakers/cs-dr695hp/",{"Model":"CS-DR695HP","Configuration":"6 × 9 inch five-way coaxial","Impedance":"4 ohms","RMS handling":"100 W","Peak handling":"800 W","Frequency response":"49–19,000 Hz"}),
 ("JVC","KD-T752BT"):("https://www.jvc.com/ae/car-entertainment/audio-receivers/kd-t752bt/",{"Model":"KD-T752BT","Chassis":"Single DIN","Playback":"CD, USB and Bluetooth"}),
 ("JVC","KD-X182BT"):("https://in.jvc.com/car/audio-receivers/kd_x182bt/",{"Model":"KD-X182BT","Chassis":"Single DIN","Playback":"USB and Bluetooth"}),
