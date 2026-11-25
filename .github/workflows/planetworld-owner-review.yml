@@ -41,7 +41,7 @@ jobs:
         run: python scripts/verify-planetworld-workbook-repairs.py
       - name: Check review scope
         run: |
-          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=69; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==12; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==116'
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=89; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==12; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==116'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:
