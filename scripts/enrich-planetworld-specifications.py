@@ -233,6 +233,24 @@ DISPLAY_CORRECTIONS={
   ]
 }
 
+# Kicker Comp drivers and CompRT loaded boxes use the same published power labels.
+for sku, slug, size, ohms, rms, peak in (
+    ("43C84", "43C84", "8", 4, "50–100", 200),
+    ("43C104", "comp-10-4-ohm-subwoofer", "10", 4, "150", 300),
+    ("43C124", "comp-12-4-ohm-subwoofer", "12", 4, "150", 300),
+    ("48TCWRT82", "8-comprt-subwoofer-box-2-ohm", "8", 2, "300", 600),
+    ("48TCWRT102", "10-comprt-subwoofer-box-2-ohm", "10", 2, "400", 800),
+    ("48TCWRT122", "12-comprt-subwoofer-box-2-ohm", "12", 2, "500", 1000),
+    ("48TCWRT672", "675-comprt-subwoofer-box-2-ohm", "6.75", 2, "150", 300),
+):
+    SPECS["Kicker", sku] = (f"https://www.kicker.com/{slug}", {
+        "Model": sku,
+        "Driver size": f"{size} inch",
+        "Impedance": f"{ohms} ohms",
+        "Recommended amplifier power (RMS)": f"{rms} W",
+        "Peak power": f"{peak} W",
+    })
+
 def main():
     assert json.loads((ROOT/"qa-build-result.json").read_text())["preview_only"] is True
     d=json.loads(DATA.read_text()); records=d["records"]; assert len(records)==693
