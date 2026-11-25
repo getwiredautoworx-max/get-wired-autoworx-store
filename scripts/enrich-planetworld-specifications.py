@@ -76,8 +76,10 @@ def main():
             if fit and re.search(r"\b(?:Toyota|Ford|Mazda|Suzuki|Nissan|Isuzu|BMW|Audi|VW|Volkswagen|Kia|Hyundai|Mitsubishi|Honda|Mercedes|Merc|GWM|Jeep|Mahindra)\b",fit.group(1),re.I):
                 supplied["Vehicle application as listed"]=fit.group(1).strip(" -")
         # Owner accepts original supplier item-name/fitment details as sufficient for these two ranges.
-        source_accepted=p["brand"] in ("ONE","Harness & Trims") and not facts
+        source_accepted=p["brand"] in ("ONE","Harness & Trims") and (not facts or external_candidate)
         if source_accepted:
+            # Unreviewed external candidates are optional; original source is owner-accepted.
+            facts={}; source=""; external_candidate=False
             supplied["Supplier item / application details"]=p["title"]
         combined=dict(supplied); combined.update(facts)
         combined={"Supplier model / SKU":p["modelNumber"],"Product type":p.get("component","Car audio"),**combined}
