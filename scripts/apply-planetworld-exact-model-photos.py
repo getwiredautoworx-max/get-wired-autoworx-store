@@ -19,14 +19,6 @@ PHOTOS = {
         "https://shop.alpine.co.uk/cdn/shop/products/KAE-HF9DA_Anti-reflective-Screen-Protector-for_iLX-F905D_large.jpg?v=1648827211",
         "https://shop.alpine.co.uk/products/kae-hf9da-anti-reflective-screen-protector-for-ilx-f905d",
     ),
-    "GWA-AUD-69081050": (
-        "https://static.audison.com/media/2023/03/apg_2_1_1.jpg",
-        "https://audison.com/product/apg-5/",
-    ),
-    "GWA-AUD-69081060": (
-        "https://static.audison.com/media/2023/03/apg_2_1_1-1.jpg",
-        "https://audison.com/product/apg-6-5/",
-    ),
     "GWA-HRZ-78242015": (
         "https://static.hertz-audio.com/media/2024/09/HERTZ_CP-51K_PROSPETTIVA_2024_05_06-copia.jpg",
         "https://my.hertz-audio.com/product/cp-5-1k/",
