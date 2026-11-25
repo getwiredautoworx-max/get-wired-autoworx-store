@@ -26,22 +26,22 @@ jobs:
               return data
           old='https://5acaeb50.get-wired-autoworx-store.pages.dev'
           keep='https://deb34b0c.get-wired-autoworx-store.pages.dev'
-          def listing():
-              rows=[]
-              for page in range(1,101):
-                  result=cf('?page='+str(page)+'&per_page=25')['result']
-                  rows.extend(result)
-                  if len(result)<25: return rows
-              raise RuntimeError('Deployment listing incomplete')
-          deployments=listing()
+          # The identified deployment is recent; select only its exact URL.
+          deployments=cf('?env=preview&per_page=100')['result']
           assert any(d['url'].rstrip('/')==keep and d['environment']=='preview' for d in deployments), 'Verified preview missing'
-          for d in deployments:
-              if d['url'].rstrip('/')!=old: continue
+          matches=[d for d in deployments if d['url'].rstrip('/')==old]
+          for d in matches:
               assert d['environment']=='preview'
               assert d['deployment_trigger']['metadata']['branch']=='kicker-owner-review'
               cf('/'+d['id'],'DELETE')
+              try:
+                  cf('/'+d['id'])
+              except urllib.error.HTTPError as exc:
+                  assert exc.code==404
+              else:
+                  raise AssertionError('Deleted deployment still exists')
               print('EXPOSED_PREVIEW_DELETED')
-          assert not any(d['url'].rstrip('/')==old for d in listing())
+          assert not any(d['url'].rstrip('/')==old for d in cf('?env=preview&per_page=100')['result'])
           for filename in ('kicker-catalogue-image-repaired.xlsx','kicker-image-audit.xlsx'):
               try:
                   with urllib.request.urlopen(old+'/'+filename+'?closure=1',timeout=30) as res:
