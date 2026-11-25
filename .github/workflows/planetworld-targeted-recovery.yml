@@ -18,11 +18,30 @@ jobs:
       - run: pip install openpyxl==3.1.5 pillow beautifulsoup4
       - uses: actions/download-artifact@v4
         with:
-          name: planetworld-image-evidence
+          name: planetworld-targeted-image-evidence
           path: /tmp
-          run-id: 45587115485
+          run-id: 45588204152
           github-token: ${{ github.token }}
       - run: python -u scripts/recover-planetworld-image-exceptions.py
+      - name: Record duplicate image digest groups for exact-model review
+        run: |
+          python - <<'PY'
+          import collections,json
+          from pathlib import Path
+          rows=json.loads(Path('/tmp/planetworld-batch-image-evidence.json').read_text())
+          groups=collections.defaultdict(list)
+          for r in rows:
+              if r.get('digest'):
+                  groups[r['digest']].append({k:r[k] for k in ('gwa','sku','brand','title','status')})
+          dup=[v for v in groups.values() if len(v)>1]
+          print('SHARED_IMAGE_DIGEST_GROUPS',len(dup),'PRODUCTS',sum(map(len,dup)))
+          Path('/tmp/planetworld-shared-image-digests.json').write_text(json.dumps(dup,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-shared-image-digests
+          path: /tmp/planetworld-shared-image-digests.json
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         with:
           name: planetworld-targeted-image-evidence
