@@ -45,3 +45,19 @@ jobs:
       - name: Audit all supplied images and resolve missing-image candidates
         run: python -u scripts/audit-planetworld-batch.py
         timeout-minutes: 20
+      - name: Prepare combined catalogue using actual audit evidence
+        run: |
+          python scripts/build-cloudflare-pages-public.py
+          python scripts/build-kicker-owner-preview.py
+          python scripts/stage-planetworld-batch.py
+          cat /tmp/planetworld-stage-result.json
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+      - name: Preserve image-only audit evidence for targeted recovery
+        uses: actions/upload-artifact@v4
+        with:
+          name: planetworld-image-evidence
+          path: /tmp/planetworld-batch-image-evidence.json
+          retention-days: 3
+      - name: Require all new product images before deployment
+        run: python -c 'import json; d=json.load(open("/tmp/planetworld-stage-result.json")); assert d["deployable"], str(d["image_gate_pending"])+" image approvals outstanding"'
