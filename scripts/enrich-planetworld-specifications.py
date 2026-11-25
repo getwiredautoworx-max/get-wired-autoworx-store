@@ -6,6 +6,8 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Audison","66772025"):("https://safeandsoundtt.com/pdf/Audison_PP-Cable_Product-Info-Rev-18A.pdf",{"Model":"AP SPK OUT 4.9","Configuration":"Four-channel speaker output harness with circular female terminals","Compatibility":"Audison AP4.9 bit and compatible input/output extension cable"}),
+("Audison","69081105"):("https://audison.com/collections/car-speakers-voce-ii/",{"Model":"AVG 6.5 S II","Configuration":"Silver 165 mm Audison Voce II speaker grille"}),
 ("Audison","66755100"):("https://audison.com/product/af-m12-14-bit/",{"Model":"AF M12.14 bit","DSP outputs":"14","DSP processing":"24-bit / 96 kHz","RMS at 4 ohms (14.4 V, 1% THD)":"60 W × 12","RMS at 2 ohms (14.4 V, 1% THD)":"90 W × 12","Bridged RMS at 4 ohms":"180 W × 6"}),
 ("Audison","66755115"):("https://audison.com/product/af-c4-10-bit/",{"Model":"AF C4.10 bit","DSP outputs":"10","DSP processing":"24-bit / 96 kHz","RMS at 4 ohms (14.4 V, 1% THD)":"90 W × 4","RMS at 2 ohms (14.4 V, 1% THD)":"150 W × 4","Bridged RMS at 4 ohms":"300 W × 2"}),
 ("Audison","66751501"):("https://audison.com/product/bit-one-hd-virtuoso/",{"Model":"bit One HD Virtuoso","Input channels":"12","Output channels":"13","Processing":"24-bit / 96 kHz floating-point DSP"}),
