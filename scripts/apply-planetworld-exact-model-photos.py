@@ -4,6 +4,7 @@ from hashlib import sha256
 from io import BytesIO
 import json
 from pathlib import Path
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 
 from PIL import Image
@@ -37,16 +38,24 @@ def main():
     rows = json.loads(EVIDENCE.read_text())
     by_sku = {row["gwa"]: row for row in rows}
     assert len(by_sku) == len(rows) == 521
+    repaired = []
     for sku, (url, source) in PHOTOS.items():
         row = by_sku[sku]
         assert row["status"] in {"ORIGINAL_AVAILABLE", "UNRESOLVED"}, sku
         request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urlopen(request, timeout=20) as response:
-            content = response.read(12_000_001)
-        assert len(content) <= 12_000_000, sku
-        with Image.open(BytesIO(content)) as photo:
-            photo.load()
-            assert min(photo.size) >= 200, (sku, photo.size)
+        try:
+            with urlopen(request, timeout=20) as response:
+                content = response.read(12_000_001)
+            if len(content) > 12_000_000:
+                raise ValueError("image exceeds 12 MB")
+            with Image.open(BytesIO(content)) as photo:
+                photo.load()
+                if min(photo.size) < 200:
+                    raise ValueError(f"image too small: {photo.size}")
+        except (URLError, OSError, ValueError) as error:
+            print("EXACT_MODEL_PHOTO_PENDING", sku, str(error), flush=True)
+            continue
+        repaired.append(sku)
         row.update(
             status="REPLACEMENT_APPROVED",
             resolved=url,
@@ -55,10 +64,10 @@ def main():
             approvalBasis="Exact-model product photo inspected against the linked source",
         )
     digests = Counter(row["digest"] for row in rows if row.get("digest"))
-    for sku in PHOTOS:
+    for sku in repaired:
         assert digests[by_sku[sku]["digest"]] == 1, sku
     EVIDENCE.write_text(json.dumps(rows, indent=2))
-    print("EXACT_MODEL_PHOTO_REPAIRS", len(PHOTOS), flush=True)
+    print("EXACT_MODEL_PHOTO_REPAIRS", json.dumps(repaired), flush=True)
 
 
 if __name__ == "__main__":

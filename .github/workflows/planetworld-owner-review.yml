@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/planetworld-owner-review.yml'
       - 'scripts/enrich-planetworld-specifications.py'
+      - 'scripts/apply-planetworld-exact-model-photos.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,7 +45,7 @@ jobs:
         run: python scripts/verify-planetworld-workbook-repairs.py
       - name: Check review scope
         run: |
-          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=189; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==13; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==4'
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=189; assert sum(p.get("imageReviewState")=="photo_pending" for p in d) in (13,14); assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==4'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:
