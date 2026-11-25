@@ -497,6 +497,8 @@ for sku, slug, size, ohms, rms, peak in (
 
 
 SECONDARY_SPECS={
+    ("Amplified", "MA610.5"): ("https://www.autostyle.co.za/product/amplified-ma610-5-5-channel-car-amplifier-65w-x4-350w-sub-full-system-power-amp/", {"Model":"MA610.5","Configuration":"Five-channel Class D amplifier, four speaker channels and one subwoofer channel","RMS output at 4 Ω":"4 × 65 W plus 1 × 220 W subwoofer channel","RMS output at 2 Ω":"4 × 100 W plus 1 × 350 W subwoofer channel","Bridged output at 4 Ω":"2 × 200 W on the speaker channels"}),
+    ("Amplified", "MA800.1"): ("https://www.rivoniacarsound.co.za/product/amplified-ma800-1-mono-high-power-digital-subwoofer-amplifier/", {"Model":"MA800.1","Configuration":"Class D monoblock subwoofer amplifier","RMS output at 1 Ω":"800 W × 1","RMS output at 2 Ω":"570 W × 1","RMS output at 4 Ω":"300 W × 1"}),
     ("Kicker","46CXA18001T"): ("https://www.sonicelectronix.com/item-173213-Kicker-CXA1800.1-46CXA18001T.html", {"Model":"46CXA18001T","Configuration":"CXA1800.1 mono Class-D subwoofer amplifier"}),
     ("Kicker","48CVTDF122"): ("https://www.crutchfield.ca/p_20648CF122/Kicker-48CVTDF122.html", {"Model":"48CVTDF122","Configuration":"Sealed down-firing enclosure with a 12-inch shallow-mount CompVT subwoofer","Enclosure impedance":"2 Ω"}),
     ("Kicker","51KEYCHAIN"): ("https://nxtleveltech.co.za/product/kicker-performance-audio-silicone-3d-keychain", {"Model":"51KEYCHAIN","Configuration":"Kicker Performance Audio 3D silicone keychain"}),
@@ -529,6 +531,9 @@ def main():
         source,facts=SPECS.get(key, SECONDARY_SPECS.get(key, ("", {})))
         if p["brand"]=="Hertz" and p["modelNumber"] in DISPLAY_CORRECTIONS:
             p["customerDisplayTitle"],p["customerDisplayDescription"]=DISPLAY_CORRECTIONS[p["modelNumber"]]
+        if key == ("Amplified", "MA610.5"):
+            p["customerDisplayTitle"] = "Amplified MA610.5 Five-Channel Class D Amplifier"
+            p["customerDisplayDescription"] = "Four speaker channels and one subwoofer channel. See the output ratings by impedance below."
         supplied=title_facts(p.get("customerDisplayTitle",p["title"]))
         if key in (("Hertz","78071121"),("Hertz","78071155")):
             supplied.pop("Size as listed",None)
