@@ -53,6 +53,8 @@ def fields(soup):
         if re.search(r"price|shipping|stock|warranty|delivery|review|discount|cart|payment|copyright|privacy",k,re.I): return
         if len(facts)<24 and k.casefold() not in {x.casefold() for x in facts}: facts[k]=v
     for tr in soup.select("tr"):
+        table=tr.find_parent("table")
+        if table and any(re.search(r"\bmodel\b",th.get_text(" ",strip=True),re.I) for th in table.find_all("th")): continue
         cells=tr.find_all(["th","td"],recursive=False)
         if len(cells)==2: add(cells[0].get_text(" ",strip=True),cells[1].get_text(" ",strip=True))
     for dt in soup.find_all("dt"):
@@ -65,12 +67,32 @@ def fields(soup):
     # Only short factual specification rows; no scraped prose or advertising claims.
     return facts
 
+def model_alias(record):
+    # Explicit manufacturer model between delimiters in the supplied product title.
+    # Numeric supplier identifiers are not manufacturer model numbers.
+    if record["brand"] not in ("Audison","Hertz"): return ""
+    title=record["title"]
+    match=re.match(r"^\s*(?:Audison|Hertz)\s*-\s*([A-Z0-9][A-Z0-9. /+_-]{2,35})\s+-\s+",title,re.I)
+    if not match: return ""
+    alias=match.group(1).strip()
+    return alias if re.search(r"\d",alias) else ""
+
 def exact_page(url,record):
     raw,actual=fetch(url); soup=BeautifulSoup(raw,"html.parser")
     sku=record["modelNumber"]; ns=norm(sku)
     heading=" ".join(x.get_text(" ",strip=True) for x in soup.find_all("h1"))
     heading=heading+" "+(soup.title.get_text(" ",strip=True) if soup.title else "")
     exact=False
+    alias=model_alias(record)
+    # Match a complete model name at the beginning of the actual manufacturer H1.
+    # Do not accept related models or suffix variants.
+    manufacturer={"Audison":"audison.com","Hertz":"hertz-audio.com"}.get(record["brand"])
+    h1=soup.find("h1")
+    if alias and manufacturer and urlparse(actual).hostname==manufacturer and h1:
+        primary=h1.get_text(" ",strip=True)
+        expected=re.escape(alias).replace(r"\ ",r"\s+")
+        if re.match(r"^"+expected+r"\s*(?:\||$)",primary,re.I): exact=True
+        elif re.match(r"^"+expected+r"\s+(?:Amplifier|Woofer|Tweeter|Mid Range|Midrange|Kit|Coaxial|Subwoofer|Crossover|Processor)\b",primary,re.I): exact=True
     if len(ns)>=5 and ns in norm(heading) and norm(record["brand"]) in norm(heading): exact=True
     # Exact SKU in structured Product metadata or labelled SKU, not unrelated page recommendations.
     for item in soup.find_all("script",type="application/ld+json"):
@@ -106,11 +128,17 @@ def main():
         if prior.get(key,{}).get("facts") and prior[key].get("source"): return key,prior[key]
         sku=p["modelNumber"]; ns=norm(sku); title=p["title"]; title_slug=slug(title)
         relevant=HOSTS.get(p["brand"],[])+hosts[:4]
-        candidates=[]
+        alias=model_alias(p)
+        if alias:
+            host=HOSTS[p["brand"]][0]
+            candidates_alias=[(-1,host+"/product/"+slug(alias)+"/")]
+        else: candidates_alias=[]
+        candidates=list(candidates_alias)
         for host in relevant:
             for url in indices.get(host,[]):
                 path=norm(urlparse(url).path)
                 if len(ns)>=5 and ns in path: candidates.append((0,url))
+                elif alias and norm(alias)==norm(urlparse(url).path.rstrip("/").rsplit("/",1)[-1]): candidates.append((-1,url))
                 elif len(title_slug)>12 and norm(title_slug) in path: candidates.append((1,url))
         # Known public retailer slug route, no guessed data accepted unless exact SKU is confirmed.
         for host in ("https://nxtleveltech.co.za","https://www.caraudiowarehouse.co.za"):
