@@ -6,6 +6,18 @@ DATA=ROOT/"assets/audio-catalogue-primary-preview.json"
 # Explicit model-specific manufacturer evidence. Preserve differences between RMS and maximum ratings.
 # DSK supplier aliases independently matched by SKU in https://manuals.plus/m/4da730fd92d10ef691387e2447e20058dd7ba053d357b22d7cd618f208431e9c (rows 53-56).
 SPECS={
+("Audison","66755100"):("https://audison.com/product/af-m12-14-bit/",{"Model":"AF M12.14 bit","DSP outputs":"14","DSP processing":"24-bit / 96 kHz","RMS at 4 ohms (14.4 V, 1% THD)":"60 W × 12","RMS at 2 ohms (14.4 V, 1% THD)":"90 W × 12","Bridged RMS at 4 ohms":"180 W × 6"}),
+("Audison","66755115"):("https://audison.com/product/af-c4-10-bit/",{"Model":"AF C4.10 bit","DSP outputs":"10","DSP processing":"24-bit / 96 kHz","RMS at 4 ohms (14.4 V, 1% THD)":"90 W × 4","RMS at 2 ohms (14.4 V, 1% THD)":"150 W × 4","Bridged RMS at 4 ohms":"300 W × 2"}),
+("Audison","66751501"):("https://audison.com/product/bit-one-hd-virtuoso/",{"Model":"bit One HD Virtuoso","Input channels":"12","Output channels":"13","Processing":"24-bit / 96 kHz floating-point DSP"}),
+("Audison","66753000"):("https://audison.com/product/bit-tune/",{"Model":"bit Tune","Configuration":"Automatic calibration and audio analysis tool","Calibration functions":"Time alignment, equalization and level setup for compatible Audison bit processors"}),
+("Audison","69051070"):("https://audison.com/product/apbmw-k4e/",{"Model":"APBMW K4E","Configuration":"Two-way BMW component kit","Mounting basket":"Large","Impedance":"4 ohms","Peak power handling":"100 W"}),
+("Audison","69051075"):("https://audison.com/product/apbmw-k4m/",{"Model":"APBMW K4M","Configuration":"Two-way BMW component kit","Mounting basket":"Small","Impedance":"4 ohms","Peak power handling":"100 W"}),
+("Audison","69081030"):("https://audison.com/product/av-gr6-5/",{"Model":"AV GR6.5","Configuration":"165 mm protective speaker grille","Compatibility":"Audison AV 6.5 and AV X6.5"}),
+("Audison","69081050"):("https://audison.com/product/apg-5/",{"Model":"APG 5","Configuration":"Pair of 130 mm speaker grilles"}),
+("Audison","69081060"):("https://audison.com/product/apg-6-5/",{"Model":"APG 6.5","Configuration":"165 mm speaker grille"}),
+("Audison","69081100"):("https://audison.com/product/avg-6-5-b-ii/",{"Model":"AVG 6.5 B II","Configuration":"Black 165 mm mesh grille","Compatibility":"Audison AV 6.5 P II"}),
+("Audison","69081110"):("https://audison.com/product/avg-3-0-s-ii/",{"Model":"AVG 3.0 S II","Configuration":"Silver 80 mm speaker grille","Compatibility":"Audison AV 3.0 II midrange"}),
+("Audison","69082001"):("https://audison.com/product/apbmw-a4e/",{"Model":"APBMW A4E","Configuration":"Mounting accessory kit for compatible BMW speaker positions with non-standard fixings"}),
 ("Audison","66771510"):("https://audison.com/product/op-1-5/",{"Model":"OP 1.5","Configuration":"TOSLINK optical S/PDIF cable","Length":"1.5 m"}),
 ("Audison","66771520"):("https://audison.com/product/op-4-5/",{"Model":"OP 4.5","Configuration":"TOSLINK optical S/PDIF cable","Length":"4.5 m"}),
 ("Audison","66771540"):("https://audison.com/product/cbt1/",{"Model":"CBT1","Configuration":"Four-channel RCA adapter cable","Compatibility":"Audison bit Ten and bit Ten D","Head unit pre-out requirement":"2 V minimum"}),
