@@ -1,5 +1,5 @@
 """Prepare a combined nonproduction Car Audio catalogue. No deployment or database writes."""
-import collections, io, json, math, re, zipfile
+import collections, io, json, math, os, re, zipfile
 from pathlib import Path
 from urllib.parse import quote, urlparse
 from openpyxl import load_workbook
@@ -31,6 +31,7 @@ def main():
     rows=[]; seen=set(); models=set()
     evidence_path=Path("/tmp/planetworld-batch-image-evidence.json")
     evidence={}
+    review_mode=os.getenv("GW_BATCH_OWNER_REVIEW")=="1"
     if evidence_path.exists():
         evidence={x["gwa"]:x for x in json.loads(evidence_path.read_text())}
     with zipfile.ZipFile(ARCHIVE) as z:
@@ -65,9 +66,14 @@ def main():
                 item=evidence.get(gwa,{})
                 # Only original available or explicitly reviewed replacements can pass release.
                 verified=item.get("status") in ("ORIGINAL_AVAILABLE","REPLACEMENT_APPROVED")
-                image=str(item.get("resolved") if verified else d["Product Image URL"] or "").strip()
+                candidate=item.get("status")=="REPLACEMENT_CANDIDATE"
+                if review_mode:
+                    assert item and item["sku"]==sku and item["brand"]==vendor and item["title"]==title, (gwa,"evidence mismatch")
+                    image=str(item.get("resolved") or "") if verified or candidate else ""
+                else:
+                    image=str(item.get("resolved") if verified else d["Product Image URL"] or "").strip()
                 image=quote(image,safe=":/?&=%+#@!$'()*+,;[]") if urlparse(image).scheme=="https" and urlparse(image).hostname else "assets/product-placeholder.svg"
-                rows.append(dict(brand=brand,brandDisplayName=brand,title=title,description=desc,modelNumber=sku,getWiredSku=gwa,supplierBrand=vendor,sourceCategory=original,component=component,collection="Car Audio & Video",division="Car Audio",indicativePrice=price,compareAtPrice=d["Compare-At Price (Incl VAT)"],stockSnapshot=stock,hasStock=True,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE",imageGatePassed=verified))
+                rows.append(dict(brand=brand,brandDisplayName=brand,title=title,description=desc,modelNumber=sku,getWiredSku=gwa,supplierBrand=vendor,sourceCategory=original,component=component,collection="Car Audio & Video",division="Car Audio",indicativePrice=price,compareAtPrice=d["Compare-At Price (Incl VAT)"],stockSnapshot=stock,hasStock=True,imageUrl=image,imageStatus="workbook_image_candidate_review_only",publicationStatus="PREVIEW_ONLY_NOT_LIVE",imageGatePassed=verified,imageReviewState=("approved_or_available" if verified else "candidate_pending_review" if candidate else "photo_pending")))
             book.close()
     assert len(rows)==521
     assert not any((p["brand"].casefold(),p["modelNumber"].casefold()) in models for p in kicker)
@@ -78,7 +84,19 @@ def main():
         path=ROOT/name
         s=path.read_text().replace("One (unverified family)","ONE")
         s=s.replace("Browse the imported Kicker catalogue.","Browse the imported car audio catalogue.")
+        if review_mode:
+            s=s.replace("Owner-authorised source image — review-only preview","Image source — review-only preview")
+            s=s.replace("media.append(note)","if(p.imageReviewState===\"candidate_pending_review\")note.textContent=\"Replacement photo — exact model review pending\";if(p.imageReviewState===\"photo_pending\")note.textContent=\"Exact product photo pending\";media.append(note)")
+            s=s.replace("if(imageSrc){const img=", "if(imageSrc&&!imageSrc.includes(\"product-placeholder.svg\")){const img=")
+            s=s.replace("&&p.imageUrl);const sharedTypeImage", "&&p.imageUrl&&!p.imageUrl.includes(\"placeholder\"));const sharedTypeImage")
+            s=s.replace("&&p.imageUrl);const imageSrc=", "&&p.imageUrl&&!p.imageUrl.includes(\"placeholder\"));const imageSrc=")
         path.write_text(s)
+    if review_mode:
+        assert len(evidence)==521
+        p=ROOT/"owner-preview.html"
+        s=p.read_text()
+        s=s.replace("<body>","<body><div style='padding:10px;background:#fff3cd;color:#352600;font:14px Arial,sans-serif'>OWNER REVIEW ONLY — 693 products; replacement photographs and missing images are still under review. Not a live stock release.</div>",1)
+        p.write_text(s)
     for p in ROOT.glob("kicker-*.xlsx"): p.unlink()
     assert not list(ROOT.rglob("*.xlsx"))
     pending=sum(not p["imageGatePassed"] for p in rows)
