@@ -1,0 +1,93 @@
+name: Planetworld isolated owner review
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/planetworld-owner-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-image-evidence
+          path: /tmp
+          run-id: 45587115485
+          github-token: ${{ github.token }}
+      - run: python scripts/build-cloudflare-pages-public.py
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
+      - run: python scripts/build-kicker-owner-preview.py
+      - run: python scripts/stage-planetworld-batch.py
+        env:
+          GW_BATCH_OWNER_REVIEW: '1'
+      - name: Check review scope
+        run: |
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==17; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==114'
+          test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
+      - name: Confirm production branch and automatic deployment safety
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store" | python -c 'import json,sys; d=json.load(sys.stdin); assert d["success"]; p=d["result"]; assert p["production_branch"]=="main"; assert p["source"]["config"]["production_deployments_enabled"] is False'
+      - uses: cloudflare/wrangler-action@v4
+        id: deploy
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-owner-review --commit-hash=${{ github.sha }}
+      - name: Verify isolated deployment and hosted catalogue
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store/deployments" > /tmp/deployments.json
+          python -c 'import json,os; d=json.load(open("/tmp/deployments.json")); assert any(x["environment"]=="preview" and x["url"].rstrip("/")==os.environ["URL"].rstrip("/") for x in d["result"])'
+          curl -fsS "$URL/assets/audio-catalogue-primary-preview.json" > /tmp/hosted.json
+          python -c 'import json; assert json.load(open("/tmp/hosted.json"))==json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))'
+          echo "PLANETWORLD_REVIEW_URL=$URL/owner-preview.html"
+
+      - name: Hosted browser review
+        env:
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          npm install --no-save playwright
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import {chromium} from 'playwright';
+          import assert from 'node:assert/strict';
+          const base=process.env.URL;
+          const browser=await chromium.launch({headless:true});
+          for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+            const page=await browser.newPage({viewport});
+            await page.goto(base+'/owner-preview.html');
+            await page.locator('iframe').first().waitFor();
+            const data=await (await page.request.get(base+'/assets/audio-catalogue-primary-preview.json')).json();
+            const names=[...new Set(data.records.map(x=>x.brand))];
+            assert.equal(names.length,12);
+            for(const name of names){
+              await page.goto(base+'/preview-audio.html?department=Car%20Audio');
+              const link=page.locator('#brands a[aria-label="'+name+'"]').first();
+              await link.waitFor({timeout:15000});
+              await page.goto(new URL(await link.getAttribute('href'),base).href);
+              const card=page.locator('#types a.typeCard').first();
+              await card.waitFor({timeout:15000});
+              await card.click();
+              await page.locator('#products article.product').first().waitFor({timeout:15000});
+              console.log('HOSTED_BRAND_NAV_OK',viewport.width,name);
+            }
+            await page.close();
+          }
+          await browser.close();
+          console.log('PLANETWORLD_HOSTED_REVIEW_OK',base+'/owner-preview.html');
+          JS
