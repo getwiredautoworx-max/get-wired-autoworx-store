@@ -1,0 +1,112 @@
+name: Catalogue closure checks
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/catalogue-closure.yml','scripts/catalogue_image_gate.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Remove only superseded exposed preview
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python - <<'PY'
+          import json,os,urllib.request,urllib.error
+          base='https://api.cloudflare.com/client/v4/accounts/'+os.environ['ACCOUNT']+'/pages/projects/get-wired-autoworx-store/deployments'
+          def cf(path='',method='GET'):
+              req=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['TOKEN']},method=method)
+              with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+              assert data['success']
+              return data
+          old='https://5acaeb50.get-wired-autoworx-store.pages.dev'
+          keep='https://deb34b0c.get-wired-autoworx-store.pages.dev'
+          def listing():
+              rows=[]
+              for page in range(1,101):
+                  result=cf('?page='+str(page)+'&per_page=25')['result']
+                  rows.extend(result)
+                  if len(result)<25: return rows
+              raise RuntimeError('Deployment listing incomplete')
+          deployments=listing()
+          assert any(d['url'].rstrip('/')==keep and d['environment']=='preview' for d in deployments), 'Verified preview missing'
+          for d in deployments:
+              if d['url'].rstrip('/')!=old: continue
+              assert d['environment']=='preview'
+              assert d['deployment_trigger']['metadata']['branch']=='kicker-owner-review'
+              cf('/'+d['id'],'DELETE')
+              print('EXPOSED_PREVIEW_DELETED')
+          assert not any(d['url'].rstrip('/')==old for d in listing())
+          for filename in ('kicker-catalogue-image-repaired.xlsx','kicker-image-audit.xlsx'):
+              try:
+                  with urllib.request.urlopen(old+'/'+filename+'?closure=1',timeout=30) as res:
+                      assert res.read(4)!=b'PK\x03\x04', 'Workbook still available'
+                      assert 'spreadsheet' not in res.headers.get('Content-Type','')
+              except urllib.error.HTTPError as exc:
+                  assert exc.code in (403,404,410)
+              except urllib.error.URLError as exc:
+                  print('OLD_HOST_UNREACHABLE',type(exc.reason).__name__)
+          with urllib.request.urlopen(keep+'/owner-preview.html',timeout=30) as res: assert res.status==200
+          print('OLD_PREVIEW_CLEANUP_OK')
+          PY
+      - name: Remove supplier workbook artifacts from identified runs
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for run in 45571667638 45572315608; do
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/artifacts" --paginate --jq '.artifacts[] | select(.name=="kicker-catalogue-private-review") | .id' > /tmp/ids
+            while read -r id; do
+              [ -z "$id" ] || gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/artifacts/$id"
+            done < /tmp/ids
+            test "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/artifacts" --jq '[.artifacts[] | select(.name=="kicker-catalogue-private-review")] | length')" = 0
+          done
+          echo SUPPLIER_ARTIFACT_CLEANUP_OK
+  reusable:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5 pillow
+      - name: Validate independent supplier schema and fail-closed behavior
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          from catalogue_image_gate import audit
+          from openpyxl import Workbook, load_workbook
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+          with TemporaryDirectory() as tmp:
+              p=Path(tmp)
+              b=Workbook(); s=b.active; s.title='Supplier products'
+              s.append(['Part','Photo','State','Price','Formula'])
+              s.append(['X1','https://example.org/valid.jpg','Ready',123,'=D2*2'])
+              s.append(['X2',None,'Ready',456,'=D3*2'])
+              s.append(['X3',None,'Hold',789,'=D4*2'])
+              b.save(p/'source.xlsx')
+              def mock(url):
+                  if not url: raise ValueError('missing')
+                  return 'test-image-digest'
+              args=(p/'source.xlsx',p/'result.xlsx','Supplier products','Part','Photo','State','Ready')
+              try: audit(*args,{},checker=mock)
+              except ValueError: pass
+              else: raise AssertionError('Missing image was accepted')
+              assert not (p/'result.xlsx').exists()
+              result=audit(*args,{'X2':'https://example.org/part-x2.jpg'},checker=mock)
+              assert result=={'active':2,'available':2,'repaired':1,'cell_preservation':True}
+              s=load_workbook(p/'result.xlsx').active
+              assert s['B2'].value=='https://example.org/valid.jpg' and s['B4'].value is None
+              assert s['E3'].value=='=D3*2'
+              print('INDEPENDENT_SUPPLIER_SCHEMA_OK')
+          PY
+      - name: Validate real Kicker workbook with image decoding
+        run: |
+          python scripts/catalogue_image_gate.py suppliers/Planetworld/get-wired-autoworx-kicker-dec-feb-promo-final.xlsx /tmp/kicker-reviewed.xlsx --sheet Store_Catalog_Upload --sku 'Supplier SKU Reference' --image 'Product Image URL' --status 'Publish Status' --repairs '{"46CXA4001":"https://www.kicker.com.au/wp-content/uploads/1970/01/46CXA4001.jpg","47KEY5001":"https://www.kicker.com.au/wp-content/uploads/2020/10/47KEY5001-FR-scaled.jpg"}' > /tmp/result.json
+          python -c 'import json; d=json.load(open("/tmp/result.json")); assert d["active"]==d["available"]==172 and d["cell_preservation"]; print("REUSABLE_REAL_CATALOGUE_OK",d)'
+          rm -f /tmp/kicker-reviewed.xlsx /tmp/result.json
