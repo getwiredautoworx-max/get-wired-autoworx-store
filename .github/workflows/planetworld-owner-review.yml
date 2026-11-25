@@ -18,9 +18,9 @@ jobs:
       - run: pip install openpyxl==3.1.5
       - uses: actions/download-artifact@v4
         with:
-          name: planetworld-image-evidence
+          name: planetworld-targeted-image-evidence
           path: /tmp
-          run-id: 45587115485
+          run-id: 45588204152
           github-token: ${{ github.token }}
       - run: python scripts/build-cloudflare-pages-public.py
         env:
@@ -29,10 +29,16 @@ jobs:
       - run: python scripts/stage-planetworld-batch.py
         env:
           GW_BATCH_OWNER_REVIEW: '1'
+      - uses: actions/download-artifact@v4
+        with:
+          name: planetworld-model-spec-evidence
+          path: /tmp
+          run-id: 45590030767
+          github-token: ${{ github.token }}
       - run: python scripts/enrich-planetworld-specifications.py
       - name: Check review scope
         run: |
-          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==17; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==114'
+          python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("imageReviewState")=="photo_pending" for p in d)==13; assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==118'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
       - name: Confirm production branch and automatic deployment safety
         env:
