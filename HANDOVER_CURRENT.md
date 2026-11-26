@@ -1,3 +1,64 @@
+## COORDINATION / RECOVERY MONITOR — 2026-11-26 08:50 SAST
+
+### Authority and exact current main
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first from `main` (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`), then this file from `main` (pre-update blob `553da349f1753a7f1d6a66cbc66b3ef5ff5f7c68`).
+- Canonical repository remains PUBLIC. Live `main` head at task start: `d158c912253202d9309e9ddcf18fa3e843837744`. This is a handover-only commit. No code changes followed the latest Planetworld preview build commit `ad0f7e00ff3a8b36dc98f8a94bfb52031c33bcdd`; that preview SHA is 0 ahead / 1 behind current main.
+- Scope: coordination and recovery monitoring only. No product enrichment edits, branch/PR changes, workflow reruns, preview deployments, live data writes, Axxess, DNS, payment or production actions were performed by this monitor.
+
+### 1. Live pull requests and branch reconciliation
+- Live open-PR search: **0 open PRs**.
+- #190, #193, #199, #201, #204, #205, #206 and #207 are MERGED. #185 was merged into the consolidated integration branch; that branch is now an ancestor of main (0 ahead / 453 behind), with the consolidated work subsequently merged through #204.
+- #178, #183, #189, #194, #209, #212 and #213 are CLOSED WITHOUT MERGE. In particular, #178/#183/#189 are not open candidates as older handovers suggested.
+- Exact remaining evidence-branch heads/divergence against current main:
+  - OneNav `work/audio-one-nav-current-main-2026-11-11`: `7427f1bd4d1b2723e6cf5762b5dc01757f9c8052`, 24 ahead / 596 behind.
+  - Old audio integration `integration/audio-video-enrichment-current-main-2026-11-13`: `29c59f7a6972622209a292bcc9b514618d64595f`, 8 ahead / 518 behind.
+  - Consolidated branch `integration/store-consolidated-2026-11-14`: `295d42c4285cde570a547f2c0f7586cd7a7d1edc`, 0 ahead / 453 behind.
+  - Former #178 branch: `c5c4989f01e018bb9040b14feaa0ccbec71c3ff4`, 1,001 ahead / 873 behind.
+  - Former #183 branch: `327d9a271196efe2144e93d81109b93cca83cbdd`, 33 ahead / 847 behind.
+  - Former #189 branch: `fae470d06180162530c39575462993923dd92f52`, 52 ahead / 840 behind.
+  - Former #213 branch: `c67b2f04db53fff10685702e5286c20f38419a5d`, 87 ahead / 269 behind.
+- No branch is a clean integration candidate. No branch, PR, rebase, cherry-pick or merge was created or changed.
+
+### 2. Sole audio editing worker
+- Separate ChatGPT automation **Advance Get Wired audio and video catalogue** remains ENABLED: ID `6aed6a45c2f881918fa463b65cd2c8c0`.
+- Latest recorded run `7b72e09c-d54c-8329-92b4-42b6bfa1e6bd` completed 2026-11-25 09:41 SAST; its result reports review-only OneNav research and no repository changes. Next scheduled run is 2026-11-26 09:00 SAST and had not yet started at this monitor's 08:50 SAST checkpoint.
+- The later Planetworld workflow progress below post-dates that automation result. Do not infer the worker has incorporated it yet. This monitor did not duplicate audio product research or edits.
+- The repository task queue remains stale (blob `81950bf6b6c29e336600cf0b23dd73333c976a89`, updated 2026-11-24): `active_task_id=null`, `active_workers=0`, and `audio-video-content-enrichment` is marked paused, while the separate audio automation is enabled. Keep the enabled audio automation as the sole audio editor; do not start a second worker or change the queue from this monitor.
+
+### 3. Planetworld/Kicker owner-review progress and preview exception
+- Latest combined Planetworld owner-review workflow: [run 45670170522](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45670170522), job `139402982626`, SUCCESS on code SHA `ad0f7e00ff3a8b36dc98f8a94bfb52031c33bcdd`. It deployed the isolated Cloudflare Pages preview branch `planetworld-owner-review`; recorded URL: https://79e0ebd2.get-wired-autoworx-store.pages.dev/owner-preview.html . This is an owner-review deployment, not production, and is not tied to the exact current main SHA.
+- Staged catalogue: **693 records** = 172 Kicker + 521 new records across Alpine, Amplified, Audison, DrArtex, Focal, Harness & Trims, Hertz, JVC, Kenwood, ONE and Pioneer.
+- Technical coverage: 422 manufacturer-verified + 21 model-specific source-corroborated + 250 owner-accepted supplier descriptions = 693. No technical records remain pending.
+- Workbook QA: 11 workbooks, 521 active products, 126 approved image changes; all other cells/formulas and the original source archive preserved.
+- Image acceptance is NOT complete: 13 individual image exceptions remain (ONE 3E2040F, 3E5040F, ON014-F5-12-3, ON017-2A11, ON115-F3, ON1812-A13, ON4989-X, ON669-A14-LCD, ON669-A14-T, OX-4991DVR, TOYOTA1-HC, TOYOTA5-H and TRIM8), plus 10 shared-image digest groups. The workflow's own stage result says `image_gate_pending=13` and `deployable=false`; workbook QA says `final_image_acceptance=false`. Do not describe the batch as fully accepted or ready for customer release.
+- Hosted catalogue parity and desktop 1440px / mobile 390px brand-navigation and technical-specification browser checks passed. The page is explicitly bannered OWNER REVIEW ONLY and NOT a live stock release. Production branch safety checks passed.
+- **Critical preview-policy exception:** job log for run 45670170522 shows the public package builder first passed empty-stock/sanitisation checks (four product files, zero records), then ran `build-kicker-owner-preview.py` and `stage-planetworld-batch.py`, which repopulated the deployed public audio JSON with 693 records. The staging script maps `Supplier SKU Reference` into `modelNumber` and includes `supplierBrand`, `sourceCategory`, numeric `indicativePrice` / `compareAtPrice`, `stockSnapshot` and `hasStock=true`. The Kicker builder likewise maps supplier SKU into `modelNumber` and numeric workbook price into `indicativePrice`.
+- Current `preview-audio.html` visibly renders `Model: p.modelNumber`, so the deployed review page exposes supplier SKU references as model labels. Its current price renderer displays **Price On Request**, but the public JSON retains numeric source price and stock fields. The Kicker builder also changes the category tree by promoting “Car Audio & Security” to a fourth root; the final Planetworld workflow does not re-run the three-root assertion or the empty-stock/supplier-field sanitizer after the later staging steps.
+- This preview is not live store stock and no live database write occurred, but its public Pages URL and payload cannot be treated as a customer-facing approved preview under the current owner rules. Do not reuse it as a ready preview or initiate a new deployment/withdrawal from this monitor. Correct the post-build policy gate and obtain owner acceptance before any customer-facing use.
+- Earlier Kicker cleanup run 45584669454 (jobs `139103113139` and `139103113225`) succeeded in removing the superseded `5acaeb50` preview and identified supplier workbook artifacts. That cleanup preceded the later Planetworld deployment and does not remove or validate the newer `79e0ebd2` deployment.
+
+### 4. ASC source and validator recovery
+- Current-main checks return 404 for the six approved ASC PDFs, the 978-row master register, the 50-image treatment manifest, the ASC extraction workflow and ASC catalogue-review QA workflow. The historical 978-row package remains recoverable at PR #199 merge commit `123e41e83a8710fe427a1a4e1facdf34480b3130`, but it is not present at those paths on current main. The 24 November owner-directed reset commit `0012b97ae0f12ee88bc2276f578381a1dcdbd520` deleted the six PDFs and 52 other supplier catalogue files. Do not restore them without new owner source authorisation.
+- Latest ASC monitor automation run `80942f46-0304-8328-95e0-071c6120c575` completed 2026-11-25 09:18 SAST; it confirmed 0/6 PDFs on main, missing current review registers/image evidence and no new editorial progress. The ASC monitor remains enabled; its next scheduled run is 2026-11-26 09:00 SAST.
+- Last actual ASC QA remains historical run `43613604610` (14 November); last extraction run `43613604557`. No fresh ASC exact-current-main QA is available. Current `assets/auto-electrical-owner-preview.json` has 0 products.
+- **Verified validator recovery:** current `scripts/validate_automation_queue.py` blob `ab663a85e4b178f2868fa7dbb69c89a0841f3486` now enforces `automatic=false` and `execution_mode=model-assisted-review-required` for `audio-planetworld-source-extraction`. Repository code search for `private-runner-required` returns no matches. The earlier private-runner blocker is therefore corrected in current main at source level; no fresh exact-main validator workflow run was observed. The queue now marks the Planetworld extraction subtask paused/subsumed, not ready for repeat-OCR. ASC extraction and image QA remain paused because the source package and workflows are absent.
+- The old repository `background-task-controller.yml` is absent from current main (404). Do not report the former 15-minute controller schedule as active. No fresh artifact inventory was obtained; the old 400-artifact / 12.25 GB figure is not reverified.
+
+### 5. Main storefront and release gates
+- Current `assets/category-tree.json` blob `5bb792b704558b28bd9bd43c1e079aef2a91f015`: 29 categories and the approved three roots. Known taxonomy gaps remain: Sensors & Switches combined, no separate Fuel Pumps category, and the non-final “Globes & Vehicle Lighting” label. All category `direct_active_products` values are zero.
+- Current main `assets/audio-catalogue-primary-preview.json` and `assets/audio-catalogue-secondary-preview.json` both contain `records: []`; `assets/auto-electrical-owner-preview.json` contains `products: []`. Planetworld/OneNav review assets and the prior OneNav audit are absent from current-main paths; the 693 records exist only in the isolated workflow build/deployment.
+- Latest recorded Live Release Gates run [45576091529](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45576091529), job `139074276278`, FAILED. Public routes returned HTTP 200, but `checkout-v2.html` source hash did not match repository source; live desktop and mobile category navigation each rendered 8 roots; checkout UI showed only Direct EFT and blocked order submission; PayFast/PayJustNow integration was absent and payment readiness failed. Production remains HOLD.
+- No exact-current-main hosted preview passes the complete release gate. The latest isolated Planetworld preview is one commit behind main, has `deployable=false` and unresolved image acceptance, and is not a customer release.
+
+### 6. Next actions and restrictions
+1. Let the enabled audio worker continue its scheduled review-only work; do not duplicate its product research or edits.
+2. Close the 13 exact-image exceptions and 10 shared-digest identity groups before claiming Planetworld image acceptance or starting another catalogue batch.
+3. Before any customer-facing preview, ensure the final built package—not only the initial base package—preserves Price On Request, suppresses numeric price/stock and supplier identity fields, hides supplier SKUs, and retains exactly the three approved roots. Verify those conditions after every staging/enrichment step on one exact SHA.
+4. Keep ASC paused until the owner supplies or explicitly reauthorises source catalogues; preserve historical 978-row evidence in Git history and do not process Buyers Guides.
+5. Resolve live source parity and payment readiness separately. Production remains HOLD.
+- No branch/PR changes, product edits, live Supabase/database/catalogue/price/stock/active-flag writes, production deployment, Axxess upload, DNS/payment/banking changes, supplier activation or monitor-initiated Cloudflare deployment occurred in this run. No release credits were intentionally spent.
+
+
 ## Planetworld technical reconciliation complete — 693 of 693 accepted
 - Isolated Cloudflare run 45670170522 verified hosted catalogue parity and desktop/mobile owner review at https://79e0ebd2.get-wired-autoworx-store.pages.dev/owner-preview.html. Technical coverage: 422 manufacturer verified, 21 model-specific sources corroborated, 250 owner-accepted supplier descriptions. Zero technical records pending.
 - The last 21 records include both Amplified amps with RMS ratings by impedance and the CX690 grille. Planetworld's exact CX690 image visibly shows the Hertz badge. The Hertz manufacturer page confirms the CX 690 grille's application and construction. The preview displays the corrected Hertz product title and description while preserving the supplier SKU and underlying source record.
