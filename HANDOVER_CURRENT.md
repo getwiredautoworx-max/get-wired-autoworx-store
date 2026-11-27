@@ -2662,3 +2662,53 @@ Exactly #184, #155 and #67 remain open after this checkpoint. The original 21-PR
 6. Continue editorial review only under explicit workstream authorisation; keep all records DO NOT IMPORT and customer-facing arrays empty.
 
 - This monitoring run made no product, image, category, task-queue, PR, branch, deployment, database, Axxess, DNS, payment, supplier-activation or Cloudflare-credit changes. Only this permanent handover entry is being committed.
+
+
+## COORDINATION / RECOVERY MONITOR — 2026-11-27 08:23 SAST
+
+### Authority and exact current-main state
+- Read `AI_HANDOVER_OWNER_DIRECTIVES_2026-11-05.md` first from `main` (blob `7335e2c4ef60a7e4305fb42424b3342500b93700`), then this handover from `main` (pre-update blob `8e4ca4e067066a51521d2765d8a759207adcdcfe`).
+- Repository visibility verified PUBLIC; default branch is `main`. Live `main` at task start: `2458308c98f5407ddfd990ee04d0ffb1abbe9d59`, the 26 November ASC daily-monitor documentation commit. Its diff adds only this handover section; no product, source catalogue, storefront payload, task-queue or workflow code changed after the preceding `9f48a192d8e5c13ddf487c6d18ca8b15abb701f9` checkpoint.
+- Live open-PR search: **0 open PRs**. No clean current-main integration PR exists. No PR metadata was changed.
+- The current-main category tree is blob `5bb792b704558b28bd9bd43c1e079aef2a91f015`: 29 categories and exactly the three approved roots. Known taxonomy gaps remain: Sensors & Switches combined, Fuel Pumps not separate, and Globes & Vehicle Lighting is still a non-final label.
+- Current-main public preview assets remain empty: primary audio records 0; secondary audio records 0; Auto Electrical products 0; image-treatment sample records 0. This is repository-file verification, not a fresh Supabase query.
+- The task queue remains stale at blob `81950bf6b6c29e336600cf0b23dd73333c976a89`, with `canonical_head=200ced5d78fdc8987b2adae2128546d0b645e2c8`, `active_task_id=null`, `active_workers=0`; its audio enrichment tasks are paused even though the separate ChatGPT audio worker remains enabled. Do not activate a second worker or rewrite the queue from this monitor.
+- Current `scripts/validate_automation_queue.py` blob `ab663a85e4b178f2868fa7dbb69c89a0841f3486` enforces the public-repository/manual-review model and requires `automatic=false` plus `execution_mode=model-assisted-review-required`; no private-runner prerequisite remains in this validator.
+
+### Exact branch heads and divergence against current main
+- OneNav `work/audio-one-nav-current-main-2026-11-11`: `7427f1bd4d1b2723e6cf5762b5dc01757f9c8052`, **24 ahead / 598 behind**.
+- Old audio integration `integration/audio-video-enrichment-current-main-2026-11-13`: `29c59f7a6972622209a292bcc9b514618d64595f`, **8 ahead / 520 behind**.
+- Consolidated integration `integration/store-consolidated-2026-11-14`: `295d42c4285cde570a547f2c0f7586cd7a7d1edc`, **0 ahead / 455 behind**.
+- ASC preview evidence `integration/asc-preview-population-mainline-2026-11-12`: `77d63379b25da1ce2932c13ba2e7ef287a3c5b17`, **3 ahead / 579 behind**.
+- Background-controller evidence `integration/background-controller-safe-main-2026-11-15`: `fc52c30b9bf7ee8faff61af290f665c0d241b56a`, **6 ahead / 430 behind**.
+- None is a clean current-main integration candidate. No branch was created, edited, rebased, force-pushed or merged.
+
+### Sole audio worker — latest completed result
+- Separate automation **Advance Get Wired audio and video catalogue** remains ENABLED (automation ID `6aed6a45c2f881918fa463b65cd2c8c0`). Latest completed run: `b5dae509-f194-832f-9a4f-3ab949a9640e`, scheduled 2026-11-26 09:00 SAST, completed 2026-11-26 09:34 SAST. Next scheduled run: 2026-11-27 09:00 SAST, after this monitor checkpoint.
+- The worker made no repository changes and did not rerun GitHub Actions. It reports static source assertions only; it did not claim a completed Node regression suite or hosted-preview acceptance.
+- New exact-image findings to preserve:
+  - **ON017-2A11:** a third-party image candidate explicitly labels the 2019+ CANBUS Fortuner variant, but the official manufacturer page identifies ON017-2A and the catalogue PDF uses ON017-2A10 while the retailer record uses ON017-2A11. These identifiers are not established as interchangeable. Keep the image as a candidate, not approved.
+  - **OA014-1:** the proposed retailer-hosted image visibly carries hardware marking OA1409-CPAA. This is not an exact OA014-1 image match and must remain rejected/pending despite the owner's reseller image-rights authorisation.
+  - **OA009-1:** exact image remains unresolved.
+  - **ON016-2LX:** 10-inch versus 10.1-inch conflict remains; omit screen size from customer claims.
+- These are image-identity findings, not permission blockers. Do not copy or edit product data from the worker branch in this monitor.
+
+### ASC monitor and workflow evidence
+- Separate ASC daily monitor automation remains enabled. Latest completed run: `95ea16fb-ca6c-8320-b4ae-236ea1d4c405`, completed 2026-11-26 10:00 SAST. It found no new product verification, editorial transcription, image acceptance or fresh ASC QA.
+- Live current main still contains only `suppliers/ASC/README.md`; **0/6 approved ASC PDFs** and the former working registers/image processor/workflows are present on current main. The README's 1 November intake statement is stale.
+- Historical PR #199 merge checkpoint `123e41e83a8710fe427a1a4e1facdf34480b3130` remains the recoverable evidence for 978 identities: 978 staging rows, exact ASC Price On Request wording on all 978, blank numeric prices, all review-only / DO NOT IMPORT. Historical editorial pilot: 50 titles checked, 42 fitments transcribed, 0 technical specifications. Historical image pilot: 50 outputs, **0 accepted** because original ASC watermark remains underneath the Get Wired watermark. These figures are historical, not current-main records.
+- Last actual ASC extraction run `43613604557` and 978-row QA run `43613604610` both passed on 2026-11-14 historical integration SHA `295d42c4285cde570a547f2c0f7586cd7a7d1edc`; neither is current-main QA.
+
+### Relevant workflow/status checks
+- Current-main commit `2458308c98f5407ddfd990ee04d0ffb1abbe9d59` has no combined commit statuses and no PR-triggered workflow runs returned by the commit-scoped workflow lookup. The GitHub connector available in this session does not expose a repository-wide Actions run listing, so no newer unrecorded run ID is asserted.
+- Rechecked recorded run jobs: Planetworld isolated owner-review run [45670170522](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45670170522) SUCCESS (job `139402982626`), but its own evidence says `deployable=false`, with 13 individual image exceptions and 10 shared-image groups; the deployed public JSON also contains supplier SKU/identity and numeric source price/stock fields after staging, so that URL is not an approved customer-facing preview.
+- Latest recorded Live Release Gates run [45576091529](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45576091529) FAILED (job `139074276278`): live source hash mismatch, eight roots on desktop/mobile, and only Direct EFT; PayFast/PayJustNow readiness unconfirmed.
+- Latest historical ASC QA [43613604610](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604610) and extraction [43613604557](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/43613604557) passed on 14 November, not current main. Empty customer-only package QA [45129475488](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/45129475488) passed on 23 November code SHA `ae61ad95d710f5fa8ed0f75e60ad27aba635a009`, also not current main.
+- No fresh hosted preview was deployed or accepted. The old Planetworld URL remains disqualified by post-staging supplier/price/stock leakage and unresolved image acceptance. Production remains HOLD.
+
+### Monitor actions and next steps
+- This monitor updated only `HANDOVER_CURRENT.md` to record the new completed audio-worker image findings and current exact branch/main state. No product or image files, queue, source catalogues, branches, PRs, workflow runs, deployments or live data were changed.
+- Continue to let the enabled audio worker operate as the sole audio catalogue editor. Keep ON017-2A11 and OA014-1 image candidates unapproved until exact model identity is resolved.
+- Keep ASC paused until the owner supplies or explicitly reauthorises the six approved catalogue PDFs; do not process Buyers Guides.
+- Keep the public storefront arrays empty, preserve the three-root category structure, and do not accept or deploy the 693-record Planetworld preview until final package checks enforce Price On Request, no numeric price/stock, no supplier identity/SKU and exact three-root taxonomy after all staging steps.
+- No production deployment, Axxess upload, DNS/payment change, live Supabase/database/catalogue/price/stock/active-flag write, supplier activation, PR/branch operation or release-credit spend occurred.
