@@ -1,3 +1,10 @@
+## Planetworld photo reconciliation checkpoint — 28 November 2026 UTC
+
+- Resumed the owner-requested Planetworld photo review on current main. Technical reconciliation remains 693/693. The latest verified owner-review run still records 13 individual photo exceptions and 10 shared-image groups.
+- Fortuner ON017-2A11: SBR Pro Sound's exact listing contains gallery candidates `Fortuner-1-300x300.jpg` and `Toyota-Fortuner-2-300x169.jpg` under https://sbrprosound.co.za/wp-content/uploads/2022/10/. Verify original photo resolution, visible hardware and whether either image is reused for the LX or earlier A11 variant before acceptance. Listing: https://sbrprosound.co.za/product/onenav-on017-2a11/.
+- TRIM8: NZ Fasteners lists Connects2 CT23TY31 for Hilux 2012–2015. Its photograph still needs a right-hand-drive orientation check. ON4989-X: NXT and Bob Shop identify the 9.66-inch SKU, with the conflicting retailer listing still unresolved. OX-4991DVR searches returned generic brackets and the same manufacturer front image used for OX-4990DVR. No new photo accepted.
+- The public preview payload exception from the 26 November monitor remains a release blocker. Do not trigger the current auto-deploy workflow with photo edits until the final package has a policy gate or an access-controlled review route. Resolve exact images in the coordinated review and keep the catalogue batch open.
+
 ## COORDINATION / RECOVERY MONITOR — 2026-11-26 08:50 SAST
 
 ### Authority and exact current main
