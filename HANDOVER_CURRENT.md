@@ -1,3 +1,9 @@
+## Planetworld validation-only workflow verified — 28 November 2026 UTC
+
+- Commit f9bd7292c9f41dd8e3fdfbfd58ab3949ac98dd79 removed the Cloudflare deployment and credentials from the Planetworld review workflow. The workflow serves the staged catalogue on runner loopback for desktop and mobile browser checks. It publishes neither the catalogue nor a review artifact.
+- Run 46170238721, job 141056766992, passed at that commit. All 693 technical records passed. Workbook QA preserved 126 approved repairs across 11 workbooks, with 13 individual exceptions still open. Ten previously recorded shared-image groups still need exact-model evidence.
+- The earlier public Cloudflare review deployment was not modified by this workflow fix. Customer-facing preview remains pending a final public-data gate or a verified access-controlled owner review. Batch remains open.
+
 ## Planetworld photo reconciliation checkpoint — 28 November 2026 UTC
 
 - Resumed the owner-requested Planetworld photo review on current main. Technical reconciliation remains 693/693. The latest verified owner-review run still records 13 individual photo exceptions and 10 shared-image groups.
