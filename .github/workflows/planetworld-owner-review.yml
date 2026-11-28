@@ -47,34 +47,14 @@ jobs:
         run: |
           python -c 'import json; d=json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))["records"]; assert len(d)==693 and sum(p["brand"]=="Kicker" for p in d)==172; assert sum(p.get("specificationStatus")=="manufacturer_verified" for p in d)>=190; assert sum(p.get("imageReviewState")=="photo_pending" for p in d) in range(10,14); assert sum(p.get("imageReviewState")=="candidate_pending_review" for p in d)==3; assert next(p for p in d if p.get("getWiredSku")=="GWA-ONE-OX-CPAA3")["imageGatePassed"]; assert next(p for p in d if p.get("getWiredSku")=="GWA-ONE-OX-4990DVR")["imageGatePassed"]'
           test -z "$(find pages-public -type f -iname '*.xlsx' -print -quit)"
-      - name: Confirm production branch and automatic deployment safety
+      - name: Validate the catalogue in a local browser
         env:
-          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          URL: http://127.0.0.1:8765
         run: |
-          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store" | python -c 'import json,sys; d=json.load(sys.stdin); assert d["success"]; p=d["result"]; assert p["production_branch"]=="main"; assert p["source"]["config"]["production_deployments_enabled"] is False'
-      - uses: cloudflare/wrangler-action@v4
-        id: deploy
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-owner-review --commit-hash=${{ github.sha }}
-      - name: Verify isolated deployment and hosted catalogue
-        env:
-          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          URL: ${{ steps.deploy.outputs.deployment-url }}
-        run: |
-          curl -fsS -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/pages/projects/get-wired-autoworx-store/deployments" > /tmp/deployments.json
-          python -c 'import json,os; d=json.load(open("/tmp/deployments.json")); assert any(x["environment"]=="preview" and x["url"].rstrip("/")==os.environ["URL"].rstrip("/") for x in d["result"])'
-          curl -fsS "$URL/assets/audio-catalogue-primary-preview.json" > /tmp/hosted.json
-          python -c 'import json; assert json.load(open("/tmp/hosted.json"))==json.load(open("pages-public/assets/audio-catalogue-primary-preview.json"))'
-          echo "PLANETWORLD_REVIEW_URL=$URL/owner-preview.html"
-
-      - name: Hosted browser review
-        env:
-          URL: ${{ steps.deploy.outputs.deployment-url }}
-        run: |
+          python -m http.server 8765 --bind 127.0.0.1 --directory pages-public > /tmp/planetworld-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          curl --fail --silent --retry 5 --retry-connrefused "$URL/owner-preview.html" > /dev/null
           npm install --no-save playwright
           npx playwright install chromium
           node --input-type=module <<'JS'
@@ -113,7 +93,7 @@ jobs:
               await card.waitFor({timeout:15000});
               await card.click();
               await page.locator('#products article.product').first().waitFor({timeout:15000});
-              console.log('HOSTED_BRAND_NAV_OK',viewport.width,name);
+              console.log('LOCAL_BRAND_NAV_OK',viewport.width,name);
             }
             await page.goto(base+'/preview-audio-brand.html?department=Car%20Audio&brand=Alpine');
             await page.getByText('Amplifiers',{exact:true}).first().click();
@@ -124,7 +104,7 @@ jobs:
             await page.close();
           }
           await browser.close();
-          console.log('PLANETWORLD_HOSTED_REVIEW_OK',base+'/owner-preview.html');
+          console.log('PLANETWORLD_LOCAL_REVIEW_OK',base+'/owner-preview.html');
           JS
 
 # Diagnose unmatched exact specification keys without lowering the coverage gate.
